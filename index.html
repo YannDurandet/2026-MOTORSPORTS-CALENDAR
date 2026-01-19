@@ -1,1176 +1,959 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 MOTORSPORT MASTER CALENDAR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@300;400;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-    --bg: #050505;
-    --card-bg: #0f0f0f;
-    --border: #222;
-    --text-main: #e0e0e0;
-
-    /* SERIES COLORS */
-    --f1: #ff1801;    /* F1 Red */
-    --f2: #0090ff;    /* F2 Blue */
-    --f3: #d15eff;    /* F3 Purple */
-    --f1a: #ff00de;   /* Academy Pink */
-    --fe: #00b6f0;    /* Formula E Cyan */
-    --sf: #e60026;    /* SF Red */
-    --wec: #012d9c;   /* WEC Dark Blue */
-    --imsa: #ffd700;  /* IMSA Yellow */
-}
-
-/* GLOBAL RESET & MOBILE DEFAULTS */
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: var(--bg);
-    background-image: 
-        linear-gradient(rgba(18, 18, 18, 0.9), rgba(5, 5, 5, 0.95)),
-        repeating-linear-gradient(45deg, #000 0, #000 2px, #111 2px, #111 4px);
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 15px; /* Reduced padding for mobile */
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    width: 100%;
-}
-
-.container { 
-    width: 100%;
-    max-width: 100%; /* Ensure it fits screen */
-    margin: 0 auto; 
-}
-
-/* DASHBOARD HEADER */
-header {
-    margin-bottom: 30px;
-    border-bottom: 2px solid #333;
-    padding-bottom: 15px;
-}
-
-h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem; /* Smaller for mobile */
-    font-weight: 900;
-    font-style: italic;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-    background: linear-gradient(90deg, #fff, #444);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.1;
-}
-
-.meta { 
-    font-family: 'Roboto Mono', monospace; 
-    font-size: 0.7rem; 
-    color: #666; 
-    margin-top: 8px; 
-    line-height: 1.4;
-}
-
-/* DASHBOARD GRID (MOBILE: 2 Columns) */
-.dash-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Force 2 columns on mobile */
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.dash-card {
-    background: #111;
-    border: 1px solid #333;
-    padding: 10px;
-    position: relative;
-    overflow: hidden;
-    min-width: 0; /* Prevent flex/grid item overflow */
-}
-.dash-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
-
-/* Dash Card Colors */
-.dc-f1::before { background: var(--f1); }
-.dc-fe::before { background: var(--fe); }
-.dc-wec::before { background: var(--wec); }
-.dc-sf::before { background: var(--sf); }
-.dc-imsa::before { background: var(--imsa); }
-.dc-f1a::before { background: var(--f1a); }
-
-.dc-title { 
-    font-family: 'Orbitron', sans-serif; 
-    font-size: 0.6rem; 
-    font-weight: 900; 
-    color: #fff; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-}
-
-.dc-time { 
-    font-family: 'Roboto Mono', monospace; 
-    font-size: 0.9rem; 
-    color: #ccc; 
-    margin-top: 4px; 
-    font-weight: 700; 
-}
-
-.dc-next { 
-    font-size: 0.6rem; 
-    color: #666; 
-    text-transform: uppercase; 
-    margin-top: 2px; 
-    white-space: nowrap; 
-    overflow: hidden; 
-    text-overflow: ellipsis; 
-}
-
-/* MONTH HEADER */
-.month-header {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 2.5rem; /* Smaller for mobile */
-    font-weight: 900;
-    color: rgba(255,255,255,0.05);
-    text-align: left;
-    border-bottom: 1px solid #222;
-    line-height: 0.8;
-    margin: 40px 0 15px 0;
-    position: relative;
-}
-.month-header span {
-    position: absolute; left: 2px; bottom: 8px;
-    font-size: 1rem; color: #fff; opacity: 1;
-}
-
-/* CALENDAR GRID (MOBILE: 1 Column) */
-.cal-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Full width on mobile */
-    gap: 15px;
-}
-
-.card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    display: flex; 
-    flex-direction: column;
-    width: 100%;
-}
-
-.c-head {
-    background: #161616;
-    padding: 8px 12px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #777;
-    display: flex; 
-    justify-content: space-between;
-    border-bottom: 1px solid #222;
-}
-
-.c-body { 
-    padding: 12px; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 12px; 
-}
-
-.event {
-    padding-left: 10px;
-    border-left: 3px solid #444;
-    position: relative;
-}
-
-/* Series styling */
-.ev-f1 { border-color: var(--f1); }
-.ev-f1a { border-color: var(--f1a); }
-.ev-fe { border-color: var(--fe); }
-.ev-sf { border-color: var(--sf); }
-.ev-wec { border-color: var(--wec); }
-.ev-imsa { border-color: var(--imsa); }
-
-.tag {
-    font-family: 'Orbitron', sans-serif; 
-    font-size: 0.6rem; 
-    font-weight: 800;
-    padding: 2px 5px; 
-    border-radius: 2px; 
-    text-transform: uppercase;
-    display: inline-block; 
-    margin-bottom: 4px; 
-    color: #000;
-}
-
-/* Tag Colors */
-.t-f1 { background: var(--f1); color: #fff; }
-.t-f1a { background: var(--f1a); }
-.t-fe { background: var(--fe); }
-.t-sf { background: var(--sf); }
-.t-wec { background: var(--wec); color: #fff; }
-.t-imsa { background: var(--imsa); }
-
-.title { 
-    font-weight: 800; 
-    font-size: 0.95rem; 
-    display: block; 
-    line-height: 1.2; 
-    margin-bottom: 4px; 
-    color: #fff; 
-}
-
-.meta-time { 
-    font-family: 'Roboto Mono', monospace; 
-    font-size: 0.75rem; 
-    color: #aaa; 
-    display: block; 
-    line-height: 1.4; 
-}
-
-.hl { 
-    color: #fff; 
-    font-weight: 700; 
-    background:#222; 
-    padding: 0 4px; 
-    border-radius: 2px; 
-}
-
-.sprint-badge { 
-    font-size: 0.5rem; 
-    background: #fff; 
-    color: #000; 
-    padding: 1px 3px; 
-    border-radius: 2px; 
-    font-weight: 800; 
-    vertical-align: middle; 
-    margin-left: 5px; 
-}
-
-/* TOGGLE & SUB-SCHEDULE */
-.toggle-row { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: flex-start; 
-}
-
-.arrow-btn {
-    background: none; 
-    border: 1px solid #333; 
-    color: #666;
-    cursor: pointer; 
-    font-size: 0.8rem; 
-    padding: 2px 8px;
-    transition: 0.2s;
-    /* Increase touch target size */
-    min-width: 30px;
-    min-height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.arrow-btn:hover { border-color: var(--f1); color: var(--f1); }
-.arrow-btn.active { transform: rotate(180deg); background: var(--f1); color: #fff; border-color: var(--f1); }
-
-.sub-sched {
-    display: none;
-    margin-top: 10px; 
-    padding-top: 10px; 
-    border-top: 1px dashed #333;
-}
-.sub-sched.open { display: block; animation: slideDown 0.2s ease-out; }
-
-.sub-row { 
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 6px; 
-    font-size: 0.75rem; 
-}
-
-.badge { 
-    font-weight: 800; 
-    color: #fff; 
-    padding: 2px 0; 
-    margin-right: 8px; 
-    border-radius: 2px; 
-    font-size: 0.65rem; 
-    width: 24px; 
-    text-align: center;
-    flex-shrink: 0; /* Prevent badge from squishing */
-}
-.b-f2 { background: var(--f2); }
-.b-f3 { background: var(--f3); }
-.sub-det { color: #888; font-family: 'Roboto Mono', monospace; }
-
-@keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
-/* =========================================
-   TABLET & DESKTOP OVERRIDES (Min-width 768px)
-   ========================================= */
-@media (min-width: 768px) {
-    .container { max-width: 1800px; padding: 0 20px; }
-    
-    h1 { font-size: 2.5rem; letter-spacing: 2px; }
-    
-    .dash-grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Auto fit columns */
-        gap: 15px;
-    }
-    
-    .month-header { font-size: 4rem; }
-    .month-header span { font-size: 1.5rem; }
-    
-    .cal-grid {
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Responsive Grid */
-        gap: 20px;
-    }
-    
-    .c-body { padding: 15px; gap: 15px; }
-    
-    .title { font-size: 1rem; }
-    .meta-time { font-size: 0.8rem; }
-    .arrow-btn { min-width: auto; min-height: auto; } /* Reset touch target for mouse */
-}
-
-
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-
-<div class="container">
-    <header>
-        <h1>2026 MOTORSPORT MASTER CALENDAR</h1>
-        <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST) • FULL CALENDAR INCLUDED</div>
-
-        <div class="dash-grid">
-            <div class="dash-card dc-f1"><div class="dc-title">FORMULA 1</div><div class="dc-next">AUSTRALIA</div><div class="dc-time" id="t-f1">--d --h</div></div>
-            <div class="dash-card dc-fe"><div class="dc-title">FORMULA E</div><div class="dc-next">MEXICO CITY</div><div class="dc-time" id="t-fe">--d --h</div></div>
-            <div class="dash-card dc-wec"><div class="dc-title">WEC</div><div class="dc-next">QATAR 1812</div><div class="dc-time" id="t-wec">--d --h</div></div>
-            <div class="dash-card dc-imsa"><div class="dc-title">IMSA</div><div class="dc-next">ROLEX 24</div><div class="dc-time" id="t-imsa">--d --h</div></div>
-            <div class="dash-card dc-sf"><div class="dc-title">SUPER FORMULA</div><div class="dc-next">SUZUKA R1</div><div class="dc-time" id="t-sf">--d --h</div></div>
-            <div class="dash-card dc-f1a"><div class="dc-title">F1 ACADEMY</div><div class="dc-next">CHINA</div><div class="dc-time" id="t-f1a">--d --h</div></div>
+    <div class="container">
+        <div class="banner-container">
+            <picture>
+                <source media="(min-width: 768px)" srcset="assets/lauda_and_mouton.png">
+                <img src="assets/lauda.png" alt="Banner" class="hero-banner">
+            </picture>
         </div>
-    </header>
+        <header>
+            <div class="header--left">
+                <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+                <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+            </div>
+            <div class="dash-grid">
+                <div class="dash-card dc-f1">
+                    <div class="dc-title">F1</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-f1">--</div>
+                </div>
+                <div class="dash-card dc-f1a">
+                    <div class="dc-title">F1 Academy</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-f1a">--</div>
+                </div>
+                <div class="dash-card dc-fe">
+                    <div class="dc-title">Formula E</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-fe">--</div>
+                </div>
+                <div class="dash-card dc-sf">
+                    <div class="dc-title">Super Formula</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-sf">--</div>
+                </div>
+                <div class="dash-card dc-wec">
+                    <div class="dc-title">WEC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-wec">--</div>
+                </div>
+                <div class="dash-card dc-imsa">
+                    <div class="dc-title">IMSA</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-imsa">--</div>
+                </div>
+                <div class="dash-card dc-wrc">
+                    <div class="dc-title">WRC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-wrc">--</div>
+                </div>
+            </div>
+        </header>
 
-    <div class="month-header">JANUARY<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 02 • JAN 10-11</div>
-            <div class="c-body">
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Mexico City E-Prix</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">21:00</span></span>
+        <div class="month-header">JANUARY</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 02 • JAN 10-11</div>
+                <div class="c-body">
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Mexico City E-Prix</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">21:00</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="c-head">WEEK 04 • JAN 22-25</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rallye Monte-Carlo</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Rolex 24 at Daytona</span>
+                        <span class="meta-time">SAT <span class="hl">19:40</span> > SUN <span
+                                class="hl">19:40</span></span>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Diriyah E-Prix</span>
+                        <span class="meta-time">R1: FRI <span class="hl">18:00</span> • R2: SAT <span
+                                class="hl">18:00</span></span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="c-head">WEEK 04 • JAN 24-25</div>
-            <div class="c-body">
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Rolex 24 at Daytona</span>
-                    <span class="meta-time">SAT <span class="hl">19:40</span> > SUN <span class="hl">19:40</span></span>
+
+        <div class="month-header">FEBRUARY</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 07 • FEB 12-15</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Sweden</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Miami E-Prix</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">21:00</span></span>
+                    </div>
                 </div>
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Diriyah E-Prix</span>
-                    <span class="meta-time">R1: FRI <span class="hl">18:00</span> • R2: SAT <span class="hl">18:00</span></span>
+            </div>
+            <div class="card">
+                <div class="c-head">WEEK 09 • FEB 28</div>
+                <div class="c-body">
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">Qatar 1812km</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">09:00</span></span>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <div class="month-header">MARCH</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 10 • MAR 06-08</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Australian GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">07:00</span> • RACE: SUN <span
+                                        class="hl">06:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 04:15 • SUN
+                                    03:35</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 01:00 • SUN
+                                    00:05</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Suzuka (Rd 1)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">06:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 11 • MAR 12-15</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Safari Rally Kenya</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Monaco E-Prix</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">15:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 12 • MAR 20-22</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
+                        <span class="title">Chinese GP</span>
+                        <span class="meta-time">SPRINT: SAT <span class="hl">05:00</span> • RACE: SUN <span
+                                class="hl">09:00</span></span>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 1: China</span>
+                        <span class="meta-time">SAT <span class="hl">07:30</span> • SUN <span
+                                class="hl">07:30</span></span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">12 Hours of Sebring</span>
+                        <span class="meta-time">SAT <span class="hl">15:10</span> > SUN <span
+                                class="hl">03:10</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 13 • MAR 29-30</div>
+                <div class="c-body">
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Tokyo E-Prix</span>
+                        <span class="meta-time">R1: SAT <span class="hl">07:00</span> • R2: SUN <span
+                                class="hl">07:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">APRIL</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 14 • APR 04-05</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span>
+                        <span class="title">Japanese GP</span>
+                        <span class="meta-time">QUALI: SAT <span class="hl">08:00</span> • RACE: SUN <span
+                                class="hl">07:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 15 • APR 09-13</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Croatia Rally</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Long Beach</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">22:30</span></span>
+                    </div>
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Autopolis (Rd 2)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Misano E-Prix</span>
+                        <span class="meta-time">R1: SAT <span class="hl">15:00</span> • R2: SUN <span
+                                class="hl">15:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 16 • APR 18-19</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Bahrain GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">17:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    11:30</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN
+                                    09:00</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">6 Hours of Imola</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">13:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 17 • APR 23-26</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Islas Canarias</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Saudi Arabian GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">18:00</span> • RACE: SUN <span
+                                        class="hl">18:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN
+                                    14:15</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 2: Jeddah</span>
+                        <span class="meta-time">FRI <span class="hl">13:00</span> • SAT <span
+                                class="hl">13:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">MAY</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 18 • MAY 02-03</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
+                        <span class="title">Miami GP</span>
+                        <span class="meta-time">SPRINT: SAT <span class="hl">18:00</span> • RACE: SUN <span
+                                class="hl">21:30</span></span>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 3: Miami</span>
+                        <span class="meta-time">SAT <span class="hl">19:00</span> • SUN <span
+                                class="hl">17:00</span></span>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Shanghai E-Prix</span>
+                        <span class="meta-time">R1: SAT <span class="hl">09:00</span> • R2: SUN <span
+                                class="hl">09:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 19 • MAY 07-10</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally de Portugal</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">6 Hours of Spa</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">13:00</span></span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Laguna Seca</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">21:10</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 20 • MAY 16-17</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Emilia Romagna GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    10:00</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN
+                                    08:30</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Sugo (Rd 3)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 21 • MAY 23-24</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Monaco GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    09:40</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 11:00 • SUN
+                                    08:00</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Berlin E-Prix</span>
+                        <span class="meta-time">R1: SAT <span class="hl">15:00</span> • R2: SUN <span
+                                class="hl">15:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 22 • MAY 28-31</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Japan</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Detroit GP</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">21:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">JUNE</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 23 • JUN 06-07</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Madrid GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    10:35</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:30 • SUN
+                                    09:25</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 24 • JUN 13</div>
+                <div class="c-body">
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">24 Hours of Le Mans</span>
+                        <span class="meta-time">SAT <span class="hl">16:00</span> > SUN <span
+                                class="hl">16:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 25 • JUN 20-21</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span>
+                        <span class="title">Canadian GP</span>
+                        <span class="meta-time">QUALI: SAT <span class="hl">22:00</span> • RACE: SUN <span
+                                class="hl">20:00</span></span>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 4: Canada</span>
+                        <span class="meta-time">SAT <span class="hl">18:00</span> • SUN <span
+                                class="hl">16:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 26 • JUN 25-28</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Acropolis Rally Greece</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">Portland E-Prix</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">22:00</span></span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">6H Watkins Glen</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">16:40</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">JULY</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 27 • JUL 04-05</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
+                                <span class="title">Austrian GP</span>
+                                <span class="meta-time">SPRINT: SAT <span class="hl">12:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 13:30 • SUN
+                                    10:00</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN
+                                    08:30</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 28 • JUL 12</div>
+                <div class="c-body">
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">6H São Paulo</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">17:00</span></span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Mosport (CTMP)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">18:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 29 • JUL 16-19</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Estonia</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">British GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">16:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    10:55</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:20 • SUN
+                                    09:20</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Fuji (Rd 4)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 30 • JUL 25-26</div>
+                <div class="c-body">
+                    <div class="event ev-fe">
+                        <span class="tag t-fe">FORMULA E</span>
+                        <span class="title">London E-Prix</span>
+                        <span class="meta-time">R1: SAT <span class="hl">18:00</span> • R2: SUN <span
+                                class="hl">18:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 31 • JUL 30 - AUG 02</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Finland</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Belgian GP</span>
+                                <span class="meta-time">QUALI: FRI <span class="hl">17:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    10:00</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN
+                                    08:30</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Road America</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">17:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">AUGUST</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 34 • AUG 23</div>
+                <div class="c-body">
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Motegi (Rd 5)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">VIR (GT Only)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">18:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 35 • AUG 27-30</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally del Paraguay</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Hungarian GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    10:05</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 09:50 • SUN
+                                    08:25</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">SEPTEMBER</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 36 • SEP 05-06</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span>
+                        <span class="title">Dutch GP</span>
+                        <span class="meta-time">QUALI: SAT <span class="hl">15:00</span> • RACE: SUN <span
+                                class="hl">15:00</span></span>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 5: Zandvoort</span>
+                        <span class="meta-time">SAT <span class="hl">17:00</span> • SUN <span
+                                class="hl">08:30</span></span>
+                    </div>
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">Lone Star Le Mans (COTA)</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">20:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 37 • SEP 10-13</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Chile</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 38 • SEP 19-20</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Italian GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span
+                                        class="hl">15:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN
+                                    10:00</span></div>
+                            <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 09:30 • SUN
+                                    08:35</span></div>
+                        </div>
+                    </div>
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Indianapolis</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">18:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 39 • SEP 27</div>
+                <div class="c-body">
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">6H Fuji</span>
+                        <span class="meta-time">RACE: SUN <span class="hl">04:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">OCTOBER</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 40 • OCT 01-04</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Italia Sardegna</span>
+                        <span class="meta-time">THU > SUN</span>
+                    </div>
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Azerbaijan GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">14:00</span> • RACE: SUN <span
+                                        class="hl">13:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN
+                                    11:35</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 41 • OCT 10-11</div>
+                <div class="c-body">
+                    <div class="event ev-imsa">
+                        <span class="tag t-imsa">IMSA</span>
+                        <span class="title">Petit Le Mans</span>
+                        <span class="meta-time">SAT <span class="hl">17:40</span></span>
+                    </div>
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Fuji Finale (Rd 6&7)</span>
+                        <span class="meta-time">SAT <span class="hl">07:00</span> • SUN <span
+                                class="hl">07:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 42 • OCT 17-18</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span>
+                        <span class="title">Singapore GP</span>
+                        <span class="meta-time">QUALI: SAT <span class="hl">15:00</span> • RACE: SUN <span
+                                class="hl">14:00</span></span>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 6: Singapore</span>
+                        <span class="meta-time">SAT <span class="hl">09:00</span> • SUN <span
+                                class="hl">09:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 43 • OCT 24-25</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
+                        <span class="title">United States GP (Austin)</span>
+                        <span class="meta-time">SPRINT: SAT <span class="hl">20:00</span> • RACE: SUN <span
+                                class="hl">21:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">NOVEMBER</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 45 • NOV 07-08</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span>
+                        <span class="title">Mexico City GP</span>
+                        <span class="meta-time">QUALI: SAT <span class="hl">22:00</span> • RACE: SUN <span
+                                class="hl">21:00</span></span>
+                    </div>
+                    <div class="event ev-wec">
+                        <span class="tag t-wec">WEC</span>
+                        <span class="title">8H Bahrain</span>
+                        <span class="meta-time">RACE: SAT <span class="hl">12:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 46 • NOV 11-14</div>
+                <div class="c-body">
+                    <div class="event ev-wrc">
+                        <span class="tag t-wrc">WRC</span>
+                        <span class="title">Rally Saudi Arabia</span>
+                        <span class="meta-time">THU > FRI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 47 • NOV 21-22</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
+                        <span class="title">São Paulo GP</span>
+                        <span class="meta-time">SPRINT: SAT <span class="hl">19:30</span> • RACE: SUN <span
+                                class="hl">18:00</span></span>
+                    </div>
+                    <div class="event ev-sf">
+                        <span class="tag t-sf">S. FORMULA</span>
+                        <span class="title">Suzuka Finale (Rd 8&9)</span>
+                        <span class="meta-time">SAT <span class="hl">06:00</span> • SUN <span
+                                class="hl">06:00</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="month-header">DECEMBER</div>
+        <div class="cal-grid">
+            <div class="card">
+                <div class="c-head">WEEK 49 • DEC 05-06</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <span class="tag t-f1">FORMULA 1</span>
+                        <span class="title">Las Vegas GP</span>
+                        <span class="meta-time">QUALI: SAT <span class="hl">07:00</span> • RACE: SUN <span
+                                class="hl">07:00</span></span>
+                    </div>
+                    <div class="event ev-f1a">
+                        <span class="tag t-f1a">F1 ACADEMY</span>
+                        <span class="title">Rd 7: Las Vegas</span>
+                        <span class="meta-time">SAT <span class="hl">04:00</span> • SUN <span
+                                class="hl">04:00</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 50 • DEC 12-13</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
+                                <span class="title">Qatar GP</span>
+                                <span class="meta-time">SPRINT: SAT <span class="hl">15:00</span> • RACE: SUN <span
+                                        class="hl">18:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN
+                                    11:20</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="c-head">WEEK 51 • DEC 20-21</div>
+                <div class="c-body">
+                    <div class="event ev-f1">
+                        <div class="toggle-row">
+                            <div>
+                                <span class="tag t-f1">FORMULA 1</span>
+                                <span class="title">Abu Dhabi GP</span>
+                                <span class="meta-time">QUALI: SAT <span class="hl">15:00</span> • RACE: SUN <span
+                                        class="hl">14:00</span></span>
+                            </div>
+                            <button class="arrow-btn" onclick="toggle(this)">▼</button>
+                        </div>
+                        <div class="sub-sched">
+                            <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN
+                                    10:00</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer--container">
+                <h2>Built by Yann Durandet</h2>
+                <div class="links">
+                    <a href="https://x.com/YannDurandet" class="footer--link" target="_blank">-- X</a>
+                    <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank">-- IG</a>
+                    <a href="https://github.com/YannDurandet" class="footer--link" target="_blank">-- GitHub</a>
+                    <a href="https://durandet.studio" class="footer--link" target="_blank">-- Website</a>
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <div class="month-header">FEBRUARY<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 07 • FEB 14-15</div>
-            <div class="c-body">
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Miami E-Prix</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">21:00</span></span>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="c-head">WEEK 09 • FEB 28</div>
-            <div class="c-body">
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">Qatar 1812km</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">09:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">MARCH<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 10 • MAR 06-08</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Australian GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">07:00</span> • RACE: SUN <span class="hl">06:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 04:15 • SUN 03:35</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 01:00 • SUN 00:05</span></div>
-                    </div>
-                </div>
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Suzuka (Rd 1)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">06:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 11 • MAR 13-15</div>
-            <div class="c-body">
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Monaco E-Prix</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">15:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 12 • MAR 20-22</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
-                    <span class="title">Chinese GP</span>
-                    <span class="meta-time">SPRINT: SAT <span class="hl">05:00</span> • RACE: SUN <span class="hl">09:00</span></span>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 1: China</span>
-                    <span class="meta-time">SAT <span class="hl">07:30</span> • SUN <span class="hl">07:30</span></span>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">12 Hours of Sebring</span>
-                    <span class="meta-time">SAT <span class="hl">15:10</span> > SUN <span class="hl">03:10</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 13 • MAR 29-30</div>
-            <div class="c-body">
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Tokyo E-Prix</span>
-                    <span class="meta-time">R1: SAT <span class="hl">07:00</span> • R2: SUN <span class="hl">07:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">APRIL<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 14 • APR 04-05</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span>
-                    <span class="title">Japanese GP</span>
-                    <span class="meta-time">QUALI: SAT <span class="hl">08:00</span> • RACE: SUN <span class="hl">07:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 15 • APR 11-13</div>
-            <div class="c-body">
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Long Beach</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">22:30</span></span>
-                </div>
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Autopolis (Rd 2)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
-                </div>
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Misano E-Prix</span>
-                    <span class="meta-time">R1: SAT <span class="hl">15:00</span> • R2: SUN <span class="hl">15:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 16 • APR 18-19</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Bahrain GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">17:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 11:30</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN 09:00</span></div>
-                    </div>
-                </div>
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">6 Hours of Imola</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">13:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 17 • APR 25-26</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Saudi Arabian GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">18:00</span> • RACE: SUN <span class="hl">18:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN 14:15</span></div>
-                    </div>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 2: Jeddah</span>
-                    <span class="meta-time">FRI <span class="hl">13:00</span> • SAT <span class="hl">13:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">MAY<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 18 • MAY 02-03</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
-                    <span class="title">Miami GP</span>
-                    <span class="meta-time">SPRINT: SAT <span class="hl">18:00</span> • RACE: SUN <span class="hl">21:30</span></span>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 3: Miami</span>
-                    <span class="meta-time">SAT <span class="hl">19:00</span> • SUN <span class="hl">17:00</span></span>
-                </div>
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Shanghai E-Prix</span>
-                    <span class="meta-time">R1: SAT <span class="hl">09:00</span> • R2: SUN <span class="hl">09:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 19 • MAY 09-10</div>
-            <div class="c-body">
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">6 Hours of Spa</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">13:00</span></span>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Laguna Seca</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">21:10</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 20 • MAY 16-17</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Emilia Romagna GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 10:00</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN 08:30</span></div>
-                    </div>
-                </div>
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Sugo (Rd 3)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 21 • MAY 23-24</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Monaco GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 09:40</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 11:00 • SUN 08:00</span></div>
-                    </div>
-                </div>
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Berlin E-Prix</span>
-                    <span class="meta-time">R1: SAT <span class="hl">15:00</span> • R2: SUN <span class="hl">15:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 22 • MAY 30</div>
-            <div class="c-body">
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Detroit GP</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">21:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">JUNE<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 23 • JUN 06-07</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Madrid GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 10:35</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:30 • SUN 09:25</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 24 • JUN 13</div>
-            <div class="c-body">
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">24 Hours of Le Mans</span>
-                    <span class="meta-time">SAT <span class="hl">16:00</span> > SUN <span class="hl">16:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 25 • JUN 20-21</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span>
-                    <span class="title">Canadian GP</span>
-                    <span class="meta-time">QUALI: SAT <span class="hl">22:00</span> • RACE: SUN <span class="hl">20:00</span></span>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 4: Canada</span>
-                    <span class="meta-time">SAT <span class="hl">18:00</span> • SUN <span class="hl">16:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 26 • JUN 27-28</div>
-            <div class="c-body">
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">Portland E-Prix</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">22:00</span></span>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">6H Watkins Glen</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">16:40</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">JULY<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 27 • JUL 04-05</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
-                            <span class="title">Austrian GP</span>
-                            <span class="meta-time">SPRINT: SAT <span class="hl">12:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 13:30 • SUN 10:00</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN 08:30</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 28 • JUL 12</div>
-            <div class="c-body">
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">6H São Paulo</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">17:00</span></span>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Mosport (CTMP)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">18:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 29 • JUL 18-19</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">British GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">16:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 10:55</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:20 • SUN 09:20</span></div>
-                    </div>
-                </div>
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Fuji (Rd 4)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 30 • JUL 25-26</div>
-            <div class="c-body">
-                <div class="event ev-fe">
-                    <span class="tag t-fe">FORMULA E</span>
-                    <span class="title">London E-Prix</span>
-                    <span class="meta-time">R1: SAT <span class="hl">18:00</span> • R2: SUN <span class="hl">18:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 31 • JUL 31 - AUG 02</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Belgian GP</span>
-                            <span class="meta-time">QUALI: FRI <span class="hl">17:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 10:00</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 10:00 • SUN 08:30</span></div>
-                    </div>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Road America</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">17:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">AUGUST<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 34 • AUG 23</div>
-            <div class="c-body">
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Motegi (Rd 5)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">07:00</span></span>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">VIR (GT Only)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">18:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 35 • AUG 29-30</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Hungarian GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 10:05</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 09:50 • SUN 08:25</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">SEPTEMBER<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 36 • SEP 05-06</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span>
-                    <span class="title">Dutch GP</span>
-                    <span class="meta-time">QUALI: SAT <span class="hl">15:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 5: Zandvoort</span>
-                    <span class="meta-time">SAT <span class="hl">17:00</span> • SUN <span class="hl">08:30</span></span>
-                </div>
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">Lone Star Le Mans (COTA)</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">20:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 38 • SEP 19-20</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Italian GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">16:00</span> • RACE: SUN <span class="hl">15:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SAT 14:15 • SUN 10:00</span></div>
-                        <div class="sub-row"><span class="badge b-f3">F3</span><span class="sub-det">SAT 09:30 • SUN 08:35</span></div>
-                    </div>
-                </div>
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Indianapolis</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">18:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 39 • SEP 27</div>
-            <div class="c-body">
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">6H Fuji</span>
-                    <span class="meta-time">RACE: SUN <span class="hl">04:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">OCTOBER<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 40 • OCT 03-04</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Azerbaijan GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">14:00</span> • RACE: SUN <span class="hl">13:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN 11:35</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 41 • OCT 10-11</div>
-            <div class="c-body">
-                <div class="event ev-imsa">
-                    <span class="tag t-imsa">IMSA</span>
-                    <span class="title">Petit Le Mans</span>
-                    <span class="meta-time">SAT <span class="hl">17:40</span></span>
-                </div>
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Fuji Finale (Rd 6&7)</span>
-                    <span class="meta-time">SAT <span class="hl">07:00</span> • SUN <span class="hl">07:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 42 • OCT 17-18</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span>
-                    <span class="title">Singapore GP</span>
-                    <span class="meta-time">QUALI: SAT <span class="hl">15:00</span> • RACE: SUN <span class="hl">14:00</span></span>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 6: Singapore</span>
-                    <span class="meta-time">SAT <span class="hl">09:00</span> • SUN <span class="hl">09:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 43 • OCT 24-25</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
-                    <span class="title">United States GP (Austin)</span>
-                    <span class="meta-time">SPRINT: SAT <span class="hl">20:00</span> • RACE: SUN <span class="hl">21:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">NOVEMBER<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 45 • NOV 07-08</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span>
-                    <span class="title">Mexico City GP</span>
-                    <span class="meta-time">QUALI: SAT <span class="hl">22:00</span> • RACE: SUN <span class="hl">21:00</span></span>
-                </div>
-                <div class="event ev-wec">
-                    <span class="tag t-wec">WEC</span>
-                    <span class="title">8H Bahrain</span>
-                    <span class="meta-time">RACE: SAT <span class="hl">12:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 47 • NOV 21-22</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
-                    <span class="title">São Paulo GP</span>
-                    <span class="meta-time">SPRINT: SAT <span class="hl">19:30</span> • RACE: SUN <span class="hl">18:00</span></span>
-                </div>
-                <div class="event ev-sf">
-                    <span class="tag t-sf">S. FORMULA</span>
-                    <span class="title">Suzuka Finale (Rd 8&9)</span>
-                    <span class="meta-time">SAT <span class="hl">06:00</span> • SUN <span class="hl">06:00</span></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="month-header">DECEMBER<span>2026</span></div>
-    <div class="cal-grid">
-        <div class="card">
-            <div class="c-head">WEEK 49 • DEC 05-06</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <span class="tag t-f1">FORMULA 1</span>
-                    <span class="title">Las Vegas GP</span>
-                    <span class="meta-time">QUALI: SAT <span class="hl">07:00</span> • RACE: SUN <span class="hl">07:00</span></span>
-                </div>
-                <div class="event ev-f1a">
-                    <span class="tag t-f1a">F1 ACADEMY</span>
-                    <span class="title">Rd 7: Las Vegas</span>
-                    <span class="meta-time">SAT <span class="hl">04:00</span> • SUN <span class="hl">04:00</span></span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 50 • DEC 12-13</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span> <span class="sprint-badge">SPRINT</span>
-                            <span class="title">Qatar GP</span>
-                            <span class="meta-time">SPRINT: SAT <span class="hl">15:00</span> • RACE: SUN <span class="hl">18:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN 11:20</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="c-head">WEEK 51 • DEC 20-21</div>
-            <div class="c-body">
-                <div class="event ev-f1">
-                    <div class="toggle-row">
-                        <div>
-                            <span class="tag t-f1">FORMULA 1</span>
-                            <span class="title">Abu Dhabi GP</span>
-                            <span class="meta-time">QUALI: SAT <span class="hl">15:00</span> • RACE: SUN <span class="hl">14:00</span></span>
-                        </div>
-                        <button class="arrow-btn" onclick="toggle(this)">▼</button>
-                    </div>
-                    <div class="sub-sched">
-                        <div class="sub-row"><span class="badge b-f2">F2</span><span class="sub-det">SUN 10:00</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // --- CORRECTED DATA: DYNAMIC SCHEDULE ---
-    // All dates formatted to ISO 8601 with Paris Offset (+01:00 CET or +02:00 CEST)
-    const seriesData = {
-        f1: [
-            { name: "AUSTRALIA", date: "2026-03-08T06:00:00+01:00" },
-            { name: "CHINA", date: "2026-03-22T09:00:00+01:00" },
-            { name: "JAPAN", date: "2026-04-05T07:00:00+02:00" }
-        ],
-        fe: [
-            { name: "MEXICO CITY", date: "2026-01-10T21:00:00+01:00" },
-            { name: "DIRIYAH", date: "2026-01-24T18:00:00+01:00" },
-            { name: "MIAMI", date: "2026-02-14T21:00:00+01:00" },
-            { name: "MONACO", date: "2026-03-14T15:00:00+01:00" }
-        ],
-        wec: [
-            { name: "QATAR 1812", date: "2026-02-28T09:00:00+01:00" },
-            { name: "IMOLA 6H", date: "2026-04-19T13:00:00+02:00" }
-        ],
-        imsa: [
-            { name: "ROLEX 24", date: "2026-01-24T19:40:00+01:00" },
-            { name: "SEBRING 12H", date: "2026-03-21T15:10:00+01:00" }
-        ],
-        sf: [
-            { name: "SUZUKA R1", date: "2026-03-08T06:00:00+01:00" },
-            { name: "AUTOPOLIS", date: "2026-04-12T07:00:00+02:00" }
-        ],
-        f1a: [
-            { name: "CHINA", date: "2026-03-21T07:30:00+01:00" },
-            { name: "JEDDAH", date: "2026-04-25T13:00:00+02:00" }
-        ]
-    };
-
-    function updateTimers() {
-        // 1. GET ACTUAL CURRENT SYSTEM TIME
-        const now = new Date().getTime();
-
-        for (const [key, raceList] of Object.entries(seriesData)) {
-            const timeEl = document.getElementById(`t-${key}`);
-            const nameEl = document.querySelector(`.dc-${key} .dc-next`); // Target the title to update it dynamically
-            
-            if(!timeEl) continue;
-
-            // 2. FIND NEXT FUTURE RACE
-            // Filter the list to find the first race where date > now
-            const nextRace = raceList.find(r => new Date(r.date).getTime() > now);
-
-            if (nextRace) {
-                // Update the Dashboard Title to match the actual next race
-                if(nameEl) nameEl.textContent = nextRace.name;
-
-                // Calculate Countdown
-                const diff = new Date(nextRace.date).getTime() - now;
-                
-                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000); // Added seconds for precision
-
-                timeEl.innerHTML = `${d}d ${h}h ${m}m ${s}s`;
-                timeEl.style.color = "#ccc";
-            } else {
-                // No races left in the list or season over
-                if(nameEl) nameEl.textContent = "SEASON END";
-                timeEl.innerHTML = "OFF SEASON";
-                timeEl.style.color = "#444";
-            }
-        }
-    }
-
-    // Toggle Function for F1 Cards
-    function toggle(btn) {
-        btn.classList.toggle('active');
-        const sched = btn.parentElement.nextElementSibling;
-        sched.classList.toggle('open');
-    }
-
-    // Run immediately, then update every second
-    updateTimers();
-    setInterval(updateTimers, 1000);
-</script>
-
-
+    <script src="script.js"></script>
 </body>
-</html>
 
+</html>
