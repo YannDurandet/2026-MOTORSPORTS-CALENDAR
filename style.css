@@ -1,0 +1,576 @@
+:root {
+    --bg: #050505;
+    --card-bg: #0f0f0f;
+    --border: #222;
+    --text-main: #e0e0e0;
+
+    /* SERIES COLORS */
+    --f1: #ff1801;
+    /* F1 Red */
+    --f2: #0090ff;
+    /* F2 Blue */
+    --f3: #d15eff;
+    /* F3 Purple */
+    --f1a: linear-gradient(135deg, #06F7FB 0%, #C60678 100%);
+    /* Academy Pink */
+    --fe: linear-gradient(135deg, #0000FF 0%, #00FCFF 100%);
+    /* Formula E Cyan */
+    --sf: #006D53;
+    /* SF Red */
+    --wec: #00B9FF;
+    /* WEC Dark Blue */
+    --imsa: #ffd700;
+    /* IMSA Yellow bc fuck having more red */
+    --wrc: #FC4C02;
+    /* WRC Orange */
+}
+
+/* GLOBAL RESET & MOBILE DEFAULTS */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    background-image:
+        linear-gradient(rgba(18, 18, 18, 0.9), rgba(5, 5, 5, 0.95)),
+        repeating-linear-gradient(45deg, #000 0, #000 2px, #111 2px, #111 4px);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    /* Reduced padding for mobile */
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+    width: 100%;
+    display: flex;
+    justify-content: center;;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    /* Ensure it fits screen */
+    margin: 0;
+}
+
+/* DASHBOARD HEADER */
+/* Update these sections in style.css */
+
+header {
+    padding: 20px;
+    /* Reduced for mobile */
+    display: flex;
+    flex-direction: column;
+    /* Stack vertically by default */
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    /* Removes tiny gap at bottom of images */
+}
+
+.hero-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    /* Ensures the 600x400 fills the space perfectly */
+}
+
+.header--left {
+    height: auto;
+    width: fit-content;
+    padding: 15px;
+}
+
+/* Adjust the dashboard grid for mobile */
+.dash-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on mobile */
+    gap: 8px;
+    margin-top: 0;
+}
+
+h1,
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    /* Smaller for mobile */
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    padding-right: 12px;
+    background: linear-gradient(90deg, #FFF, #AAA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.meta {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+.dash-card {
+    background: #111;
+    border: 1px solid #333;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+    height: fit-content;
+    /* Prevent flex/grid item overflow */
+}
+
+.dash-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+}
+
+/* Dash Card Colors */
+.dc-f1::before {
+    background: var(--f1);
+}
+
+.dc-fe::before {
+    background: var(--fe);
+}
+
+.dc-wec::before {
+    background: var(--wec);
+}
+
+.dc-wrc::before {
+    background: var(--wrc);
+}
+
+.dc-sf::before {
+    background: var(--sf);
+}
+
+.dc-imsa::before {
+    background: var(--imsa);
+}
+
+.dc-f1a::before {
+    background: var(--f1a);
+}
+
+.dc-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: .85rem;
+    font-weight: 900;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dc-time {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1rem;
+    color: #ccc;
+    margin-top: 4px;
+    font-weight: 700;
+}
+
+.dc-next {
+    font-size: 0.75rem;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* MONTH HEADER */
+.month-header {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    /* Smaller for mobile */
+    font-weight: 900;
+    color: #CCC;
+    text-align: left;
+    border-bottom: 1px solid #111;
+    line-height: 0.8;
+    margin: 40px 0 15px 0;
+    position: relative;
+}
+
+/* CALENDAR GRID (MOBILE: 1 Column) */
+.cal-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Full width on mobile */
+    gap: 15px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.c-head {
+    background: #161616;
+    padding: 8px 12px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #777;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+}
+
+.c-body {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.event {
+    padding-left: 10px;
+    border-left: 3px solid #444;
+    position: relative;
+}
+
+/* Series styling */
+.ev-f1 {
+    border-color: var(--f1);
+}
+
+.ev-f1a {
+    border-image-source: linear-gradient(180deg, #06F7FB 0%, #C60678 100%);
+    border-image-slice: 1;
+}
+
+.ev-fe {
+    border-image-source: linear-gradient(180deg, #0000FF 0%, #00FCFF 100%);
+    border-image-slice: 1;
+}
+
+.ev-sf {
+    border-color: var(--sf);
+}
+
+.ev-wec {
+    border-color: var(--wec);
+}
+
+.ev-wrc {
+    border-color: var(--wrc);
+}
+
+.ev-imsa {
+    border-color: var(--imsa);
+}
+
+.tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 5px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 4px;
+    color: #000;
+}
+
+/* Tag Colors */
+.t-f1 {
+    background: var(--f1);
+    color: #fff;
+}
+
+.t-f1a {
+    background: var(--f1a);
+    color: #fff;
+
+}
+
+.t-fe {
+    background: var(--fe);
+    color: #FFF;
+}
+
+.t-sf {
+    background: var(--sf);
+    color: #fff;
+
+}
+
+.t-wec {
+    background: var(--wec);
+}
+
+.t-wrc {
+    background: var(--wrc);
+}
+
+.t-imsa {
+    background: var(--imsa);
+}
+
+.title {
+    font-weight: 800;
+    font-size: 0.95rem;
+    display: block;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.meta-time {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: #aaa;
+    display: block;
+    line-height: 1.4;
+}
+
+.hl {
+    color: #fff;
+    font-weight: 700;
+    background: #222;
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+.sprint-badge {
+    font-size: 0.5rem;
+    background: #fff;
+    color: #000;
+    padding: 1px 3px;
+    border-radius: 2px;
+    font-weight: 800;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* TOGGLE & SUB-SCHEDULE */
+.toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.arrow-btn {
+    background: none;
+    border: 1px solid #333;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    transition: 0.2s;
+    /* Increase touch target size */
+    min-width: 30px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow-btn:hover {
+    border-color: var(--f1);
+    color: var(--f1);
+}
+
+.arrow-btn.active {
+    transform: rotate(180deg);
+    background: var(--f1);
+    color: #fff;
+    border-color: var(--f1);
+}
+
+.sub-sched {
+    display: none;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #333;
+}
+
+.sub-sched.open {
+    display: block;
+    animation: slideDown 0.2s ease-out;
+}
+
+.sub-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 0.75rem;
+}
+
+.badge {
+    font-weight: 800;
+    color: #fff;
+    padding: 2px 0;
+    margin-right: 8px;
+    border-radius: 2px;
+    font-size: 0.65rem;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+    /* Prevent badge from squishing */
+}
+
+.b-f2 {
+    background: var(--f2);
+}
+
+.b-f3 {
+    background: var(--f3);
+}
+
+.sub-det {
+    color: #888;
+    font-family: 'Roboto Mono', monospace;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+TABLET & DESKTOP OVERRIDES (Min-width 768px)
+========================================= */
+@media (min-width: 768px) {
+    .container {
+        max-width: 1800px;
+        padding: 0 20px;
+    }
+
+    .banner-container {
+        max-width: 1920px;
+        /* Adjust this to match your site's content width */
+        margin: 20px auto;
+        /* Centers the "box" and adds space from the top */
+        border-radius: 12px;
+        /* Optional: adds rounded corners like a YT banner */
+    }
+
+    .hero-banner {
+        /* The 1600x400 image will scale to fit the 1200px container */
+        width: 100%;
+        height: auto;
+    }
+
+    header {
+    flex-direction: row;
+    /* Stack vertically by default */
+    gap: 20px;
+    justify-content: space-between;
+    }
+
+    h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+    }
+
+    .dash-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .month-header {
+        font-size: 3rem;
+    }
+
+    .cal-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        /* Responsive Grid */
+        gap: 20px;
+    }
+
+    .c-body {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 1rem;
+    }
+
+    .meta-time {
+        font-size: 0.8rem;
+    }
+
+    .arrow-btn {
+        min-width: auto;
+        min-height: auto;
+    }
+
+    /* Reset touch target for mouse */
+}
+
+footer {
+    margin-top: 48px;
+    padding: 40px 20px;
+    /* Smaller padding for mobile */
+    display: flex;
+    justify-content: center;
+    /* Center on mobile */
+}
+
+.footer--container {
+    padding: 20px;
+    width: 100%;
+    /* Full width on mobile */
+    max-width: 800px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+.footer--link {
+    color: #CCC;
+    font-size: 1.15rem;
+    font-weight: 600;
+    transition: 300ms ease all;
+}
+
+.footer--link:hover {
+    color: var(--f1);
+}
