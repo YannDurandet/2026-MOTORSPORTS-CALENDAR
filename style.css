@@ -1,7 +1,7 @@
 :root {
-    --bg: #050505;
-    --card-bg: #0f0f0f;
-    --border: #222;
+    --bg: #101a24;
+    --card-bg: #0D151D;
+    --border: #1C262F;
     --text-main: #e0e0e0;
 
     /* SERIES COLORS */
@@ -34,9 +34,6 @@
 
 body {
     background-color: var(--bg);
-    background-image:
-        linear-gradient(rgba(18, 18, 18, 0.9), rgba(5, 5, 5, 0.95)),
-        repeating-linear-gradient(45deg, #000 0, #000 2px, #111 2px, #111 4px);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     margin: 0;
@@ -111,7 +108,7 @@ h2 {
     letter-spacing: 1px;
     margin: 0;
     padding-right: 12px;
-    background: linear-gradient(90deg, #FFF, #AAA);
+    background: linear-gradient(90deg, #C3C6C8, #70767C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
@@ -120,13 +117,13 @@ h2 {
 .meta {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
-    color: #888;
+    color: #70767C;
     margin-top: 8px;
     line-height: 1.4;
 }
 
 .dash-card {
-    background: #111;
+    background: #101a24;
     border: 1px solid #333;
     padding: 10px;
     position: relative;
@@ -178,7 +175,7 @@ h2 {
     font-family: 'Orbitron', sans-serif;
     font-size: .85rem;
     font-weight: 900;
-    color: #fff;
+    color: #C3C6C8;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -187,14 +184,14 @@ h2 {
 .dc-time {
     font-family: 'Roboto Mono', monospace;
     font-size: 1rem;
-    color: #ccc;
+    color: #C3C6C8;
     margin-top: 4px;
     font-weight: 700;
 }
 
 .dc-next {
     font-size: 0.75rem;
-    color: #666;
+    color: #C3C6C8;
     text-transform: uppercase;
     margin-top: 2px;
     white-space: nowrap;
@@ -208,11 +205,12 @@ h2 {
     font-size: 2.5rem;
     /* Smaller for mobile */
     font-weight: 900;
-    color: #CCC;
+    color: #C3C6C8;
     text-align: left;
-    border-bottom: 1px solid #111;
+    border-bottom: 1px solid #0B1118;
     line-height: 0.8;
-    margin: 40px 0 15px 0;
+    margin: 40px 0 8px 0;
+    padding-bottom: 8px;
     position: relative;
 }
 
@@ -233,14 +231,14 @@ h2 {
 }
 
 .c-head {
-    background: #161616;
+    background: #0B1118;
     padding: 8px 12px;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.7rem;
-    color: #777;
+    color: #70767C;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid var(--border);
 }
 
 .c-body {
@@ -252,7 +250,7 @@ h2 {
 
 .event {
     padding-left: 10px;
-    border-left: 3px solid #444;
+    border-left: 3px solid #FFF;
     position: relative;
 }
 
@@ -340,22 +338,22 @@ h2 {
     display: block;
     line-height: 1.2;
     margin-bottom: 4px;
-    color: #fff;
+    color: #C3C6C8;
 }
 
 .meta-time {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.75rem;
-    color: #aaa;
+    color: #C3C6C8;
     display: block;
     line-height: 1.4;
 }
 
 .hl {
-    color: #fff;
+    color: #C3C6C8;
     font-weight: 700;
-    background: #222;
-    padding: 0 4px;
+    background: #080D12;
+    padding: 2px 6px;
     border-radius: 2px;
 }
 
@@ -468,7 +466,6 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
 @media (min-width: 768px) {
     .container {
         max-width: 1800px;
-        padding: 0 20px;
     }
 
     .banner-container {
@@ -540,19 +537,23 @@ footer {
     padding: 40px 20px;
     /* Smaller padding for mobile */
     display: flex;
-    justify-content: center;
+    justify-content: start;
+    background-image: url(assets/lauda_and_mouton.png);
+
     /* Center on mobile */
 }
 
 .footer--container {
-    padding: 20px;
+    padding: 0 20px;
     width: 100%;
+    max-height: 100%;
     /* Full width on mobile */
     max-width: 800px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
-    align-items: center;
+    align-items: left;
+    gap: 12px;
 }
 
 .links {
@@ -565,10 +566,11 @@ a {
 }
 
 .footer--link {
-    color: #CCC;
+    color: #C3C6C8;
     font-size: 1.15rem;
     font-weight: 600;
     transition: 300ms ease all;
+    padding-bottom: 6px;
 }
 
 .footer--link:hover {
