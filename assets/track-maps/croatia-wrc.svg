@@ -1,0 +1,60 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="60" height="60" fill="url(#pattern0_40_222)" fill-opacity="0.1"/>
+<mask id="mask0_40_222" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="14" y="18" width="32" height="23">
+<path d="M43.75 18.5H16.75C16.1533 18.5 15.581 18.7371 15.159 19.159C14.7371 19.581 14.5 20.1533 14.5 20.75V38.75C14.5 39.3467 14.7371 39.919 15.159 40.341C15.581 40.7629 16.1533 41 16.75 41H43.75C44.3467 41 44.919 40.7629 45.341 40.341C45.7629 39.919 46 39.3467 46 38.75V20.75C46 20.1533 45.7629 19.581 45.341 19.159C44.919 18.7371 44.3467 18.5 43.75 18.5Z" fill="url(#paint0_linear_40_222)"/>
+</mask>
+<g mask="url(#mask0_40_222)">
+<path d="M46 18.5H14.5V41H46V18.5Z" fill="url(#paint1_linear_40_222)"/>
+<path d="M46 18.5H14.5V26H46V18.5Z" fill="url(#paint2_linear_40_222)"/>
+<path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M26.5 24.5L27.25 23.75L28 24.5V26H26.5V24.5ZM29.5 24.5L30.25 23.75L31 24.5V26H29.5V24.5ZM32.5 24.5L33.25 23.75L34 24.5V26H32.5V24.5Z" fill="#1895DB"/>
+<path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M28 24.5L28.75 23.75L29.5 24.5V26H28V24.5ZM31 24.5L31.75 23.75L32.5 24.5V26H31V24.5Z" fill="#191F94"/>
+<path d="M46 33.5H14.5V41H46V33.5Z" fill="url(#paint3_linear_40_222)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.5 33.5V26H46V33.5H14.5ZM32.5 33.5H34L33.5905 34.3205C33.4015 34.6955 32.9095 35 32.5 35V33.5ZM29.5 33.5H31V35H29.5V33.5ZM26.5 33.5H28V35C27.7754 34.989 27.5573 34.9208 27.3665 34.8019C27.1756 34.683 27.0183 34.5173 26.9095 34.3205L26.5 33.5Z" fill="url(#paint4_linear_40_222)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M29.5 26H31V27.5H29.5V26ZM32.5 26H33.25L34 27.5H32.5V26ZM27.25 26H28V27.5H26.5L27.25 26ZM28 27.5H29.5V29H28V27.5ZM31 27.5H32.5V29H31V27.5ZM29.5 29H31V30.5H29.5V29ZM32.5 29H34V30.5H32.5V29ZM31 30.5H32.5V32H31V30.5ZM26.5 29H28V30.5H26.5V29ZM28 30.5H29.5V32H28V30.5ZM26.5 32H28V33.5H26.5V32ZM29.5 32H31V33.5H29.5V32ZM32.5 32H34V33.5H32.5V32ZM31 33.5H32.5V35H31V33.5ZM28 33.5H29.5V35H28V33.5Z" fill="url(#paint5_linear_40_222)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_40_222" x1="1589.5" y1="18.5" x2="1589.5" y2="2268.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#F0F0F0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_40_222" x1="1589.5" y1="18.5" x2="1589.5" y2="2268.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#F0F0F0"/>
+</linearGradient>
+<linearGradient id="paint2_linear_40_222" x1="1589.5" y1="18.5" x2="1589.5" y2="768.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF202D"/>
+<stop offset="1" stop-color="#FD0D1B"/>
+</linearGradient>
+<linearGradient id="paint3_linear_40_222" x1="1589.5" y1="33.5" x2="1589.5" y2="783.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#2027AC"/>
+<stop offset="1" stop-color="#191F94"/>
+</linearGradient>
+<linearGradient id="paint4_linear_40_222" x1="1589.5" y1="26" x2="1589.5" y2="926" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#F0F0F0"/>
+</linearGradient>
+<linearGradient id="paint5_linear_40_222" x1="401.5" y1="26" x2="401.5" y2="926" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF212E"/>
+<stop offset="1" stop-color="#FD0D1B"/>
+</linearGradient>
+<pattern id="pattern0_40_222" patternUnits="userSpaceOnUse" patternTransform="matrix(12 0 0 12 0 0)" preserveAspectRatio="none" viewBox="0 0 12 12" width="1" height="1">
+<g id="pattern0_40_222_inner">
+<rect y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="5" y="3" width="3" height="1" transform="rotate(180 5 3)" fill="#D9D9D9"/>
+<rect x="5" y="9" width="3" height="1" transform="rotate(180 5 9)" fill="#D9D9D9"/>
+<rect x="11" y="3" width="3" height="1" transform="rotate(180 11 3)" fill="#D9D9D9"/>
+<rect x="11" y="9" width="3" height="1" transform="rotate(180 11 9)" fill="#D9D9D9"/>
+<rect x="2" width="1" height="2" fill="#D9D9D9"/>
+<rect x="2" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="3" y="5" width="1" height="2" transform="rotate(180 3 5)" fill="#D9D9D9"/>
+<rect x="3" y="11" width="1" height="2" transform="rotate(180 3 11)" fill="#D9D9D9"/>
+<rect x="9" y="5" width="1" height="2" transform="rotate(180 9 5)" fill="#D9D9D9"/>
+<rect x="9" y="11" width="1" height="2" transform="rotate(180 9 11)" fill="#D9D9D9"/>
+</g>
+</pattern></defs>
+</svg>

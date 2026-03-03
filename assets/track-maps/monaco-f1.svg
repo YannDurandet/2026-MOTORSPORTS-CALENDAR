@@ -1,0 +1,26 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="60" height="60" fill="url(#pattern0_59_2)" fill-opacity="0.1"/>
+<path d="M25 42 L14 42 C10 42 10 38 12 34 L15 26 C16 20 14 16 18 13 C22 10 26 13 29 16 L36 23 C39 26 38 29 35 29 C30 29 30 34 35 33 C38 32 40 34 40 36 C40 40 45 40 47 38 C54 34 58 43 50 47 C48 48 46 45 44 46 C42 47 40 49 41 51 C42 53 40 55 37 55 L27 55 C24 55 24 53 22 53 C17 53 16 48 20 47 C23 46 25 42 25 42 Z" stroke="white" stroke-width="1.5"/>
+<defs>
+<pattern id="pattern0_59_2" patternUnits="userSpaceOnUse" patternTransform="matrix(12 0 0 12 0 0)" preserveAspectRatio="none" viewBox="0 0 12 12" width="1" height="1">
+<g id="pattern0_59_2_inner">
+<rect y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="5" y="3" width="3" height="1" transform="rotate(180 5 3)" fill="#D9D9D9"/>
+<rect x="5" y="9" width="3" height="1" transform="rotate(180 5 9)" fill="#D9D9D9"/>
+<rect x="11" y="3" width="3" height="1" transform="rotate(180 11 3)" fill="#D9D9D9"/>
+<rect x="11" y="9" width="3" height="1" transform="rotate(180 11 9)" fill="#D9D9D9"/>
+<rect x="2" width="1" height="2" fill="#D9D9D9"/>
+<rect x="2" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="3" y="5" width="1" height="2" transform="rotate(180 3 5)" fill="#D9D9D9"/>
+<rect x="3" y="11" width="1" height="2" transform="rotate(180 3 11)" fill="#D9D9D9"/>
+<rect x="9" y="5" width="1" height="2" transform="rotate(180 9 5)" fill="#D9D9D9"/>
+<rect x="9" y="11" width="1" height="2" transform="rotate(180 9 11)" fill="#D9D9D9"/>
+</g>
+</pattern>
+</defs>
+</svg>

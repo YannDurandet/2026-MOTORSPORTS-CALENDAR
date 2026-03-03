@@ -42,7 +42,8 @@ body {
     /* Prevent horizontal scroll */
     width: 100%;
     display: flex;
-    justify-content: center;;
+    justify-content: center;
+    ;
 }
 
 .container {
@@ -199,6 +200,184 @@ h2 {
     text-overflow: ellipsis;
 }
 
+/* =========================================
+   LATEST NEWS SECTION
+========================================= */
+.news-section {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.news-header-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    /* Matches your month-header sizing */
+    font-weight: 900;
+    color: #C3C6C8;
+    text-align: left;
+    border-bottom: 1px solid #0B1118;
+    line-height: 0.8;
+    margin: 0 0 15px 0;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Mobile default */
+    gap: 15px;
+}
+
+.news-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    aspect-ratio: 5 / 3;
+    position: relative;
+    overflow: hidden;
+    /* BG properties ready for inline URL insertion in HTML */
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Dark gradient overlay covering the left 66% to make text readable */
+.news-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    /* Solid background on the left, fading out right at the 66% mark */
+    background: linear-gradient(to right, var(--card-bg) 12%, rgba(13, 21, 29, 0.85) 50%, transparent 100%);
+    z-index: 1;
+}
+
+.news-content {
+    position: relative;
+    z-index: 2;
+    width: 66.66%;
+    /* Constricts text to the left 2/3 */
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.news-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    margin: 8px 0;
+    line-height: 1.2;
+    /* Prevents title from bleeding into the description */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+    margin: 0;
+    /* Clamps text so it doesn't break the 4:3 box */
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.news-more-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.calendar-back-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.news-more-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    color: #C3C6C8;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.news-more-btn:hover {
+    color: var(--f1);
+}
+
+/* Responsive grid adjustments */
+@media (min-width: 768px) {
+    .news-header-title {
+        font-size: 3rem;
+    }
+
+    .news-grid {
+        /* Adjust to repeat(4, 1fr) if you want them 4-wide on desktop */
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .news-title {
+        font-size: 1.25rem;
+    }
+
+    .news-desc {
+        font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .news-grid {
+        grid-template-columns: repeat(4, 1fr);
+        /* 4-across for large screens */
+    }
+}
+
+/* Add to style.css */
+.news-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    /* Pushes links to the bottom of the card */
+    padding-top: 12px;
+}
+
+.news-link-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #70767C;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    width: fit-content;
+}
+
+.news-link-btn:hover {
+    color: var(--f1);
+}
+
+.news-link-btn img {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+}
+
 /* MONTH HEADER */
 .month-header {
     font-family: 'Orbitron', sans-serif;
@@ -248,10 +427,44 @@ h2 {
     gap: 12px;
 }
 
+/* 1. Update the main event container to be a Flex row */
 .event {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Vertically centers the text and the map */
     padding-left: 10px;
     border-left: 3px solid #FFF;
+    /* Keeps your existing border logic */
     position: relative;
+    gap: 15px;
+    /* Space between text and map */
+    min-height: 60px;
+    /* Ensures the row is at least as tall as the box */
+}
+
+/* 2. Wrapper for the text (Tag, Title, Time) */
+.ev-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    /* Takes up all available width */
+    min-width: 0;
+    /* CRITICAL: Prevents long text from pushing the map out */
+}
+
+/* 3. The Fixed 60x60 Map Box */
+.track-map {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    /* CRITICAL: Forces box to stay 60px no matter what */
+    border-radius: 4px;
+    display: flex;
+    /* Centers the SVG inside */
+    align-items: center;
+    justify-content: center;
 }
 
 /* Series styling */
@@ -293,6 +506,7 @@ h2 {
     border-radius: 2px;
     text-transform: uppercase;
     display: inline-block;
+    width: fit-content;
     margin-bottom: 4px;
     color: #000;
 }
@@ -306,7 +520,6 @@ h2 {
 .t-f1a {
     background: var(--f1a);
     color: #fff;
-
 }
 
 .t-fe {
@@ -317,7 +530,6 @@ h2 {
 .t-sf {
     background: var(--sf);
     color: #fff;
-
 }
 
 .t-wec {
@@ -364,8 +576,9 @@ h2 {
     padding: 1px 3px;
     border-radius: 2px;
     font-weight: 800;
-    vertical-align: middle;
+    vertical-align: top;
     margin-left: 5px;
+    width: fit-content;
 }
 
 /* TOGGLE & SUB-SCHEDULE */
@@ -443,6 +656,10 @@ h2 {
     background: var(--f3);
 }
 
+.b-f1a {
+    background: var(--f1a);
+}
+
 .sub-det {
     color: #888;
     font-family: 'Roboto Mono', monospace;
@@ -484,10 +701,10 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
     }
 
     header {
-    flex-direction: row;
-    /* Stack vertically by default */
-    gap: 20px;
-    justify-content: space-between;
+        flex-direction: row;
+        /* Stack vertically by default */
+        gap: 20px;
+        justify-content: space-between;
     }
 
     h1 {
@@ -528,8 +745,6 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
         min-width: auto;
         min-height: auto;
     }
-
-    /* Reset touch target for mouse */
 }
 
 footer {

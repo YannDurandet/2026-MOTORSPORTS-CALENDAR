@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 MOTORSPORT MASTER CALENDAR</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="banner-container">
+            <picture>
+                <source media="(min-width: 768px)" srcset="assets/lauda_and_mouton.png">
+                <img src="assets/lauda.png" alt="Banner" class="hero-banner">
+            </picture>
+        </div>
+        <header>
+            <div class="header--left">
+                <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+                <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+            </div>
+            <div class="dash-grid">
+                <div class="dash-card dc-f1">
+                    <div class="dc-title">F1</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-f1">--</div>
+                </div>
+                <div class="dash-card dc-f1a">
+                    <div class="dc-title">F1 Academy</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-f1a">--</div>
+                </div>
+                <div class="dash-card dc-fe">
+                    <div class="dc-title">Formula E</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-fe">--</div>
+                </div>
+                <div class="dash-card dc-sf">
+                    <div class="dc-title">Super Formula</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-sf">--</div>
+                </div>
+                <div class="dash-card dc-wec">
+                    <div class="dc-title">WEC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-wec">--</div>
+                </div>
+                <div class="dash-card dc-imsa">
+                    <div class="dc-title">IMSA</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-imsa">--</div>
+                </div>
+                <div class="dash-card dc-wrc">
+                    <div class="dc-title">WRC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-wrc">--</div>
+                </div>
+            </div>
+        </header>
+        <div class="news-section">
+            <div class="calendar-back-wrapper">
+                <a href="index.html" class="news-more-btn">
+                    < back to the calendar</a>
+            </div>
+            <div class="news-header-title">LATEST NEWS</div>
+            <div class="news-grid">
+
+                <div class="news-card" style="background-image: url('assets/news-images/qatar-postponed-wec.png');">
+                    <div class="news-content">
+                        <span class="tag t-wec">WEC</span>
+                        <div class="news-title">Qatar 1812 Postponed</div>
+                        <div class="news-desc">Due to the ongoing conflict in the middle east, the FIA has decided to
+                            postpone the race in Qatar to “the second half of the season” for now</div>
+                        <div class="news-links">
+                            <a href="https://www.instagram.com/p/DVb4Lr0DBlT/?img_index=1" class="news-link-btn"
+                                target="_blank">
+                                <img src="assets/ig-icon.svg" alt="Instagram Icon">
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.fiawec.com/en/news/qatar-1812km-postponed-season-to-start-at-imola/11933"
+                                class="news-link-btn" target="_blank">
+                                <img src="assets/website-icon.svg" alt="Source Icon">
+                                <span>Source</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer--container">
+                <h2>Built by<br>Yann Durandet</h2>
+                <div class="links">
+                    <a href="https://x.com/YannDurandet" class="footer--link" target="_blank">-- X</a>
+                    <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank">-- IG</a>
+                    <a href="https://github.com/YannDurandet" class="footer--link" target="_blank">-- GitHub</a>
+                    <a href="https://durandet.studio" class="footer--link" target="_blank">-- Website</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
