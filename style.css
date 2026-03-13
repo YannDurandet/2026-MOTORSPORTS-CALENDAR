@@ -132,10 +132,11 @@ h2 {
     line-height: 1.4;
 }
 
-.website-description{
+.website-description {
     color: #BBB;
     padding-top: 12px;
 }
+
 .dash-card {
     background: #101a24;
     border: 1px solid #333;
@@ -1103,27 +1104,112 @@ a {
 }
 
 /* Individual series color overrides */
-.filter-f1.active { border-color: var(--f1); color: var(--f1); }
-.filter-f1a.active { border-image-source: linear-gradient(135deg, #06F7FB, #C60678); border-image-slice: 1; color: #06F7FB; }
-.filter-fe.active { border-image-source: linear-gradient(135deg, #0000FF, #00FCFF); border-image-slice: 1; color: #00FCFF; }
-.filter-sf.active { border-color: var(--sf); color: var(--sf); }
-.filter-wec.active { border-color: var(--wec); color: var(--wec); }
-.filter-imsa.active { border-color: var(--imsa); color: var(--imsa); }
-.filter-wrc.active { border-color: var(--wrc); color: var(--wrc); }
-.filter-indycar.active { border-color: var(--indycar); color: var(--indycar); }
-.filter-nascar.active { border-color: var(--nascar); color: var(--nascar); }
-.filter-motogp.active { border-color: var(--motogp); color: var(--motogp); }
-.filter-wsbk.active { border-color: var(--wsbk); color: var(--wsbk); }
-.filter-dtm.active { border-color: var(--dtm); color: var(--dtm); }
-.filter-btcc.active { border-color: var(--btcc); color: var(--btcc); }
-.filter-supercars.active { border-color: var(--supercars); color: var(--supercars); }
-.filter-elms.active { border-color: var(--elms); color: var(--elms); }
-.filter-gtwce.active { border-color: var(--gtwce); color: var(--gtwce); }
-.filter-gtwca.active { border-color: var(--gtwca); color: var(--gtwca); }
-.filter-nls.active { border-color: var(--nls); color: var(--nls); }
-.filter-igtc.active { border-color: var(--igtc); color: var(--igtc); }
-.filter-tcr.active { border-color: var(--tcr); color: var(--tcr); }
-.filter-erc.active { border-color: var(--erc); color: var(--erc); }
+.filter-f1.active {
+    border-color: var(--f1);
+    color: var(--f1);
+}
+
+.filter-f1a.active {
+    border-image-source: linear-gradient(135deg, #06F7FB, #C60678);
+    border-image-slice: 1;
+    color: #06F7FB;
+}
+
+.filter-fe.active {
+    border-image-source: linear-gradient(135deg, #0000FF, #00FCFF);
+    border-image-slice: 1;
+    color: #00FCFF;
+}
+
+.filter-sf.active {
+    border-color: var(--sf);
+    color: var(--sf);
+}
+
+.filter-wec.active {
+    border-color: var(--wec);
+    color: var(--wec);
+}
+
+.filter-imsa.active {
+    border-color: var(--imsa);
+    color: var(--imsa);
+}
+
+.filter-wrc.active {
+    border-color: var(--wrc);
+    color: var(--wrc);
+}
+
+.filter-indycar.active {
+    border-color: var(--indycar);
+    color: var(--indycar);
+}
+
+.filter-nascar.active {
+    border-color: var(--nascar);
+    color: var(--nascar);
+}
+
+.filter-motogp.active {
+    border-color: var(--motogp);
+    color: var(--motogp);
+}
+
+.filter-wsbk.active {
+    border-color: var(--wsbk);
+    color: var(--wsbk);
+}
+
+.filter-dtm.active {
+    border-color: var(--dtm);
+    color: var(--dtm);
+}
+
+.filter-btcc.active {
+    border-color: var(--btcc);
+    color: var(--btcc);
+}
+
+.filter-supercars.active {
+    border-color: var(--supercars);
+    color: var(--supercars);
+}
+
+.filter-elms.active {
+    border-color: var(--elms);
+    color: var(--elms);
+}
+
+.filter-gtwce.active {
+    border-color: var(--gtwce);
+    color: var(--gtwce);
+}
+
+.filter-gtwca.active {
+    border-color: var(--gtwca);
+    color: var(--gtwca);
+}
+
+.filter-nls.active {
+    border-color: var(--nls);
+    color: var(--nls);
+}
+
+.filter-igtc.active {
+    border-color: var(--igtc);
+    color: var(--igtc);
+}
+
+.filter-tcr.active {
+    border-color: var(--tcr);
+    color: var(--tcr);
+}
+
+.filter-erc.active {
+    border-color: var(--erc);
+    color: var(--erc);
+}
 
 /* Empty State */
 .empty-state {
@@ -1251,7 +1337,8 @@ a {
     color: var(--text-main);
     padding: 15px;
     cursor: pointer;
-    list-style: none; /* Hides default marker in modern browsers */
+    list-style: none;
+    /* Hides default marker in modern browsers */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1261,7 +1348,7 @@ a {
 
 /* Hide default webkit arrow */
 .faq-question::-webkit-details-marker {
-    display: none; 
+    display: none;
 }
 
 /* Custom animated arrow */
@@ -1274,7 +1361,8 @@ a {
 }
 
 .faq-question:hover {
-    color: var(--f1); /* F1 Red hover state */
+    color: var(--f1);
+    /* F1 Red hover state */
 }
 
 /* Open state styling */
@@ -1294,9 +1382,17 @@ a {
 
 /* Desktop sizing adjustments */
 @media (min-width: 768px) {
-    .faq-header-title { font-size: 3rem; }
-    .faq-question { font-size: 1rem; }
-    .faq-answer { font-size: 0.9rem; }
+    .faq-header-title {
+        font-size: 3rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.9rem;
+    }
 }
 
 /* =========================================
@@ -1351,11 +1447,14 @@ a {
 
 @media (min-width: 768px) {
     .dash-wrapper {
-        width: auto; /* Let it size naturally on desktop */
+        width: auto;
+        /* Let it size naturally on desktop */
         align-items: start;
     }
+
     .dash-toggle-btn {
         width: 100%;
-        max-width: 300px; /* Keep it from stretching too wide */
+        max-width: 300px;
+        /* Keep it from stretching too wide */
     }
 }
