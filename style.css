@@ -132,6 +132,10 @@ h2 {
     line-height: 1.4;
 }
 
+.website-description{
+    color: #BBB;
+    padding-top: 12px;
+}
 .dash-card {
     background: #101a24;
     border: 1px solid #333;
@@ -269,8 +273,8 @@ h2 {
    LATEST NEWS SECTION
 ========================================= */
 .news-section {
-    width: 100%;
-    margin: 30px 0;
+    width: 96%;
+    margin: 30px auto;
 }
 
 .news-header-title {
@@ -891,10 +895,11 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
     }
 
     header {
-        flex-direction: row;
+        flex-direction: column;
         /* Stack vertically by default */
         gap: 20px;
         justify-content: space-between;
+        align-items: flex-start;
     }
 
     h1 {
@@ -1203,4 +1208,154 @@ a {
     width: 60px;
     height: 60px;
     object-fit: contain;
+}
+
+/* =========================================
+   FAQ SECTION
+========================================= */
+.faq-section {
+    width: 100%;
+    margin: 40px 0;
+}
+
+.faq-header-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #C3C6C8;
+    text-align: left;
+    border-bottom: 1px solid #0B1118;
+    line-height: 0.8;
+    margin: 0 0 15px 0;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.faq-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.faq-question {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--text-main);
+    padding: 15px;
+    cursor: pointer;
+    list-style: none; /* Hides default marker in modern browsers */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0B1118;
+    transition: color 0.2s ease;
+}
+
+/* Hide default webkit arrow */
+.faq-question::-webkit-details-marker {
+    display: none; 
+}
+
+/* Custom animated arrow */
+.faq-question::after {
+    content: '\25BC';
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: #666;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.faq-question:hover {
+    color: var(--f1); /* F1 Red hover state */
+}
+
+/* Open state styling */
+.faq-card[open] .faq-question::after {
+    transform: rotate(180deg);
+    color: var(--f1);
+}
+
+.faq-answer {
+    padding: 15px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+    line-height: 1.5;
+    border-top: 1px solid var(--border);
+}
+
+/* Desktop sizing adjustments */
+@media (min-width: 768px) {
+    .faq-header-title { font-size: 3rem; }
+    .faq-question { font-size: 1rem; }
+    .faq-answer { font-size: 0.9rem; }
+}
+
+/* =========================================
+   DASHBOARD TOGGLE
+========================================= */
+.dash-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Hide regional cards when the grid is collapsed */
+.dash-grid.collapsed .dash-card.regional {
+    display: none;
+}
+
+.dash-toggle-btn {
+    background: #0B1118;
+    border: 1px solid var(--border);
+    color: #70767C;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 8px 0;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.dash-toggle-btn:hover {
+    color: var(--f1);
+    border-color: #333;
+}
+
+.dash-toggle-btn .arrow {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+/* Rotate arrow when expanded */
+.dash-toggle-btn.expanded .arrow {
+    transform: rotate(180deg);
+}
+
+@media (min-width: 768px) {
+    .dash-wrapper {
+        width: auto; /* Let it size naturally on desktop */
+        align-items: start;
+    }
+    .dash-toggle-btn {
+        width: 100%;
+        max-width: 300px; /* Keep it from stretching too wide */
+    }
 }
