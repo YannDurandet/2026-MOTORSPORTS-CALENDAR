@@ -21,6 +21,18 @@
     --wrc: #FC4C02;
     --indycar: #C8102E;
     --nascar: #004795;
+    --motogp: #E91E63;
+    --wsbk: #D81B60;
+    --dtm: #4CAF50;
+    --btcc: #9C27B0;
+    --supercars: #FF9800;
+    --elms: #009688;
+    --gtwce: #00ACC1;
+    --gtwca: #00BCD4;
+    --nls: #607D8B;
+    --igtc: #78909C;
+    --tcr: #CDDC39;
+    --erc: #8D6E63;
 }
 
 /* GLOBAL RESET & MOBILE DEFAULTS */
@@ -175,6 +187,54 @@ h2 {
 
 .dc-nascar::before {
     background: var(--nascar);
+}
+
+.dc-motogp::before {
+    background: var(--motogp);
+}
+
+.dc-wsbk::before {
+    background: var(--wsbk);
+}
+
+.dc-dtm::before {
+    background: var(--dtm);
+}
+
+.dc-btcc::before {
+    background: var(--btcc);
+}
+
+.dc-supercars::before {
+    background: var(--supercars);
+}
+
+.dc-elms::before {
+    background: var(--elms);
+}
+
+.dc-gtwce::before {
+    background: var(--gtwce);
+}
+
+.dc-gtwca::before {
+    background: var(--gtwca);
+}
+
+.dc-nls::before {
+    background: var(--nls);
+}
+
+.dc-igtc::before {
+    background: var(--igtc);
+}
+
+.dc-tcr::before {
+    background: var(--tcr);
+}
+
+.dc-erc::before {
+    background: var(--erc);
 }
 
 .dc-title {
@@ -511,6 +571,54 @@ h2 {
     border-color: var(--nascar);
 }
 
+.ev-motogp {
+    border-color: var(--motogp);
+}
+
+.ev-wsbk {
+    border-color: var(--wsbk);
+}
+
+.ev-dtm {
+    border-color: var(--dtm);
+}
+
+.ev-btcc {
+    border-color: var(--btcc);
+}
+
+.ev-supercars {
+    border-color: var(--supercars);
+}
+
+.ev-elms {
+    border-color: var(--elms);
+}
+
+.ev-gtwce {
+    border-color: var(--gtwce);
+}
+
+.ev-gtwca {
+    border-color: var(--gtwca);
+}
+
+.ev-nls {
+    border-color: var(--nls);
+}
+
+.ev-igtc {
+    border-color: var(--igtc);
+}
+
+.ev-tcr {
+    border-color: var(--tcr);
+}
+
+.ev-erc {
+    border-color: var(--erc);
+}
+
 .tag {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.6rem;
@@ -564,6 +672,61 @@ h2 {
 
 .t-nascar {
     background: var(--nascar);
+    color: #fff;
+}
+
+.t-motogp {
+    background: var(--motogp);
+    color: #fff;
+}
+
+.t-wsbk {
+    background: var(--wsbk);
+    color: #fff;
+}
+
+.t-dtm {
+    background: var(--dtm);
+    color: #fff;
+}
+
+.t-btcc {
+    background: var(--btcc);
+    color: #fff;
+}
+
+.t-supercars {
+    background: var(--supercars);
+}
+
+.t-elms {
+    background: var(--elms);
+    color: #fff;
+}
+
+.t-gtwce {
+    background: var(--gtwce);
+}
+
+.t-gtwca {
+    background: var(--gtwca);
+}
+
+.t-nls {
+    background: var(--nls);
+    color: #fff;
+}
+
+.t-igtc {
+    background: var(--igtc);
+}
+
+.t-tcr {
+    background: var(--tcr);
+}
+
+.t-erc {
+    background: var(--erc);
     color: #fff;
 }
 
@@ -683,6 +846,10 @@ h2 {
     background: var(--f1a);
 }
 
+.b-wrc2 {
+    background: var(--wrc);
+}
+
 .sub-det {
     color: #888;
     font-family: 'Roboto Mono', monospace;
@@ -738,6 +905,7 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
     .dash-grid {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         gap: 15px;
     }
 
@@ -818,11 +986,34 @@ a {
 /* =========================================
    SERIES FILTER BAR
 ========================================= */
+/* ---- Filter Bar ---- */
 .filter-bar {
     display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    gap: 12px;
     margin: 20px 0;
+}
+
+.filter-group {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group legend {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: #556;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+    float: left;
+    width: 100%;
 }
 
 .filter-btn {
@@ -845,6 +1036,68 @@ a {
     background: #1a2a3a;
 }
 
+/* Region pill styling */
+.filter-region {
+    border-radius: 20px;
+    padding: 6px 14px;
+}
+
+.filter-region.active {
+    background: #1e3a52;
+    border-color: #3a8fd4;
+    color: #6abfff;
+}
+
+/* Category chip styling */
+.filter-category {
+    border-radius: 4px;
+}
+
+.filter-category.active {
+    background: #1a2e1a;
+    border-color: #4caf50;
+    color: #81c784;
+}
+
+/* Advanced filters accordion */
+.advanced-filters {
+    margin-top: 4px;
+}
+
+.advanced-filters summary {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #667;
+    cursor: pointer;
+    user-select: none;
+    padding: 4px 0;
+    list-style: none;
+}
+
+.advanced-filters summary::before {
+    content: '\25B6';
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 0.6rem;
+    transition: transform 0.2s;
+}
+
+.advanced-filters[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.advanced-filters summary::-webkit-details-marker {
+    display: none;
+}
+
+.advanced-series-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 0 4px;
+}
+
+/* Individual series color overrides */
 .filter-f1.active { border-color: var(--f1); color: var(--f1); }
 .filter-f1a.active { border-image-source: linear-gradient(135deg, #06F7FB, #C60678); border-image-slice: 1; color: #06F7FB; }
 .filter-fe.active { border-image-source: linear-gradient(135deg, #0000FF, #00FCFF); border-image-slice: 1; color: #00FCFF; }
@@ -854,6 +1107,88 @@ a {
 .filter-wrc.active { border-color: var(--wrc); color: var(--wrc); }
 .filter-indycar.active { border-color: var(--indycar); color: var(--indycar); }
 .filter-nascar.active { border-color: var(--nascar); color: var(--nascar); }
+.filter-motogp.active { border-color: var(--motogp); color: var(--motogp); }
+.filter-wsbk.active { border-color: var(--wsbk); color: var(--wsbk); }
+.filter-dtm.active { border-color: var(--dtm); color: var(--dtm); }
+.filter-btcc.active { border-color: var(--btcc); color: var(--btcc); }
+.filter-supercars.active { border-color: var(--supercars); color: var(--supercars); }
+.filter-elms.active { border-color: var(--elms); color: var(--elms); }
+.filter-gtwce.active { border-color: var(--gtwce); color: var(--gtwce); }
+.filter-gtwca.active { border-color: var(--gtwca); color: var(--gtwca); }
+.filter-nls.active { border-color: var(--nls); color: var(--nls); }
+.filter-igtc.active { border-color: var(--igtc); color: var(--igtc); }
+.filter-tcr.active { border-color: var(--tcr); color: var(--tcr); }
+.filter-erc.active { border-color: var(--erc); color: var(--erc); }
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #556;
+}
+
+.empty-state p {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+.clear-filters-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 10px 24px;
+    border: 1px solid #3a8fd4;
+    border-radius: 4px;
+    background: transparent;
+    color: #6abfff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+}
+
+.clear-filters-btn:hover {
+    background: #1e3a52;
+}
+
+/* Past Events Accordion */
+.past-events-accordion {
+    margin-bottom: 20px;
+}
+
+.past-events-accordion summary {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #556;
+    cursor: pointer;
+    padding: 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    user-select: none;
+    list-style: none;
+}
+
+.past-events-accordion summary::before {
+    content: '\25B6';
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+}
+
+.past-events-accordion[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.past-events-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.past-events-accordion .month-header,
+.past-events-accordion .cal-grid {
+    opacity: 0.5;
+}
 
 /* =========================================
    PAST EVENTS DIMMING

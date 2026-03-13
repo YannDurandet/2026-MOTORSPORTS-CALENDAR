@@ -26,50 +26,110 @@
                 <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
             </div>
             <div class="dash-grid">
-                <div class="dash-card dc-f1">
+                <div class="dash-card dc-f1" data-series="f1">
                     <div class="dc-title">F1</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-f1">--</div>
                 </div>
-                <div class="dash-card dc-f1a">
+                <div class="dash-card dc-f1a" data-series="f1a">
                     <div class="dc-title">F1 Academy</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-f1a">--</div>
                 </div>
-                <div class="dash-card dc-fe">
+                <div class="dash-card dc-fe" data-series="fe">
                     <div class="dc-title">Formula E</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-fe">--</div>
                 </div>
-                <div class="dash-card dc-sf">
+                <div class="dash-card dc-sf" data-series="sf">
                     <div class="dc-title">Super Formula</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-sf">--</div>
                 </div>
-                <div class="dash-card dc-wec">
+                <div class="dash-card dc-wec" data-series="wec">
                     <div class="dc-title">WEC</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-wec">--</div>
                 </div>
-                <div class="dash-card dc-imsa">
+                <div class="dash-card dc-imsa" data-series="imsa">
                     <div class="dc-title">IMSA</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-imsa">--</div>
                 </div>
-                <div class="dash-card dc-wrc">
+                <div class="dash-card dc-wrc" data-series="wrc">
                     <div class="dc-title">WRC</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-wrc">--</div>
                 </div>
-                <div class="dash-card dc-indycar">
+                <div class="dash-card dc-indycar" data-series="indycar">
                     <div class="dc-title">IndyCar</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-indycar">--</div>
                 </div>
-                <div class="dash-card dc-nascar">
+                <div class="dash-card dc-nascar" data-series="nascar">
                     <div class="dc-title">NASCAR</div>
                     <div class="dc-next">--</div>
                     <div class="dc-time" id="t-nascar">--</div>
+                </div>
+                <div class="dash-card dc-motogp" data-series="motogp">
+                    <div class="dc-title">MotoGP</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-motogp">--</div>
+                </div>
+                <div class="dash-card dc-wsbk" data-series="wsbk">
+                    <div class="dc-title">WSBK</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-wsbk">--</div>
+                </div>
+                <div class="dash-card dc-dtm" data-series="dtm">
+                    <div class="dc-title">DTM</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-dtm">--</div>
+                </div>
+                <div class="dash-card dc-btcc" data-series="btcc">
+                    <div class="dc-title">BTCC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-btcc">--</div>
+                </div>
+                <div class="dash-card dc-supercars" data-series="supercars">
+                    <div class="dc-title">Supercars</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-supercars">--</div>
+                </div>
+                <div class="dash-card dc-elms" data-series="elms">
+                    <div class="dc-title">ELMS</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-elms">--</div>
+                </div>
+                <div class="dash-card dc-gtwce" data-series="gtwce">
+                    <div class="dc-title">GTWCE</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-gtwce">--</div>
+                </div>
+                <div class="dash-card dc-gtwca" data-series="gtwca">
+                    <div class="dc-title">GTWCA</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-gtwca">--</div>
+                </div>
+                <div class="dash-card dc-nls" data-series="nls">
+                    <div class="dc-title">NLS</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-nls">--</div>
+                </div>
+                <div class="dash-card dc-igtc" data-series="igtc">
+                    <div class="dc-title">IGTC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-igtc">--</div>
+                </div>
+                <div class="dash-card dc-tcr" data-series="tcr">
+                    <div class="dc-title">TCR</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-tcr">--</div>
+                </div>
+                <div class="dash-card dc-erc" data-series="erc">
+                    <div class="dc-title">ERC</div>
+                    <div class="dc-next">--</div>
+                    <div class="dc-time" id="t-erc">--</div>
                 </div>
             </div>
         </header>
@@ -102,7 +162,27 @@
                 <a href="news.html" class="news-more-btn">MORE NEWS ></a>
             </div>
 
-            <div id="filter-bar" class="filter-bar"></div>
+            <div id="filter-bar" class="filter-bar">
+                <fieldset class="filter-group" id="region-filters">
+                    <legend>Region</legend>
+                </fieldset>
+                <fieldset class="filter-group" id="category-filters">
+                    <legend>Category</legend>
+                </fieldset>
+                <details class="advanced-filters" id="advanced-filters">
+                    <summary>Advanced: Toggle Specific Series</summary>
+                    <div class="advanced-series-grid" id="series-toggles"></div>
+                </details>
+            </div>
+
+            <div id="empty-state" class="empty-state" hidden>
+                <p>No events match your current filters.</p>
+                <button id="clear-filters-btn" class="clear-filters-btn">Clear Filters</button>
+            </div>
+
+            <details id="past-events-container" class="past-events-accordion">
+                <summary id="past-events-summary" aria-expanded="false">View Past Events</summary>
+            </details>
 
             <div id="calendar-container"></div>
 
