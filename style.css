@@ -1014,7 +1014,7 @@ a {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.6rem;
     font-weight: 800;
-    color: #556;
+    color: #889;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 2px;
@@ -1040,6 +1040,17 @@ a {
     color: #fff;
     border-color: #555;
     background: #1a2a3a;
+}
+
+/* Focus-visible for keyboard navigation */
+.filter-btn:focus-visible,
+.arrow-btn:focus-visible,
+.clear-filters-btn:focus-visible,
+.news-more-btn:focus-visible,
+.dash-toggle-btn:focus-visible,
+.faq-question:focus-visible {
+    outline: 2px solid #6abfff;
+    outline-offset: 2px;
 }
 
 /* Region pill styling */
@@ -1421,7 +1432,7 @@ a {
     cursor: pointer;
     text-transform: uppercase;
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     gap: 8px;
     width: 100%;
@@ -1449,7 +1460,7 @@ a {
     .dash-wrapper {
         width: auto;
         /* Let it size naturally on desktop */
-        align-items: start;
+        align-items: flex-start;
     }
 
     .dash-toggle-btn {
