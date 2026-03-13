@@ -26,11 +26,54 @@ const seriesMetadata = {
 };
 
 // =============================================
+// FILTER CONSTANTS (must be before loadFilterState)
+// =============================================
+const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc'];
+const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
+const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
+
+// =============================================
 // FILTER STATE
 // =============================================
 const defaultFilterState = { regions: [], categories: [], hiddenSpecificSeries: [] };
 
+function loadFilterStateFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    const regionParam = params.get('region');
+    const categoryParam = params.get('category');
+    const hiddenParam = params.get('hidden');
+    if (!regionParam && !categoryParam && !hiddenParam) return null;
+
+    const state = JSON.parse(JSON.stringify(defaultFilterState));
+    if (regionParam) {
+        state.regions = regionParam.split(',').filter(r => ALL_REGIONS.includes(r));
+    }
+    if (categoryParam) {
+        state.categories = categoryParam.split(',').filter(c => ALL_CATEGORIES.includes(c));
+    }
+    if (hiddenParam) {
+        state.hiddenSpecificSeries = hiddenParam.split(',').filter(s => allSeries.includes(s));
+    }
+    return state;
+}
+
+function filterStateToURL() {
+    const params = new URLSearchParams();
+    if (filterState.regions.length) params.set('region', filterState.regions.join(','));
+    if (filterState.categories.length) params.set('category', filterState.categories.join(','));
+    if (filterState.hiddenSpecificSeries.length) params.set('hidden', filterState.hiddenSpecificSeries.join(','));
+    const qs = params.toString();
+    const url = window.location.pathname + (qs ? '?' + qs : '');
+    window.history.replaceState(null, '', url);
+}
+
 function loadFilterState() {
+    const fromURL = loadFilterStateFromURL();
+    if (fromURL) {
+        // URL params take priority; sync to localStorage
+        try { localStorage.setItem('motorsportFilters', JSON.stringify(fromURL)); } catch (e) { /* ignore */ }
+        return fromURL;
+    }
     try {
         const saved = localStorage.getItem('motorsportFilters');
         if (saved) return JSON.parse(saved);
@@ -939,7 +982,6 @@ const calendarData = [
 // =============================================
 // SERIES FILTER STATE
 // =============================================
-const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc'];
 
 // =============================================
 // RENDER CALENDAR
@@ -970,7 +1012,7 @@ function renderEvent(ev) {
 
     return `<div class="event ev-${ev.series}" data-series="${ev.series}">` +
         `<div class="ev-details">${detailsInner}</div>` +
-        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="${ev.title} track layout" loading="lazy" width="60" height="60"></div>` +
+        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="2026 ${ev.tag} ${ev.title} track map layout"" loading="lazy" width="60" height="60"></div>` +
         '</div>';
 }
 
@@ -999,15 +1041,39 @@ function renderCalendar() {
 // =============================================
 // SERIES FILTER (Region + Category + Advanced)
 // =============================================
-const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
-const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
-
 const seriesLabels = {
     f1: 'F1', f1a: 'F1A', fe: 'FE', sf: 'SF', wec: 'WEC', imsa: 'IMSA', wrc: 'WRC',
     indycar: 'INDYCAR', nascar: 'NASCAR', motogp: 'MOTOGP', wsbk: 'WSBK', dtm: 'DTM',
     btcc: 'BTCC', supercars: 'SUPERCARS', elms: 'ELMS', gtwce: 'GTWCE', gtwca: 'GTWCA',
     nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC'
 };
+
+// =============================================
+// DASHBOARD TOGGLE
+// =============================================
+function initDashToggle() {
+    const dashGrid = document.getElementById('dash-grid');
+    const toggleBtn = document.getElementById('dash-toggle-btn');
+    
+    if (!dashGrid || !toggleBtn) return;
+
+    toggleBtn.addEventListener('click', () => {
+        const isCollapsed = dashGrid.classList.contains('collapsed');
+        
+        if (isCollapsed) {
+            dashGrid.classList.remove('collapsed');
+            toggleBtn.classList.add('expanded');
+            toggleBtn.querySelector('span').textContent = 'SHOW LESS';
+        } else {
+            dashGrid.classList.add('collapsed');
+            toggleBtn.classList.remove('expanded');
+            toggleBtn.querySelector('span').textContent = 'SEE ALL SERIES';
+        }
+    });
+}
+
+// Don't forget to call it in your INIT section at the bottom!
+// 
 
 function initFilters() {
     // --- Region pills ---
@@ -1159,6 +1225,9 @@ function applyFilters() {
         const anyVisible = calContainer.querySelector('.card:not([style*="display: none"])');
         emptyState.hidden = !!anyVisible;
     }
+
+    // Sync filter state to URL params
+    filterStateToURL();
 }
 
 // =============================================
@@ -1300,12 +1369,51 @@ const toggle = btn => {
 };
 
 // =============================================
+// SEO: INJECT JSON-LD EVENT SCHEMA
+// =============================================
+function injectSchema() {
+    const now = Date.now();
+    let upcomingEvents = [];
+
+    // Grab the next upcoming race from each series
+    for (const [series, list] of Object.entries(seriesData)) {
+        const nextRace = list.find(r => r._ts > now);
+        if (nextRace) {
+            upcomingEvents.push({
+                "@type": "Event",
+                "name": `${seriesMetadata[series].name} - ${nextRace.name}`,
+                "startDate": nextRace.date,
+                "eventStatus": "https://schema.org/EventScheduled",
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "location": {
+                    "@type": "Place",
+                    "name": "TBC - See Website for Track Details"
+                }
+            });
+        }
+    }
+
+    if (upcomingEvents.length > 0) {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": upcomingEvents
+        });
+        document.head.appendChild(script);
+    }
+}
+// Add injectSchema(); to the bottom of your script file!
+
+// =============================================
 // INIT
 // =============================================
 renderCalendar();
+initDashToggle();
 initFilters();
+applyFilters();
 dimPastEvents();
 update();
-
+injectSchema()
 // Delay scroll slightly so layout is settled
 setTimeout(scrollToCurrentWeek, 100);

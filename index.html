@@ -4,12 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="2026 Motorsport Master Calendar - Track F1, Formula E, WEC, IMSA, WRC, Super Formula and F1 Academy schedules with live countdowns. All times in Paris CET/CEST.">
+    <meta name="description"
+        content="The ultimate 2026 motorsport master calendar. Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns and local track times.">
+    <link rel="canonical" href="https://yanndurandet.me/racing" />
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yanndurandet.me/racing">
+    <meta property="og:title" content="2026 Motorsport Master Calendar">
+    <meta property="og:description" content="Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns.">
+    <meta property="og:image" content="https://yanndurandet.me/racing/assets/lauda_and_mouton.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2026 Motorsport Master Calendar">
+    <meta name="twitter:description" content="Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns.">
+    <meta name="twitter:image" content="https://yanndurandet.me/racing/assets/lauda_and_mouton.png">
     <title>2026 MOTORSPORT MASTER CALENDAR</title>
-    <link
+    <link rel="preload"
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "What time zone are the race times in?",
+            "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All times are displayed in your system time. By default, the master calendar is built using Paris (CET/CEST) timezone."
+            }
+        }, {
+            "@type": "Question",
+            "name": "When does the 2026 Formula 1 season start?",
+            "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The 2026 F1 season kicks off with the Australian Grand Prix on March 8, 2026."
+            }
+        }, {
+            "@type": "Question",
+            "name": "Which series are included in this tracker?",
+            "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We track 21 major global and regional championships including Formula 1, WEC, IMSA, IndyCar, WRC, MotoGP, WorldSBK, NASCAR, and Supercars."
+            }
+        }]
+        }
+</script>
 </head>
 
 <body>
@@ -24,113 +63,124 @@
             <div class="header--left">
                 <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
                 <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+                <div class="website-description">The ultimate 2026 motorsport master calendar. Track every race weekend
+                    across global and regional series, including Formula 1, WEC, IMSA, IndyCar, MotoGP, and WRC. Use the
+                    filters to customize your schedule by open-wheel, endurance, or touring cars. All countdowns and
+                    schedules are localized to Paris CET/CEST time.</div>
             </div>
-            <div class="dash-grid">
-                <div class="dash-card dc-f1" data-series="f1">
-                    <div class="dc-title">F1</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-f1">--</div>
+            <div class="dash-wrapper">
+                <div class="dash-grid collapsed" id="dash-grid">
+                    <div class="dash-card dc-f1" data-series="f1">
+                        <div class="dc-title">F1</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-f1">--</div>
+                    </div>
+                    <div class="dash-card dc-f1a" data-series="f1a">
+                        <div class="dc-title">F1 Academy</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-f1a">--</div>
+                    </div>
+                    <div class="dash-card dc-fe" data-series="fe">
+                        <div class="dc-title">Formula E</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-fe">--</div>
+                    </div>
+                    <div class="dash-card dc-wec" data-series="wec">
+                        <div class="dc-title">WEC</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-wec">--</div>
+                    </div>
+                    <div class="dash-card dc-wrc" data-series="wrc">
+                        <div class="dc-title">WRC</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-wrc">--</div>
+                    </div>
+                    <div class="dash-card dc-motogp" data-series="motogp">
+                        <div class="dc-title">MotoGP</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-motogp">--</div>
+                    </div>
+                    <div class="dash-card dc-wsbk" data-series="wsbk">
+                        <div class="dc-title">WSBK</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-wsbk">--</div>
+                    </div>
+                    <div class="dash-card dc-igtc" data-series="igtc">
+                        <div class="dc-title">IGTC</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-igtc">--</div>
+                    </div>
+                    <div class="dash-card dc-tcr" data-series="tcr">
+                        <div class="dc-title">TCR</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-tcr">--</div>
+                    </div>
+
+                    <div class="dash-card dc-sf regional" data-series="sf">
+                        <div class="dc-title">Super Formula</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-sf">--</div>
+                    </div>
+                    <div class="dash-card dc-imsa regional" data-series="imsa">
+                        <div class="dc-title">IMSA</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-imsa">--</div>
+                    </div>
+                    <div class="dash-card dc-indycar regional" data-series="indycar">
+                        <div class="dc-title">IndyCar</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-indycar">--</div>
+                    </div>
+                    <div class="dash-card dc-nascar regional" data-series="nascar">
+                        <div class="dc-title">NASCAR</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-nascar">--</div>
+                    </div>
+                    <div class="dash-card dc-dtm regional" data-series="dtm">
+                        <div class="dc-title">DTM</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-dtm">--</div>
+                    </div>
+                    <div class="dash-card dc-btcc regional" data-series="btcc">
+                        <div class="dc-title">BTCC</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-btcc">--</div>
+                    </div>
+                    <div class="dash-card dc-supercars regional" data-series="supercars">
+                        <div class="dc-title">Supercars</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-supercars">--</div>
+                    </div>
+                    <div class="dash-card dc-elms regional" data-series="elms">
+                        <div class="dc-title">ELMS</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-elms">--</div>
+                    </div>
+                    <div class="dash-card dc-gtwce regional" data-series="gtwce">
+                        <div class="dc-title">GTWCE</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-gtwce">--</div>
+                    </div>
+                    <div class="dash-card dc-gtwca regional" data-series="gtwca">
+                        <div class="dc-title">GTWCA</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-gtwca">--</div>
+                    </div>
+                    <div class="dash-card dc-nls regional" data-series="nls">
+                        <div class="dc-title">NLS</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-nls">--</div>
+                    </div>
+                    <div class="dash-card dc-erc regional" data-series="erc">
+                        <div class="dc-title">ERC</div>
+                        <div class="dc-next">--</div>
+                        <div class="dc-time" id="t-erc">--</div>
+                    </div>
                 </div>
-                <div class="dash-card dc-f1a" data-series="f1a">
-                    <div class="dc-title">F1 Academy</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-f1a">--</div>
-                </div>
-                <div class="dash-card dc-fe" data-series="fe">
-                    <div class="dc-title">Formula E</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-fe">--</div>
-                </div>
-                <div class="dash-card dc-sf" data-series="sf">
-                    <div class="dc-title">Super Formula</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-sf">--</div>
-                </div>
-                <div class="dash-card dc-wec" data-series="wec">
-                    <div class="dc-title">WEC</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-wec">--</div>
-                </div>
-                <div class="dash-card dc-imsa" data-series="imsa">
-                    <div class="dc-title">IMSA</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-imsa">--</div>
-                </div>
-                <div class="dash-card dc-wrc" data-series="wrc">
-                    <div class="dc-title">WRC</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-wrc">--</div>
-                </div>
-                <div class="dash-card dc-indycar" data-series="indycar">
-                    <div class="dc-title">IndyCar</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-indycar">--</div>
-                </div>
-                <div class="dash-card dc-nascar" data-series="nascar">
-                    <div class="dc-title">NASCAR</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-nascar">--</div>
-                </div>
-                <div class="dash-card dc-motogp" data-series="motogp">
-                    <div class="dc-title">MotoGP</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-motogp">--</div>
-                </div>
-                <div class="dash-card dc-wsbk" data-series="wsbk">
-                    <div class="dc-title">WSBK</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-wsbk">--</div>
-                </div>
-                <div class="dash-card dc-dtm" data-series="dtm">
-                    <div class="dc-title">DTM</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-dtm">--</div>
-                </div>
-                <div class="dash-card dc-btcc" data-series="btcc">
-                    <div class="dc-title">BTCC</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-btcc">--</div>
-                </div>
-                <div class="dash-card dc-supercars" data-series="supercars">
-                    <div class="dc-title">Supercars</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-supercars">--</div>
-                </div>
-                <div class="dash-card dc-elms" data-series="elms">
-                    <div class="dc-title">ELMS</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-elms">--</div>
-                </div>
-                <div class="dash-card dc-gtwce" data-series="gtwce">
-                    <div class="dc-title">GTWCE</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-gtwce">--</div>
-                </div>
-                <div class="dash-card dc-gtwca" data-series="gtwca">
-                    <div class="dc-title">GTWCA</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-gtwca">--</div>
-                </div>
-                <div class="dash-card dc-nls" data-series="nls">
-                    <div class="dc-title">NLS</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-nls">--</div>
-                </div>
-                <div class="dash-card dc-igtc" data-series="igtc">
-                    <div class="dc-title">IGTC</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-igtc">--</div>
-                </div>
-                <div class="dash-card dc-tcr" data-series="tcr">
-                    <div class="dc-title">TCR</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-tcr">--</div>
-                </div>
-                <div class="dash-card dc-erc" data-series="erc">
-                    <div class="dc-title">ERC</div>
-                    <div class="dc-next">--</div>
-                    <div class="dc-time" id="t-erc">--</div>
-                </div>
+                <button id="dash-toggle-btn" class="dash-toggle-btn">
+                    <span>SEE ALL SERIES</span>
+                    <span class="arrow">▼</span>
+                </button>
             </div>
         </header>
         <div class="news-section">
@@ -186,14 +236,50 @@
 
             <div id="calendar-container"></div>
 
+            <div class="faq-section">
+                <div class="faq-header-title">FAQ</div>
+                <div class="faq-grid">
+
+                    <details class="faq-card" name="faq">
+                        <summary class="faq-question">What time zone are the race times in?</summary>
+                        <div class="faq-answer">All times are displayed in your system time. By default, the master
+                            calendar is built using Paris (CET/CEST) timezone.</div>
+                    </details>
+
+                    <details class="faq-card" name="faq">
+                        <summary class="faq-question">When does the 2026 Formula 1 season start?</summary>
+                        <div class="faq-answer">The 2026 F1 season kicks off with the Australian Grand Prix on March 8,
+                            2026.</div>
+                    </details>
+
+                    <details class="faq-card" name="faq">
+                        <summary class="faq-question">Which series are included in this tracker?</summary>
+                        <div class="faq-answer">We track 21 major global and regional championships including Formula 1,
+                            WEC, IMSA, IndyCar, WRC, MotoGP, WorldSBK, NASCAR, and Supercars.</div>
+                    </details>
+
+                    <details class="faq-card" name="faq">
+                        <summary class="faq-question">How do the filters work?</summary>
+                        <div class="faq-answer">You can toggle specific series on and off using the buttons at the top
+                            of the calendar. The dashboard countdowns will automatically update to reflect your active
+                            filters.</div>
+                    </details>
+
+                </div>
+            </div>
+
             <footer>
                 <div class="footer--container">
                     <h2>Built by<br>Yann Durandet</h2>
                     <div class="links">
-                        <a href="https://x.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">-- X</a>
-                        <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank" rel="noopener">-- IG</a>
-                        <a href="https://github.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">-- GitHub</a>
-                        <a href="https://durandet.studio" class="footer--link" target="_blank" rel="noopener">-- Website</a>
+                        <a href="https://x.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">--
+                            X</a>
+                        <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank"
+                            rel="noopener">-- IG</a>
+                        <a href="https://github.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">--
+                            GitHub</a>
+                        <a href="https://durandet.studio" class="footer--link" target="_blank" rel="noopener">--
+                            Website</a>
                     </div>
                 </div>
             </footer>
