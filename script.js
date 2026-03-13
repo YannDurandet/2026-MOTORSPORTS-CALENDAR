@@ -2,27 +2,27 @@
 // SERIES METADATA (categories & regions)
 // =============================================
 const seriesMetadata = {
-    f1:        { name: "Formula 1",   category: "Open Wheel",      region: "Worldwide" },
-    f1a:       { name: "F1 Academy",  category: "Open Wheel",      region: "Worldwide" },
-    fe:        { name: "Formula E",   category: "Open Wheel",      region: "Worldwide" },
-    sf:        { name: "Super Formula", category: "Open Wheel",     region: "Asia & Oceania" },
-    wec:       { name: "WEC",         category: "Endurance",        region: "Worldwide" },
-    imsa:      { name: "IMSA",        category: "Endurance",        region: "USA" },
-    wrc:       { name: "WRC",         category: "Rally",            region: "Worldwide" },
-    indycar:   { name: "IndyCar",     category: "Open Wheel",       region: "USA" },
-    nascar:    { name: "NASCAR",      category: "Touring",          region: "USA" },
-    motogp:    { name: "MotoGP",      category: "Bike",             region: "Worldwide" },
-    wsbk:      { name: "WSBK",        category: "Bike",             region: "Worldwide" },
-    dtm:       { name: "DTM",         category: "GT / Sports Car",  region: "Europe" },
-    btcc:      { name: "BTCC",        category: "Touring",          region: "Europe" },
-    supercars: { name: "Supercars",   category: "Touring",          region: "Asia & Oceania" },
-    elms:      { name: "ELMS",        category: "Endurance",        region: "Europe" },
-    gtwce:     { name: "GTWCE",       category: "GT / Sports Car",  region: "Europe" },
-    gtwca:     { name: "GTWCA",       category: "GT / Sports Car",  region: "USA" },
-    nls:       { name: "NLS",         category: "Endurance",        region: "Europe" },
-    igtc:      { name: "IGTC",        category: "GT / Sports Car",  region: "Worldwide" },
-    tcr:       { name: "TCR",         category: "Touring",          region: "Worldwide" },
-    erc:       { name: "ERC",         category: "Rally",            region: "Europe" }
+    f1: { name: "Formula 1", category: "Open Wheel", region: "Worldwide" },
+    f1a: { name: "F1 Academy", category: "Open Wheel", region: "Worldwide" },
+    fe: { name: "Formula E", category: "Open Wheel", region: "Worldwide" },
+    sf: { name: "Super Formula", category: "Open Wheel", region: "Asia & Oceania" },
+    wec: { name: "WEC", category: "Endurance", region: "Worldwide" },
+    imsa: { name: "IMSA", category: "Endurance", region: "USA" },
+    wrc: { name: "WRC", category: "Rally", region: "Worldwide" },
+    indycar: { name: "IndyCar", category: "Open Wheel", region: "USA" },
+    nascar: { name: "NASCAR", category: "Touring", region: "USA" },
+    motogp: { name: "MotoGP", category: "Bike", region: "Worldwide" },
+    wsbk: { name: "WSBK", category: "Bike", region: "Worldwide" },
+    dtm: { name: "DTM", category: "GT / Sports Car", region: "Europe" },
+    btcc: { name: "BTCC", category: "Touring", region: "Europe" },
+    supercars: { name: "Supercars", category: "Touring", region: "Asia & Oceania" },
+    elms: { name: "ELMS", category: "Endurance", region: "Europe" },
+    gtwce: { name: "GTWCE", category: "GT / Sports Car", region: "Europe" },
+    gtwca: { name: "GTWCA", category: "GT / Sports Car", region: "USA" },
+    nls: { name: "NLS", category: "Endurance", region: "Europe" },
+    igtc: { name: "IGTC", category: "GT / Sports Car", region: "Worldwide" },
+    tcr: { name: "TCR", category: "Touring", region: "Worldwide" },
+    erc: { name: "ERC", category: "Rally", region: "Europe" }
 };
 
 // =============================================
@@ -1012,7 +1012,7 @@ function renderEvent(ev) {
 
     return `<div class="event ev-${ev.series}" data-series="${ev.series}">` +
         `<div class="ev-details">${detailsInner}</div>` +
-        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="2026 ${ev.tag} ${ev.title} track map layout"" loading="lazy" width="60" height="60"></div>` +
+        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="2026 ${ev.tag} ${ev.title} track map layout" loading="lazy" width="60" height="60"></div>` +
         '</div>';
 }
 
@@ -1054,12 +1054,12 @@ const seriesLabels = {
 function initDashToggle() {
     const dashGrid = document.getElementById('dash-grid');
     const toggleBtn = document.getElementById('dash-toggle-btn');
-    
+
     if (!dashGrid || !toggleBtn) return;
 
     toggleBtn.addEventListener('click', () => {
         const isCollapsed = dashGrid.classList.contains('collapsed');
-        
+
         if (isCollapsed) {
             dashGrid.classList.remove('collapsed');
             toggleBtn.classList.add('expanded');
