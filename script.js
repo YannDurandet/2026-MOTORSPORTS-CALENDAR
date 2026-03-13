@@ -2,27 +2,27 @@
 // SERIES METADATA (categories & regions)
 // =============================================
 const seriesMetadata = {
-    f1:        { name: "Formula 1",   category: "Open Wheel",      region: "Worldwide" },
-    f1a:       { name: "F1 Academy",  category: "Open Wheel",      region: "Worldwide" },
-    fe:        { name: "Formula E",   category: "Open Wheel",      region: "Worldwide" },
-    sf:        { name: "Super Formula", category: "Open Wheel",     region: "Asia & Oceania" },
-    wec:       { name: "WEC",         category: "Endurance",        region: "Worldwide" },
-    imsa:      { name: "IMSA",        category: "Endurance",        region: "USA" },
-    wrc:       { name: "WRC",         category: "Rally",            region: "Worldwide" },
-    indycar:   { name: "IndyCar",     category: "Open Wheel",       region: "USA" },
-    nascar:    { name: "NASCAR",      category: "Touring",          region: "USA" },
-    motogp:    { name: "MotoGP",      category: "Bike",             region: "Worldwide" },
-    wsbk:      { name: "WSBK",        category: "Bike",             region: "Worldwide" },
-    dtm:       { name: "DTM",         category: "GT / Sports Car",  region: "Europe" },
-    btcc:      { name: "BTCC",        category: "Touring",          region: "Europe" },
-    supercars: { name: "Supercars",   category: "Touring",          region: "Asia & Oceania" },
-    elms:      { name: "ELMS",        category: "Endurance",        region: "Europe" },
-    gtwce:     { name: "GTWCE",       category: "GT / Sports Car",  region: "Europe" },
-    gtwca:     { name: "GTWCA",       category: "GT / Sports Car",  region: "USA" },
-    nls:       { name: "NLS",         category: "Endurance",        region: "Europe" },
-    igtc:      { name: "IGTC",        category: "GT / Sports Car",  region: "Worldwide" },
-    tcr:       { name: "TCR",         category: "Touring",          region: "Worldwide" },
-    erc:       { name: "ERC",         category: "Rally",            region: "Europe" }
+    f1: { name: "Formula 1", category: "Open Wheel", region: "Worldwide" },
+    f1a: { name: "F1 Academy", category: "Open Wheel", region: "Worldwide" },
+    fe: { name: "Formula E", category: "Open Wheel", region: "Worldwide" },
+    sf: { name: "Super Formula", category: "Open Wheel", region: "Asia & Oceania" },
+    wec: { name: "WEC", category: "Endurance", region: "Worldwide" },
+    imsa: { name: "IMSA", category: "Endurance", region: "USA" },
+    wrc: { name: "WRC", category: "Rally", region: "Worldwide" },
+    indycar: { name: "IndyCar", category: "Open Wheel", region: "USA" },
+    nascar: { name: "NASCAR", category: "Touring", region: "USA" },
+    motogp: { name: "MotoGP", category: "Bike", region: "Worldwide" },
+    wsbk: { name: "WSBK", category: "Bike", region: "Worldwide" },
+    dtm: { name: "DTM", category: "GT / Sports Car", region: "Europe" },
+    btcc: { name: "BTCC", category: "Touring", region: "Europe" },
+    supercars: { name: "Supercars", category: "Touring", region: "Asia & Oceania" },
+    elms: { name: "ELMS", category: "Endurance", region: "Europe" },
+    gtwce: { name: "GTWCE", category: "GT / Sports Car", region: "Europe" },
+    gtwca: { name: "GTWCA", category: "GT / Sports Car", region: "USA" },
+    nls: { name: "NLS", category: "Endurance", region: "Europe" },
+    igtc: { name: "IGTC", category: "GT / Sports Car", region: "Worldwide" },
+    tcr: { name: "TCR", category: "Touring", region: "Worldwide" },
+    erc: { name: "ERC", category: "Rally", region: "Europe" }
 };
 
 // =============================================
@@ -95,8 +95,6 @@ const seriesData = {
         { name: "AUSTRALIA", date: "2026-03-08T05:00:00+01:00" },
         { name: "CHINA", date: "2026-03-15T08:00:00+01:00" },
         { name: "JAPAN", date: "2026-03-29T07:00:00+02:00" },
-        { name: "BAHRAIN", date: "2026-04-12T17:00:00+02:00" },
-        { name: "SAUDI ARABIA", date: "2026-04-19T19:00:00+02:00" },
         { name: "MIAMI", date: "2026-05-03T22:00:00+02:00" },
         { name: "CANADA", date: "2026-05-24T22:00:00+02:00" },
         { name: "MONACO", date: "2026-06-07T15:00:00+02:00" },
@@ -501,12 +499,6 @@ const calendarData = [
             {
                 label: "WEEK 15 \u2022 APR 09-12", events: [
                     { series: "wrc", tag: "WRC", title: "Croatia Rally", time: "THU > SUN", track: "croatia-wrc.svg", sub: [{ badge: "wrc2", label: "WRC2", detail: "ALL STAGES" }] },
-                    {
-                        series: "f1", tag: "FORMULA 1", title: "Bahrain GP",
-                        time: 'QUALI: <span class="hl">17:00</span> \u2022 RACE: <span class="hl">17:00</span>',
-                        track: "bahrain-f1.svg",
-                        sub: [{ badge: "f2", label: "F2", detail: "RACES: TBC" }, { badge: "f3", label: "F3", detail: "RACES: TBC" }]
-                    },
                     { series: "motogp", tag: "MOTOGP", title: "Qatar Grand Prix", time: 'RACE: <span class="hl">18:00</span>', track: "lusail-motogp.svg" },
                     { series: "supercars", tag: "SUPERCARS", title: "ITM Taupō Super440", time: 'FRI > SUN', track: "taupo-supercars.svg" },
                     { series: "nls", tag: "NLS", title: "Adenauer ADAC Trophy (4h)", time: 'SAT: <span class="hl">10:00</span>', track: "nordschleife-nls.svg" },
@@ -517,12 +509,6 @@ const calendarData = [
             },
             {
                 label: "WEEK 16 \u2022 APR 17-19", events: [
-                    {
-                        series: "f1", tag: "FORMULA 1", title: "Saudi Arabian GP",
-                        time: 'QUALI: <span class="hl">19:00</span> \u2022 RACE: <span class="hl">19:00</span>',
-                        track: "jeddah-f1.svg",
-                        sub: [{ badge: "f2", label: "F2", detail: "RACES: TBC" }, { badge: "f1a", label: "F1A", detail: "RACES: TBC" }]
-                    },
                     { series: "wsbk", tag: "WSBK", title: "Assen Round", time: 'FRI > SUN', track: "assen-wsbk.svg" },
                     { series: "btcc", tag: "BTCC", title: "Donington Park (Races 1-3)", time: 'SAT > SUN', track: "donington-btcc.svg" },
                     { series: "supercars", tag: "SUPERCARS", title: "Christchurch Super440", time: 'FRI > SUN', track: "christchurch-supercars.svg" },
@@ -1012,7 +998,7 @@ function renderEvent(ev) {
 
     return `<div class="event ev-${ev.series}" data-series="${ev.series}">` +
         `<div class="ev-details">${detailsInner}</div>` +
-        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="2026 ${ev.tag} ${ev.title} track map layout"" loading="lazy" width="60" height="60"></div>` +
+        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="2026 ${ev.tag} ${ev.title} track map layout" loading="lazy" width="60" height="60"></div>` +
         '</div>';
 }
 
@@ -1054,12 +1040,12 @@ const seriesLabels = {
 function initDashToggle() {
     const dashGrid = document.getElementById('dash-grid');
     const toggleBtn = document.getElementById('dash-toggle-btn');
-    
+
     if (!dashGrid || !toggleBtn) return;
 
     toggleBtn.addEventListener('click', () => {
         const isCollapsed = dashGrid.classList.contains('collapsed');
-        
+
         if (isCollapsed) {
             dashGrid.classList.remove('collapsed');
             toggleBtn.classList.add('expanded');
