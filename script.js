@@ -95,8 +95,6 @@ const seriesData = {
         { name: "AUSTRALIA", date: "2026-03-08T05:00:00+01:00" },
         { name: "CHINA", date: "2026-03-15T08:00:00+01:00" },
         { name: "JAPAN", date: "2026-03-29T07:00:00+02:00" },
-        { name: "BAHRAIN", date: "2026-04-12T17:00:00+02:00" },
-        { name: "SAUDI ARABIA", date: "2026-04-19T19:00:00+02:00" },
         { name: "MIAMI", date: "2026-05-03T22:00:00+02:00" },
         { name: "CANADA", date: "2026-05-24T22:00:00+02:00" },
         { name: "MONACO", date: "2026-06-07T15:00:00+02:00" },
@@ -501,12 +499,6 @@ const calendarData = [
             {
                 label: "WEEK 15 \u2022 APR 09-12", events: [
                     { series: "wrc", tag: "WRC", title: "Croatia Rally", time: "THU > SUN", track: "croatia-wrc.svg", sub: [{ badge: "wrc2", label: "WRC2", detail: "ALL STAGES" }] },
-                    {
-                        series: "f1", tag: "FORMULA 1", title: "Bahrain GP",
-                        time: 'QUALI: <span class="hl">17:00</span> \u2022 RACE: <span class="hl">17:00</span>',
-                        track: "bahrain-f1.svg",
-                        sub: [{ badge: "f2", label: "F2", detail: "RACES: TBC" }, { badge: "f3", label: "F3", detail: "RACES: TBC" }]
-                    },
                     { series: "motogp", tag: "MOTOGP", title: "Qatar Grand Prix", time: 'RACE: <span class="hl">18:00</span>', track: "lusail-motogp.svg" },
                     { series: "supercars", tag: "SUPERCARS", title: "ITM Taupō Super440", time: 'FRI > SUN', track: "taupo-supercars.svg" },
                     { series: "nls", tag: "NLS", title: "Adenauer ADAC Trophy (4h)", time: 'SAT: <span class="hl">10:00</span>', track: "nordschleife-nls.svg" },
@@ -517,12 +509,6 @@ const calendarData = [
             },
             {
                 label: "WEEK 16 \u2022 APR 17-19", events: [
-                    {
-                        series: "f1", tag: "FORMULA 1", title: "Saudi Arabian GP",
-                        time: 'QUALI: <span class="hl">19:00</span> \u2022 RACE: <span class="hl">19:00</span>',
-                        track: "jeddah-f1.svg",
-                        sub: [{ badge: "f2", label: "F2", detail: "RACES: TBC" }, { badge: "f1a", label: "F1A", detail: "RACES: TBC" }]
-                    },
                     { series: "wsbk", tag: "WSBK", title: "Assen Round", time: 'FRI > SUN', track: "assen-wsbk.svg" },
                     { series: "btcc", tag: "BTCC", title: "Donington Park (Races 1-3)", time: 'SAT > SUN', track: "donington-btcc.svg" },
                     { series: "supercars", tag: "SUPERCARS", title: "Christchurch Super440", time: 'FRI > SUN', track: "christchurch-supercars.svg" },
