@@ -16,13 +16,11 @@
     --fe: linear-gradient(135deg, #0000FF 0%, #00FCFF 100%);
     /* Formula E Cyan */
     --sf: #006D53;
-    /* SF Red */
     --wec: #00B9FF;
-    /* WEC Dark Blue */
     --imsa: #ffd700;
-    /* IMSA Yellow bc fuck having more red */
     --wrc: #FC4C02;
-    /* WRC Orange */
+    --indycar: #C8102E;
+    --nascar: #004795;
 }
 
 /* GLOBAL RESET & MOBILE DEFAULTS */
@@ -43,7 +41,6 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
-    ;
 }
 
 .container {
@@ -170,6 +167,14 @@ h2 {
 
 .dc-f1a::before {
     background: var(--f1a);
+}
+
+.dc-indycar::before {
+    background: var(--indycar);
+}
+
+.dc-nascar::before {
+    background: var(--nascar);
 }
 
 .dc-title {
@@ -498,6 +503,14 @@ h2 {
     border-color: var(--imsa);
 }
 
+.ev-indycar {
+    border-color: var(--indycar);
+}
+
+.ev-nascar {
+    border-color: var(--nascar);
+}
+
 .tag {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.6rem;
@@ -542,6 +555,16 @@ h2 {
 
 .t-imsa {
     background: var(--imsa);
+}
+
+.t-indycar {
+    background: var(--indycar);
+    color: #fff;
+}
+
+.t-nascar {
+    background: var(--nascar);
+    color: #fff;
 }
 
 .title {
@@ -767,7 +790,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: left;
+    align-items: flex-start;
     gap: 12px;
 }
 
@@ -790,4 +813,59 @@ a {
 
 .footer--link:hover {
     color: var(--f1);
+}
+
+/* =========================================
+   SERIES FILTER BAR
+========================================= */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.filter-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 6px 12px;
+    border: 1px solid #333;
+    border-radius: 2px;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.2s ease;
+}
+
+.filter-btn.active {
+    color: #fff;
+    border-color: #555;
+    background: #1a2a3a;
+}
+
+.filter-f1.active { border-color: var(--f1); color: var(--f1); }
+.filter-f1a.active { border-image-source: linear-gradient(135deg, #06F7FB, #C60678); border-image-slice: 1; color: #06F7FB; }
+.filter-fe.active { border-image-source: linear-gradient(135deg, #0000FF, #00FCFF); border-image-slice: 1; color: #00FCFF; }
+.filter-sf.active { border-color: var(--sf); color: var(--sf); }
+.filter-wec.active { border-color: var(--wec); color: var(--wec); }
+.filter-imsa.active { border-color: var(--imsa); color: var(--imsa); }
+.filter-wrc.active { border-color: var(--wrc); color: var(--wrc); }
+.filter-indycar.active { border-color: var(--indycar); color: var(--indycar); }
+.filter-nascar.active { border-color: var(--nascar); color: var(--nascar); }
+
+/* =========================================
+   PAST EVENTS DIMMING
+========================================= */
+.month-header.past,
+.cal-grid.past,
+.card.past {
+    opacity: 0.35;
+}
+
+.track-map img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
