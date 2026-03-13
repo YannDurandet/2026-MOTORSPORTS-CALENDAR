@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Point Google directly to your sitemap
+Sitemap: https://yanndurandet.me/sitemap.xml
