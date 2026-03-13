@@ -1091,6 +1091,7 @@ function initFilters() {
 
     // --- Category chips ---
     const catContainer = document.getElementById('category-filters');
+    if (!catContainer) return;
     for (const cat of ALL_CATEGORIES) {
         const btn = document.createElement('button');
         btn.className = 'filter-btn filter-category';
@@ -1293,6 +1294,9 @@ function dimPastEvents() {
     // Update summary text
     if (pastMonthCount > 0 && pastSummary) {
         pastSummary.textContent = `View Past Events (${pastMonthCount} Month${pastMonthCount > 1 ? 's' : ''})`;
+        pastContainer.addEventListener('toggle', () => {
+            pastSummary.setAttribute('aria-expanded', pastContainer.open ? 'true' : 'false');
+        });
     } else {
         pastContainer.hidden = true;
     }
@@ -1351,7 +1355,8 @@ document.addEventListener('visibilitychange', () => {
 
 const toggle = btn => {
     btn.classList.toggle('active');
-    btn.parentElement.nextElementSibling.classList.toggle('open');
+    const sibling = btn.parentElement?.nextElementSibling;
+    if (sibling) sibling.classList.toggle('open');
 };
 
 // =============================================
