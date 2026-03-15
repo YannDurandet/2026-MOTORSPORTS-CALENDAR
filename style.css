@@ -334,6 +334,14 @@ h2 {
     align-items: flex-start;
 }
 
+.news-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: #C3C6C8;
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+
 .news-title {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
