@@ -1,0 +1,2210 @@
+[
+  {
+    "month": "JANUARY",
+    "weeks": [
+      {
+        "label": "WEEK 04 • JAN 22-25",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rallye Monte-Carlo",
+            "time": "THU > SUN",
+            "track": "montecarlo-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Rolex 24 at Daytona",
+            "time": "SAT <span class=\"hl\">19:40</span> > SUN <span class=\"hl\">19:40</span>",
+            "track": "daytona_imsa.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 05 • JAN 31",
+        "events": [
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Miami E-Prix",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "miami-fe.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "FEBRUARY",
+    "weeks": [
+      {
+        "label": "WEEK 07 • FEB 12-15",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Sweden",
+            "time": "THU > SUN",
+            "track": "sweden-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Jeddah E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">TBC</span>",
+            "track": "jeddah-fe.svg"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "Bathurst 12 Hour",
+            "time": "FRI > SUN",
+            "track": "bathurst-igtc.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Daytona 500",
+            "time": "RACE: <span class=\"hl\">20:30</span>",
+            "track": "daytona-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 08 • FEB 20-22",
+        "events": [
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Phillip Island Round",
+            "time": "FRI > SUN",
+            "track": "phillipisland-wsbk.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Sydney 500",
+            "time": "FRI > SUN",
+            "track": "sydney-supercars.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Atlanta Motor Speedway",
+            "time": "RACE: <span class=\"hl\">21:00</span>",
+            "track": "atlanta-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 09 • FEB 27 - MAR 01",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Thai Grand Prix",
+            "time": "RACE: <span class=\"hl\">08:00</span>",
+            "track": "buriram-motogp.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "MARCH",
+    "weeks": [
+      {
+        "label": "WEEK 09 • MAR 01",
+        "events": [
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Streets of St. Petersburg",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "stpetersburg-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "EchoPark GP (COTA)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "cota-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 10 • MAR 05-08",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Australian GP",
+            "time": "QUALI: <span class=\"hl\">06:00</span> • RACE: <span class=\"hl\">05:00</span>",
+            "track": "australia-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Melbourne SuperSprint",
+            "time": "THU > SUN",
+            "track": "melbourne-supercars.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Phoenix Grand Prix",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "phoenix-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Phoenix Raceway",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "phoenix-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 11 • MAR 12-15",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Safari Rally Kenya",
+            "time": "THU > SUN",
+            "track": "kenya-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Chinese GP",
+            "sprint": true,
+            "time": "SPRINT: <span class=\"hl\">04:00</span> • QUALI: <span class=\"hl\">08:00</span> • RACE: <span class=\"hl\">08:00</span>",
+            "track": "china-f1.svg"
+          },
+          {
+            "series": "f1a",
+            "tag": "F1 ACADEMY",
+            "title": "Rd 1: China",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "china-f1.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "71. ADAC Westfalenfahrt (4h)",
+            "time": "SAT: <span class=\"hl\">09:00</span>",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Streets of Arlington",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "arlington-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Pennzoil 400 (Las Vegas)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "lasvegas-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 12 • MAR 20-22",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Brazilian Grand Prix",
+            "time": "RACE: <span class=\"hl\">18:00</span>",
+            "track": "goiania-motogp.svg"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Madrid E-Prix",
+            "time": "RACE: <span class=\"hl\">15:05</span>",
+            "track": "madrid-fe.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "12 Hours of Sebring",
+            "time": "RACE: <span class=\"hl\">15:40</span>",
+            "track": "sebring-imsa.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "58. ADAC Barbarossapreis (4h)",
+            "time": "SAT: <span class=\"hl\">09:00</span>",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Dixie Vodka 400 (Homestead)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "homestead-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 13 • MAR 27-29",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Japanese GP",
+            "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">07:00</span>",
+            "track": "suzuka-f1.svg"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Americas Grand Prix",
+            "time": "RACE: <span class=\"hl\">21:00</span>",
+            "track": "cota-motogp.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Portimão Round",
+            "time": "FRI > SUN",
+            "track": "portimao-wsbk.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Sonoma Round",
+            "time": "FRI > SUN",
+            "track": "sonoma-gtwca.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Honda Indy GP of Alabama",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "barber-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Food City Dirt Race (Bristol)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "bristol-nascar.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "APRIL",
+    "weeks": [
+      {
+        "label": "WEEK 14 • APR 04-05",
+        "events": [
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Motegi",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "motegi-sf.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 15 • APR 09-12",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Croatia Rally",
+            "time": "THU > SUN",
+            "track": "croatia-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "ITM Taupō Super440",
+            "time": "FRI > SUN",
+            "track": "taupo-supercars.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Adenauer ADAC Trophy (4h)",
+            "time": "SAT: <span class=\"hl\">10:00</span>",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Barcelona",
+            "time": "SUN: <span class=\"hl\">12:00</span>",
+            "track": "barcelona-elms.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "6 Hours of Paul Ricard",
+            "time": "SAT > SUN",
+            "track": "paulricard-gtwce.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Cook Out 400 (Martinsville)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "martinsville-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 16 • APR 17-19",
+        "events": [
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Assen Round",
+            "time": "FRI > SUN",
+            "track": "assen-wsbk.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Donington Park (Races 1-3)",
+            "time": "SAT > SUN",
+            "track": "donington-btcc.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Christchurch Super440",
+            "time": "FRI > SUN",
+            "track": "christchurch-supercars.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "Andalusia Rally",
+            "time": "FRI > SUN",
+            "track": "cordoba-erc.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "ADAC 24h Qualifiers (2×4h)",
+            "time": "SAT + SUN",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Acura GP of Long Beach",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "longbeach-indycar.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Grand Prix of Long Beach",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "longbeach-imsa.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Imola",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "imola-wec.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "GEICO 500 (Talladega)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "talladega-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 17 • APR 23-26",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Islas Canarias",
+            "time": "THU > SUN",
+            "track": "canarias-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Spanish Grand Prix (Jerez)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "jerez-motogp.svg"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Autopolis",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "autopolis-sf.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Red Bull Ring (Season Opener)",
+            "time": "SAT + SUN",
+            "track": "redbullring-dtm.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "COTA Round",
+            "time": "FRI > SUN",
+            "track": "cota-gtwca.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Würth 400 (Dover)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "dover-nascar.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "MAY",
+    "weeks": [
+      {
+        "label": "WEEK 18 • MAY 01-03",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Miami GP",
+            "sprint": true,
+            "time": "SPRINT: <span class=\"hl\">18:00</span> • QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">22:00</span>",
+            "track": "miami-f1.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Balaton Park Round",
+            "time": "FRI > SUN",
+            "track": "balaton-wsbk.svg"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Berlin E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">TBC</span>",
+            "track": "berlin-fe.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Monterey Sportscar Champ.",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "lagunaseca-imsa.svg"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Le Castellet",
+            "time": "SUN: <span class=\"hl\">11:00</span>",
+            "track": "paulricard-elms.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Brands Hatch Sprint",
+            "time": "SAT + SUN",
+            "track": "brandshatch-gtwce.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Round 1 (Venue TBC)",
+            "time": "FRI > SUN",
+            "track": "tbc-tcr.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "AdventHealth 400 (Kansas)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "kansas-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 19 • MAY 07-10",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally de Portugal",
+            "time": "THU > SUN",
+            "track": "portugal-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "French Grand Prix (Le Mans)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "lemans-motogp.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Spa",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "spa-wec.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Brands Hatch Indy (Races 4-6)",
+            "time": "SAT + SUN",
+            "track": "brandshatch-btcc.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Sebring Round",
+            "time": "FRI > SUN",
+            "track": "sebring-gtwca.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "GMR Grand Prix (IMS Road)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "indianapolis-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Goodyear 400 (Darlington)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "darlington-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 20 • MAY 14-17",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Catalan Grand Prix",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "barcelona-motogp.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Most Round",
+            "time": "FRI > SUN",
+            "track": "most-wsbk.svg"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Monaco E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">TBC</span>",
+            "track": "monaco-fe.svg"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "ADAC 24h Nürburgring",
+            "time": "THU > SUN",
+            "track": "nordschleife-igtc.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 21 • MAY 22-24",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Canadian GP",
+            "sprint": true,
+            "time": "SPRINT: <span class=\"hl\">18:00</span> • QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">22:00</span>",
+            "track": "canada-f1.svg"
+          },
+          {
+            "series": "f1a",
+            "tag": "F1 ACADEMY",
+            "title": "Rd 3: Canada",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "canada-f1.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Zandvoort Round",
+            "time": "SAT + SUN",
+            "track": "zandvoort-dtm.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Snetterton 300 (Races 7-9)",
+            "time": "SAT + SUN",
+            "track": "snetterton-btcc.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Tasmania Super440",
+            "time": "FRI > SUN",
+            "track": "tasmania-supercars.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "Royal Rally of Scandinavia",
+            "time": "FRI > SUN",
+            "track": "karlstad-erc.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Indianapolis 500",
+            "time": "RACE: <span class=\"hl\">18:45</span>",
+            "track": "indy500-indycar.svg"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Suzuka",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "suzuka-sf.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Coca-Cola 600 (Charlotte)",
+            "time": "RACE: <span class=\"hl\">00:00</span>",
+            "track": "charlotte-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 22 • MAY 28-31",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Japan",
+            "time": "THU > SUN",
+            "track": "japan-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Italian Grand Prix (Mugello)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "mugello-motogp.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Aragon Round",
+            "time": "FRI > SUN",
+            "track": "aragon-wsbk.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "3 Hours of Monza",
+            "time": "FRI > SUN",
+            "track": "monza-gtwce.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Chevrolet Detroit GP",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "detroit-indycar.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Detroit Sports Car Classic",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "detroit-imsa.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Nashville Superspeedway",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "nashville-nascar.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "JUNE",
+    "weeks": [
+      {
+        "label": "WEEK 23 • JUN 05-07",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Monaco GP",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "monaco-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Hungarian Grand Prix",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "balaton-motogp.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Oulton Park (Races 10-12)",
+            "time": "SAT + SUN",
+            "track": "oultonpark-btcc.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Bommarito 500 (WWT Raceway)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "gateway-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "FireKeepers Casino 400 (Michigan)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "michigan-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 24 • JUN 12-14",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Spanish GP (Barcelona)",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "barcelona-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Misano Round",
+            "time": "FRI > SUN",
+            "track": "misano-wsbk.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "24 Hours of Le Mans",
+            "time": "SAT <span class=\"hl\">16:00</span> > SUN <span class=\"hl\">16:00</span>",
+            "track": "lemans-wec.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Valencia Round",
+            "time": "FRI > SUN",
+            "track": "valencia-tcr.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Road Atlanta Round",
+            "time": "FRI > SUN",
+            "track": "roadatlanta-gtwca.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "HighPoint.com 400 (Pocono)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "pocono-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 25 • JUN 19-21",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Czech Grand Prix (Brno)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "brno-motogp.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Lausitzring Round",
+            "time": "SAT + SUN",
+            "track": "lausitzring-dtm.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Betr Darwin Triple Crown",
+            "time": "FRI > SUN",
+            "track": "darwin-supercars.svg"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Sanya E-Prix",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "sanya-fe.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "1. ADAC Eifel Trophy (4h)",
+            "time": "SAT: <span class=\"hl\">10:00</span>",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Road America (R1 & R2)",
+            "time": "SAT + SUN: <span class=\"hl\">TBC</span>",
+            "track": "roadamerica-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "San Diego Street Race",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "sandiego-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 26 • JUN 24-28",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Acropolis Rally Greece",
+            "time": "THU > SUN",
+            "track": "greece-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Austrian GP",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "austria-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Dutch TT (Assen)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "assen-motogp.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "24 Hours of Spa",
+            "time": "WED > SUN",
+            "track": "spa-gtwce.svg"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "CrowdStrike 24 Hours of Spa",
+            "time": "THU > SUN",
+            "track": "spa-igtc.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "6 Hours of Watkins Glen",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "watkinsglen-imsa.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Toyota/Save Mart 350 (Sonoma)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "sonoma-nascar.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "JULY",
+    "weeks": [
+      {
+        "label": "WEEK 27 • JUL 03-05",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "British GP",
+            "sprint": true,
+            "time": "SPRINT: <span class=\"hl\">13:00</span> • QUALI: <span class=\"hl\">16:00</span> • RACE: <span class=\"hl\">16:00</span>",
+            "track": "silverstone-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f1a",
+                "label": "F1A",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Shanghai E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">TBC</span>",
+            "track": "shanghai-fe.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Norisring Round",
+            "time": "SAT + SUN",
+            "track": "norisring-dtm.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "Rally di Roma Capitale",
+            "time": "FRI > SUN",
+            "track": "roma-erc.svg"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Imola",
+            "time": "SAT > SUN",
+            "track": "imola-elms.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Le Castellet Round",
+            "time": "SAT + SUN",
+            "track": "paulricard-tcr.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Mid-Ohio (R1 & R2)",
+            "time": "SAT + SUN: <span class=\"hl\">TBC</span>",
+            "track": "midohio-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Chicagoland Speedway",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "chicagoland-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 28 • JUL 10-12",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "German Grand Prix (Sachsenring)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "sachsenring-motogp.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Donington Park Round",
+            "time": "FRI > SUN",
+            "track": "donington-wsbk.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "NTI Townsville 500",
+            "time": "FRI > SUN",
+            "track": "townsville-supercars.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Vila Real Round",
+            "time": "SAT + SUN",
+            "track": "vilareal-tcr.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of São Paulo",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "interlagos-wec.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Chevrolet Grand Prix (Mosport)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "mosport-imsa.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "EchoPark 400 (Atlanta)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "atlanta-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 29 • JUL 16-19",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Estonia",
+            "time": "THU > SUN",
+            "track": "estonia-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Belgian GP",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "spa-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Misano Sprint",
+            "time": "FRI > SUN",
+            "track": "misano-gtwce.svg"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Fuji",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "fuji-sf.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Music City GP (Nashville)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "nashville-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "North Wilkesboro Speedway",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "northwilkesboro-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 30 • JUL 24-26",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Hungarian GP",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "hungary-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Tokyo E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">TBC</span>",
+            "track": "tokyo-fe.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Oschersleben Round",
+            "time": "SAT + SUN",
+            "track": "oschersleben-dtm.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Thruxton (Races 13-15)",
+            "time": "SAT + SUN",
+            "track": "thruxton-btcc.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "82nd Rally Poland",
+            "time": "FRI > SUN",
+            "track": "katowice-erc.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Brickyard 400 (Indianapolis)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "indianapolis-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 31 • JUL 30 - AUG 02",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Finland",
+            "time": "THU > SUN",
+            "track": "finland-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Perth Super440",
+            "time": "FRI > SUN",
+            "track": "perth-supercars.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Magny-Cours Sprint",
+            "time": "SAT + SUN",
+            "track": "magnycours-gtwce.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "KW 6h ADAC Ruhr-Pokal (6h)",
+            "time": "SAT: <span class=\"hl\">10:00</span>",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "6 Hours of Road America",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "roadamerica-imsa.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "AUGUST",
+    "weeks": [
+      {
+        "label": "WEEK 32 • AUG 07-09",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "British Grand Prix",
+            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "track": "silverstone-motogp.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Knockhill (Races 16-18)",
+            "time": "SAT + SUN",
+            "track": "knockhill-btcc.svg"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Sugo",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "sugo-sf.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "GP of Portland",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "portland-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Iowa Speedway",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "iowa-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 33 • AUG 14-16",
+        "events": [
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Nürburgring Round",
+            "time": "SAT + SUN",
+            "track": "nurburgring-dtm.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "Barum Czech Rally Zlín",
+            "time": "FRI > SUN",
+            "track": "zlin-erc.svg"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "London E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">TBC</span>",
+            "track": "london-fe.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Streets of Markham",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "markham-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Cook Out 400 (Richmond)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "richmond-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 34 • AUG 21-23",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Dutch GP",
+            "sprint": true,
+            "time": "SPRINT: <span class=\"hl\">12:00</span> • QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "zandvoort-f1.svg"
+          },
+          {
+            "series": "f1a",
+            "tag": "F1 ACADEMY",
+            "title": "Rd 5: Zandvoort",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "zandvoort-f1.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Donington Park GP (Races 19-21)",
+            "time": "SAT + SUN",
+            "track": "donington-btcc.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Century Batteries Ipswich Super440",
+            "time": "FRI > SUN",
+            "track": "ipswich-supercars.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "VIR GT Challenge",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "vir-imsa.svg"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Spa-Francorchamps",
+            "time": "SUN: <span class=\"hl\">11:00</span>",
+            "track": "spa-elms.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Foxwoods 301 (New Hampshire)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "newhampshire-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 35 • AUG 27-30",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally del Paraguay",
+            "time": "THU > SUN",
+            "track": "paraguay-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Aragon Grand Prix",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "aragon-motogp.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Nürburgring Sprint",
+            "time": "SAT + SUN",
+            "track": "nurburgring-gtwce.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Road America Round",
+            "time": "FRI > SUN",
+            "track": "roadamerica-gtwca.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Milwaukee Mile (R1 & R2)",
+            "time": "SAT + SUN: <span class=\"hl\">TBC</span>",
+            "track": "milwaukee-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Coke Zero 400 (Daytona)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "daytona-nascar.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "SEPTEMBER",
+    "weeks": [
+      {
+        "label": "WEEK 36 • SEP 04-06",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Italian GP",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "monza-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Magny-Cours Round",
+            "time": "FRI > SUN",
+            "track": "magnycours-wsbk.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Croft (Races 22-24)",
+            "time": "SAT + SUN",
+            "track": "croft-btcc.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "Rali Ceredigion",
+            "time": "FRI > SUN",
+            "track": "aberystwyth-erc.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "Lone Star Le Mans (COTA)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "cota-wec.svg"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "GP of Monterey (Laguna Seca)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "lagunaseca-indycar.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Southern 500 (Darlington) — Playoff",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "darlington-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 37 • SEP 10-13",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Chile",
+            "time": "THU > SUN",
+            "track": "chile-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Spanish GP (Madrid)",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
+            "track": "madrid-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              },
+              {
+                "badge": "f3",
+                "label": "F3",
+                "detail": "FINALE: TBC"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "San Marino Grand Prix (Misano)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "misano-motogp.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Sachsenring Round",
+            "time": "SAT + SUN",
+            "track": "sachsenring-dtm.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "AirTouch 500 at The Bend",
+            "time": "FRI > SUN",
+            "track": "thebend-supercars.svg"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "Suzuka 1000km",
+            "time": "FRI > SUN",
+            "track": "suzuka-igtc.svg"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Silverstone",
+            "time": "SUN: <span class=\"hl\">12:00</span>",
+            "track": "silverstone-elms.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Reinoldus + Barbarossapreis II (4h×2)",
+            "time": "SAT + SUN",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Bass Pro Shops Night Race (Bristol) — Playoff",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "bristol-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 38 • SEP 18-20",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Austrian Grand Prix",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "redbullring-motogp.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Zandvoort Sprint",
+            "time": "FRI > SUN",
+            "track": "zandvoort-gtwce.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Battle on the Bricks (Indy)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "indy-imsa.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Playoff Round 1 Race 3 (TBD)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "tbd-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 39 • SEP 25-27",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Azerbaijan GP",
+            "time": "QUALI: <span class=\"hl\">13:00</span> • RACE: <span class=\"hl\">13:00</span>",
+            "track": "baku-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              }
+            ]
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Cremona Round",
+            "time": "FRI > SUN",
+            "track": "cremona-wsbk.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Silverstone (Races 25-27)",
+            "time": "SAT + SUN",
+            "track": "silverstone-btcc.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Barber Round",
+            "time": "FRI > SUN",
+            "track": "barber-gtwca.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Fuji",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "fuji-wec.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Playoff Round 2 Race 1 (TBD)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "tbd-nascar.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "OCTOBER",
+    "weeks": [
+      {
+        "label": "WEEK 40 • OCT 01-04",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Italy",
+            "time": "THU > SUN",
+            "track": "sardegna-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Japanese Grand Prix (Motegi)",
+            "time": "RACE: <span class=\"hl\">07:00</span>",
+            "track": "motegi-motogp.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "3 Hours of Barcelona",
+            "time": "FRI > SUN",
+            "track": "barcelona-gtwce.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "South Korea Round",
+            "time": "FRI > SUN",
+            "track": "inje-tcr.svg"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Petit Le Mans",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "roadatlanta-imsa.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Playoff Round 2 Race 2 (TBD)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "tbd-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 41 • OCT 08-11",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Singapore GP",
+            "sprint": true,
+            "time": "SPRINT: <span class=\"hl\">11:00</span> • QUALI: <span class=\"hl\">14:00</span> • RACE: <span class=\"hl\">14:00</span>",
+            "track": "singapore-f1.svg"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Indonesian Grand Prix",
+            "time": "RACE: <span class=\"hl\">08:00</span>",
+            "track": "mandalika-motogp.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Estoril Round",
+            "time": "FRI > SUN",
+            "track": "estoril-wsbk.svg"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Hockenheimring (Season Finale)",
+            "time": "SAT + SUN",
+            "track": "hockenheim-dtm.svg"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Brands Hatch GP (Races 28-30, Finale)",
+            "time": "SAT + SUN",
+            "track": "brandshatch-btcc.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Repco Bathurst 1000",
+            "time": "THU > SUN",
+            "track": "bathurst-supercars.svg"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Portimão (Finale)",
+            "time": "SAT: <span class=\"hl\">12:00</span>",
+            "track": "portimao-elms.svg"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "NLS Sportwarte-Trophy (4h)",
+            "time": "SAT: <span class=\"hl\">10:00</span>",
+            "track": "nordschleife-nls.svg"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Indianapolis 8 Hour (Finale)",
+            "time": "THU > SUN",
+            "track": "indianapolis-gtwca.svg"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "Indianapolis 8 Hour (Finale)",
+            "time": "THU > SAT",
+            "track": "indianapolis-igtc.svg"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Fuji II",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "fuji-sf.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Playoff Round 2 Race 3 (TBD)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "tbd-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 42 • OCT 16-19",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Australian Grand Prix (Phillip Island)",
+            "time": "RACE: <span class=\"hl\">05:00</span>",
+            "track": "phillipisland-motogp.svg"
+          },
+          {
+            "series": "wsbk",
+            "tag": "WSBK",
+            "title": "Jerez Round (Season Finale)",
+            "time": "FRI > SUN",
+            "track": "jerez-wsbk.svg"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "3 Hours of Portimão",
+            "time": "FRI > SUN",
+            "track": "portimao-gtwce.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Chengdu Round",
+            "time": "FRI > SUN",
+            "track": "chengdu-tcr.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 43 • OCT 23-26",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "United States GP (Austin)",
+            "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
+            "track": "cota-f1.svg"
+          },
+          {
+            "series": "f1a",
+            "tag": "F1 ACADEMY",
+            "title": "Rd 6: COTA",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "cota-f1.svg"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Malaysian Grand Prix (Sepang)",
+            "time": "RACE: <span class=\"hl\">08:00</span>",
+            "track": "sepang-motogp.svg"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Boost Mobile Gold Coast 500",
+            "time": "FRI > SUN",
+            "track": "goldcoast-supercars.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Zhuzhou Round",
+            "time": "FRI > SUN",
+            "track": "zhuzhou-tcr.svg"
+          },
+          {
+            "series": "erc",
+            "tag": "ERC",
+            "title": "Rally Five Cities (Fafe, Finale)",
+            "time": "FRI > SUN",
+            "track": "fafe-erc.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 44 • OCT 30 - NOV 01",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Mexico City GP",
+            "time": "QUALI: <span class=\"hl\">21:00</span> • RACE: <span class=\"hl\">21:00</span>",
+            "track": "mexico-f1.svg"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Portuguese Grand Prix",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "portimao-motogp.svg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "NOVEMBER",
+    "weeks": [
+      {
+        "label": "WEEK 45 • NOV 06-08",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Brazilian GP",
+            "time": "QUALI: <span class=\"hl\">18:00</span> • RACE: <span class=\"hl\">18:00</span>",
+            "track": "interlagos-f1.svg"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "8 Hours of Bahrain",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "bahrain-wec.svg"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Championship Race (Homestead)",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "homestead-nascar.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 46 • NOV 11-15",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Saudi Arabia",
+            "time": "THU > SUN",
+            "track": "saudi-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ]
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "Penrite Oil Sandown 500",
+            "time": "FRI > SUN",
+            "track": "sandown-supercars.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 47 • NOV 19-22",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Las Vegas GP",
+            "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">05:00</span>",
+            "track": "lasvegas-f1.svg"
+          },
+          {
+            "series": "f1a",
+            "tag": "F1 ACADEMY",
+            "title": "Rd 7: Las Vegas (Finale)",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "lasvegas-f1.svg"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Valencian Community GP (Finale)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "valencia-motogp.svg"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Suzuka II",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "suzuka-sf.svg"
+          },
+          {
+            "series": "tcr",
+            "tag": "TCR",
+            "title": "Macau (Season Finale)",
+            "time": "THU > SUN",
+            "track": "macau-tcr.svg"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 48 • NOV 27-29",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Qatar GP",
+            "time": "QUALI: <span class=\"hl\">17:00</span> • RACE: <span class=\"hl\">17:00</span>",
+            "track": "lusail-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "RACES: TBC"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "DECEMBER",
+    "weeks": [
+      {
+        "label": "WEEK 49 • DEC 03-06",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Abu Dhabi GP",
+            "time": "QUALI: <span class=\"hl\">14:00</span> • RACE: <span class=\"hl\">14:00</span>",
+            "track": "yasmarina-f1.svg",
+            "sub": [
+              {
+                "badge": "f2",
+                "label": "F2",
+                "detail": "FINALE: TBC"
+              }
+            ]
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "bp Adelaide Grand Final",
+            "time": "THU > SUN",
+            "track": "adelaide-supercars.svg"
+          }
+        ]
+      }
+    ]
+  }
+]

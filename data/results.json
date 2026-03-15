@@ -1,0 +1,124 @@
+{
+  "f1": [
+    {
+      "event": "AUSTRALIA",
+      "driver": "George Russell",
+      "team": "Mercedes"
+    }
+  ],
+  "fe": [
+    {
+      "event": "MIAMI",
+      "driver": "Mitch Evans",
+      "team": "Jaguar"
+    },
+    {
+      "event": "JEDDAH",
+      "driver": "Pascal Wehrlein",
+      "team": "Porsche",
+      "note": "Round 4"
+    },
+    {
+      "event": "JEDDAH",
+      "driver": "Antonio Felix da Costa",
+      "team": "Jaguar",
+      "note": "Round 5"
+    }
+  ],
+  "imsa": [
+    {
+      "event": "ROLEX 24",
+      "driver": "Felipe Nasr / Julien Andlauer / Laurin Heinrich",
+      "team": "Porsche Penske Motorsport"
+    }
+  ],
+  "wrc": [
+    {
+      "event": "MONTE-CARLO",
+      "driver": "Oliver Solberg",
+      "codriver": "Elliott Edmondson",
+      "team": "Toyota Gazoo Racing"
+    },
+    {
+      "event": "SWEDEN",
+      "driver": "Elfyn Evans",
+      "codriver": "Scott Martin",
+      "team": "Toyota Gazoo Racing"
+    }
+  ],
+  "indycar": [
+    {
+      "event": "ST. PETERSBURG",
+      "driver": "Alex Palou",
+      "team": "Chip Ganassi Racing"
+    },
+    {
+      "event": "PHOENIX",
+      "driver": "Josef Newgarden",
+      "team": "Team Penske"
+    }
+  ],
+  "nascar": [
+    {
+      "event": "DAYTONA 500",
+      "driver": "Tyler Reddick",
+      "team": "23XI Racing"
+    },
+    {
+      "event": "ATLANTA",
+      "driver": "Tyler Reddick",
+      "team": "23XI Racing"
+    },
+    {
+      "event": "COTA",
+      "driver": "Tyler Reddick",
+      "team": "23XI Racing"
+    },
+    {
+      "event": "PHOENIX",
+      "driver": "Ryan Blaney",
+      "team": "Team Penske"
+    }
+  ],
+  "motogp": [
+    {
+      "event": "THAILAND",
+      "driver": "Marco Bezzecchi",
+      "team": "Aprilia Racing"
+    }
+  ],
+  "wsbk": [
+    {
+      "event": "PHILLIP ISLAND",
+      "driver": "Nicolo Bulega",
+      "team": "Aruba.it Racing - Ducati"
+    }
+  ],
+  "supercars": [
+    {
+      "event": "SYDNEY 500",
+      "driver": "Broc Feeney",
+      "team": "Triple Eight Race Engineering"
+    },
+    {
+      "event": "MELBOURNE",
+      "driver": "Brodie Kostecki",
+      "team": "Dick Johnson Racing"
+    }
+  ],
+  "igtc": [
+    {
+      "event": "BATHURST 12H",
+      "driver": "Maro Engel / Mikael Grenier / Maxime Martin",
+      "team": "Mercedes-AMG Team GMR"
+    }
+  ],
+  "nls": [
+    {
+      "event": "WESTFALENFAHRT",
+      "driver": null,
+      "team": null,
+      "note": "Cancelled"
+    }
+  ]
+}
