@@ -15,7 +15,10 @@
       "WebFetch(domain:nesn.com)",
       "WebFetch(domain:www.printyourbrackets.com)",
       "Bash(gh pr:*)",
-      "Bash(node -c script.js)"
+      "Bash(node -c script.js)",
+      "Bash(grep -n 'class=\\\\\\\\\"\"\"\"hl\\\\\\\\\"\"\"\"' script.js)",
+      "Bash(ls -1 assets/track-maps/*.svg)",
+      "Bash(python3:*)"
     ]
   }
 }

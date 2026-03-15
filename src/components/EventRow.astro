@@ -1,0 +1,88 @@
+---
+interface SubRace {
+  badge: string;
+  label: string;
+  detail: string;
+}
+
+interface Props {
+  series: string;
+  tag: string;
+  title: string;
+  time: string;
+  track: string;
+  sprint?: boolean;
+  sub?: SubRace[];
+  resultHtml?: string;
+  weekLabel: string;
+}
+
+const { series, tag, title, time, track, sprint, sub, resultHtml, weekLabel } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const hasSub = sub && sub.length > 0;
+const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
+const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
+---
+<div class="event" class:list={[`ev-${series}`]} data-series={series}>
+  <div class="ev-details">
+    {hasSub ? (
+      <>
+        <div class="toggle-row">
+          <div>
+            <span class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></span>
+            <span class="title">{title}</span>
+            <span class="meta-time">
+              <Fragment set:html={time} />
+              {hasTimes && (
+                <button class="ics-btn" aria-label="Add to calendar"
+                  data-series={series} data-title={title} data-week={weekLabel}>
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="3" width="12" height="11" rx="1.5"/>
+                    <path d="M5 1v3M11 1v3M2 7h12"/>
+                  </svg>
+                </button>
+              )}
+            </span>
+            {resultHtml && <Fragment set:html={resultHtml} />}
+          </div>
+          <button class="arrow-btn" aria-label="Toggle support races">&#9660;</button>
+        </div>
+        <div class="sub-sched">
+          {sub.map(s => (
+            <div class="sub-row">
+              <span class={`badge b-${s.badge}`}>{s.label}</span>
+              <span class="sub-det">{s.detail}</span>
+            </div>
+          ))}
+        </div>
+      </>
+    ) : (
+      <>
+        <span class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></span>
+        <span class="title">{title}</span>
+        <span class="meta-time">
+          <Fragment set:html={time} />
+          {hasTimes && (
+            <button class="ics-btn" aria-label="Add to calendar"
+              data-series={series} data-title={title} data-week={weekLabel}>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="3" width="12" height="11" rx="1.5"/>
+                <path d="M5 1v3M11 1v3M2 7h12"/>
+              </svg>
+            </button>
+          )}
+        </span>
+        {resultHtml && <Fragment set:html={resultHtml} />}
+      </>
+    )}
+  </div>
+  <div class="track-map">
+    <img
+      src={`${base}/assets/track-maps/${track}`}
+      alt={`2026 ${tag} ${title} track map layout`}
+      loading="lazy"
+      width="60"
+      height="60"
+    />
+  </div>
+</div>
