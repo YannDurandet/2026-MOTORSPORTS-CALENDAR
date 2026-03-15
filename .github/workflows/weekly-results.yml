@@ -1,0 +1,39 @@
+name: Weekly Results Check
+
+on:
+  schedule:
+    # 7am UTC = 9am CEST (summer) / 8am CET (winter)
+    - cron: '0 7 * * 1'
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  check-results:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check for weekend races
+        id: check
+        run: python .github/scripts/check_weekend_races.py
+
+      - name: Ensure label exists
+        if: steps.check.outputs.has_races == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh label create "results-update" --description "Weekly race results need updating" --color "FF9800" 2>/dev/null || true
+
+      - name: Create issue if races found
+        if: steps.check.outputs.has_races == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "${{ steps.check.outputs.issue_title }}" \
+            --body-file "$RUNNER_TEMP/results_issue_body.md" \
+            --label "results-update"
