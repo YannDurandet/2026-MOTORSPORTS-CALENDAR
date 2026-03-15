@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const { title, description, ogImage, canonicalUrl } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const defaultOgImage = `https://yanndurandet.me/racing/assets/lauda_and_mouton.avif`;
+const resolvedOgImage = ogImage || defaultOgImage;
+const resolvedCanonical = canonicalUrl || Astro.url.href;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <link rel="canonical" href={resolvedCanonical} />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content={resolvedCanonical}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={resolvedOgImage}>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={resolvedOgImage}>
+  <title>{title}</title>
+  <meta name="astro-base" content={base}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;800&display=swap"
+    as="style">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Roboto+Mono:wght@400;700&family=Inter:wght@400;800&display=swap"
+    rel="stylesheet">
+  <slot name="head" />
+</head>
+<body>
+  <div class="container">
+    <slot />
+  </div>
+</body>
+</html>
