@@ -239,7 +239,6 @@ const seriesData = {
         { name: "THAILAND", date: "2026-03-01T08:00:00+01:00" },
         { name: "BRAZIL", date: "2026-03-22T18:00:00+01:00" },
         { name: "AMERICAS (COTA)", date: "2026-03-29T21:00:00+02:00" },
-        { name: "QATAR", date: "2026-04-12T18:00:00+02:00" },
         { name: "SPAIN (JEREZ)", date: "2026-04-26T14:00:00+02:00" },
         { name: "FRANCE (LE MANS)", date: "2026-05-10T14:00:00+02:00" },
         { name: "CATALONIA", date: "2026-05-17T14:00:00+02:00" },
@@ -467,7 +466,7 @@ const calendarData = [
             {
                 label: "WEEK 12 \u2022 MAR 20-22", events: [
                     { series: "motogp", tag: "MOTOGP", title: "Brazilian Grand Prix", time: 'RACE: <span class="hl">18:00</span>', track: "goiania-motogp.svg" },
-                    { series: "fe", tag: "FORMULA E", title: "Madrid E-Prix", time: 'RACE: <span class="hl">TBC</span>', track: "madrid-fe.svg" },
+                    { series: "fe", tag: "FORMULA E", title: "Madrid E-Prix", time: 'RACE: <span class="hl">15:05</span>', track: "madrid-fe.svg" },
                     { series: "imsa", tag: "IMSA", title: "12 Hours of Sebring", time: 'RACE: <span class="hl">15:40</span>', track: "sebring-imsa.svg" },
                     { series: "nls", tag: "NLS", title: "58. ADAC Barbarossapreis (4h)", time: 'SAT: <span class="hl">09:00</span>', track: "nordschleife-nls.svg" },
                     { series: "nascar", tag: "NASCAR", title: "Dixie Vodka 400 (Homestead)", time: 'RACE: <span class="hl">TBC</span>', track: "homestead-nascar.svg" }
@@ -499,7 +498,6 @@ const calendarData = [
             {
                 label: "WEEK 15 \u2022 APR 09-12", events: [
                     { series: "wrc", tag: "WRC", title: "Croatia Rally", time: "THU > SUN", track: "croatia-wrc.svg", sub: [{ badge: "wrc2", label: "WRC2", detail: "ALL STAGES" }] },
-                    { series: "motogp", tag: "MOTOGP", title: "Qatar Grand Prix", time: 'RACE: <span class="hl">18:00</span>', track: "lusail-motogp.svg" },
                     { series: "supercars", tag: "SUPERCARS", title: "ITM Taupō Super440", time: 'FRI > SUN', track: "taupo-supercars.svg" },
                     { series: "nls", tag: "NLS", title: "Adenauer ADAC Trophy (4h)", time: 'SAT: <span class="hl">10:00</span>', track: "nordschleife-nls.svg" },
                     { series: "elms", tag: "ELMS", title: "4 Hours of Barcelona", time: 'SUN: <span class="hl">12:00</span>', track: "barcelona-elms.svg" },
@@ -1091,6 +1089,7 @@ function initFilters() {
 
     // --- Category chips ---
     const catContainer = document.getElementById('category-filters');
+    if (!catContainer) return;
     for (const cat of ALL_CATEGORIES) {
         const btn = document.createElement('button');
         btn.className = 'filter-btn filter-category';
@@ -1293,6 +1292,9 @@ function dimPastEvents() {
     // Update summary text
     if (pastMonthCount > 0 && pastSummary) {
         pastSummary.textContent = `View Past Events (${pastMonthCount} Month${pastMonthCount > 1 ? 's' : ''})`;
+        pastContainer.addEventListener('toggle', () => {
+            pastSummary.setAttribute('aria-expanded', pastContainer.open ? 'true' : 'false');
+        });
     } else {
         pastContainer.hidden = true;
     }
@@ -1351,7 +1353,8 @@ document.addEventListener('visibilitychange', () => {
 
 const toggle = btn => {
     btn.classList.toggle('active');
-    btn.parentElement.nextElementSibling.classList.toggle('open');
+    const sibling = btn.parentElement?.nextElementSibling;
+    if (sibling) sibling.classList.toggle('open');
 };
 
 // =============================================
