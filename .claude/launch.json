@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "dev",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8080"],
-      "port": 8080
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/astro/astro.js", "dev", "--port", "4321"],
+      "port": 4321
     }
   ]
 }

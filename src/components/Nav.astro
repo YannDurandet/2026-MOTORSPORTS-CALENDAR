@@ -1,0 +1,11 @@
+---
+interface Props {
+  activePage: 'calendar' | 'news' | 'results';
+}
+const { activePage } = Astro.props;
+---
+<nav class="site-nav">
+  <a href={`${import.meta.env.BASE_URL}/`} class:list={["site-nav-link", { active: activePage === 'calendar' }]}>Calendar</a>
+  <a href={`${import.meta.env.BASE_URL}/news`} class:list={["site-nav-link", { active: activePage === 'news' }]}>News</a>
+  <a href={`${import.meta.env.BASE_URL}/results`} class:list={["site-nav-link", { active: activePage === 'results' }]}>Results</a>
+</nav>

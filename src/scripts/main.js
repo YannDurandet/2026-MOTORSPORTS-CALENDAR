@@ -7,7 +7,6 @@ const NEEDS_TZ_CONVERSION = SOURCE_TIMEZONE !== USER_TIMEZONE;
 
 const MONTH_MAP = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
 
-// Parse week label like "WEEK 10 • MAR 05-08" → Date(2026, 2, 8) (last day = race day)
 function parseWeekDate(weekLabel) {
     const m = weekLabel.match(/\u2022\s*([A-Z]{3})\s+(\d{1,2})(?:\s*-\s*(\d{1,2}))?/);
     if (!m) return null;
@@ -17,8 +16,6 @@ function parseWeekDate(weekLabel) {
     return new Date(2026, mo, day);
 }
 
-// Convert "HH:MM" from Europe/Paris to user's timezone on a given date
-// Uses the double-parse trick: browser local TZ cancels out in the subtraction
 function convertHHMM(hhmm, refDate) {
     const [h, mm] = hhmm.split(':').map(Number);
     const fakeUtc = new Date(Date.UTC(2026, refDate.getMonth(), refDate.getDate(), h, mm, 0));
@@ -30,7 +27,6 @@ function convertHHMM(hhmm, refDate) {
         timeZone: USER_TIMEZONE, hour: '2-digit', minute: '2-digit', hour12: false
     });
 
-    // Detect day change
     const srcDay = refDate.getDate();
     const tgtDay = parseInt(new Intl.DateTimeFormat('en-GB', {
         timeZone: USER_TIMEZONE, day: 'numeric'
@@ -46,7 +42,6 @@ function convertHHMM(hhmm, refDate) {
     return converted;
 }
 
-// Replace all <span class="hl">HH:MM</span> in a time HTML string with converted times
 function convertTimeStr(timeHtml, weekLabel) {
     if (!NEEDS_TZ_CONVERSION) return timeHtml;
     const refDate = parseWeekDate(weekLabel);
@@ -84,11 +79,18 @@ const seriesMetadata = {
 };
 
 // =============================================
-// FILTER CONSTANTS (must be before loadFilterState)
+// FILTER CONSTANTS
 // =============================================
 const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc'];
 const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
 const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
+
+const seriesLabels = {
+    f1: 'F1', f1a: 'F1A', fe: 'FE', sf: 'SF', wec: 'WEC', imsa: 'IMSA', wrc: 'WRC',
+    indycar: 'INDYCAR', nascar: 'NASCAR', motogp: 'MOTOGP', wsbk: 'WSBK', dtm: 'DTM',
+    btcc: 'BTCC', supercars: 'SUPERCARS', elms: 'ELMS', gtwce: 'GTWCE', gtwca: 'GTWCA',
+    nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC'
+};
 
 // =============================================
 // FILTER STATE
@@ -103,15 +105,9 @@ function loadFilterStateFromURL() {
     if (!regionParam && !categoryParam && !hiddenParam) return null;
 
     const state = JSON.parse(JSON.stringify(defaultFilterState));
-    if (regionParam) {
-        state.regions = regionParam.split(',').filter(r => ALL_REGIONS.includes(r));
-    }
-    if (categoryParam) {
-        state.categories = categoryParam.split(',').filter(c => ALL_CATEGORIES.includes(c));
-    }
-    if (hiddenParam) {
-        state.hiddenSpecificSeries = hiddenParam.split(',').filter(s => allSeries.includes(s));
-    }
+    if (regionParam) state.regions = regionParam.split(',').filter(r => ALL_REGIONS.includes(r));
+    if (categoryParam) state.categories = categoryParam.split(',').filter(c => ALL_CATEGORIES.includes(c));
+    if (hiddenParam) state.hiddenSpecificSeries = hiddenParam.split(',').filter(s => allSeries.includes(s));
     return state;
 }
 
@@ -128,7 +124,6 @@ function filterStateToURL() {
 function loadFilterState() {
     const fromURL = loadFilterStateFromURL();
     if (fromURL) {
-        // URL params take priority; sync to localStorage
         try { localStorage.setItem('motorsportFilters', JSON.stringify(fromURL)); } catch (e) { /* ignore */ }
         return fromURL;
     }
@@ -145,28 +140,22 @@ function saveFilterState() {
 
 const filterState = loadFilterState();
 
-// Data loaded from JSON files via fetch() in init()
+// Data loaded from JSON via fetch
 let seriesData = {};
-let calendarData = [];
-let resultsData = {};
-let resultsLookup = {}; // key: "series|EVENT" → array of result objects
 
 // =============================================
-// ICS EXPORT (Add to Calendar)
+// ICS EXPORT
 // =============================================
-const ICS_ICON = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1.5"/><path d="M5 1v3M11 1v3M2 7h12"/></svg>';
-
 function findSeriesDate(seriesKey, weekLabel) {
     const list = seriesData[seriesKey];
     if (!list) return null;
     const refDate = parseWeekDate(weekLabel);
     if (!refDate) return null;
-    // Get week start from label
     const m = weekLabel.match(/\u2022\s*([A-Z]{3})\s+(\d{1,2})/);
     if (!m) return null;
     const startDay = parseInt(m[2]);
     const weekStart = new Date(2026, MONTH_MAP[m[1]], startDay);
-    const weekEnd = new Date(refDate.getTime() + 86400000); // end of last day
+    const weekEnd = new Date(refDate.getTime() + 86400000);
     return list.find(r => {
         const d = new Date(r.date);
         return d >= weekStart && d <= weekEnd;
@@ -176,19 +165,13 @@ function findSeriesDate(seriesKey, weekLabel) {
 function generateICS(seriesName, eventTitle, isoDateStr) {
     const d = new Date(isoDateStr);
     const fmt = dt => dt.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-    const end = new Date(d.getTime() + 7200000); // +2h
+    const end = new Date(d.getTime() + 7200000);
     const uid = `${eventTitle.replace(/\s+/g, '-')}-${fmt(d)}@motorsport-calendar`;
     return [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//MotorsportCalendar//EN',
-        'BEGIN:VEVENT',
-        `DTSTART:${fmt(d)}`,
-        `DTEND:${fmt(end)}`,
-        `SUMMARY:${seriesName} — ${eventTitle}`,
-        `UID:${uid}`,
-        'END:VEVENT',
-        'END:VCALENDAR'
+        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MotorsportCalendar//EN',
+        'BEGIN:VEVENT', `DTSTART:${fmt(d)}`, `DTEND:${fmt(end)}`,
+        `SUMMARY:${seriesName} — ${eventTitle}`, `UID:${uid}`,
+        'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
 }
 
@@ -196,30 +179,25 @@ function downloadICS(icsContent, filename) {
     const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 }
 
 // =============================================
-// "WHAT'S ON THIS WEEKEND" SECTION
+// "THIS WEEKEND" SECTION
 // =============================================
 function getWeekRaces() {
     const now = new Date();
-    // Monday 00:00 of current week (local time)
     const monday = new Date(now);
     monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
     monday.setHours(0, 0, 0, 0);
-    // Sunday 23:59:59
     const sunday = new Date(monday);
     sunday.setDate(sunday.getDate() + 6);
     sunday.setHours(23, 59, 59, 999);
 
     let races = findRacesInWindow(monday.getTime(), sunday.getTime());
-    // If nothing this week, look ahead to next week
     if (races.length === 0) {
         const nextMon = monday.getTime() + 7 * 86400000;
         const nextSun = sunday.getTime() + 7 * 86400000;
@@ -239,7 +217,6 @@ function findRacesInWindow(startTs, endTs) {
             }
         }
     }
-    // Upcoming first (sorted by time), then finished at the bottom
     return races.sort((a, b) => {
         if (a.finished !== b.finished) return a.finished ? 1 : -1;
         return a._ts - b._ts;
@@ -259,10 +236,7 @@ function renderThisWeekend() {
     if (!section || !grid) return;
 
     const races = getWeekRaces();
-    if (races.length === 0) {
-        section.hidden = true;
-        return;
-    }
+    if (races.length === 0) { section.hidden = true; return; }
     section.hidden = false;
 
     let html = '';
@@ -289,7 +263,6 @@ function updateThisWeekendCountdowns() {
         const ts = parseInt(el.dataset.ts);
         const diff = ts - now;
         if (diff <= 0) {
-            // Race has started — replace countdown with FINISHED label
             const card = el.closest('.tw-card');
             if (card) card.classList.add('tw-card-finished');
             const fin = document.createElement('div');
@@ -305,139 +278,15 @@ function updateThisWeekendCountdowns() {
 }
 
 // =============================================
-// RESULTS HELPERS
-// =============================================
-function shortenDriver(name) {
-    if (!name) return '';
-    // Handle multi-driver (e.g. "Felipe Nasr / Julien Andlauer / Laurin Heinrich")
-    const drivers = name.split('/').map(d => d.trim());
-    const first = drivers[0].split(' ');
-    const short = first.length > 1 ? first[0][0] + '. ' + first.slice(1).join(' ') : first[0];
-    return drivers.length > 1 ? short + ' +' + (drivers.length - 1) : short;
-}
-
-function findResultsForEvent(seriesKey, weekLabel) {
-    // Match calendar event to series.json entry via week date range, then look up results
-    const match = findSeriesDate(seriesKey, weekLabel);
-    if (!match) return null;
-    return resultsLookup[seriesKey + '|' + match.name];
-}
-
-function renderResultBadge(ev, weekLabel) {
-    const results = findResultsForEvent(ev.series, weekLabel);
-    if (!results || !results.length) return '';
-    let html = '';
-    for (const r of results) {
-        if (r.driver === null) {
-            html += `<div class="result-line result-cancelled">Cancelled</div>`;
-        } else {
-            const note = r.note ? ` <span class="result-note">(${r.note})</span>` : '';
-            html += `<div class="result-line"><span class="result-icon">\u2605</span><span class="result-driver">${shortenDriver(r.driver)}</span><span class="result-team">${r.team}${note}</span></div>`;
-        }
-    }
-    return html;
-}
-
-// =============================================
-// RENDER CALENDAR
-// =============================================
-function renderEvent(ev, weekLabel) {
-    const hasSub = ev.sub && ev.sub.length > 0;
-    const sprintBadge = ev.sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
-    const displayTime = convertTimeStr(ev.time, weekLabel);
-    const hasTimes = /\d{2}:\d{2}/.test(ev.time) && !/TBC/.test(ev.time);
-    const icsBtn = hasTimes ? `<button class="ics-btn" aria-label="Add to calendar" data-series="${ev.series}" data-title="${ev.title}" data-week="${weekLabel}">${ICS_ICON}</button>` : '';
-    const resultHtml = renderResultBadge(ev, weekLabel);
-
-    let detailsInner = '';
-    if (hasSub) {
-        detailsInner += '<div class="toggle-row"><div>';
-        detailsInner += `<span class="tag t-${ev.series}">${ev.tag}${sprintBadge}</span>`;
-        detailsInner += `<span class="title">${ev.title}</span>`;
-        detailsInner += `<span class="meta-time">${displayTime}${icsBtn}</span>`;
-        detailsInner += resultHtml;
-        detailsInner += '</div>';
-        detailsInner += '<button class="arrow-btn" aria-label="Toggle support races" onclick="toggle(this)">\u25BC</button>';
-        detailsInner += '</div>';
-        detailsInner += '<div class="sub-sched">';
-        for (const s of ev.sub) {
-            detailsInner += `<div class="sub-row"><span class="badge b-${s.badge}">${s.label}</span><span class="sub-det">${s.detail}</span></div>`;
-        }
-        detailsInner += '</div>';
-    } else {
-        detailsInner += `<span class="tag t-${ev.series}">${ev.tag}${sprintBadge}</span>`;
-        detailsInner += `<span class="title">${ev.title}</span>`;
-        detailsInner += `<span class="meta-time">${displayTime}${icsBtn}</span>`;
-        detailsInner += resultHtml;
-    }
-
-    return `<div class="event ev-${ev.series}" data-series="${ev.series}">` +
-        `<div class="ev-details">${detailsInner}</div>` +
-        `<div class="track-map"><img src="assets/track-maps/${ev.track}" alt="2026 ${ev.tag} ${ev.title} track map layout" loading="lazy" width="60" height="60"></div>` +
-        '</div>';
-}
-
-function initICSHandler() {
-    const container = document.getElementById('calendar-container');
-    if (!container) return;
-    container.addEventListener('click', e => {
-        const btn = e.target.closest('.ics-btn');
-        if (!btn) return;
-        e.stopPropagation();
-        const { series, title, week } = btn.dataset;
-        const match = findSeriesDate(series, week);
-        if (!match) return;
-        const meta = seriesMetadata[series];
-        const seriesName = meta ? meta.name : series.toUpperCase();
-        const ics = generateICS(seriesName, title, match.date);
-        downloadICS(ics, `${series}-${title.replace(/\s+/g, '-').toLowerCase()}.ics`);
-    });
-}
-
-function renderCalendar() {
-    const container = document.getElementById('calendar-container');
-    let html = '';
-
-    for (const month of calendarData) {
-        html += `<div class="month-header">${month.month}</div>`;
-        html += '<div class="cal-grid">';
-        for (const week of month.weeks) {
-            html += '<div class="card">';
-            html += `<div class="c-head">${week.label}</div>`;
-            html += '<div class="c-body">';
-            for (const ev of week.events) {
-                html += renderEvent(ev, week.label);
-            }
-            html += '</div></div>';
-        }
-        html += '</div>';
-    }
-
-    container.innerHTML = html;
-}
-
-// =============================================
-// SERIES FILTER (Region + Category + Advanced)
-// =============================================
-const seriesLabels = {
-    f1: 'F1', f1a: 'F1A', fe: 'FE', sf: 'SF', wec: 'WEC', imsa: 'IMSA', wrc: 'WRC',
-    indycar: 'INDYCAR', nascar: 'NASCAR', motogp: 'MOTOGP', wsbk: 'WSBK', dtm: 'DTM',
-    btcc: 'BTCC', supercars: 'SUPERCARS', elms: 'ELMS', gtwce: 'GTWCE', gtwca: 'GTWCA',
-    nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC'
-};
-
-// =============================================
 // DASHBOARD TOGGLE
 // =============================================
 function initDashToggle() {
     const dashGrid = document.getElementById('dash-grid');
     const toggleBtn = document.getElementById('dash-toggle-btn');
-
     if (!dashGrid || !toggleBtn) return;
 
     toggleBtn.addEventListener('click', () => {
         const isCollapsed = dashGrid.classList.contains('collapsed');
-
         if (isCollapsed) {
             dashGrid.classList.remove('collapsed');
             toggleBtn.classList.add('expanded');
@@ -450,11 +299,10 @@ function initDashToggle() {
     });
 }
 
-// Don't forget to call it in your INIT section at the bottom!
-// 
-
+// =============================================
+// FILTERS
+// =============================================
 function initFilters() {
-    // --- Region pills ---
     const regionContainer = document.getElementById('region-filters');
     if (!regionContainer) return;
 
@@ -466,22 +314,13 @@ function initFilters() {
         if (filterState.regions.includes(region)) btn.classList.add('active');
         btn.addEventListener('click', () => {
             const idx = filterState.regions.indexOf(region);
-            if (idx >= 0) {
-                filterState.regions.splice(idx, 1);
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            } else {
-                filterState.regions.push(region);
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-            }
-            saveFilterState();
-            applyFilters();
+            if (idx >= 0) { filterState.regions.splice(idx, 1); btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+            else { filterState.regions.push(region); btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true'); }
+            saveFilterState(); applyFilters();
         });
         regionContainer.appendChild(btn);
     }
 
-    // --- Category chips ---
     const catContainer = document.getElementById('category-filters');
     if (!catContainer) return;
     for (const cat of ALL_CATEGORIES) {
@@ -492,22 +331,13 @@ function initFilters() {
         if (filterState.categories.includes(cat)) btn.classList.add('active');
         btn.addEventListener('click', () => {
             const idx = filterState.categories.indexOf(cat);
-            if (idx >= 0) {
-                filterState.categories.splice(idx, 1);
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            } else {
-                filterState.categories.push(cat);
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-            }
-            saveFilterState();
-            applyFilters();
+            if (idx >= 0) { filterState.categories.splice(idx, 1); btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+            else { filterState.categories.push(cat); btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true'); }
+            saveFilterState(); applyFilters();
         });
         catContainer.appendChild(btn);
     }
 
-    // --- Advanced: individual series toggles ---
     const seriesToggles = document.getElementById('series-toggles');
     for (const s of allSeries) {
         const btn = document.createElement('button');
@@ -518,102 +348,61 @@ function initFilters() {
         btn.setAttribute('aria-pressed', isHidden ? 'false' : 'true');
         btn.addEventListener('click', () => {
             const idx = filterState.hiddenSpecificSeries.indexOf(s);
-            if (idx >= 0) {
-                filterState.hiddenSpecificSeries.splice(idx, 1);
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-            } else {
-                filterState.hiddenSpecificSeries.push(s);
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            }
-            saveFilterState();
-            applyFilters();
+            if (idx >= 0) { filterState.hiddenSpecificSeries.splice(idx, 1); btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true'); }
+            else { filterState.hiddenSpecificSeries.push(s); btn.classList.remove('active'); btn.setAttribute('aria-pressed', 'false'); }
+            saveFilterState(); applyFilters();
         });
         seriesToggles.appendChild(btn);
     }
 
-    // --- Clear Filters button ---
     const clearBtn = document.getElementById('clear-filters-btn');
     if (clearBtn) {
         clearBtn.addEventListener('click', () => {
-            filterState.regions = [];
-            filterState.categories = [];
-            filterState.hiddenSpecificSeries = [];
+            filterState.regions = []; filterState.categories = []; filterState.hiddenSpecificSeries = [];
             saveFilterState();
-            // Reset all button states
-            document.querySelectorAll('.filter-region, .filter-category').forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-            document.querySelectorAll('#series-toggles .filter-btn').forEach(b => {
-                b.classList.add('active');
-                b.setAttribute('aria-pressed', 'true');
-            });
+            document.querySelectorAll('.filter-region, .filter-category').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+            document.querySelectorAll('#series-toggles .filter-btn').forEach(b => { b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); });
             applyFilters();
         });
     }
 }
 
-// Determine if a series is visible given the current filter state
 function isSeriesVisible(seriesKey) {
     const meta = seriesMetadata[seriesKey];
     if (!meta) return true;
-
-    // Explicitly hidden in advanced overrides
     if (filterState.hiddenSpecificSeries.includes(seriesKey)) return false;
-
-    // Region filter: if any regions selected, series must match one (OR within regions)
-    if (filterState.regions.length > 0) {
-        if (!filterState.regions.includes(meta.region)) return false;
-    }
-
-    // Category filter: if any categories selected, series must match one (OR within categories)
-    if (filterState.categories.length > 0) {
-        if (!filterState.categories.includes(meta.category)) return false;
-    }
-
+    if (filterState.regions.length > 0 && !filterState.regions.includes(meta.region)) return false;
+    if (filterState.categories.length > 0 && !filterState.categories.includes(meta.category)) return false;
     return true;
 }
 
 function applyFilters() {
-    // Calendar events
     const events = document.querySelectorAll('.event[data-series]');
     for (const ev of events) {
         ev.style.display = isSeriesVisible(ev.dataset.series) ? '' : 'none';
     }
-
-    // Hide week cards with no visible events
     const cards = document.querySelectorAll('.card');
     for (const card of cards) {
         const visibleEvents = card.querySelectorAll('.event[data-series]');
         const allHidden = Array.from(visibleEvents).every(ev => ev.style.display === 'none');
         card.style.display = allHidden ? 'none' : '';
     }
-
-    // Dashboard sync: hide/show countdown cards
     const dashCards = document.querySelectorAll('.dash-card[data-series]');
     for (const dc of dashCards) {
         dc.style.display = isSeriesVisible(dc.dataset.series) ? '' : 'none';
     }
-
-    // Empty state
     const calContainer = document.getElementById('calendar-container');
     const emptyState = document.getElementById('empty-state');
     if (calContainer && emptyState) {
         const anyVisible = calContainer.querySelector('.card:not([style*="display: none"])');
         emptyState.hidden = !!anyVisible;
     }
-
-    // Sync filter state to URL params
     filterStateToURL();
-
-    // Update "This Weekend" section
     renderThisWeekend();
 }
 
 // =============================================
-// AUTO-SCROLL TO CURRENT WEEK
+// AUTO-SCROLL
 // =============================================
 function scrollToCurrentWeek() {
     const now = Date.now();
@@ -627,11 +416,8 @@ function scrollToCurrentWeek() {
             const card = ev.closest('.card');
             if (card) {
                 const monthHeader = card.closest('.cal-grid')?.previousElementSibling;
-                if (monthHeader) {
-                    monthHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                } else {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (monthHeader) monthHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                else card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 return;
             }
         }
@@ -639,7 +425,7 @@ function scrollToCurrentWeek() {
 }
 
 // =============================================
-// PAST EVENTS — collapsible accordion
+// PAST EVENTS
 // =============================================
 function dimPastEvents() {
     const now = new Date();
@@ -655,7 +441,6 @@ function dimPastEvents() {
     const calContainer = document.getElementById('calendar-container');
     if (!pastContainer || !calContainer) return;
 
-    // Collect past month sections and move them into the accordion
     let pastMonthCount = 0;
     const monthHeaders = Array.from(calContainer.querySelectorAll('.month-header'));
 
@@ -664,14 +449,11 @@ function dimPastEvents() {
         if (monthIdx >= 0 && monthIdx < currentMonth) {
             const grid = header.nextElementSibling;
             pastContainer.appendChild(header);
-            if (grid && grid.classList.contains('cal-grid')) {
-                pastContainer.appendChild(grid);
-            }
+            if (grid && grid.classList.contains('cal-grid')) pastContainer.appendChild(grid);
             pastMonthCount++;
         }
     }
 
-    // Dim past week cards in the current month (still in main calendar)
     const cards = calContainer.querySelectorAll('.card');
     for (const card of cards) {
         const headText = card.querySelector('.c-head')?.textContent || '';
@@ -686,7 +468,6 @@ function dimPastEvents() {
         }
     }
 
-    // Update summary text
     if (pastMonthCount > 0 && pastSummary) {
         pastSummary.textContent = `View Past Events (${pastMonthCount} Month${pastMonthCount > 1 ? 's' : ''})`;
         pastContainer.addEventListener('toggle', () => {
@@ -709,21 +490,15 @@ function initCountdown() {
         return acc;
     }, {});
     nextIdx = {};
-    for (const k of Object.keys(seriesData)) {
-        nextIdx[k] = 0;
-    }
+    for (const k of Object.keys(seriesData)) nextIdx[k] = 0;
 }
 
 function update() {
     const now = Date.now();
     for (const [k, list] of Object.entries(seriesData)) {
         const el = els[k];
-        if (!el.t) continue;
-
-        // Advance index past expired races
-        while (nextIdx[k] < list.length && list[nextIdx[k]]._ts <= now) {
-            nextIdx[k]++;
-        }
+        if (!el || !el.t) continue;
+        while (nextIdx[k] < list.length && list[nextIdx[k]]._ts <= now) nextIdx[k]++;
 
         if (nextIdx[k] < list.length) {
             const next = list[nextIdx[k]];
@@ -741,22 +516,27 @@ function update() {
     updateThisWeekendCountdowns();
 }
 
-// Pause timer when tab is hidden to save battery
 let timerInterval = setInterval(update, 1000);
 document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        clearInterval(timerInterval);
-    } else {
-        update();
-        timerInterval = setInterval(update, 1000);
-    }
+    if (document.hidden) clearInterval(timerInterval);
+    else { update(); timerInterval = setInterval(update, 1000); }
 });
 
-const toggle = btn => {
-    btn.classList.toggle('active');
-    const sibling = btn.parentElement?.nextElementSibling;
-    if (sibling) sibling.classList.toggle('open');
-};
+// =============================================
+// TIMEZONE CONVERSION ON PRE-RENDERED HTML
+// =============================================
+function convertPreRenderedTimes() {
+    if (!NEEDS_TZ_CONVERSION) return;
+    // Find all meta-time spans and convert their hl times
+    document.querySelectorAll('.card').forEach(card => {
+        const headEl = card.querySelector('.c-head');
+        if (!headEl) return;
+        const weekLabel = headEl.textContent;
+        card.querySelectorAll('.meta-time').forEach(metaTime => {
+            metaTime.innerHTML = convertTimeStr(metaTime.innerHTML, weekLabel);
+        });
+    });
+}
 
 // =============================================
 // SEO: INJECT JSON-LD EVENT SCHEMA
@@ -764,8 +544,6 @@ const toggle = btn => {
 function injectSchema() {
     const now = Date.now();
     let upcomingEvents = [];
-
-    // Grab the next upcoming race from each series
     for (const [series, list] of Object.entries(seriesData)) {
         const nextRace = list.find(r => r._ts > now);
         if (nextRace) {
@@ -775,57 +553,72 @@ function injectSchema() {
                 "startDate": nextRace.date,
                 "eventStatus": "https://schema.org/EventScheduled",
                 "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                "location": {
-                    "@type": "Place",
-                    "name": "TBC - See Website for Track Details"
-                }
+                "location": { "@type": "Place", "name": "TBC - See Website for Track Details" }
             });
         }
     }
-
     if (upcomingEvents.length > 0) {
         const script = document.createElement('script');
         script.type = 'application/ld+json';
-        script.text = JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": upcomingEvents
-        });
+        script.text = JSON.stringify({ "@context": "https://schema.org", "@graph": upcomingEvents });
         document.head.appendChild(script);
     }
 }
-// Add injectSchema(); to the bottom of your script file!
+
+// =============================================
+// SUPPORT RACE TOGGLE (arrow buttons)
+// =============================================
+function initToggle() {
+    document.querySelectorAll('.arrow-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.classList.toggle('active');
+            const sibling = btn.parentElement?.nextElementSibling;
+            if (sibling) sibling.classList.toggle('open');
+        });
+    });
+}
+
+// =============================================
+// ICS HANDLER
+// =============================================
+function initICSHandler() {
+    const container = document.getElementById('calendar-container');
+    if (!container) return;
+    container.addEventListener('click', e => {
+        const btn = e.target.closest('.ics-btn');
+        if (!btn) return;
+        e.stopPropagation();
+        const { series, title, week } = btn.dataset;
+        const match = findSeriesDate(series, week);
+        if (!match) return;
+        const meta = seriesMetadata[series];
+        const seriesName = meta ? meta.name : series.toUpperCase();
+        const ics = generateICS(seriesName, title, match.date);
+        downloadICS(ics, `${series}-${title.replace(/\s+/g, '-').toLowerCase()}.ics`);
+    });
+}
 
 // =============================================
 // INIT
 // =============================================
 (async function init() {
-    // Fetch data files in parallel
-    const [seriesRes, calendarRes, resultsRes] = await Promise.all([
-        fetch('data/series.json'),
-        fetch('data/calendar.json'),
-        fetch('data/results.json')
-    ]);
+    // Only need series.json for countdowns/ICS — calendar HTML is pre-rendered
+    const base = document.querySelector('meta[name="astro-base"]')?.getAttribute('content') || '';
+    const seriesRes = await fetch(`${base}/data/series.json`);
     seriesData = await seriesRes.json();
-    calendarData = await calendarRes.json();
-    resultsData = await resultsRes.json();
 
-    // Build results lookup: "series|EVENT" → [result, ...]
-    for (const [series, races] of Object.entries(resultsData)) {
-        for (const r of races) {
-            const key = series + '|' + r.event;
-            if (!resultsLookup[key]) resultsLookup[key] = [];
-            resultsLookup[key].push(r);
-        }
-    }
-
-    // Pre-cache timestamps for countdown performance
+    // Pre-cache timestamps
     for (const list of Object.values(seriesData)) {
         for (const race of list) {
             race._ts = new Date(race.date).getTime();
         }
     }
 
-    renderCalendar();
+    // Convert times for non-Paris timezones
+    convertPreRenderedTimes();
+
+    // Initialize interactive features
+    initToggle();
     initICSHandler();
     initDashToggle();
     initFilters();
@@ -836,7 +629,7 @@ function injectSchema() {
     update();
     injectSchema();
 
-    // Update timezone notice in header
+    // Update timezone notice
     const tzNotice = document.querySelector('.meta');
     if (tzNotice) {
         const friendlyTz = USER_TIMEZONE.replace(/_/g, ' ');
@@ -847,6 +640,5 @@ function injectSchema() {
         }
     }
 
-    // Delay scroll slightly so layout is settled
     setTimeout(scrollToCurrentWeek, 100);
 })();

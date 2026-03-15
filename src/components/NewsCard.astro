@@ -1,0 +1,35 @@
+---
+interface Props {
+  tag: string;
+  tagLabel: string;
+  date: string;
+  image: string;
+  title: string;
+  desc: string;
+  links: Array<{ url: string; icon: string; label: string }>;
+}
+
+const { tag, tagLabel, date, image, title, desc, links } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<div class="news-card" style={`background-image: url('${base}/assets/news-images/${image}');`}>
+  <div class="news-content">
+    <span>
+      <span class={`tag t-${tag}`}>{tagLabel}</span>
+      <span class="news-date">{date}</span>
+    </span>
+    <div class="news-title">{title}</div>
+    <div class="news-desc">{desc}</div>
+    <div class="news-links">
+      {links.map(link => (
+        <a href={link.url} class="news-link-btn" target="_blank" rel="noopener">
+          <img
+            src={`${base}/assets/${link.icon === 'instagram' ? 'ig-icon.svg' : 'website-icon.svg'}`}
+            alt={`${link.label} Icon`}
+          />
+          <span>{link.label}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
