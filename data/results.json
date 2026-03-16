@@ -4,6 +4,18 @@
       "event": "AUSTRALIA",
       "driver": "George Russell",
       "team": "Mercedes"
+    },
+    {
+      "event": "CHINA",
+      "driver": "Kimi Antonelli",
+      "team": "Mercedes"
+    }
+  ],
+  "f1a": [
+    {
+      "event": "CHINA",
+      "driver": "Emma Felbermayr",
+      "team": "Rodin Motorsport"
     }
   ],
   "fe": [
@@ -44,6 +56,12 @@
       "driver": "Elfyn Evans",
       "codriver": "Scott Martin",
       "team": "Toyota Gazoo Racing"
+    },
+    {
+      "event": "KENYA",
+      "driver": "Takamoto Katsuta",
+      "codriver": "Aaron Johnston",
+      "team": "Toyota Gazoo Racing"
     }
   ],
   "indycar": [
@@ -56,6 +74,11 @@
       "event": "PHOENIX",
       "driver": "Josef Newgarden",
       "team": "Team Penske"
+    },
+    {
+      "event": "ARLINGTON",
+      "driver": "Kyle Kirkwood",
+      "team": "Andretti Autosport"
     }
   ],
   "nascar": [
@@ -78,6 +101,11 @@
       "event": "PHOENIX",
       "driver": "Ryan Blaney",
       "team": "Team Penske"
+    },
+    {
+      "event": "LAS VEGAS",
+      "driver": "Denny Hamlin",
+      "team": "Joe Gibbs Racing"
     }
   ],
   "motogp": [
