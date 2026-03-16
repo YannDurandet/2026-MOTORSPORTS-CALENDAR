@@ -1,4 +1,19 @@
 [
+{
+    "tag": "wrc",
+    "tagLabel": "WRC",
+    "date": "16/03/2026",
+    "image": "wrc-uk-2027.webp",
+    "title": "WRC to race in UK from 2027",
+    "desc": "Developed in partnership with Motorsport UK, the new gravel-based event will be based in north-east Scotland. Stages will run  across the surrounding regions of Aberdeenshire and Moray.",
+    "links": [
+      {
+        "url": "https://www.motogp.com/en/news/2026/02/19/motogp-to-roar-into-the-city-streets-of-adelaide-from-2027/874866",
+        "icon": "website",
+        "label": "Source"
+      }
+    ]
+  },
     {
     "tag": "motogp",
     "tagLabel": "MOTO GP",
