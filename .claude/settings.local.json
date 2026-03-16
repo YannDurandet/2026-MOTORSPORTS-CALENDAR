@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.wrc.com)",
+      "WebFetch(domain:www.motorsportweek.com)"
+    ]
+  }
+}
