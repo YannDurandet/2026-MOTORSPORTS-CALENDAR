@@ -1,4 +1,19 @@
 [
+    {
+    "tag": "motogp",
+    "tagLabel": "MOTO GP",
+    "date": "14/03/2026",
+    "image": "australia-track-change.webp",
+    "title": "Moto GP to race in Adelaide from 2027",
+    "desc": "MotoGP has confirmed that the Australian Grand Prix will move to the Adelaide Street Circuit from 2027, marking a first of its kind event for the sport",
+    "links": [
+      {
+        "url": "https://www.motogp.com/en/news/2026/02/19/motogp-to-roar-into-the-city-streets-of-adelaide-from-2027/874866",
+        "icon": "website",
+        "label": "Source"
+      }
+    ]
+  },
   {
     "tag": "nls",
     "tagLabel": "NLS",
