@@ -281,9 +281,16 @@
           {
             "series": "nascar",
             "tag": "NASCAR",
-            "title": "Dixie Vodka 400 (Homestead)",
-            "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "homestead.svg"
+            "title": "Goodyear 400 (Darlington)",
+            "time": "RACE: <span class=\"hl\">20:00</span>",
+            "track": "darlington.svg"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Mugello 12H",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "mugello.svg"
           }
         ]
       },
@@ -470,6 +477,13 @@
             "title": "GEICO 500 (Talladega)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "talladega.svg"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Spa 12H",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "spa.svg"
           }
         ]
       },
@@ -872,6 +886,13 @@
             "title": "FireKeepers Casino 400 (Michigan)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "michigan.svg"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Paul Ricard 12H",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "paul-ricard.svg"
           }
         ]
       },
@@ -1142,6 +1163,13 @@
             "title": "Chicagoland Speedway",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "chicagoland.svg"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Nürburgring 12H",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "nurburgring.svg"
           }
         ]
       },
@@ -1753,6 +1781,13 @@
             "title": "Playoff Round 1 Race 3 (TBD)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "tbd.svg"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Barcelona 24H",
+            "time": "SAT > SUN",
+            "track": "barcelona.svg"
           }
         ]
       },

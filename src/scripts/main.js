@@ -75,13 +75,14 @@ const seriesMetadata = {
     nls: { name: "NLS", category: "Endurance", region: "Europe" },
     igtc: { name: "IGTC", category: "GT / Sports Car", region: "Worldwide" },
     tcr: { name: "TCR", category: "Touring", region: "Worldwide" },
-    erc: { name: "ERC", category: "Rally", region: "Europe" }
+    erc: { name: "ERC", category: "Rally", region: "Europe" },
+    h24eu: { name: "24H European Series", category: "Endurance", region: "Europe" }
 };
 
 // =============================================
 // FILTER CONSTANTS
 // =============================================
-const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc'];
+const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc', 'h24eu'];
 const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
 const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
 
@@ -89,7 +90,7 @@ const seriesLabels = {
     f1: 'F1', f1a: 'F1A', fe: 'FE', sf: 'SF', wec: 'WEC', imsa: 'IMSA', wrc: 'WRC',
     indycar: 'INDYCAR', nascar: 'NASCAR', motogp: 'MOTOGP', wsbk: 'WSBK', dtm: 'DTM',
     btcc: 'BTCC', supercars: 'SUPERCARS', elms: 'ELMS', gtwce: 'GTWCE', gtwca: 'GTWCA',
-    nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC'
+    nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC', h24eu: '24H EU'
 };
 
 // =============================================
