@@ -1,9 +1,32 @@
 {
   "permissions": {
     "allow": [
+      "Bash(find /c/Users/yann/OneDrive/Documents/GitHub/2026-MOTORSPORTS-CALENDAR/.claude/worktrees/gallant-heyrovsky -type f \\\\\\(-name *.html -o -name *.json -o -name *.js -o -name *.css \\\\\\))",
+      "Bash(find /c/Users/yann/OneDrive/Documents/GitHub/2026-MOTORSPORTS-CALENDAR/.claude/worktrees/gallant-heyrovsky -type f -not -path */.git/* -not -path */.claude/*)",
+      "Bash(find . -type f -not -path */.git/*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(curl -s http://localhost:3000)",
       "WebSearch",
       "WebFetch(domain:www.wrc.com)",
-      "WebFetch(domain:www.motorsportweek.com)"
+      "WebFetch(domain:www.motorsportweek.com)",
+      "WebFetch(domain:www.indycar.com)",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:www.jayski.com)",
+      "WebFetch(domain:www.cbssports.com)",
+      "WebFetch(domain:sports.yahoo.com)",
+      "WebFetch(domain:nesn.com)",
+      "WebFetch(domain:www.printyourbrackets.com)",
+      "Bash(gh pr:*)",
+      "Bash(node -c script.js)",
+      "Bash(grep -n 'class=\\\\\\\\\"\"\"\"hl\\\\\\\\\"\"\"\"' script.js)",
+      "Bash(ls -1 assets/track-maps/*.svg)",
+      "Bash(python3:*)",
+      "Bash(ls \"/c/Users/yann/OneDrive/Documents/GitHub/2026-MOTORSPORTS-CALENDAR/.git/\"index*)",
+      "Bash(ls \"/c/Users/yann/OneDrive/Documents/GitHub/2026-MOTORSPORTS-CALENDAR/.git/\"*.lock)",
+      "Bash(cmd /c \"cd /d \"\"C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR\"\" && git rm public/assets/track-maps/phoenix-indycar.svg && git add .claude/settings.local.json && git status\")",
+      "Bash(tasklist /fi \"imagename eq git.exe\")",
+      "Bash(powershell -Command \"Set-Location ''C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR''; git add ''.claude/settings.local.json'' 2>&1\")",
+      "Bash(powershell -Command \"Set-Location ''C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR''; git status 2>&1\")"
     ]
   }
 }

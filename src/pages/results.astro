@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Banner from '../components/Banner.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+import resultsData from '../../data/results.json';
+import seriesData from '../../data/series.json';
+
+const SERIES_META: Record<string, { name: string; tag: string }> = {
+  f1: { name: 'F1', tag: 'F1' },
+  f1a: { name: 'F1 Academy', tag: 'F1A' },
+  fe: { name: 'Formula E', tag: 'FE' },
+  sf: { name: 'Super Formula', tag: 'SF' },
+  wec: { name: 'WEC', tag: 'WEC' },
+  imsa: { name: 'IMSA', tag: 'IMSA' },
+  wrc: { name: 'WRC', tag: 'WRC' },
+  indycar: { name: 'IndyCar', tag: 'INDY' },
+  nascar: { name: 'NASCAR', tag: 'NASCAR' },
+  motogp: { name: 'MotoGP', tag: 'MOTOGP' },
+  wsbk: { name: 'WSBK', tag: 'WSBK' },
+  dtm: { name: 'DTM', tag: 'DTM' },
+  btcc: { name: 'BTCC', tag: 'BTCC' },
+  supercars: { name: 'Supercars', tag: 'SC' },
+  elms: { name: 'ELMS', tag: 'ELMS' },
+  gtwce: { name: 'GTWCE', tag: 'GTWCE' },
+  gtwca: { name: 'GTWCA', tag: 'GTWCA' },
+  nls: { name: 'NLS', tag: 'NLS' },
+  igtc: { name: 'IGTC', tag: 'IGTC' },
+  tcr: { name: 'TCR', tag: 'TCR' },
+  erc: { name: 'ERC', tag: 'ERC' },
+};
+
+const MONTH_NAMES = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+
+// Flatten results with dates
+const allResults: any[] = [];
+for (const [seriesKey, races] of Object.entries(resultsData as Record<string, any[]>)) {
+  const seriesDates = (seriesData as Record<string, any[]>)[seriesKey] || [];
+  for (const r of races) {
+    const match = seriesDates.find((s: any) => s.name === r.event);
+    const date = match ? new Date(match.date) : null;
+    allResults.push({ ...r, seriesKey, date });
+  }
+}
+
+// Sort chronologically
+allResults.sort((a, b) => (a.date?.getTime() || 0) - (b.date?.getTime() || 0));
+
+// Get unique series that have results
+const seriesWithResults = [...new Set(allResults.map(r => r.seriesKey))];
+
+function formatDate(d: Date | null): string {
+  if (!d) return '';
+  return MONTH_NAMES[d.getMonth()] + ' ' + String(d.getDate()).padStart(2, '0');
+}
+---
+<BaseLayout
+  title="Results — 2026 Motorsport Calendar"
+  description="2026 motorsport race results - winners from F1, WEC, IMSA, IndyCar, MotoGP, WRC, NASCAR and more."
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <Nav activePage="results" />
+    </div>
+  </header>
+
+  <div class="results-section">
+    <div class="news-header-title">2026 RACE RESULTS</div>
+
+    <div id="results-filters" class="results-filters">
+      {seriesWithResults.map(sk => {
+        const meta = SERIES_META[sk] || { tag: sk.toUpperCase() };
+        return (
+          <button class="results-filter-btn active" data-series={sk}>{meta.tag}</button>
+        );
+      })}
+    </div>
+
+    <div id="results-grid" class="results-grid">
+      {allResults.map(r => {
+        const meta = SERIES_META[r.seriesKey] || { tag: r.seriesKey.toUpperCase() };
+        const isCancelled = r.driver === null;
+        return (
+          <div
+            class={`result-card${isCancelled ? ' cancelled' : ''}`}
+            data-series={r.seriesKey}
+            style={`border-left-color: var(--${r.seriesKey})`}
+          >
+            <div class="result-card-header">
+              <span class={`tag t-${r.seriesKey}`}>{meta.tag}</span>
+              <span class="result-event">{r.event}</span>
+              <span class="result-date">{formatDate(r.date)}</span>
+            </div>
+            {isCancelled ? (
+              <div class="result-card-body">
+                <span class="result-cancelled">Cancelled</span>
+              </div>
+            ) : (
+              <div class="result-card-body">
+                <div class="result-winner">
+                  <span class="result-icon">&#9733;</span>
+                  <span class="result-driver">{r.driver}</span>
+                </div>
+                <span class="result-team">
+                  {r.team}
+                  {r.note && <Fragment set:html={` <span class="result-note">(${r.note})</span>`} />}
+                </span>
+              </div>
+            )}
+            {r.codriver && (
+              <div class="result-codriver">with {r.codriver}</div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+
+    <Footer />
+  </div>
+
+  <script>
+    // Client-side filter toggling for pre-rendered result cards
+    const filtersEl = document.getElementById('results-filters');
+    const gridEl = document.getElementById('results-grid');
+    if (filtersEl && gridEl) {
+      const activeFilters = new Set(
+        Array.from(filtersEl.querySelectorAll<HTMLButtonElement>('.results-filter-btn'))
+          .map(btn => btn.dataset.series!)
+      );
+
+      filtersEl.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.results-filter-btn');
+        if (!btn) return;
+        const sk = btn.dataset.series!;
+        if (activeFilters.has(sk)) {
+          activeFilters.delete(sk);
+          btn.classList.remove('active');
+        } else {
+          activeFilters.add(sk);
+          btn.classList.add('active');
+        }
+        // Show/hide cards
+        gridEl.querySelectorAll<HTMLElement>('.result-card').forEach(card => {
+          card.style.display = activeFilters.has(card.dataset.series!) ? '' : 'none';
+        });
+      });
+    }
+  </script>
+</BaseLayout>

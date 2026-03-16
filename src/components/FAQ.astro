@@ -1,0 +1,31 @@
+---
+const faqs = [
+  {
+    question: "What time zone are the race times in?",
+    answer: "All times are displayed in your system time. By default, the master calendar is built using Paris (CET/CEST) timezone."
+  },
+  {
+    question: "When does the 2026 Formula 1 season start?",
+    answer: "The 2026 F1 season kicks off with the Australian Grand Prix on March 8, 2026."
+  },
+  {
+    question: "Which series are included in this tracker?",
+    answer: "We track 21 major global and regional championships including Formula 1, WEC, IMSA, IndyCar, WRC, MotoGP, WorldSBK, NASCAR, and Supercars."
+  },
+  {
+    question: "How do the filters work?",
+    answer: "You can toggle specific series on and off using the buttons at the top of the calendar. The dashboard countdowns will automatically update to reflect your active filters."
+  }
+];
+---
+<div class="faq-section">
+  <div class="faq-header-title">FAQ</div>
+  <div class="faq-grid">
+    {faqs.map(faq => (
+      <details class="faq-card" name="faq">
+        <summary class="faq-question">{faq.question}</summary>
+        <div class="faq-answer">{faq.answer}</div>
+      </details>
+    ))}
+  </div>
+</div>
