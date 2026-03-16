@@ -1,0 +1,42 @@
+---
+const seriesList = [
+  // Global series (always visible)
+  { key: 'f1', name: 'F1', regional: false },
+  { key: 'f1a', name: 'F1 Academy', regional: false },
+  { key: 'fe', name: 'Formula E', regional: false },
+  { key: 'wec', name: 'WEC', regional: false },
+  { key: 'wrc', name: 'WRC', regional: false },
+  { key: 'motogp', name: 'MotoGP', regional: false },
+  { key: 'wsbk', name: 'WSBK', regional: false },
+  { key: 'igtc', name: 'IGTC', regional: false },
+  { key: 'tcr', name: 'TCR', regional: false },
+  // Regional series (hidden when collapsed)
+  { key: 'sf', name: 'Super Formula', regional: true },
+  { key: 'imsa', name: 'IMSA', regional: true },
+  { key: 'indycar', name: 'IndyCar', regional: true },
+  { key: 'nascar', name: 'NASCAR', regional: true },
+  { key: 'dtm', name: 'DTM', regional: true },
+  { key: 'btcc', name: 'BTCC', regional: true },
+  { key: 'supercars', name: 'Supercars', regional: true },
+  { key: 'elms', name: 'ELMS', regional: true },
+  { key: 'gtwce', name: 'GTWCE', regional: true },
+  { key: 'gtwca', name: 'GTWCA', regional: true },
+  { key: 'nls', name: 'NLS', regional: true },
+  { key: 'erc', name: 'ERC', regional: true },
+];
+---
+<div class="dash-wrapper">
+  <div class="dash-grid collapsed" id="dash-grid">
+    {seriesList.map(s => (
+      <div class={`dash-card dc-${s.key}${s.regional ? ' regional' : ''}`} data-series={s.key}>
+        <div class="dc-title">{s.name}</div>
+        <div class="dc-next">--</div>
+        <div class="dc-time" id={`t-${s.key}`}>--</div>
+      </div>
+    ))}
+  </div>
+  <button id="dash-toggle-btn" class="dash-toggle-btn">
+    <span>SEE ALL SERIES</span>
+    <span class="arrow">&#9660;</span>
+  </button>
+</div>

@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Banner from '../components/Banner.astro';
+import Nav from '../components/Nav.astro';
+import NewsCard from '../components/NewsCard.astro';
+import Footer from '../components/Footer.astro';
+
+import newsData from '../../data/news.json';
+---
+<BaseLayout
+  title="2026 MOTORSPORT MASTER CALENDAR"
+  description="Latest motorsport news - 2026 Motorsport Master Calendar"
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <Nav activePage="news" />
+    </div>
+    <div class="dash-grid">
+      <div class="dash-card dc-f1"><div class="dc-title">F1</div><div class="dc-next">--</div><div class="dc-time" id="t-f1">--</div></div>
+      <div class="dash-card dc-f1a"><div class="dc-title">F1 Academy</div><div class="dc-next">--</div><div class="dc-time" id="t-f1a">--</div></div>
+      <div class="dash-card dc-fe"><div class="dc-title">Formula E</div><div class="dc-next">--</div><div class="dc-time" id="t-fe">--</div></div>
+      <div class="dash-card dc-sf"><div class="dc-title">Super Formula</div><div class="dc-next">--</div><div class="dc-time" id="t-sf">--</div></div>
+      <div class="dash-card dc-wec"><div class="dc-title">WEC</div><div class="dc-next">--</div><div class="dc-time" id="t-wec">--</div></div>
+      <div class="dash-card dc-imsa"><div class="dc-title">IMSA</div><div class="dc-next">--</div><div class="dc-time" id="t-imsa">--</div></div>
+      <div class="dash-card dc-wrc"><div class="dc-title">WRC</div><div class="dc-next">--</div><div class="dc-time" id="t-wrc">--</div></div>
+    </div>
+  </header>
+
+  <div class="news-section">
+    <div class="news-header-title">LATEST NEWS</div>
+    <div class="news-grid">
+      {(newsData as any[]).map((news: any) => (
+        <NewsCard {...news} />
+      ))}
+    </div>
+    <Footer />
+  </div>
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<div class="banner-container">
+  <picture>
+    <source media="(min-width: 768px)" srcset={`${base}/assets/lauda_and_mouton.avif`}>
+    <img src={`${base}/assets/lauda.avif`} alt="2026 Motorsport Calendar Banner" class="hero-banner">
+  </picture>
+</div>
