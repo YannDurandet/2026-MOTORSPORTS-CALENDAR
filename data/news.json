@@ -1,5 +1,20 @@
 [
-    {
+  {
+    "tag": "f1",
+    "tagLabel": "Formula One",
+    "date": "19/03/2026",
+    "image": "wheatley-aston-martin.webp",
+    "title": "J. Wheatley to replace A. Newey as Aston Martin Team Principal",
+    "desc": "Rumors are spreading around the paddock that Adrian Newey has pushed his former colleague up to Lawrence Stroll. Huge vibrations from the Honda Power Unit make the AMR26 undriveable, preventing Alonso and Stroll from seeing the chequered flag of the first two rounds.",
+    "links": [
+      {
+        "url": "https://www.motorsport.com/f1/news/adrian-newey-to-step-down-as-aston-martin-f1-team-principal/10806482/",
+        "icon": "website",
+        "label": "Source"
+      }
+    ]
+  },
+  {
     "tag": "fe",
     "tagLabel": "Formula E",
     "date": "19/03/2026",
@@ -29,7 +44,7 @@
       }
     ]
   },
-    {
+  {
     "tag": "motogp",
     "tagLabel": "MOTO GP",
     "date": "14/03/2026",
