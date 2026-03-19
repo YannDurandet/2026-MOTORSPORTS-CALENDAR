@@ -1,5 +1,20 @@
 [
-{
+    {
+    "tag": "fe",
+    "tagLabel": "Formula E",
+    "date": "19/03/2026",
+    "image": "ds-leaves-formulae.webp",
+    "title": "DS Automobile to quit Formula E",
+    "desc": "The French automotive brand will not take part in the 2026-27 season. DS Automobiles is one of the most decorated manufacturers in Formula E history, famously becoming the first brand to secure back-to-back double titles. Since joining the series in Season 2, the marque has secured four titles, 18 victories, and 55 podiums across more than 139 races.",
+    "links": [
+      {
+        "url": "https://www.fiaformulae.com/en/news/1010223/ds-to-depart-formula-e-at-the-end-of-2025-26-season",
+        "icon": "website",
+        "label": "Source"
+      }
+    ]
+  },
+  {
     "tag": "wrc",
     "tagLabel": "WRC",
     "date": "16/03/2026",
