@@ -1,19 +1,19 @@
 [
   {
-    "tag": "f1",
-    "tagLabel": "Formula One",
-    "date": "19/03/2026",
-    "image": "wheatley-aston-martin.webp",
-    "title": "J. Wheatley to replace A. Newey as Aston Martin Team Principal",
-    "desc": "Rumors are spreading around the paddock that Adrian Newey has pushed his former colleague up to Lawrence Stroll. Huge vibrations from the Honda Power Unit make the AMR26 undriveable, preventing Alonso and Stroll from seeing the chequered flag of the first two rounds.",
-    "links": [
-      {
-        "url": "https://www.motorsport.com/f1/news/adrian-newey-to-step-down-as-aston-martin-f1-team-principal/10806482/",
-        "icon": "website",
-        "label": "Source"
-      }
-    ]
-  },
+  "tag": "nls",
+  "tagLabel": "NLS",
+  "date": "21/03/2026",
+  "image": "verstappen-disqualified-nls.webp",
+  "title": "Max Verstappen disqualified from NLS2 win over tyre rule breach",
+  "desc": "The Verstappen party has been cut short in the most painful way possible. After dominating the 58th ADAC Barbarossapreis, the Mercedes-AMG GT3 has been officially stripped of its victory due to a technical breach involving tire usage, exceeding the strict limit of six allowed for the race day.",
+  "links": [
+    {
+      "url": "https://www.motorsport.com/NLS/news/max-verstappen-disqualified-from-nls2-win-over-tyre-rule-breach/10807132/",
+      "icon": "website",
+      "label": "Source"
+    }
+  ]
+},
   {
     "tag": "fe",
     "tagLabel": "Formula E",
