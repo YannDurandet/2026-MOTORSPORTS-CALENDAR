@@ -26,7 +26,8 @@
       "Bash(cmd /c \"cd /d \"\"C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR\"\" && git rm public/assets/track-maps/phoenix-indycar.svg && git add .claude/settings.local.json && git status\")",
       "Bash(tasklist /fi \"imagename eq git.exe\")",
       "Bash(powershell -Command \"Set-Location ''C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR''; git add ''.claude/settings.local.json'' 2>&1\")",
-      "Bash(powershell -Command \"Set-Location ''C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR''; git status 2>&1\")"
+      "Bash(powershell -Command \"Set-Location ''C:\\\\Users\\\\yann\\\\OneDrive\\\\Documents\\\\GitHub\\\\2026-MOTORSPORTS-CALENDAR''; git status 2>&1\")",
+      "Bash(gh issue:*)"
     ]
   }
 }
