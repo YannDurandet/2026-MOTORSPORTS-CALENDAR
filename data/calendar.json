@@ -308,36 +308,44 @@
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Americas Grand Prix",
-            "time": "RACE: <span class=\"hl\">21:00</span>",
+            "time": "RACE: <span class=\"hl\">19:00</span>",
             "track": "cota.svg"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Portimão Round",
-            "time": "FRI > SUN",
+            "time": "SAT + SUN",
+            "races": [
+              { "label": "R1", "time": "SAT: <span class=\"hl\">17:00</span>" },
+              { "label": "R2", "time": "SUN: <span class=\"hl\">18:00</span>" }
+            ],
             "track": "portimao.svg"
           },
           {
             "series": "gtwca",
             "tag": "GTWCA",
             "title": "Sonoma Round",
-            "time": "FRI > SUN",
+            "time": "SAT + SUN",
+            "races": [
+              { "label": "R1", "time": "SAT: <span class=\"hl\">22:00</span>" },
+              { "label": "R2", "time": "SUN: <span class=\"hl\">23:00</span>" }
+            ],
             "track": "sonoma.svg"
           },
           {
             "series": "indycar",
             "tag": "INDYCAR",
             "title": "Honda Indy GP of Alabama",
-            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "time": "RACE: <span class=\"hl\">19:00</span>",
             "track": "barber.svg"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
-            "title": "Food City Dirt Race (Bristol)",
-            "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "bristol.svg"
+            "title": "Xfinity 500 (Martinsville)",
+            "time": "RACE: <span class=\"hl\">21:30</span>",
+            "track": "martinsville.svg"
           }
         ]
       }
