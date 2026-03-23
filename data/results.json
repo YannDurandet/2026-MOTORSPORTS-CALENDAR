@@ -35,11 +35,21 @@
       "driver": "Antonio Felix da Costa",
       "team": "Jaguar",
       "note": "Round 5"
+    },
+    {
+      "event": "MADRID",
+      "driver": "Antonio Felix da Costa",
+      "team": "Jaguar TCS Racing"
     }
   ],
   "imsa": [
     {
       "event": "ROLEX 24",
+      "driver": "Felipe Nasr / Julien Andlauer / Laurin Heinrich",
+      "team": "Porsche Penske Motorsport"
+    },
+    {
+      "event": "SEBRING 12H",
       "driver": "Felipe Nasr / Julien Andlauer / Laurin Heinrich",
       "team": "Porsche Penske Motorsport"
     }
@@ -106,11 +116,21 @@
       "event": "LAS VEGAS",
       "driver": "Denny Hamlin",
       "team": "Joe Gibbs Racing"
+    },
+    {
+      "event": "DARLINGTON",
+      "driver": "Tyler Reddick",
+      "team": "23XI Racing"
     }
   ],
   "motogp": [
     {
       "event": "THAILAND",
+      "driver": "Marco Bezzecchi",
+      "team": "Aprilia Racing"
+    },
+    {
+      "event": "BRAZIL",
       "driver": "Marco Bezzecchi",
       "team": "Aprilia Racing"
     }
@@ -147,6 +167,18 @@
       "driver": null,
       "team": null,
       "note": "Cancelled"
+    },
+    {
+      "event": "BARBAROSSAPREIS",
+      "driver": "Dan Harper / Jordan Pepper",
+      "team": "ROWE Racing"
+    }
+  ],
+  "h24eu": [
+    {
+      "event": "MUGELLO",
+      "driver": "Pierre Kaffer / Michael Doppelmayr / Elia Erhart / Ernst Inderbitzin / Stephane Tribaudini",
+      "team": "Sainteloc Junior Team"
     }
   ]
 }
