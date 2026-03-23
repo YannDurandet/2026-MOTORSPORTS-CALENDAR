@@ -1,5 +1,20 @@
 [
   {
+  "tag": "motogp",
+  "tagLabel": "MotoGP",
+  "date": "23/03/2026",
+  "image": "brazilian-gp-track-wear.webp",
+  "title": "Brazilian GP Track Wear",
+  "desc": "The return to Brazil at the Autódromo Internacional Ayrton Senna in Goiânia turned into a logistical and safety nightmare. Massive downpours and a destabilized clay foundation caused the track surface to literally fall apart under the bikes, creating a dangerous 'weeping' effect through the tarmac.",
+  "links": [
+    {
+      "url": "https://x.com/Michelin_Sport/status/2036005000128729527",
+      "icon": "website",
+      "label": "Source"
+    }
+  ]
+},
+  {
   "tag": "nls",
   "tagLabel": "NLS",
   "date": "21/03/2026",
