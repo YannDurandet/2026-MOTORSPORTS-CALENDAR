@@ -6,7 +6,10 @@
     "country": "Australia",
     "continent": "oceania",
     "browserSvg": "albert-park.svg",
-    "calendarSvgs": ["albert-park.svg"]
+    "calendarSvgs": [
+      "albert-park.svg"
+    ],
+    "bio": "Melbourne's park circuit winds around the lake in Albert Park since 1996. Fast and flowing with minimal overtaking, it sets the tone for the F1 season as the traditional opener."
   },
   {
     "slug": "aragon",
@@ -15,7 +18,10 @@
     "country": "Spain",
     "continent": "europe",
     "browserSvg": "aragon.svg",
-    "calendarSvgs": ["aragon.svg"]
+    "calendarSvgs": [
+      "aragon.svg"
+    ],
+    "bio": "MotorLand Aragón opened in 2009 in the Spanish desert. Wide, fast, and technically demanding, it was designed with overtaking in mind and rewards mechanical grip over aerodynamic downforce."
   },
   {
     "slug": "arlington",
@@ -24,7 +30,10 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "arlington.svg",
-    "calendarSvgs": ["arlington.svg"]
+    "calendarSvgs": [
+      "arlington.svg"
+    ],
+    "bio": "The Streets of Arlington circuit in Texas runs adjacent to the stadium complex in the Dallas-Fort Worth metroplex. A modern addition to the IndyCar calendar reflecting the series' expansion into major American urban markets."
   },
   {
     "slug": "assen",
@@ -33,7 +42,10 @@
     "country": "Netherlands",
     "continent": "europe",
     "browserSvg": "assen.svg",
-    "calendarSvgs": ["assen.svg"]
+    "calendarSvgs": [
+      "assen.svg"
+    ],
+    "bio": "The Cathedral. TT Circuit Assen has held the Dutch TT since 1925, making it the longest continuously running circuit on the MotoGP calendar. Its sweeping layout is among the fastest in the championship."
   },
   {
     "slug": "atlanta",
@@ -41,8 +53,11 @@
     "city": "Hampton",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "atlanta.svg",
-    "calendarSvgs": ["atlanta.svg"]
+    "browserSvg": "atlanta-oval.svg",
+    "calendarSvgs": [
+      "atlanta-oval.svg"
+    ],
+    "bio": "Atlanta Motor Speedway is one of NASCAR's oldest tracks, dating to 1960. A major reconfiguration has transformed it into a superspeedway-style oval, producing the pack racing format previously unique to Daytona and Talladega."
   },
   {
     "slug": "autopolis",
@@ -51,7 +66,10 @@
     "country": "Japan",
     "continent": "asia",
     "browserSvg": "autopolis.svg",
-    "calendarSvgs": ["autopolis.svg"]
+    "calendarSvgs": [
+      "autopolis.svg"
+    ],
+    "bio": "Autopolis sits at 900 metres elevation in the Kyushu mountains of southern Japan. Its high altitude and exposure to weather make it the most atmospherically unpredictable circuit on the Super Formula calendar."
   },
   {
     "slug": "bahrain",
@@ -59,8 +77,10 @@
     "city": "Sakhir",
     "country": "Bahrain",
     "continent": "middle-east",
-    "browserSvg": "bahrain.svg",
-    "calendarSvgs": ["bahrain.svg"]
+    "calendarSvgs": [
+      "bahrain.svg"
+    ],
+    "bio": "Purpose-built in the desert in 2004, Bahrain was the first Middle Eastern venue to host Formula 1. Its floodlit night race and consistent conditions have made it a fixture at both ends of the calendar."
   },
   {
     "slug": "baku",
@@ -69,7 +89,10 @@
     "country": "Azerbaijan",
     "continent": "europe",
     "browserSvg": "baku.svg",
-    "calendarSvgs": ["baku.svg"]
+    "calendarSvgs": [
+      "baku.svg"
+    ],
+    "bio": "A brutal contradiction — 2.2km of flat-out straight through the Azerbaijani capital followed by medieval castle walls inches from the racing line. One of the fastest average speeds and highest crash rates in F1."
   },
   {
     "slug": "balaton",
@@ -77,8 +100,11 @@
     "city": "Zamárdi",
     "country": "Hungary",
     "continent": "europe",
-    "browserSvg": "balaton-moto.svg",
-    "calendarSvgs": ["balaton-moto.svg"]
+    "browserSvg": "balaton-motogp.svg",
+    "calendarSvgs": [
+      "balaton-motogp.svg"
+    ],
+    "bio": "Balaton Park Circuit opened in 2023 near Lake Balaton and joined the WSBK calendar in 2025. The venue hosted the championship's 1000th race and is part of Hungary's growing motorsport infrastructure."
   },
   {
     "slug": "barber",
@@ -87,7 +113,10 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "barber.svg",
-    "calendarSvgs": ["barber.svg"]
+    "calendarSvgs": [
+      "barber.svg"
+    ],
+    "bio": "Barber Motorsports Park opened in 2003 in Alabama, set across 740 acres of sculpture-filled parkland. Its immaculately maintained facility includes a motorcycle museum and is considered one of the most beautiful circuits in North America."
   },
   {
     "slug": "barcelona",
@@ -96,7 +125,10 @@
     "country": "Spain",
     "continent": "europe",
     "browserSvg": "barcelona.svg",
-    "calendarSvgs": ["barcelona.svg"]
+    "calendarSvgs": [
+      "barcelona.svg"
+    ],
+    "bio": "Catalunya has hosted the Spanish Grand Prix since 1991 and serves as F1's primary winter test venue. Its wide variety of corner types makes it the benchmark lap every engineer uses to calibrate their car."
   },
   {
     "slug": "bathurst",
@@ -105,7 +137,10 @@
     "country": "Australia",
     "continent": "oceania",
     "browserSvg": "bathurst.svg",
-    "calendarSvgs": ["bathurst.svg"]
+    "calendarSvgs": [
+      "bathurst.svg"
+    ],
+    "bio": "Mount Panorama climbs 174 metres through the New South Wales hills. The Skyline-to-Dipper sequence and Conrod Straight have defined Australian motorsport for decades."
   },
   {
     "slug": "berlin",
@@ -114,7 +149,10 @@
     "country": "Germany",
     "continent": "europe",
     "browserSvg": "berlin.svg",
-    "calendarSvgs": ["berlin.svg"]
+    "calendarSvgs": [
+      "berlin.svg"
+    ],
+    "bio": "The Tempelhof Airport street circuit is unique in motorsport — a permanent circuit built on the runways of Berlin's Cold War-era airport. Formula E has used it since 2016, with different layouts used in different years."
   },
   {
     "slug": "brands-hatch",
@@ -123,7 +161,26 @@
     "country": "UK",
     "continent": "europe",
     "browserSvg": "brands-hatch.svg",
-    "calendarSvgs": ["brands-hatch.svg"]
+    "calendarSvgs": [
+      "brands-hatch.svg"
+    ],
+    "layouts": [
+      {
+        "id": "indy",
+        "label": "Indy Circuit",
+        "calendarSvgs": [
+          "brands-hatch.svg"
+        ]
+      },
+      {
+        "id": "gp",
+        "label": "GP Circuit",
+        "calendarSvgs": [
+          "brands-hatch-gp.svg"
+        ]
+      }
+    ],
+    "bio": "Carved into a natural Kent amphitheatre, Brands Hatch has been the beating heart of British club racing since the 1950s. Its GP loop remains one of the most loved layouts in the country."
   },
   {
     "slug": "bristol",
@@ -131,8 +188,10 @@
     "city": "Bristol",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "bristol.svg",
-    "calendarSvgs": ["bristol.svg"]
+    "calendarSvgs": [
+      "bristol.svg"
+    ],
+    "bio": "The Bristol half-mile concrete bullring with its 30-degree banking is NASCAR's most intense short-track experience. Capacity crowds, brutal contact, and wheel-to-wheel racing for 500 laps make it the sport's most coveted ticket."
   },
   {
     "slug": "brno",
@@ -141,7 +200,10 @@
     "country": "Czech Republic",
     "continent": "europe",
     "browserSvg": "brno.svg",
-    "calendarSvgs": ["brno.svg"]
+    "calendarSvgs": [
+      "brno.svg"
+    ],
+    "bio": "Automotodrom Brno was one of the most beloved circuits in MotoGP — fast, flowing, and set in the Moravian countryside. It left the calendar in 2020 and has yet to return, leaving a gap no replacement has adequately filled."
   },
   {
     "slug": "buriram",
@@ -150,7 +212,10 @@
     "country": "Thailand",
     "continent": "asia",
     "browserSvg": "buriram.svg",
-    "calendarSvgs": ["buriram.svg"]
+    "calendarSvgs": [
+      "buriram.svg"
+    ],
+    "bio": "Chang International Circuit in northeast Thailand was built in 2014 and joined MotoGP in 2018. Smooth, fast, and purpose-built, it helped establish Southeast Asia as a permanent fixture in the motorcycle racing calendar."
   },
   {
     "slug": "charlotte",
@@ -158,8 +223,10 @@
     "city": "Concord",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "charlotte.svg",
-    "calendarSvgs": ["charlotte.svg"]
+    "calendarSvgs": [
+      "charlotte.svg"
+    ],
+    "bio": "Charlotte Motor Speedway is NASCAR's home track in the sport's spiritual heartland. The Coca-Cola 600 — the longest race on the Cup Series calendar — has been held here every Memorial Day weekend since 1960."
   },
   {
     "slug": "chengdu",
@@ -167,8 +234,10 @@
     "city": "Chengdu",
     "country": "China",
     "continent": "asia",
-    "browserSvg": "chengdu.svg",
-    "calendarSvgs": ["chengdu.svg"]
+    "calendarSvgs": [
+      "chengdu.svg"
+    ],
+    "bio": "Chengdu International Motorsport Circuit in Sichuan province is part of China's growing permanent circuit infrastructure. It sits in the metropolitan area of one of China's four largest cities."
   },
   {
     "slug": "chicagoland",
@@ -176,8 +245,10 @@
     "city": "Joliet",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "chicagoland.svg",
-    "calendarSvgs": ["chicagoland.svg"]
+    "calendarSvgs": [
+      "chicagoland.svg"
+    ],
+    "bio": "Chicagoland Speedway is a standard 1.5-mile intermediate oval in the mould of Charlotte and Atlanta. Its suburban Chicago location made it one of the most commercially important stops on the former NASCAR calendar."
   },
   {
     "slug": "christchurch",
@@ -186,7 +257,10 @@
     "country": "New Zealand",
     "continent": "oceania",
     "browserSvg": "christchurch.svg",
-    "calendarSvgs": ["christchurch.svg"]
+    "calendarSvgs": [
+      "christchurch.svg"
+    ],
+    "bio": "The Streets of Christchurch temporary circuit runs through the rebuilt central city that emerged from the 2011 earthquake reconstruction. Motorsport returning to Christchurch's streets is part of the broader revitalisation of the city centre."
   },
   {
     "slug": "cota",
@@ -194,8 +268,11 @@
     "city": "Austin",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "cota.svg",
-    "calendarSvgs": ["cota.svg"]
+    "browserSvg": "cota-national.svg",
+    "calendarSvgs": [
+      "cota-national.svg"
+    ],
+    "bio": "Hermann Tilke's Texas circuit opened in 2012 and quickly earned respect: its blind uphill Turn 1 and technical middle sector offer genuine challenge, rare for a modern purpose-built venue."
   },
   {
     "slug": "cremona",
@@ -204,7 +281,10 @@
     "country": "Italy",
     "continent": "europe",
     "browserSvg": "cremona.svg",
-    "calendarSvgs": ["cremona.svg"]
+    "calendarSvgs": [
+      "cremona.svg"
+    ],
+    "bio": "Cremona Circuit in the Po Valley of Lombardy is a permanent facility used primarily by NLS endurance racing. Its long straights and flat profile produce straightforward but high-speed racing suited to endurance formats."
   },
   {
     "slug": "croft",
@@ -213,7 +293,10 @@
     "country": "UK",
     "continent": "europe",
     "browserSvg": "croft.svg",
-    "calendarSvgs": ["croft.svg"]
+    "calendarSvgs": [
+      "croft.svg"
+    ],
+    "bio": "Yorkshire's Croft Circuit opened in 1964 and is defined by its wide, fast layout with significant elevation changes through the northern English countryside. A perennial BTCC venue prized by drivers for its old-school character."
   },
   {
     "slug": "darlington",
@@ -221,8 +304,11 @@
     "city": "Darlington",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "darlington.svg",
-    "calendarSvgs": ["darlington.svg"]
+    "browserSvg": "darlington-oval.svg",
+    "calendarSvgs": [
+      "darlington-oval.svg"
+    ],
+    "bio": "The Lady in Black — NASCAR's oldest surviving superspeedway, opened in 1950. Its egg-shaped layout forces drivers to hug the outside wall in a way no other circuit demands, producing the distinctive Darlington stripe on every car that races here."
   },
   {
     "slug": "darwin",
@@ -230,8 +316,10 @@
     "city": "Darwin",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "darwin.svg",
-    "calendarSvgs": ["darwin.svg"]
+    "calendarSvgs": [
+      "darwin.svg"
+    ],
+    "bio": "Hidden Valley Raceway's street circuit in Darwin's CBD has hosted Supercars since 2001. The Northern Territory heat and compact circuit walls give it a unique character among Australian touring car venues."
   },
   {
     "slug": "daytona",
@@ -239,8 +327,28 @@
     "city": "Daytona Beach",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "daytona.svg",
-    "calendarSvgs": ["daytona.svg"]
+    "browserSvg": "daytona-oval.svg",
+    "calendarSvgs": [
+      "daytona-oval.svg",
+      "daytona-road.svg"
+    ],
+    "layouts": [
+      {
+        "id": "oval",
+        "label": "NASCAR Oval",
+        "calendarSvgs": [
+          "daytona.svg"
+        ]
+      },
+      {
+        "id": "road",
+        "label": "IMSA Road Course",
+        "calendarSvgs": [
+          "daytona-road.svg"
+        ]
+      }
+    ],
+    "bio": "Since 1959, Daytona's 2.5-mile tri-oval has been the spiritual home of American motorsport — host to both the Daytona 500 and the Rolex 24 in the same calendar year."
   },
   {
     "slug": "detroit",
@@ -248,8 +356,10 @@
     "city": "Detroit",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "detroit.svg",
-    "calendarSvgs": ["detroit.svg"]
+    "calendarSvgs": [
+      "detroit.svg"
+    ],
+    "bio": "The downtown Detroit street circuit has moved through several configurations since the city hosted the US Grand Prix from 1982 to 1988. Its tight layout through the Motor City is hard on cars and difficult to overtake on."
   },
   {
     "slug": "donington",
@@ -258,7 +368,26 @@
     "country": "UK",
     "continent": "europe",
     "browserSvg": "donington.svg",
-    "calendarSvgs": ["donington.svg"]
+    "calendarSvgs": [
+      "donington.svg"
+    ],
+    "layouts": [
+      {
+        "id": "national",
+        "label": "National Circuit",
+        "calendarSvgs": [
+          "donington.svg"
+        ]
+      },
+      {
+        "id": "gp",
+        "label": "GP Circuit",
+        "calendarSvgs": [
+          "donington-gp.svg"
+        ]
+      }
+    ],
+    "bio": "Donington Park hosted the British Grand Prix twice in the 1930s and returned to Formula 1 briefly in 1993. Its two layouts — the short National and the longer GP circuit — serve different series, with BTCC using both across the same season."
   },
   {
     "slug": "dover",
@@ -266,8 +395,11 @@
     "city": "Dover",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "dover.svg",
-    "calendarSvgs": ["dover.svg"]
+    "browserSvg": "dover-oval.svg",
+    "calendarSvgs": [
+      "dover-oval.svg"
+    ],
+    "bio": "The Monster Mile — a one-mile concrete oval with 24-degree banking in Delaware. Dover's concrete surface and absence of tire degradation produce relentless, aggressive racing from start to finish."
   },
   {
     "slug": "estoril",
@@ -276,7 +408,10 @@
     "country": "Portugal",
     "continent": "europe",
     "browserSvg": "estoril.svg",
-    "calendarSvgs": ["estoril.svg"]
+    "calendarSvgs": [
+      "estoril.svg"
+    ],
+    "bio": "Portugal's clifftop circuit near Cascais hosted the Portuguese Grand Prix from 1984 to 1996. Its exposed position above the Atlantic made it uniquely susceptible to wind, and its fast first sector produced some of F1's most dramatic qualifying laps."
   },
   {
     "slug": "fuji",
@@ -284,8 +419,10 @@
     "city": "Oyama",
     "country": "Japan",
     "continent": "asia",
-    "browserSvg": "fuji.svg",
-    "calendarSvgs": ["fuji.svg"]
+    "calendarSvgs": [
+      "fuji.svg"
+    ],
+    "bio": "Fuji Speedway sits at the foot of Mount Fuji with Japan's most iconic backdrop. It hosted F1 in 1976–77 and again in 2007–08, and now serves as the home of WEC's Japanese round."
   },
   {
     "slug": "gateway",
@@ -293,8 +430,10 @@
     "city": "Madison",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "gateway.svg",
-    "calendarSvgs": ["gateway.svg"]
+    "calendarSvgs": [
+      "gateway.svg"
+    ],
+    "bio": "World Wide Technology Raceway's 1.25-mile oval outside St. Louis hosts both NASCAR and IndyCar. Its relatively flat oval and smooth surface produce close racing without the restrictor-plate chaos of the superspeedways."
   },
   {
     "slug": "goiania",
@@ -303,7 +442,10 @@
     "country": "Brazil",
     "continent": "south-america",
     "browserSvg": "goiania.svg",
-    "calendarSvgs": ["goiania.svg"]
+    "calendarSvgs": [
+      "goiania.svg"
+    ],
+    "bio": "Formula E's Goiânia E-Prix runs through the streets of Brazil's seventh-largest city. Goiânia's compact circuit brings the championship to one of Brazil's most important but motorsport-underserved markets."
   },
   {
     "slug": "gold-coast",
@@ -311,8 +453,10 @@
     "city": "Surfers Paradise",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "gold-coast.svg",
-    "calendarSvgs": ["gold-coast.svg"]
+    "calendarSvgs": [
+      "gold-coast.svg"
+    ],
+    "bio": "The Surfers Paradise street circuit on the Gold Coast is one of Supercars' most glamorous venues. Its tight walls, narrow sections, and beachside location make it one of the most photographed events on the calendar."
   },
   {
     "slug": "hockenheim",
@@ -321,7 +465,10 @@
     "country": "Germany",
     "continent": "europe",
     "browserSvg": "hockenheim.svg",
-    "calendarSvgs": ["hockenheim.svg"]
+    "calendarSvgs": [
+      "hockenheim.svg"
+    ],
+    "bio": "The original Hockenheimring featured three-kilometre forest straights that made it one of the fastest circuits in Formula 1. A 2002 Tilke redesign removed those sections, creating a more conventional but less characterful circuit."
   },
   {
     "slug": "homestead",
@@ -329,8 +476,11 @@
     "city": "Homestead",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "homestead.svg",
-    "calendarSvgs": ["homestead.svg"]
+    "browserSvg": "homestead-miami-oval.svg",
+    "calendarSvgs": [
+      "homestead-miami-oval.svg"
+    ],
+    "bio": "Homestead-Miami Speedway hosted the NASCAR Cup Series season finale for twenty consecutive years, making it the scene of more championships decided than any other circuit. Its variable banking can be run in multiple grooves."
   },
   {
     "slug": "hungaroring",
@@ -339,7 +489,10 @@
     "country": "Hungary",
     "continent": "europe",
     "browserSvg": "hungaroring.svg",
-    "calendarSvgs": ["hungaroring.svg"]
+    "calendarSvgs": [
+      "hungaroring.svg"
+    ],
+    "bio": "Tight and twisty in the hills east of Budapest, the Hungaroring hosted the first Formula 1 race behind the Iron Curtain in 1986. Low-speed corners and limited overtaking make strategy the decisive factor."
   },
   {
     "slug": "imola",
@@ -348,7 +501,10 @@
     "country": "Italy",
     "continent": "europe",
     "browserSvg": "imola.svg",
-    "calendarSvgs": ["imola.svg"]
+    "calendarSvgs": [
+      "imola.svg"
+    ],
+    "bio": "The Autodromo Enzo e Dino Ferrari is narrow, unforgiving, and carries the weight of motorsport history. Its return to the F1 calendar in 2020 reminded everyone why it was missed."
   },
   {
     "slug": "indianapolis",
@@ -356,12 +512,26 @@
     "city": "Indianapolis",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "indianapolis.svg",
-    "calendarSvgs": ["indianapolis.svg", "indianapolis-oval.svg"],
+    "calendarSvgs": [
+      "indianapolis.svg"
+    ],
     "layouts": [
-      { "id": "road", "label": "Road Course", "calendarSvgs": ["indianapolis.svg"] },
-      { "id": "oval", "label": "Oval (Indy 500)", "calendarSvgs": ["indianapolis-oval.svg"] }
-    ]
+      {
+        "id": "road",
+        "label": "Road Course",
+        "calendarSvgs": [
+          "indianapolis.svg"
+        ]
+      },
+      {
+        "id": "oval",
+        "label": "Oval (Indy 500)",
+        "calendarSvgs": [
+          "indianapolis-oval.svg"
+        ]
+      }
+    ],
+    "bio": "Opened in 1909 and paved with bricks, the Brickyard has hosted the Indianapolis 500 every year since 1911 except the two World Wars. The most storied oval in the world."
   },
   {
     "slug": "inje",
@@ -369,8 +539,10 @@
     "city": "Inje",
     "country": "South Korea",
     "continent": "asia",
-    "browserSvg": "inje.svg",
-    "calendarSvgs": ["inje.svg"]
+    "calendarSvgs": [
+      "inje.svg"
+    ],
+    "bio": "Inje Speedium opened in 2013 in the Gangwon mountains of South Korea, 120km east of Seoul. Its 3.9km layout with significant elevation changes is among the most technically demanding circuits in Asia."
   },
   {
     "slug": "interlagos",
@@ -378,8 +550,10 @@
     "city": "São Paulo",
     "country": "Brazil",
     "continent": "south-america",
-    "browserSvg": "interlagos.svg",
-    "calendarSvgs": ["interlagos.svg"]
+    "calendarSvgs": [
+      "interlagos.svg"
+    ],
+    "bio": "The Autódromo José Carlos Pace runs anti-clockwise through the São Paulo hills. Home of Ayrton Senna and scene of countless championship deciders, it remains the most emotionally charged race on the F1 calendar."
   },
   {
     "slug": "iowa",
@@ -387,8 +561,10 @@
     "city": "Newton",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "iowa.svg",
-    "calendarSvgs": ["iowa.svg"]
+    "calendarSvgs": [
+      "iowa.svg"
+    ],
+    "bio": "Iowa Speedway's 0.875-mile oval is considered one of the best pure racing circuits in North America. Its compact size, smooth surface, and multiple grooves produce intense side-by-side racing throughout the field."
   },
   {
     "slug": "ipswich",
@@ -396,8 +572,10 @@
     "city": "Ipswich",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "ipswich.svg",
-    "calendarSvgs": ["ipswich.svg"]
+    "calendarSvgs": [
+      "ipswich.svg"
+    ],
+    "bio": "Queensland Raceway in Ipswich is the primary permanent circuit in Queensland. Its tight, technical layout and consistent surface make it a reliable if unspectacular stop on the Supercars calendar."
   },
   {
     "slug": "jeddah",
@@ -405,8 +583,11 @@
     "city": "Jeddah",
     "country": "Saudi Arabia",
     "continent": "middle-east",
-    "browserSvg": "jeddah.svg",
-    "calendarSvgs": ["jeddah.svg"]
+    "browserSvg": "jeddah-fe.svg",
+    "calendarSvgs": [
+      "jeddah-fe.svg"
+    ],
+    "bio": "Formula E uses a shortened layout of the Jeddah Corniche street circuit, which hugs the Red Sea waterfront. The full F1 version is the second fastest average speed on the calendar."
   },
   {
     "slug": "jerez",
@@ -414,12 +595,27 @@
     "city": "Jerez de la Frontera",
     "country": "Spain",
     "continent": "europe",
-    "browserSvg": "jerez.svg",
-    "calendarSvgs": ["jerez.svg", "jerez-motogp.svg"],
+    "browserSvg": "jerez-motogp.svg",
+    "calendarSvgs": [
+      "jerez-motogp.svg"
+    ],
     "layouts": [
-      { "id": "wsbk", "label": "WSBK Layout", "calendarSvgs": ["jerez.svg"] },
-      { "id": "motogp", "label": "MotoGP Layout", "calendarSvgs": ["jerez-motogp.svg"] }
-    ]
+      {
+        "id": "wsbk",
+        "label": "WSBK Layout",
+        "calendarSvgs": [
+          "jerez.svg"
+        ]
+      },
+      {
+        "id": "motogp",
+        "label": "MotoGP Layout",
+        "calendarSvgs": [
+          "jerez-motogp.svg"
+        ]
+      }
+    ],
+    "bio": "The Circuito de Jerez has hosted MotoGP and WSBK for decades, and served as the scene of the crash that ended Ayrton Senna's life in practice for the 1994 Spanish GP at the same venue. Its infield is fast and technical."
   },
   {
     "slug": "kansas",
@@ -427,8 +623,10 @@
     "city": "Kansas City",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "kansas.svg",
-    "calendarSvgs": ["kansas.svg"]
+    "calendarSvgs": [
+      "kansas.svg"
+    ],
+    "bio": "Kansas Speedway opened in 2001 as part of the wave of new 1.5-mile intermediates built across the American heartland. Its wide progressive banking and smooth surface typically produce multi-lane racing."
   },
   {
     "slug": "knockhill",
@@ -437,7 +635,10 @@
     "country": "UK",
     "continent": "europe",
     "browserSvg": "knockhill.svg",
-    "calendarSvgs": ["knockhill.svg"]
+    "calendarSvgs": [
+      "knockhill.svg"
+    ],
+    "bio": "Scotland's only permanent racing circuit, set in the Fife hills outside Dunfermline. Its compact, bumpy layout and steep gradient changes make it one of the most distinctive stops on the BTCC calendar."
   },
   {
     "slug": "laguna-seca",
@@ -446,16 +647,33 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "laguna-seca.svg",
-    "calendarSvgs": ["laguna-seca.svg"]
+    "calendarSvgs": [
+      "laguna-seca.svg"
+    ],
+    "bio": "California's WeatherTech Raceway is defined by the Corkscrew: a blind, downhill double-apex left-right that drops 18 metres in the space of two corners."
   },
   {
     "slug": "las-vegas",
+    "name": "Las Vegas Motor Speedway",
+    "city": "Las Vegas",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "las-vegas-oval.svg",
+    "calendarSvgs": [
+      "las-vegas-oval.svg"
+    ],
+    "bio": "Las Vegas Motor Speedway's 1.5-mile D-oval sits north of the Strip in the Nevada desert. NASCAR has raced here since 1998; the consistent concrete surface and wide groove produce clean, high-speed oval racing."
+  },
+  {
+    "slug": "las-vegas-strip",
     "name": "Las Vegas Strip Circuit",
     "city": "Las Vegas",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "las-vegas.svg",
-    "calendarSvgs": ["las-vegas.svg"]
+    "calendarSvgs": [
+      "las-vegas-strip.svg"
+    ],
+    "bio": "The Las Vegas Strip Circuit debuted in 2023, running through the neon-lit heart of the Las Vegas Boulevard. At night, with casinos as a backdrop, it is the most visually spectacular circuit in modern Formula 1."
   },
   {
     "slug": "lausitzring",
@@ -464,7 +682,10 @@
     "country": "Germany",
     "continent": "europe",
     "browserSvg": "lausitzring.svg",
-    "calendarSvgs": ["lausitzring.svg"]
+    "calendarSvgs": [
+      "lausitzring.svg"
+    ],
+    "bio": "EuroSpeedway Lausitz in eastern Germany is a hybrid facility — a full oval, a road course, and a combined layout sharing the same infrastructure. Built in 2000, it has struggled to find a permanent place in the European calendar."
   },
   {
     "slug": "le-mans",
@@ -472,8 +693,10 @@
     "city": "Le Mans",
     "country": "France",
     "continent": "europe",
-    "browserSvg": "le-mans.svg",
-    "calendarSvgs": ["le-mans.svg"]
+    "calendarSvgs": [
+      "le-mans.svg"
+    ],
+    "bio": "The world's most famous endurance race has run on these public roads and purpose-built sections since 1923. At 13.6km, it's the longest circuit in active use."
   },
   {
     "slug": "london",
@@ -481,8 +704,10 @@
     "city": "London",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "london.svg",
-    "calendarSvgs": ["london.svg"]
+    "calendarSvgs": [
+      "london.svg"
+    ],
+    "bio": "Formula E's ExCeL Arena circuit in east London is partly indoor, running through the Royal Docks exhibition halls and out onto the surrounding streets. One of the few circuits in motorsport to be genuinely inside a building."
   },
   {
     "slug": "long-beach",
@@ -491,7 +716,10 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "long-beach.svg",
-    "calendarSvgs": ["long-beach.svg"]
+    "calendarSvgs": [
+      "long-beach.svg"
+    ],
+    "bio": "California's street circuit has run through downtown Long Beach every spring since 1975. The Long Beach Grand Prix is the largest annual sporting event on the West Coast and preceded the modern era of American street racing."
   },
   {
     "slug": "lusail",
@@ -500,7 +728,10 @@
     "country": "Qatar",
     "continent": "middle-east",
     "browserSvg": "lusail.svg",
-    "calendarSvgs": ["lusail.svg"]
+    "calendarSvgs": [
+      "lusail.svg"
+    ],
+    "bio": "Qatar's Lusail circuit was built for MotoGP in 2004 and hosts its round entirely under floodlights. Formula 1 arrived in 2021. Its high-speed flowing layout is designed for motorcycle racing and shows in the lap times."
   },
   {
     "slug": "macau",
@@ -508,17 +739,33 @@
     "city": "Macau",
     "country": "Macau",
     "continent": "asia",
-    "browserSvg": "macau.svg",
-    "calendarSvgs": ["macau.svg"]
+    "calendarSvgs": [
+      "macau.svg"
+    ],
+    "bio": "The Guia Street Circuit through Macau's colonial streets is widely considered the most dangerous circuit still in active use. Concrete barriers are centimetres from the racing line, and the 6.2km lap through the city demands absolute precision at speeds that punish any mistake permanently."
   },
   {
     "slug": "madrid",
-    "name": "Madrid Circuit",
+    "name": "Jarama Circuit",
     "city": "Madrid",
     "country": "Spain",
     "continent": "europe",
-    "browserSvg": "madrid.svg",
-    "calendarSvgs": ["madrid.svg"]
+    "browserSvg": "madrid-fe.svg",
+    "calendarSvgs": [
+      "madrid-fe.svg"
+    ],
+    "bio": "The Jarama circuit on the northern outskirts of Madrid hosted the Spanish Grand Prix in 1968, 1970, 1972, 1974, 1976, 1978, and 1981 before losing the race to Catalunya. Its fast, flowing layout now hosts the Formula E Madrid E-Prix."
+  },
+  {
+    "slug": "madrid-f1",
+    "name": "Madrid Circuit (Madring)",
+    "city": "Madrid",
+    "country": "Spain",
+    "continent": "europe",
+    "calendarSvgs": [
+      "madrid-f1.svg"
+    ],
+    "bio": "The Madring — officially the Madrid Circuit — is currently under construction at the IFEMA convention complex outside Madrid. It will host the Spanish Grand Prix from 2026 onward, replacing the long-running Barcelona race."
   },
   {
     "slug": "magny-cours",
@@ -526,8 +773,10 @@
     "city": "Magny-Cours",
     "country": "France",
     "continent": "europe",
-    "browserSvg": "magny-cours.svg",
-    "calendarSvgs": ["magny-cours.svg"]
+    "calendarSvgs": [
+      "magny-cours.svg"
+    ],
+    "bio": "Nevers Magny-Cours in central France hosted the Formula 1 French Grand Prix from 1991 to 2008. Its remote location contributed to its eventual removal from the calendar, but its technical layout remains a regular fixture in the ELMS and WSBK calendars."
   },
   {
     "slug": "mandalika",
@@ -535,8 +784,10 @@
     "city": "Lombok",
     "country": "Indonesia",
     "continent": "asia",
-    "browserSvg": "mandalika.svg",
-    "calendarSvgs": ["mandalika.svg"]
+    "calendarSvgs": [
+      "mandalika.svg"
+    ],
+    "bio": "The Pertamina Mandalika Street Circuit on the island of Lombok opened for MotoGP in 2022. Its coastal setting and capacity for 150,000 spectators make it one of the most ambitious venues added to the calendar in decades."
   },
   {
     "slug": "markham",
@@ -544,8 +795,10 @@
     "city": "Markham",
     "country": "Canada",
     "continent": "north-america",
-    "browserSvg": "markham.svg",
-    "calendarSvgs": ["markham.svg"]
+    "calendarSvgs": [
+      "markham.svg"
+    ],
+    "bio": "The Streets of Markham circuit north of Toronto is one of IndyCar's newest venues. Canada's second IndyCar street circuit after Long Beach, it reflects the series' growing presence in major North American cities."
   },
   {
     "slug": "martinsville",
@@ -553,8 +806,11 @@
     "city": "Martinsville",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "martinsville.svg",
-    "calendarSvgs": ["martinsville.svg"]
+    "browserSvg": "martinsville-oval.svg",
+    "calendarSvgs": [
+      "martinsville-oval.svg"
+    ],
+    "bio": "America's oldest NASCAR oval still in use, the Martinsville paperclip has been racing since 1947. At 0.526 miles, its flat corners and straightaways are a bumper-to-bumper short-track exercise in patience and aggression."
   },
   {
     "slug": "mexico-city",
@@ -562,8 +818,27 @@
     "city": "Mexico City",
     "country": "Mexico",
     "continent": "north-america",
-    "browserSvg": "mexico.svg",
-    "calendarSvgs": ["mexico.svg"]
+    "browserSvg": "mexico-fe.svg",
+    "calendarSvgs": [
+      "mexico-fe.svg"
+    ],
+    "layouts": [
+      {
+        "id": "f1",
+        "label": "F1 – Full Circuit",
+        "calendarSvgs": [
+          "mexico.svg"
+        ]
+      },
+      {
+        "id": "fe",
+        "label": "Formula E – Foro Sol",
+        "calendarSvgs": [
+          "mexico-fe.svg"
+        ]
+      }
+    ],
+    "bio": "The Autodromo Hermanos Rodriguez sits 2,250 metres above sea level in Mexico City, making it the highest circuit on any World Championship calendar. The legendary Peraltada banked final corner and the Foro Sol stadium section are its defining features."
   },
   {
     "slug": "miami",
@@ -572,11 +847,27 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "miami.svg",
-    "calendarSvgs": ["miami.svg", "miami-f1.svg"],
+    "calendarSvgs": [
+      "miami.svg",
+      "miami-fe.svg"
+    ],
     "layouts": [
-      { "id": "f1", "label": "F1 / F1 Academy", "calendarSvgs": ["miami-f1.svg"] },
-      { "id": "fe", "label": "Formula E", "calendarSvgs": ["miami.svg"] }
-    ]
+      {
+        "id": "f1",
+        "label": "F1 / F1 Academy",
+        "calendarSvgs": [
+          "miami-f1.svg"
+        ]
+      },
+      {
+        "id": "fe",
+        "label": "Formula E",
+        "calendarSvgs": [
+          "miami.svg"
+        ]
+      }
+    ],
+    "bio": "The Hard Rock Stadium circuit debuted in 2022 and encircles the NFL venue in Miami Gardens. An artificial marina, long straights, and an enclosed stadium section give it a very American spectacle feel distinct from traditional F1 venues."
   },
   {
     "slug": "michigan",
@@ -584,8 +875,10 @@
     "city": "Brooklyn",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "michigan.svg",
-    "calendarSvgs": ["michigan.svg"]
+    "calendarSvgs": [
+      "michigan.svg"
+    ],
+    "bio": "Michigan International Speedway's two-mile high-banked oval produces the fastest average lap speeds in NASCAR, frequently exceeding 200mph. Drafting and aerodynamic positioning are the primary tools for gaining position."
   },
   {
     "slug": "midohio",
@@ -593,8 +886,10 @@
     "city": "Lexington",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "midohio.svg",
-    "calendarSvgs": ["midohio.svg"]
+    "calendarSvgs": [
+      "midohio.svg"
+    ],
+    "bio": "Mid-Ohio Sports Car Course opened in 1962, carved through natural Ohio terrain. Its narrow, twisty layout has no room for error and rewards circuit knowledge accumulated over many laps."
   },
   {
     "slug": "milwaukee",
@@ -602,8 +897,10 @@
     "city": "West Allis",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "milwaukee.svg",
-    "calendarSvgs": ["milwaukee.svg"]
+    "calendarSvgs": [
+      "milwaukee.svg"
+    ],
+    "bio": "The Milwaukee Mile is America's oldest operating motor racing venue, having held races since 1903. The one-mile oval is fast, flat, and brutally simple — a pure test of oval racing craft."
   },
   {
     "slug": "misano",
@@ -611,8 +908,10 @@
     "city": "Misano Adriatico",
     "country": "Italy",
     "continent": "europe",
-    "browserSvg": "misano.svg",
-    "calendarSvgs": ["misano.svg"]
+    "calendarSvgs": [
+      "misano.svg"
+    ],
+    "bio": "The Marco Simoncelli World Circuit on the Adriatic Riviera runs clockwise — unusual in MotoGP. It hosts both MotoGP's San Marino round and WSBK, and carries the name of the Italian rider lost there in 2011."
   },
   {
     "slug": "monaco",
@@ -620,8 +919,10 @@
     "city": "Monaco",
     "country": "Monaco",
     "continent": "europe",
-    "browserSvg": "monaco.svg",
-    "calendarSvgs": ["monaco.svg"]
+    "calendarSvgs": [
+      "monaco.svg"
+    ],
+    "bio": "The Principality's street circuit has barely changed since 1929. Barely wide enough for two cars, utterly unforgiving, and the one race every driver wants to win."
   },
   {
     "slug": "monza",
@@ -629,8 +930,10 @@
     "city": "Monza",
     "country": "Italy",
     "continent": "europe",
-    "browserSvg": "monza.svg",
-    "calendarSvgs": ["monza.svg"]
+    "calendarSvgs": [
+      "monza.svg"
+    ],
+    "bio": "Italy's Temple of Speed has hosted the Italian Grand Prix every year since 1950. Long straights and minimal downforce make it the fastest lap on the F1 calendar."
   },
   {
     "slug": "montreal",
@@ -638,8 +941,10 @@
     "city": "Montréal",
     "country": "Canada",
     "continent": "north-america",
-    "browserSvg": "montreal.svg",
-    "calendarSvgs": ["montreal.svg"]
+    "calendarSvgs": [
+      "montreal.svg"
+    ],
+    "bio": "Île Notre-Dame's circuit was built on land reclaimed for Expo 67. Its Wall of Champions has claimed more careers than most, and the Casino hairpin produces some of the most dramatic late-braking duels in the sport."
   },
   {
     "slug": "mosport",
@@ -647,8 +952,10 @@
     "city": "Bowmanville",
     "country": "Canada",
     "continent": "north-america",
-    "browserSvg": "mosport.svg",
-    "calendarSvgs": ["mosport.svg"]
+    "calendarSvgs": [
+      "mosport.svg"
+    ],
+    "bio": "Canadian Tire Motorsport Park opened in 1961 in hilly Ontario countryside. Its long, undulating lap and fast corners have made it one of the most respected — and unforgiving — circuits in North America."
   },
   {
     "slug": "most",
@@ -656,8 +963,10 @@
     "city": "Most",
     "country": "Czech Republic",
     "continent": "europe",
-    "browserSvg": "most.svg",
-    "calendarSvgs": ["most.svg"]
+    "calendarSvgs": [
+      "most.svg"
+    ],
+    "bio": "Autodrom Most in the Czech Republic is one of the newest facilities regularly used in DTM. Its tight, technical layout in the Bohemian countryside joined the premier touring car calendar in 2021."
   },
   {
     "slug": "motegi",
@@ -666,7 +975,10 @@
     "country": "Japan",
     "continent": "asia",
     "browserSvg": "motegi.svg",
-    "calendarSvgs": ["motegi.svg"]
+    "calendarSvgs": [
+      "motegi.svg"
+    ],
+    "bio": "Honda's home circuit in the Tochigi hills has a distinctive mix of the original oval section and the technical infield. It hosts MotoGP's Japanese round and is one of the sport's most important commercial weekends."
   },
   {
     "slug": "mugello",
@@ -675,7 +987,10 @@
     "country": "Italy",
     "continent": "europe",
     "browserSvg": "mugello.svg",
-    "calendarSvgs": ["mugello.svg"]
+    "calendarSvgs": [
+      "mugello.svg"
+    ],
+    "bio": "Owned by Ferrari and tucked into the Tuscan Apennines, Mugello's high-speed flowing layout is widely considered the most beautiful permanent circuit in Europe."
   },
   {
     "slug": "nashville",
@@ -683,8 +998,10 @@
     "city": "Lebanon",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "nashville.svg",
-    "calendarSvgs": ["nashville.svg"]
+    "calendarSvgs": [
+      "nashville.svg"
+    ],
+    "bio": "Nashville Superspeedway is a 1.33-mile concrete D-oval east of the city. Returned to the top-tier NASCAR and IndyCar calendars after years of dormancy, its concrete surface and tight D-shape produce close, physical racing."
   },
   {
     "slug": "newhampshire",
@@ -692,8 +1009,10 @@
     "city": "Loudon",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "newhampshire.svg",
-    "calendarSvgs": ["newhampshire.svg"]
+    "calendarSvgs": [
+      "newhampshire.svg"
+    ],
+    "bio": "New Hampshire Motor Speedway's Magic Mile is a flat, one-mile oval in Loudon. Precision braking and late-apex corner entry are the defining skills — subtle differences in entry and exit angles separate results."
   },
   {
     "slug": "norisring",
@@ -701,8 +1020,10 @@
     "city": "Nuremberg",
     "country": "Germany",
     "continent": "europe",
-    "browserSvg": "norisring.svg",
-    "calendarSvgs": ["norisring.svg"]
+    "calendarSvgs": [
+      "norisring.svg"
+    ],
+    "bio": "The Norisring runs around the former Nazi Party rally grounds in Nuremberg city centre. At 2.3km it's the shortest circuit in DTM, and its tight hairpin combined with the long Schöller straight produces one of the most intense overtaking spots in German motorsport."
   },
   {
     "slug": "nordschleife",
@@ -711,7 +1032,10 @@
     "country": "Germany",
     "continent": "europe",
     "browserSvg": "nordschleife.svg",
-    "calendarSvgs": ["nordschleife.svg"]
+    "calendarSvgs": [
+      "nordschleife.svg"
+    ],
+    "bio": "Twenty kilometres, 154 corners, and no run-off. The Nordschleife has been the world's definitive proving ground since 1927 — Jackie Stewart called it the Green Hell."
   },
   {
     "slug": "northwilkesboro",
@@ -719,8 +1043,10 @@
     "city": "North Wilkesboro",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "northwilkesboro.svg",
-    "calendarSvgs": ["northwilkesboro.svg"]
+    "calendarSvgs": [
+      "northwilkesboro.svg"
+    ],
+    "bio": "North Wilkesboro Speedway is a historic North Carolina short track that closed in 1996. Revived in 2023 for the All-Star Race, it returned racing to one of NASCAR's most significant original venues."
   },
   {
     "slug": "nurburgring-gp",
@@ -728,8 +1054,8 @@
     "city": "Nürburg",
     "country": "Germany",
     "continent": "europe",
-    "browserSvg": "nurburgring.svg",
-    "calendarSvgs": ["nurburgring.svg"]
+    "calendarSvgs": [],
+    "bio": "The modern GP circuit sits alongside the Nordschleife and hosts the German rounds of the DTM and NLS endurance series. Compact but technical, it punishes mistakes without mercy."
   },
   {
     "slug": "oschersleben",
@@ -737,8 +1063,10 @@
     "city": "Oschersleben",
     "country": "Germany",
     "continent": "europe",
-    "browserSvg": "oschersleben.svg",
-    "calendarSvgs": ["oschersleben.svg"]
+    "calendarSvgs": [
+      "oschersleben.svg"
+    ],
+    "bio": "Motorsport Arena Oschersleben in Saxony-Anhalt is one of Germany's few permanent road circuits. A regular DTM and European championship venue, its tight infield section and long back straight produce varied racing."
   },
   {
     "slug": "oulton-park",
@@ -746,8 +1074,10 @@
     "city": "Tarporley",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "oulton-park.svg",
-    "calendarSvgs": ["oulton-park.svg"]
+    "calendarSvgs": [
+      "oulton-park.svg"
+    ],
+    "bio": "Set in a Cheshire deer park with dramatic elevation changes and flowing corners, Oulton Park is widely considered the most beautiful permanent circuit in the UK. Its technical layout rewards driver skill over raw machinery."
   },
   {
     "slug": "paul-ricard",
@@ -756,7 +1086,10 @@
     "country": "France",
     "continent": "europe",
     "browserSvg": "paul-ricard.svg",
-    "calendarSvgs": ["paul-ricard.svg"]
+    "calendarSvgs": [
+      "paul-ricard.svg"
+    ],
+    "bio": "Circuit Paul Ricard on the Castellet plateau above Marseille is famous for its blue-painted asphalt run-offs that eliminate gravel traps entirely. It served as F1's French GP venue from 2018 to 2022 and remains the primary European test circuit."
   },
   {
     "slug": "perth",
@@ -764,8 +1097,10 @@
     "city": "Perth",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "perth.svg",
-    "calendarSvgs": ["perth.svg"]
+    "calendarSvgs": [
+      "perth.svg"
+    ],
+    "bio": "Wanneroo Raceway in Western Australia is the sole permanent circuit in the west of the country. Its smooth surface and multiple configurations provide a regular stop for national-level Australian motorsport."
   },
   {
     "slug": "phillip-island",
@@ -773,8 +1108,11 @@
     "city": "Phillip Island",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "phillip-island.svg",
-    "calendarSvgs": ["phillip-island.svg"]
+    "browserSvg": "phillip-island-wsbk.svg",
+    "calendarSvgs": [
+      "phillip-island-wsbk.svg"
+    ],
+    "bio": "A windswept peninsula off the Victorian coast, Phillip Island's fast layout and compressed lap times make for relentless wheel-to-wheel racing in MotoGP and WSBK."
   },
   {
     "slug": "phoenix",
@@ -782,8 +1120,11 @@
     "city": "Avondale",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "phoenix.svg",
-    "calendarSvgs": ["phoenix.svg"]
+    "browserSvg": "phoenix-oval.svg",
+    "calendarSvgs": [
+      "phoenix-oval.svg"
+    ],
+    "bio": "Phoenix Raceway's one-mile D-oval in the Arizona desert is one of NASCAR's most technically demanding ovals. Its unique quad-oval shape and variable banking make every lane a different strategic calculation."
   },
   {
     "slug": "pocono",
@@ -791,8 +1132,10 @@
     "city": "Long Pond",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "pocono.svg",
-    "calendarSvgs": ["pocono.svg"]
+    "calendarSvgs": [
+      "pocono.svg"
+    ],
+    "bio": "Pocono Raceway's triangular layout in the Pennsylvania mountains is unique in NASCAR — each of its three turns has different banking and a different radius, requiring three distinct setups in one lap."
   },
   {
     "slug": "portimao",
@@ -801,7 +1144,10 @@
     "country": "Portugal",
     "continent": "europe",
     "browserSvg": "portimao.svg",
-    "calendarSvgs": ["portimao.svg"]
+    "calendarSvgs": [
+      "portimao.svg"
+    ],
+    "bio": "The Algarve circuit's sweeping blind crests and dramatic elevation changes make it one of the most visually spectacular venues on any calendar — and one of the hardest to learn."
   },
   {
     "slug": "portland",
@@ -809,8 +1155,10 @@
     "city": "Portland",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "portland.svg",
-    "calendarSvgs": ["portland.svg"]
+    "calendarSvgs": [
+      "portland.svg"
+    ],
+    "bio": "Portland International Raceway has operated since 1961 on the Columbia River flood plain in northwest Oregon. Its distinctive carousel hairpin and flowing back section make it a unique circuit in the IndyCar calendar."
   },
   {
     "slug": "red-bull-ring",
@@ -819,11 +1167,27 @@
     "country": "Austria",
     "continent": "europe",
     "browserSvg": "red-bull-ring.svg",
-    "calendarSvgs": ["red-bull-ring.svg", "red-bull-ring-moto.svg"],
+    "calendarSvgs": [
+      "red-bull-ring.svg",
+      "red-bull-ring-motogp.svg"
+    ],
     "layouts": [
-      { "id": "gp", "label": "GP Layout (F1 / DTM)", "calendarSvgs": ["red-bull-ring.svg"] },
-      { "id": "motogp", "label": "MotoGP Layout", "calendarSvgs": ["red-bull-ring-moto.svg"] }
-    ]
+      {
+        "id": "gp",
+        "label": "GP Layout (F1 / DTM)",
+        "calendarSvgs": [
+          "red-bull-ring.svg"
+        ]
+      },
+      {
+        "id": "motogp",
+        "label": "MotoGP Layout",
+        "calendarSvgs": [
+          "red-bull-ring-moto.svg"
+        ]
+      }
+    ],
+    "bio": "Set in the Styrian Alps at 700 metres elevation, the circuit's short 4.3km lap and dramatic gradient changes produce some of the most compact and intense racing in Europe."
   },
   {
     "slug": "richmond",
@@ -831,8 +1195,10 @@
     "city": "Richmond",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "richmond.svg",
-    "calendarSvgs": ["richmond.svg"]
+    "calendarSvgs": [
+      "richmond.svg"
+    ],
+    "bio": "Richmond Raceway's 0.75-mile D-oval is known for consistent late-race battles and tire degradation that rewards pit strategy. Its smooth surface and multiple grooves make it one of the most reliably entertaining ovals on the schedule."
   },
   {
     "slug": "road-america",
@@ -840,8 +1206,10 @@
     "city": "Elkhart Lake",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "road-america.svg",
-    "calendarSvgs": ["road-america.svg"]
+    "calendarSvgs": [
+      "road-america.svg"
+    ],
+    "bio": "Wisconsin's 6.5km permanent road course is among the longest and fastest in North America, with wide sweeping corners and elevation changes that reward commitment."
   },
   {
     "slug": "road-atlanta",
@@ -849,8 +1217,10 @@
     "city": "Braselton",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "road-atlanta.svg",
-    "calendarSvgs": ["road-atlanta.svg"]
+    "calendarSvgs": [
+      "road-atlanta.svg"
+    ],
+    "bio": "Georgia's demanding permanent circuit is defined by its downhill compression at the back straight esses. Home of the Petit Le Mans, Road Atlanta's combination of flat-out commitment and blind corners makes it a driver's track."
   },
   {
     "slug": "sachsenring",
@@ -858,8 +1228,10 @@
     "city": "Hohenstein-Ernstthal",
     "country": "Germany",
     "continent": "europe",
-    "browserSvg": "sachsenring.svg",
-    "calendarSvgs": ["sachsenring.svg"]
+    "calendarSvgs": [
+      "sachsenring.svg"
+    ],
+    "bio": "A tight, left-hand-dominated circuit in eastern Germany that became the circuit of Marc Márquez, who won the German Grand Prix ten consecutive times. Its short 3.7km lap produces intense, technical riding."
   },
   {
     "slug": "sandiego",
@@ -867,8 +1239,10 @@
     "city": "San Diego",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "sandiego.svg",
-    "calendarSvgs": ["sandiego.svg"]
+    "calendarSvgs": [
+      "sandiego.svg"
+    ],
+    "bio": "The Streets of San Diego circuit runs through downtown San Diego's Embarcadero and harbor district. One of IndyCar's newer street circuits, added to provide a West Coast presence on the calendar."
   },
   {
     "slug": "sandown",
@@ -876,8 +1250,10 @@
     "city": "Springvale South",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "sandown.svg",
-    "calendarSvgs": ["sandown.svg"]
+    "calendarSvgs": [
+      "sandown.svg"
+    ],
+    "bio": "Sandown Raceway in suburban Melbourne has hosted Supercars since the 1960s. Its undulating layout and Sandown 500 endurance race are fixtures in the Australian touring car calendar."
   },
   {
     "slug": "sanya",
@@ -885,8 +1261,10 @@
     "city": "Sanya",
     "country": "China",
     "continent": "asia",
-    "browserSvg": "sanya.svg",
-    "calendarSvgs": ["sanya.svg"]
+    "calendarSvgs": [
+      "sanya.svg"
+    ],
+    "bio": "Sanya's waterfront Formula E circuit on Hainan Island was part of the series' push into China's booming motorsport market."
   },
   {
     "slug": "sebring",
@@ -895,7 +1273,10 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "sebring.svg",
-    "calendarSvgs": ["sebring.svg"]
+    "calendarSvgs": [
+      "sebring.svg"
+    ],
+    "bio": "Florida's wartime airfield turned race circuit has hosted endurance racing since 1950. The concrete joins between runway sections make the 12 Hours of Sebring the most punishing ride quality of any endurance race in North America."
   },
   {
     "slug": "sepang",
@@ -903,8 +1284,10 @@
     "city": "Sepang",
     "country": "Malaysia",
     "continent": "asia",
-    "browserSvg": "sepang.svg",
-    "calendarSvgs": ["sepang.svg"]
+    "calendarSvgs": [
+      "sepang.svg"
+    ],
+    "bio": "Hermann Tilke's 1999 tropical masterpiece hosted the Malaysian Grand Prix for 19 years. Thunderstorm afternoon races, extreme humidity, and distinctive twin grandstand became defining images of early 2000s F1."
   },
   {
     "slug": "shanghai",
@@ -913,7 +1296,21 @@
     "country": "China",
     "continent": "asia",
     "browserSvg": "shanghai.svg",
-    "calendarSvgs": ["shanghai.svg"]
+    "calendarSvgs": [
+      "shanghai.svg"
+    ],
+    "bio": "The Shanghai International Circuit opened in 2004 with a distinctive sweep-shaped main grandstand. Its long back straight and tight final hairpin produce consistent overtaking, though the Chinese GP has had an inconsistent place on the calendar."
+  },
+  {
+    "slug": "shanghai-fe",
+    "name": "Shanghai E-Prix Circuit",
+    "city": "Shanghai",
+    "country": "China",
+    "continent": "asia",
+    "calendarSvgs": [
+      "shanghai-fe.svg"
+    ],
+    "bio": "Formula E's Shanghai circuit is a distinct layout from the F1 International Circuit, using a purpose-built section of the facility. It returns the series to China's most international city after several years away."
   },
   {
     "slug": "silverstone",
@@ -921,8 +1318,10 @@
     "city": "Silverstone",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "silverstone.svg",
-    "calendarSvgs": ["silverstone.svg"]
+    "calendarSvgs": [
+      "silverstone.svg"
+    ],
+    "bio": "A wartime airfield turned into the home of British motorsport. It hosted the very first FIA World Championship round in May 1950 and has barely missed a year since."
   },
   {
     "slug": "singapore",
@@ -930,8 +1329,10 @@
     "city": "Singapore",
     "country": "Singapore",
     "continent": "asia",
-    "browserSvg": "singapore.svg",
-    "calendarSvgs": ["singapore.svg"]
+    "calendarSvgs": [
+      "singapore.svg"
+    ],
+    "bio": "Formula 1's first permanent night race since 1985, Marina Bay's floodlit street circuit is one of the most physically demanding on the calendar. Ninety-two minutes of humidity, walls, and zero margin for error."
   },
   {
     "slug": "snetterton",
@@ -939,8 +1340,10 @@
     "city": "Snetterton",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "snetterton.svg",
-    "calendarSvgs": ["snetterton.svg"]
+    "calendarSvgs": [
+      "snetterton.svg"
+    ],
+    "bio": "Norfolk's Snetterton circuit was substantially redesigned in 2011. Its long back straight and technical final sector provide a varied challenge that rewards both outright pace and mechanical balance."
   },
   {
     "slug": "sonoma",
@@ -949,7 +1352,26 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "sonoma.svg",
-    "calendarSvgs": ["sonoma.svg"]
+    "calendarSvgs": [
+      "sonoma.svg"
+    ],
+    "layouts": [
+      {
+        "id": "full",
+        "label": "Full Circuit (GTWCA)",
+        "calendarSvgs": [
+          "sonoma.svg"
+        ]
+      },
+      {
+        "id": "nascar",
+        "label": "NASCAR Chute Config",
+        "calendarSvgs": [
+          "sonoma-nascar.svg"
+        ]
+      }
+    ],
+    "bio": "Sonoma Raceway's main 2.52-mile road course through the California wine country is one of North America's most loved permanent circuits. Its carousel, elevation changes, and setting make it a driver and fan favourite. NASCAR runs a shorter layout bypassing the Carousel."
   },
   {
     "slug": "spa",
@@ -958,7 +1380,10 @@
     "country": "Belgium",
     "continent": "europe",
     "browserSvg": "spa.svg",
-    "calendarSvgs": ["spa.svg"]
+    "calendarSvgs": [
+      "spa.svg"
+    ],
+    "bio": "Seven kilometres of Ardennes forest, Eau Rouge, and a microclimate capable of producing four seasons in a single lap. The benchmark circuit in European motorsport."
   },
   {
     "slug": "st-petersburg",
@@ -967,7 +1392,10 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "st-petersburg.svg",
-    "calendarSvgs": ["st-petersburg.svg"]
+    "calendarSvgs": [
+      "st-petersburg.svg"
+    ],
+    "bio": "Downtown St. Petersburg's temporary circuit uses part of the Albert Whitted Airport runway and waterfront streets. One of the most visually distinctive street venues in IndyCar, with palm trees and the bay as backdrop."
   },
   {
     "slug": "sugo",
@@ -975,8 +1403,10 @@
     "city": "Murata",
     "country": "Japan",
     "continent": "asia",
-    "browserSvg": "sugo.svg",
-    "calendarSvgs": ["sugo.svg"]
+    "calendarSvgs": [
+      "sugo.svg"
+    ],
+    "bio": "Sportsland Sugo in Miyagi prefecture is a compact, technical Japanese road circuit set in the hills north of Sendai. Its tight layout and limited run-off demand precision and have made it a staple of domestic Japanese racing."
   },
   {
     "slug": "suzuka",
@@ -985,7 +1415,10 @@
     "country": "Japan",
     "continent": "asia",
     "browserSvg": "suzuka.svg",
-    "calendarSvgs": ["suzuka.svg"]
+    "calendarSvgs": [
+      "suzuka.svg"
+    ],
+    "bio": "John Hugenholtz's figure-of-eight layout from 1962 is a driver's circuit: the Esses, 130R, and a punishing final chicane reward precision over raw power."
   },
   {
     "slug": "sydney",
@@ -994,7 +1427,10 @@
     "country": "Australia",
     "continent": "oceania",
     "browserSvg": "sydney.svg",
-    "calendarSvgs": ["sydney.svg"]
+    "calendarSvgs": [
+      "sydney.svg"
+    ],
+    "bio": "Sydney Motorsport Park at Eastern Creek is the primary permanent circuit in New South Wales. Its multiple configurations and large pit complex have made it the centre of motorsport infrastructure on Australia's east coast."
   },
   {
     "slug": "talladega",
@@ -1003,7 +1439,10 @@
     "country": "USA",
     "continent": "north-america",
     "browserSvg": "talladega.svg",
-    "calendarSvgs": ["talladega.svg"]
+    "calendarSvgs": [
+      "talladega.svg"
+    ],
+    "bio": "At 2.66 miles, Talladega is the longest oval in NASCAR. Steep banking and restrictor plates compress 40 cars into a single hurtling pack — the result is the most chaotic, unpredictable racing in the sport."
   },
   {
     "slug": "tasmania",
@@ -1011,8 +1450,10 @@
     "city": "Launceston",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "tasmania.svg",
-    "calendarSvgs": ["tasmania.svg"]
+    "calendarSvgs": [
+      "tasmania.svg"
+    ],
+    "bio": "Symmons Plains Raceway is a compact 2.4km circuit in northern Tasmania. Despite its small size, its high-speed bowl section and flowing infield make it one of the most crowd-pleasing circuits on the Supercars calendar."
   },
   {
     "slug": "taupo",
@@ -1021,7 +1462,10 @@
     "country": "New Zealand",
     "continent": "oceania",
     "browserSvg": "taupo.svg",
-    "calendarSvgs": ["taupo.svg"]
+    "calendarSvgs": [
+      "taupo.svg"
+    ],
+    "bio": "Bruce McLaren Motorsport Park in Taupō, New Zealand, is the country's primary permanent road circuit. Set beside Lake Taupō, it honours the hometown of the greatest racing driver New Zealand has ever produced."
   },
   {
     "slug": "the-bend",
@@ -1029,8 +1473,10 @@
     "city": "Tailem Bend",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "the-bend.svg",
-    "calendarSvgs": ["the-bend.svg"]
+    "calendarSvgs": [
+      "the-bend.svg"
+    ],
+    "bio": "The Bend Motorsport Park in South Australia opened in 2018 as the country's newest and most comprehensively equipped permanent circuit. At 7.77km in its full configuration, it is the longest circuit in Australia."
   },
   {
     "slug": "thruxton",
@@ -1038,8 +1484,10 @@
     "city": "Andover",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "thruxton.svg",
-    "calendarSvgs": ["thruxton.svg"]
+    "calendarSvgs": [
+      "thruxton.svg"
+    ],
+    "bio": "Hampshire's wartime airfield circuit is the fastest track on the BTCC calendar. Its open, flowing layout and long Allard complex generate the highest average speeds in British touring car racing."
   },
   {
     "slug": "tokyo",
@@ -1047,8 +1495,10 @@
     "city": "Tokyo",
     "country": "Japan",
     "continent": "asia",
-    "browserSvg": "tokyo.svg",
-    "calendarSvgs": ["tokyo.svg"]
+    "calendarSvgs": [
+      "tokyo.svg"
+    ],
+    "bio": "Formula E's Tokyo E-Prix street circuit runs through the city's coastal district, threading between exhibition halls and waterfront infrastructure. It represents the series' ambition to race in the heart of the world's largest city."
   },
   {
     "slug": "townsville",
@@ -1056,8 +1506,10 @@
     "city": "Townsville",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "townsville.svg",
-    "calendarSvgs": ["townsville.svg"]
+    "calendarSvgs": [
+      "townsville.svg"
+    ],
+    "bio": "Reid Park Street Circuit in North Queensland has hosted Supercars since 2009. Its tight barriers and limited overtaking zones make strategy and the safety car decisive factors in the Townsville 500."
   },
   {
     "slug": "valencia",
@@ -1065,8 +1517,10 @@
     "city": "Valencia",
     "country": "Spain",
     "continent": "europe",
-    "browserSvg": "valencia.svg",
-    "calendarSvgs": ["valencia.svg"]
+    "calendarSvgs": [
+      "valencia.svg"
+    ],
+    "bio": "Circuit Ricardo Tormo near Valencia is one of MotoGP's slowest circuits, its tight infield requiring maximum braking and acceleration. It traditionally closes the MotoGP season as the season finale venue."
   },
   {
     "slug": "vila-real",
@@ -1074,8 +1528,10 @@
     "city": "Vila Real",
     "country": "Portugal",
     "continent": "europe",
-    "browserSvg": "vila-real.svg",
-    "calendarSvgs": ["vila-real.svg"]
+    "calendarSvgs": [
+      "vila-real.svg"
+    ],
+    "bio": "The Circuito Internacional de Vila Real has held road racing in the streets of the Portuguese city since 1931. At 4.785km it is one of the longer active street circuits in European motorsport, and has hosted the TCR World Tour since 2015."
   },
   {
     "slug": "vir",
@@ -1083,8 +1539,10 @@
     "city": "Alton",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "vir.svg",
-    "calendarSvgs": ["vir.svg"]
+    "calendarSvgs": [
+      "vir.svg"
+    ],
+    "bio": "Virginia International Raceway sits in the Piedmont countryside and has been a club racing landmark since 1957. Its multiple configurations and smooth surface made it a hidden gem before professional series rediscovered it."
   },
   {
     "slug": "watkins-glen",
@@ -1092,8 +1550,10 @@
     "city": "Watkins Glen",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "watkins-glen.svg",
-    "calendarSvgs": ["watkins-glen.svg"]
+    "calendarSvgs": [
+      "watkins-glen.svg"
+    ],
+    "bio": "The Glen has been at the heart of American road racing since 1948, when the original race ran on public streets through the town. The permanent circuit cut through the New York hills since 1956 and hosted F1 from 1961 to 1980."
   },
   {
     "slug": "yas-marina",
@@ -1101,8 +1561,10 @@
     "city": "Abu Dhabi",
     "country": "UAE",
     "continent": "middle-east",
-    "browserSvg": "yas-marina.svg",
-    "calendarSvgs": ["yas-marina.svg"]
+    "calendarSvgs": [
+      "yas-marina.svg"
+    ],
+    "bio": "Abu Dhabi's season finale venue opened in 2009 beneath the Yas Viceroy hotel. A 2022 layout revision transformed it from a processional into one of the genuinely more exciting circuits on the calendar."
   },
   {
     "slug": "zandvoort",
@@ -1110,8 +1572,10 @@
     "city": "Zandvoort",
     "country": "Netherlands",
     "continent": "europe",
-    "browserSvg": "zandvoort.svg",
-    "calendarSvgs": ["zandvoort.svg"]
+    "calendarSvgs": [
+      "zandvoort.svg"
+    ],
+    "bio": "The Dutch Grand Prix returned in 2021 after a 36-year absence. Zandvoort's banked Hugenholtz and Arie Luyendyk corners are unique in modern F1, and 100,000 orange-clad fans make it the loudest race weekend in the sport."
   },
   {
     "slug": "zhuzhou",
@@ -1119,7 +1583,86 @@
     "city": "Zhuzhou",
     "country": "China",
     "continent": "asia",
-    "browserSvg": "zhuzhou.svg",
-    "calendarSvgs": ["zhuzhou.svg"]
+    "calendarSvgs": [
+      "zhuzhou.svg"
+    ],
+    "bio": "Zhuzhou International Circuit in Hunan province is a permanent motorsport facility in central China, serving the country's expanding domestic racing market."
+  },
+  {
+    "slug": "bikernierki",
+    "name": "Biķernieki Circuit",
+    "city": "Riga",
+    "country": "Latvia",
+    "continent": "europe",
+    "calendarSvgs": [
+      "bikernierki.svg"
+    ],
+    "bio": "The Biķernieki Complex in Riga is Latvia's premier motorsport venue, hosting rallycross, circuit racing, and karting events within a large forested park."
+  },
+  {
+    "slug": "nyirad",
+    "name": "Nyirád Racing Centre",
+    "city": "Nyirád",
+    "country": "Hungary",
+    "continent": "europe",
+    "calendarSvgs": [
+      "nyirad.svg"
+    ],
+    "bio": "The Nyirád Racing Centre is a compact, purpose-built rallycross facility in western Hungary, known for its mix of asphalt and gravel surfaces."
+  },
+  {
+    "slug": "holjes",
+    "name": "Höljes Motorstadion",
+    "city": "Höljes",
+    "country": "Sweden",
+    "continent": "europe",
+    "calendarSvgs": [
+      "holjes.svg"
+    ],
+    "bio": "Höljes Motorstadion in rural Värmland, Sweden, is widely regarded as the spiritual home of rallycross, drawing massive crowds for the annual Magic Weekend."
+  },
+  {
+    "slug": "mondello",
+    "name": "Mondello Park",
+    "city": "Naas",
+    "country": "Ireland",
+    "continent": "europe",
+    "calendarSvgs": [
+      "mondello.svg"
+    ],
+    "bio": "Mondello Park is Ireland's only permanent motor racing circuit, located in County Kildare, and hosts a wide variety of national and international events."
+  },
+  {
+    "slug": "loheac",
+    "name": "Circuit de Lohéac",
+    "city": "Lohéac",
+    "country": "France",
+    "continent": "europe",
+    "calendarSvgs": [
+      "loheac.svg"
+    ],
+    "bio": "Circuit de Lohéac in Brittany is France's most celebrated rallycross venue, renowned for its passionate spectators and demanding mixed-surface layout."
+  },
+  {
+    "slug": "lousada",
+    "name": "Circuito de Lousada",
+    "city": "Lousada",
+    "country": "Portugal",
+    "continent": "europe",
+    "calendarSvgs": [
+      "lousada.svg"
+    ],
+    "bio": "The Circuito de Lousada is a compact rallycross and circuit venue in northern Portugal, long associated with the country's strong rallying and rallycross culture."
+  },
+  {
+    "slug": "jakarta",
+    "name": "Jakarta International E-Prix Circuit",
+    "city": "Jakarta",
+    "country": "Indonesia",
+    "continent": "asia",
+    "calendarSvgs": [
+      "jakarta.svg"
+    ],
+    "bio": "The Jakarta International E-Prix Circuit is a temporary street circuit in the Indonesian capital, built across the Ancol waterfront area, hosting Formula E and the 2026 FIA Rallycross World Cup."
   }
 ]

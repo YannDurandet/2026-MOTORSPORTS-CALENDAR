@@ -14,6 +14,34 @@ const grouped = categoryOrder.map(cat => ({
   category: cat,
   series: (seriesContent as any[]).filter((s: any) => s.category === cat),
 })).filter(g => g.series.length > 0);
+
+const seriesImages: Record<string, string> = {
+  'f1':       'f1-series-bg.webp',
+  'f1a':      'f1a-series-bg.webp',
+  'fe':       'fe-series-bg.webp',
+  'sf':       'sf-series-bg.webp',
+  'wec':      'wec-series-bg.webp',
+  'imsa':     'imsa-series-bg.webp',
+  'wrc':      'wrc-series-bg.webp',
+  'erc':      'erc-series-bg.webp',
+  'indycar':  'indycar-series-bg.webp',
+  'nascar':   'nascar-series-bg.webp',
+  'motogp':   'motogp-series-bg.webp',
+  'wsbk':     'wsbk-series-bg.webp',
+  'dtm':      'dtm-series-bg.webp',
+  'btcc':     'btcc-series-bg.webp',
+  'supercars':'scc-series-bg.webp',
+  'elms':     'elms-series-bg.webp',
+  'gtwce':    'gtwce-series-bg.webp',
+  'gtwca':    'gtwca-series-bg.webp',
+  'nls':      'nls-series-bg.webp',
+  'igtc':     'igtc-series-bg.webp',
+  'tcr':      'tcr-series-bg.webp',
+  'h24eu':    '24h-series-bg.webp',
+  'psc':      'psc-series-bg.webp',
+  'bgt':      'bgtc-series-bg.webp',
+  'eurx':     'erx-series-bg.webp',
+};
 ---
 <BaseLayout
   title="2026 Racing Series Guide — Motorsport Master Calendar"
@@ -22,22 +50,27 @@ const grouped = categoryOrder.map(cat => ({
   <Banner />
   <header>
     <div class="header--left">
-      <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Racing<br>Series Guide</h1>
+      <p class="header--page-desc">Every championship on the 2026 calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife.</p>
       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="series" />
     </div>
   </header>
 
   <div class="main-section">
-    <div class="month-header" style="margin-top: 0;">2026 RACING SERIES GUIDE</div>
-    <p class="series-index-intro">Every championship on the master calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife. Click any series for its history, format, and full 2026 calendar.</p>
-
     {grouped.map(group => (
       <>
         <div class="series-index-category">{group.category}</div>
         <div class="series-index-grid">
           {group.series.map((s: any) => (
             <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>
+              <div class="series-index-img-wrap">
+                {seriesImages[s.slug]
+                  ? <img src={`${base}/assets/series-grid-images/${seriesImages[s.slug]}`} alt="" loading="lazy" />
+                  : <div class="series-index-img-placeholder">{s.name}</div>
+                }
+              </div>
               <div class="series-index-accent" style={`background: var(--${s.slug})`}></div>
               <div class="series-index-body">
                 <div class="series-index-name">{s.name}</div>

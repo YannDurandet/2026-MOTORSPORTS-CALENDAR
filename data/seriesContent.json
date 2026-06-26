@@ -9,19 +9,79 @@
     "description": "The FIA Formula One World Championship is the pinnacle of single-seater motor racing, contested across 22 Grands Prix on five continents. Eleven teams, each running two cars, compete simultaneously for the Drivers' and Constructors' championships under a set of regulations that changes with every generation.",
     "history": "Formula 1 was formally constituted in 1950 with the inaugural World Drivers' Championship, won by Giuseppe Farina at the wheel of an Alfa Romeo. Through the following decades it evolved from front-engined roadsters to the ground-effect, turbo, and hybrid eras that define the sport today. The commercial era brought global television audiences in the hundreds of millions and Grands Prix on every inhabited continent. 2026 marks a watershed moment: an entirely new power unit formula — still over 1,000 bhp but with roughly equal contributions from internal combustion and an electric motor — paired with new active aerodynamics. Two new constructors, Audi (via the former Sauber entry) and Cadillac, expand the grid to eleven teams for the first time since 2016.",
     "seasonNotes": "Lando Norris is the reigning Drivers' Champion; McLaren hold the Constructors' title. After 7 rounds, Kimi Antonelli (Mercedes) leads the championship.",
-    "teamsHeaders": ["#", "Team", "Driver 1", "Driver 2"],
+    "teamsHeaders": [
+      "#",
+      "Team",
+      "Driver 1",
+      "Driver 2"
+    ],
     "teamsRows": [
-      ["1", "Red Bull Racing", "Max Verstappen", "Isack Hadjar"],
-      ["2", "Ferrari", "Lewis Hamilton", "Charles Leclerc"],
-      ["3", "Mercedes-AMG", "Kimi Antonelli", "George Russell"],
-      ["4", "McLaren", "Lando Norris", "Oscar Piastri"],
-      ["5", "Aston Martin", "Fernando Alonso", "Lance Stroll"],
-      ["6", "Alpine", "Pierre Gasly", "Franco Colapinto"],
-      ["7", "Racing Bulls", "Liam Lawson", "Arvid Lindblad"],
-      ["8", "Haas", "Esteban Ocon", "Oliver Bearman"],
-      ["9", "Williams", "Alexander Albon", "Carlos Sainz"],
-      ["10", "Audi", "Nico Hülkenberg", "Gabriel Bortoleto"],
-      ["11", "Cadillac", "Sergio Pérez", "Valtteri Bottas"]
+      [
+        "1",
+        "Red Bull Racing",
+        "Max Verstappen",
+        "Isack Hadjar"
+      ],
+      [
+        "2",
+        "Ferrari",
+        "Lewis Hamilton",
+        "Charles Leclerc"
+      ],
+      [
+        "3",
+        "Mercedes-AMG",
+        "Kimi Antonelli",
+        "George Russell"
+      ],
+      [
+        "4",
+        "McLaren",
+        "Lando Norris",
+        "Oscar Piastri"
+      ],
+      [
+        "5",
+        "Aston Martin",
+        "Fernando Alonso",
+        "Lance Stroll"
+      ],
+      [
+        "6",
+        "Alpine",
+        "Pierre Gasly",
+        "Franco Colapinto"
+      ],
+      [
+        "7",
+        "Racing Bulls",
+        "Liam Lawson",
+        "Arvid Lindblad"
+      ],
+      [
+        "8",
+        "Haas",
+        "Esteban Ocon",
+        "Oliver Bearman"
+      ],
+      [
+        "9",
+        "Williams",
+        "Alexander Albon",
+        "Carlos Sainz"
+      ],
+      [
+        "10",
+        "Audi",
+        "Nico Hülkenberg",
+        "Gabriel Bortoleto"
+      ],
+      [
+        "11",
+        "Cadillac",
+        "Sergio Pérez",
+        "Valtteri Bottas"
+      ]
     ]
   },
   {
@@ -33,14 +93,49 @@
     "tagline": "An all-female, Formula 4-level championship founded by Formula One Management, racing at selected F1 weekends.",
     "description": "F1 Academy is an all-female, Formula 4-level single-seater championship founded by Formula One Management in 2023. Racing at selected Formula 1 weekends, it provides professional infrastructure and global visibility to the next generation of female racing drivers.",
     "history": "Launched in 2023 with backing from all ten F1 teams — each sponsoring two cars — F1 Academy filled a gap left by the W Series, which folded in 2022. The series uses a spec Tatuus T-421 chassis with a 1.4-litre turbocharged engine. Its debut season attracted 15 drivers and was won by Marta García. A two-season participation limit keeps the field refreshed, and a Discover Your Drive kart programme now feeds talent directly onto the grid. The 2026 season is the fourth edition, featuring six teams and 18 drivers across 7 event weekends co-located with F1.",
-    "teamsHeaders": ["Team", "Driver 1", "Driver 2", "Driver 3"],
+    "teamsHeaders": [
+      "Team",
+      "Driver 1",
+      "Driver 2",
+      "Driver 3"
+    ],
     "teamsRows": [
-      ["Prema Racing (defending champions)", "Mathilda Paatz", "Payton Westcott", "Natalia Granada"],
-      ["Campos Racing", "Megan Bruce", "Rafaela Ferreira", "Alisha Palmowski"],
-      ["MP Motorsport", "Nina Gademan", "Alba Hurup Larsen", "Esmee Kosterman"],
-      ["Rodin Motorsport", "Ella Lloyd", "Ella Stevens", "Emma Felbermayr"],
-      ["ART Grand Prix", "Jade Jacquet", "Lisa Billard", "Kaylee Countryman"],
-      ["Hitech", "Rachel Robertson", "Ava Dobson", "Wild Card"]
+      [
+        "Prema Racing (defending champions)",
+        "Mathilda Paatz",
+        "Payton Westcott",
+        "Natalia Granada"
+      ],
+      [
+        "Campos Racing",
+        "Megan Bruce",
+        "Rafaela Ferreira",
+        "Alisha Palmowski"
+      ],
+      [
+        "MP Motorsport",
+        "Nina Gademan",
+        "Alba Hurup Larsen",
+        "Esmee Kosterman"
+      ],
+      [
+        "Rodin Motorsport",
+        "Ella Lloyd",
+        "Ella Stevens",
+        "Emma Felbermayr"
+      ],
+      [
+        "ART Grand Prix",
+        "Jade Jacquet",
+        "Lisa Billard",
+        "Kaylee Countryman"
+      ],
+      [
+        "Hitech",
+        "Rachel Robertson",
+        "Ava Dobson",
+        "Wild Card"
+      ]
     ],
     "teamsNote": "11 rookies on the 2026 grid. Each team's third car may carry a wild card entry at select rounds."
   },
@@ -53,18 +148,62 @@
     "tagline": "The premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe.",
     "description": "The ABB FIA Formula E World Championship is the premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe. It serves as both a technological proving ground for EV powertrain development and a uniquely urban motorsport spectacle.",
     "history": "Formula E was conceived in 2011 by the FIA and launched its first season in September 2014 in Beijing, with the novel quirk that drivers swapped cars mid-race due to battery limitations. As technology improved, in-race car swaps were phased out by Season 5 (2018–19). Gen2, Gen3, and Gen3 Evo regulations successively lifted performance and efficiency; the Gen4 era begins in 2027. The 2025–26 season (Season 12) is notable for the entry of Citroën as a manufacturer, the longest calendar in series history (18 races across 12 weekends), and the championship defending by Oliver Rowland (Nissan). Former champions Pascal Wehrlein (Porsche), Jean-Éric Vergne (Citroën), António Félix da Costa (Jaguar), and Lucas Di Grassi (Lola Yamaha ABT) are all in the field.",
-    "teamsHeaders": ["Team", "Driver 1", "Driver 2"],
+    "teamsHeaders": [
+      "Team",
+      "Driver 1",
+      "Driver 2"
+    ],
     "teamsRows": [
-      ["Nissan Formula E", "Oliver Rowland (reigning champion)", "Norman Nato"],
-      ["Porsche Formula E", "Pascal Wehrlein", "Nico Müller"],
-      ["Jaguar TCS Racing", "Mitch Evans", "António Félix da Costa"],
-      ["Citroën Racing", "Jean-Éric Vergne", "Nick Cassidy"],
-      ["DS Penske", "Maximilian Günther", "Taylor Barnard"],
-      ["CUPRA KIRO", "Dan Ticktum", "Pepe Martí"],
-      ["Lola Yamaha ABT", "Lucas di Grassi", "Zane Maloney"],
-      ["Andretti Formula E", "Jake Dennis", "Felipe Drugovich"],
-      ["Envision Racing", "Sébastien Buemi", "Joel Eriksson"],
-      ["Mahindra Racing", "Nyck de Vries", "Edoardo Mortara"]
+      [
+        "Nissan Formula E",
+        "Oliver Rowland (reigning champion)",
+        "Norman Nato"
+      ],
+      [
+        "Porsche Formula E",
+        "Pascal Wehrlein",
+        "Nico Müller"
+      ],
+      [
+        "Jaguar TCS Racing",
+        "Mitch Evans",
+        "António Félix da Costa"
+      ],
+      [
+        "Citroën Racing",
+        "Jean-Éric Vergne",
+        "Nick Cassidy"
+      ],
+      [
+        "DS Penske",
+        "Maximilian Günther",
+        "Taylor Barnard"
+      ],
+      [
+        "CUPRA KIRO",
+        "Dan Ticktum",
+        "Pepe Martí"
+      ],
+      [
+        "Lola Yamaha ABT",
+        "Lucas di Grassi",
+        "Zane Maloney"
+      ],
+      [
+        "Andretti Formula E",
+        "Jake Dennis",
+        "Felipe Drugovich"
+      ],
+      [
+        "Envision Racing",
+        "Sébastien Buemi",
+        "Joel Eriksson"
+      ],
+      [
+        "Mahindra Racing",
+        "Nyck de Vries",
+        "Edoardo Mortara"
+      ]
     ]
   },
   {
@@ -86,24 +225,109 @@
     "tagline": "The world's premier long-distance racing series, headlined by the 24 Hours of Le Mans.",
     "description": "The FIA World Endurance Championship is the world's premier long-distance racing series, headlined by the 24 Hours of Le Mans. Races last between 6 and 24 hours, demanding extraordinary teamwork, strategy, and engineering across the Hypercar and LMGT3 classes.",
     "history": "The current World Endurance Championship was established in 1981 and revived in its modern form in 2012 following the demise of the American Le Mans Series. After the original LMP1 Hybrid era defined by Audi, Porsche, and Toyota, a major reset introduced the more accessible Hypercar regulations from 2021. These proved transformative: by 2026, 14 manufacturers contest the Hypercar class — the largest manufacturer count in the history of the championship. Ferrari are the reigning champions, having dethroned Toyota in 2023. For 2026, Genesis joins the field while Porsche refocuses to IMSA and Formula E, maintaining a dynamic manufacturer landscape.",
-    "teamsHeaders": ["Car #", "Team", "Manufacturer", "Drivers"],
+    "teamsHeaders": [
+      "Car #",
+      "Team",
+      "Manufacturer",
+      "Drivers"
+    ],
     "teamsRows": [
-      ["7", "Toyota Gazoo Racing", "Toyota", "Mike Conway / Kamui Kobayashi / Nyck de Vries"],
-      ["8", "Toyota Gazoo Racing", "Toyota", "Sébastien Buemi / Brendon Hartley / TBC"],
-      ["15", "BMW M Team WRT", "BMW", "Kevin Magnussen / Raffaele Marciello / Dries Vanthoor"],
-      ["17", "Genesis Magma Racing", "Genesis", "André Lotterer / Pipo Derani / Mathys Jaubert"],
-      ["19", "Genesis Magma Racing", "Genesis", "Mathieu Jaminet / Paul-Loup Chatin / Daniel Juncadella"],
-      ["20", "BMW M Team WRT", "BMW", "Robin Frijns / René Rast / Sheldon van der Linde"],
-      ["35", "Alpine Endurance Team", "Alpine", "António Félix da Costa / TBC / TBC"],
-      ["36", "Alpine Endurance Team", "Alpine", "Frédéric Makowiecki / TBC / TBC"],
-      ["50", "Ferrari AF Corse", "Ferrari", "Antonio Fuoco / Miguel Molina / Nicklas Nielsen"],
-      ["51", "Ferrari AF Corse", "Ferrari", "Alessandro Pier Guidi / James Calado / Antonio Giovinazzi"],
-      ["83", "AF Corse (private)", "Ferrari", "Yifei Ye / TBC / TBC"],
-      ["93", "Peugeot TotalEnergies", "Peugeot", "Paul di Resta / TBC / TBC"],
-      ["94", "Peugeot TotalEnergies", "Peugeot", "Loïc Duval / TBC / TBC"],
-      ["007", "Aston Martin THOR Team", "Aston Martin", "Harry Tincknell / Tom Gamble / Ross Gunn"],
-      ["009", "Aston Martin THOR Team", "Aston Martin", "Alex Riberas / Marco Sørensen / Roman de Angelis"],
-      ["TBC", "Cadillac Hertz Team Jota", "Cadillac", "Earl Bamber / Jack Aitken / Sébastien Bourdais"]
+      [
+        "7",
+        "Toyota Gazoo Racing",
+        "Toyota",
+        "Mike Conway / Kamui Kobayashi / Nyck de Vries"
+      ],
+      [
+        "8",
+        "Toyota Gazoo Racing",
+        "Toyota",
+        "Sébastien Buemi / Brendon Hartley / TBC"
+      ],
+      [
+        "15",
+        "BMW M Team WRT",
+        "BMW",
+        "Kevin Magnussen / Raffaele Marciello / Dries Vanthoor"
+      ],
+      [
+        "17",
+        "Genesis Magma Racing",
+        "Genesis",
+        "André Lotterer / Pipo Derani / Mathys Jaubert"
+      ],
+      [
+        "19",
+        "Genesis Magma Racing",
+        "Genesis",
+        "Mathieu Jaminet / Paul-Loup Chatin / Daniel Juncadella"
+      ],
+      [
+        "20",
+        "BMW M Team WRT",
+        "BMW",
+        "Robin Frijns / René Rast / Sheldon van der Linde"
+      ],
+      [
+        "35",
+        "Alpine Endurance Team",
+        "Alpine",
+        "António Félix da Costa / TBC / TBC"
+      ],
+      [
+        "36",
+        "Alpine Endurance Team",
+        "Alpine",
+        "Frédéric Makowiecki / TBC / TBC"
+      ],
+      [
+        "50",
+        "Ferrari AF Corse",
+        "Ferrari",
+        "Antonio Fuoco / Miguel Molina / Nicklas Nielsen"
+      ],
+      [
+        "51",
+        "Ferrari AF Corse",
+        "Ferrari",
+        "Alessandro Pier Guidi / James Calado / Antonio Giovinazzi"
+      ],
+      [
+        "83",
+        "AF Corse (private)",
+        "Ferrari",
+        "Yifei Ye / TBC / TBC"
+      ],
+      [
+        "93",
+        "Peugeot TotalEnergies",
+        "Peugeot",
+        "Paul di Resta / TBC / TBC"
+      ],
+      [
+        "94",
+        "Peugeot TotalEnergies",
+        "Peugeot",
+        "Loïc Duval / TBC / TBC"
+      ],
+      [
+        "007",
+        "Aston Martin THOR Team",
+        "Aston Martin",
+        "Harry Tincknell / Tom Gamble / Ross Gunn"
+      ],
+      [
+        "009",
+        "Aston Martin THOR Team",
+        "Aston Martin",
+        "Alex Riberas / Marco Sørensen / Roman de Angelis"
+      ],
+      [
+        "TBC",
+        "Cadillac Hertz Team Jota",
+        "Cadillac",
+        "Earl Bamber / Jack Aitken / Sébastien Bourdais"
+      ]
     ],
     "teamsNote": "Alpine and Peugeot driver trios not fully confirmed at time of writing — verify against the official FIA WEC entry list at fiawec.com before publishing. Porsche withdrew from Hypercar for 2026 (refocused on IMSA & Formula E)."
   },
@@ -126,20 +350,85 @@
     "tagline": "The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents.",
     "description": "The FIA World Rally Championship is the world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents. Competitors navigate closed public roads against the clock in specially built Rally1 cars, supported by co-drivers reading pace notes.",
     "history": "The WRC was established in 1973 and has since produced legendary battles across Finland's forest stages, Kenya's rocky safari terrain, Monte Carlo's Alpine hairpins, and the Welsh valleys. The series has been won by icons including Walter Röhrl, Stig Blomqvist, Carlos Sainz, Tommi Mäkinen, Sébastien Loeb (9 titles), and Sébastien Ogier (9 titles). Hybrid Rally1 regulations introduced in 2022 brought a major technical reset, with Hyundai, Toyota, and M-Sport Ford as the three competing manufacturers. The 2026 season is the 54th edition and the final year of Rally1 regs before a further overhaul in 2027. Toyota hold a dominant lead in the Manufacturers' Championship with 14 rounds across Europe, Africa, South America, and Asia.",
-    "teamsHeaders": ["Team", "Driver", "Co-driver", "Entry"],
+    "teamsHeaders": [
+      "Team",
+      "Driver",
+      "Co-driver",
+      "Entry"
+    ],
     "teamsRows": [
-      ["Toyota Gazoo Racing WRT", "Elfyn Evans", "Scott Martin", "Full season"],
-      ["Toyota Gazoo Racing WRT", "Takamoto Katsuta", "Aaron Johnston", "Full season"],
-      ["Toyota Gazoo Racing WRT", "Sami Pajari", "Marko Salminen", "Full season"],
-      ["Toyota Gazoo Racing WRT", "Oliver Solberg", "Elliott Edmondson", "Full season"],
-      ["Toyota Gazoo Racing WRT", "Sébastien Ogier", "Vincent Landais", "Partial (10 rounds)"],
-      ["Hyundai Shell Mobis WRT", "Thierry Neuville", "Martijn Wydaeghe", "Full season"],
-      ["Hyundai Shell Mobis WRT", "Adrien Fourmaux", "Alexandre Coria", "Full season"],
-      ["Hyundai Shell Mobis WRT", "Dani Sordo", "Cándido Carrera", "Third car (shared)"],
-      ["Hyundai Shell Mobis WRT", "Esapekka Lappi", "Enni Mälkönen", "Third car (shared)"],
-      ["Hyundai Shell Mobis WRT", "Hayden Paddon", "John Kennard", "Third car (shared)"],
-      ["M-Sport Ford WRT", "Josh McErlean", "Eoin Treacy", "Full season"],
-      ["M-Sport Ford WRT", "Jon Armstrong", "Shane Byrne", "Full season"]
+      [
+        "Toyota Gazoo Racing WRT",
+        "Elfyn Evans",
+        "Scott Martin",
+        "Full season"
+      ],
+      [
+        "Toyota Gazoo Racing WRT",
+        "Takamoto Katsuta",
+        "Aaron Johnston",
+        "Full season"
+      ],
+      [
+        "Toyota Gazoo Racing WRT",
+        "Sami Pajari",
+        "Marko Salminen",
+        "Full season"
+      ],
+      [
+        "Toyota Gazoo Racing WRT",
+        "Oliver Solberg",
+        "Elliott Edmondson",
+        "Full season"
+      ],
+      [
+        "Toyota Gazoo Racing WRT",
+        "Sébastien Ogier",
+        "Vincent Landais",
+        "Partial (10 rounds)"
+      ],
+      [
+        "Hyundai Shell Mobis WRT",
+        "Thierry Neuville",
+        "Martijn Wydaeghe",
+        "Full season"
+      ],
+      [
+        "Hyundai Shell Mobis WRT",
+        "Adrien Fourmaux",
+        "Alexandre Coria",
+        "Full season"
+      ],
+      [
+        "Hyundai Shell Mobis WRT",
+        "Dani Sordo",
+        "Cándido Carrera",
+        "Third car (shared)"
+      ],
+      [
+        "Hyundai Shell Mobis WRT",
+        "Esapekka Lappi",
+        "Enni Mälkönen",
+        "Third car (shared)"
+      ],
+      [
+        "Hyundai Shell Mobis WRT",
+        "Hayden Paddon",
+        "John Kennard",
+        "Third car (shared)"
+      ],
+      [
+        "M-Sport Ford WRT",
+        "Josh McErlean",
+        "Eoin Treacy",
+        "Full season"
+      ],
+      [
+        "M-Sport Ford WRT",
+        "Jon Armstrong",
+        "Shane Byrne",
+        "Full season"
+      ]
     ]
   },
   {
@@ -171,19 +460,79 @@
     "tagline": "The premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines exceeding 350 km/h.",
     "description": "The FIM MotoGP World Championship is the premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines capable of speeds exceeding 350 km/h. Five manufacturers — Ducati, Aprilia, Honda, KTM, and Yamaha — field factory and satellite teams across 21 rounds on circuits worldwide.",
     "history": "The FIM Road Racing World Championship was established in 1949, making it one of the longest-running motorsport series in existence. The 500cc two-stroke era produced legends like Giacomo Agostini (15 titles), Valentino Rossi (9 titles), and Mick Doohan before the switch to four-stroke MotoGP machinery in 2002. The 2026 season is the final one under 1000cc / Michelin regulations before switching to 850cc engines and Pirelli tyres in 2027. Ducati's dominance has been a defining storyline of the recent era; in 2026, Marc Marquez (nine world titles) joins Francesco Bagnaia at the factory Ducati team. A new 'Harley-Davidson Bagger World Cup' support class debuts at selected European and North American rounds.",
-    "teamsHeaders": ["Team", "Manufacturer", "Rider 1", "Rider 2"],
+    "teamsHeaders": [
+      "Team",
+      "Manufacturer",
+      "Rider 1",
+      "Rider 2"
+    ],
     "teamsRows": [
-      ["Ducati Lenovo Team", "Ducati", "Marc Marquez", "Francesco Bagnaia"],
-      ["Prima Pramac Yamaha", "Yamaha", "Toprak Razgatlıoğlu", "Jack Miller"],
-      ["Gresini Racing", "Ducati", "Alex Márquez", "Fermin Aldeguer"],
-      ["VR46 Racing Team", "Ducati", "Franco Morbidelli", "Fabio Di Giannantonio"],
-      ["Aprilia Racing", "Aprilia", "Jorge Martín", "Marco Bezzecchi"],
-      ["Trackhouse Racing", "Aprilia", "Raúl Fernández", "Ai Ogura"],
-      ["Red Bull KTM Factory", "KTM", "Pedro Acosta", "Brad Binder"],
-      ["Tech3 KTM", "KTM", "Maverick Viñales", "Enea Bastianini"],
-      ["Monster Energy Yamaha", "Yamaha", "Fabio Quartararo", "Alex Rins"],
-      ["Honda HRC", "Honda", "Luca Marini", "Joan Mir"],
-      ["Castrol Honda LCR", "Honda", "Johann Zarco", "Diogo Moreira"]
+      [
+        "Ducati Lenovo Team",
+        "Ducati",
+        "Marc Marquez",
+        "Francesco Bagnaia"
+      ],
+      [
+        "Prima Pramac Yamaha",
+        "Yamaha",
+        "Toprak Razgatlıoğlu",
+        "Jack Miller"
+      ],
+      [
+        "Gresini Racing",
+        "Ducati",
+        "Alex Márquez",
+        "Fermin Aldeguer"
+      ],
+      [
+        "VR46 Racing Team",
+        "Ducati",
+        "Franco Morbidelli",
+        "Fabio Di Giannantonio"
+      ],
+      [
+        "Aprilia Racing",
+        "Aprilia",
+        "Jorge Martín",
+        "Marco Bezzecchi"
+      ],
+      [
+        "Trackhouse Racing",
+        "Aprilia",
+        "Raúl Fernández",
+        "Ai Ogura"
+      ],
+      [
+        "Red Bull KTM Factory",
+        "KTM",
+        "Pedro Acosta",
+        "Brad Binder"
+      ],
+      [
+        "Tech3 KTM",
+        "KTM",
+        "Maverick Viñales",
+        "Enea Bastianini"
+      ],
+      [
+        "Monster Energy Yamaha",
+        "Yamaha",
+        "Fabio Quartararo",
+        "Alex Rins"
+      ],
+      [
+        "Honda HRC",
+        "Honda",
+        "Luca Marini",
+        "Joan Mir"
+      ],
+      [
+        "Castrol Honda LCR",
+        "Honda",
+        "Johann Zarco",
+        "Diogo Moreira"
+      ]
     ],
     "teamsNote": "Marco Bezzecchi leads the 2026 championship after early rounds. Grid uses 1000cc / Michelin regs for the final time — 850cc + Pirelli from 2027."
   },
@@ -306,5 +655,35 @@
     "tagline": "Grassroots 12-hour and 24-hour endurance races at Grand Prix circuits across Europe, open to all.",
     "description": "The Michelin 24H Series European Series, organised by Creventic, is a grassroots endurance championship running 12-hour and 24-hour races at prestigious Grand Prix circuits across Europe. Open to GT cars, touring cars, and 24H-Spec prototypes, it bridges professional and gentleman driver racing in a single field.",
     "history": "The 24H Series was founded by Creventic as an accessible alternative to the more exclusive ACO and SRO endurance championships, positioning itself as the entry point for teams and drivers aspiring to longer-format racing. The European series typically runs five rounds between March and September, with the 24 Hours of Barcelona serving as the traditional finale. The 2026 calendar adds the Nürburgring for the first time since 2022. The series is a unique democratising force in endurance racing — a 24-hour race at Paul Ricard or Spa is genuinely open to club-level outfits, not just factory teams."
+  },
+  {
+    "slug": "psc",
+    "name": "Porsche Mobil 1 Supercup",
+    "category": "GT / Sports Car",
+    "region": "Europe",
+    "tier": 2,
+    "tagline": "The world's premier single-make Porsche racing series, supporting Formula 1 at eight European Grands Prix.",
+    "description": "The Porsche Mobil 1 Supercup is a one-make racing series using the Porsche 911 GT3 Cup, held as a support event to the FIA Formula One World Championship at selected European venues. The 2026 season introduces the new 992.2-generation 911 Cup car. All 8 rounds take place on F1 race weekends, from Monaco in June through to Monza in September, including a double-header at Zandvoort.",
+    "history": "Founded in 1993, the Porsche Supercup is one of the longest-running international one-make series. It has served as a proving ground for many drivers who later competed in GT3 and endurance racing. The series has run exclusively at European F1 venues, making it one of the most visible support series in world motorsport. Over three decades, drivers from across Europe, the Americas, and Asia-Pacific have competed for the championship."
+  },
+  {
+    "slug": "bgt",
+    "name": "British GT Championship",
+    "category": "GT / Sports Car",
+    "region": "United Kingdom",
+    "tier": 2,
+    "tagline": "The UK's premier GT championship, spanning GT3 and GT4 classes across eight iconic British and European circuits.",
+    "description": "The British GT Championship is the top-level GT racing series in the United Kingdom, contested across GT3 and GT4 class machinery. The 2026 season features a streamlined 8-round calendar designed to reduce costs while preserving the championship's prestige. The season opens at Silverstone with the marquee 3-hour Silverstone 500, before visiting Oulton Park, Spa-Francorchamps, Snetterton, Donington Park, and concluding at Brands Hatch in September.",
+    "history": "British GT traces its roots to the early 1990s and has established itself as the premier domestic GT series in the UK. The championship has long been a gateway for talented GT drivers to international competition, with many graduates progressing to WEC, GTWCE, and IGTC. The Silverstone 500 remains the flagship event, attracting international entrants and factory-backed programmes alongside privateer outfits."
+  },
+  {
+    "slug": "eurx",
+    "name": "FIA European Rallycross Championship",
+    "category": "Rally",
+    "region": "Europe",
+    "tier": 2,
+    "tagline": "The world's top-tier rallycross championship — the 51st season of Euro RX, elevated to global status following the cancellation of World RX.",
+    "description": "The FIA European Rallycross Championship (Euro RX) is the highest class of international rallycross competition in 2026, following the cancellation of the FIA World Rallycross Championship after the 2025 season. The championship returns to its European roots with six rounds across Latvia, Hungary, Sweden, Ireland, France and Portugal, plus a standalone FIA Rallycross World Cup in Jakarta, Indonesia. The 2026 season introduces new RX4 and RX5 classes alongside the top-tier RX1 category.",
+    "history": "Now in its 51st season, the FIA European Rallycross Championship is one of motorsport's longest-running international competitions. From humble beginnings in the early 1970s at circuits like Lydden Hill and Höljes, the series grew to become World RX in 2014 before the top-tier championship was briefly relaunched as a global series. The 2026 restructuring returns rallycross to its European heartland while a new World Cup format provides a standalone global showdown."
   }
 ]

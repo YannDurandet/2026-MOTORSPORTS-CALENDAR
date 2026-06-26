@@ -1,0 +1,417 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+
+import tracksRaw from '../../../data/tracks.json';
+import calendarData from '../../../data/calendar.json';
+
+type Layout = { id: string; label: string; calendarSvgs: string[] };
+type Venue = {
+  slug: string;
+  name: string;
+  city: string;
+  country: string;
+  continent: string;
+  browserSvg: string;
+  calendarSvgs: string[];
+  layouts?: Layout[];
+  bio?: string;
+};
+
+export function getStaticPaths() {
+  return (tracksRaw as Venue[]).map(v => ({ params: { slug: v.slug } }));
+}
+
+const { slug } = Astro.params;
+const base = import.meta.env.BASE_URL;
+const venue = (tracksRaw as Venue[]).find(v => v.slug === slug)!;
+
+// ── Gather events from calendar ───────────────────────────────────────────────
+type CalEvent = {
+  series: string; tag: string; title: string;
+  week: string; layoutId: string | null;
+};
+const events: CalEvent[] = [];
+
+for (const month of calendarData as any[]) {
+  for (const week of month.weeks) {
+    for (const ev of week.events) {
+      if (!ev.track || !venue.calendarSvgs.includes(ev.track)) continue;
+      let layoutId: string | null = null;
+      if (venue.layouts) {
+        const match = venue.layouts.find((l: Layout) => l.calendarSvgs.includes(ev.track));
+        layoutId = match ? match.id : null;
+      }
+      const isDupe = events.some(
+        e => e.series === ev.series && e.title === ev.title && e.week === week.label
+      );
+      if (!isDupe) events.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId });
+    }
+  }
+}
+
+const activeSeries = [...new Set(events.map(e => e.series))];
+
+// ── SVG ───────────────────────────────────────────────────────────────────────
+const svgDir = path.resolve('./public/assets/track-maps');
+const svgPath = venue.browserSvg ? path.join(svgDir, venue.browserSvg) : null;
+const hasSvg  = svgPath ? fs.existsSync(svgPath) : false;
+
+function cleanSvg(raw: string): string {
+  return raw
+    .replace(/<defs>[\s\S]*?<\/defs>/g, '')
+    .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
+    .replace(/(\s)width="\d+"/, '')
+    .replace(/(\s)height="\d+"/, '');
+}
+
+const svgContent = hasSvg ? cleanSvg(fs.readFileSync(svgPath, 'utf-8')) : null;
+
+function shortDate(label: string): string {
+  const m = label.match(/•\s*([A-Z]{3})\s+(\d{1,2})/);
+  return m ? `${m[1]} ${m[2]}` : label.replace('•', '').trim();
+}
+
+const continentLabel: Record<string, string> = {
+  'europe': 'Europe', 'north-america': 'North America', 'asia': 'Asia',
+  'middle-east': 'Middle East', 'south-america': 'South America', 'oceania': 'Oceania',
+};
+---
+
+<BaseLayout
+  title={`${venue.name} — 2026 Motorsport Calendar`}
+  description={venue.bio ?? `${venue.name} hosts ${activeSeries.length} series in the 2026 motorsport calendar.`}
+>
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Track Browser</h1>
+      <div class="meta">{venue.city} · {venue.country} · {continentLabel[venue.continent] ?? venue.continent}</div>
+      <Nav activePage="tracks" />
+    </div>
+  </header>
+
+  <div class="track-page">
+
+    <a href={`${base}/tracks`} class="back-link">← All Circuits</a>
+
+    <!-- Hero -->
+    <div class="track-hero" style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}>
+      <div class="track-hero-svg">
+        {svgContent
+          ? <Fragment set:html={svgContent} />
+          : <div class="hero-placeholder">{venue.name}</div>
+        }
+      </div>
+      {venue.layouts && (
+        <div class="hero-layout-hint">
+          {venue.layouts.length} layouts · hover series to highlight
+        </div>
+      )}
+    </div>
+
+    <!-- Name + Info -->
+    <div class="track-meta-row">
+      <div class="track-meta-left">
+        <h2 class="track-name">{venue.name}</h2>
+        <div class="track-location">{venue.city} · {venue.country}</div>
+        {activeSeries.length > 0 && (
+          <div class="track-series-list">
+            {activeSeries.map(s => (
+              <a href={`${base}/series/${s}`} class={`tag t-${s}`}>
+                {events.find(e => e.series === s)?.tag}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+      {venue.bio && (
+        <p class="track-bio">{venue.bio}</p>
+      )}
+    </div>
+
+    <!-- Layouts -->
+    {venue.layouts && (
+      <div class="track-layouts-section">
+        <div class="section-label">LAYOUTS IN USE</div>
+        <div class="layouts-list">
+          {venue.layouts.map(l => (
+            <div class="layout-row">
+              <span class="layout-id">{l.id.toUpperCase()}</span>
+              <span class="layout-label">{l.label}</span>
+              <div class="layout-series">
+                {events
+                  .filter(e => e.layoutId === l.id)
+                  .map(e => (
+                    <a href={`${base}/series/${e.series}`} class={`tag t-${e.series}`}>{e.tag}</a>
+                  ))
+                }
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Events this season -->
+    <div class="track-events-section">
+      <div class="section-label">2026 EVENTS</div>
+      {events.length > 0 ? (
+        <div class="events-list">
+          {events.map(ev => (
+            <div class="ev-row" data-layout-id={ev.layoutId ?? undefined}>
+              <span class="ev-date">{shortDate(ev.week)}</span>
+              <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
+              <span class="ev-title">{ev.title}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p class="no-events">No events at this venue in 2026.</p>
+      )}
+    </div>
+
+    <a href={`${base}/tracks`} class="back-link back-link--bottom">← All Circuits</a>
+
+  </div>
+</BaseLayout>
+
+<script>
+  // Hover-dim for multi-layout tracks (same logic as track browser)
+  const svgEl = document.querySelector<SVGElement>('.track-hero-svg svg');
+  if (svgEl) {
+    document.querySelectorAll<HTMLElement>('[data-layout-id]').forEach(row => {
+      const layoutId = row.dataset.layoutId;
+      if (!layoutId) return;
+      const tag = row.querySelector<HTMLElement>('.tag');
+      if (!tag) return;
+      tag.addEventListener('mouseenter', () => {
+        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
+          g.style.opacity   = g.id === `layout-${layoutId}` ? '1' : '0.12';
+          g.style.transition = 'opacity 0.18s ease';
+        });
+      });
+      tag.addEventListener('mouseleave', () => {
+        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
+          g.style.opacity = '1';
+        });
+      });
+    });
+  }
+</script>
+
+<style>
+  .track-page {
+    padding: 0 24px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    color: #556;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: #aaa; }
+  .back-link--bottom { margin-top: 48px; margin-bottom: 0; }
+
+  /* ── Hero ────────────────────────────────────────────────────────────────── */
+  .track-hero {
+    position: relative;
+    background: var(--bg);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--border);
+    aspect-ratio: 3 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .track-hero-svg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .track-hero-svg :global(svg) {
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+  }
+
+  .track-hero-svg :global(svg path) {
+    stroke-width: 1 !important;
+  }
+
+  .hero-placeholder {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.4;
+  }
+
+  .hero-layout-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 14px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #556;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Meta row ────────────────────────────────────────────────────────────── */
+  .track-meta-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 24px;
+    background: var(--card-bg);
+    margin-bottom: 2px;
+  }
+
+  @media (max-width: 680px) {
+    .track-meta-row { grid-template-columns: 1fr; }
+  }
+
+  .track-name {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #c3c6c8;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 4px;
+    line-height: 1.2;
+  }
+
+  .track-location {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #556;
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+  }
+
+  .track-series-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .track-series-list .tag {
+    font-size: 0.62rem;
+    text-decoration: none;
+    padding: 3px 7px;
+  }
+
+  .track-bio {
+    font-size: 0.82rem;
+    color: #8a9499;
+    line-height: 1.65;
+    margin: 0;
+    padding-top: 2px;
+  }
+
+  /* ── Layouts ─────────────────────────────────────────────────────────────── */
+  .track-layouts-section,
+  .track-events-section {
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--card-bg);
+    padding: 20px 24px;
+    margin-bottom: 2px;
+  }
+
+  .section-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #445;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .layouts-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .layout-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .layout-id {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #445;
+    letter-spacing: 0.08em;
+    min-width: 36px;
+  }
+
+  .layout-label {
+    font-size: 0.78rem;
+    color: #7a8890;
+    flex: 1;
+  }
+
+  .layout-series { display: flex; gap: 5px; flex-wrap: wrap; }
+  .layout-series .tag { font-size: 0.6rem; text-decoration: none; padding: 2px 6px; }
+
+  /* ── Events ──────────────────────────────────────────────────────────────── */
+  .events-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .ev-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ev-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #445;
+    min-width: 52px;
+    flex-shrink: 0;
+  }
+
+  .ev-row .tag {
+    font-size: 0.62rem;
+    text-decoration: none;
+    padding: 2px 6px;
+    flex-shrink: 0;
+  }
+
+  .ev-title {
+    font-size: 0.8rem;
+    color: #8a9499;
+  }
+
+  .no-events {
+    font-size: 0.75rem;
+    color: #445;
+    font-style: italic;
+    margin: 0;
+  }
+
+  @media (max-width: 560px) {
+    .track-page { padding: 0 12px 60px; }
+    .track-hero { aspect-ratio: 2 / 1; }
+  }
+</style>

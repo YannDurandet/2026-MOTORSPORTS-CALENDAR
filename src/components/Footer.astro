@@ -1,13 +1,50 @@
 ---
+const base = import.meta.env.BASE_URL;
+const year = new Date().getFullYear();
 ---
 <footer>
   <div class="footer--container">
-    <h2>Built by<br>Yann Durandet</h2>
-    <div class="links">
-      <a href="https://x.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">-- X</a>
-      <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank" rel="noopener">-- IG</a>
-      <a href="https://github.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">-- GitHub</a>
-      <a href="https://durandet.studio" class="footer--link" target="_blank" rel="noopener">-- Website</a>
+
+    <div class="footer--inner">
+
+      <!-- Brand -->
+      <div class="footer--brand">
+        <h2 class="footer--name">Built by<br>Yann Durandet</h2>
+        <p class="footer--tagline">An independent 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.</p>
+        <div class="footer--socials">
+          <a href="https://x.com/YannDurandet"           class="footer--link" target="_blank" rel="noopener">X (Twitter)</a>
+          <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://github.com/YannDurandet"       class="footer--link" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://durandet.studio"               class="footer--link" target="_blank" rel="noopener">My Portfolio</a>
+        </div>
+      </div>
+
+      <!-- Site nav -->
+      <div class="footer--col">
+        <div class="footer--col-label">Navigate</div>
+        <a href={`${base}/`}          class="footer--nav-link">Calendar</a>
+        <a href={`${base}/series`}    class="footer--nav-link">Series</a>
+        <a href={`${base}/tracks`}    class="footer--nav-link">Track Browser</a>
+      </div>
+
+      <!-- Quick series links -->
+      <div class="footer--col">
+        <div class="footer--col-label">Series</div>
+        <a href={`${base}/series/f1`}      class="footer--nav-link">Formula 1</a>
+        <a href={`${base}/series/fe`}      class="footer--nav-link">Formula E</a>
+        <a href={`${base}/series/wec`}     class="footer--nav-link">WEC</a>
+        <a href={`${base}/series/motogp`}  class="footer--nav-link">MotoGP</a>
+        <a href={`${base}/series/indycar`} class="footer--nav-link">IndyCar</a>
+        <a href={`${base}/series/wrc`}     class="footer--nav-link">WRC</a>
+      </div>
+
     </div>
+
+    <!-- Bottom bar -->
+    <div class="footer--bottom">
+      <span>© {year} Yann Durandet — Independent fan project, not affiliated with any series or sanctioning body.</span>
+      <span class="footer--attribution">Race data sourced from FIA, Formula 1, Formula E, WEC, IMSA, IndyCar, MotoGP &amp; series official sources.</span>
+    </div>
+
   </div>
 </footer>

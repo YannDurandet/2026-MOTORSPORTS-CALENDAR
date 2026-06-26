@@ -46,5 +46,54 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <div class="container">
     <slot />
   </div>
+
+  <!-- Sticky bottom nav — appears when header nav scrolls off screen -->
+  <div id="sticky-nav-bar" class="sticky-nav-bar" aria-hidden="true">
+    <nav class="sticky-nav-inner">
+      <a href={`${base}/`}        class="sticky-nav-link" data-page="calendar">Calendar</a>
+      <a href={`${base}/series`}  class="sticky-nav-link" data-page="series">Series</a>
+      <a href={`${base}/tracks`}  class="sticky-nav-link" data-page="tracks">Tracks</a>
+    </nav>
+  </div>
+
+  <!-- Back to top -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑ TOP</button>
+
+  <script>
+    // ── Sticky nav ──────────────────────────────────────────────────────────────
+    const headerNav = document.querySelector('.site-nav');
+    const stickyBar = document.getElementById('sticky-nav-bar');
+    if (headerNav && stickyBar) {
+      // Mark active link by URL path
+      const path = window.location.pathname.replace(/\/$/, '');
+      stickyBar.querySelectorAll<HTMLAnchorElement>('.sticky-nav-link').forEach(link => {
+        const page = link.dataset.page;
+        if (page === 'calendar' && (path === '' || path.endsWith('/racing') || !path.includes('/series') && !path.includes('/tracks'))) {
+          link.classList.add('active');
+        } else if (page === 'series' && path.includes('/series')) {
+          link.classList.add('active');
+        } else if (page === 'tracks' && path.includes('/tracks')) {
+          link.classList.add('active');
+        }
+      });
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          const show = !entry.isIntersecting;
+          stickyBar.classList.toggle('visible', show);
+          stickyBar.setAttribute('aria-hidden', show ? 'false' : 'true');
+        },
+        { threshold: 0 }
+      );
+      observer.observe(headerNav);
+    }
+
+    // ── Back to top ─────────────────────────────────────────────────────────────
+    const btt = document.getElementById('back-to-top');
+    if (btt) {
+      window.addEventListener('scroll', () => { btt.hidden = window.scrollY < 500; }, { passive: true });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  </script>
 </body>
 </html>
