@@ -3,6 +3,18 @@
     "month": "JANUARY",
     "weeks": [
       {
+        "label": "WEEK 02 • JAN 10",
+        "events": [
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Mexico City E-Prix",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "mexico-fe.svg"
+          }
+        ]
+      },
+      {
         "label": "WEEK 04 • JAN 22-25",
         "events": [
           {
@@ -24,7 +36,7 @@
             "tag": "IMSA",
             "title": "Rolex 24 at Daytona",
             "time": "SAT <span class=\"hl\">19:40</span> > SUN <span class=\"hl\">19:40</span>",
-            "track": "daytona.svg"
+            "track": "daytona-road.svg"
           }
         ]
       },
@@ -36,7 +48,7 @@
             "tag": "FORMULA E",
             "title": "Miami E-Prix",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "miami.svg"
+            "track": "miami-fe.svg"
           }
         ]
       }
@@ -53,7 +65,7 @@
             "tag": "WRC",
             "title": "Rally Sweden",
             "time": "THU > SUN",
-            "track": "sweden.svg",
+            "track": "sweden-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -67,7 +79,7 @@
             "tag": "FORMULA E",
             "title": "Jeddah E-Prix",
             "time": "R1 & R2: <span class=\"hl\">TBC</span>",
-            "track": "jeddah.svg"
+            "track": "jeddah-fe.svg"
           },
           {
             "series": "igtc",
@@ -81,7 +93,7 @@
             "tag": "NASCAR",
             "title": "Daytona 500",
             "time": "RACE: <span class=\"hl\">20:30</span>",
-            "track": "daytona.svg"
+            "track": "daytona-oval.svg"
           }
         ]
       },
@@ -93,7 +105,7 @@
             "tag": "WSBK",
             "title": "Phillip Island Round",
             "time": "FRI > SUN",
-            "track": "phillip-island.svg"
+            "track": "phillip-island-wsbk.svg"
           },
           {
             "series": "supercars",
@@ -107,7 +119,7 @@
             "tag": "NASCAR",
             "title": "Atlanta Motor Speedway",
             "time": "RACE: <span class=\"hl\">21:00</span>",
-            "track": "atlanta.svg"
+            "track": "atlanta-oval.svg"
           }
         ]
       },
@@ -136,14 +148,21 @@
             "tag": "INDYCAR",
             "title": "Streets of St. Petersburg",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "st-petersburg.svg"
+            "track": "st-petersburg.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "EchoPark GP (COTA)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "cota.svg"
+            "track": "cota-national.svg"
           }
         ]
       },
@@ -181,7 +200,7 @@
             "tag": "INDYCAR",
             "title": "Phoenix Grand Prix",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "phoenix.svg"
+            "track": "phoenix-oval.svg"
           },
           {
             "series": "nascar",
@@ -200,7 +219,7 @@
             "tag": "WRC",
             "title": "Safari Rally Kenya",
             "time": "THU > SUN",
-            "track": "kenya.svg",
+            "track": "kenya-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -236,14 +255,21 @@
             "tag": "INDYCAR",
             "title": "Streets of Arlington",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "arlington.svg"
+            "track": "arlington.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Pennzoil 400 (Las Vegas)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "las-vegas.svg"
+            "track": "las-vegas-oval.svg"
           }
         ]
       },
@@ -262,7 +288,7 @@
             "tag": "FORMULA E",
             "title": "Madrid E-Prix",
             "time": "RACE: <span class=\"hl\">15:05</span>",
-            "track": "madrid.svg"
+            "track": "madrid-fe.svg"
           },
           {
             "series": "imsa",
@@ -283,7 +309,7 @@
             "tag": "NASCAR",
             "title": "Goodyear 400 (Darlington)",
             "time": "RACE: <span class=\"hl\">20:00</span>",
-            "track": "darlington.svg"
+            "track": "darlington-oval.svg"
           },
           {
             "series": "h24eu",
@@ -309,7 +335,7 @@
             "tag": "MOTOGP",
             "title": "Americas Grand Prix",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "cota.svg"
+            "track": "cota-national.svg"
           },
           {
             "series": "wsbk",
@@ -317,8 +343,14 @@
             "title": "Portimão Round",
             "time": "SAT + SUN",
             "races": [
-              { "label": "R1", "time": "SAT: <span class=\"hl\">17:00</span>" },
-              { "label": "R2", "time": "SUN: <span class=\"hl\">18:00</span>" }
+              {
+                "label": "R1",
+                "time": "SAT: <span class=\"hl\">17:00</span>"
+              },
+              {
+                "label": "R2",
+                "time": "SUN: <span class=\"hl\">18:00</span>"
+              }
             ],
             "track": "portimao.svg"
           },
@@ -328,8 +360,14 @@
             "title": "Sonoma Round",
             "time": "SAT + SUN",
             "races": [
-              { "label": "R1", "time": "SAT: <span class=\"hl\">22:00</span>" },
-              { "label": "R2", "time": "SUN: <span class=\"hl\">23:00</span>" }
+              {
+                "label": "R1",
+                "time": "SAT: <span class=\"hl\">22:00</span>"
+              },
+              {
+                "label": "R2",
+                "time": "SUN: <span class=\"hl\">23:00</span>"
+              }
             ],
             "track": "sonoma.svg"
           },
@@ -338,14 +376,21 @@
             "tag": "INDYCAR",
             "title": "Honda Indy GP of Alabama",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "barber.svg"
+            "track": "barber.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Xfinity 500 (Martinsville)",
             "time": "RACE: <span class=\"hl\">21:30</span>",
-            "track": "martinsville.svg"
+            "track": "martinsville-oval.svg"
           }
         ]
       }
@@ -374,7 +419,7 @@
             "tag": "WRC",
             "title": "Croatia Rally",
             "time": "THU > SUN",
-            "track": "croatia.svg",
+            "track": "croatia-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -416,7 +461,7 @@
             "tag": "NASCAR",
             "title": "Cook Out 400 (Martinsville)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "martinsville.svg"
+            "track": "martinsville-oval.svg"
           }
         ]
       },
@@ -538,14 +583,21 @@
             "tag": "GTWCA",
             "title": "COTA Round",
             "time": "FRI > SUN",
-            "track": "cota.svg"
+            "track": "cota-national.svg"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Würth 400 (Dover)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "dover.svg"
+            "track": "dover-oval.svg"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 1: Silverstone 500",
+            "time": "3h RACE: <span class=\"hl\">TBC</span>",
+            "track": "silverstone.svg"
           }
         ]
       }
@@ -563,14 +615,14 @@
             "title": "Miami GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">18:00</span> • QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">22:00</span>",
-            "track": "miami-f1.svg"
+            "track": "miami.svg"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Balaton Park Round",
             "time": "FRI > SUN",
-            "track": "balaton-moto.svg"
+            "track": "balaton-motogp.svg"
           },
           {
             "series": "fe",
@@ -598,7 +650,7 @@
             "tag": "GTWCE",
             "title": "Brands Hatch Sprint",
             "time": "SAT + SUN",
-            "track": "brands-hatch.svg"
+            "track": "brands-hatch-gp.svg"
           },
           {
             "series": "tcr",
@@ -624,7 +676,7 @@
             "tag": "WRC",
             "title": "Rally de Portugal",
             "time": "THU > SUN",
-            "track": "portugal.svg",
+            "track": "portugal-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -666,14 +718,28 @@
             "tag": "INDYCAR",
             "title": "GMR Grand Prix (IMS Road)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "indianapolis.svg"
+            "track": "indianapolis.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Goodyear 400 (Darlington)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "darlington.svg"
+            "track": "darlington-oval.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "Rd 1: Latvia (Biķernieki)",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "bikernierki.svg"
           }
         ]
       },
@@ -754,7 +820,7 @@
             "tag": "ERC",
             "title": "Royal Rally of Scandinavia",
             "time": "FRI > SUN",
-            "track": "karlstad.svg"
+            "track": "sweden-wrc.svg"
           },
           {
             "series": "indycar",
@@ -776,6 +842,13 @@
             "title": "Coca-Cola 600 (Charlotte)",
             "time": "RACE: <span class=\"hl\">00:00</span>",
             "track": "charlotte.svg"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 2 & 3: Oulton Park",
+            "time": "2× 1h RACES: <span class=\"hl\">TBC</span>",
+            "track": "oulton-park.svg"
           }
         ]
       },
@@ -822,7 +895,14 @@
             "tag": "INDYCAR",
             "title": "Chevrolet Detroit GP",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "detroit.svg"
+            "track": "detroit.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "imsa",
@@ -837,6 +917,13 @@
             "title": "Nashville Superspeedway",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "nashville.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "Rd 2: Hungary (Nyirád)",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "nyirad.svg"
           }
         ]
       }
@@ -872,7 +959,7 @@
             "tag": "MOTOGP",
             "title": "Hungarian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "balaton-moto.svg"
+            "track": "balaton-motogp.svg"
           },
           {
             "series": "btcc",
@@ -886,7 +973,14 @@
             "tag": "INDYCAR",
             "title": "Bommarito 500 (WWT Raceway)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "gateway.svg"
+            "track": "gateway.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -901,6 +995,13 @@
             "title": "Paul Ricard 12H",
             "time": "RACE: <span class=\"hl\">14:00</span>",
             "track": "paul-ricard.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 1: Monaco",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "monaco.svg"
           }
         ]
       },
@@ -960,6 +1061,13 @@
             "title": "HighPoint.com 400 (Pocono)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "pocono.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 2: Barcelona",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "barcelona.svg"
           }
         ]
       },
@@ -1006,7 +1114,14 @@
             "tag": "INDYCAR",
             "title": "Road America (R1 & R2)",
             "time": "SAT + SUN: <span class=\"hl\">TBC</span>",
-            "track": "road-america.svg"
+            "track": "road-america.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -1014,6 +1129,13 @@
             "title": "San Diego Street Race",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "sandiego.svg"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 4: Spa",
+            "time": "2h RACE: <span class=\"hl\">TBC</span>",
+            "track": "spa.svg"
           }
         ]
       },
@@ -1025,7 +1147,7 @@
             "tag": "WRC",
             "title": "Acropolis Rally Greece",
             "time": "THU > SUN",
-            "track": "greece.svg",
+            "track": "greece-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -1086,7 +1208,14 @@
             "tag": "NASCAR",
             "title": "Toyota/Save Mart 350 (Sonoma)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "sonoma.svg"
+            "track": "sonoma-nascar.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 3: Spielberg",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "red-bull-ring.svg"
           }
         ]
       }
@@ -1124,11 +1253,18 @@
             ]
           },
           {
+            "series": "f1a",
+            "tag": "F1 ACADEMY",
+            "title": "Rd 4: Silverstone",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "silverstone.svg"
+          },
+          {
             "series": "fe",
             "tag": "FORMULA E",
             "title": "Shanghai E-Prix",
             "time": "R1 & R2: <span class=\"hl\">TBC</span>",
-            "track": "shanghai.svg"
+            "track": "shanghai-fe.svg"
           },
           {
             "series": "dtm",
@@ -1142,7 +1278,7 @@
             "tag": "ERC",
             "title": "Rally di Roma Capitale",
             "time": "FRI > SUN",
-            "track": "roma.svg"
+            "track": "italy-wrc.svg"
           },
           {
             "series": "elms",
@@ -1163,7 +1299,14 @@
             "tag": "INDYCAR",
             "title": "Mid-Ohio (R1 & R2)",
             "time": "SAT + SUN: <span class=\"hl\">TBC</span>",
-            "track": "midohio.svg"
+            "track": "midohio.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -1178,6 +1321,13 @@
             "title": "Nürburgring 12H",
             "time": "RACE: <span class=\"hl\">14:00</span>",
             "track": "nurburgring.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "Rd 3: Sweden (Höljes)",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "holjes.svg"
           }
         ]
       },
@@ -1196,7 +1346,7 @@
             "tag": "WSBK",
             "title": "Donington Park Round",
             "time": "FRI > SUN",
-            "track": "donington.svg"
+            "track": "donington-gp.svg"
           },
           {
             "series": "supercars",
@@ -1231,7 +1381,7 @@
             "tag": "NASCAR",
             "title": "EchoPark 400 (Atlanta)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "atlanta.svg"
+            "track": "atlanta-oval.svg"
           }
         ]
       },
@@ -1243,7 +1393,7 @@
             "tag": "WRC",
             "title": "Rally Estonia",
             "time": "THU > SUN",
-            "track": "estonia.svg",
+            "track": "estonia-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -1290,7 +1440,14 @@
             "tag": "INDYCAR",
             "title": "Music City GP (Nashville)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "nashville.svg"
+            "track": "nashville.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -1298,6 +1455,20 @@
             "title": "North Wilkesboro Speedway",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "northwilkesboro.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 4: Spa",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "spa.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "Rd 4: Ireland (Mondello)",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "mondello.svg"
           }
         ]
       },
@@ -1349,7 +1520,7 @@
             "tag": "ERC",
             "title": "82nd Rally Poland",
             "time": "FRI > SUN",
-            "track": "katowice.svg"
+            "track": "poland-wrc.svg"
           },
           {
             "series": "nascar",
@@ -1357,6 +1528,13 @@
             "title": "Brickyard 400 (Indianapolis)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "indianapolis.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 5: Budapest",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "hungaroring.svg"
           }
         ]
       },
@@ -1368,7 +1546,7 @@
             "tag": "WRC",
             "title": "Rally Finland",
             "time": "THU > SUN",
-            "track": "finland.svg",
+            "track": "finland-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -1441,7 +1619,14 @@
             "tag": "INDYCAR",
             "title": "GP of Portland",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "portland.svg"
+            "track": "portland.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -1467,7 +1652,7 @@
             "tag": "ERC",
             "title": "Barum Czech Rally Zlín",
             "time": "FRI > SUN",
-            "track": "zlin.svg"
+            "track": "czechia-wrc.svg"
           },
           {
             "series": "fe",
@@ -1489,6 +1674,13 @@
             "title": "Cook Out 400 (Richmond)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "richmond.svg"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 5 & 6: Snetterton",
+            "time": "2× 1h RACES: <span class=\"hl\">TBC</span>",
+            "track": "snetterton.svg"
           }
         ]
       },
@@ -1515,7 +1707,7 @@
             "tag": "BTCC",
             "title": "Donington Park GP (Races 19-21)",
             "time": "SAT + SUN",
-            "track": "donington.svg"
+            "track": "donington-gp.svg"
           },
           {
             "series": "supercars",
@@ -1544,6 +1736,13 @@
             "title": "Foxwoods 301 (New Hampshire)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "newhampshire.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 6 & 7: Zandvoort",
+            "time": "RACES: <span class=\"hl\">TBC</span>",
+            "track": "zandvoort.svg"
           }
         ]
       },
@@ -1555,7 +1754,7 @@
             "tag": "WRC",
             "title": "Rally del Paraguay",
             "time": "THU > SUN",
-            "track": "paraguay.svg",
+            "track": "paraguay-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -1590,14 +1789,28 @@
             "tag": "INDYCAR",
             "title": "Milwaukee Mile (R1 & R2)",
             "time": "SAT + SUN: <span class=\"hl\">TBC</span>",
-            "track": "milwaukee.svg"
+            "track": "milwaukee.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Coke Zero 400 (Daytona)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "daytona.svg"
+            "track": "daytona-oval.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "Rd 5: France (Lohéac)",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "loheac.svg"
           }
         ]
       }
@@ -1647,28 +1860,49 @@
             "tag": "ERC",
             "title": "Rali Ceredigion",
             "time": "FRI > SUN",
-            "track": "aberystwyth.svg"
+            "track": "wales-wrc.svg"
           },
           {
             "series": "wec",
             "tag": "WEC",
             "title": "Lone Star Le Mans (COTA)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "cota.svg"
+            "track": "cota-national.svg"
           },
           {
             "series": "indycar",
             "tag": "INDYCAR",
             "title": "GP of Monterey (Laguna Seca)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "laguna-seca.svg"
+            "track": "laguna-seca.svg",
+            "sub": [
+              {
+                "badge": "nxt",
+                "label": "NXT",
+                "detail": "RACE: TBC"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Southern 500 (Darlington) — Playoff",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "darlington.svg"
+            "track": "darlington-oval.svg"
+          },
+          {
+            "series": "psc",
+            "tag": "PORSCHE SC",
+            "title": "Rd 8: Monza",
+            "time": "RACE: <span class=\"hl\">TBC</span>",
+            "track": "monza.svg"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 7: Donington Park",
+            "time": "2h RACE: <span class=\"hl\">TBC</span>",
+            "track": "donington-gp.svg"
           }
         ]
       },
@@ -1680,7 +1914,7 @@
             "tag": "WRC",
             "title": "Rally Chile",
             "time": "THU > SUN",
-            "track": "chile.svg",
+            "track": "chile-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -1694,7 +1928,7 @@
             "tag": "FORMULA 1",
             "title": "Spanish GP (Madrid)",
             "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
-            "track": "madrid.svg",
+            "track": "madrid-f1.svg",
             "sub": [
               {
                 "badge": "f2",
@@ -1756,6 +1990,13 @@
             "title": "Bass Pro Shops Night Race (Bristol) — Playoff",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "bristol.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "Rd 6: Portugal (Lousada)",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "lousada.svg"
           }
         ]
       },
@@ -1767,7 +2008,7 @@
             "tag": "MOTOGP",
             "title": "Austrian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "red-bull-ring-moto.svg"
+            "track": "red-bull-ring-motogp.svg"
           },
           {
             "series": "gtwce",
@@ -1850,6 +2091,13 @@
             "title": "Playoff Round 2 Race 1 (TBD)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
             "track": "tbd.svg"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 8: Brands Hatch",
+            "time": "2h RACE: <span class=\"hl\">TBC</span>",
+            "track": "brands-hatch-gp.svg"
           }
         ]
       }
@@ -1866,7 +2114,7 @@
             "tag": "WRC",
             "title": "Rally Italy",
             "time": "THU > SUN",
-            "track": "sardegna.svg",
+            "track": "italy-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -1949,7 +2197,7 @@
             "tag": "BTCC",
             "title": "Brands Hatch GP (Races 28-30, Finale)",
             "time": "SAT + SUN",
-            "track": "brands-hatch.svg"
+            "track": "brands-hatch-gp.svg"
           },
           {
             "series": "supercars",
@@ -2043,14 +2291,14 @@
             "tag": "FORMULA 1",
             "title": "United States GP (Austin)",
             "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
-            "track": "cota.svg"
+            "track": "cota-national.svg"
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 6: COTA",
             "time": "RACES: <span class=\"hl\">TBC</span>",
-            "track": "cota.svg"
+            "track": "cota-national.svg"
           },
           {
             "series": "motogp",
@@ -2078,7 +2326,7 @@
             "tag": "ERC",
             "title": "Rally Five Cities (Fafe, Finale)",
             "time": "FRI > SUN",
-            "track": "fafe.svg"
+            "track": "portugal-wrc.svg"
           }
         ]
       },
@@ -2128,7 +2376,7 @@
             "tag": "NASCAR",
             "title": "Championship Race (Homestead)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "homestead.svg"
+            "track": "homestead-miami-oval.svg"
           }
         ]
       },
@@ -2140,7 +2388,7 @@
             "tag": "WRC",
             "title": "Rally Saudi Arabia",
             "time": "THU > SUN",
-            "track": "saudi.svg",
+            "track": "saudi-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -2166,14 +2414,14 @@
             "tag": "FORMULA 1",
             "title": "Las Vegas GP",
             "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">05:00</span>",
-            "track": "las-vegas.svg"
+            "track": "las-vegas-strip.svg"
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 7: Las Vegas (Finale)",
             "time": "RACES: <span class=\"hl\">TBC</span>",
-            "track": "las-vegas.svg"
+            "track": "las-vegas-strip.svg"
           },
           {
             "series": "motogp",
@@ -2245,6 +2493,13 @@
             "title": "bp Adelaide Grand Final",
             "time": "THU > SUN",
             "track": "adelaide.svg"
+          },
+          {
+            "series": "eurx",
+            "tag": "EURO RX",
+            "title": "World Cup: Jakarta",
+            "time": "SAT–SUN: <span class=\"hl\">TBC</span>",
+            "track": "jakarta.svg"
           }
         ]
       }

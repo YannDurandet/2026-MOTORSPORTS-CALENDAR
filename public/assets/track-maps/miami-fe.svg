@@ -1,0 +1,25 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="60" height="60" fill="url(#pattern0_41_234)" fill-opacity="0.1"/>
+<path d="M39.0769 8.99037C28.5769 7.99047 12.0769 7.9905 12.0769 7.9905C12.0769 7.9905 6.0769 7.24461 6.0769 8.49059C6.0769 10.4902 10.1493 9.70367 15.0769 11.4904C19.0769 13.7998 44.5769 27.9904 44.5769 30.4904C44.5769 32.9904 39.5769 33.9904 39.5769 36.4904C40.0769 46.9904 35.0769 46.4904 34.0769 46.9904C32.0402 48.0087 30.8549 48.0269 30.0769 49.9905C28.7122 53.4348 35.0611 52.8164 38.5769 52.9904C41.9829 53.1589 45.175 51.6913 46.5769 50.9905C47.5769 50.4906 46.267 47.8637 47.5769 46.9905C49.0769 45.9906 51.409 45.9941 52.0769 43.9904C53.0769 40.9905 52.0769 34.9905 52.5769 28.9904C52.7004 27.5084 54.0769 26.9774 54.0769 25.4904C54.0769 20.4905 53.8691 14.5465 53.0769 13.4904C51.5769 11.4905 44.7939 9.53478 39.0769 8.99037Z" stroke="white" stroke-width="1.5"/>
+<defs>
+<pattern id="pattern0_41_234" patternUnits="userSpaceOnUse" patternTransform="matrix(12 0 0 12 0 0)" preserveAspectRatio="none" viewBox="0 0 12 12" width="1" height="1">
+<g id="pattern0_41_234_inner">
+<rect y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="5" y="3" width="3" height="1" transform="rotate(180 5 3)" fill="#D9D9D9"/>
+<rect x="5" y="9" width="3" height="1" transform="rotate(180 5 9)" fill="#D9D9D9"/>
+<rect x="11" y="3" width="3" height="1" transform="rotate(180 11 3)" fill="#D9D9D9"/>
+<rect x="11" y="9" width="3" height="1" transform="rotate(180 11 9)" fill="#D9D9D9"/>
+<rect x="2" width="1" height="2" fill="#D9D9D9"/>
+<rect x="2" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="3" y="5" width="1" height="2" transform="rotate(180 3 5)" fill="#D9D9D9"/>
+<rect x="3" y="11" width="1" height="2" transform="rotate(180 3 11)" fill="#D9D9D9"/>
+<rect x="9" y="5" width="1" height="2" transform="rotate(180 9 5)" fill="#D9D9D9"/>
+<rect x="9" y="11" width="1" height="2" transform="rotate(180 9 11)" fill="#D9D9D9"/>
+</g>
+</pattern></defs>
+</svg>

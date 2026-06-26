@@ -76,13 +76,16 @@ const seriesMetadata = {
     igtc: { name: "IGTC", category: "GT / Sports Car", region: "Worldwide" },
     tcr: { name: "TCR", category: "Touring", region: "Worldwide" },
     erc: { name: "ERC", category: "Rally", region: "Europe" },
-    h24eu: { name: "24H European Series", category: "Endurance", region: "Europe" }
+    h24eu: { name: "24H European Series", category: "Endurance", region: "Europe" },
+    psc: { name: "Porsche Supercup", category: "GT / Sports Car", region: "Europe" },
+    bgt: { name: "British GT", category: "GT / Sports Car", region: "Europe" },
+    eurx: { name: "Euro RX", category: "Rally", region: "Europe" }
 };
 
 // =============================================
 // FILTER CONSTANTS
 // =============================================
-const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc', 'h24eu'];
+const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc', 'h24eu', 'psc', 'bgt', 'eurx'];
 const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
 const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
 
@@ -90,7 +93,8 @@ const seriesLabels = {
     f1: 'F1', f1a: 'F1A', fe: 'FE', sf: 'SF', wec: 'WEC', imsa: 'IMSA', wrc: 'WRC',
     indycar: 'INDYCAR', nascar: 'NASCAR', motogp: 'MOTOGP', wsbk: 'WSBK', dtm: 'DTM',
     btcc: 'BTCC', supercars: 'SUPERCARS', elms: 'ELMS', gtwce: 'GTWCE', gtwca: 'GTWCA',
-    nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC', h24eu: '24H EU'
+    nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC', h24eu: '24H EU',
+    psc: 'PORSCHE SC', bgt: 'BRITISH GT', eurx: 'EURO RX'
 };
 
 // =============================================
@@ -340,6 +344,32 @@ function initFilters() {
     }
 
     const seriesToggles = document.getElementById('series-toggles');
+
+    // Select All / Deselect All utility buttons
+    const selectAllBtn = document.createElement('button');
+    selectAllBtn.className = 'filter-btn filter-util';
+    selectAllBtn.textContent = 'SELECT ALL';
+    selectAllBtn.setAttribute('aria-label', 'Select all series');
+    selectAllBtn.addEventListener('click', () => {
+        filterState.hiddenSpecificSeries = [];
+        saveFilterState();
+        seriesToggles.querySelectorAll('.filter-btn[data-series]').forEach(b => { b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); });
+        applyFilters();
+    });
+    seriesToggles.appendChild(selectAllBtn);
+
+    const deselectAllBtn = document.createElement('button');
+    deselectAllBtn.className = 'filter-btn filter-util';
+    deselectAllBtn.textContent = 'DESELECT ALL';
+    deselectAllBtn.setAttribute('aria-label', 'Deselect all series');
+    deselectAllBtn.addEventListener('click', () => {
+        filterState.hiddenSpecificSeries = [...allSeries];
+        saveFilterState();
+        seriesToggles.querySelectorAll('.filter-btn[data-series]').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+        applyFilters();
+    });
+    seriesToggles.appendChild(deselectAllBtn);
+
     for (const s of allSeries) {
         const btn = document.createElement('button');
         const isHidden = filterState.hiddenSpecificSeries.includes(s);
@@ -363,6 +393,17 @@ function initFilters() {
             saveFilterState();
             document.querySelectorAll('.filter-region, .filter-category').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
             document.querySelectorAll('#series-toggles .filter-btn').forEach(b => { b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); });
+            applyFilters();
+        });
+    }
+
+    const clearAllBtn = document.getElementById('clear-all-filters');
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', () => {
+            filterState.regions = []; filterState.categories = []; filterState.hiddenSpecificSeries = [];
+            saveFilterState();
+            document.querySelectorAll('.filter-region, .filter-category').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+            document.querySelectorAll('#series-toggles .filter-btn[data-series]').forEach(b => { b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); });
             applyFilters();
         });
     }
@@ -398,6 +439,13 @@ function applyFilters() {
         const anyVisible = calContainer.querySelector('.card:not([style*="display: none"])');
         emptyState.hidden = !!anyVisible;
     }
+    // Grey-out / activate the clear-all indicator
+    const activeBar = document.getElementById('filter-active-bar');
+    if (activeBar) {
+        const hasFilters = filterState.regions.length > 0 || filterState.categories.length > 0 || filterState.hiddenSpecificSeries.length > 0;
+        activeBar.classList.toggle('has-filters', hasFilters);
+    }
+
     filterStateToURL();
     renderThisWeekend();
 }

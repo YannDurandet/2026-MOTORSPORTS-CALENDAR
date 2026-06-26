@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
+import Banner from '../../components/Banner.astro';
+import Footer from '../../components/Footer.astro';
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
@@ -29,7 +31,7 @@ for (const month of calendarData as any[]) {
 
 // --- Format week label: "• MAY 8-10" → "MAY 8" ---
 function shortDate(label: string): string {
-  const m = label.match(/([A-Z]{3})\s+(\d{1,2})/);
+  const m = label.match(/•\s*([A-Z]{3})\s+(\d{1,2})/);
   return m ? `${m[1]} ${m[2]}` : label.replace('•', '').trim();
 }
 
@@ -49,7 +51,8 @@ type Venue = {
 };
 
 type ProcessedVenue = Venue & {
-  svgContent: string;
+  svgContent: string | null;
+  hasSvg: boolean;
   events: Array<CalEvent & { layoutId: string | null }>;
   eventCount: number;
 };
@@ -68,9 +71,6 @@ function cleanSvg(raw: string, slug: string): string {
 const venues: ProcessedVenue[] = [];
 
 for (const venue of tracksRaw as Venue[]) {
-  const svgPath = path.join(svgDir, venue.browserSvg);
-  if (!fs.existsSync(svgPath)) continue;
-
   // Gather events from all calendarSvgs for this venue
   const events: Array<CalEvent & { layoutId: string | null }> = [];
   for (const csvg of venue.calendarSvgs) {
@@ -87,10 +87,11 @@ for (const venue of tracksRaw as Venue[]) {
     }
   }
 
-  const rawSvg = fs.readFileSync(svgPath, 'utf-8');
-  const svgContent = cleanSvg(rawSvg, venue.slug);
+  const svgPath = venue.browserSvg ? path.join(svgDir, venue.browserSvg) : null;
+  const hasSvg = svgPath ? fs.existsSync(svgPath) : false;
+  const svgContent = hasSvg ? cleanSvg(fs.readFileSync(svgPath!, 'utf-8'), venue.slug) : null;
 
-  venues.push({ ...venue, svgContent, events, eventCount: events.length });
+  venues.push({ ...venue, svgContent, hasSvg, events, eventCount: events.length });
 }
 
 const continentLabels: Record<string, string> = {
@@ -111,11 +112,14 @@ const base = import.meta.env.BASE_URL;
   description="Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts."
   canonicalUrl="https://yanndurandet.me/racing/tracks"
 >
+  <Banner />
   <header>
     <div class="header--left">
-      <h1>THE DEPARTMENT OF RACING DRIVERS<br>2026 TRACK BROWSER</h1>
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Track Browser</h1>
+      <p class="header--page-desc">Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts.</p>
       <div class="meta">
-        {totalVenues} CIRCUITS · EXCLUDES RALLY STAGES
+        {totalVenues} CIRCUITS · {venues.filter(v => v.hasSvg).length} MAPPED · EXCLUDES RALLY STAGES
       </div>
       <Nav activePage="tracks" />
     </div>
@@ -140,12 +144,19 @@ const base = import.meta.env.BASE_URL;
     <div class="tracks-grid" id="tracks-grid">
       {venues.map(venue => (
         <div
-          class:list={["track-card", { "has-layouts": !!venue.layouts }]}
+          class:list={["track-card", { "has-layouts": !!venue.layouts, "no-svg": !venue.hasSvg }]}
           data-continent={venue.continent}
         >
+          <a href={`${base}/tracks/${venue.slug}`} class="card-link" aria-label={venue.name}></a>
           <!-- SVG Map -->
-          <div class="track-svg-wrap">
-            <Fragment set:html={venue.svgContent} />
+          <div
+            class="track-svg-wrap"
+            style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}
+          >
+            {venue.svgContent
+              ? <Fragment set:html={venue.svgContent} />
+              : <div class="svg-placeholder">{venue.name}</div>
+            }
             {venue.layouts && (
               <div class="layout-badge">
                 {venue.layouts.length} layouts · hover series to highlight
@@ -184,6 +195,8 @@ const base = import.meta.env.BASE_URL;
       No tracks with SVG maps yet for this region.
     </div>
   </div>
+
+  <Footer />
 </BaseLayout>
 
 <script>
@@ -320,23 +333,37 @@ const base = import.meta.env.BASE_URL;
     display: flex;
     flex-direction: column;
     transition: border-color 0.15s;
+    position: relative;
   }
 
   .track-card:hover {
     border-color: #2e3f50;
   }
 
+  /* Stretched link covers the full card; series badge links sit above it */
+  .card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .track-ev-row .tag {
+    position: relative;
+    z-index: 2;
+  }
+
   /* ─── SVG area ─────────────────────────────────────────────────────────── */
   .track-svg-wrap {
     position: relative;
     background: var(--bg);
+    background-size: cover;
+    background-position: center;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 24px;
-    /* Keeps 1:1 aspect ratio for the SVG area */
-    aspect-ratio: 1;
+    padding: 0;
+    aspect-ratio: 5 / 3;
   }
 
   .track-svg-wrap :global(svg) {
@@ -348,7 +375,7 @@ const base = import.meta.env.BASE_URL;
 
   /* Bump up stroke weight for larger display */
   .track-svg-wrap :global(svg path) {
-    stroke-width: 2 !important;
+    stroke-width: 1 !important;
   }
 
   .layout-badge {
@@ -362,6 +389,28 @@ const base = import.meta.env.BASE_URL;
     color: #556;
     letter-spacing: 0.04em;
     pointer-events: none;
+  }
+
+  /* Placeholder for tracks without an SVG file yet */
+  .svg-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #1c2a35;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px;
+    line-height: 1.4;
+  }
+
+  .no-svg .track-svg-wrap {
+    opacity: 0.55;
   }
 
   /* ─── Info section ─────────────────────────────────────────────────────── */

@@ -23,27 +23,53 @@ import calendarData from '../../data/calendar.json';
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What time zone are the race times in?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "All times are displayed in your system time. By default, the master calendar is built using Paris (CET/CEST) timezone."
-          }
-        },
-        {
-          "@type": "Question",
           "name": "When does the 2026 Formula 1 season start?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The 2026 F1 season kicks off with the Australian Grand Prix on March 8, 2026."
-          }
+          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 FIA Formula One World Championship begins with the Australian Grand Prix at Melbourne's Albert Park Circuit on March 8, 2026. The season runs 22 rounds across five continents, concluding at the Abu Dhabi Grand Prix on December 6, 2026." }
         },
         {
           "@type": "Question",
-          "name": "Which series are included in this tracker?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We track 21 major global and regional championships including Formula 1, WEC, IMSA, IndyCar, WRC, MotoGP, WorldSBK, NASCAR, and Supercars."
-          }
+          "name": "What's new in Formula 1 for 2026?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 season introduces the most significant technical overhaul in F1's modern era. All-new power unit regulations bring a new hybrid formula with a 50/50 split between combustion and electrical power, alongside completely redesigned aerodynamics featuring active front and rear wings. New entrants Audi and the GM/Cadillac works team join the grid. A new street circuit in Madrid, the Madring, makes its F1 debut in September." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are Bahrain and Saudi Arabia not on the 2026 F1 calendar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Both the Bahrain Grand Prix and the Saudi Arabian Grand Prix are absent from the 2026 Formula One World Championship calendar. The Saudi Arabian GP was removed due to ongoing regional instability, while Bahrain did not reach a new hosting agreement in time for the 2026 schedule." }
+        },
+        {
+          "@type": "Question",
+          "name": "When is the 24 Hours of Le Mans 2026?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 24 Hours of Le Mans takes place June 10–14 at the Circuit de la Sarthe in Le Mans, France. It is the centrepiece of the FIA World Endurance Championship and the most prestigious endurance race in the world, contested by Hypercar and GT3 machinery." }
+        },
+        {
+          "@type": "Question",
+          "name": "When does the 2026 MotoGP season start?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 MotoGP World Championship begins with the Thai Grand Prix at the Chang International Circuit in Buriram on February 27–March 1. The season spans 22 rounds across five continents and marks the final year of the current 1000cc engine regulations before major technical changes arrive in 2027." }
+        },
+        {
+          "@type": "Question",
+          "name": "When is the 2026 Daytona 500?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 Daytona 500, the season-opening crown jewel of the NASCAR Cup Series, takes place on February 15, 2026 at Daytona International Speedway in Daytona Beach, Florida." }
+        },
+        {
+          "@type": "Question",
+          "name": "When does the 2026 IndyCar season start?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 NTT IndyCar Series season opens with the Firestone Grand Prix of St. Petersburg on March 1, 2026. The 16-race schedule includes the 110th Running of the Indianapolis 500 on May 24." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between WEC and IMSA?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The FIA World Endurance Championship (WEC) is the global endurance series, peaking with the 24 Hours of Le Mans and racing across Europe, Asia, and the Americas. IMSA (the WeatherTech SportsCar Championship) is the premier North American endurance series, built around tracks like Daytona, Sebring, and Watkins Glen. Both share the same GTP Hypercar class and often feature identical manufacturer programmes." }
+        },
+        {
+          "@type": "Question",
+          "name": "Which series are tracked in this calendar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We track 25 major global and regional championships: Formula 1, F1 Academy, Formula E, Super Formula, WEC, IMSA, WRC, ERC, IndyCar, NASCAR, MotoGP, WorldSBK, DTM, BTCC, Australian Supercars, ELMS, GT World Challenge Europe, GT World Challenge America, NLS, IGTC, TCR World, 24H European Series, Porsche Mobil 1 Supercup, British GT, and FIA European Rallycross. Indy NXT, F2, and F3 appear as support events within their parent series." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I export the calendar to my phone or Google Calendar?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — each series has an ICS export button on its detail page, letting you subscribe to that championship's race schedule directly in Apple Calendar, Google Calendar, Outlook, or any calendar app that supports the iCal format. Subscribed calendars update automatically when the schedule changes." }
         }
       ]
     })} />
@@ -52,7 +78,8 @@ import calendarData from '../../data/calendar.json';
   <Banner />
   <header>
     <div class="header--left">
-      <h1>THE DEPARTMENT OF RACING DRIVERS<br>2026 MOTORSPORT MASTER CALENDAR</h1>
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Motorsport<br>Master Calendar</h1>
       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <div class="website-description">The ultimate 2026 motorsport master calendar. Track every race weekend
         across global and regional series, including Formula 1, WEC, IMSA, IndyCar, MotoGP, and WRC.<br> Use
@@ -80,6 +107,10 @@ import calendarData from '../../data/calendar.json';
         <summary>Advanced: Toggle Specific Series</summary>
         <div class="advanced-series-grid" id="series-toggles"></div>
       </details>
+      <div class="filter-active-bar" id="filter-active-bar">
+        <span class="filter-active-label">Filters active</span>
+        <button class="clear-all-btn" id="clear-all-filters">Clear all ×</button>
+      </div>
     </div>
 
     <div id="empty-state" class="empty-state" hidden>
