@@ -1,0 +1,1125 @@
+[
+  {
+    "slug": "albert-park",
+    "name": "Albert Park Circuit",
+    "city": "Melbourne",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "albert-park.svg",
+    "calendarSvgs": ["albert-park.svg"]
+  },
+  {
+    "slug": "aragon",
+    "name": "MotorLand Aragón",
+    "city": "Alcañiz",
+    "country": "Spain",
+    "continent": "europe",
+    "browserSvg": "aragon.svg",
+    "calendarSvgs": ["aragon.svg"]
+  },
+  {
+    "slug": "arlington",
+    "name": "Streets of Arlington",
+    "city": "Arlington",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "arlington.svg",
+    "calendarSvgs": ["arlington.svg"]
+  },
+  {
+    "slug": "assen",
+    "name": "TT Circuit Assen",
+    "city": "Assen",
+    "country": "Netherlands",
+    "continent": "europe",
+    "browserSvg": "assen.svg",
+    "calendarSvgs": ["assen.svg"]
+  },
+  {
+    "slug": "atlanta",
+    "name": "Atlanta Motor Speedway",
+    "city": "Hampton",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "atlanta.svg",
+    "calendarSvgs": ["atlanta.svg"]
+  },
+  {
+    "slug": "autopolis",
+    "name": "Autopolis",
+    "city": "Hita",
+    "country": "Japan",
+    "continent": "asia",
+    "browserSvg": "autopolis.svg",
+    "calendarSvgs": ["autopolis.svg"]
+  },
+  {
+    "slug": "bahrain",
+    "name": "Bahrain International Circuit",
+    "city": "Sakhir",
+    "country": "Bahrain",
+    "continent": "middle-east",
+    "browserSvg": "bahrain.svg",
+    "calendarSvgs": ["bahrain.svg"]
+  },
+  {
+    "slug": "baku",
+    "name": "Baku City Circuit",
+    "city": "Baku",
+    "country": "Azerbaijan",
+    "continent": "europe",
+    "browserSvg": "baku.svg",
+    "calendarSvgs": ["baku.svg"]
+  },
+  {
+    "slug": "balaton",
+    "name": "Balaton Park Circuit",
+    "city": "Zamárdi",
+    "country": "Hungary",
+    "continent": "europe",
+    "browserSvg": "balaton-moto.svg",
+    "calendarSvgs": ["balaton-moto.svg"]
+  },
+  {
+    "slug": "barber",
+    "name": "Barber Motorsports Park",
+    "city": "Birmingham",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "barber.svg",
+    "calendarSvgs": ["barber.svg"]
+  },
+  {
+    "slug": "barcelona",
+    "name": "Circuit de Barcelona-Catalunya",
+    "city": "Montmeló",
+    "country": "Spain",
+    "continent": "europe",
+    "browserSvg": "barcelona.svg",
+    "calendarSvgs": ["barcelona.svg"]
+  },
+  {
+    "slug": "bathurst",
+    "name": "Mount Panorama Circuit",
+    "city": "Bathurst",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "bathurst.svg",
+    "calendarSvgs": ["bathurst.svg"]
+  },
+  {
+    "slug": "berlin",
+    "name": "Tempelhof Airport Street Circuit",
+    "city": "Berlin",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "berlin.svg",
+    "calendarSvgs": ["berlin.svg"]
+  },
+  {
+    "slug": "brands-hatch",
+    "name": "Brands Hatch",
+    "city": "Fawkham",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "brands-hatch.svg",
+    "calendarSvgs": ["brands-hatch.svg"]
+  },
+  {
+    "slug": "bristol",
+    "name": "Bristol Motor Speedway",
+    "city": "Bristol",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "bristol.svg",
+    "calendarSvgs": ["bristol.svg"]
+  },
+  {
+    "slug": "brno",
+    "name": "Automotodrom Brno",
+    "city": "Brno",
+    "country": "Czech Republic",
+    "continent": "europe",
+    "browserSvg": "brno.svg",
+    "calendarSvgs": ["brno.svg"]
+  },
+  {
+    "slug": "buriram",
+    "name": "Chang International Circuit",
+    "city": "Buriram",
+    "country": "Thailand",
+    "continent": "asia",
+    "browserSvg": "buriram.svg",
+    "calendarSvgs": ["buriram.svg"]
+  },
+  {
+    "slug": "charlotte",
+    "name": "Charlotte Motor Speedway",
+    "city": "Concord",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "charlotte.svg",
+    "calendarSvgs": ["charlotte.svg"]
+  },
+  {
+    "slug": "chengdu",
+    "name": "Chengdu International Motorsport Circuit",
+    "city": "Chengdu",
+    "country": "China",
+    "continent": "asia",
+    "browserSvg": "chengdu.svg",
+    "calendarSvgs": ["chengdu.svg"]
+  },
+  {
+    "slug": "chicagoland",
+    "name": "Chicagoland Speedway",
+    "city": "Joliet",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "chicagoland.svg",
+    "calendarSvgs": ["chicagoland.svg"]
+  },
+  {
+    "slug": "christchurch",
+    "name": "Streets of Christchurch",
+    "city": "Christchurch",
+    "country": "New Zealand",
+    "continent": "oceania",
+    "browserSvg": "christchurch.svg",
+    "calendarSvgs": ["christchurch.svg"]
+  },
+  {
+    "slug": "cota",
+    "name": "Circuit of the Americas",
+    "city": "Austin",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "cota.svg",
+    "calendarSvgs": ["cota.svg"]
+  },
+  {
+    "slug": "cremona",
+    "name": "Cremona Circuit",
+    "city": "Cremona",
+    "country": "Italy",
+    "continent": "europe",
+    "browserSvg": "cremona.svg",
+    "calendarSvgs": ["cremona.svg"]
+  },
+  {
+    "slug": "croft",
+    "name": "Croft Circuit",
+    "city": "Dalton-on-Tees",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "croft.svg",
+    "calendarSvgs": ["croft.svg"]
+  },
+  {
+    "slug": "darlington",
+    "name": "Darlington Raceway",
+    "city": "Darlington",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "darlington.svg",
+    "calendarSvgs": ["darlington.svg"]
+  },
+  {
+    "slug": "darwin",
+    "name": "Darwin Street Circuit",
+    "city": "Darwin",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "darwin.svg",
+    "calendarSvgs": ["darwin.svg"]
+  },
+  {
+    "slug": "daytona",
+    "name": "Daytona International Speedway",
+    "city": "Daytona Beach",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "daytona.svg",
+    "calendarSvgs": ["daytona.svg"]
+  },
+  {
+    "slug": "detroit",
+    "name": "Streets of Detroit",
+    "city": "Detroit",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "detroit.svg",
+    "calendarSvgs": ["detroit.svg"]
+  },
+  {
+    "slug": "donington",
+    "name": "Donington Park",
+    "city": "Castle Donington",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "donington.svg",
+    "calendarSvgs": ["donington.svg"]
+  },
+  {
+    "slug": "dover",
+    "name": "Dover Motor Speedway",
+    "city": "Dover",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "dover.svg",
+    "calendarSvgs": ["dover.svg"]
+  },
+  {
+    "slug": "estoril",
+    "name": "Estoril Circuit",
+    "city": "Estoril",
+    "country": "Portugal",
+    "continent": "europe",
+    "browserSvg": "estoril.svg",
+    "calendarSvgs": ["estoril.svg"]
+  },
+  {
+    "slug": "fuji",
+    "name": "Fuji Speedway",
+    "city": "Oyama",
+    "country": "Japan",
+    "continent": "asia",
+    "browserSvg": "fuji.svg",
+    "calendarSvgs": ["fuji.svg"]
+  },
+  {
+    "slug": "gateway",
+    "name": "World Wide Technology Raceway",
+    "city": "Madison",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "gateway.svg",
+    "calendarSvgs": ["gateway.svg"]
+  },
+  {
+    "slug": "goiania",
+    "name": "Streets of Goiânia",
+    "city": "Goiânia",
+    "country": "Brazil",
+    "continent": "south-america",
+    "browserSvg": "goiania.svg",
+    "calendarSvgs": ["goiania.svg"]
+  },
+  {
+    "slug": "gold-coast",
+    "name": "Gold Coast Street Circuit",
+    "city": "Surfers Paradise",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "gold-coast.svg",
+    "calendarSvgs": ["gold-coast.svg"]
+  },
+  {
+    "slug": "hockenheim",
+    "name": "Hockenheimring Baden-Württemberg",
+    "city": "Hockenheim",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "hockenheim.svg",
+    "calendarSvgs": ["hockenheim.svg"]
+  },
+  {
+    "slug": "homestead",
+    "name": "Homestead-Miami Speedway",
+    "city": "Homestead",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "homestead.svg",
+    "calendarSvgs": ["homestead.svg"]
+  },
+  {
+    "slug": "hungaroring",
+    "name": "Hungaroring",
+    "city": "Mogyoród",
+    "country": "Hungary",
+    "continent": "europe",
+    "browserSvg": "hungaroring.svg",
+    "calendarSvgs": ["hungaroring.svg"]
+  },
+  {
+    "slug": "imola",
+    "name": "Autodromo Enzo e Dino Ferrari",
+    "city": "Imola",
+    "country": "Italy",
+    "continent": "europe",
+    "browserSvg": "imola.svg",
+    "calendarSvgs": ["imola.svg"]
+  },
+  {
+    "slug": "indianapolis",
+    "name": "Indianapolis Motor Speedway",
+    "city": "Indianapolis",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "indianapolis.svg",
+    "calendarSvgs": ["indianapolis.svg", "indianapolis-oval.svg"],
+    "layouts": [
+      { "id": "road", "label": "Road Course", "calendarSvgs": ["indianapolis.svg"] },
+      { "id": "oval", "label": "Oval (Indy 500)", "calendarSvgs": ["indianapolis-oval.svg"] }
+    ]
+  },
+  {
+    "slug": "inje",
+    "name": "Inje Speedium",
+    "city": "Inje",
+    "country": "South Korea",
+    "continent": "asia",
+    "browserSvg": "inje.svg",
+    "calendarSvgs": ["inje.svg"]
+  },
+  {
+    "slug": "interlagos",
+    "name": "Autodromo José Carlos Pace",
+    "city": "São Paulo",
+    "country": "Brazil",
+    "continent": "south-america",
+    "browserSvg": "interlagos.svg",
+    "calendarSvgs": ["interlagos.svg"]
+  },
+  {
+    "slug": "iowa",
+    "name": "Iowa Speedway",
+    "city": "Newton",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "iowa.svg",
+    "calendarSvgs": ["iowa.svg"]
+  },
+  {
+    "slug": "ipswich",
+    "name": "Queensland Raceway",
+    "city": "Ipswich",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "ipswich.svg",
+    "calendarSvgs": ["ipswich.svg"]
+  },
+  {
+    "slug": "jeddah",
+    "name": "Jeddah Corniche Circuit",
+    "city": "Jeddah",
+    "country": "Saudi Arabia",
+    "continent": "middle-east",
+    "browserSvg": "jeddah.svg",
+    "calendarSvgs": ["jeddah.svg"]
+  },
+  {
+    "slug": "jerez",
+    "name": "Circuit de Jerez – Ángel Nieto",
+    "city": "Jerez de la Frontera",
+    "country": "Spain",
+    "continent": "europe",
+    "browserSvg": "jerez.svg",
+    "calendarSvgs": ["jerez.svg", "jerez-motogp.svg"],
+    "layouts": [
+      { "id": "wsbk", "label": "WSBK Layout", "calendarSvgs": ["jerez.svg"] },
+      { "id": "motogp", "label": "MotoGP Layout", "calendarSvgs": ["jerez-motogp.svg"] }
+    ]
+  },
+  {
+    "slug": "kansas",
+    "name": "Kansas Speedway",
+    "city": "Kansas City",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "kansas.svg",
+    "calendarSvgs": ["kansas.svg"]
+  },
+  {
+    "slug": "knockhill",
+    "name": "Knockhill Racing Circuit",
+    "city": "Dunfermline",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "knockhill.svg",
+    "calendarSvgs": ["knockhill.svg"]
+  },
+  {
+    "slug": "laguna-seca",
+    "name": "WeatherTech Raceway Laguna Seca",
+    "city": "Salinas",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "laguna-seca.svg",
+    "calendarSvgs": ["laguna-seca.svg"]
+  },
+  {
+    "slug": "las-vegas",
+    "name": "Las Vegas Strip Circuit",
+    "city": "Las Vegas",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "las-vegas.svg",
+    "calendarSvgs": ["las-vegas.svg"]
+  },
+  {
+    "slug": "lausitzring",
+    "name": "EuroSpeedway Lausitz",
+    "city": "Klettwitz",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "lausitzring.svg",
+    "calendarSvgs": ["lausitzring.svg"]
+  },
+  {
+    "slug": "le-mans",
+    "name": "Circuit de la Sarthe",
+    "city": "Le Mans",
+    "country": "France",
+    "continent": "europe",
+    "browserSvg": "le-mans.svg",
+    "calendarSvgs": ["le-mans.svg"]
+  },
+  {
+    "slug": "london",
+    "name": "London ExCeL ePrix Circuit",
+    "city": "London",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "london.svg",
+    "calendarSvgs": ["london.svg"]
+  },
+  {
+    "slug": "long-beach",
+    "name": "Streets of Long Beach",
+    "city": "Long Beach",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "long-beach.svg",
+    "calendarSvgs": ["long-beach.svg"]
+  },
+  {
+    "slug": "lusail",
+    "name": "Lusail International Circuit",
+    "city": "Lusail",
+    "country": "Qatar",
+    "continent": "middle-east",
+    "browserSvg": "lusail.svg",
+    "calendarSvgs": ["lusail.svg"]
+  },
+  {
+    "slug": "macau",
+    "name": "Guia Street Circuit",
+    "city": "Macau",
+    "country": "Macau",
+    "continent": "asia",
+    "browserSvg": "macau.svg",
+    "calendarSvgs": ["macau.svg"]
+  },
+  {
+    "slug": "madrid",
+    "name": "Madrid Circuit",
+    "city": "Madrid",
+    "country": "Spain",
+    "continent": "europe",
+    "browserSvg": "madrid.svg",
+    "calendarSvgs": ["madrid.svg"]
+  },
+  {
+    "slug": "magny-cours",
+    "name": "Circuit de Nevers Magny-Cours",
+    "city": "Magny-Cours",
+    "country": "France",
+    "continent": "europe",
+    "browserSvg": "magny-cours.svg",
+    "calendarSvgs": ["magny-cours.svg"]
+  },
+  {
+    "slug": "mandalika",
+    "name": "Pertamina Mandalika Street Circuit",
+    "city": "Lombok",
+    "country": "Indonesia",
+    "continent": "asia",
+    "browserSvg": "mandalika.svg",
+    "calendarSvgs": ["mandalika.svg"]
+  },
+  {
+    "slug": "markham",
+    "name": "Streets of Markham",
+    "city": "Markham",
+    "country": "Canada",
+    "continent": "north-america",
+    "browserSvg": "markham.svg",
+    "calendarSvgs": ["markham.svg"]
+  },
+  {
+    "slug": "martinsville",
+    "name": "Martinsville Speedway",
+    "city": "Martinsville",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "martinsville.svg",
+    "calendarSvgs": ["martinsville.svg"]
+  },
+  {
+    "slug": "mexico-city",
+    "name": "Autodromo Hermanos Rodríguez",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "continent": "north-america",
+    "browserSvg": "mexico.svg",
+    "calendarSvgs": ["mexico.svg"]
+  },
+  {
+    "slug": "miami",
+    "name": "Miami International Autodrome",
+    "city": "Miami Gardens",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "miami.svg",
+    "calendarSvgs": ["miami.svg", "miami-f1.svg"],
+    "layouts": [
+      { "id": "f1", "label": "F1 / F1 Academy", "calendarSvgs": ["miami-f1.svg"] },
+      { "id": "fe", "label": "Formula E", "calendarSvgs": ["miami.svg"] }
+    ]
+  },
+  {
+    "slug": "michigan",
+    "name": "Michigan International Speedway",
+    "city": "Brooklyn",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "michigan.svg",
+    "calendarSvgs": ["michigan.svg"]
+  },
+  {
+    "slug": "midohio",
+    "name": "Mid-Ohio Sports Car Course",
+    "city": "Lexington",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "midohio.svg",
+    "calendarSvgs": ["midohio.svg"]
+  },
+  {
+    "slug": "milwaukee",
+    "name": "The Milwaukee Mile",
+    "city": "West Allis",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "milwaukee.svg",
+    "calendarSvgs": ["milwaukee.svg"]
+  },
+  {
+    "slug": "misano",
+    "name": "Misano World Circuit Marco Simoncelli",
+    "city": "Misano Adriatico",
+    "country": "Italy",
+    "continent": "europe",
+    "browserSvg": "misano.svg",
+    "calendarSvgs": ["misano.svg"]
+  },
+  {
+    "slug": "monaco",
+    "name": "Circuit de Monaco",
+    "city": "Monaco",
+    "country": "Monaco",
+    "continent": "europe",
+    "browserSvg": "monaco.svg",
+    "calendarSvgs": ["monaco.svg"]
+  },
+  {
+    "slug": "monza",
+    "name": "Autodromo Nazionale di Monza",
+    "city": "Monza",
+    "country": "Italy",
+    "continent": "europe",
+    "browserSvg": "monza.svg",
+    "calendarSvgs": ["monza.svg"]
+  },
+  {
+    "slug": "montreal",
+    "name": "Circuit Gilles Villeneuve",
+    "city": "Montréal",
+    "country": "Canada",
+    "continent": "north-america",
+    "browserSvg": "montreal.svg",
+    "calendarSvgs": ["montreal.svg"]
+  },
+  {
+    "slug": "mosport",
+    "name": "Canadian Tire Motorsport Park",
+    "city": "Bowmanville",
+    "country": "Canada",
+    "continent": "north-america",
+    "browserSvg": "mosport.svg",
+    "calendarSvgs": ["mosport.svg"]
+  },
+  {
+    "slug": "most",
+    "name": "Autodrom Most",
+    "city": "Most",
+    "country": "Czech Republic",
+    "continent": "europe",
+    "browserSvg": "most.svg",
+    "calendarSvgs": ["most.svg"]
+  },
+  {
+    "slug": "motegi",
+    "name": "Mobility Resort Motegi",
+    "city": "Motegi",
+    "country": "Japan",
+    "continent": "asia",
+    "browserSvg": "motegi.svg",
+    "calendarSvgs": ["motegi.svg"]
+  },
+  {
+    "slug": "mugello",
+    "name": "Autodromo del Mugello",
+    "city": "Scarperia",
+    "country": "Italy",
+    "continent": "europe",
+    "browserSvg": "mugello.svg",
+    "calendarSvgs": ["mugello.svg"]
+  },
+  {
+    "slug": "nashville",
+    "name": "Nashville Superspeedway",
+    "city": "Lebanon",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "nashville.svg",
+    "calendarSvgs": ["nashville.svg"]
+  },
+  {
+    "slug": "newhampshire",
+    "name": "New Hampshire Motor Speedway",
+    "city": "Loudon",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "newhampshire.svg",
+    "calendarSvgs": ["newhampshire.svg"]
+  },
+  {
+    "slug": "norisring",
+    "name": "Norisring",
+    "city": "Nuremberg",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "norisring.svg",
+    "calendarSvgs": ["norisring.svg"]
+  },
+  {
+    "slug": "nordschleife",
+    "name": "Nürburgring Nordschleife",
+    "city": "Nürburg",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "nordschleife.svg",
+    "calendarSvgs": ["nordschleife.svg"]
+  },
+  {
+    "slug": "northwilkesboro",
+    "name": "North Wilkesboro Speedway",
+    "city": "North Wilkesboro",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "northwilkesboro.svg",
+    "calendarSvgs": ["northwilkesboro.svg"]
+  },
+  {
+    "slug": "nurburgring-gp",
+    "name": "Nürburgring GP Circuit",
+    "city": "Nürburg",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "nurburgring.svg",
+    "calendarSvgs": ["nurburgring.svg"]
+  },
+  {
+    "slug": "oschersleben",
+    "name": "Motorsport Arena Oschersleben",
+    "city": "Oschersleben",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "oschersleben.svg",
+    "calendarSvgs": ["oschersleben.svg"]
+  },
+  {
+    "slug": "oulton-park",
+    "name": "Oulton Park",
+    "city": "Tarporley",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "oulton-park.svg",
+    "calendarSvgs": ["oulton-park.svg"]
+  },
+  {
+    "slug": "paul-ricard",
+    "name": "Circuit Paul Ricard",
+    "city": "Le Castellet",
+    "country": "France",
+    "continent": "europe",
+    "browserSvg": "paul-ricard.svg",
+    "calendarSvgs": ["paul-ricard.svg"]
+  },
+  {
+    "slug": "perth",
+    "name": "Wanneroo Raceway",
+    "city": "Perth",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "perth.svg",
+    "calendarSvgs": ["perth.svg"]
+  },
+  {
+    "slug": "phillip-island",
+    "name": "Phillip Island Grand Prix Circuit",
+    "city": "Phillip Island",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "phillip-island.svg",
+    "calendarSvgs": ["phillip-island.svg"]
+  },
+  {
+    "slug": "phoenix",
+    "name": "Phoenix Raceway",
+    "city": "Avondale",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "phoenix.svg",
+    "calendarSvgs": ["phoenix.svg"]
+  },
+  {
+    "slug": "pocono",
+    "name": "Pocono Raceway",
+    "city": "Long Pond",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "pocono.svg",
+    "calendarSvgs": ["pocono.svg"]
+  },
+  {
+    "slug": "portimao",
+    "name": "Autodromo Internacional do Algarve",
+    "city": "Portimão",
+    "country": "Portugal",
+    "continent": "europe",
+    "browserSvg": "portimao.svg",
+    "calendarSvgs": ["portimao.svg"]
+  },
+  {
+    "slug": "portland",
+    "name": "Portland International Raceway",
+    "city": "Portland",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "portland.svg",
+    "calendarSvgs": ["portland.svg"]
+  },
+  {
+    "slug": "red-bull-ring",
+    "name": "Red Bull Ring",
+    "city": "Spielberg",
+    "country": "Austria",
+    "continent": "europe",
+    "browserSvg": "red-bull-ring.svg",
+    "calendarSvgs": ["red-bull-ring.svg", "red-bull-ring-moto.svg"],
+    "layouts": [
+      { "id": "gp", "label": "GP Layout (F1 / DTM)", "calendarSvgs": ["red-bull-ring.svg"] },
+      { "id": "motogp", "label": "MotoGP Layout", "calendarSvgs": ["red-bull-ring-moto.svg"] }
+    ]
+  },
+  {
+    "slug": "richmond",
+    "name": "Richmond Raceway",
+    "city": "Richmond",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "richmond.svg",
+    "calendarSvgs": ["richmond.svg"]
+  },
+  {
+    "slug": "road-america",
+    "name": "Road America",
+    "city": "Elkhart Lake",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "road-america.svg",
+    "calendarSvgs": ["road-america.svg"]
+  },
+  {
+    "slug": "road-atlanta",
+    "name": "Michelin Raceway Road Atlanta",
+    "city": "Braselton",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "road-atlanta.svg",
+    "calendarSvgs": ["road-atlanta.svg"]
+  },
+  {
+    "slug": "sachsenring",
+    "name": "Sachsenring",
+    "city": "Hohenstein-Ernstthal",
+    "country": "Germany",
+    "continent": "europe",
+    "browserSvg": "sachsenring.svg",
+    "calendarSvgs": ["sachsenring.svg"]
+  },
+  {
+    "slug": "sandiego",
+    "name": "Streets of San Diego",
+    "city": "San Diego",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "sandiego.svg",
+    "calendarSvgs": ["sandiego.svg"]
+  },
+  {
+    "slug": "sandown",
+    "name": "Sandown Raceway",
+    "city": "Springvale South",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "sandown.svg",
+    "calendarSvgs": ["sandown.svg"]
+  },
+  {
+    "slug": "sanya",
+    "name": "Sanya Street Circuit",
+    "city": "Sanya",
+    "country": "China",
+    "continent": "asia",
+    "browserSvg": "sanya.svg",
+    "calendarSvgs": ["sanya.svg"]
+  },
+  {
+    "slug": "sebring",
+    "name": "Sebring International Raceway",
+    "city": "Sebring",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "sebring.svg",
+    "calendarSvgs": ["sebring.svg"]
+  },
+  {
+    "slug": "sepang",
+    "name": "Sepang International Circuit",
+    "city": "Sepang",
+    "country": "Malaysia",
+    "continent": "asia",
+    "browserSvg": "sepang.svg",
+    "calendarSvgs": ["sepang.svg"]
+  },
+  {
+    "slug": "shanghai",
+    "name": "Shanghai International Circuit",
+    "city": "Shanghai",
+    "country": "China",
+    "continent": "asia",
+    "browserSvg": "shanghai.svg",
+    "calendarSvgs": ["shanghai.svg"]
+  },
+  {
+    "slug": "silverstone",
+    "name": "Silverstone Circuit",
+    "city": "Silverstone",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "silverstone.svg",
+    "calendarSvgs": ["silverstone.svg"]
+  },
+  {
+    "slug": "singapore",
+    "name": "Marina Bay Street Circuit",
+    "city": "Singapore",
+    "country": "Singapore",
+    "continent": "asia",
+    "browserSvg": "singapore.svg",
+    "calendarSvgs": ["singapore.svg"]
+  },
+  {
+    "slug": "snetterton",
+    "name": "Snetterton Circuit",
+    "city": "Snetterton",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "snetterton.svg",
+    "calendarSvgs": ["snetterton.svg"]
+  },
+  {
+    "slug": "sonoma",
+    "name": "Sonoma Raceway",
+    "city": "Sonoma",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "sonoma.svg",
+    "calendarSvgs": ["sonoma.svg"]
+  },
+  {
+    "slug": "spa",
+    "name": "Circuit de Spa-Francorchamps",
+    "city": "Stavelot",
+    "country": "Belgium",
+    "continent": "europe",
+    "browserSvg": "spa.svg",
+    "calendarSvgs": ["spa.svg"]
+  },
+  {
+    "slug": "st-petersburg",
+    "name": "St. Petersburg Street Circuit",
+    "city": "St. Petersburg",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "st-petersburg.svg",
+    "calendarSvgs": ["st-petersburg.svg"]
+  },
+  {
+    "slug": "sugo",
+    "name": "Sportsland SUGO",
+    "city": "Murata",
+    "country": "Japan",
+    "continent": "asia",
+    "browserSvg": "sugo.svg",
+    "calendarSvgs": ["sugo.svg"]
+  },
+  {
+    "slug": "suzuka",
+    "name": "Suzuka Circuit",
+    "city": "Suzuka",
+    "country": "Japan",
+    "continent": "asia",
+    "browserSvg": "suzuka.svg",
+    "calendarSvgs": ["suzuka.svg"]
+  },
+  {
+    "slug": "sydney",
+    "name": "Sydney Motorsport Park",
+    "city": "Eastern Creek",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "sydney.svg",
+    "calendarSvgs": ["sydney.svg"]
+  },
+  {
+    "slug": "talladega",
+    "name": "Talladega Superspeedway",
+    "city": "Talladega",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "talladega.svg",
+    "calendarSvgs": ["talladega.svg"]
+  },
+  {
+    "slug": "tasmania",
+    "name": "Symmons Plains Raceway",
+    "city": "Launceston",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "tasmania.svg",
+    "calendarSvgs": ["tasmania.svg"]
+  },
+  {
+    "slug": "taupo",
+    "name": "Bruce McLaren Motorsport Park",
+    "city": "Taupo",
+    "country": "New Zealand",
+    "continent": "oceania",
+    "browserSvg": "taupo.svg",
+    "calendarSvgs": ["taupo.svg"]
+  },
+  {
+    "slug": "the-bend",
+    "name": "The Bend Motorsport Park",
+    "city": "Tailem Bend",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "the-bend.svg",
+    "calendarSvgs": ["the-bend.svg"]
+  },
+  {
+    "slug": "thruxton",
+    "name": "Thruxton Circuit",
+    "city": "Andover",
+    "country": "UK",
+    "continent": "europe",
+    "browserSvg": "thruxton.svg",
+    "calendarSvgs": ["thruxton.svg"]
+  },
+  {
+    "slug": "tokyo",
+    "name": "Tokyo E-Prix Circuit",
+    "city": "Tokyo",
+    "country": "Japan",
+    "continent": "asia",
+    "browserSvg": "tokyo.svg",
+    "calendarSvgs": ["tokyo.svg"]
+  },
+  {
+    "slug": "townsville",
+    "name": "Reid Park Street Circuit",
+    "city": "Townsville",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "townsville.svg",
+    "calendarSvgs": ["townsville.svg"]
+  },
+  {
+    "slug": "valencia",
+    "name": "Circuit Ricardo Tormo",
+    "city": "Valencia",
+    "country": "Spain",
+    "continent": "europe",
+    "browserSvg": "valencia.svg",
+    "calendarSvgs": ["valencia.svg"]
+  },
+  {
+    "slug": "vila-real",
+    "name": "Circuit de Vila Real",
+    "city": "Vila Real",
+    "country": "Portugal",
+    "continent": "europe",
+    "browserSvg": "vila-real.svg",
+    "calendarSvgs": ["vila-real.svg"]
+  },
+  {
+    "slug": "vir",
+    "name": "Virginia International Raceway",
+    "city": "Alton",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "vir.svg",
+    "calendarSvgs": ["vir.svg"]
+  },
+  {
+    "slug": "watkins-glen",
+    "name": "Watkins Glen International",
+    "city": "Watkins Glen",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "watkins-glen.svg",
+    "calendarSvgs": ["watkins-glen.svg"]
+  },
+  {
+    "slug": "yas-marina",
+    "name": "Yas Marina Circuit",
+    "city": "Abu Dhabi",
+    "country": "UAE",
+    "continent": "middle-east",
+    "browserSvg": "yas-marina.svg",
+    "calendarSvgs": ["yas-marina.svg"]
+  },
+  {
+    "slug": "zandvoort",
+    "name": "Circuit Zandvoort",
+    "city": "Zandvoort",
+    "country": "Netherlands",
+    "continent": "europe",
+    "browserSvg": "zandvoort.svg",
+    "calendarSvgs": ["zandvoort.svg"]
+  },
+  {
+    "slug": "zhuzhou",
+    "name": "Zhuzhou International Circuit",
+    "city": "Zhuzhou",
+    "country": "China",
+    "continent": "asia",
+    "browserSvg": "zhuzhou.svg",
+    "calendarSvgs": ["zhuzhou.svg"]
+  }
+]

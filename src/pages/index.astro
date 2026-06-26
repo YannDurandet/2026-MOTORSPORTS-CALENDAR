@@ -9,72 +9,6 @@ import Footer from '../components/Footer.astro';
 
 // Import data at build time
 import calendarData from '../../data/calendar.json';
-import resultsData from '../../data/results.json';
-import seriesData from '../../data/series.json';
-// Build results lookup: "series|EVENT" → array of result objects
-const resultsLookup: Record<string, any[]> = {};
-for (const [series, races] of Object.entries(resultsData as Record<string, any[]>)) {
-  for (const r of races) {
-    const key = `${series}|${r.event}`;
-    if (!resultsLookup[key]) resultsLookup[key] = [];
-    resultsLookup[key].push(r);
-  }
-}
-
-const MONTH_MAP: Record<string, number> = {
-  JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5,
-  JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11
-};
-
-function parseWeekDate(weekLabel: string): Date | null {
-  const m = weekLabel.match(/\u2022\s*([A-Z]{3})\s+(\d{1,2})(?:\s*-\s*(\d{1,2}))?/);
-  if (!m) return null;
-  const mo = MONTH_MAP[m[1]];
-  if (mo === undefined) return null;
-  const day = m[3] ? parseInt(m[3]) : parseInt(m[2]);
-  return new Date(2026, mo, day);
-}
-
-function findSeriesDate(seriesKey: string, weekLabel: string) {
-  const list = (seriesData as Record<string, any[]>)[seriesKey];
-  if (!list) return null;
-  const refDate = parseWeekDate(weekLabel);
-  if (!refDate) return null;
-  const m = weekLabel.match(/\u2022\s*([A-Z]{3})\s+(\d{1,2})/);
-  if (!m) return null;
-  const startDay = parseInt(m[2]);
-  const weekStart = new Date(2026, MONTH_MAP[m[1]], startDay);
-  const weekEnd = new Date(refDate.getTime() + 86400000);
-  return list.find((r: any) => {
-    const d = new Date(r.date);
-    return d >= weekStart && d <= weekEnd;
-  }) || null;
-}
-
-function shortenDriver(name: string): string {
-  if (!name) return '';
-  const drivers = name.split('/').map((d: string) => d.trim());
-  const first = drivers[0].split(' ');
-  const short = first.length > 1 ? first[0][0] + '. ' + first.slice(1).join(' ') : first[0];
-  return drivers.length > 1 ? short + ' +' + (drivers.length - 1) : short;
-}
-
-function renderResultBadge(seriesKey: string, weekLabel: string): string {
-  const match = findSeriesDate(seriesKey, weekLabel);
-  if (!match) return '';
-  const results = resultsLookup[`${seriesKey}|${match.name}`];
-  if (!results || !results.length) return '';
-  let html = '';
-  for (const r of results) {
-    if (r.driver === null) {
-      html += `<div class="result-line result-cancelled">Cancelled</div>`;
-    } else {
-      const note = r.note ? ` <span class="result-note">(${r.note})</span>` : '';
-      html += `<div class="result-line"><span class="result-icon">\u2605</span><span class="result-driver">${shortenDriver(r.driver)}</span><span class="result-team">${r.team}${note}</span></div>`;
-    }
-  }
-  return html;
-}
 
 ---
 <BaseLayout
@@ -177,7 +111,6 @@ function renderResultBadge(seriesKey: string, weekLabel: string): string {
                       sub={ev.sub}
                       races={ev.races}
                       weekLabel={week.label}
-                      resultHtml={renderResultBadge(ev.series, week.label)}
                     />
                   ))}
                 </div>

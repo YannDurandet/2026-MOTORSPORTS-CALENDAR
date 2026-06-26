@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Banner from '../../components/Banner.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+import seriesContent from '../../../data/seriesContent.json';
+
+const base = import.meta.env.BASE_URL;
+
+const categoryOrder = ['Open Wheel', 'Bike', 'Endurance', 'GT / Sports Car', 'Rally', 'Touring'];
+
+const grouped = categoryOrder.map(cat => ({
+  category: cat,
+  series: (seriesContent as any[]).filter((s: any) => s.category === cat),
+})).filter(g => g.series.length > 0);
+---
+<BaseLayout
+  title="2026 Racing Series Guide — Motorsport Master Calendar"
+  description="Every championship on the master calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife."
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <Nav activePage="series" />
+    </div>
+  </header>
+
+  <div class="main-section">
+    <div class="month-header" style="margin-top: 0;">2026 RACING SERIES GUIDE</div>
+    <p class="series-index-intro">Every championship on the master calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife. Click any series for its history, format, and full 2026 calendar.</p>
+
+    {grouped.map(group => (
+      <>
+        <div class="series-index-category">{group.category}</div>
+        <div class="series-index-grid">
+          {group.series.map((s: any) => (
+            <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>
+              <div class="series-index-accent" style={`background: var(--${s.slug})`}></div>
+              <div class="series-index-body">
+                <div class="series-index-name">{s.name}</div>
+                <div class="series-index-region">{s.region}</div>
+                <div class="series-index-tagline">{s.tagline}</div>
+                <div class="series-index-cta">View Series →</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </>
+    ))}
+
+    <Footer />
+  </div>
+</BaseLayout>
