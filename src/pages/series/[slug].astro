@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Banner from '../../components/Banner.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+import seriesContent from '../../../data/seriesContent.json';
+import calendarData from '../../../data/calendar.json';
+
+export function getStaticPaths() {
+  return (seriesContent as any[]).map((s: any) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const base = import.meta.env.BASE_URL;
+const series = (seriesContent as any[]).find((s: any) => s.slug === slug)!;
+
+// Filter calendar events for this series
+const filteredMonths = (calendarData as any[])
+  .map((month: any) => ({
+    ...month,
+    weeks: month.weeks
+      .map((week: any) => ({
+        ...week,
+        events: week.events.filter((ev: any) => ev.series === slug),
+      }))
+      .filter((week: any) => week.events.length > 0),
+  }))
+  .filter((month: any) => month.weeks.length > 0);
+---
+<BaseLayout
+  title={`${series.name} — 2026 Motorsport Master Calendar`}
+  description={series.tagline}
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>2026 MOTORSPORT<br>MASTER CALENDAR</h1>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <div class="main-section">
+    <a href={`${base}/`} class="back-link">← Full Master Calendar</a>
+
+    <div class={`series-hero series-hero--${slug}`}>
+      <div class="series-hero-accent" style={`background: var(--${slug})`}></div>
+      <div class="series-hero-content">
+        <div class="series-badges">
+          <span class="series-badge">{series.category}</span>
+          <span class="series-badge">{series.region}</span>
+        </div>
+        <h2 class="series-hero-name">{series.name}</h2>
+        <p class="series-description">{series.description}</p>
+      </div>
+    </div>
+
+    <section class="series-section">
+      <h3 class="series-section-title">History</h3>
+      <p class="series-history">{series.history}</p>
+    </section>
+
+    {series.tier === 1 && series.teamsHeaders && (
+      <section class="series-section">
+        <h3 class="series-section-title">Teams &amp; Drivers — 2026</h3>
+        {series.seasonNotes && <p class="series-season-notes">{series.seasonNotes}</p>}
+        <div class="series-table-wrap">
+          <table class="series-table">
+            <thead>
+              <tr>
+                {(series.teamsHeaders as string[]).map((h: string) => <th>{h}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {(series.teamsRows as string[][]).map((row: string[]) => (
+                <tr>
+                  {row.map((cell: string) => <td>{cell}</td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {series.teamsNote && <p class="series-table-note">{series.teamsNote}</p>}
+      </section>
+    )}
+
+    <section class="series-section">
+      <h3 class="series-section-title">2026 Calendar</h3>
+      {filteredMonths.length === 0 ? (
+        <p class="series-no-events">No events found for this series.</p>
+      ) : (
+        filteredMonths.map((month: any) => (
+          <>
+            <div class="month-header">{month.month}</div>
+            <div class="cal-grid">
+              {month.weeks.map((week: any) => (
+                <div class="card">
+                  <div class="c-head">{week.label}</div>
+                  <div class="c-body">
+                    {week.events.map((ev: any) => (
+                      <div class={`event ev-${ev.series}`}>
+                        <div class="ev-details">
+                          <span class={`tag t-${ev.series}`}>{ev.tag}</span>
+                          <span class="title">{ev.title}</span>
+                          <span class="meta-time"><Fragment set:html={ev.time} /></span>
+                        </div>
+                        {ev.track && (
+                          <div class="track-map">
+                            <img
+                              src={`${base}/assets/track-maps/${ev.track}`}
+                              alt={`${ev.title} track map`}
+                              loading="lazy"
+                              width="60"
+                              height="60"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        ))
+      )}
+    </section>
+
+    <a href={`${base}/`} class="back-link back-link--bottom">← Full Master Calendar</a>
+
+    <Footer />
+  </div>
+</BaseLayout>

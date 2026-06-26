@@ -1,0 +1,445 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+
+import tracksRaw from '../../../data/tracks.json';
+import calendarData from '../../../data/calendar.json';
+
+// --- Build event lookup: calendarSvgFilename → [{series, tag, title, week}] ---
+type CalEvent = { series: string; tag: string; title: string; week: string };
+const eventsBySvg: Record<string, CalEvent[]> = {};
+
+for (const month of calendarData as any[]) {
+  for (const week of month.weeks) {
+    for (const ev of week.events) {
+      if (ev.track && ev.track !== 'tbc.svg' && ev.track !== 'tbd.svg') {
+        if (!eventsBySvg[ev.track]) eventsBySvg[ev.track] = [];
+        eventsBySvg[ev.track].push({
+          series: ev.series,
+          tag: ev.tag,
+          title: ev.title,
+          week: week.label,
+        });
+      }
+    }
+  }
+}
+
+// --- Format week label: "• MAY 8-10" → "MAY 8" ---
+function shortDate(label: string): string {
+  const m = label.match(/([A-Z]{3})\s+(\d{1,2})/);
+  return m ? `${m[1]} ${m[2]}` : label.replace('•', '').trim();
+}
+
+// --- Process venues ---
+const svgDir = path.resolve('./public/assets/track-maps');
+
+type Layout = { id: string; label: string; calendarSvgs: string[] };
+type Venue = {
+  slug: string;
+  name: string;
+  city: string;
+  country: string;
+  continent: string;
+  browserSvg: string;
+  calendarSvgs: string[];
+  layouts?: Layout[];
+};
+
+type ProcessedVenue = Venue & {
+  svgContent: string;
+  events: Array<CalEvent & { layoutId: string | null }>;
+  eventCount: number;
+};
+
+function cleanSvg(raw: string, slug: string): string {
+  return raw
+    // Remove <defs>...</defs> blocks (avoids inline ID collisions from pattern fills)
+    .replace(/<defs>[\s\S]*?<\/defs>/g, '')
+    // Remove background rect that used the pattern fill
+    .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
+    // Remove fixed width/height attributes so CSS controls sizing
+    .replace(/(\s)width="\d+"/, '')
+    .replace(/(\s)height="\d+"/, '');
+}
+
+const venues: ProcessedVenue[] = [];
+
+for (const venue of tracksRaw as Venue[]) {
+  const svgPath = path.join(svgDir, venue.browserSvg);
+  if (!fs.existsSync(svgPath)) continue;
+
+  // Gather events from all calendarSvgs for this venue
+  const events: Array<CalEvent & { layoutId: string | null }> = [];
+  for (const csvg of venue.calendarSvgs) {
+    const evs = eventsBySvg[csvg] || [];
+    let layoutId: string | null = null;
+    if (venue.layouts) {
+      const match = venue.layouts.find(l => l.calendarSvgs.includes(csvg));
+      layoutId = match ? match.id : null;
+    }
+    for (const ev of evs) {
+      // Deduplicate: same series+title combo across multi-layout events can repeat
+      const isDupe = events.some(e => e.series === ev.series && e.title === ev.title && e.week === ev.week);
+      if (!isDupe) events.push({ ...ev, layoutId });
+    }
+  }
+
+  const rawSvg = fs.readFileSync(svgPath, 'utf-8');
+  const svgContent = cleanSvg(rawSvg, venue.slug);
+
+  venues.push({ ...venue, svgContent, events, eventCount: events.length });
+}
+
+const continentLabels: Record<string, string> = {
+  'europe': 'Europe',
+  'north-america': 'North America',
+  'asia': 'Asia',
+  'middle-east': 'Middle East',
+  'south-america': 'South America',
+  'oceania': 'Oceania',
+};
+
+const totalVenues = venues.length;
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Track Browser · 2026 Motorsport Calendar"
+  description="Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts."
+  canonicalUrl="https://yanndurandet.me/racing/tracks"
+>
+  <header>
+    <div class="header--left">
+      <h1>THE DEPARTMENT OF RACING DRIVERS<br>2026 TRACK BROWSER</h1>
+      <div class="meta">
+        {totalVenues} CIRCUITS · EXCLUDES RALLY STAGES
+      </div>
+      <Nav activePage="tracks" />
+    </div>
+  </header>
+
+  <div class="tracks-page">
+
+    <!-- Continent filter -->
+    <div class="continent-filter" id="continent-filter" role="group" aria-label="Filter by continent">
+      <button class="cf-btn active" data-continent="all">All <span class="cf-count" id="count-all">{totalVenues}</span></button>
+      {Object.entries(continentLabels).map(([key, label]) => {
+        const count = venues.filter(v => v.continent === key).length;
+        return count > 0 ? (
+          <button class="cf-btn" data-continent={key}>
+            {label} <span class="cf-count">{count}</span>
+          </button>
+        ) : null;
+      })}
+    </div>
+
+    <!-- Track grid -->
+    <div class="tracks-grid" id="tracks-grid">
+      {venues.map(venue => (
+        <div
+          class:list={["track-card", { "has-layouts": !!venue.layouts }]}
+          data-continent={venue.continent}
+        >
+          <!-- SVG Map -->
+          <div class="track-svg-wrap">
+            <Fragment set:html={venue.svgContent} />
+            {venue.layouts && (
+              <div class="layout-badge">
+                {venue.layouts.length} layouts · hover series to highlight
+              </div>
+            )}
+          </div>
+
+          <!-- Info -->
+          <div class="track-info">
+            <div class="track-name">{venue.name}</div>
+            <div class="track-location">{venue.city} · {venue.country}</div>
+
+            {venue.events.length > 0 ? (
+              <div class="track-events">
+                {venue.events.map(ev => (
+                  <div
+                    class="track-ev-row"
+                    data-layout-id={ev.layoutId ?? undefined}
+                  >
+                    <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
+                    <span class="track-ev-title">{ev.title}</span>
+                    <span class="track-ev-date">{shortDate(ev.week)}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="track-no-events">No events this season</div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty state (shown by JS when filter returns 0 results) -->
+    <div class="tracks-empty" id="tracks-empty" hidden>
+      No tracks with SVG maps yet for this region.
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // ─── Continental filter ───────────────────────────────────────────────────
+  const filterEl = document.getElementById('continent-filter');
+  const grid = document.getElementById('tracks-grid');
+  const emptyEl = document.getElementById('tracks-empty');
+
+  filterEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterEl.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const continent = btn.dataset.continent ?? 'all';
+      let visible = 0;
+
+      grid?.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
+        const show = continent === 'all' || card.dataset.continent === continent;
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      if (emptyEl) emptyEl.hidden = visible > 0;
+    });
+  });
+
+  // ─── Layout hover-dim (for multi-layout tracks) ───────────────────────────
+  // Convention: combined SVG must have <g id="layout-{id}"> groups per layout.
+  // When user hovers a series badge that has data-layout-id, all other layout
+  // groups in the same card's SVG dim to 15% opacity.
+
+  document.querySelectorAll<HTMLElement>('.track-card.has-layouts').forEach(card => {
+    const svgEl = card.querySelector<SVGElement>('svg');
+    if (!svgEl) return;
+
+    const rows = card.querySelectorAll<HTMLElement>('[data-layout-id]');
+
+    rows.forEach(row => {
+      const layoutId = row.dataset.layoutId;
+      if (!layoutId) return;
+
+      const tag = row.querySelector<HTMLElement>('.tag');
+      if (!tag) return;
+
+      tag.addEventListener('mouseenter', () => {
+        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
+          g.style.opacity = g.id === `layout-${layoutId}` ? '1' : '0.12';
+          g.style.transition = 'opacity 0.18s ease';
+        });
+      });
+
+      tag.addEventListener('mouseleave', () => {
+        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
+          g.style.opacity = '1';
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ─── Page layout ──────────────────────────────────────────────────────── */
+  .tracks-page {
+    padding: 0 24px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ─── Continent filter ─────────────────────────────────────────────────── */
+  .continent-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding-top: 4px;
+  }
+
+  .cf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: #9aa;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .cf-btn:hover {
+    border-color: #aaa;
+    color: #ddd;
+  }
+
+  .cf-btn.active {
+    background: #fff;
+    border-color: #fff;
+    color: #000;
+  }
+
+  .cf-count {
+    font-size: 0.65rem;
+    opacity: 0.65;
+  }
+
+  .cf-btn.active .cf-count {
+    opacity: 0.5;
+  }
+
+  /* ─── Grid ─────────────────────────────────────────────────────────────── */
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .tracks-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 560px) {
+    .tracks-grid { grid-template-columns: 1fr; }
+    .tracks-page { padding: 0 12px 60px; }
+  }
+
+  /* ─── Card ─────────────────────────────────────────────────────────────── */
+  .track-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s;
+  }
+
+  .track-card:hover {
+    border-color: #2e3f50;
+  }
+
+  /* ─── SVG area ─────────────────────────────────────────────────────────── */
+  .track-svg-wrap {
+    position: relative;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    /* Keeps 1:1 aspect ratio for the SVG area */
+    aspect-ratio: 1;
+  }
+
+  .track-svg-wrap :global(svg) {
+    width: 100%;
+    height: 100%;
+    max-width: 260px;
+    max-height: 260px;
+  }
+
+  /* Bump up stroke weight for larger display */
+  .track-svg-wrap :global(svg path) {
+    stroke-width: 2 !important;
+  }
+
+  .layout-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #556;
+    letter-spacing: 0.04em;
+    pointer-events: none;
+  }
+
+  /* ─── Info section ─────────────────────────────────────────────────────── */
+  .track-info {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .track-name {
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: #c3c6c8;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .track-location {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #556;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── Events list ───────────────────────────────────────────────────────── */
+  .track-events {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .track-ev-row {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+
+  /* Reuse the site's existing .tag and .t-{series} classes */
+  .track-ev-row .tag {
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    text-decoration: none;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .track-ev-title {
+    font-size: 0.75rem;
+    color: #9aa;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.3;
+  }
+
+  .track-ev-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #556;
+    flex-shrink: 0;
+  }
+
+  .track-no-events {
+    font-size: 0.7rem;
+    color: #445;
+    font-style: italic;
+  }
+
+  /* ─── Empty state ──────────────────────────────────────────────────────── */
+  .tracks-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #556;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+  }
+</style>

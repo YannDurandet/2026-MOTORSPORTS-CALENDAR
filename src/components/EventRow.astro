@@ -19,12 +19,12 @@ interface Props {
   sprint?: boolean;
   sub?: SubRace[];
   races?: Race[];
-  resultHtml?: string;
   weekLabel: string;
 }
 
-const { series, tag, title, time, track, sprint, sub, races, resultHtml, weekLabel } = Astro.props;
+const { series, tag, title, time, track, sprint, sub, races, weekLabel } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const seriesHref = `${base}/series/${series}`;
 const hasSub = sub && sub.length > 0;
 const hasRaces = races && races.length > 0;
 const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
@@ -36,7 +36,7 @@ const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
       <>
         <div class="toggle-row">
           <div>
-            <span class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></span>
+            <a href={seriesHref} class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></a>
             <span class="title">{title}</span>
             <span class="meta-time">
               <Fragment set:html={time} />
@@ -50,7 +50,6 @@ const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
                 </button>
               )}
             </span>
-            {resultHtml && <Fragment set:html={resultHtml} />}
           </div>
           <button class="arrow-btn" aria-label="Toggle support races">&#9660;</button>
         </div>
@@ -75,7 +74,6 @@ const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
             </span>
           ))}
         </div>
-        {resultHtml && <Fragment set:html={resultHtml} />}
       </>
     ) : (
       <>
@@ -93,7 +91,6 @@ const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
             </button>
           )}
         </span>
-        {resultHtml && <Fragment set:html={resultHtml} />}
       </>
     )}
   </div>

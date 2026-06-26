@@ -449,7 +449,7 @@
             "tag": "ERC",
             "title": "Andalusia Rally",
             "time": "FRI > SUN",
-            "track": "cordoba.svg"
+            "track": "spain-wrc.svg"
           },
           {
             "series": "nls",
@@ -503,7 +503,7 @@
             "tag": "WRC",
             "title": "Rally Islas Canarias",
             "time": "THU > SUN",
-            "track": "canarias.svg",
+            "track": "spain-wrc.svg",
             "sub": [
               {
                 "badge": "wrc2",
@@ -517,7 +517,7 @@
             "tag": "MOTOGP",
             "title": "Spanish Grand Prix (Jerez)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "jerez.svg"
+            "track": "jerez-motogp.svg"
           },
           {
             "series": "sf",
@@ -563,14 +563,14 @@
             "title": "Miami GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">18:00</span> • QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">22:00</span>",
-            "track": "miami.svg"
+            "track": "miami-f1.svg"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Balaton Park Round",
             "time": "FRI > SUN",
-            "track": "balaton.svg"
+            "track": "balaton-moto.svg"
           },
           {
             "series": "fe",
@@ -872,7 +872,7 @@
             "tag": "MOTOGP",
             "title": "Hungarian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "balaton.svg"
+            "track": "balaton-moto.svg"
           },
           {
             "series": "btcc",
@@ -1767,7 +1767,7 @@
             "tag": "MOTOGP",
             "title": "Austrian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "red-bull-ring.svg"
+            "track": "red-bull-ring-moto.svg"
           },
           {
             "series": "gtwce",
