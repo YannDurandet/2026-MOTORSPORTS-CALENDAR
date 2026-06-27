@@ -132,6 +132,51 @@ const continentLabel: Record<string, string> = {
       )}
     </div>
 
+    <!-- Circuit specs -->
+    {((venue as any).length || (venue as any).turns || (venue as any).type || (venue as any).lapRecord || (venue as any).website) && (
+      <div class="track-specs-row">
+        {(venue as any).length && (
+          <div class="spec-item">
+            <div class="spec-label">Length</div>
+            <div class="spec-value">{(venue as any).length} km</div>
+          </div>
+        )}
+        {(venue as any).turns && (
+          <div class="spec-item">
+            <div class="spec-label">Turns</div>
+            <div class="spec-value">{(venue as any).turns}</div>
+          </div>
+        )}
+        {(venue as any).direction && (
+          <div class="spec-item">
+            <div class="spec-label">Direction</div>
+            <div class="spec-value">{(venue as any).direction}</div>
+          </div>
+        )}
+        {(venue as any).type && (
+          <div class="spec-item">
+            <div class="spec-label">Type</div>
+            <div class="spec-value">{(venue as any).type}</div>
+          </div>
+        )}
+        {(venue as any).lapRecord && (
+          <div class="spec-item spec-item--lap">
+            <div class="spec-label">Lap Record</div>
+            <div class="spec-value">{(venue as any).lapRecord.time}</div>
+            <div class="spec-sub">{(venue as any).lapRecord.driver} · {(venue as any).lapRecord.series} · {(venue as any).lapRecord.year}</div>
+          </div>
+        )}
+        {(venue as any).website && (
+          <div class="spec-item spec-item--link">
+            <a href={(venue as any).website} target="_blank" rel="noopener noreferrer" class="spec-website">
+              <img src={`${base}/assets/website-icon.svg`} alt="" width="14" height="14" />
+              Official Site
+            </a>
+          </div>
+        )}
+      </div>
+    )}
+
     <!-- Layouts -->
     {venue.layouts && (
       <div class="track-layouts-section">
@@ -288,6 +333,88 @@ const continentLabel: Record<string, string> = {
 
   @media (max-width: 680px) {
     .track-meta-row { grid-template-columns: 1fr; }
+  }
+
+  /* ── Circuit specs bar ───────────────────────────────────────────────────── */
+  .track-specs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--card-bg);
+    margin-bottom: 2px;
+  }
+
+  .spec-item {
+    padding: 14px 20px;
+    border-right: 1px solid var(--border);
+    min-width: 100px;
+  }
+
+  .spec-item:last-child {
+    border-right: none;
+  }
+
+  .spec-item--lap {
+    flex: 1;
+  }
+
+  .spec-item--link {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    border-right: none;
+    border-left: 1px solid var(--border);
+  }
+
+  .spec-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.55rem;
+    color: #445;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .spec-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #c3c6c8;
+    letter-spacing: 0.03em;
+  }
+
+  .spec-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #556;
+    margin-top: 3px;
+    letter-spacing: 0.03em;
+  }
+
+  .spec-website {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #556;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+
+  .spec-website:hover { color: #aaa; }
+
+  .spec-website img { opacity: 0.5; }
+
+  @media (max-width: 560px) {
+    .track-specs-row { flex-direction: column; }
+    .spec-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .spec-item--link { border-left: none; border-bottom: none; margin-left: 0; }
   }
 
   .track-name {

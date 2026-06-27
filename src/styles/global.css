@@ -1792,6 +1792,31 @@ a {
     margin: 0;
 }
 
+.series-socials {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 16px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+}
+
+.social-link:hover {
+    opacity: 1;
+}
+
+.social-link img {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
 .series-section {
     margin-bottom: 30px;
 }

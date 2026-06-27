@@ -48,6 +48,7 @@ type Venue = {
   browserSvg: string;
   calendarSvgs: string[];
   layouts?: Layout[];
+  type?: string;
 };
 
 type ProcessedVenue = Venue & {
@@ -55,6 +56,7 @@ type ProcessedVenue = Venue & {
   hasSvg: boolean;
   events: Array<CalEvent & { layoutId: string | null }>;
   eventCount: number;
+  type?: string;
 };
 
 function cleanSvg(raw: string, slug: string): string {
@@ -105,6 +107,19 @@ const continentLabels: Record<string, string> = {
 
 const totalVenues = venues.length;
 const base = import.meta.env.BASE_URL;
+
+// Type filter data
+const TYPE_ORDER = ['permanent', 'street', 'oval', 'mixed'] as const;
+const TYPE_LABELS: Record<string, string> = {
+  permanent: 'Permanent',
+  street: 'Street',
+  oval: 'Oval',
+  mixed: 'Mixed',
+};
+const typeCounts = Object.fromEntries(
+  TYPE_ORDER.map(t => [t, venues.filter(v => v.type === t).length])
+);
+const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 ---
 
 <BaseLayout
@@ -127,17 +142,34 @@ const base = import.meta.env.BASE_URL;
 
   <div class="tracks-page">
 
-    <!-- Continent filter -->
-    <div class="continent-filter" id="continent-filter" role="group" aria-label="Filter by continent">
-      <button class="cf-btn active" data-continent="all">All <span class="cf-count" id="count-all">{totalVenues}</span></button>
-      {Object.entries(continentLabels).map(([key, label]) => {
-        const count = venues.filter(v => v.continent === key).length;
-        return count > 0 ? (
-          <button class="cf-btn" data-continent={key}>
-            {label} <span class="cf-count">{count}</span>
-          </button>
-        ) : null;
-      })}
+    <!-- Filters -->
+    <div class="filter-panel">
+      <div class="filter-row" id="continent-filter" role="group" aria-label="Filter by continent">
+        <span class="filter-dim">Region</span>
+        <div class="filter-btns">
+          <button class="cf-btn active" data-continent="all">All <span class="cf-count">{totalVenues}</span></button>
+          {Object.entries(continentLabels).map(([key, label]) => {
+            const count = venues.filter(v => v.continent === key).length;
+            return count > 0 ? (
+              <button class="cf-btn" data-continent={key}>
+                {label} <span class="cf-count">{count}</span>
+              </button>
+            ) : null;
+          })}
+        </div>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-row" id="type-filter" role="group" aria-label="Filter by track type">
+        <span class="filter-dim">Type</span>
+        <div class="filter-btns">
+          <button class="cf-btn active" data-type="all">All</button>
+          {availableTypes.map(t => (
+            <button class="cf-btn" data-type={t}>
+              {TYPE_LABELS[t]} <span class="cf-count">{typeCounts[t]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
     </div>
 
     <!-- Track grid -->
@@ -146,6 +178,7 @@ const base = import.meta.env.BASE_URL;
         <div
           class:list={["track-card", { "has-layouts": !!venue.layouts, "no-svg": !venue.hasSvg }]}
           data-continent={venue.continent}
+          data-type={venue.type ?? 'other'}
         >
           <a href={`${base}/tracks/${venue.slug}`} class="card-link" aria-label={venue.name}></a>
           <!-- SVG Map -->
@@ -200,26 +233,44 @@ const base = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <script>
-  // ─── Continental filter ───────────────────────────────────────────────────
-  const filterEl = document.getElementById('continent-filter');
+  // ─── Filter state ─────────────────────────────────────────────────────────
+  let activeContinent = 'all';
+  let activeType = 'all';
+
   const grid = document.getElementById('tracks-grid');
   const emptyEl = document.getElementById('tracks-empty');
 
-  filterEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
+  function applyTrackFilters() {
+    let visible = 0;
+    grid?.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
+      const matchC = activeContinent === 'all' || card.dataset.continent === activeContinent;
+      const matchT = activeType === 'all' || card.dataset.type === activeType;
+      const show = matchC && matchT;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (emptyEl) emptyEl.hidden = visible > 0;
+  }
+
+  // ─── Continent filter ─────────────────────────────────────────────────────
+  const continentEl = document.getElementById('continent-filter');
+  continentEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      filterEl.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
+      continentEl.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      activeContinent = btn.dataset.continent ?? 'all';
+      applyTrackFilters();
+    });
+  });
 
-      const continent = btn.dataset.continent ?? 'all';
-      let visible = 0;
-
-      grid?.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
-        const show = continent === 'all' || card.dataset.continent === continent;
-        card.style.display = show ? '' : 'none';
-        if (show) visible++;
-      });
-
-      if (emptyEl) emptyEl.hidden = visible > 0;
+  // ─── Type filter ──────────────────────────────────────────────────────────
+  const typeEl = document.getElementById('type-filter');
+  typeEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeEl.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeType = btn.dataset.type ?? 'all';
+      applyTrackFilters();
     });
   });
 
@@ -265,25 +316,51 @@ const base = import.meta.env.BASE_URL;
     margin: 0 auto;
   }
 
-  /* ─── Continent filter ─────────────────────────────────────────────────── */
-  .continent-filter {
+  /* ─── Filter panel ────────────────────────────────────────────────────── */
+  .filter-panel {
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 12px 16px;
+  }
+
+  .filter-dim {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    color: #3a5060;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 42px;
+    flex-shrink: 0;
+    padding-top: 7px;
+  }
+
+  .filter-btns {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 32px;
-    padding-top: 4px;
+    gap: 6px;
+  }
+
+  .filter-divider {
+    height: 1px;
+    background: var(--border);
   }
 
   .cf-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    background: var(--card-bg);
+    gap: 5px;
+    padding: 5px 12px;
+    background: transparent;
     border: 1px solid var(--border);
-    color: #9aa;
+    color: #667;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
@@ -291,8 +368,8 @@ const base = import.meta.env.BASE_URL;
   }
 
   .cf-btn:hover {
-    border-color: #aaa;
-    color: #ddd;
+    border-color: #556;
+    color: #bbb;
   }
 
   .cf-btn.active {
@@ -302,12 +379,12 @@ const base = import.meta.env.BASE_URL;
   }
 
   .cf-count {
-    font-size: 0.65rem;
-    opacity: 0.65;
+    font-size: 0.6rem;
+    opacity: 0.55;
   }
 
   .cf-btn.active .cf-count {
-    opacity: 0.5;
+    opacity: 0.45;
   }
 
   /* ─── Grid ─────────────────────────────────────────────────────────────── */
