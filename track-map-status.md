@@ -1,16 +1,17 @@
 # Track Map Status
-_Last updated: 2026-06-26_
+_Last updated: 2026-06-27_
 
 ## Summary
 | | Count |
 |---|---|
-| Files on disk | **79** |
-| Circuit SVGs (browser-mapped) | **58** |
+| Files on disk | **104** |
+| Circuit SVGs (browser-mapped) | **79** |
 | WRC / ERC flags | **17** |
-| calendarSvg-only (no browser entry) | **4** |
+| calendarSvg-only (no browser entry) | **6** |
+| Placeholder infographics | **2** |
 | Orphans (on disk, unreferenced) | **0** |
 | Missing browserSvgs | **0** |
-| Missing calendar refs (not yet drawn) | **87** |
+| Missing calendar refs (not yet drawn) | **62** |
 
 ## Naming Convention
 - `{venue}.svg` — generic / single-series
@@ -72,15 +73,36 @@ _Last updated: 2026-06-26_
 - `phoenix-oval.svg` (phoenix)
 - `portimao.svg` (portimao)
 - `red-bull-ring.svg` (red-bull-ring)
+- `sachsenring.svg` (sachsenring)
+- `sandiego.svg` (sandiego)
+- `sandown.svg` (sandown)
+- `sanya.svg` (sanya)
 - `sebring.svg` (sebring)
+- `sepang.svg` (sepang)
 - `shanghai.svg` (shanghai)
+- `silverstone.svg` (silverstone)
+- `singapore.svg` (singapore)
+- `snetterton.svg` (snetterton)
 - `sonoma.svg` (sonoma)
 - `spa.svg` (spa)
 - `st-petersburg.svg` (st-petersburg)
+- `sugo.svg` (sugo)
 - `suzuka.svg` (suzuka)
 - `sydney.svg` (sydney)
 - `talladega.svg` (talladega)
+- `tasmania.svg` (tasmania)
 - `taupo.svg` (taupo)
+- `the-bend.svg` (the-bend)
+- `thruxton.svg` (thruxton)
+- `tokyo.svg` (tokyo)
+- `townsville.svg` (townsville)
+- `valencia.svg` (valencia)
+- `vila-real.svg` (vila-real)
+- `vir.svg` (vir)
+- `watkins-glen.svg` (watkins-glen)
+- `yas-marina.svg` (yas-marina)
+- `zandvoort.svg` (zandvoort)
+- `zhuzhou.svg` (zhuzhou)
 
 ## WRC / ERC Flags (17)
 - `chile-wrc.svg`
@@ -106,8 +128,15 @@ _Last updated: 2026-06-26_
 - `melbourne-supercars.svg` (albert-park)
 - `miami-fe.svg` (miami)
 - `red-bull-ring-motogp.svg` (red-bull-ring)
+- `shanghai-fe.svg` (shanghai-fe) — Formula E West Long Circuit layout
+- `sonoma-nascar.svg` (sonoma) — NASCAR Chute layout (1.99 mi)
 
-## Still Missing — Calendar refs not yet drawn (87)
+## Placeholder Infographics
+_No real circuit — used for calendar events where the venue is unconfirmed._
+- `tbc.svg` — "Venue TBC" (TCR Round 1, venue not yet announced)
+- `tbd.svg` — "Venue TBD" (NASCAR playoff wildcard slots)
+
+## Still Missing — Calendar refs not yet drawn (62)
 _These appear in calendar.json events but have no SVG file yet._
 
 - `adelaide.svg`
@@ -172,28 +201,3 @@ _These appear in calendar.json events but have no SVG file yet._
 - `richmond.svg`
 - `road-america.svg`
 - `road-atlanta.svg`
-- `sachsenring.svg`
-- `sandiego.svg`
-- `sandown.svg`
-- `sanya.svg`
-- `sepang.svg`
-- `shanghai-fe.svg`
-- `silverstone.svg`
-- `singapore.svg`
-- `snetterton.svg`
-- `sonoma-nascar.svg`
-- `sugo.svg`
-- `tasmania.svg`
-- `tbc.svg`
-- `tbd.svg`
-- `the-bend.svg`
-- `thruxton.svg`
-- `tokyo.svg`
-- `townsville.svg`
-- `valencia.svg`
-- `vila-real.svg`
-- `vir.svg`
-- `watkins-glen.svg`
-- `yas-marina.svg`
-- `zandvoort.svg`
-- `zhuzhou.svg`

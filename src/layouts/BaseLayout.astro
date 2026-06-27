@@ -53,11 +53,226 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       <a href={`${base}/`}        class="sticky-nav-link" data-page="calendar">Calendar</a>
       <a href={`${base}/series`}  class="sticky-nav-link" data-page="series">Series</a>
       <a href={`${base}/tracks`}  class="sticky-nav-link" data-page="tracks">Tracks</a>
+      <button class="sticky-search-btn" id="sticky-search-trigger" aria-label="Search">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5"/>
+          <line x1="13" y1="13" x2="17" y2="17"/>
+        </svg>
+      </button>
     </nav>
+  </div>
+
+  <!-- Search modal -->
+  <div id="search-overlay" class="search-overlay" hidden role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-backdrop" id="search-backdrop"></div>
+    <div class="search-modal">
+      <div class="search-input-row">
+        <svg class="search-modal-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5"/>
+          <line x1="13" y1="13" x2="17" y2="17"/>
+        </svg>
+        <input id="search-input" class="search-input" type="search" placeholder="Search tracks & series…" autocomplete="off" spellcheck="false" />
+        <kbd class="search-kbd">ESC</kbd>
+      </div>
+      <div id="search-results" class="search-results"></div>
+    </div>
   </div>
 
   <!-- Back to top -->
   <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑ TOP</button>
+
+  <style is:global>
+    /* ── Sticky search btn ───────────────────────────────────────────────────── */
+    .sticky-search-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      color: #667;
+      cursor: pointer;
+      padding: 6px 10px;
+      transition: color 0.15s;
+    }
+    .sticky-search-btn:hover { color: #bbb; }
+
+    /* ── Search overlay ──────────────────────────────────────────────────────── */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 10vh;
+    }
+    .search-overlay[hidden] { display: none; }
+
+    .search-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    .search-modal {
+      position: relative;
+      z-index: 1;
+      width: min(660px, calc(100vw - 32px));
+      background: #0b0f12;
+      border: 1px solid #1e2d38;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+    }
+
+    /* ── Input row ───────────────────────────────────────────────────────────── */
+    .search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #1e2d38;
+    }
+
+    .search-modal-icon { color: #3a5060; flex-shrink: 0; }
+
+    .search-input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.9rem;
+      color: #c3c6c8;
+      letter-spacing: 0.02em;
+    }
+    .search-input::placeholder { color: #334; }
+    .search-input::-webkit-search-cancel-button { display: none; }
+
+    .search-kbd {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.58rem;
+      color: #334;
+      border: 1px solid #1e2d38;
+      padding: 3px 7px;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    /* ── Results list ────────────────────────────────────────────────────────── */
+    .search-results {
+      max-height: 58vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #1e2d38 transparent;
+    }
+
+    .search-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px 6px;
+    }
+    .search-group-header-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.54rem;
+      color: #3a5060;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .search-group-header-line {
+      flex: 1;
+      height: 1px;
+      background: #1a2530;
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 18px;
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: background 0.1s, border-color 0.1s;
+    }
+    .search-result-item:hover,
+    .search-result-item.focused {
+      background: #0f1820;
+      border-left-color: #2a5070;
+    }
+
+    .search-result-body {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .search-result-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #c3c6c8;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .search-result-sub {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.62rem;
+      color: #445;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .search-result-arrow {
+      margin-left: auto;
+      color: #2a3540;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+      transition: color 0.1s;
+    }
+    .search-result-item:hover .search-result-arrow,
+    .search-result-item.focused .search-result-arrow {
+      color: #4a7090;
+    }
+
+    .search-empty {
+      padding: 28px 18px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.7rem;
+      color: #334;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    .search-footer {
+      display: flex;
+      gap: 16px;
+      padding: 8px 18px;
+      border-top: 1px solid #1a2530;
+    }
+    .search-hint {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.56rem;
+      color: #2a3540;
+      letter-spacing: 0.06em;
+    }
+    .search-hint kbd {
+      border: 1px solid #1e2d38;
+      padding: 1px 5px;
+      font-family: inherit;
+      font-size: inherit;
+    }
+  </style>
 
   <script>
     // ── Sticky nav ──────────────────────────────────────────────────────────────
@@ -94,6 +309,144 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       window.addEventListener('scroll', () => { btt.hidden = window.scrollY < 500; }, { passive: true });
       btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
+
+    // ── Global search ────────────────────────────────────────────────────────────
+    const overlay   = document.getElementById('search-overlay') as HTMLElement | null;
+    const backdrop  = document.getElementById('search-backdrop');
+    const input     = document.getElementById('search-input') as HTMLInputElement | null;
+    const results   = document.getElementById('search-results');
+
+    let searchIndex: any[] | null = null;
+    let focusIdx = -1;
+
+    function openSearch() {
+      if (!overlay) return;
+      overlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => input?.focus(), 30);
+    }
+
+    function closeSearch() {
+      if (!overlay) return;
+      overlay.hidden = true;
+      document.body.style.overflow = '';
+      if (input) input.value = '';
+      if (results) results.innerHTML = '';
+      focusIdx = -1;
+    }
+
+    async function loadIndex() {
+      if (searchIndex) return;
+      const base = document.querySelector<HTMLMetaElement>('meta[name="astro-base"]')?.content || '';
+      const res = await fetch(`${base}/data/search.json`);
+      searchIndex = await res.json();
+    }
+
+    function renderResults(query: string) {
+      if (!results || !searchIndex) return;
+      const q = query.trim().toLowerCase();
+      if (!q) { results.innerHTML = ''; focusIdx = -1; return; }
+
+      const matched = searchIndex.filter(item => {
+        const haystack = item.t === 'track'
+          ? `${item.name} ${item.city} ${item.country}`.toLowerCase()
+          : `${item.name} ${item.tagline}`.toLowerCase();
+        return haystack.includes(q);
+      }).slice(0, 20);
+
+      const tracks  = matched.filter(i => i.t === 'track');
+      const series  = matched.filter(i => i.t === 'series');
+
+      const base = document.querySelector<HTMLMetaElement>('meta[name="astro-base"]')?.content || '';
+
+      if (matched.length === 0) {
+        results.innerHTML = `<div class="search-empty">No results for "${query}"</div>`;
+        focusIdx = -1;
+        return;
+      }
+
+      const arrow = `<span class="search-result-arrow">→</span>`;
+
+      function groupHeader(label: string) {
+        return `<div class="search-group-header">
+          <span class="search-group-header-label">${label}</span>
+          <span class="search-group-header-line"></span>
+        </div>`;
+      }
+
+      let html = '';
+      if (series.length) {
+        html += groupHeader('Series');
+        for (const s of series) {
+          html += `<a class="search-result-item" href="${base}/series/${s.slug}">
+            <div class="search-result-body">
+              <span class="search-result-name">${s.name}</span>
+              <span class="search-result-sub">${s.tagline}</span>
+            </div>
+            ${arrow}
+          </a>`;
+        }
+      }
+      if (tracks.length) {
+        html += groupHeader('Circuits');
+        for (const t of tracks) {
+          html += `<a class="search-result-item" href="${base}/tracks/${t.slug}">
+            <div class="search-result-body">
+              <span class="search-result-name">${t.name}</span>
+              <span class="search-result-sub">${t.city} · ${t.country}</span>
+            </div>
+            ${arrow}
+          </a>`;
+        }
+      }
+
+      html += `<div class="search-footer">
+        <span class="search-hint"><kbd>↑↓</kbd> navigate</span>
+        <span class="search-hint"><kbd>↵</kbd> open</span>
+        <span class="search-hint"><kbd>esc</kbd> close</span>
+      </div>`;
+
+      results.innerHTML = html;
+      focusIdx = -1;
+    }
+
+    function moveFocus(dir: number) {
+      if (!results) return;
+      const items = Array.from(results.querySelectorAll<HTMLElement>('.search-result-item'));
+      if (!items.length) return;
+      items[focusIdx]?.classList.remove('focused');
+      focusIdx = Math.max(0, Math.min(items.length - 1, focusIdx + dir));
+      items[focusIdx].classList.add('focused');
+      items[focusIdx].scrollIntoView({ block: 'nearest' });
+    }
+
+    // Wire triggers
+    document.getElementById('search-trigger')?.addEventListener('click', openSearch);
+    document.getElementById('sticky-search-trigger')?.addEventListener('click', openSearch);
+    backdrop?.addEventListener('click', closeSearch);
+
+    input?.addEventListener('input', async () => {
+      await loadIndex();
+      renderResults(input.value);
+    });
+
+    input?.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); moveFocus(1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); moveFocus(-1); }
+      else if (e.key === 'Enter') {
+        const focused = results?.querySelector<HTMLAnchorElement>('.search-result-item.focused');
+        if (focused) { closeSearch(); window.location.href = focused.href; }
+      }
+      else if (e.key === 'Escape') closeSearch();
+    });
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (overlay?.hidden === false) return; // already open
+      if (e.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes((e.target as Element)?.tagName)) {
+        e.preventDefault();
+        openSearch();
+      }
+    });
   </script>
 </body>
 </html>

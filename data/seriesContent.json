@@ -82,7 +82,13 @@
         "Sergio Pérez",
         "Valtteri Bottas"
       ]
-    ]
+    ],
+    "socials": {
+      "web": "https://www.formula1.com",
+      "ig": "https://instagram.com/f1",
+      "x": "https://x.com/f1",
+      "yt": "https://youtube.com/@Formula1"
+    }
   },
   {
     "slug": "f1a",
@@ -137,7 +143,13 @@
         "Wild Card"
       ]
     ],
-    "teamsNote": "11 rookies on the 2026 grid. Each team's third car may carry a wild card entry at select rounds."
+    "teamsNote": "11 rookies on the 2026 grid. Each team's third car may carry a wild card entry at select rounds.",
+    "socials": {
+      "web": "https://www.f1academy.com",
+      "ig": "https://instagram.com/f1academy",
+      "x": "https://x.com/f1academy",
+      "yt": "https://youtube.com/@f1academy"
+    }
   },
   {
     "slug": "fe",
@@ -204,7 +216,13 @@
         "Nyck de Vries",
         "Edoardo Mortara"
       ]
-    ]
+    ],
+    "socials": {
+      "web": "https://www.fiaformulae.com",
+      "ig": "https://instagram.com/fiaformulae",
+      "x": "https://x.com/FIAFormulaE",
+      "yt": "https://youtube.com/@fiaformulae"
+    }
   },
   {
     "slug": "sf",
@@ -214,7 +232,13 @@
     "tier": 2,
     "tagline": "Japan's premier single-seater series and one of the fastest formula championships in the world outside of F1.",
     "description": "The Japanese Super Formula Championship is Japan's premier single-seater series and one of the fastest formula racing championships in the world outside of Formula 1. All cars use an identical Dallara SF23 chassis, making it a pure driver skill contest between Honda and Toyota-powered entries.",
-    "history": "Japanese Formula racing traces back to 1973. Rebranded as 'Super Formula' in 2013 to signal ambition beyond Japan's borders, the series has attracted international talent including Heikki Kovalainen, Loïc Duval, and Jenson Button in its earlier years, and more recently stars like Romain Grosjean and Stoffel Vandoorne. Identical aerodynamic specifications and a single tyre supplier (Yokohama) ensure extremely close racing. The 2026 season is the 54th edition, with Ayumu Iwasa (Team Mugen) as defending champion and a strong Toyota–Honda manufacturer battle at the heart of it."
+    "history": "Japanese Formula racing traces back to 1973. Rebranded as 'Super Formula' in 2013 to signal ambition beyond Japan's borders, the series has attracted international talent including Heikki Kovalainen, Loïc Duval, and Jenson Button in its earlier years, and more recently stars like Romain Grosjean and Stoffel Vandoorne. Identical aerodynamic specifications and a single tyre supplier (Yokohama) ensure extremely close racing. The 2026 season is the 54th edition, with Ayumu Iwasa (Team Mugen) as defending champion and a strong Toyota–Honda manufacturer battle at the heart of it.",
+    "socials": {
+      "web": "https://superformula.net",
+      "ig": "https://instagram.com/superformula_official",
+      "x": "https://x.com/SUPER_FORMULA",
+      "yt": "https://youtube.com/@superformula_official"
+    }
   },
   {
     "slug": "wec",
@@ -329,7 +353,13 @@
         "Earl Bamber / Jack Aitken / Sébastien Bourdais"
       ]
     ],
-    "teamsNote": "Alpine and Peugeot driver trios not fully confirmed at time of writing — verify against the official FIA WEC entry list at fiawec.com before publishing. Porsche withdrew from Hypercar for 2026 (refocused on IMSA & Formula E)."
+    "teamsNote": "Alpine and Peugeot driver trios not fully confirmed at time of writing — verify against the official FIA WEC entry list at fiawec.com before publishing. Porsche withdrew from Hypercar for 2026 (refocused on IMSA & Formula E).",
+    "socials": {
+      "web": "https://www.fiawec.com",
+      "ig": "https://instagram.com/fiawec_official",
+      "x": "https://x.com/FIAWEC",
+      "yt": "https://youtube.com/@FIAWEC"
+    }
   },
   {
     "slug": "imsa",
@@ -339,7 +369,13 @@
     "tier": 2,
     "tagline": "North America's premier sports car racing series, tracing its lineage to the 1971 IMSA GT Championship.",
     "description": "The IMSA WeatherTech SportsCar Championship is North America's premier sports car racing series, tracing its lineage to the 1971 IMSA GT Championship. The modern format blends sprint and endurance racing across 11 rounds, anchored by the Rolex 24 at Daytona.",
-    "history": "IMSA's roots lie in the International Motor Sports Association founded by John Bishop in 1969, running everything from tube-framed sportscars to stock cars on road courses. The modern WeatherTech era began in 2014 with the merger of the American Le Mans Series and Rolex Sports Car Series. The GTP class (Grand Touring Prototype), introduced in 2023, brought factory-backed Hypercar-derived prototypes from Acura, BMW, Cadillac, Porsche, and Aston Martin to American soil for the first time in decades. The 2026 season is the 56th IMSA-sanctioned championship, featuring 45 full-season entries across GTP, LMP2, LMP3, and GTD Pro/GTD classes."
+    "history": "IMSA's roots lie in the International Motor Sports Association founded by John Bishop in 1969, running everything from tube-framed sportscars to stock cars on road courses. The modern WeatherTech era began in 2014 with the merger of the American Le Mans Series and Rolex Sports Car Series. The GTP class (Grand Touring Prototype), introduced in 2023, brought factory-backed Hypercar-derived prototypes from Acura, BMW, Cadillac, Porsche, and Aston Martin to American soil for the first time in decades. The 2026 season is the 56th IMSA-sanctioned championship, featuring 45 full-season entries across GTP, LMP2, LMP3, and GTD Pro/GTD classes.",
+    "socials": {
+      "web": "https://www.imsa.com",
+      "ig": "https://instagram.com/imsa_racing",
+      "x": "https://x.com/IMSA",
+      "yt": "https://youtube.com/@imsaofficial"
+    }
   },
   {
     "slug": "wrc",
@@ -429,7 +465,13 @@
         "Shane Byrne",
         "Full season"
       ]
-    ]
+    ],
+    "socials": {
+      "web": "https://www.wrc.com",
+      "ig": "https://instagram.com/officialwrc",
+      "x": "https://x.com/OfficialWRC",
+      "yt": "https://youtube.com/@wrc"
+    }
   },
   {
     "slug": "indycar",
@@ -439,7 +481,13 @@
     "tier": 2,
     "tagline": "The premier open-wheel racing championship in North America, home to the iconic Indianapolis 500.",
     "description": "The NTT IndyCar Series is the premier open-wheel racing championship in North America, combining oval tracks, permanent road courses, and temporary street circuits in a single season. Its centrepiece, the Indianapolis 500, is among the oldest and most-watched single-day sporting events in the world.",
-    "history": "American open-wheel racing traces its roots to the inaugural Indianapolis 500 in 1911. The modern IndyCar era was shaped by the split between CART and the IRL in 1996, reunified as IndyCar in 2008. Today's spec Dallara DW12 chassis (and its successor) is powered by Honda or Chevrolet engines, with multiple manufacturer-supported efforts from Team Penske, Chip Ganassi Racing, Arrow McLaren, and Andretti Global among others. Álex Palou enters 2026 as a four-time champion (including a three-peat) and defending Indy 500 winner. The 2026 season is the 115th official championship and sees the return of Romain Grosjean and rookies Mick Schumacher, Caio Collet, and Dennis Hauger."
+    "history": "American open-wheel racing traces its roots to the inaugural Indianapolis 500 in 1911. The modern IndyCar era was shaped by the split between CART and the IRL in 1996, reunified as IndyCar in 2008. Today's spec Dallara DW12 chassis (and its successor) is powered by Honda or Chevrolet engines, with multiple manufacturer-supported efforts from Team Penske, Chip Ganassi Racing, Arrow McLaren, and Andretti Global among others. Álex Palou enters 2026 as a four-time champion (including a three-peat) and defending Indy 500 winner. The 2026 season is the 115th official championship and sees the return of Romain Grosjean and rookies Mick Schumacher, Caio Collet, and Dennis Hauger.",
+    "socials": {
+      "web": "https://www.indycar.com",
+      "ig": "https://instagram.com/indycar",
+      "x": "https://x.com/IndyCar",
+      "yt": "https://youtube.com/@IndyCar"
+    }
   },
   {
     "slug": "nascar",
@@ -449,7 +497,13 @@
     "tier": 2,
     "tagline": "The highest level of American stock car racing, run across superspeedways, short tracks, and road courses.",
     "description": "The NASCAR Cup Series is the highest level of American stock car racing, run by the National Association for Stock Car Auto Racing. Over 36 races per season, teams representing Chevrolet, Ford, and Toyota battle across superspeedways, intermediate ovals, short tracks, and road courses — culminating in a playoff elimination format.",
-    "history": "NASCAR was founded by Bill France Sr. in 1948. Its cultural and commercial heartland is the American South, where Daytona Beach, Talladega, and Darlington became mythic venues. The sport grew into a national phenomenon through the 1990s and 2000s, with manufacturers Chevrolet, Ford, and Toyota dividing loyalties. The current Next Gen car debuted in 2022, homogenising platforms for closer on-track competition. Kyle Larson (Hendrick Motorsports) is the reigning champion heading into 2026. The season introduced a new playoff format reverting to the Chase bracket system, and added a street race at Naval Base Coronado (San Diego). Kyle Busch, a two-time champion, passed away in May during the 2026 season — the first active full-time driver to die mid-season since Dale Earnhardt in 2001."
+    "history": "NASCAR was founded by Bill France Sr. in 1948. Its cultural and commercial heartland is the American South, where Daytona Beach, Talladega, and Darlington became mythic venues. The sport grew into a national phenomenon through the 1990s and 2000s, with manufacturers Chevrolet, Ford, and Toyota dividing loyalties. The current Next Gen car debuted in 2022, homogenising platforms for closer on-track competition. Kyle Larson (Hendrick Motorsports) is the reigning champion heading into 2026. The season introduced a new playoff format reverting to the Chase bracket system, and added a street race at Naval Base Coronado (San Diego). Kyle Busch, a two-time champion, passed away in May during the 2026 season — the first active full-time driver to die mid-season since Dale Earnhardt in 2001.",
+    "socials": {
+      "web": "https://www.nascar.com",
+      "ig": "https://instagram.com/nascar",
+      "x": "https://x.com/NASCAR",
+      "yt": "https://youtube.com/@NASCAR"
+    }
   },
   {
     "slug": "motogp",
@@ -534,7 +588,13 @@
         "Diogo Moreira"
       ]
     ],
-    "teamsNote": "Marco Bezzecchi leads the 2026 championship after early rounds. Grid uses 1000cc / Michelin regs for the final time — 850cc + Pirelli from 2027."
+    "teamsNote": "Marco Bezzecchi leads the 2026 championship after early rounds. Grid uses 1000cc / Michelin regs for the final time — 850cc + Pirelli from 2027.",
+    "socials": {
+      "web": "https://www.motogp.com",
+      "ig": "https://instagram.com/motogp",
+      "x": "https://x.com/MotoGP",
+      "yt": "https://youtube.com/@MotoGP"
+    }
   },
   {
     "slug": "wsbk",
@@ -544,7 +604,13 @@
     "tier": 2,
     "tagline": "The world's premier production-based motorcycle racing series, with three races per round from five manufacturers.",
     "description": "The Superbike World Championship (WorldSBK) is the world's premier production-based motorcycle racing series, using street-legal derived superbikes from five manufacturers rather than purpose-built prototypes. Three races per round — one long race on Saturday and two on Sunday — make for the most action-packed weekends in motorcycle racing.",
-    "history": "The Superbike World Championship was founded in 1988 and has been dominated at various eras by Kawasaki, Ducati, Honda, Aprilia, and BMW. Jonathan Rea (Kawasaki) held the record for most championships with six titles, before retiring ahead of 2026. Toprak Razgatlıoğlu, four-time champion and Rea's great rival of the early 2020s, has crossed to MotoGP with Prima Pramac Yamaha, leaving the field open. The 2026 season is the 39th edition, with 22 riders across 14 teams and manufacturers Ducati, BMW, Honda, Kawasaki, and Yamaha competing. Notable 2026 arrivals include Miguel Oliveira and Somkiat Chantra."
+    "history": "The Superbike World Championship was founded in 1988 and has been dominated at various eras by Kawasaki, Ducati, Honda, Aprilia, and BMW. Jonathan Rea (Kawasaki) held the record for most championships with six titles, before retiring ahead of 2026. Toprak Razgatlıoğlu, four-time champion and Rea's great rival of the early 2020s, has crossed to MotoGP with Prima Pramac Yamaha, leaving the field open. The 2026 season is the 39th edition, with 22 riders across 14 teams and manufacturers Ducati, BMW, Honda, Kawasaki, and Yamaha competing. Notable 2026 arrivals include Miguel Oliveira and Somkiat Chantra.",
+    "socials": {
+      "web": "https://www.worldsbk.com",
+      "ig": "https://instagram.com/worldsbk",
+      "x": "https://x.com/WorldSBK",
+      "yt": "https://youtube.com/@WorldSBK"
+    }
   },
   {
     "slug": "dtm",
@@ -554,7 +620,13 @@
     "tier": 3,
     "tagline": "Germany's prestige GT racing series, contested entirely with GT3-specification cars across iconic European circuits.",
     "description": "The DTM is Germany's prestige GT racing series and one of Europe's most storied touring car championships, now contested entirely with GT3-specification cars. Eight different manufacturers are represented on a 21-car grid across eight weekend rounds at iconic German circuits.",
-    "history": "The original DTM ran from 1984 to 1996 as a genuine touring car championship with silhouette cars from Mercedes, Opel, and Alfa Romeo. It returned in 2000 as a manufacturer-spec series and became one of Europe's most-watched championships through the 2000s and 2010s. A second restructuring in 2021 transitioned the series to GT3 regulations under ADAC promotion, opening the door to a wide variety of manufacturers. The 2026 season is the 40th edition of the DTM, with entries from Mercedes-AMG, BMW, Porsche, Ferrari, Lamborghini, Aston Martin, Ford, and Audi."
+    "history": "The original DTM ran from 1984 to 1996 as a genuine touring car championship with silhouette cars from Mercedes, Opel, and Alfa Romeo. It returned in 2000 as a manufacturer-spec series and became one of Europe's most-watched championships through the 2000s and 2010s. A second restructuring in 2021 transitioned the series to GT3 regulations under ADAC promotion, opening the door to a wide variety of manufacturers. The 2026 season is the 40th edition of the DTM, with entries from Mercedes-AMG, BMW, Porsche, Ferrari, Lamborghini, Aston Martin, Ford, and Audi.",
+    "socials": {
+      "web": "https://www.dtm.com",
+      "ig": "https://instagram.com/dtm.official",
+      "x": "https://x.com/dtm",
+      "yt": "https://youtube.com/@dtm"
+    }
   },
   {
     "slug": "btcc",
@@ -564,7 +636,13 @@
     "tier": 3,
     "tagline": "The UK's premier motorsport series, famous for close, contact-heavy racing across three-race weekends.",
     "description": "The Kwik Fit British Touring Car Championship is the UK's premier motorsport series, famous for close, contact-heavy racing across three-race weekends at circuits around England and Scotland. Running in its 69th season in 2026, it remains one of the world's longest-running domestic motorsport championships.",
-    "history": "The BTCC was established in 1958 and has been home to legends of British motorsport including Jim Clark, Andy Rouse, Touring Car icons like John Cleland and Rickard Rydell, and modern champions Matt Neal, Gordon Shedden, Colin Turkington, and Ash Sutton. The current Next Generation Touring Car (NGTC) technical specification, introduced in 2011, uses a standardised steel spaceframe with production-car body panels and a spec 2.0-litre turbocharged engine. 2026 introduces qualifying races on Saturdays and the removal of the hybrid boost system, replaced with turbo boost. Reigning champion Tom Ingram (Hyundai) heads the 21-car entry list."
+    "history": "The BTCC was established in 1958 and has been home to legends of British motorsport including Jim Clark, Andy Rouse, Touring Car icons like John Cleland and Rickard Rydell, and modern champions Matt Neal, Gordon Shedden, Colin Turkington, and Ash Sutton. The current Next Generation Touring Car (NGTC) technical specification, introduced in 2011, uses a standardised steel spaceframe with production-car body panels and a spec 2.0-litre turbocharged engine. 2026 introduces qualifying races on Saturdays and the removal of the hybrid boost system, replaced with turbo boost. Reigning champion Tom Ingram (Hyundai) heads the 21-car entry list.",
+    "socials": {
+      "web": "https://www.btcc.net",
+      "ig": "https://instagram.com/btcc",
+      "x": "https://x.com/BTCC",
+      "yt": "https://youtube.com/@OfficialBTCC"
+    }
   },
   {
     "slug": "supercars",
@@ -574,7 +652,13 @@
     "tier": 2,
     "tagline": "Australia's premier motorsport series, featuring high-powered V8 touring cars and the iconic Bathurst 1000.",
     "description": "The Repco Supercars Championship is Australia's premier motorsport series, featuring high-powered V8 touring cars racing at circuits across Australia and New Zealand. Its crown jewel, the Bathurst 1000, is one of the most celebrated endurance races in the world.",
-    "history": "The Australian Touring Car Championship began in 1960 and evolved through various technical formats before settling into the iconic 'V8 Supercars' identity in the 1990s. The series has been shaped by intense rivalries between Ford and Holden/Chevrolet loyalists — a battle with deep cultural roots in Australia. The arrival of Toyota's GR Supra in 2026 marks a historic shift in the manufacturer landscape. Gen3 regulations (introduced in 2023) brought the current Ford Mustang and Chevrolet Camaro platforms. Chaz Mostert is the defending Drivers' Champion; 2026 sees a record 14 rounds and 37 races, from Auckland to Adelaide."
+    "history": "The Australian Touring Car Championship began in 1960 and evolved through various technical formats before settling into the iconic 'V8 Supercars' identity in the 1990s. The series has been shaped by intense rivalries between Ford and Holden/Chevrolet loyalists — a battle with deep cultural roots in Australia. The arrival of Toyota's GR Supra in 2026 marks a historic shift in the manufacturer landscape. Gen3 regulations (introduced in 2023) brought the current Ford Mustang and Chevrolet Camaro platforms. Chaz Mostert is the defending Drivers' Champion; 2026 sees a record 14 rounds and 37 races, from Auckland to Adelaide.",
+    "socials": {
+      "web": "https://www.supercars.com",
+      "ig": "https://instagram.com/supercarschampionship",
+      "x": "https://x.com/supercars",
+      "yt": "https://youtube.com/@SupercarsChampionship"
+    }
   },
   {
     "slug": "elms",
@@ -584,7 +668,13 @@
     "tier": 3,
     "tagline": "The official regional feeder championship to the FIA WEC in Europe, the most direct route to Le Mans.",
     "description": "The European Le Mans Series is the official regional feeder championship to the FIA World Endurance Championship in Europe, contested over six 4-hour races at iconic European circuits. Competing in LMP2, LMP3, and LMGT3 classes, it is the most direct route to a 24 Hours of Le Mans invitation.",
-    "history": "The ELMS was founded in 2004 as the Le Mans Series and relaunched in its current form in 2013 under joint ACO and WEC Promoter management. It has served as a springboard for drivers who went on to race the 24 Hours of Le Mans, including many who later competed in the Hypercar class. The 2026 season features a record-breaking grid of 47 cars — the largest in ELMS history — across 11 LMP2, 12 LMP2 Pro/Am, 10 LMP3, and 14 LMGT3 entries."
+    "history": "The ELMS was founded in 2004 as the Le Mans Series and relaunched in its current form in 2013 under joint ACO and WEC Promoter management. It has served as a springboard for drivers who went on to race the 24 Hours of Le Mans, including many who later competed in the Hypercar class. The 2026 season features a record-breaking grid of 47 cars — the largest in ELMS history — across 11 LMP2, 12 LMP2 Pro/Am, 10 LMP3, and 14 LMGT3 entries.",
+    "socials": {
+      "web": "https://www.europeanlemansseries.com",
+      "ig": "https://instagram.com/elms_official",
+      "x": "https://x.com/EuropeanLMS",
+      "yt": "https://youtube.com/@EuropeanLMS"
+    }
   },
   {
     "slug": "gtwce",
@@ -594,7 +684,13 @@
     "tier": 3,
     "tagline": "Europe's premier GT3 series, combining Sprint and Endurance Cups with the prestigious 24 Hours of Spa.",
     "description": "The GT World Challenge Europe Powered by AWS is Europe's premier GT3 racing series, combining a Sprint Cup (shorter races) and an Endurance Cup (longer races including the prestigious 24 Hours of Spa) into an overall championship. Organised by SRO Motorsports Group, it fields GT3 cars from up to ten manufacturers.",
-    "history": "The series traces its roots to the Blancpain GT Series (2011) and the older FIA GT Championship. SRO Motorsports Group restructured and rebranded it to the GT World Challenge brand in 2019, tying together European, American, Asian, and Australian championship legs. The 24 Hours of Spa-Francorchamps, which also counts for the IGTC, is the series' flagship event. Valentino Rossi, nine-time MotoGP world champion, has competed in GTWCE in recent seasons and returns for 2026. The 2026 season is the 13th edition of the GT World Challenge Europe, with ten manufacturers on a new split-session qualifying format."
+    "history": "The series traces its roots to the Blancpain GT Series (2011) and the older FIA GT Championship. SRO Motorsports Group restructured and rebranded it to the GT World Challenge brand in 2019, tying together European, American, Asian, and Australian championship legs. The 24 Hours of Spa-Francorchamps, which also counts for the IGTC, is the series' flagship event. Valentino Rossi, nine-time MotoGP world champion, has competed in GTWCE in recent seasons and returns for 2026. The 2026 season is the 13th edition of the GT World Challenge Europe, with ten manufacturers on a new split-session qualifying format.",
+    "socials": {
+      "web": "https://www.gt-world-challenge-europe.com",
+      "ig": "https://instagram.com/gtworldcheu",
+      "x": "https://x.com/GTWorldChEu",
+      "yt": "https://youtube.com/@GTWorld"
+    }
   },
   {
     "slug": "gtwca",
@@ -604,7 +700,13 @@
     "tier": 3,
     "tagline": "The leading GT3 series in North America, part of SRO's global GT World Challenge network.",
     "description": "The GT World Challenge America Powered by AWS is the leading GT3 series in North America, part of SRO Motorsports Group's global GT World Challenge network. In 2026, the format expanded to three-hour races at seven venues, blending sprint-race heritage with endurance-racing strategy.",
-    "history": "SRO brought its GT World Challenge brand to North America and built on over 35 years of continuous GT racing heritage in America. The series provides a professional pathway for GT3 teams and drivers looking to compete globally, with the Indianapolis 8 Hour also counting for the Intercontinental GT Challenge. The 2026 format change to three-hour races aligns the series more closely with European and global endurance traditions while retaining its identity as a driver-development and gentleman-driver platform."
+    "history": "SRO brought its GT World Challenge brand to North America and built on over 35 years of continuous GT racing heritage in America. The series provides a professional pathway for GT3 teams and drivers looking to compete globally, with the Indianapolis 8 Hour also counting for the Intercontinental GT Challenge. The 2026 format change to three-hour races aligns the series more closely with European and global endurance traditions while retaining its identity as a driver-development and gentleman-driver platform.",
+    "socials": {
+      "web": "https://www.gt-world-challenge-america.com",
+      "ig": "https://instagram.com/gtworldchallengeamerica",
+      "x": "https://x.com/gtworldcham",
+      "yt": "https://youtube.com/@GTWorld"
+    }
   },
   {
     "slug": "nls",
@@ -614,7 +716,13 @@
     "tier": 3,
     "tagline": "Long-distance endurance racing on the legendary 20.8 km Nürburgring Nordschleife, the Green Hell.",
     "description": "The ADAC RAVENOL Nürburgring Langstrecken-Serie is a long-distance endurance series held entirely on the legendary Nürburgring Nordschleife — the 20.8 km 'Green Hell' — one of the world's most dangerous and revered racing circuits. With grids exceeding 130 cars, it is one of the most participatory motorsport series anywhere.",
-    "history": "The series, originally known as the VLN (Veranstaltergemeinschaft Langstreckenpokal Nürburgring), began in 1977 and celebrates its 50th season in 2026. For decades it has been the standard-bearer for grassroots endurance racing, open to everyone from factory GT3 squads to club-prepared road cars. The 24 Hours Nürburgring, the world's largest motorsport event by spectator attendance, sits outside the NLS series proper but uses the same circuit. International stars — including Max Verstappen, who competed in the 2026 NLS2 in the gap between the Chinese and Japanese GPs — regularly use NLS rounds as preparation for the 24-hour race."
+    "history": "The series, originally known as the VLN (Veranstaltergemeinschaft Langstreckenpokal Nürburgring), began in 1977 and celebrates its 50th season in 2026. For decades it has been the standard-bearer for grassroots endurance racing, open to everyone from factory GT3 squads to club-prepared road cars. The 24 Hours Nürburgring, the world's largest motorsport event by spectator attendance, sits outside the NLS series proper but uses the same circuit. International stars — including Max Verstappen, who competed in the 2026 NLS2 in the gap between the Chinese and Japanese GPs — regularly use NLS rounds as preparation for the 24-hour race.",
+    "socials": {
+      "web": "https://www.nuerburgring-langstrecken-serie.de",
+      "ig": "https://instagram.com/nuerburgringls",
+      "x": "https://x.com/vln_de",
+      "yt": "https://youtube.com/@VLNOFFICIAL"
+    }
   },
   {
     "slug": "igtc",
@@ -624,7 +732,13 @@
     "tier": 3,
     "tagline": "The world's only global GT3 series, linking five prestige endurance events across four continents.",
     "description": "The Intercontinental GT Challenge is the world's only global GT3 racing series, linking five prestige endurance events on four continents — Australia, Europe, Asia, and North America — into a single manufacturers' championship. Only factory-supported GT3 cars from officially affiliated manufacturers are eligible for manufacturers' points.",
-    "history": "The IGTC was founded by SRO Motorsports Group in 2016, growing from the Blancpain GT Series Intercontinental Cup concept. The 2026 season is the 11th edition, featuring six manufacturers: BMW, Ferrari, Mercedes-AMG, Porsche, Chevrolet, and Ford (the latter two making their IGTC debuts). The five rounds in 2026 are: Bathurst 12 Hour (February), 24 Hours Nürburgring (May), 24 Hours Spa (June), Suzuka 1000km (September), and Indianapolis 8 Hour (October). The 24 Hours of Spa, which also counts for the GT World Challenge Europe, is the series' centrepiece."
+    "history": "The IGTC was founded by SRO Motorsports Group in 2016, growing from the Blancpain GT Series Intercontinental Cup concept. The 2026 season is the 11th edition, featuring six manufacturers: BMW, Ferrari, Mercedes-AMG, Porsche, Chevrolet, and Ford (the latter two making their IGTC debuts). The five rounds in 2026 are: Bathurst 12 Hour (February), 24 Hours Nürburgring (May), 24 Hours Spa (June), Suzuka 1000km (September), and Indianapolis 8 Hour (October). The 24 Hours of Spa, which also counts for the GT World Challenge Europe, is the series' centrepiece.",
+    "socials": {
+      "web": "https://www.intercontinentalgtchallenge.com",
+      "ig": "https://instagram.com/intercontgtc",
+      "x": "https://x.com/IntercontGTC",
+      "yt": "https://youtube.com/@GTWorld"
+    }
   },
   {
     "slug": "tcr",
@@ -634,7 +748,13 @@
     "tier": 3,
     "tagline": "The global touring car series for TCR-specification front-wheel-drive cars, successor to the WTCR.",
     "description": "The FIA TCR World Tour is the global touring car series for TCR-specification front-wheel-drive touring cars, successor to the WTCR. Races take place at eight selected events worldwide, combining rounds from multiple regional TCR championships into a single international championship.",
-    "history": "The TCR concept was developed by Marcello Lotti and launched as the TCR International Series in 2015, providing a cost-effective alternative to the expensive DTM and WTCC. The concept spread rapidly to create regional series on every continent. The FIA's WTCR (World Touring Car Cup) adopted TCR regulations in 2018, and the TCR World Tour effectively replaced it from 2023 with FIA status added for 2024. The 2026 season is the fourth TCR World Tour edition, featuring manufacturers including Hyundai (BRC Racing), Honda (GOAT Racing / ALM Motorsport), Geely (Cyan Racing), Audi, and CUPRA."
+    "history": "The TCR concept was developed by Marcello Lotti and launched as the TCR International Series in 2015, providing a cost-effective alternative to the expensive DTM and WTCC. The concept spread rapidly to create regional series on every continent. The FIA's WTCR (World Touring Car Cup) adopted TCR regulations in 2018, and the TCR World Tour effectively replaced it from 2023 with FIA status added for 2024. The 2026 season is the fourth TCR World Tour edition, featuring manufacturers including Hyundai (BRC Racing), Honda (GOAT Racing / ALM Motorsport), Geely (Cyan Racing), Audi, and CUPRA.",
+    "socials": {
+      "web": "https://www.fiatcrworldtour.com",
+      "ig": "https://instagram.com/tcr_series",
+      "x": "https://x.com/TCR_Series",
+      "yt": "https://youtube.com/@TCRTV"
+    }
   },
   {
     "slug": "erc",
@@ -644,7 +764,13 @@
     "tier": 3,
     "tagline": "The oldest active motorsport championship in the world, in its 74th season in 2026.",
     "description": "The FIA European Rally Championship is the oldest active motorsport championship in the world, in its 74th season in 2026. Contested over seven rounds on asphalt and gravel across Europe, it is the principal continental rally series for Rally2 cars and a training ground for future WRC talent.",
-    "history": "The ERC was first held in 1953, predating even the World Rally Championship. For most of its history it ran as a loosely structured series awarding titles based on the best results from a calendar of national and international events. The modern era, following the merger with the Intercontinental Rally Challenge in 2013, brought a structured championship with live broadcasting and stronger commercial promotion. The 2026 season marks the series' 74th edition, featuring seven rounds in six countries. The Rally di Roma Capitale joins the WRC in 2027 after its 2026 ERC appearance."
+    "history": "The ERC was first held in 1953, predating even the World Rally Championship. For most of its history it ran as a loosely structured series awarding titles based on the best results from a calendar of national and international events. The modern era, following the merger with the Intercontinental Rally Challenge in 2013, brought a structured championship with live broadcasting and stronger commercial promotion. The 2026 season marks the series' 74th edition, featuring seven rounds in six countries. The Rally di Roma Capitale joins the WRC in 2027 after its 2026 ERC appearance.",
+    "socials": {
+      "web": "https://www.fiaerc.com",
+      "ig": "https://instagram.com/fiaerc",
+      "x": "https://x.com/FIAERC",
+      "yt": "https://youtube.com/@FIAERC"
+    }
   },
   {
     "slug": "h24eu",
@@ -654,7 +780,13 @@
     "tier": 3,
     "tagline": "Grassroots 12-hour and 24-hour endurance races at Grand Prix circuits across Europe, open to all.",
     "description": "The Michelin 24H Series European Series, organised by Creventic, is a grassroots endurance championship running 12-hour and 24-hour races at prestigious Grand Prix circuits across Europe. Open to GT cars, touring cars, and 24H-Spec prototypes, it bridges professional and gentleman driver racing in a single field.",
-    "history": "The 24H Series was founded by Creventic as an accessible alternative to the more exclusive ACO and SRO endurance championships, positioning itself as the entry point for teams and drivers aspiring to longer-format racing. The European series typically runs five rounds between March and September, with the 24 Hours of Barcelona serving as the traditional finale. The 2026 calendar adds the Nürburgring for the first time since 2022. The series is a unique democratising force in endurance racing — a 24-hour race at Paul Ricard or Spa is genuinely open to club-level outfits, not just factory teams."
+    "history": "The 24H Series was founded by Creventic as an accessible alternative to the more exclusive ACO and SRO endurance championships, positioning itself as the entry point for teams and drivers aspiring to longer-format racing. The European series typically runs five rounds between March and September, with the 24 Hours of Barcelona serving as the traditional finale. The 2026 calendar adds the Nürburgring for the first time since 2022. The series is a unique democratising force in endurance racing — a 24-hour race at Paul Ricard or Spa is genuinely open to club-level outfits, not just factory teams.",
+    "socials": {
+      "web": "https://www.24hseries.com",
+      "ig": "https://instagram.com/24hseries",
+      "x": "https://x.com/24hseries",
+      "yt": "https://youtube.com/@24hseries"
+    }
   },
   {
     "slug": "psc",
@@ -664,7 +796,13 @@
     "tier": 2,
     "tagline": "The world's premier single-make Porsche racing series, supporting Formula 1 at eight European Grands Prix.",
     "description": "The Porsche Mobil 1 Supercup is a one-make racing series using the Porsche 911 GT3 Cup, held as a support event to the FIA Formula One World Championship at selected European venues. The 2026 season introduces the new 992.2-generation 911 Cup car. All 8 rounds take place on F1 race weekends, from Monaco in June through to Monza in September, including a double-header at Zandvoort.",
-    "history": "Founded in 1993, the Porsche Supercup is one of the longest-running international one-make series. It has served as a proving ground for many drivers who later competed in GT3 and endurance racing. The series has run exclusively at European F1 venues, making it one of the most visible support series in world motorsport. Over three decades, drivers from across Europe, the Americas, and Asia-Pacific have competed for the championship."
+    "history": "Founded in 1993, the Porsche Supercup is one of the longest-running international one-make series. It has served as a proving ground for many drivers who later competed in GT3 and endurance racing. The series has run exclusively at European F1 venues, making it one of the most visible support series in world motorsport. Over three decades, drivers from across Europe, the Americas, and Asia-Pacific have competed for the championship.",
+    "socials": {
+      "web": "https://racing.porsche.com/en-US/series/mobil-1-supercup",
+      "ig": "https://instagram.com/porschesupercup",
+      "x": "https://x.com/PorscheSupercup",
+      "yt": "https://youtube.com/@porschesupercup"
+    }
   },
   {
     "slug": "bgt",
@@ -674,7 +812,13 @@
     "tier": 2,
     "tagline": "The UK's premier GT championship, spanning GT3 and GT4 classes across eight iconic British and European circuits.",
     "description": "The British GT Championship is the top-level GT racing series in the United Kingdom, contested across GT3 and GT4 class machinery. The 2026 season features a streamlined 8-round calendar designed to reduce costs while preserving the championship's prestige. The season opens at Silverstone with the marquee 3-hour Silverstone 500, before visiting Oulton Park, Spa-Francorchamps, Snetterton, Donington Park, and concluding at Brands Hatch in September.",
-    "history": "British GT traces its roots to the early 1990s and has established itself as the premier domestic GT series in the UK. The championship has long been a gateway for talented GT drivers to international competition, with many graduates progressing to WEC, GTWCE, and IGTC. The Silverstone 500 remains the flagship event, attracting international entrants and factory-backed programmes alongside privateer outfits."
+    "history": "British GT traces its roots to the early 1990s and has established itself as the premier domestic GT series in the UK. The championship has long been a gateway for talented GT drivers to international competition, with many graduates progressing to WEC, GTWCE, and IGTC. The Silverstone 500 remains the flagship event, attracting international entrants and factory-backed programmes alongside privateer outfits.",
+    "socials": {
+      "web": "https://www.britishgt.com",
+      "ig": "https://instagram.com/british_gt",
+      "x": "https://x.com/BritishGT",
+      "yt": "https://youtube.com/@BritishGT"
+    }
   },
   {
     "slug": "eurx",
@@ -684,6 +828,12 @@
     "tier": 2,
     "tagline": "The world's top-tier rallycross championship — the 51st season of Euro RX, elevated to global status following the cancellation of World RX.",
     "description": "The FIA European Rallycross Championship (Euro RX) is the highest class of international rallycross competition in 2026, following the cancellation of the FIA World Rallycross Championship after the 2025 season. The championship returns to its European roots with six rounds across Latvia, Hungary, Sweden, Ireland, France and Portugal, plus a standalone FIA Rallycross World Cup in Jakarta, Indonesia. The 2026 season introduces new RX4 and RX5 classes alongside the top-tier RX1 category.",
-    "history": "Now in its 51st season, the FIA European Rallycross Championship is one of motorsport's longest-running international competitions. From humble beginnings in the early 1970s at circuits like Lydden Hill and Höljes, the series grew to become World RX in 2014 before the top-tier championship was briefly relaunched as a global series. The 2026 restructuring returns rallycross to its European heartland while a new World Cup format provides a standalone global showdown."
+    "history": "Now in its 51st season, the FIA European Rallycross Championship is one of motorsport's longest-running international competitions. From humble beginnings in the early 1970s at circuits like Lydden Hill and Höljes, the series grew to become World RX in 2014 before the top-tier championship was briefly relaunched as a global series. The 2026 restructuring returns rallycross to its European heartland while a new World Cup format provides a standalone global showdown.",
+    "socials": {
+      "web": "https://www.fia-rallycross.com",
+      "ig": "https://instagram.com/fiarallycross",
+      "x": "https://x.com/fiaworldrx",
+      "yt": "https://youtube.com/@FIAWorldRX"
+    }
   }
 ]

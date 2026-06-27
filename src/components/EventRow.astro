@@ -19,16 +19,14 @@ interface Props {
   sprint?: boolean;
   sub?: SubRace[];
   races?: Race[];
-  weekLabel: string;
 }
 
-const { series, tag, title, time, track, sprint, sub, races, weekLabel } = Astro.props;
+const { series, tag, title, time, track, sprint, sub, races } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const seriesHref = `${base}/series/${series}`;
 const hasSub = sub && sub.length > 0;
 const hasRaces = races && races.length > 0;
 const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
-const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
 ---
 <div class="event" class:list={[`ev-${series}`]} data-series={series}>
   <div class="ev-details">
@@ -40,15 +38,6 @@ const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
             <span class="title">{title}</span>
             <span class="meta-time">
               <Fragment set:html={time} />
-              {hasTimes && (
-                <button class="ics-btn" aria-label="Add to calendar"
-                  data-series={series} data-title={title} data-week={weekLabel}>
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <rect x="2" y="3" width="12" height="11" rx="1.5"/>
-                    <path d="M5 1v3M11 1v3M2 7h12"/>
-                  </svg>
-                </button>
-              )}
             </span>
           </div>
           <button class="arrow-btn" aria-label="Toggle support races">&#9660;</button>
@@ -81,15 +70,6 @@ const hasTimes = /\d{2}:\d{2}/.test(time) && !/TBC/.test(time);
         <span class="title">{title}</span>
         <span class="meta-time">
           <Fragment set:html={time} />
-          {hasTimes && (
-            <button class="ics-btn" aria-label="Add to calendar"
-              data-series={series} data-title={title} data-week={weekLabel}>
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="2" y="3" width="12" height="11" rx="1.5"/>
-                <path d="M5 1v3M11 1v3M2 7h12"/>
-              </svg>
-            </button>
-          )}
         </span>
       </>
     )}

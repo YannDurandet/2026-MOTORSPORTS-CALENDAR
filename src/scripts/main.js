@@ -148,47 +148,6 @@ const filterState = loadFilterState();
 // Data loaded from JSON via fetch
 let seriesData = {};
 
-// =============================================
-// ICS EXPORT
-// =============================================
-function findSeriesDate(seriesKey, weekLabel) {
-    const list = seriesData[seriesKey];
-    if (!list) return null;
-    const refDate = parseWeekDate(weekLabel);
-    if (!refDate) return null;
-    const m = weekLabel.match(/\u2022\s*([A-Z]{3})\s+(\d{1,2})/);
-    if (!m) return null;
-    const startDay = parseInt(m[2]);
-    const weekStart = new Date(2026, MONTH_MAP[m[1]], startDay);
-    const weekEnd = new Date(refDate.getTime() + 86400000);
-    return list.find(r => {
-        const d = new Date(r.date);
-        return d >= weekStart && d <= weekEnd;
-    }) || null;
-}
-
-function generateICS(seriesName, eventTitle, isoDateStr) {
-    const d = new Date(isoDateStr);
-    const fmt = dt => dt.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-    const end = new Date(d.getTime() + 7200000);
-    const uid = `${eventTitle.replace(/\s+/g, '-')}-${fmt(d)}@motorsport-calendar`;
-    return [
-        'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MotorsportCalendar//EN',
-        'BEGIN:VEVENT', `DTSTART:${fmt(d)}`, `DTEND:${fmt(end)}`,
-        `SUMMARY:${seriesName} — ${eventTitle}`, `UID:${uid}`,
-        'END:VEVENT', 'END:VCALENDAR'
-    ].join('\r\n');
-}
-
-function downloadICS(icsContent, filename) {
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = filename;
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
 
 // =============================================
 // "THIS WEEKEND" SECTION
@@ -627,31 +586,12 @@ function initToggle() {
     });
 }
 
-// =============================================
-// ICS HANDLER
-// =============================================
-function initICSHandler() {
-    const container = document.getElementById('calendar-container');
-    if (!container) return;
-    container.addEventListener('click', e => {
-        const btn = e.target.closest('.ics-btn');
-        if (!btn) return;
-        e.stopPropagation();
-        const { series, title, week } = btn.dataset;
-        const match = findSeriesDate(series, week);
-        if (!match) return;
-        const meta = seriesMetadata[series];
-        const seriesName = meta ? meta.name : series.toUpperCase();
-        const ics = generateICS(seriesName, title, match.date);
-        downloadICS(ics, `${series}-${title.replace(/\s+/g, '-').toLowerCase()}.ics`);
-    });
-}
 
 // =============================================
 // INIT
 // =============================================
 (async function init() {
-    // Only need series.json for countdowns/ICS — calendar HTML is pre-rendered
+    // Fetch series data for countdowns — calendar HTML is pre-rendered
     const base = document.querySelector('meta[name="astro-base"]')?.getAttribute('content') || '';
     const seriesRes = await fetch(`${base}/data/series.json`);
     seriesData = await seriesRes.json();
@@ -668,7 +608,6 @@ function initICSHandler() {
 
     // Initialize interactive features
     initToggle();
-    initICSHandler();
     initDashToggle();
     initFilters();
     applyFilters();
