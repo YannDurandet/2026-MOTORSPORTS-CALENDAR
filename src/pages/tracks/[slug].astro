@@ -25,7 +25,7 @@ export function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const venue = (tracksRaw as Venue[]).find(v => v.slug === slug)!;
 
 // ── Gather events from calendar ───────────────────────────────────────────────

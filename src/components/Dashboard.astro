@@ -1,5 +1,5 @@
 ---
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesList = [
   // Global series (always visible)
   { key: 'f1', name: 'F1', regional: false },

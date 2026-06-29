@@ -6,7 +6,7 @@ import Footer from '../../components/Footer.astro';
 
 import seriesContent from '../../../data/seriesContent.json';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const categoryOrder = ['Open Wheel', 'Bike', 'Endurance', 'GT / Sports Car', 'Rally', 'Touring'];
 

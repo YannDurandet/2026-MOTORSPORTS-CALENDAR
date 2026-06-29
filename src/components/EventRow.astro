@@ -22,7 +22,7 @@ interface Props {
 }
 
 const { series, tag, title, time, track, sprint, sub, races } = Astro.props;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesHref = `${base}/series/${series}`;
 const hasSub = sub && sub.length > 0;
 const hasRaces = races && races.length > 0;
