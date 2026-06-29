@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout
+  title="Terms of Use — dord.racing"
+  description="Terms of use for dord.racing, an independent 2026 motorsport calendar."
+  canonicalUrl="https://dord.racing/legal/tos"
+>
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>dord.racing</h1>
+      <div class="meta">LEGAL — TERMS OF USE</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <div class="legal-page">
+    <a href={`${base}/`} class="back-link">← Back to Calendar</a>
+
+    <div class="legal-body">
+
+      <p class="legal-date">Last updated: June 29, 2026</p>
+
+      <h2>1. About this site</h2>
+      <p>dord.racing is an independent, fan-made motorsport calendar operated by Yann Durandet. It is not affiliated with, endorsed by, or officially connected to Formula 1, the FIA, or any other racing series, sanctioning body, team, or venue listed on this site. All trademarks and series names belong to their respective owners.</p>
+
+      <h2>2. Informational use only</h2>
+      <p>All race dates, times, and event information are provided for informational purposes only. While we make every effort to keep the calendar accurate, schedules are subject to change without notice. Always verify dates and times with the official series websites before making travel, ticketing, or viewing arrangements. We accept no liability for losses arising from reliance on information published here.</p>
+
+      <h2>3. Affiliate links</h2>
+      <p>Some links on dord.racing — including "Buy Tickets" and "Watch Live" buttons — are affiliate links. This means we may earn a commission if you make a purchase after clicking one of these links, at no additional cost to you. Affiliate relationships do not influence which events are featured or how they are presented. We only link to ticketing and streaming services we believe are relevant and legitimate.</p>
+      <p>We participate in affiliate programmes operated by third-party platforms. These platforms may set cookies on your device when you click an affiliate link. See our <a href={`${base}/legal/privacy`}>Privacy Policy</a> for details.</p>
+
+      <h2>4. Intellectual property</h2>
+      <p>The design, code, and original written content of dord.racing are the property of Yann Durandet. Track map SVGs and other original graphics created for this site are likewise proprietary. You may not reproduce or redistribute them without permission. Race data (dates, results, lap records) is factual information and not subject to copyright.</p>
+
+      <h2>5. Limitation of liability</h2>
+      <p>dord.racing is provided "as is" without warranties of any kind. To the fullest extent permitted by law, Yann Durandet shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of this site or reliance on its content.</p>
+
+      <h2>6. External links</h2>
+      <p>This site links to third-party websites (series official sites, streaming platforms, ticketing partners). We have no control over the content or privacy practices of those sites and accept no responsibility for them.</p>
+
+      <h2>7. Changes</h2>
+      <p>These terms may be updated at any time. Continued use of the site after changes are posted constitutes acceptance of the updated terms.</p>
+
+      <h2>8. Contact</h2>
+      <p>Questions about these terms: <a href="mailto:durandet.yann.pro@gmail.com">durandet.yann.pro@gmail.com</a></p>
+
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #445;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    margin-bottom: 2.5rem;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: #aaa; }
+
+  .legal-body {
+    font-family: 'Inter', sans-serif;
+    color: #9aa;
+    line-height: 1.75;
+  }
+
+  .legal-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #3a5060;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .legal-body h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #6a9ab0;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #1a2530;
+  }
+
+  .legal-body p {
+    font-size: 0.85rem;
+    margin: 0 0 0.9rem;
+    color: #8a9aaa;
+  }
+
+  .legal-body a {
+    color: #5a8fa8;
+    text-decoration: none;
+  }
+  .legal-body a:hover { color: #aad; text-decoration: underline; }
+</style>

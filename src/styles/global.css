@@ -22,21 +22,21 @@
     --indycar: #C8102E;
     --nascar: #004795;
     --motogp: #E91E63;
-    --wsbk: #D81B60;
+    --wsbk: #EE0000;
     --dtm: #4CAF50;
-    --btcc: #9C27B0;
-    --supercars: #FF9800;
-    --elms: #009688;
-    --gtwce: #00ACC1;
-    --gtwca: #00BCD4;
-    --nls: #607D8B;
-    --igtc: #78909C;
-    --tcr: #CDDC39;
-    --erc: #8D6E63;
-    --h24eu: #F57F17;
-    --psc: #C9A84C;
-    --bgt: #00A651;
-    --eurx: #FF6B00;
+    --btcc: #020356;
+    --supercars: #F9CB0F;
+    --elms: #FF5F00;
+    --gtwce: linear-gradient(135deg, #E21E11 0%, #9E1A07 100%);
+    --gtwca: linear-gradient(135deg, #E21E11 0%, #9E1A07 100%);
+    --nls: #067748;
+    --igtc: linear-gradient(135deg, #E21E11 0%, #9E1A07 100%);
+    --tcr: #E10B16;
+    --erc: #0072CE;
+    --h24eu: #004F9F;
+    --psc: #cf9d40;
+    --bgt: linear-gradient(135deg, #E21E11 0%, #9E1A07 100%);
+    --eurx: #02F3E9;
 }
 
 /* GLOBAL RESET & MOBILE DEFAULTS */
@@ -1863,34 +1863,38 @@ a {
 .sticky-nav-inner {
     display: flex;
     justify-content: center;
-    gap: 2px;
-    padding: 8px 10px;
+    gap: 0;
+    padding: 6px 8px;
 }
 
 .sticky-nav-link {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: #99aabb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 3px;
+    border: none;
+    background: none;
+    cursor: pointer;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 7px 20px;
-    border: 1px solid transparent;
-    border-radius: 2px;
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
+    opacity: 0.4;
+    transition: opacity 0.15s, background 0.15s;
+}
+
+.sticky-nav-link img {
+    display: block;
+    width: 22px;
+    height: 22px;
 }
 
 .sticky-nav-link.active {
-    color: #fff;
-    border-color: #2e3f50;
-    background: #0d1822;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.07);
 }
 
 .sticky-nav-link:hover:not(.active) {
-    color: #dde8f0;
-    border-color: #2a3a48;
-    background: rgba(255,255,255,0.04);
+    opacity: 0.75;
+    background: rgba(255, 255, 255, 0.04);
 }
 
 /* =========================================
@@ -1900,7 +1904,7 @@ a {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 199;
+    z-index: 201;
     background: var(--card-bg);
     border: 1px solid var(--border);
     color: #6a7a88;

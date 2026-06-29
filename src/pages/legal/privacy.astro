@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout
+  title="Privacy Policy — dord.racing"
+  description="Privacy policy for dord.racing. We don't collect personal data. Affiliate links may set third-party cookies."
+  canonicalUrl="https://dord.racing/legal/privacy"
+>
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>dord.racing</h1>
+      <div class="meta">LEGAL — PRIVACY POLICY</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <div class="legal-page">
+    <a href={`${base}/`} class="back-link">← Back to Calendar</a>
+
+    <div class="legal-body">
+
+      <p class="legal-date">Last updated: June 29, 2026</p>
+
+      <h2>1. Who we are</h2>
+      <p>dord.racing is operated by Yann Durandet, based in France. For privacy-related questions, contact us at <a href="mailto:durandet.yann.pro@gmail.com">durandet.yann.pro@gmail.com</a>. As the site is operated from France, it is subject to the EU General Data Protection Regulation (GDPR).</p>
+
+      <h2>2. Data we collect</h2>
+      <p>dord.racing does not collect, store, or process any personal data directly. There is no account system, no contact form, no newsletter, and no analytics tracking on this site. We do not set any first-party cookies.</p>
+
+      <h2>3. Affiliate links and third-party cookies</h2>
+      <p>Some links on this site are affiliate links. When you click an affiliate link, you are redirected to a third-party platform (such as a ticketing partner or streaming service). These platforms may set their own cookies on your device in order to track referrals and attribute purchases to us.</p>
+      <p>These cookies are set by third parties, not by dord.racing. We have no control over them. The data collected by affiliate platforms is governed by their own privacy policies. We encourage you to review those policies before making a purchase.</p>
+      <p>Affiliate cookies typically persist for 7 to 30 days depending on the programme. They are used solely to determine whether a purchase resulted from a click on our site, so that we can receive the applicable commission.</p>
+
+      <h2>4. Legal basis for affiliate tracking (GDPR)</h2>
+      <p>Under the GDPR, affiliate tracking cookies set by third parties when you click a link fall under the legitimate interests of the affiliate platform. However, we will be implementing a cookie consent banner in a future update, which will allow you to decline affiliate tracking before any redirect occurs. Until then, we recommend using browser-level cookie controls if you wish to opt out.</p>
+
+      <h2>5. GitHub Pages hosting</h2>
+      <p>This site is hosted on GitHub Pages (a service of GitHub, Inc.). GitHub may collect basic server access logs (IP address, browser type, referring URL) as part of normal hosting operations. This is governed by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's Privacy Statement</a>. dord.racing does not have access to these logs.</p>
+
+      <h2>6. Google Fonts</h2>
+      <p>This site loads fonts from Google Fonts. When your browser requests a font file, Google may log your IP address. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details. We are evaluating self-hosting fonts to remove this dependency.</p>
+
+      <h2>7. Your rights (GDPR)</h2>
+      <p>If you are located in the EU or UK, you have rights under the GDPR including the right to access, rectify, or erase personal data held about you. As dord.racing holds no personal data itself, there is nothing to access or delete on our end. For data held by third-party affiliate platforms or GitHub, please contact those services directly.</p>
+
+      <h2>8. Changes</h2>
+      <p>This policy may be updated as we add new features (such as affiliate links and cookie consent). Material changes will be reflected in the "Last updated" date above.</p>
+
+      <h2>9. Contact</h2>
+      <p>Privacy questions: <a href="mailto:durandet.yann.pro@gmail.com">durandet.yann.pro@gmail.com</a></p>
+
+    </div>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #445;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    margin-bottom: 2.5rem;
+    transition: color 0.15s;
+  }
+  .back-link:hover { color: #aaa; }
+
+  .legal-body {
+    font-family: 'Inter', sans-serif;
+    color: #9aa;
+    line-height: 1.75;
+  }
+
+  .legal-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #3a5060;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .legal-body h2 {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #6a9ab0;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #1a2530;
+  }
+
+  .legal-body p {
+    font-size: 0.85rem;
+    margin: 0 0 0.9rem;
+    color: #8a9aaa;
+  }
+
+  .legal-body a {
+    color: #5a8fa8;
+    text-decoration: none;
+  }
+  .legal-body a:hover { color: #aad; text-decoration: underline; }
+</style>
