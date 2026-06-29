@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Point Google directly to your sitemap
-Sitemap: https://yanndurandet.me/racing/sitemap.xml
+Sitemap: https://dord.racing/sitemap.xml
