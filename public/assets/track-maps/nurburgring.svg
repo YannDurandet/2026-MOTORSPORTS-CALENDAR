@@ -1,0 +1,25 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="60" height="60" fill="url(#pattern0_246_11)" fill-opacity="0.1"/>
+<path d="M35.2607 21.9269C30.4591 25.5329 29.6289 26.6009 28.7712 25.8555C27.9619 25.1519 28.5994 24.3559 29.0552 23.4068C29.5243 22.4301 30.5163 21.8697 30.8202 20.6751C31.014 19.912 30.2256 18.9519 29.5111 18.6249C27.974 17.9235 25.9238 18.7824 24.5013 19.1941C23.0589 19.6114 21.839 20.348 21.9392 21.4711C22.0614 22.8397 22.9455 23.3121 23.9321 23.3506C24.389 23.3682 24.8867 23.573 25.1839 24.2612C25.5308 25.0638 25.3887 26.9863 24.8999 28.9858C24.0267 32.5531 21.6077 38.2951 22.2243 39.9731C22.8828 41.7656 26.2233 42.0662 27.0062 43.2179C28.3351 45.1755 23.3232 46.5342 21.3699 48.057C19.1304 49.8032 16.1344 52.438 14.6524 54.6038C13.4027 56.4304 11.804 57.6812 10.5532 56.5967C9.47311 55.6575 10.0798 54.5851 11.4649 53.2947C14.2142 50.7336 17.6693 46.9372 17.8972 45.6094C18.1306 44.2518 17.1221 42.7973 17.2707 41.3395C17.5955 38.1707 21.1618 29.5946 21.3699 27.3925C21.5703 25.2708 16.3789 24.5166 15.4496 22.5534C14.7647 21.1056 23.8715 11.6421 25.5253 10.6555C27.0029 9.7747 34.7531 8.67255 40.6118 7.23679C42.5474 6.76224 41.4024 4.5194 42.5474 3.99421C43.4976 3.55819 48.6483 2.24134 49.8914 3.59673C51.0728 4.88495 50.4221 6.21502 49.7769 6.727L35.2607 21.9269Z" stroke="white" stroke-width="1.5" stroke-miterlimit="10"/>
+<defs>
+<pattern id="pattern0_246_11" patternUnits="userSpaceOnUse" patternTransform="matrix(12 0 0 12 0 0)" preserveAspectRatio="none" viewBox="0 0 12 12" width="1" height="1">
+<g id="pattern0_246_11_inner">
+<rect y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="2" width="3" height="1" fill="#D9D9D9"/>
+<rect x="6" y="8" width="3" height="1" fill="#D9D9D9"/>
+<rect x="5" y="3" width="3" height="1" transform="rotate(180 5 3)" fill="#D9D9D9"/>
+<rect x="5" y="9" width="3" height="1" transform="rotate(180 5 9)" fill="#D9D9D9"/>
+<rect x="11" y="3" width="3" height="1" transform="rotate(180 11 3)" fill="#D9D9D9"/>
+<rect x="11" y="9" width="3" height="1" transform="rotate(180 11 9)" fill="#D9D9D9"/>
+<rect x="2" width="1" height="2" fill="#D9D9D9"/>
+<rect x="2" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" width="1" height="2" fill="#D9D9D9"/>
+<rect x="8" y="6" width="1" height="2" fill="#D9D9D9"/>
+<rect x="3" y="5" width="1" height="2" transform="rotate(180 3 5)" fill="#D9D9D9"/>
+<rect x="3" y="11" width="1" height="2" transform="rotate(180 3 11)" fill="#D9D9D9"/>
+<rect x="9" y="5" width="1" height="2" transform="rotate(180 9 5)" fill="#D9D9D9"/>
+<rect x="9" y="11" width="1" height="2" transform="rotate(180 9 11)" fill="#D9D9D9"/>
+</g>
+</pattern></defs>
+</svg>

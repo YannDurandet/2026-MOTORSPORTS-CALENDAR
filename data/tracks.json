@@ -10,7 +10,7 @@
       "albert-park.svg"
     ],
     "bio": "Melbourne's park circuit winds around the lake in Albert Park since 1996. Fast and flowing with minimal overtaking, it sets the tone for the F1 season as the traditional opener.",
-    "type": "semi-permanent",
+    "type": "street",
     "direction": "clockwise",
     "length": 5.278,
     "turns": 14,
@@ -130,6 +130,7 @@
     "city": "Sakhir",
     "country": "Bahrain",
     "continent": "middle-east",
+    "browserSvg": "bahrain.svg",
     "calendarSvgs": [
       "bahrain.svg"
     ],
@@ -289,9 +290,10 @@
     "city": "Fawkham",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "brands-hatch.svg",
+    "browserSvg": "brands-hatch-gp.svg",
     "calendarSvgs": [
-      "brands-hatch.svg"
+      "brands-hatch.svg",
+      "brands-hatch-gp.svg"
     ],
     "layouts": [
       {
@@ -328,6 +330,7 @@
     "city": "Bristol",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "bristol.svg",
     "calendarSvgs": [
       "bristol.svg"
     ],
@@ -390,6 +393,7 @@
     "city": "Concord",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "charlotte.svg",
     "calendarSvgs": [
       "charlotte.svg"
     ],
@@ -406,6 +410,7 @@
     "city": "Chengdu",
     "country": "China",
     "continent": "asia",
+    "browserSvg": "chengdu.svg",
     "calendarSvgs": [
       "chengdu.svg"
     ],
@@ -427,6 +432,7 @@
     "city": "Joliet",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "chicagoland.svg",
     "calendarSvgs": [
       "chicagoland.svg"
     ],
@@ -466,9 +472,10 @@
     "city": "Austin",
     "country": "USA",
     "continent": "north-america",
-    "browserSvg": "cota-national.svg",
+    "browserSvg": "cota-f1.svg",
     "calendarSvgs": [
-      "cota-national.svg"
+      "cota-national.svg",
+      "cota-f1.svg"
     ],
     "bio": "Hermann Tilke's Texas circuit opened in 2012 and quickly earned respect: its blind uphill Turn 1 and technical middle sector offer genuine challenge, rare for a modern purpose-built venue.",
     "type": "permanent",
@@ -552,6 +559,7 @@
     "city": "Darwin",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "darwin.svg",
     "calendarSvgs": [
       "darwin.svg"
     ],
@@ -608,6 +616,7 @@
     "city": "Detroit",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "detroit.svg",
     "calendarSvgs": [
       "detroit.svg"
     ],
@@ -624,9 +633,10 @@
     "city": "Castle Donington",
     "country": "UK",
     "continent": "europe",
-    "browserSvg": "donington.svg",
+    "browserSvg": "donington-gp.svg",
     "calendarSvgs": [
-      "donington.svg"
+      "donington.svg",
+      "donington-gp.svg"
     ],
     "layouts": [
       {
@@ -703,6 +713,7 @@
     "city": "Oyama",
     "country": "Japan",
     "continent": "asia",
+    "browserSvg": "fuji.svg",
     "calendarSvgs": [
       "fuji.svg"
     ],
@@ -725,6 +736,7 @@
     "city": "Madison",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "gateway.svg",
     "calendarSvgs": [
       "gateway.svg"
     ],
@@ -764,6 +776,7 @@
     "city": "Surfers Paradise",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "gold-coast.svg",
     "calendarSvgs": [
       "gold-coast.svg"
     ],
@@ -872,8 +885,10 @@
     "city": "Indianapolis",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "indianapolis-oval.svg",
     "calendarSvgs": [
-      "indianapolis.svg"
+      "indianapolis.svg",
+      "indianapolis-oval.svg"
     ],
     "layouts": [
       {
@@ -904,6 +919,7 @@
     "city": "Inje",
     "country": "South Korea",
     "continent": "asia",
+    "browserSvg": "inje.svg",
     "calendarSvgs": [
       "inje.svg"
     ],
@@ -919,6 +935,7 @@
     "city": "São Paulo",
     "country": "Brazil",
     "continent": "south-america",
+    "browserSvg": "interlagos.svg",
     "calendarSvgs": [
       "interlagos.svg"
     ],
@@ -940,6 +957,7 @@
     "city": "Newton",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "iowa.svg",
     "calendarSvgs": [
       "iowa.svg"
     ],
@@ -956,6 +974,7 @@
     "city": "Ipswich",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "ipswich.svg",
     "calendarSvgs": [
       "ipswich.svg"
     ],
@@ -1005,22 +1024,6 @@
     "calendarSvgs": [
       "jerez-motogp.svg"
     ],
-    "layouts": [
-      {
-        "id": "wsbk",
-        "label": "WSBK Layout",
-        "calendarSvgs": [
-          "jerez.svg"
-        ]
-      },
-      {
-        "id": "motogp",
-        "label": "MotoGP Layout",
-        "calendarSvgs": [
-          "jerez-motogp.svg"
-        ]
-      }
-    ],
     "bio": "The Circuito de Jerez has hosted MotoGP and WSBK for decades, and served as the scene of the crash that ended Ayrton Senna's life in practice for the 1994 Spanish GP at the same venue. Its infield is fast and technical.",
     "type": "permanent",
     "direction": "clockwise",
@@ -1048,7 +1051,8 @@
     "direction": "counterclockwise",
     "length": 2.414,
     "turns": 4,
-    "website": "https://www.kansasspeedway.com"
+    "website": "https://www.kansasspeedway.com",
+    "browserSvg": "kansas.svg"
   },
   {
     "slug": "knockhill",
@@ -1115,7 +1119,8 @@
     "direction": "counterclockwise",
     "length": 6.201,
     "turns": 17,
-    "website": "https://www.f1lasvegasgp.com"
+    "website": "https://www.f1lasvegasgp.com",
+    "browserSvg": "las-vegas-strip.svg"
   },
   {
     "slug": "lausitzring",
@@ -1140,6 +1145,7 @@
     "city": "Le Mans",
     "country": "France",
     "continent": "europe",
+    "browserSvg": "le-mans.svg",
     "calendarSvgs": [
       "le-mans.svg"
     ],
@@ -1157,6 +1163,23 @@
     "website": "https://www.lemans.org"
   },
   {
+    "slug": "le-mans-bugatti",
+    "name": "Circuit Bugatti",
+    "city": "Le Mans",
+    "country": "France",
+    "continent": "europe",
+    "browserSvg": "le-mans-bugatti.svg",
+    "calendarSvgs": [
+      "le-mans-bugatti.svg"
+    ],
+    "bio": "The Circuit Bugatti sits entirely within the Le Mans property, using a section of the Sarthe's pit straight before looping through the infield. At 4.185 km it bears little resemblance to the 24h circuit, but the setting and history make the French MotoGP one of the calendar's most atmospheric rounds.",
+    "type": "permanent",
+    "direction": "clockwise",
+    "length": 4.185,
+    "turns": 14,
+    "website": "https://www.lemans.org"
+  },
+  {
     "slug": "london",
     "name": "London ExCeL ePrix Circuit",
     "city": "London",
@@ -1170,7 +1193,8 @@
     "direction": "counterclockwise",
     "length": 2.077,
     "turns": 20,
-    "website": "https://www.excel.london"
+    "website": "https://www.excel.london",
+    "browserSvg": "london.svg"
   },
   {
     "slug": "long-beach",
@@ -1238,7 +1262,8 @@
       "series": "F3",
       "year": 2019
     },
-    "website": "https://www.macau.grandprix.gov.mo"
+    "website": "https://www.macau.grandprix.gov.mo",
+    "browserSvg": "macau.svg"
   },
   {
     "slug": "madrid",
@@ -1277,7 +1302,8 @@
     "direction": "clockwise",
     "length": 5.474,
     "turns": 22,
-    "website": "https://www.madring.com"
+    "website": "https://www.madring.com",
+    "browserSvg": "madrid-f1.svg"
   },
   {
     "slug": "magny-cours",
@@ -1299,7 +1325,8 @@
       "series": "F1",
       "year": 2004
     },
-    "website": "https://www.circuitmagnycours.com"
+    "website": "https://www.circuitmagnycours.com",
+    "browserSvg": "magny-cours.svg"
   },
   {
     "slug": "mandalika",
@@ -1320,7 +1347,8 @@
       "driver": "Enea Bastianini",
       "series": "MotoGP",
       "year": 2024
-    }
+    },
+    "browserSvg": "mandalika.svg"
   },
   {
     "slug": "markham",
@@ -1334,7 +1362,8 @@
     "bio": "The Streets of Markham circuit north of Toronto is one of IndyCar's newest venues. Canada's second IndyCar street circuit after Long Beach, it reflects the series' growing presence in major North American cities.",
     "type": "street",
     "length": 3.52,
-    "turns": 12
+    "turns": 12,
+    "browserSvg": "markham.svg"
   },
   {
     "slug": "martinsville",
@@ -1365,8 +1394,9 @@
     "city": "Mexico City",
     "country": "Mexico",
     "continent": "north-america",
-    "browserSvg": "mexico-fe.svg",
+    "browserSvg": "mexico.svg",
     "calendarSvgs": [
+      "mexico.svg",
       "mexico-fe.svg"
     ],
     "layouts": [
@@ -1452,7 +1482,8 @@
     "direction": "counterclockwise",
     "length": 3.219,
     "turns": 4,
-    "website": "https://www.mispeedway.com"
+    "website": "https://www.mispeedway.com",
+    "browserSvg": "michigan.svg"
   },
   {
     "slug": "midohio",
@@ -1468,7 +1499,8 @@
     "direction": "counterclockwise",
     "length": 3.634,
     "turns": 13,
-    "website": "https://midohio.com"
+    "website": "https://midohio.com",
+    "browserSvg": "midohio.svg"
   },
   {
     "slug": "milwaukee",
@@ -1484,7 +1516,8 @@
     "direction": "counterclockwise",
     "length": 1.609,
     "turns": 4,
-    "website": "https://www.milwaukeemile.com"
+    "website": "https://www.milwaukeemile.com",
+    "browserSvg": "milwaukee.svg"
   },
   {
     "slug": "misano",
@@ -1500,7 +1533,8 @@
     "direction": "clockwise",
     "length": 4.226,
     "turns": 16,
-    "website": "https://www.misanocircuit.com"
+    "website": "https://www.misanocircuit.com",
+    "browserSvg": "misano.svg"
   },
   {
     "slug": "monaco",
@@ -1522,7 +1556,8 @@
       "series": "F1",
       "year": 2021
     },
-    "website": "https://www.acm.mc"
+    "website": "https://www.acm.mc",
+    "browserSvg": "monaco.svg"
   },
   {
     "slug": "monza",
@@ -1544,7 +1579,8 @@
       "series": "F1",
       "year": 2025
     },
-    "website": "https://www.autodromo.monza.it"
+    "website": "https://www.autodromo.monza.it",
+    "browserSvg": "monza.svg"
   },
   {
     "slug": "montreal",
@@ -1566,7 +1602,8 @@
       "series": "F1",
       "year": 2019
     },
-    "website": "https://www.circuitgillesvilleneuve.ca"
+    "website": "https://www.circuitgillesvilleneuve.ca",
+    "browserSvg": "montreal.svg"
   },
   {
     "slug": "mosport",
@@ -1588,7 +1625,8 @@
       "series": "ALMS",
       "year": 2008
     },
-    "website": "https://www.canadiantiremotorsportpark.com"
+    "website": "https://www.canadiantiremotorsportpark.com",
+    "browserSvg": "mosport.svg"
   },
   {
     "slug": "most",
@@ -1604,7 +1642,8 @@
     "direction": "clockwise",
     "length": 4.212,
     "turns": 21,
-    "website": "https://www.autodrom-most.eu"
+    "website": "https://www.autodrom-most.eu",
+    "browserSvg": "most.svg"
   },
   {
     "slug": "motegi",
@@ -1648,14 +1687,32 @@
   },
   {
     "slug": "nashville",
+    "name": "Nashville Street Circuit",
+    "city": "Nashville",
+    "country": "USA",
+    "continent": "north-america",
+    "browserSvg": "nashville.svg",
+    "calendarSvgs": [
+      "nashville.svg"
+    ],
+    "bio": "The Music City Grand Prix street circuit winds through downtown Nashville along the Cumberland River, with Nissan Stadium as its backdrop. Launched in 2021, it quickly became one of IndyCar's most distinctive events, blending urban scenery with fast, flowing tarmac.",
+    "type": "street",
+    "direction": "counterclockwise",
+    "length": 3.49,
+    "turns": 11,
+    "website": "https://www.musiccitygp.com"
+  },
+  {
+    "slug": "nashville-oval",
     "name": "Nashville Superspeedway",
     "city": "Lebanon",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "nashville-oval.svg",
     "calendarSvgs": [
-      "nashville.svg"
+      "nashville-oval.svg"
     ],
-    "bio": "Nashville Superspeedway is a 1.33-mile concrete D-oval east of the city. Returned to the top-tier NASCAR and IndyCar calendars after years of dormancy, its concrete surface and tight D-shape produce close, physical racing.",
+    "bio": "Nashville Superspeedway is a 1.33-mile concrete D-oval east of Nashville in Lebanon, Tennessee. Opened in 2001, it sat dormant from 2008 until NASCAR returned in 2021. Its concrete surface and tight D-shape produce close, physical racing with heavy tire wear.",
     "type": "oval",
     "direction": "counterclockwise",
     "length": 2.14,
@@ -1676,7 +1733,8 @@
     "direction": "counterclockwise",
     "length": 1.703,
     "turns": 4,
-    "website": "https://www.nhms.com"
+    "website": "https://www.nhms.com",
+    "browserSvg": "newhampshire.svg"
   },
   {
     "slug": "norisring",
@@ -1698,7 +1756,8 @@
       "series": "DTM",
       "year": 2021
     },
-    "website": "https://www.norisring.de"
+    "website": "https://www.norisring.de",
+    "browserSvg": "norisring.svg"
   },
   {
     "slug": "nordschleife",
@@ -1729,6 +1788,7 @@
     "city": "North Wilkesboro",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "northwilkesboro.svg",
     "calendarSvgs": [
       "northwilkesboro.svg"
     ],
@@ -1745,7 +1805,9 @@
     "city": "Nürburg",
     "country": "Germany",
     "continent": "europe",
-    "calendarSvgs": [],
+    "calendarSvgs": [
+      "nurburgring.svg"
+    ],
     "bio": "The modern GP circuit sits alongside the Nordschleife and hosts the German rounds of the DTM and NLS endurance series. Compact but technical, it punishes mistakes without mercy.",
     "type": "permanent",
     "direction": "clockwise",
@@ -1757,7 +1819,8 @@
       "series": "F1",
       "year": 2020
     },
-    "website": "https://www.nuerburgring.de"
+    "website": "https://www.nuerburgring.de",
+    "browserSvg": "nurburgring.svg"
   },
   {
     "slug": "oschersleben",
@@ -1779,7 +1842,8 @@
       "series": "DTM",
       "year": 2024
     },
-    "website": "https://www.motorsport-arena.de"
+    "website": "https://www.motorsport-arena.de",
+    "browserSvg": "oschersleben.svg"
   },
   {
     "slug": "oulton-park",
@@ -1801,7 +1865,8 @@
       "series": "BTCC",
       "year": 2021
     },
-    "website": "https://www.oultonpark.co.uk"
+    "website": "https://www.oultonpark.co.uk",
+    "browserSvg": "oulton-park.svg"
   },
   {
     "slug": "paul-ricard",
@@ -1846,7 +1911,8 @@
       "year": 2019,
       "series": "Supercars"
     },
-    "website": "https://wannerooraceway.com.au"
+    "website": "https://wannerooraceway.com.au",
+    "browserSvg": "perth.svg"
   },
   {
     "slug": "phillip-island",
@@ -1854,8 +1920,9 @@
     "city": "Phillip Island",
     "country": "Australia",
     "continent": "oceania",
-    "browserSvg": "phillip-island-wsbk.svg",
+    "browserSvg": "phillip-island.svg",
     "calendarSvgs": [
+      "phillip-island.svg",
       "phillip-island-wsbk.svg"
     ],
     "bio": "A windswept peninsula off the Victorian coast, Phillip Island's fast layout and compressed lap times make for relentless wheel-to-wheel racing in MotoGP and WSBK.",
@@ -1902,7 +1969,8 @@
     "direction": "counterclockwise",
     "length": 4.023,
     "turns": 3,
-    "website": "https://www.poconoraceway.com"
+    "website": "https://www.poconoraceway.com",
+    "browserSvg": "pocono.svg"
   },
   {
     "slug": "portimao",
@@ -1947,7 +2015,8 @@
       "series": "IndyCar",
       "year": 2018
     },
-    "website": "https://portlandraceway.com"
+    "website": "https://portlandraceway.com",
+    "browserSvg": "portland.svg"
   },
   {
     "slug": "red-bull-ring",
@@ -1996,14 +2065,15 @@
     "country": "USA",
     "continent": "north-america",
     "calendarSvgs": [
-      "richmond.svg"
+      "richmond-oval.svg"
     ],
     "bio": "Richmond Raceway's 0.75-mile D-oval is known for consistent late-race battles and tire degradation that rewards pit strategy. Its smooth surface and multiple grooves make it one of the most reliably entertaining ovals on the schedule.",
     "type": "oval",
     "direction": "counterclockwise",
     "length": 1.207,
     "turns": 4,
-    "website": "https://www.richmondraceway.com"
+    "website": "https://www.richmondraceway.com",
+    "browserSvg": "richmond-oval.svg"
   },
   {
     "slug": "road-america",
@@ -2019,7 +2089,8 @@
     "direction": "clockwise",
     "length": 6.515,
     "turns": 14,
-    "website": "https://www.roadamerica.com"
+    "website": "https://www.roadamerica.com",
+    "browserSvg": "road-america.svg"
   },
   {
     "slug": "road-atlanta",
@@ -2035,7 +2106,8 @@
     "direction": "clockwise",
     "length": 4.088,
     "turns": 12,
-    "website": "https://www.roadatlanta.com"
+    "website": "https://www.roadatlanta.com",
+    "browserSvg": "road-atlanta.svg"
   },
   {
     "slug": "sachsenring",
@@ -2043,6 +2115,7 @@
     "city": "Hohenstein-Ernstthal",
     "country": "Germany",
     "continent": "europe",
+    "browserSvg": "sachsenring.svg",
     "calendarSvgs": [
       "sachsenring.svg"
     ],
@@ -2059,6 +2132,7 @@
     "city": "San Diego",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "sandiego.svg",
     "calendarSvgs": [
       "sandiego.svg"
     ],
@@ -2074,6 +2148,7 @@
     "city": "Springvale South",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "sandown.svg",
     "calendarSvgs": [
       "sandown.svg"
     ],
@@ -2096,6 +2171,7 @@
     "city": "Sanya",
     "country": "China",
     "continent": "asia",
+    "browserSvg": "sanya.svg",
     "calendarSvgs": [
       "sanya.svg"
     ],
@@ -2148,7 +2224,8 @@
       "series": "F1",
       "year": 2017
     },
-    "website": "https://www.sepangcircuit.com"
+    "website": "https://www.sepangcircuit.com",
+    "browserSvg": "sepang.svg"
   },
   {
     "slug": "shanghai",
@@ -2191,7 +2268,8 @@
       "driver": "Nick Cassidy",
       "series": "Formula E",
       "year": 2025
-    }
+    },
+    "browserSvg": "shanghai-fe.svg"
   },
   {
     "slug": "silverstone",
@@ -2236,7 +2314,8 @@
       "series": "F1",
       "year": 2025
     },
-    "website": "https://singaporegp.sg"
+    "website": "https://singaporegp.sg",
+    "browserSvg": "singapore.svg"
   },
   {
     "slug": "snetterton",
@@ -2252,7 +2331,8 @@
     "direction": "counterclockwise",
     "length": 4.779,
     "turns": 12,
-    "website": "https://www.snetterton.co.uk"
+    "website": "https://www.snetterton.co.uk",
+    "browserSvg": "snetterton.svg"
   },
   {
     "slug": "sonoma",
@@ -2262,7 +2342,8 @@
     "continent": "north-america",
     "browserSvg": "sonoma.svg",
     "calendarSvgs": [
-      "sonoma.svg"
+      "sonoma.svg",
+      "sonoma-nascar.svg"
     ],
     "layouts": [
       {
@@ -2339,6 +2420,7 @@
     "city": "Murata",
     "country": "Japan",
     "continent": "asia",
+    "browserSvg": "sugo.svg",
     "calendarSvgs": [
       "sugo.svg"
     ],
@@ -2424,6 +2506,7 @@
     "city": "Launceston",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "tasmania.svg",
     "calendarSvgs": [
       "tasmania.svg"
     ],
@@ -2469,6 +2552,7 @@
     "city": "Tailem Bend",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "the-bend.svg",
     "calendarSvgs": [
       "the-bend.svg"
     ],
@@ -2491,6 +2575,7 @@
     "city": "Andover",
     "country": "UK",
     "continent": "europe",
+    "browserSvg": "thruxton.svg",
     "calendarSvgs": [
       "thruxton.svg"
     ],
@@ -2507,6 +2592,7 @@
     "city": "Tokyo",
     "country": "Japan",
     "continent": "asia",
+    "browserSvg": "tokyo.svg",
     "calendarSvgs": [
       "tokyo.svg"
     ],
@@ -2529,6 +2615,7 @@
     "city": "Townsville",
     "country": "Australia",
     "continent": "oceania",
+    "browserSvg": "townsville.svg",
     "calendarSvgs": [
       "townsville.svg"
     ],
@@ -2551,6 +2638,7 @@
     "city": "Valencia",
     "country": "Spain",
     "continent": "europe",
+    "browserSvg": "valencia.svg",
     "calendarSvgs": [
       "valencia.svg"
     ],
@@ -2567,6 +2655,7 @@
     "city": "Vila Real",
     "country": "Portugal",
     "continent": "europe",
+    "browserSvg": "vila-real.svg",
     "calendarSvgs": [
       "vila-real.svg"
     ],
@@ -2588,6 +2677,7 @@
     "city": "Alton",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "vir.svg",
     "calendarSvgs": [
       "vir.svg"
     ],
@@ -2604,6 +2694,7 @@
     "city": "Watkins Glen",
     "country": "USA",
     "continent": "north-america",
+    "browserSvg": "watkins-glen.svg",
     "calendarSvgs": [
       "watkins-glen.svg"
     ],
@@ -2620,6 +2711,7 @@
     "city": "Abu Dhabi",
     "country": "UAE",
     "continent": "middle-east",
+    "browserSvg": "yas-marina.svg",
     "calendarSvgs": [
       "yas-marina.svg"
     ],
@@ -2642,6 +2734,7 @@
     "city": "Zandvoort",
     "country": "Netherlands",
     "continent": "europe",
+    "browserSvg": "zandvoort.svg",
     "calendarSvgs": [
       "zandvoort.svg"
     ],
@@ -2664,6 +2757,7 @@
     "city": "Zhuzhou",
     "country": "China",
     "continent": "asia",
+    "browserSvg": "zhuzhou.svg",
     "calendarSvgs": [
       "zhuzhou.svg"
     ],
@@ -2686,6 +2780,7 @@
     "city": "Riga",
     "country": "Latvia",
     "continent": "europe",
+    "browserSvg": "bikernierki.svg",
     "calendarSvgs": [
       "bikernierki.svg"
     ],
@@ -2708,7 +2803,8 @@
     "type": "mixed",
     "direction": "counterclockwise",
     "length": 1.22,
-    "website": "https://www.nymc.eu"
+    "website": "https://www.nymc.eu",
+    "browserSvg": "nyirad.svg"
   },
   {
     "slug": "holjes",
@@ -2716,6 +2812,7 @@
     "city": "Höljes",
     "country": "Sweden",
     "continent": "europe",
+    "browserSvg": "holjes.svg",
     "calendarSvgs": [
       "holjes.svg"
     ],
@@ -2738,7 +2835,8 @@
     "direction": "clockwise",
     "length": 3.621,
     "turns": 13,
-    "website": "https://mondellopark.ie"
+    "website": "https://mondellopark.ie",
+    "browserSvg": "mondello.svg"
   },
   {
     "slug": "loheac",
@@ -2752,7 +2850,8 @@
     "bio": "Circuit de Lohéac in Brittany is France's most celebrated rallycross venue, renowned for its passionate spectators and demanding mixed-surface layout.",
     "type": "mixed",
     "length": 1.05,
-    "website": "https://www.rallycrossloheac.com"
+    "website": "https://www.rallycrossloheac.com",
+    "browserSvg": "loheac.svg"
   },
   {
     "slug": "lousada",
@@ -2764,7 +2863,8 @@
       "lousada.svg"
     ],
     "bio": "The Circuito de Lousada is a compact rallycross and circuit venue in northern Portugal, long associated with the country's strong rallying and rallycross culture.",
-    "type": "mixed"
+    "type": "mixed",
+    "browserSvg": "lousada.svg"
   },
   {
     "slug": "jakarta",
@@ -2775,7 +2875,7 @@
     "calendarSvgs": [
       "jakarta.svg"
     ],
-    "bio": "The Jakarta International E-Prix Circuit is a temporary street circuit in the Indonesian capital, built across the Ancol waterfront area, hosting Formula E and the 2026 FIA Rallycross World Cup.",
+    "bio": "The Jakarta International E-Prix Circuit is a temporary street circuit in the Indonesian capital, built across the Ancol waterfront area. Originally constructed for Formula E, it hosts the 2026 FIA Rallycross World Cup.",
     "type": "street",
     "direction": "clockwise",
     "length": 2.37,
@@ -2785,6 +2885,24 @@
       "driver": "Jake Dennis",
       "series": "Formula E",
       "year": 2023
-    }
+    },
+    "browserSvg": "jakarta.svg"
+  },
+  {
+    "slug": "adelaide",
+    "name": "Adelaide Street Circuit",
+    "city": "Adelaide",
+    "country": "Australia",
+    "continent": "oceania",
+    "browserSvg": "adelaide.svg",
+    "calendarSvgs": [
+      "adelaide.svg"
+    ],
+    "bio": "Victoria Park in North Adelaide hosts the Supercars season finale, the bp Adelaide Grand Final. The compact street layout runs the perimeter roads of the park with temporary barriers, bringing championship-deciding racing to the heart of the South Australian capital.",
+    "type": "street",
+    "direction": "clockwise",
+    "length": 3.16,
+    "turns": 12,
+    "website": "https://www.supercars.com"
   }
 ]

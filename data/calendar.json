@@ -207,7 +207,7 @@
             "tag": "NASCAR",
             "title": "Phoenix Raceway",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "phoenix.svg"
+            "track": "phoenix-oval.svg"
           }
         ]
       },
@@ -690,7 +690,7 @@
             "tag": "MOTOGP",
             "title": "French Grand Prix (Le Mans)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "le-mans.svg"
+            "track": "le-mans-bugatti.svg"
           },
           {
             "series": "wec",
@@ -916,7 +916,7 @@
             "tag": "NASCAR",
             "title": "Nashville Superspeedway",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "nashville.svg"
+            "track": "nashville-oval.svg"
           },
           {
             "series": "eurx",
@@ -1673,7 +1673,7 @@
             "tag": "NASCAR",
             "title": "Cook Out 400 (Richmond)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "richmond.svg"
+            "track": "richmond-oval.svg"
           },
           {
             "series": "bgt",
@@ -2265,7 +2265,7 @@
             "tag": "WSBK",
             "title": "Jerez Round (Season Finale)",
             "time": "FRI > SUN",
-            "track": "jerez.svg"
+            "track": "jerez-motogp.svg"
           },
           {
             "series": "gtwce",
@@ -2291,14 +2291,14 @@
             "tag": "FORMULA 1",
             "title": "United States GP (Austin)",
             "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
-            "track": "cota-national.svg"
+            "track": "cota-f1.svg"
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 6: COTA",
             "time": "RACES: <span class=\"hl\">TBC</span>",
-            "track": "cota-national.svg"
+            "track": "cota-f1.svg"
           },
           {
             "series": "motogp",
