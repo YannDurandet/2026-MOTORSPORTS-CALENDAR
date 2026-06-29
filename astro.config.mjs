@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://yanndurandet.github.io',
-  base: '/2026-MOTORSPORTS-CALENDAR',
+  site: 'https://dord.racing',
+  base: '/',
   build: {
     format: 'file',
   },
