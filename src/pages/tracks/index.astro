@@ -106,7 +106,7 @@ const continentLabels: Record<string, string> = {
 };
 
 const totalVenues = venues.length;
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 // Type filter data
 const TYPE_ORDER = ['permanent', 'street', 'oval', 'mixed'] as const;
