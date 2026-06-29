@@ -1,17 +1,17 @@
 # Track Map Status
-_Last updated: 2026-06-27_
+_Last updated: 2026-06-29_
 
 ## Summary
 | | Count |
 |---|---|
-| Files on disk | **104** |
-| Circuit SVGs (browser-mapped) | **79** |
+| Files on disk | **167** |
+| Circuit SVGs (browser-mapped) | **142** |
 | WRC / ERC flags | **17** |
 | calendarSvg-only (no browser entry) | **6** |
 | Placeholder infographics | **2** |
 | Orphans (on disk, unreferenced) | **0** |
 | Missing browserSvgs | **0** |
-| Missing calendar refs (not yet drawn) | **62** |
+| Missing calendar refs (not yet drawn) | **0** |
 
 ## Naming Convention
 - `{venue}.svg` — generic / single-series
@@ -24,55 +24,118 @@ _Last updated: 2026-06-27_
 - `{location}-wrc.svg` — all WRC / ERC national flags
 
 ## Circuit SVGs (browser-mapped)
+- `adelaide.svg` (adelaide)
 - `albert-park.svg` (albert-park)
 - `aragon.svg` (aragon)
 - `arlington.svg` (arlington)
 - `assen.svg` (assen)
 - `atlanta-oval.svg` (atlanta)
 - `autopolis.svg` (autopolis)
+- `bahrain.svg` (bahrain)
 - `baku.svg` (baku)
 - `balaton-motogp.svg` (balaton)
 - `barber.svg` (barber)
 - `barcelona-f1.svg` (barcelona)
+- `barcelona.svg` (barcelona)
 - `bathurst.svg` (bathurst)
 - `berlin.svg` (berlin)
-- `brands-hatch.svg` (brands-hatch)
+- `bikernierki.svg` (bikernierki)
+- `brands-hatch-gp.svg` (brands-hatch)
+- `brands-hatch.svg` (brands-hatch) — Indy Circuit
+- `bristol.svg` (bristol)
 - `brno.svg` (brno)
-- `buriram-motogp.svg` (buriram)
+- `buriram.svg` (buriram)
+- `charlotte.svg` (charlotte)
+- `chengdu.svg` (chengdu)
+- `chicagoland.svg` (chicagoland)
 - `christchurch.svg` (christchurch)
-- `cota.svg` (cota)
+- `cota-f1.svg` (cota)
+- `cota-national.svg` (cota)
 - `cremona.svg` (cremona)
 - `croft.svg` (croft)
-- `darlington.svg` (darlington)
+- `darlington-oval.svg` (darlington)
+- `darwin.svg` (darwin)
 - `daytona-oval.svg` (daytona)
-- `donington.svg` (donington)
-- `dover.svg` (dover)
+- `detroit.svg` (detroit)
+- `donington-gp.svg` (donington)
+- `donington.svg` (donington) — National Circuit
+- `dover-oval.svg` (dover)
 - `estoril.svg` (estoril)
-- `goiania-motogp.svg` (goiania)
+- `fuji.svg` (fuji)
+- `gateway.svg` (gateway)
+- `goiania.svg` (goiania)
+- `gold-coast.svg` (gold-coast)
 - `hockenheim.svg` (hockenheim)
-- `homestead-oval.svg` (homestead)
+- `holjes.svg` (holjes)
+- `homestead-miami-oval.svg` (homestead)
 - `hungaroring.svg` (hungaroring)
 - `imola.svg` (imola)
+- `indianapolis-oval.svg` (indianapolis)
+- `indianapolis.svg` (indianapolis) — Road Course
+- `inje.svg` (inje)
+- `interlagos.svg` (interlagos)
+- `iowa.svg` (iowa)
+- `ipswich.svg` (ipswich)
+- `jakarta.svg` (jakarta)
 - `jeddah-fe.svg` (jeddah)
 - `jerez-motogp.svg` (jerez)
+- `kansas.svg` (kansas)
 - `knockhill.svg` (knockhill)
 - `laguna-seca.svg` (laguna-seca)
-- `las-vegas.svg` (las-vegas)
+- `las-vegas-oval.svg` (las-vegas)
+- `las-vegas-strip.svg` (las-vegas-strip)
 - `lausitzring.svg` (lausitzring)
+- `le-mans-bugatti.svg` (le-mans-bugatti)
+- `le-mans.svg` (le-mans)
+- `loheac.svg` (loheac)
+- `london.svg` (london)
 - `long-beach.svg` (long-beach)
+- `lousada.svg` (lousada)
 - `lusail.svg` (lusail)
+- `macau.svg` (macau)
+- `madrid-f1.svg` (madrid-f1)
 - `madrid-fe.svg` (madrid)
-- `martinsville.svg` (martinsville)
+- `magny-cours.svg` (magny-cours)
+- `mandalika.svg` (mandalika)
+- `markham.svg` (markham)
+- `martinsville-oval.svg` (martinsville)
 - `mexico-fe.svg` (mexico-city)
+- `mexico.svg` (mexico-city)
 - `miami.svg` (miami)
+- `michigan.svg` (michigan)
+- `midohio.svg` (midohio)
+- `milwaukee.svg` (milwaukee)
+- `misano.svg` (misano)
+- `monaco.svg` (monaco)
+- `mondello.svg` (mondello)
+- `montreal.svg` (montreal)
+- `monza.svg` (monza)
+- `mosport.svg` (mosport)
+- `most.svg` (most)
 - `motegi.svg` (motegi)
 - `mugello.svg` (mugello)
+- `nashville-oval.svg` (nashville-oval)
+- `nashville.svg` (nashville)
+- `newhampshire.svg` (newhampshire)
 - `nordschleife.svg` (nordschleife)
+- `norisring.svg` (norisring)
+- `northwilkesboro.svg` (northwilkesboro)
+- `nurburgring.svg` (nurburgring-gp)
+- `nyirad.svg` (nyirad)
+- `oschersleben.svg` (oschersleben)
+- `oulton-park.svg` (oulton-park)
 - `paul-ricard.svg` (paul-ricard)
+- `perth.svg` (perth)
 - `phillip-island-wsbk.svg` (phillip-island)
+- `phillip-island.svg` (phillip-island)
 - `phoenix-oval.svg` (phoenix)
+- `pocono.svg` (pocono)
 - `portimao.svg` (portimao)
+- `portland.svg` (portland)
 - `red-bull-ring.svg` (red-bull-ring)
+- `richmond-oval.svg` (richmond)
+- `road-america.svg` (road-america)
+- `road-atlanta.svg` (road-atlanta)
 - `sachsenring.svg` (sachsenring)
 - `sandiego.svg` (sandiego)
 - `sandown.svg` (sandown)
@@ -136,68 +199,8 @@ _No real circuit — used for calendar events where the venue is unconfirmed._
 - `tbc.svg` — "Venue TBC" (TCR Round 1, venue not yet announced)
 - `tbd.svg` — "Venue TBD" (NASCAR playoff wildcard slots)
 
-## Still Missing — Calendar refs not yet drawn (62)
-_These appear in calendar.json events but have no SVG file yet._
+## Still Missing — Calendar refs not yet drawn
+_All calendar circuit SVGs are now complete. 🏁_
 
-- `adelaide.svg`
-- `bahrain.svg`
-- `barcelona.svg`
-- `bikernierki.svg`
-- `brands-hatch-gp.svg`
-- `bristol.svg`
-- `charlotte.svg`
-- `chengdu.svg`
-- `chicagoland.svg`
-- `darwin.svg`
-- `detroit.svg`
-- `donington-gp.svg`
-- `fuji.svg`
-- `gateway.svg`
-- `gold-coast.svg`
-- `holjes.svg`
-- `indianapolis-oval.svg`
-- `indianapolis.svg`
-- `inje.svg`
-- `interlagos.svg`
-- `iowa.svg`
-- `ipswich.svg`
-- `jakarta.svg`
-- `jerez.svg`
-- `kansas.svg`
-- `las-vegas-strip.svg`
-- `le-mans.svg`
-- `loheac.svg`
-- `london.svg`
-- `lousada.svg`
-- `macau.svg`
-- `madrid-f1.svg`
-- `magny-cours.svg`
-- `mandalika.svg`
-- `markham.svg`
-- `mexico.svg`
-- `michigan.svg`
-- `midohio.svg`
-- `milwaukee.svg`
-- `misano.svg`
-- `monaco.svg`
-- `mondello.svg`
-- `montreal.svg`
-- `monza.svg`
-- `mosport.svg`
-- `most.svg`
-- `nashville.svg`
-- `newhampshire.svg`
-- `norisring.svg`
-- `northwilkesboro.svg`
-- `nurburgring.svg`
-- `nyirad.svg`
-- `oschersleben.svg`
-- `oulton-park.svg`
-- `perth.svg`
-- `phillip-island.svg`
-- `phoenix.svg`
-- `pocono.svg`
-- `portland.svg`
-- `richmond.svg`
-- `road-america.svg`
-- `road-atlanta.svg`
+## Orphans on disk (unreferenced)
+- `barcelona-f1.svg` — not used in any calendar event or track calendarSvgs; safe to delete

@@ -19,9 +19,12 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f12">
   <meta name="description" content={description}>
   <link rel="canonical" href={resolvedCanonical} />
+  <link rel="icon" href={`${base}/assets/website-icon.svg`} type="image/svg+xml">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="2026 Motorsport Master Calendar">
   <meta property="og:url" content={resolvedCanonical}>
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
@@ -342,6 +345,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       searchIndex = await res.json();
     }
 
+    function escapeHtml(s: string): string {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
     function renderResults(query: string) {
       if (!results || !searchIndex) return;
       const q = query.trim().toLowerCase();
@@ -360,7 +367,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       const base = document.querySelector<HTMLMetaElement>('meta[name="astro-base"]')?.content || '';
 
       if (matched.length === 0) {
-        results.innerHTML = `<div class="search-empty">No results for "${query}"</div>`;
+        results.innerHTML = `<div class="search-empty">No results for "${escapeHtml(query)}"</div>`;
         focusIdx = -1;
         return;
       }
