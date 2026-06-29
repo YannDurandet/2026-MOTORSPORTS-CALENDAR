@@ -21,6 +21,20 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- ── Legal pages ───────────────────────────────────────────────────────── -->
+  <url>
+    <loc>https://dord.racing/legal/tos</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://dord.racing/legal/privacy</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- ── Series pages (25) ──────────────────────────────────────────────────── -->
   <url><loc>https://dord.racing/series/f1</loc><lastmod>2026-06-29</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://dord.racing/series/f1a</loc><lastmod>2026-06-29</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>

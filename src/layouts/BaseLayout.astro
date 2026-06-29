@@ -53,14 +53,17 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <!-- Sticky bottom nav — appears when header nav scrolls off screen -->
   <div id="sticky-nav-bar" class="sticky-nav-bar" aria-hidden="true">
     <nav class="sticky-nav-inner">
-      <a href={`${base}/`}        class="sticky-nav-link" data-page="calendar">Calendar</a>
-      <a href={`${base}/series`}  class="sticky-nav-link" data-page="series">Series</a>
-      <a href={`${base}/tracks`}  class="sticky-nav-link" data-page="tracks">Tracks</a>
-      <button class="sticky-search-btn" id="sticky-search-trigger" aria-label="Search">
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13" aria-hidden="true">
-          <circle cx="8.5" cy="8.5" r="5.5"/>
-          <line x1="13" y1="13" x2="17" y2="17"/>
-        </svg>
+      <a href={`${base}/`}       class="sticky-nav-link" data-page="calendar" aria-label="Calendar">
+        <img src={`${base}/assets/calendar-icon.svg`} alt="" width="22" height="22">
+      </a>
+      <a href={`${base}/series`} class="sticky-nav-link" data-page="series" aria-label="Series">
+        <img src={`${base}/assets/series-icon.svg`} alt="" width="22" height="22">
+      </a>
+      <a href={`${base}/tracks`} class="sticky-nav-link" data-page="tracks" aria-label="Tracks">
+        <img src={`${base}/assets/tracks-icon.svg`} alt="" width="22" height="22">
+      </a>
+      <button class="sticky-nav-link" id="sticky-search-trigger" aria-label="Search">
+        <img src={`${base}/assets/search-icon.svg`} alt="" width="22" height="22">
       </button>
     </nav>
   </div>
@@ -85,20 +88,6 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑ TOP</button>
 
   <style is:global>
-    /* ── Sticky search btn ───────────────────────────────────────────────────── */
-    .sticky-search-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: none;
-      border: none;
-      color: #667;
-      cursor: pointer;
-      padding: 6px 10px;
-      transition: color 0.15s;
-    }
-    .sticky-search-btn:hover { color: #bbb; }
-
     /* ── Search overlay ──────────────────────────────────────────────────────── */
     .search-overlay {
       position: fixed;
