@@ -126,6 +126,16 @@ const allSeries = [...new Set(
   description="Race winners across every 2026 motorsport championship — F1, WEC, WRC, MotoGP, IndyCar and more."
   canonicalUrl="https://dord.racing/results"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "2026 Race Results", "item": "https://dord.racing/results" }
+      ]
+    })} />
+  </Fragment>
   <Banner />
   <header>
     <div class="header--left">

@@ -1,0 +1,87 @@
+# dord.racing — 2026 Motorsport Master Calendar
+
+> An independent, comprehensive 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, motorcycle, and rally series. Built by Yann Durandet.
+
+## What this site covers
+
+dord.racing aggregates the complete 2026 racing season into a single filterable calendar. Every race weekend, every series, every circuit — from Formula 1 to the Nürburgring 24-hour grassroots series. Data is manually curated from official series sources including the FIA, Formula 1, Formula E, WEC, IMSA, IndyCar, MotoGP, and others.
+
+Key features:
+- Full 2026 race calendar with local time conversion
+- Live countdown timers to next race per series
+- Track browser with 130+ circuit maps and technical data
+- Race results updated throughout the season
+- Global search across all tracks and series
+
+## Pages
+
+- Homepage / full calendar: https://dord.racing
+- Series guide (all 25 championships): https://dord.racing/series
+- Track browser (130+ circuits): https://dord.racing/tracks
+- Race results: https://dord.racing/results
+
+## The 25 Series
+
+| Slug | Series | Category | Description |
+|---|---|---|---|
+| f1 | Formula 1 | Open Wheel | The pinnacle of single-seater motor racing, contested across 22 Grands Prix on five continents. |
+| f1a | F1 Academy | Open Wheel | An all-female, Formula 4-level championship founded by Formula One Management, racing at selected F1 weekends. |
+| fe | Formula E | Open Wheel | The premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe. |
+| sf | Super Formula | Open Wheel | Japan's premier single-seater series and one of the fastest formula championships in the world outside of F1. |
+| wec | FIA World Endurance Championship | Endurance | The world's premier long-distance racing series, headlined by the 24 Hours of Le Mans. |
+| imsa | IMSA WeatherTech SportsCar Championship | Endurance | North America's premier sports car racing series, tracing its lineage to the 1971 IMSA GT Championship. |
+| elms | European Le Mans Series | Endurance | The official regional feeder championship to the FIA WEC in Europe, the most direct route to Le Mans. |
+| nls | Nürburgring Langstrecken-Serie | Endurance | Long-distance endurance racing on the legendary 20.8 km Nürburgring Nordschleife, the Green Hell. |
+| igtc | Intercontinental GT Challenge | Endurance | The world's only global GT3 series, linking five prestige endurance events across four continents. |
+| h24eu | 24H European Series | Endurance | Grassroots 12-hour and 24-hour endurance races at Grand Prix circuits across Europe, open to all. |
+| gtwce | GT World Challenge Europe | GT / Sports Car | Europe's premier GT3 series, combining Sprint and Endurance Cups with the prestigious 24 Hours of Spa. |
+| gtwca | GT World Challenge America | GT / Sports Car | The leading GT3 series in North America, part of SRO's global GT World Challenge network. |
+| dtm | Deutsche Tourenwagen Masters | GT / Sports Car | Germany's prestige GT racing series, contested entirely with GT3-specification cars across iconic European circuits. |
+| bgt | British GT Championship | GT / Sports Car | The UK's premier GT championship, spanning GT3 and GT4 classes across eight iconic British and European circuits. |
+| psc | Porsche Mobil 1 Supercup | GT / Sports Car | The world's premier single-make Porsche racing series, supporting Formula 1 at eight European Grands Prix. |
+| motogp | MotoGP World Championship | Bike | The premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines exceeding 350 km/h. |
+| wsbk | Superbike World Championship | Bike | The world's premier production-based motorcycle racing series, with three races per round from five manufacturers. |
+| wrc | FIA World Rally Championship | Rally | The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents. |
+| erc | European Rally Championship | Rally | The oldest active motorsport championship in the world, in its 74th season in 2026. |
+| eurx | FIA European Rallycross Championship | Rally | The world's top-tier rallycross championship — the 51st season of Euro RX. |
+| indycar | IndyCar Series | Open Wheel | The premier open-wheel racing championship in North America, home to the iconic Indianapolis 500. |
+| nascar | NASCAR Cup Series | Touring | The highest level of American stock car racing, run across superspeedways, short tracks, and road courses. |
+| btcc | British Touring Car Championship | Touring | The UK's premier motorsport series, famous for close, contact-heavy racing across three-race weekends. |
+| supercars | Supercars Championship | Touring | Australia's premier motorsport series, featuring high-powered V8 touring cars and the iconic Bathurst 1000. |
+| tcr | TCR World Tour | Touring | The global touring car series for TCR-specification front-wheel-drive cars, successor to the WTCR. |
+
+## Individual series pages
+
+Each series has a dedicated page at https://dord.racing/series/{slug} with:
+- Series description and history
+- Full 2026 race calendar for that series
+- Teams and drivers (for Tier 1 series: F1, WEC, IndyCar, NASCAR, MotoGP)
+- Links to official series websites and social media
+
+## Track data
+
+dord.racing maintains technical data for 130+ circuits including:
+- Circuit name, city, country, continent
+- Track type (permanent / street / oval / mixed)
+- Length (km), number of turns, direction
+- Lap record (time, driver, series, year)
+- Custom SVG track maps for most venues
+- Which series race at each venue
+
+Each track has a page at https://dord.racing/tracks/{slug}
+
+## Data sources
+
+Race dates and times: official series websites (FIA, F1, FE, WEC, IMSA, MotoGP, IndyCar, NASCAR, Supercars, BTCC, etc.)
+Track data: official circuit websites, FIA circuit homologation documents
+Results: official series result releases
+
+## About
+
+- Site: https://dord.racing
+- Builder: Yann Durandet — https://durandet.studio
+- Contact: durandet.yann.pro@gmail.com
+- X / Twitter: https://x.com/dord_racing
+- Instagram: https://www.instagram.com/dord.racing/
+- Tech stack: Astro (SSG), static JSON data files, vanilla JS
+- Independent fan project — not affiliated with any series, sanctioning body, or commercial rights holder
