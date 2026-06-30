@@ -574,6 +574,18 @@ function injectSchema() {
 }
 
 // =============================================
+// EVENT ROW → TRACK PAGE CLICK
+// =============================================
+function initEventRowClicks() {
+    document.querySelectorAll('.event[data-track-href]').forEach(row => {
+        row.addEventListener('click', e => {
+            if (e.target.closest('a')) return;
+            window.location.href = row.dataset.trackHref;
+        });
+    });
+}
+
+// =============================================
 // SUPPORT RACE TOGGLE (arrow buttons)
 // =============================================
 function initToggle() {
@@ -607,6 +619,7 @@ function initToggle() {
     convertPreRenderedTimes();
 
     // Initialize interactive features
+    initEventRowClicks();
     initToggle();
     initDashToggle();
     initFilters();

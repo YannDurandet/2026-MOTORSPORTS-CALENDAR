@@ -51,12 +51,15 @@ type Venue = {
   type?: string;
 };
 
+type LayoutPanel = { id: string; svgContent: string | null; };
+
 type ProcessedVenue = Venue & {
   svgContent: string | null;
   hasSvg: boolean;
   events: Array<CalEvent & { layoutId: string | null }>;
   eventCount: number;
   type?: string;
+  layoutPanels: LayoutPanel[];
 };
 
 function cleanSvg(raw: string, slug: string): string {
@@ -93,7 +96,16 @@ for (const venue of tracksRaw as Venue[]) {
   const hasSvg = svgPath ? fs.existsSync(svgPath) : false;
   const svgContent = hasSvg ? cleanSvg(fs.readFileSync(svgPath!, 'utf-8'), venue.slug) : null;
 
-  venues.push({ ...venue, svgContent, hasSvg, events, eventCount: events.length });
+  const layoutPanels: LayoutPanel[] = (venue.layouts && venue.layouts.length > 1)
+    ? venue.layouts.map(l => {
+        const svgFile = l.calendarSvgs[0];
+        if (!svgFile) return { id: l.id, svgContent: null };
+        const p = path.join(svgDir, svgFile);
+        return { id: l.id, svgContent: fs.existsSync(p) ? cleanSvg(fs.readFileSync(p, 'utf-8'), venue.slug) : null };
+      })
+    : [];
+
+  venues.push({ ...venue, svgContent, hasSvg, events, eventCount: events.length, layoutPanels });
 }
 
 const continentLabels: Record<string, string> = {
@@ -176,7 +188,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     <div class="tracks-grid" id="tracks-grid">
       {venues.map(venue => (
         <div
-          class:list={["track-card", { "has-layouts": !!venue.layouts, "no-svg": !venue.hasSvg }]}
+          class:list={["track-card", { "no-svg": !venue.hasSvg }]}
           data-continent={venue.continent}
           data-type={venue.type ?? 'other'}
         >
@@ -186,14 +198,32 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
             class="track-svg-wrap"
             style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}
           >
-            {venue.svgContent
-              ? <Fragment set:html={venue.svgContent} />
-              : <div class="svg-placeholder">{venue.name}</div>
-            }
-            {venue.layouts && (
-              <div class="layout-badge">
-                {venue.layouts.length} layouts · hover series to highlight
-              </div>
+            {venue.layoutPanels.length > 1 ? (
+              <>
+                {venue.layoutPanels.map((l, i) => (
+                  <div class="layout-panel" data-layout-id={l.id} style={i === 0 ? '' : 'display:none'}>
+                    {l.svgContent
+                      ? <Fragment set:html={l.svgContent} />
+                      : <div class="svg-placeholder">{venue.name}</div>
+                    }
+                  </div>
+                ))}
+                <div class="layout-btns">
+                  {venue.layoutPanels.map((l, i) => (
+                    <button
+                      class={`layout-btn${i === 0 ? ' active' : ''}`}
+                      data-layout-target={l.id}
+                      aria-pressed={i === 0 ? 'true' : 'false'}
+                    >
+                      {l.id.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              venue.svgContent
+                ? <Fragment set:html={venue.svgContent} />
+                : <div class="svg-placeholder">{venue.name}</div>
             )}
           </div>
 
@@ -274,34 +304,21 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     });
   });
 
-  // ─── Layout hover-dim (for multi-layout tracks) ───────────────────────────
-  // Convention: combined SVG must have <g id="layout-{id}"> groups per layout.
-  // When user hovers a series badge that has data-layout-id, all other layout
-  // groups in the same card's SVG dim to 15% opacity.
+  // ─── Layout button switching ──────────────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
+    const panels = card.querySelectorAll<HTMLElement>('.layout-panel');
+    const btns   = card.querySelectorAll<HTMLButtonElement>('.layout-btn');
+    if (panels.length < 2 || btns.length === 0) return;
 
-  document.querySelectorAll<HTMLElement>('.track-card.has-layouts').forEach(card => {
-    const svgEl = card.querySelector<SVGElement>('svg');
-    if (!svgEl) return;
-
-    const rows = card.querySelectorAll<HTMLElement>('[data-layout-id]');
-
-    rows.forEach(row => {
-      const layoutId = row.dataset.layoutId;
-      if (!layoutId) return;
-
-      const tag = row.querySelector<HTMLElement>('.tag');
-      if (!tag) return;
-
-      tag.addEventListener('mouseenter', () => {
-        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
-          g.style.opacity = g.id === `layout-${layoutId}` ? '1' : '0.12';
-          g.style.transition = 'opacity 0.18s ease';
-        });
-      });
-
-      tag.addEventListener('mouseleave', () => {
-        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
-          g.style.opacity = '1';
+    btns.forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const target = btn.dataset.layoutTarget!;
+        panels.forEach(p => { p.style.display = p.dataset.layoutId === target ? '' : 'none'; });
+        btns.forEach(b => {
+          b.classList.toggle('active', b.dataset.layoutTarget === target);
+          b.setAttribute('aria-pressed', b.dataset.layoutTarget === target ? 'true' : 'false');
         });
       });
     });
@@ -455,17 +472,47 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     stroke-width: 1 !important;
   }
 
-  .layout-badge {
+  .track-svg-wrap :global(.layout-panel) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .layout-btns {
     position: absolute;
     bottom: 8px;
-    left: 0;
-    right: 0;
-    text-align: center;
+    right: 8px;
+    display: flex;
+    gap: 3px;
+    z-index: 2;
+  }
+
+  .layout-btn {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #556;
-    letter-spacing: 0.04em;
-    pointer-events: none;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #445;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #334;
+    border-radius: 2px;
+    padding: 3px 6px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .layout-btn:hover {
+    color: #778;
+    border-color: #556;
+  }
+
+  .layout-btn.active {
+    color: #c3c6c8;
+    border-color: #667;
   }
 
   /* Placeholder for tracks without an SVG file yet */

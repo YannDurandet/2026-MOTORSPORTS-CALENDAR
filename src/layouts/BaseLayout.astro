@@ -10,7 +10,7 @@ interface Props {
 
 const { title, description, ogImage, canonicalUrl } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const defaultOgImage = `https://dord.racing/assets/lauda_and_mouton.avif`;
+const defaultOgImage = `https://dord.racing/assets/lauda_and_mouton--large.webp`;
 const resolvedOgImage = ogImage || defaultOgImage;
 const resolvedCanonical = canonicalUrl || Astro.url.href;
 ---
@@ -55,15 +55,23 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     <nav class="sticky-nav-inner">
       <a href={`${base}/`}       class="sticky-nav-link" data-page="calendar" aria-label="Calendar">
         <img src={`${base}/assets/calendar-icon.svg`} alt="" width="22" height="22">
+        <span class="sticky-nav-label">Calendar</span>
       </a>
       <a href={`${base}/series`} class="sticky-nav-link" data-page="series" aria-label="Series">
         <img src={`${base}/assets/series-icon.svg`} alt="" width="22" height="22">
+        <span class="sticky-nav-label">Series</span>
       </a>
       <a href={`${base}/tracks`} class="sticky-nav-link" data-page="tracks" aria-label="Tracks">
         <img src={`${base}/assets/tracks-icon.svg`} alt="" width="22" height="22">
+        <span class="sticky-nav-label">Tracks</span>
+      </a>
+      <a href={`${base}/results`} class="sticky-nav-link" data-page="results" aria-label="Results">
+        <img src={`${base}/assets/results-icon.svg`} alt="" width="22" height="22">
+        <span class="sticky-nav-label">Results</span>
       </a>
       <button class="sticky-nav-link" id="sticky-search-trigger" aria-label="Search">
         <img src={`${base}/assets/search-icon.svg`} alt="" width="22" height="22">
+        <span class="sticky-nav-label">Search</span>
       </button>
     </nav>
   </div>
@@ -280,6 +288,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
         } else if (page === 'series' && path.includes('/series')) {
           link.classList.add('active');
         } else if (page === 'tracks' && path.includes('/tracks')) {
+          link.classList.add('active');
+        } else if (page === 'results' && path.includes('/results')) {
           link.classList.add('active');
         }
       });

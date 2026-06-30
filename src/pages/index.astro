@@ -2,13 +2,32 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
-import Dashboard from '../components/Dashboard.astro';
 import EventRow from '../components/EventRow.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 
 // Import data at build time
 import calendarData from '../../data/calendar.json';
+import tracksData from '../../data/tracks.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const trackSlugs = new Set((tracksData as any[]).map((t: any) => t.slug));
+
+function stripTrackSuffix(svgName: string): string {
+  return svgName.replace(/\.svg$/, '').replace(/-(f1|motogp|fe|wsbk|oval|road)$/, '');
+}
+
+const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
+  ...month,
+  weeks: month.weeks.map((week: any) => ({
+    ...week,
+    events: week.events.map((ev: any) => {
+      const slug = stripTrackSuffix(ev.track ?? '');
+      const trackHref = trackSlugs.has(slug) ? `${base}/tracks/${slug}` : null;
+      return { ...ev, trackHref };
+    }),
+  })),
+}));
 
 ---
 <BaseLayout
@@ -82,7 +101,6 @@ import calendarData from '../../data/calendar.json';
         schedules are localized to Paris CET/CEST time.</div>
       <Nav activePage="calendar" />
     </div>
-    <Dashboard />
   </header>
 
   <div class="main-section">
@@ -118,7 +136,7 @@ import calendarData from '../../data/calendar.json';
     </details>
 
     <div id="calendar-container">
-      {(calendarData as any[]).map((month: any) => (
+      {enrichedCalendar.map((month: any) => (
         <>
           <div class="month-header">{month.month}</div>
           <div class="cal-grid">
@@ -136,6 +154,7 @@ import calendarData from '../../data/calendar.json';
                       sprint={ev.sprint}
                       sub={ev.sub}
                       races={ev.races}
+                      trackHref={ev.trackHref}
                     />
                   ))}
                 </div>

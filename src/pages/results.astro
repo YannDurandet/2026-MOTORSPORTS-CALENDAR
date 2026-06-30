@@ -1,0 +1,620 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Banner from '../components/Banner.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+import resultsData from '../../data/results.json';
+import tracksData from '../../data/tracks.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Map tracks.json country names → ISO 2-letter codes
+function normalizeCountry(name: string): string {
+  const map: Record<string, string> = {
+    'Australia': 'AU', 'Austria': 'AT', 'Azerbaijan': 'AZ', 'Bahrain': 'BH',
+    'Belgium': 'BE', 'Brazil': 'BR', 'Canada': 'CA', 'China': 'CN',
+    'Czech Republic': 'CZ', 'France': 'FR', 'Germany': 'DE', 'Hungary': 'HU',
+    'Indonesia': 'ID', 'Ireland': 'IE', 'Italy': 'IT', 'Japan': 'JP',
+    'Latvia': 'LV', 'Macau': 'MO', 'Malaysia': 'MY', 'Mexico': 'MX',
+    'Monaco': 'MC', 'Netherlands': 'NL', 'New Zealand': 'NZ', 'Portugal': 'PT',
+    'Qatar': 'QA', 'Saudi Arabia': 'SA', 'Singapore': 'SG', 'South Korea': 'KR',
+    'Spain': 'ES', 'Sweden': 'SE', 'Thailand': 'TH', 'UAE': 'AE',
+    'UK': 'GB', 'USA': 'US',
+  };
+  return map[name] ?? '';
+}
+
+// Build venue slug → ISO country code from tracks.json
+const venueCountry: Record<string, string> = {};
+for (const track of tracksData as any[]) {
+  if (track.slug && track.country) {
+    venueCountry[track.slug] = normalizeCountry(track.country);
+  }
+}
+
+const seriesShort: Record<string, string> = {
+  f1: 'F1', f1a: 'F1 Academy', fe: 'Formula E', sf: 'Super Formula',
+  wec: 'WEC', imsa: 'IMSA', wrc: 'WRC', erc: 'ERC',
+  indycar: 'IndyCar', nascar: 'NASCAR', motogp: 'MotoGP', wsbk: 'WSBK',
+  dtm: 'DTM', btcc: 'BTCC', supercars: 'Supercars', elms: 'ELMS',
+  gtwce: 'GTWCE', gtwca: 'GTWCA', nls: 'NLS', igtc: 'IGTC',
+  tcr: 'TCR', h24eu: '24H EU', psc: 'Porsche SC', bgt: 'British GT', eurx: 'Euro RX',
+};
+
+function flagSrc(code: string, base: string): string {
+  if (!code || code.length !== 2) return '';
+  return `${base}/assets/flags/${code.toUpperCase()}.svg`;
+}
+
+function fmtDate(d: string): string {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const parts = d.split('-');
+  return `${months[parseInt(parts[1]) - 1]} ${parseInt(parts[2])}`;
+}
+
+function monthLabel(key: string): string {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const parts = key.split('-');
+  return `${months[parseInt(parts[1]) - 1]} ${parts[0]}`;
+}
+
+function shortMonthLabel(key: string): string {
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const parts = key.split('-');
+  return `${months[parseInt(parts[1]) - 1]} ${parts[0]}`;
+}
+
+function isoWeek(dateStr: string): number {
+  const d = new Date(dateStr + 'T00:00:00Z');
+  const day = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+}
+
+type ResultEntry = {
+  series: string;
+  round: number;
+  race_label?: string;
+  event: string;
+  venue: string;
+  date: string;
+  winner?: string;
+  co_driver?: string;
+  manufacturer?: string;
+  winners?: string[];
+  team?: string;
+  car_number?: string;
+  country?: string;
+};
+
+const months = Object.keys(resultsData as Record<string, any>).sort().reverse();
+
+type WeekGroup = { week: number; rows: ResultEntry[] };
+const byMonth: Record<string, WeekGroup[]> = {};
+
+for (const month of months) {
+  const seriesMap = (resultsData as Record<string, any>)[month];
+  const flat: ResultEntry[] = [];
+  for (const [slug, races] of Object.entries(seriesMap) as [string, any[]][]) {
+    for (const r of races) flat.push({ series: slug, ...r });
+  }
+  // Sort descending — most recent first
+  flat.sort((a, b) => b.date.localeCompare(a.date));
+
+  const groups: WeekGroup[] = [];
+  for (const r of flat) {
+    const w = isoWeek(r.date);
+    const last = groups[groups.length - 1];
+    if (last && last.week === w) {
+      last.rows.push(r);
+    } else {
+      groups.push({ week: w, rows: [r] });
+    }
+  }
+  byMonth[month] = groups;
+}
+
+const allSeries = [...new Set(
+  months.flatMap(m => Object.keys((resultsData as Record<string, any>)[m]))
+)].sort();
+---
+
+<BaseLayout
+  title="2026 Race Results — Motorsport Master Calendar"
+  description="Race winners across every 2026 motorsport championship — F1, WEC, WRC, MotoGP, IndyCar and more."
+  canonicalUrl="https://dord.racing/results"
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Race<br>Results</h1>
+      <p class="header--page-desc">Winners across every championship, updated month by month.</p>
+      <div class="meta">JAN — JUN 2026</div>
+      <Nav activePage="results" />
+    </div>
+  </header>
+
+  <div class="main-section">
+    <div class="res-layout">
+
+      <!-- Sidebar -->
+      <aside class="res-sidebar">
+        <div class="res-sidebar-label">Series</div>
+        <div class="res-filters" id="res-filters">
+          <button class="res-filter res-filter-util" id="res-select-all">Select All</button>
+          <button class="res-filter res-filter-util" id="res-deselect-all">Deselect All</button>
+          {allSeries.map(s => (
+            <button class="res-filter active" data-series={s} style={`--c: var(--${s})`}>
+              {seriesShort[s] ?? s.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
+        <nav class="res-jump-nav" aria-label="Jump to month">
+          <div class="res-sidebar-label">Jump to</div>
+          {months.map(m => (
+            <a href={`#${m}`} class="res-jump-link" data-jump={m}>
+              {shortMonthLabel(m)}
+            </a>
+          ))}
+        </nav>
+      </aside>
+
+      <!-- Results -->
+      <div class="res-content">
+        {months.map(month => (
+          <section class="res-month" id={month} data-month={month}>
+            <div class="res-month-header">
+              <span class="res-month-label">{monthLabel(month)}</span>
+              <span class="res-month-count">{byMonth[month].reduce((n, g) => n + g.rows.length, 0)} results</span>
+            </div>
+            <div class="res-table">
+              {byMonth[month].map(group => (
+                <div class="res-week">
+                  {group.rows.map(r => (
+                    <div class="res-row" data-series={r.series} style={`--acc: var(--${r.series})`}>
+                      <div class="res-date">{fmtDate(r.date)}</div>
+                      <div class="res-series-col">
+                        <span class="res-series-name" style={`color: var(--${r.series}-c, var(--${r.series}))`}>
+                          {seriesShort[r.series] ?? r.series.toUpperCase()}
+                        </span>
+                        {r.race_label && (
+                          <span class="res-race-label">{r.race_label}</span>
+                        )}
+                      </div>
+                      <div class="res-event">
+                        {venueCountry[r.venue] && (
+                          <img class="res-venue-flag" src={flagSrc(venueCountry[r.venue], base)} alt={venueCountry[r.venue]} width="20" height="14" loading="lazy" />
+                        )}
+                        <a href={`${base}/tracks/${r.venue}`} class="res-venue-link">{r.event}</a>
+                      </div>
+                      <div class="res-winner">
+                        {r.country && (
+                          <img class="res-flag" src={flagSrc(r.country, base)} alt={r.country} width="20" height="14" loading="lazy" />
+                        )}
+                        <span class="res-winner-name">
+                          {r.winners ? r.winners.join(' · ') : r.winner}
+                          {r.co_driver && <span class="res-codriver"> & {r.co_driver}</span>}
+                        </span>
+                      </div>
+                      <div class="res-team">
+                        {r.manufacturer ?? r.team ?? ''}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+    </div>
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  /* ── Two-column layout ── */
+  .res-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0 40px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+
+  /* ── Sidebar ── */
+  .res-sidebar {
+    position: sticky;
+    top: 16px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    scrollbar-width: none;
+    padding-bottom: 40px;
+  }
+  .res-sidebar::-webkit-scrollbar { display: none; }
+
+  .res-sidebar-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.54rem;
+    color: #334;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* ── Filters (wrapped pills) ── */
+  .res-filters {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .res-filter {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    background: none;
+    color: #445;
+    cursor: pointer;
+    transition: color 0.13s, border-color 0.13s, background 0.13s;
+    white-space: nowrap;
+  }
+
+  .res-filter:hover {
+    color: #8ab;
+    border-color: #2a4050;
+  }
+
+  .res-filter.active {
+    border-color: var(--c, #4a7090);
+    color: var(--c, #8ab);
+    background: rgba(255,255,255,0.04);
+  }
+
+  .res-filter-util {
+    font-size: 0.5rem;
+    color: #334;
+    border-color: #141e28;
+    padding: 4px 8px;
+  }
+  .res-filter-util:hover {
+    color: #8ab;
+    border-color: #2a4050;
+  }
+
+  /* Visibility — use class, not [hidden], to beat display:grid/flex specificity */
+  .res-row.is-hidden,
+  .res-week.is-hidden,
+  .res-month.is-hidden { display: none; }
+
+  /* ── Jump nav ── */
+  .res-jump-nav {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .res-jump-link {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    color: #445;
+    text-decoration: none;
+    padding: 5px 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-left: 2px solid transparent;
+    transition: color 0.13s, border-color 0.13s;
+  }
+
+  .res-jump-link:hover,
+  .res-jump-link.active {
+    color: #8ab;
+    border-left-color: #2a4050;
+  }
+
+  /* ── Month section ── */
+  .res-month {
+    margin-bottom: 44px;
+    scroll-margin-top: 20px;
+  }
+
+  .res-month-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .res-month-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 900;
+    color: #c3c6c8;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .res-month-count {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.56rem;
+    color: #334;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── Table & week groups ── */
+  .res-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .res-week {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .res-week + .res-week {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #1a2530;
+  }
+
+  /* ── Result row ── */
+  .res-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 58px 108px 1fr 1fr 130px;
+    align-items: center;
+    gap: 0 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 13px 16px 13px 14px;
+    transition: background 0.12s, border-color 0.12s;
+    min-width: 0;
+  }
+
+  /* Accent bar — fills full height via absolute positioning */
+  .res-row::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--acc, #2a4050);
+  }
+
+  .res-row:hover {
+    background: #0d1820;
+    border-color: #1e3040;
+  }
+
+  .res-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #556;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .res-series-col {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .res-series-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .res-race-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.55rem;
+    color: #445;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .res-event {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .res-venue-flag {
+    width: 20px;
+    height: 14px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  .res-venue-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #7a8fa0;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    transition: color 0.12s;
+  }
+
+  .res-venue-link:hover {
+    color: #c3c6c8;
+    text-decoration: underline;
+  }
+
+  .res-winner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .res-winner-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: #c3c6c8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .res-codriver {
+    font-weight: 400;
+    color: #6a8090;
+  }
+
+  .res-flag {
+    width: 20px;
+    height: 14px;
+    flex-shrink: 0;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
+  }
+
+  .res-team {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #445;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 900px) {
+    .res-layout {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .res-sidebar {
+      position: static;
+      max-height: none;
+      margin-bottom: 28px;
+    }
+
+    .res-jump-nav {
+      display: none;
+    }
+
+    .res-row {
+      grid-template-columns: 52px 90px 1fr;
+      grid-template-rows: auto auto;
+      row-gap: 6px;
+      padding: 12px 12px 12px 12px;
+    }
+
+    .res-winner {
+      grid-column: 2 / 4;
+    }
+
+    .res-team {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const seriesBtns = document.querySelectorAll<HTMLButtonElement>('.res-filter[data-series]');
+  const rows       = document.querySelectorAll<HTMLElement>('.res-row');
+  const monthSecs  = document.querySelectorAll<HTMLElement>('.res-month');
+
+  // All series visible by default
+  const hidden = new Set<string>();
+
+  function applyFilter() {
+    rows.forEach(row => {
+      row.classList.toggle('is-hidden', hidden.has(row.dataset.series ?? ''));
+    });
+
+    monthSecs.forEach(section => {
+      section.querySelectorAll<HTMLElement>('.res-week').forEach(week => {
+        const any = week.querySelectorAll('.res-row:not(.is-hidden)').length > 0;
+        week.classList.toggle('is-hidden', !any);
+      });
+
+      const visibleRows = section.querySelectorAll('.res-row:not(.is-hidden)').length;
+      section.classList.toggle('is-hidden', visibleRows === 0);
+
+      const countEl = section.querySelector<HTMLElement>('.res-month-count');
+      if (countEl) countEl.textContent = `${visibleRows} result${visibleRows !== 1 ? 's' : ''}`;
+    });
+  }
+
+  // Toggle individual series
+  seriesBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const s = btn.dataset.series ?? '';
+      if (hidden.has(s)) {
+        hidden.delete(s);
+        btn.classList.add('active');
+      } else {
+        hidden.add(s);
+        btn.classList.remove('active');
+      }
+      applyFilter();
+    });
+  });
+
+  // Select All
+  document.getElementById('res-select-all')?.addEventListener('click', () => {
+    hidden.clear();
+    seriesBtns.forEach(b => b.classList.add('active'));
+    applyFilter();
+  });
+
+  // Deselect All
+  document.getElementById('res-deselect-all')?.addEventListener('click', () => {
+    seriesBtns.forEach(b => { hidden.add(b.dataset.series ?? ''); b.classList.remove('active'); });
+    applyFilter();
+  });
+
+  // Jump nav active state on scroll
+  const jumpLinks = document.querySelectorAll<HTMLAnchorElement>('.res-jump-link');
+  if (jumpLinks.length > 0) {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            jumpLinks.forEach(l => l.classList.toggle('active', l.dataset.jump === entry.target.id));
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+    );
+    monthSecs.forEach(s => observer.observe(s));
+  }
+</script>
