@@ -44,10 +44,20 @@ const seriesImages: Record<string, string> = {
 };
 ---
 <BaseLayout
-  title="2026 Racing Series Guide — Motorsport Master Calendar"
-  description="Every championship on the master calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife."
+  title="2026 Motorsport Series Guide — F1, MotoGP, WEC, IndyCar & More"
+  description="Complete guide to every 2026 motorsport championship — schedules, teams, and history for F1, WEC, MotoGP, IndyCar, NASCAR and 20 more series."
   canonicalUrl="https://dord.racing/series"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "Racing Series", "item": "https://dord.racing/series" }
+      ]
+    })} />
+  </Fragment>
   <Banner />
   <header>
     <div class="header--left">
@@ -68,7 +78,7 @@ const seriesImages: Record<string, string> = {
             <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>
               <div class="series-index-img-wrap">
                 {seriesImages[s.slug]
-                  ? <img src={`${base}/assets/series-grid-images/${seriesImages[s.slug]}`} alt={`${s.name} Racing Series Illustration`} loading="lazy" />
+                  ? <img src={`${base}/assets/series-grid-images/${seriesImages[s.slug]}`} alt={`${s.name} 2026 race schedule`} loading="lazy" />
                   : <div class="series-index-img-placeholder">{s.name}</div>
                 }
                 <div class="sc-countdown" data-series={s.slug}>

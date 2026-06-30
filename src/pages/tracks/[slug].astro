@@ -104,10 +104,33 @@ const continentLabel: Record<string, string> = {
 ---
 
 <BaseLayout
-  title={`${venue.name} — 2026 Motorsport Calendar`}
+  title={`${venue.name} — Track Guide, Circuit Map & 2026 Race Schedule`}
   description={venue.bio ?? `${venue.name} hosts ${activeSeries.length} series in the 2026 motorsport calendar.`}
   canonicalUrl={`https://dord.racing/tracks/${slug}`}
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SportsActivityLocation",
+      "name": venue.name,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": venue.city,
+        "addressCountry": venue.country,
+      },
+      "url": `https://dord.racing/tracks/${slug}`,
+      ...((venue as any).website ? { "sameAs": (venue as any).website } : {}),
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "Track Browser", "item": "https://dord.racing/tracks" },
+        { "@type": "ListItem", "position": 3, "name": venue.name, "item": `https://dord.racing/tracks/${slug}` },
+      ],
+    })} />
+  </Fragment>
   <header>
     <div class="header--left">
       <div class="header--dept">The Department of Racing Drivers</div>

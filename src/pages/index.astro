@@ -31,11 +31,24 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
 
 ---
 <BaseLayout
-  title="2026 MOTORSPORT MASTER CALENDAR"
+  title="2026 Motorsport Calendar — F1, WEC, MotoGP, IndyCar & 25 Championships"
   description="The ultimate 2026 motorsport master calendar. Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns and local track times."
   canonicalUrl="https://dord.racing"
 >
   <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "2026 Motorsport Master Calendar",
+      "alternateName": "dord.racing",
+      "url": "https://dord.racing",
+      "description": "The ultimate 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.",
+      "publisher": {
+        "@type": "Person",
+        "name": "Yann Durandet",
+        "url": "https://durandet.studio"
+      }
+    })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",

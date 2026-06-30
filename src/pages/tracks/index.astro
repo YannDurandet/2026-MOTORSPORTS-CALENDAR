@@ -139,6 +139,16 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   description="Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts."
   canonicalUrl="https://dord.racing/tracks"
 >
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "Track Browser", "item": "https://dord.racing/tracks" }
+      ]
+    })} />
+  </Fragment>
   <Banner />
   <header>
     <div class="header--left">
