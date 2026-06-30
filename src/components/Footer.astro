@@ -9,13 +9,22 @@ const year = new Date().getFullYear();
 
       <!-- Brand -->
       <div class="footer--brand">
-        <h2 class="footer--name">Built by<br>Yann Durandet</h2>
+        <h2 class="footer--name">dord.racing</h2>
         <p class="footer--tagline">An independent 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.</p>
-        <div class="footer--socials">
-          <a href="https://x.com/YannDurandet"           class="footer--link" target="_blank" rel="noopener">X (Twitter)</a>
-          <a href="https://instagram.com/durandet.studio" class="footer--link" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://github.com/YannDurandet"       class="footer--link" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://durandet.studio"               class="footer--link" target="_blank" rel="noopener">My Portfolio</a>
+        <div class="footer--social-group">
+          <div class="footer--social-label">Follow DORD</div>
+          <div class="footer--socials">
+            <a href="https://x.com/dord_racing"              class="footer--link" target="_blank" rel="noopener">X @dord_racing</a>
+            <a href="https://www.instagram.com/dord.racing/"  class="footer--link" target="_blank" rel="noopener">Instagram @dord.racing</a>
+          </div>
+        </div>
+        <div class="footer--social-group">
+          <div class="footer--social-label">Built by Yann Durandet</div>
+          <div class="footer--socials">
+            <a href="https://x.com/YannDurandet"  class="footer--link" target="_blank" rel="noopener">X @YannDurandet</a>
+            <a href="https://github.com/YannDurandet" class="footer--link" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://durandet.studio"        class="footer--link" target="_blank" rel="noopener">Brand &amp; Web Studio</a>
+          </div>
         </div>
       </div>
 
@@ -25,17 +34,7 @@ const year = new Date().getFullYear();
         <a href={`${base}/`}          class="footer--nav-link">Calendar</a>
         <a href={`${base}/series`}    class="footer--nav-link">Series</a>
         <a href={`${base}/tracks`}    class="footer--nav-link">Track Browser</a>
-      </div>
-
-      <!-- Quick series links -->
-      <div class="footer--col">
-        <div class="footer--col-label">Series</div>
-        <a href={`${base}/series/f1`}      class="footer--nav-link">Formula 1</a>
-        <a href={`${base}/series/fe`}      class="footer--nav-link">Formula E</a>
-        <a href={`${base}/series/wec`}     class="footer--nav-link">WEC</a>
-        <a href={`${base}/series/motogp`}  class="footer--nav-link">MotoGP</a>
-        <a href={`${base}/series/indycar`} class="footer--nav-link">IndyCar</a>
-        <a href={`${base}/series/wrc`}     class="footer--nav-link">WRC</a>
+        <a href={`${base}/results`}   class="footer--nav-link">Results</a>
       </div>
 
       <!-- Legal -->
@@ -43,7 +42,7 @@ const year = new Date().getFullYear();
         <div class="footer--col-label">Legal</div>
         <a href={`${base}/legal/tos`}     class="footer--nav-link">Terms of Use</a>
         <a href={`${base}/legal/privacy`} class="footer--nav-link">Privacy Policy</a>
-        <a href="mailto:durandet.yann.pro@gmail.com" class="footer--nav-link">Contact</a>
+        <a href="mailto:durandet.yann.pro@gmail.com" class="footer--nav-link" target="_blank" rel="noopener">Contact</a>
       </div>
 
     </div>

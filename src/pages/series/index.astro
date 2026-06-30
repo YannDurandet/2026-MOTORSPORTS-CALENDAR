@@ -68,9 +68,13 @@ const seriesImages: Record<string, string> = {
             <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>
               <div class="series-index-img-wrap">
                 {seriesImages[s.slug]
-                  ? <img src={`${base}/assets/series-grid-images/${seriesImages[s.slug]}`} alt="" loading="lazy" />
+                  ? <img src={`${base}/assets/series-grid-images/${seriesImages[s.slug]}`} alt={`${s.name} Racing Series Illustration`} loading="lazy" />
                   : <div class="series-index-img-placeholder">{s.name}</div>
                 }
+                <div class="sc-countdown" data-series={s.slug}>
+                  <div class="sc-race">LOADING…</div>
+                  <div class="sc-time" id={`sc-${s.slug}`} style={`color: var(--${s.slug}-c, var(--${s.slug}))`}>--:--:--</div>
+                </div>
               </div>
               <div class="series-index-accent" style={`background: var(--${s.slug})`}></div>
               <div class="series-index-body">
@@ -88,3 +92,71 @@ const seriesImages: Record<string, string> = {
     <Footer />
   </div>
 </BaseLayout>
+
+<script>
+  (async () => {
+    const base = (document.querySelector('meta[name="astro-base"]') as HTMLMetaElement)?.content ?? '';
+
+    // Update timezone notice
+    const tzEl = document.querySelector<HTMLElement>('.meta');
+    const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (tzEl && userTz !== 'Europe/Paris') {
+      tzEl.textContent = `ALL TIMES IN YOUR TIMEZONE: ${userTz.replace(/_/g, ' ').toUpperCase()}`;
+    }
+
+    let data: Record<string, Array<{ name: string; date: string; _ts?: number }>> = {};
+    try {
+      const res = await fetch(`${base}/data/series.json`);
+      data = await res.json();
+    } catch { return; }
+
+    // Pre-cache timestamps
+    for (const list of Object.values(data)) {
+      for (const race of list) race._ts = new Date(race.date).getTime();
+    }
+
+    // Cache DOM refs
+    const timeEls: Record<string, HTMLElement | null> = {};
+    const raceEls: Record<string, HTMLElement | null> = {};
+    for (const key of Object.keys(data)) {
+      timeEls[key] = document.getElementById(`sc-${key}`);
+      raceEls[key] = document.querySelector<HTMLElement>(`.sc-countdown[data-series="${key}"] .sc-race`);
+    }
+
+    function pad(n: number) { return String(n).padStart(2, '0'); }
+
+    function tick() {
+      const now = Date.now();
+      for (const [key, list] of Object.entries(data)) {
+        const tEl = timeEls[key];
+        const rEl = raceEls[key];
+        if (!tEl || !rEl) continue;
+
+        const next = list.find(r => (r._ts ?? 0) > now);
+
+        if (!next) {
+          rEl.textContent = 'SEASON COMPLETE';
+          tEl.textContent = 'OFF SEASON';
+          tEl.classList.add('sc-off');
+          continue;
+        }
+
+        tEl.classList.remove('sc-off');
+        rEl.textContent = next.name;
+
+        const diff = (next._ts ?? 0) - now;
+        const d = Math.floor(diff / 864e5);
+        const h = Math.floor((diff % 864e5) / 36e5);
+        const m = Math.floor((diff % 36e5) / 6e4);
+        const s = Math.floor((diff % 6e4) / 1e3);
+
+        tEl.textContent = d > 0
+          ? `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`
+          : `${pad(h)}h ${pad(m)}m ${pad(s)}s`;
+      }
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>

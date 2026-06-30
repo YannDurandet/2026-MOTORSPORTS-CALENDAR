@@ -29,11 +29,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const venue = (tracksRaw as Venue[]).find(v => v.slug === slug)!;
 
 // ── Gather events from calendar ───────────────────────────────────────────────
+type ResultEntry = { race_label: string; winner: string; team: string; country: string; };
 type CalEvent = {
   series: string; tag: string; title: string;
   week: string; layoutId: string | null;
 };
-const events: CalEvent[] = [];
+type CalResult = CalEvent & { entries: ResultEntry[]; };
+
+const pastResults: CalResult[] = [];
+const upcomingEvents: CalEvent[] = [];
 
 for (const month of calendarData as any[]) {
   for (const week of month.weeks) {
@@ -44,15 +48,24 @@ for (const month of calendarData as any[]) {
         const match = venue.layouts.find((l: Layout) => l.calendarSvgs.includes(ev.track));
         layoutId = match ? match.id : null;
       }
-      const isDupe = events.some(
-        e => e.series === ev.series && e.title === ev.title && e.week === week.label
-      );
-      if (!isDupe) events.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId });
+      if (ev.results?.length) {
+        const isDupe = pastResults.some(e => e.series === ev.series && e.title === ev.title);
+        if (!isDupe) pastResults.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId, entries: ev.results });
+      } else {
+        const isDupe = upcomingEvents.some(e => e.series === ev.series && e.title === ev.title && e.week === week.label);
+        if (!isDupe) upcomingEvents.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId });
+      }
     }
   }
 }
 
-const activeSeries = [...new Set(events.map(e => e.series))];
+const allEvents = [...pastResults, ...upcomingEvents];
+const activeSeries = [...new Set(allEvents.map(e => e.series))];
+
+function countryFlag(code: string): string {
+  if (!code || code.length !== 2) return '';
+  return [...code.toUpperCase()].map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+}
 
 // ── SVG ───────────────────────────────────────────────────────────────────────
 const svgDir = path.resolve('./public/assets/track-maps');
@@ -68,6 +81,16 @@ function cleanSvg(raw: string): string {
 }
 
 const svgContent = hasSvg ? cleanSvg(fs.readFileSync(svgPath, 'utf-8')) : null;
+
+// For multi-layout tracks: inline each layout's SVG so we can panel-swap on hover
+type LayoutWithSvg = Layout & { svgContent: string | null; };
+const layoutSvgPanels: LayoutWithSvg[] = (venue.layouts ?? []).map(l => {
+  const svgFile = l.calendarSvgs[0];
+  if (!svgFile) return { ...l, svgContent: null };
+  const p = path.join(svgDir, svgFile);
+  return { ...l, svgContent: fs.existsSync(p) ? cleanSvg(fs.readFileSync(p, 'utf-8')) : null };
+});
+const hasLayoutPanels = layoutSvgPanels.length > 1 && layoutSvgPanels.some(l => l.svgContent);
 
 function shortDate(label: string): string {
   const m = label.match(/•\s*([A-Z]{3})\s+(\d{1,2})/);
@@ -101,14 +124,32 @@ const continentLabel: Record<string, string> = {
     <!-- Hero -->
     <div class="track-hero" style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}>
       <div class="track-hero-svg">
-        {svgContent
-          ? <Fragment set:html={svgContent} />
-          : <div class="hero-placeholder">{venue.name}</div>
-        }
+        {hasLayoutPanels ? (
+          layoutSvgPanels.map((l, i) => (
+            <div class="layout-panel" data-layout-id={l.id} style={i === 0 ? '' : 'display:none'}>
+              {l.svgContent
+                ? <Fragment set:html={l.svgContent} />
+                : <div class="hero-placeholder">{l.label}</div>
+              }
+            </div>
+          ))
+        ) : (
+          svgContent
+            ? <Fragment set:html={svgContent} />
+            : <div class="hero-placeholder">{venue.name}</div>
+        )}
       </div>
-      {venue.layouts && (
-        <div class="hero-layout-hint">
-          {venue.layouts.length} layouts · hover series to highlight
+      {hasLayoutPanels && (
+        <div class="layout-btns">
+          {layoutSvgPanels.map((l, i) => (
+            <button
+              class={`layout-btn${i === 0 ? ' active' : ''}`}
+              data-layout-target={l.id}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+            >
+              {l.id.toUpperCase()}
+            </button>
+          ))}
         </div>
       )}
     </div>
@@ -122,7 +163,7 @@ const continentLabel: Record<string, string> = {
           <div class="track-series-list">
             {activeSeries.map(s => (
               <a href={`${base}/series/${s}`} class={`tag t-${s}`}>
-                {events.find(e => e.series === s)?.tag}
+                {allEvents.find(e => e.series === s)?.tag}
               </a>
             ))}
           </div>
@@ -188,7 +229,7 @@ const continentLabel: Record<string, string> = {
               <span class="layout-id">{l.id.toUpperCase()}</span>
               <span class="layout-label">{l.label}</span>
               <div class="layout-series">
-                {events
+                {allEvents
                   .filter(e => e.layoutId === l.id)
                   .map(e => (
                     <a href={`${base}/series/${e.series}`} class={`tag t-${e.series}`}>{e.tag}</a>
@@ -201,23 +242,53 @@ const continentLabel: Record<string, string> = {
       </div>
     )}
 
-    <!-- Events this season -->
-    <div class="track-events-section">
-      <div class="section-label">2026 EVENTS</div>
-      {events.length > 0 ? (
-        <div class="events-list">
-          {events.map(ev => (
-            <div class="ev-row" data-layout-id={ev.layoutId ?? undefined}>
-              <span class="ev-date">{shortDate(ev.week)}</span>
-              <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
-              <span class="ev-title">{ev.title}</span>
+    <!-- Results -->
+    {pastResults.length > 0 && (
+      <div class="track-events-section">
+        <div class="section-label">RESULTS</div>
+        <div class="results-list">
+          {pastResults.map(ev => (
+            <div class="result-block" data-layout-id={ev.layoutId ?? undefined}>
+              <div class="result-header">
+                <span class="ev-date">{shortDate(ev.week)}</span>
+                <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
+                <span class="ev-title">{ev.title}</span>
+              </div>
+              <div class="result-entries">
+                {ev.entries.map((r: ResultEntry) => (
+                  <div class="result-entry">
+                    <span class="res-label">{r.race_label}</span>
+                    <span class="res-winner">{r.winner}</span>
+                    <span class="res-team">{r.team}</span>
+                    <span class="res-flag">{countryFlag(r.country)}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>
-      ) : (
-        <p class="no-events">No events at this venue in 2026.</p>
-      )}
-    </div>
+      </div>
+    )}
+
+    <!-- Upcoming events -->
+    {(upcomingEvents.length > 0 || pastResults.length === 0) && (
+      <div class="track-events-section">
+        <div class="section-label">{pastResults.length > 0 ? 'UPCOMING' : '2026 EVENTS'}</div>
+        {upcomingEvents.length > 0 ? (
+          <div class="events-list">
+            {upcomingEvents.map(ev => (
+              <div class="ev-row" data-layout-id={ev.layoutId ?? undefined}>
+                <span class="ev-date">{shortDate(ev.week)}</span>
+                <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
+                <span class="ev-title">{ev.title}</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="no-events">No events at this venue in 2026.</p>
+        )}
+      </div>
+    )}
 
     <a href={`${base}/tracks`} class="back-link back-link--bottom">← All Circuits</a>
 
@@ -225,23 +296,18 @@ const continentLabel: Record<string, string> = {
 </BaseLayout>
 
 <script>
-  // Hover-dim for multi-layout tracks (same logic as track browser)
-  const svgEl = document.querySelector<SVGElement>('.track-hero-svg svg');
-  if (svgEl) {
-    document.querySelectorAll<HTMLElement>('[data-layout-id]').forEach(row => {
-      const layoutId = row.dataset.layoutId;
-      if (!layoutId) return;
-      const tag = row.querySelector<HTMLElement>('.tag');
-      if (!tag) return;
-      tag.addEventListener('mouseenter', () => {
-        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
-          g.style.opacity   = g.id === `layout-${layoutId}` ? '1' : '0.12';
-          g.style.transition = 'opacity 0.18s ease';
-        });
-      });
-      tag.addEventListener('mouseleave', () => {
-        svgEl.querySelectorAll<SVGGElement>('g[id^="layout-"]').forEach(g => {
-          g.style.opacity = '1';
+  // Layout button switching
+  const panels = document.querySelectorAll<HTMLElement>('.layout-panel');
+  const btns   = document.querySelectorAll<HTMLButtonElement>('.layout-btn');
+
+  if (panels.length > 1 && btns.length > 0) {
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.layoutTarget!;
+        panels.forEach(p => { p.style.display = p.dataset.layoutId === target ? '' : 'none'; });
+        btns.forEach(b => {
+          b.classList.toggle('active', b.dataset.layoutTarget === target);
+          b.setAttribute('aria-pressed', b.dataset.layoutTarget === target ? 'true' : 'false');
         });
       });
     });
@@ -297,6 +363,15 @@ const continentLabel: Record<string, string> = {
     max-height: 320px;
   }
 
+  .track-hero-svg :global(.layout-panel) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.18s ease;
+  }
+
   .track-hero-svg :global(svg path) {
     stroke-width: 1 !important;
   }
@@ -310,14 +385,37 @@ const continentLabel: Record<string, string> = {
     opacity: 0.4;
   }
 
-  .hero-layout-hint {
+  .layout-btns {
     position: absolute;
-    bottom: 10px;
-    right: 14px;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    gap: 4px;
+    z-index: 2;
+  }
+
+  .layout-btn {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #556;
-    letter-spacing: 0.04em;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #445;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #334;
+    border-radius: 3px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .layout-btn:hover {
+    color: #778;
+    border-color: #556;
+  }
+
+  .layout-btn.active {
+    color: #c3c6c8;
+    border-color: #667;
   }
 
   /* ── Meta row ────────────────────────────────────────────────────────────── */
@@ -536,6 +634,52 @@ const continentLabel: Record<string, string> = {
     color: #445;
     font-style: italic;
     margin: 0;
+  }
+
+  /* ── Results ─────────────────────────────────────────────────────────────── */
+  .results-list { display: flex; flex-direction: column; gap: 14px; }
+
+  .result-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+
+  .result-entries { display: flex; flex-direction: column; gap: 3px; padding-left: 64px; }
+
+  .result-entry {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .res-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #445;
+    letter-spacing: 0.06em;
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+
+  .res-winner {
+    font-size: 0.8rem;
+    color: #c3c6c8;
+    font-weight: 600;
+  }
+
+  .res-team {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    color: #556;
+  }
+
+  .res-flag {
+    font-size: 0.8rem;
+    line-height: 1;
   }
 
   @media (max-width: 560px) {

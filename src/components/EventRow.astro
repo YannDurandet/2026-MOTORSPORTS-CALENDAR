@@ -19,16 +19,17 @@ interface Props {
   sprint?: boolean;
   sub?: SubRace[];
   races?: Race[];
+  trackHref?: string | null;
 }
 
-const { series, tag, title, time, track, sprint, sub, races } = Astro.props;
+const { series, tag, title, time, track, sprint, sub, races, trackHref } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesHref = `${base}/series/${series}`;
 const hasSub = sub && sub.length > 0;
 const hasRaces = races && races.length > 0;
 const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
 ---
-<div class="event" class:list={[`ev-${series}`]} data-series={series}>
+<div class="event" class:list={[`ev-${series}`]} data-series={series} data-track-href={trackHref ?? undefined}>
   <div class="ev-details">
     {hasSub ? (
       <>
@@ -75,12 +76,24 @@ const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
     )}
   </div>
   <div class="track-map">
-    <img
-      src={`${base}/assets/track-maps/${track}`}
-      alt={`2026 ${tag} ${title} track map layout`}
-      loading="lazy"
-      width="60"
-      height="60"
-    />
+    {trackHref ? (
+      <a href={trackHref} tabindex="-1" aria-hidden="true">
+        <img
+          src={`${base}/assets/track-maps/${track}`}
+          alt={`2026 ${tag} ${title} track map layout`}
+          loading="lazy"
+          width="60"
+          height="60"
+        />
+      </a>
+    ) : (
+      <img
+        src={`${base}/assets/track-maps/${track}`}
+        alt={`2026 ${tag} ${title} track map layout`}
+        loading="lazy"
+        width="60"
+        height="60"
+      />
+    )}
   </div>
 </div>
