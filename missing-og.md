@@ -25,4 +25,4 @@ Series detail pages are now handled (they use their series-grid WebP as og:image
 - Format: JPG (< 200 KB ideally)
 - Safe zone: keep key content within central 1000 × 500 area
 
-_Last updated: 2026-06-30_
+_Last updated: 2026-07-01_
