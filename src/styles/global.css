@@ -137,6 +137,7 @@ header {
 /* Site Navigation */
 .site-nav {
     display: flex;
+    flex-wrap: wrap;
     gap: 6px;
     margin-top: 16px;
     padding: 0;
@@ -952,7 +953,7 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
 
 footer {
     margin-top: 48px;
-    background-image: url(assets/lauda_and_mouton--large.webp);
+    background-image: url(/assets/lauda_and_mouton--large.webp);
     background-size: cover;
     background-position: center;
     padding: 40px 24px 96px; /* extra bottom for sticky nav island */
