@@ -1,0 +1,317 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="From The Pit Wall — Weekly Motorsport Briefing"
+  description="A weekly briefing from The Department of Racing Drivers. What's racing, where it is, and why the next three days are going to be chaos. 25 series, no filler."
+  canonicalUrl="https://dord.racing/newsletter"
+>
+
+  <main class="nl-page">
+
+    <!-- ── Back link ────────────────────────────────────────────────── -->
+    <a href={`${base}/`} class="nl-back">← dord.racing</a>
+
+    <!-- ── Hero ─────────────────────────────────────────────────────── -->
+    <section class="nl-hero" aria-labelledby="nl-title">
+      <div class="nl-inner">
+
+        <div class="nl-kicker">FROM THE PIT WALL</div>
+        <h1 class="nl-headline" id="nl-title">
+          The weekly<br>racing briefing.
+        </h1>
+        <p class="nl-body">
+          What's on, where it is, and why the next three days are going to be chaos.<br>
+          25 series. Every weekend. No filler.
+        </p>
+
+        <!-- Form -->
+        <div class="nl-form-wrap">
+          <form class="nl-form" id="nl-form" novalidate>
+            <div class="nl-row">
+              <input
+                type="email"
+                id="nl-email"
+                name="email"
+                class="nl-input"
+                placeholder="your@email.com"
+                autocomplete="email"
+                required
+              />
+              <button type="submit" class="nl-btn" id="nl-btn">
+                <span id="nl-btn-label">SUBSCRIBE</span>
+                <span id="nl-btn-loading" hidden aria-hidden="true">···</span>
+              </button>
+            </div>
+            <p class="nl-error" id="nl-error" hidden></p>
+          </form>
+          <p class="nl-success" id="nl-success" hidden>
+            You're in. First briefing lands before the weekend.
+          </p>
+          <p class="nl-fine">Free. Weekly. Unsubscribe any time.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── Footer ───────────────────────────────────────────────────── -->
+    <Footer />
+
+  </main>
+
+</BaseLayout>
+
+<style>
+  /* ── Page shell ─────────────────────────────────────────────────── */
+  .nl-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+  }
+
+  /* ── Back link ──────────────────────────────────────────────────── */
+  .nl-back {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    z-index: 10;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4a6070;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nl-back:hover { color: #c3c6c8; }
+
+  /* ── Hero ───────────────────────────────────────────────────────── */
+  .nl-hero {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #080c10 url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
+    overflow: hidden;
+    /* Full viewport on mobile */
+    min-height: 100svh;
+  }
+
+  /* Scrim */
+  .nl-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 12, 16, 0.55) 0%,
+      rgba(8, 12, 16, 0.75) 55%,
+      rgba(8, 12, 16, 0.92) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Inner content ──────────────────────────────────────────────── */
+  .nl-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    padding: 100px 24px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nl-kicker {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #4a6070;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .nl-headline {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-weight: 900;
+    color: #c3c6c8;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 0 0 28px;
+  }
+
+  .nl-body {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.76rem;
+    color: #7a8a9a;
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+    margin: 0 0 36px;
+    max-width: 46ch;
+  }
+
+  /* ── Form ───────────────────────────────────────────────────────── */
+  .nl-form-wrap { width: 100%; max-width: 420px; }
+
+  .nl-row {
+    display: flex;
+    width: 100%;
+  }
+
+  .nl-input {
+    flex: 1;
+    background: rgba(4, 6, 8, 0.85);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: #c3c6c8;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    padding: 13px 16px;
+    outline: none;
+    min-width: 0;
+    transition: border-color 0.15s;
+  }
+  .nl-input::placeholder { color: #2a3540; }
+  .nl-input:focus { border-color: #2e4a5e; }
+
+  .nl-btn {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 13px 20px;
+    background: none;
+    border: 1px solid var(--border);
+    color: #c3c6c8;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .nl-btn:hover:not(:disabled) {
+    color: #fff;
+    border-color: #4a7090;
+    background: rgba(13, 24, 34, 0.9);
+  }
+  .nl-btn:disabled { opacity: 0.45; cursor: wait; }
+
+  .nl-error {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    color: #b05a5a;
+    letter-spacing: 0.03em;
+    margin: 8px 0 0;
+  }
+  .nl-error[hidden] { display: none; }
+
+  .nl-success {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.78rem;
+    color: #5a9a7a;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .nl-success[hidden] { display: none; }
+
+  .nl-fine {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.56rem;
+    color: #2a3540;
+    letter-spacing: 0.06em;
+    margin: 12px 0 0;
+  }
+
+  /* ── Desktop ────────────────────────────────────────────────────── */
+  @media (min-width: 769px) {
+    .nl-hero {
+      min-height: 92svh;
+      background-image: url(/assets/mailing-banner-desktop.webp);
+    }
+
+    .nl-inner {
+      max-width: 640px;
+      padding: 120px 64px 80px;
+    }
+
+    .nl-form-wrap {
+      max-width: 460px;
+    }
+  }
+</style>
+
+<script>
+  const form       = document.getElementById('nl-form')      as HTMLFormElement | null;
+  const emailInput = document.getElementById('nl-email')     as HTMLInputElement | null;
+  const btn        = document.getElementById('nl-btn')       as HTMLButtonElement | null;
+  const btnLabel   = document.getElementById('nl-btn-label');
+  const btnLoading = document.getElementById('nl-btn-loading');
+  const errorMsg   = document.getElementById('nl-error');
+  const successMsg = document.getElementById('nl-success');
+  const fineMsg    = document.querySelector('.nl-fine')      as HTMLElement | null;
+
+  function setLoading(on: boolean) {
+    if (!btn) return;
+    btn.disabled = on;
+    if (btnLabel)   btnLabel.hidden   = on;
+    if (btnLoading) btnLoading.hidden = !on;
+  }
+
+  function showError(msg: string) {
+    if (!errorMsg) return;
+    errorMsg.textContent = msg;
+    errorMsg.hidden = false;
+  }
+
+  function showSuccess(msg: string) {
+    if (form)       form.hidden       = true;
+    if (fineMsg)    fineMsg.hidden    = true;
+    if (successMsg) {
+      successMsg.textContent = msg;
+      successMsg.hidden = false;
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput?.value.trim() ?? '';
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('Please enter a valid email address.');
+      emailInput?.focus();
+      return;
+    }
+
+    if (errorMsg) errorMsg.hidden = true;
+    setLoading(true);
+
+    try {
+      const res  = await fetch('/api/subscribe', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (data?.ok) {
+        showSuccess(data.message ?? "You're in. First briefing lands before the weekend.");
+      } else {
+        setLoading(false);
+        showError(data?.error ?? 'Something went sideways. Try again.');
+      }
+    } catch {
+      setLoading(false);
+      showError('Something went sideways. Try again.');
+    }
+  });
+</script>
