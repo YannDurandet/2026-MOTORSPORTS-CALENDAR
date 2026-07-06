@@ -1,8 +1,21 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
+
+// Vite reads these at bundle time — no node:fs needed, works in Cloudflare Workers prerender
+const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const svgByFilename: Record<string, string> = {};
+for (const [k, v] of Object.entries(_svgRaw)) {
+  svgByFilename[k.split('/').pop()!] = v;
+}
+function readSvg(filename: string | undefined | null): string | null {
+  if (!filename) return null;
+  return svgByFilename[filename] ?? null;
+}
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
@@ -68,10 +81,6 @@ function countryFlag(code: string): string {
 }
 
 // ── SVG ───────────────────────────────────────────────────────────────────────
-const svgDir = path.resolve('./public/assets/track-maps');
-const svgPath = venue.browserSvg ? path.join(svgDir, venue.browserSvg) : null;
-const hasSvg  = svgPath ? fs.existsSync(svgPath) : false;
-
 function cleanSvg(raw: string): string {
   return raw
     .replace(/<defs>[\s\S]*?<\/defs>/g, '')
@@ -80,15 +89,15 @@ function cleanSvg(raw: string): string {
     .replace(/(\s)height="\d+"/, '');
 }
 
-const svgContent = hasSvg ? cleanSvg(fs.readFileSync(svgPath, 'utf-8')) : null;
+const rawSvg = readSvg(venue.browserSvg);
+const hasSvg  = rawSvg !== null;
+const svgContent = rawSvg ? cleanSvg(rawSvg) : null;
 
 // For multi-layout tracks: inline each layout's SVG so we can panel-swap on hover
 type LayoutWithSvg = Layout & { svgContent: string | null; };
 const layoutSvgPanels: LayoutWithSvg[] = (venue.layouts ?? []).map(l => {
-  const svgFile = l.calendarSvgs[0];
-  if (!svgFile) return { ...l, svgContent: null };
-  const p = path.join(svgDir, svgFile);
-  return { ...l, svgContent: fs.existsSync(p) ? cleanSvg(fs.readFileSync(p, 'utf-8')) : null };
+  const raw = readSvg(l.calendarSvgs[0]);
+  return { ...l, svgContent: raw ? cleanSvg(raw) : null };
 });
 const hasLayoutPanels = layoutSvgPanels.length > 1 && layoutSvgPanels.some(l => l.svgContent);
 

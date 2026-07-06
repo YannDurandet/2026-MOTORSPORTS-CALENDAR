@@ -28,20 +28,22 @@ _Last updated: 2026-06-30 (end of day)_
 
 ## 🎨 Design / Figma
 
-- [ ] **OG image — Homepage** (`public/assets/og/og-home.jpg`) — dord.racing wordmark + tagline, 1200×630
-- [ ] **OG image — Track Browser** (`public/assets/og/og-tracks.jpg`) — circuit map collage or iconic single track, 1200×630
-- [ ] **OG image — Results** (`public/assets/og/og-results.jpg`) — podium / results aesthetic, 1200×630
-- [ ] Wire OG images once designed: pass `ogImage="https://dord.racing/assets/og/og-*.jpg"` on the relevant `<BaseLayout>` call in `index.astro`, `tracks/index.astro`, and `results.astro`
+- [x] **OG image — Homepage** (`public/assets/og/og-home.webp`) — dord.racing wordmark + tagline, 1200×630
+- [x] **OG image — Track Browser** (`public/assets/og/og-tracks.webp`) — circuit map collage or iconic single track, 1200×630
+- [x] **OG image — Series Browser** (`public/assets/og/og-series.webp`) — 
+- [x] **OG image — Results** (`public/assets/og/og-results.webp`) — podium / results aesthetic, 1200×630
+- [x] Wire OG images once designed: pass `ogImage="https://dord.racing/assets/og/og-*.webp"` on the relevant `<BaseLayout>` call in `index.astro`, `series/index.astro`, `tracks/index.astro`, and `results.astro`
 
 ---
 
-## 🗺️ SVG Track Maps — Still to Draw
+## 🗺️ SVG Track Maps — DRAWN
 
 These layouts exist in the calendar but use the same SVG as another series. Drawing them unlocks a layout toggle button on the track detail and browser card.
 
-- [ ] **`silverstone-national.svg`** — BTCC uses the shorter National Circuit (Stowe loop), not the full GP layout
-- [ ] **`oulton-park-international.svg`** — BTCC alternates between International and Island configs; currently all rounds show the same SVG
-- [ ] **`misano-wsbk.svg`** _(low priority)_ — marginal layout difference vs MotoGP; debatable whether worth drawing
+- [x] **`silverstone-national.svg`**
+- [x] **`oulton-park-international.svg`**
+- [x] **`oulton-park-international.svg`** — 3rd circuit layout (added because I could, but idk if any series uses it in 2026)
+- [x] **`misano-wsbk.svg`**
 
 Once drawn, for each new SVG:
 1. Add to `calendarSvgs` (and a new `layouts[]` entry if needed) in `data/tracks.json`
@@ -116,6 +118,6 @@ Some tracks have missing or uncertain data. Full list in `track-data-gaps.md`.
 
 ## 🧹 Housekeeping
 
-- [ ] Delete `barcelona-f1.svg` from `public/assets/track-maps/` (orphaned, unreferenced)
-- [ ] Delete `data/results.json` once Results page migration is done
-- [ ] Keep `track-map-status.md` and `track-data-gaps.md` updated as SVGs are drawn and data gaps filled
+- [X] Delete `barcelona-f1.svg` from `public/assets/track-maps/` (orphaned, unreferenced)
+- [X] Delete `data/results.json` once Results page migration is done
+- [X] Keep `track-map-status.md` and `track-data-gaps.md` updated as SVGs are drawn and data gaps filled

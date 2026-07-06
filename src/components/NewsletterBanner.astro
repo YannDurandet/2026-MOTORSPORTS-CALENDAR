@@ -1,0 +1,301 @@
+---
+// NewsletterBanner.astro
+// Inserted into the main calendar at the current-month boundary (see index.astro).
+// Configured for Beehiiv — swap in real credentials once your publication is set up.
+---
+
+<section class="nl-banner" aria-label="Newsletter signup">
+  <div class="nl-inner">
+    <p class="nl-headline">FROM THE<br>PIT WALL</p>
+    <div class="nl-content-row">
+      <div class="nl-text">
+        <p class="nl-body">A weekly briefing from The Department of Racing Drivers. What's on, where it is, and why the next three days are going to be chaos.</p>
+      </div>
+
+      <div class="nl-form-wrap">
+        <form class="nl-form" id="nl-form" novalidate>
+          <div class="nl-row">
+            <input
+              type="email"
+              id="nl-email"
+              name="email"
+              class="nl-input"
+              placeholder="your@email.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="nl-btn" id="nl-btn">
+              <span id="nl-btn-label">SUBSCRIBE</span>
+              <span id="nl-btn-loading" hidden aria-hidden="true">···</span>
+            </button>
+          </div>
+          <p class="nl-error" id="nl-error" hidden></p>
+        </form>
+        <p class="nl-success" id="nl-success" hidden>
+          You're in. First briefing lands before the weekend.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Wrapper ─────────────────────────────────────────────────────────────── */
+  .nl-banner {
+    position: relative;
+    margin: 40px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: #080c10 url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
+    overflow: hidden;
+    /* Mobile: full viewport height so the banner is a dedicated scroll moment */
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Dark scrim so text stays legible over the image */
+  .nl-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 12, 16, 0.55) 0%,
+      rgba(8, 12, 16, 0.72) 60%,
+      rgba(8, 12, 16, 0.88) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* ── Inner layout ────────────────────────────────────────────────────────── */
+  .nl-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 80px 24px;
+  }
+
+  /* Mobile: content row is also a column */
+  .nl-content-row {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    width: 100%;
+  }
+
+  /* ── Text block ──────────────────────────────────────────────────────────── */
+  .nl-headline {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    color: #C3C6C8;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+  }
+
+  .nl-body {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.78rem;
+    color: #8a9aaa;
+    letter-spacing: 0.02em;
+    line-height: 1.75;
+    margin: 0;
+    max-width: 48ch;
+  }
+
+  /* ── Form ────────────────────────────────────────────────────────────────── */
+  .nl-row {
+    display: flex;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .nl-input {
+    flex: 1;
+    background: #040608;
+    border: 1px solid var(--border);
+    border-right: none;
+    color: #c3c6c8;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    padding: 11px 14px;
+    outline: none;
+    min-width: 0;
+    transition: border-color 0.15s;
+  }
+  .nl-input::placeholder { color: #2a3540; }
+  .nl-input:focus { border-color: #2e4a5e; }
+
+  .nl-btn {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    background: none;
+    border: 1px solid var(--border);
+    color: #c3c6c8;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .nl-btn:hover:not(:disabled) {
+    color: #fff;
+    border-color: #4a7090;
+    background: #0d1822;
+  }
+  .nl-btn:disabled {
+    opacity: 0.45;
+    cursor: wait;
+  }
+
+  .nl-error {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    color: #b05a5a;
+    letter-spacing: 0.03em;
+    margin: 8px 0 0;
+  }
+  .nl-error[hidden] { display: none; }
+
+  .nl-success {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.78rem;
+    color: #5a9a7a;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 48ch;
+  }
+  .nl-success[hidden] { display: none; }
+
+  /* ── Desktop: centered band ──────────────────────────────────────────────── */
+  @media (min-width: 769px) {
+    .nl-banner {
+      min-height: auto;
+      background-image: url(/assets/mailing-banner-desktop.webp);
+      background-position: center center;
+    }
+
+    /* Centered uniform scrim for centered layout */
+    .nl-banner::before {
+      background: rgba(8, 12, 16, 0.70);
+    }
+
+    .nl-inner {
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 80px 48px;
+    }
+
+    /* Title on one line, centered */
+    .nl-headline {
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .nl-headline br {
+      display: none;
+    }
+
+    /* Desc + form side by side, centered */
+    .nl-content-row {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 56px;
+      width: auto;
+      max-width: 960px;
+    }
+
+    .nl-text {
+      flex: 0 0 auto;
+      max-width: 360px;
+    }
+
+    .nl-form-wrap {
+      flex-shrink: 0;
+      width: 320px;
+    }
+
+    .nl-row {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form      = document.getElementById('nl-form')      as HTMLFormElement | null;
+  const emailInput = document.getElementById('nl-email')    as HTMLInputElement | null;
+  const btn       = document.getElementById('nl-btn')       as HTMLButtonElement | null;
+  const btnLabel  = document.getElementById('nl-btn-label');
+  const btnLoading = document.getElementById('nl-btn-loading');
+  const errorMsg  = document.getElementById('nl-error');
+  const successMsg = document.getElementById('nl-success');
+
+  function setLoading(on: boolean) {
+    if (!btn) return;
+    btn.disabled = on;
+    if (btnLabel)  btnLabel.hidden  = on;
+    if (btnLoading) btnLoading.hidden = !on;
+  }
+
+  function showError(msg: string) {
+    if (!errorMsg) return;
+    errorMsg.textContent = msg;
+    errorMsg.hidden = false;
+  }
+
+  function showSuccess(msg: string) {
+    if (form) form.hidden = true;
+    if (successMsg) {
+      successMsg.textContent = msg;
+      successMsg.hidden = false;
+    }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = emailInput?.value.trim() ?? '';
+
+    // Client-side validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('Please enter a valid email address.');
+      emailInput?.focus();
+      return;
+    }
+
+    if (errorMsg) errorMsg.hidden = true;
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (data?.ok) {
+        // Both "subscribed" and "already on the list" are successes — show the
+        // message returned by the API so the copy is controlled server-side.
+        showSuccess(data.message ?? "You're in.");
+      } else {
+        setLoading(false);
+        showError(data?.error ?? 'Something went sideways. Try again.');
+      }
+    } catch {
+      setLoading(false);
+      showError('Something went sideways. Try again.');
+    }
+  });
+</script>

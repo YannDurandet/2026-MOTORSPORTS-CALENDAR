@@ -1538,7 +1538,12 @@
     "country": "Italy",
     "continent": "europe",
     "calendarSvgs": [
-      "misano.svg"
+      "misano.svg",
+      "misano-wsbk.svg"
+    ],
+    "layouts": [
+      { "id": "motogp", "label": "MotoGP Layout", "calendarSvgs": ["misano.svg"] },
+      { "id": "wsbk", "label": "WSBK Layout", "calendarSvgs": ["misano-wsbk.svg"] }
     ],
     "bio": "The Marco Simoncelli World Circuit on the Adriatic Riviera runs clockwise — unusual in MotoGP. It hosts both MotoGP's San Marino round and WSBK, and carries the name of the Italian rider lost there in 2011.",
     "type": "permanent",
@@ -1864,7 +1869,14 @@
     "country": "UK",
     "continent": "europe",
     "calendarSvgs": [
-      "oulton-park.svg"
+      "oulton-park-international.svg",
+      "oulton-park-foster.svg",
+      "oulton-park-island.svg"
+    ],
+    "layouts": [
+      { "id": "international", "label": "International Circuit", "calendarSvgs": ["oulton-park-international.svg"] },
+      { "id": "foster", "label": "Foster Circuit", "calendarSvgs": ["oulton-park-foster.svg"] },
+      { "id": "island", "label": "Island Circuit", "calendarSvgs": ["oulton-park-island.svg"] }
     ],
     "bio": "Set in a Cheshire deer park with dramatic elevation changes and flowing corners, Oulton Park is widely considered the most beautiful permanent circuit in the UK. Its technical layout rewards driver skill over raw machinery.",
     "type": "permanent",
@@ -1878,7 +1890,7 @@
       "year": 2021
     },
     "website": "https://www.oultonpark.co.uk",
-    "browserSvg": "oulton-park.svg"
+    "browserSvg": "oulton-park-international.svg"
   },
   {
     "slug": "paul-ricard",
@@ -2294,7 +2306,12 @@
     "continent": "europe",
     "browserSvg": "silverstone.svg",
     "calendarSvgs": [
-      "silverstone.svg"
+      "silverstone.svg",
+      "silverstone-national.svg"
+    ],
+    "layouts": [
+      { "id": "gp", "label": "GP Circuit", "calendarSvgs": ["silverstone.svg"] },
+      { "id": "national", "label": "National Circuit", "calendarSvgs": ["silverstone-national.svg"] }
     ],
     "bio": "A wartime airfield turned into the home of British motorsport. It hosted the very first FIA World Championship round in May 1950 and has barely missed a year since.",
     "type": "permanent",

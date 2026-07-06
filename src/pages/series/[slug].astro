@@ -101,6 +101,7 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
   if (!startDate) return null;
 
   const venue = svgToVenue.get(ev.track);
+  if (!venue) return null; // skip events without a mappable location (WRC flags, tbc/tbd, etc.)
 
   return {
     "@context": "https://schema.org",
@@ -117,19 +118,17 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
       ...(series.socials?.web ? { "url": series.socials.web } : {}),
     },
     ...(ogImage ? { "image": ogImage } : {}),
-    ...(venue ? {
-      "location": {
-        "@type": "Place",
-        "name": venue.name,
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": venue.city,
-          "addressCountry": venue.country,
-        },
-        ...(venue.website ? { "url": venue.website } : {}),
+    "location": {
+      "@type": "Place",
+      "name": venue.name,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": venue.city,
+        "addressCountry": venue.country,
       },
-      "description": `2026 ${series.name} round ${i + 1} — ${ev.title} at ${venue.name}, ${venue.city}.`,
-    } : {}),
+      ...(venue.website ? { "url": venue.website } : {}),
+    },
+    "description": `2026 ${series.name} round ${i + 1} — ${ev.title} at ${venue.name}, ${venue.city}.`,
   };
 }).filter(Boolean);
 

@@ -1,15 +1,15 @@
 # Track Map Status
-_Last updated: 2026-06-29_
+_Last updated: 2026-07-05_
 
 ## Summary
 | | Count |
 |---|---|
-| Files on disk | **167** |
-| Circuit SVGs (browser-mapped) | **142** |
+| Files on disk | **171** |
+| Circuit SVGs (browser-mapped) | **146** |
 | WRC / ERC flags | **17** |
 | calendarSvg-only (no browser entry) | **6** |
 | Placeholder infographics | **2** |
-| Orphans (on disk, unreferenced) | **0** |
+| Orphans (on disk, unreferenced) | **1** (`barcelona-f1.svg`) |
 | Missing browserSvgs | **0** |
 | Missing calendar refs (not yet drawn) | **0** |
 
@@ -105,7 +105,8 @@ _Last updated: 2026-06-29_
 - `michigan.svg` (michigan)
 - `midohio.svg` (midohio)
 - `milwaukee.svg` (milwaukee)
-- `misano.svg` (misano)
+- `misano.svg` (misano) — MotoGP layout
+- `misano-wsbk.svg` (misano) — WSBK layout
 - `monaco.svg` (monaco)
 - `mondello.svg` (mondello)
 - `montreal.svg` (montreal)
@@ -123,7 +124,9 @@ _Last updated: 2026-06-29_
 - `nurburgring.svg` (nurburgring-gp)
 - `nyirad.svg` (nyirad)
 - `oschersleben.svg` (oschersleben)
-- `oulton-park.svg` (oulton-park)
+- `oulton-park-foster.svg` (oulton-park) — Foster Circuit
+- `oulton-park-international.svg` (oulton-park) — International Circuit (primary)
+- `oulton-park-island.svg` (oulton-park) — Island Circuit
 - `paul-ricard.svg` (paul-ricard)
 - `perth.svg` (perth)
 - `phillip-island-wsbk.svg` (phillip-island)
@@ -143,7 +146,8 @@ _Last updated: 2026-06-29_
 - `sebring.svg` (sebring)
 - `sepang.svg` (sepang)
 - `shanghai.svg` (shanghai)
-- `silverstone.svg` (silverstone)
+- `silverstone.svg` (silverstone) — GP Circuit (primary)
+- `silverstone-national.svg` (silverstone) — National Circuit (BTCC)
 - `singapore.svg` (singapore)
 - `snetterton.svg` (snetterton)
 - `sonoma.svg` (sonoma)
@@ -201,6 +205,3 @@ _No real circuit — used for calendar events where the venue is unconfirmed._
 
 ## Still Missing — Calendar refs not yet drawn
 _All calendar circuit SVGs are now complete. 🏁_
-
-## Orphans on disk (unreferenced)
-- `barcelona-f1.svg` — not used in any calendar event or track calendarSvgs; safe to delete

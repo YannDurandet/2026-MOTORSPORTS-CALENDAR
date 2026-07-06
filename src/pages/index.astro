@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
 import EventRow from '../components/EventRow.astro';
+import NewsletterBanner from '../components/NewsletterBanner.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
 
@@ -12,6 +13,15 @@ import tracksData from '../../data/tracks.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const trackSlugs = new Set((tracksData as any[]).map((t: any) => t.slug));
+
+// Find the calendar index of the current month so we can inject the newsletter
+// banner directly after it. Position is set at build time; the site is rebuilt
+// weekly for results anyway, so this stays current.
+const _todayMonth = new Date().getMonth(); // 0-indexed
+const _monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+const newsletterAfterIdx = (calendarData as any[]).findIndex((m: any) =>
+  m.month.toLowerCase().includes(_monthNames[_todayMonth])
+);
 
 function stripTrackSuffix(svgName: string): string {
   return svgName.replace(/\.svg$/, '').replace(/-(f1|motogp|fe|wsbk|oval|road)$/, '');
@@ -34,6 +44,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
   title="2026 Motorsport Calendar — F1, WEC, MotoGP, IndyCar & 25 Championships"
   description="The ultimate 2026 motorsport master calendar. Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns and local track times."
   canonicalUrl="https://dord.racing"
+  ogImage="https://dord.racing/assets/og/og-home.webp"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -149,7 +160,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     </details>
 
     <div id="calendar-container">
-      {enrichedCalendar.map((month: any) => (
+      {enrichedCalendar.map((month: any, idx: number) => (
         <>
           <div class="month-header">{month.month}</div>
           <div class="cal-grid">
@@ -174,6 +185,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
               </div>
             ))}
           </div>
+          {idx === newsletterAfterIdx && <NewsletterBanner />}
         </>
       ))}
     </div>

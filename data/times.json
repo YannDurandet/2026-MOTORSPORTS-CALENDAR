@@ -1,0 +1,164 @@
+[
+    {
+        "series": "f1a",
+        "title": "Rd 4: Silverstone",
+        "weekLabel": "WEEK 27 • JUL 03-05",
+        "timeCET": "11:00"
+    },
+    {
+        "series": "fe",
+        "title": "Shanghai E-Prix",
+        "weekLabel": "WEEK 27 • JUL 03-05",
+        "timeCET": "09:05"
+    },
+    {
+        "series": "indycar",
+        "title": "Mid-Ohio (R1 & R2)",
+        "weekLabel": "WEEK 27 • JUL 03-05",
+        "timeCET": "18:30"
+    },
+    {
+        "series": "nascar",
+        "title": "Chicagoland Speedway",
+        "weekLabel": "WEEK 27 • JUL 03-05",
+        "timeCET": "00:00"
+    },
+    {
+        "series": "wec",
+        "title": "6 Hours of São Paulo",
+        "weekLabel": "WEEK 28 • JUL 10-12",
+        "timeCET": "16:30"
+    },
+    {
+        "series": "imsa",
+        "title": "Chevrolet Grand Prix (Mosport)",
+        "weekLabel": "WEEK 28 • JUL 10-12",
+        "timeCET": "20:05"
+    },
+    {
+        "series": "nascar",
+        "title": "EchoPark 400 (Atlanta)",
+        "weekLabel": "WEEK 28 • JUL 10-12",
+        "timeCET": "01:00"
+    },
+    {
+        "series": "indycar",
+        "title": "Music City GP (Nashville)",
+        "weekLabel": "WEEK 29 • JUL 16-19",
+        "timeCET": "22:30"
+    },
+    {
+        "series": "nascar",
+        "title": "North Wilkesboro Speedway",
+        "weekLabel": "WEEK 29 • JUL 16-19",
+        "timeCET": "01:00"
+    },
+    {
+        "series": "fe",
+        "title": "Tokyo E-Prix",
+        "weekLabel": "WEEK 30 • JUL 24-26",
+        "timeCET": "13:05"
+    },
+    {
+        "series": "nascar",
+        "title": "Brickyard 400 (Indianapolis)",
+        "weekLabel": "WEEK 30 • JUL 24-26",
+        "timeCET": "20:00"
+    },
+    {
+        "series": "imsa",
+        "title": "6 Hours of Road America",
+        "weekLabel": "WEEK 31 • JUL 30 - AUG 02",
+        "timeCET": "19:30"
+    },
+    {
+        "series": "indycar",
+        "title": "GP of Portland",
+        "weekLabel": "WEEK 32 • AUG 07-09",
+        "timeCET": "22:00"
+    },
+    {
+        "series": "nascar",
+        "title": "Iowa Speedway",
+        "weekLabel": "WEEK 32 • AUG 07-09",
+        "timeCET": "21:30"
+    },
+    {
+        "series": "fe",
+        "title": "London E-Prix",
+        "weekLabel": "WEEK 33 • AUG 14-16",
+        "timeCET": "16:05"
+    },
+    {
+        "series": "indycar",
+        "title": "Streets of Markham",
+        "weekLabel": "WEEK 33 • AUG 14-16",
+        "timeCET": "18:00"
+    },
+    {
+        "series": "nascar",
+        "title": "Cook Out 400 (Richmond)",
+        "weekLabel": "WEEK 33 • AUG 14-16",
+        "timeCET": "01:00"
+    },
+    {
+        "series": "imsa",
+        "title": "VIR GT Challenge",
+        "weekLabel": "WEEK 34 • AUG 21-23",
+        "timeCET": "18:00"
+    },
+    {
+        "series": "nascar",
+        "title": "Foxwoods 301 (New Hampshire)",
+        "weekLabel": "WEEK 34 • AUG 21-23",
+        "timeCET": "21:00"
+    },
+    {
+        "series": "indycar",
+        "title": "Milwaukee Mile (R1 & R2)",
+        "weekLabel": "WEEK 35 • AUG 27-30",
+        "timeCET": "20:30"
+    },
+    {
+        "series": "nascar",
+        "title": "Coke Zero 400 (Daytona)",
+        "weekLabel": "WEEK 35 • AUG 27-30",
+        "timeCET": "01:30"
+    },
+    {
+        "series": "indycar",
+        "title": "GP of Monterey (Laguna Seca)",
+        "weekLabel": "WEEK 36 • SEP 04-06",
+        "timeCET": "20:30"
+    },
+    {
+        "series": "nascar",
+        "title": "Southern 500 (Darlington) — Playoff",
+        "weekLabel": "WEEK 36 • SEP 04-06",
+        "timeCET": "23:00"
+    },
+    {
+        "series": "nascar",
+        "title": "Bass Pro Shops Night Race (Bristol) — Playoff",
+        "weekLabel": "WEEK 37 • SEP 10-13",
+        "timeCET": "01:30"
+    },
+    {
+        "series": "imsa",
+        "title": "Battle on the Bricks (Indy)",
+        "weekLabel": "WEEK 38 • SEP 18-20",
+        "timeCET": "21:00"
+    },
+    {
+        "series": "imsa",
+        "title": "Petit Le Mans",
+        "weekLabel": "WEEK 40 • OCT 01-04",
+        "timeCET": "18:00"
+    },
+    {
+        "series": "nascar",
+        "title": "Championship Race (Homestead)",
+        "weekLabel": "WEEK 45 • NOV 06-08",
+        "timeCET": "21:00"
+    }
+]
