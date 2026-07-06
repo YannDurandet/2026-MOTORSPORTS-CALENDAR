@@ -114,4 +114,3 @@ Some tracks have missing or uncertain data. Full list in `track-data-gaps.md`.
 - [ ] **Update `sitemap.xml` `lastmod`** when making significant content updates
 - [ ] **End-of-season cleanup** — after Abu Dhabi GP (Dec 6), tag repo as `v2026-final`, start a `2027` branch
 
----
