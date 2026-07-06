@@ -160,12 +160,15 @@ function getWeekRaces() {
     const sunday = new Date(monday);
     sunday.setDate(sunday.getDate() + 6);
     sunday.setHours(23, 59, 59, 999);
+    // Extend 12h past Sunday midnight to catch races that start at midnight
+    // in CET (e.g. 18:00 EDT Sunday = 00:00 CEST Monday)
+    const weekEnd = sunday.getTime() + 12 * 3600000;
 
-    let races = findRacesInWindow(monday.getTime(), sunday.getTime());
+    let races = findRacesInWindow(monday.getTime(), weekEnd);
     if (races.length === 0) {
         const nextMon = monday.getTime() + 7 * 86400000;
-        const nextSun = sunday.getTime() + 7 * 86400000;
-        races = findRacesInWindow(nextMon, nextSun);
+        const nextEnd = weekEnd + 7 * 86400000;
+        races = findRacesInWindow(nextMon, nextEnd);
     }
     return races;
 }
@@ -199,22 +202,20 @@ function renderThisWeekend() {
     const grid = document.getElementById('this-weekend-grid');
     if (!section || !grid) return;
 
-    const races = getWeekRaces();
+    const allRaces = getWeekRaces();
+    // Only show upcoming races; hide finished ones so a midnight race doesn't
+    // linger as "FINISHED" in the next morning's widget.
+    const races = allRaces.filter(r => !r.finished);
     if (races.length === 0) { section.hidden = true; return; }
     section.hidden = false;
 
     let html = '';
     for (const r of races) {
-        const finishedClass = r.finished ? ' tw-card-finished' : '';
-        html += `<div class="tw-card ev-${r.seriesKey}${finishedClass}">`;
+        html += `<div class="tw-card ev-${r.seriesKey}">`;
         html += `<span class="tag t-${r.seriesKey}">${seriesLabels[r.seriesKey] || r.seriesKey.toUpperCase()}</span>`;
         html += `<div class="tw-name">${r.name}</div>`;
         html += `<div class="tw-time">${formatRaceTime(r.date)}</div>`;
-        if (r.finished) {
-            html += `<div class="tw-finished">FINISHED</div>`;
-        } else {
-            html += `<div class="tw-countdown" data-ts="${r._ts}">--</div>`;
-        }
+        html += `<div class="tw-countdown" data-ts="${r._ts}">--</div>`;
         html += '</div>';
     }
     grid.innerHTML = html;
@@ -468,10 +469,10 @@ function dimPastEvents() {
         const dateMatches = headText.match(/\d{2}/g);
         if (!dateMatches) continue;
         const lastDate = parseInt(dateMatches[dateMatches.length - 1]);
-        const monthMatch = headText.match(/JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC/);
-        if (!monthMatch) continue;
-        const cardMonth = shortMonths.indexOf(monthMatch[0]);
-        if (cardMonth < currentMonth || (cardMonth === currentMonth && lastDate < currentDate)) {
+        const monthMatches = headText.match(/JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC/g);
+        if (!monthMatches) continue;
+        const cardMonth = shortMonths.indexOf(monthMatches[monthMatches.length - 1]);
+        if (cardMonth < currentMonth || (cardMonth === currentMonth && lastDate + 1 < currentDate)) {
             card.classList.add('past');
         }
     }
@@ -579,7 +580,7 @@ function injectSchema() {
 function initEventRowClicks() {
     document.querySelectorAll('.event[data-track-href]').forEach(row => {
         row.addEventListener('click', e => {
-            if (e.target.closest('a')) return;
+            if (e.target.closest('a') || e.target.closest('button')) return;
             window.location.href = row.dataset.trackHref;
         });
     });
@@ -635,7 +636,7 @@ function initToggle() {
     if (tzNotice) {
         const friendlyTz = USER_TIMEZONE.replace(/_/g, ' ');
         if (NEEDS_TZ_CONVERSION) {
-            tzNotice.textContent = `ALL TIMES IN YOUR TIMEZONE: ${friendlyTz.toUpperCase()}`;
+            tzNotice.textContent = `TIMES CONVERTED TO YOUR TIMEZONE: ${friendlyTz.toUpperCase()}`;
         } else {
             tzNotice.textContent = `SYSTEM TIMEZONE: PARIS (CET/CEST)`;
         }

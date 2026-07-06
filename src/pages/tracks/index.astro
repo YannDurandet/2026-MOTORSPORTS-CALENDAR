@@ -1,10 +1,23 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Banner from '../../components/Banner.astro';
 import Footer from '../../components/Footer.astro';
+
+// Vite reads these at bundle time — no node:fs needed, works in Cloudflare Workers prerender
+const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const svgByFilename: Record<string, string> = {};
+for (const [k, v] of Object.entries(_svgRaw)) {
+  svgByFilename[k.split('/').pop()!] = v;
+}
+function readSvg(filename: string | undefined | null): string | null {
+  if (!filename) return null;
+  return svgByFilename[filename] ?? null;
+}
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
@@ -36,7 +49,6 @@ function shortDate(label: string): string {
 }
 
 // --- Process venues ---
-const svgDir = path.resolve('./public/assets/track-maps');
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Venue = {
@@ -92,16 +104,14 @@ for (const venue of tracksRaw as Venue[]) {
     }
   }
 
-  const svgPath = venue.browserSvg ? path.join(svgDir, venue.browserSvg) : null;
-  const hasSvg = svgPath ? fs.existsSync(svgPath) : false;
-  const svgContent = hasSvg ? cleanSvg(fs.readFileSync(svgPath!, 'utf-8'), venue.slug) : null;
+  const rawSvg = readSvg(venue.browserSvg);
+  const hasSvg = rawSvg !== null;
+  const svgContent = rawSvg ? cleanSvg(rawSvg, venue.slug) : null;
 
   const layoutPanels: LayoutPanel[] = (venue.layouts && venue.layouts.length > 1)
     ? venue.layouts.map(l => {
-        const svgFile = l.calendarSvgs[0];
-        if (!svgFile) return { id: l.id, svgContent: null };
-        const p = path.join(svgDir, svgFile);
-        return { id: l.id, svgContent: fs.existsSync(p) ? cleanSvg(fs.readFileSync(p, 'utf-8'), venue.slug) : null };
+        const raw = readSvg(l.calendarSvgs[0]);
+        return { id: l.id, svgContent: raw ? cleanSvg(raw, venue.slug) : null };
       })
     : [];
 
@@ -138,6 +148,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   title="Track Browser · 2026 Motorsport Calendar"
   description="Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts."
   canonicalUrl="https://dord.racing/tracks"
+  ogImage="https://dord.racing/assets/og/og-tracks.webp"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
