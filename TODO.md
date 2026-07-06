@@ -115,9 +115,3 @@ Some tracks have missing or uncertain data. Full list in `track-data-gaps.md`.
 - [ ] **End-of-season cleanup** — after Abu Dhabi GP (Dec 6), tag repo as `v2026-final`, start a `2027` branch
 
 ---
-
-## 🧹 Housekeeping
-
-- [X] Delete `barcelona-f1.svg` from `public/assets/track-maps/` (orphaned, unreferenced)
-- [X] Delete `data/results.json` once Results page migration is done
-- [X] Keep `track-map-status.md` and `track-data-gaps.md` updated as SVGs are drawn and data gaps filled
