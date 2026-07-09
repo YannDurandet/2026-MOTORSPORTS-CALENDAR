@@ -1,5 +1,22 @@
 # dord.racing — Master To-Do List
-_Last updated: 2026-06-30 (end of day)_
+_Last updated: 2026-07-07_
+
+---
+
+## ✅ Done — July 7 (Cloudflare migration + post-launch hardening)
+
+- [x] **GitHub Actions deploy workflow** — replaced GitHub Pages deploy with `wrangler deploy` to Cloudflare Workers on every push to `main`
+- [x] **DNS migrated Porkbun → Cloudflare** — nameservers updated; Resend and Google verification records carried over
+- [x] **`public/CNAME` deleted** — legacy GitHub Pages artifact removed
+- [x] **UTM redirects upgraded to proper 301s** — `/ig`, `/x`, `/yd` now return server-side 301 via `Astro.redirect()` instead of meta-refresh
+- [x] **Cloudflare env vars set** — `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL` configured as secrets in Workers dashboard
+- [x] **Rate limiting on `/api/subscribe`** — Cloudflare WAF rule: 10 req/min per IP, block action
+- [x] **Sitemap auto-generation** — replaced hand-edited `sitemap.xml` with `@astrojs/sitemap`; generates `sitemap-index.xml` at build time
+- [x] **Email obfuscation** — `durandet.yann.pro@gmail.com` removed from raw HTML in `privacy.astro`, `tos.astro`, `Footer.astro`; assembled client-side via `js-mailto` data attributes
+- [x] **Results system fixed** — `results.json` rewritten with correct key format (`2026-07`), correct series slugs, correct venue slugs; WEEK 27 results injected directly into `calendar.json` for all 11 series
+- [x] **Newsletter send script** — `scripts/send-newsletter.ts` complete with Turso subscriber fetch, Resend batched sends, session times, venue grouping, track PNG icons
+- [x] **Track PNG export** — `scripts/export-track-pngs.mjs`; 155 circuit PNGs exported to `public/assets/tracks/email/`
+- [x] **`/newsletter` page** — standalone subscribe page at `dord.racing/newsletter`
 
 ---
 
@@ -51,7 +68,7 @@ Once drawn, for each new SVG:
 3. Move slug from "Still Missing" to the right section in `track-map-status.md`
 4. Update `_Last updated` date in `track-map-status.md`
 
-**Also:** `barcelona-f1.svg` is on disk but unreferenced — safe to delete when tidying.
+**Also:** ~~`barcelona-f1.svg` is on disk but unreferenced~~ — deleted.
 
 ---
 
@@ -60,8 +77,8 @@ Once drawn, for each new SVG:
 Results are embedded inside `calendar.json` per event (`results[]` array). The workflow for adding results weekly is documented in `grok-results-weekly.md`.
 
 - [ ] **Keep results current** — add race results to `calendar.json` as each weekend concludes (use Grok prompt in `grok-results-weekly.md`)
-- [ ] **Migrate Results page off `results.json`** — `results.astro` still reads from `data/results.json` which is now a parallel/redundant copy. Long term it should read from `calendar.json` directly. Until then keep both in sync manually.
-- [ ] **Delete `data/results.json`** — only after the migration above is done
+- [ ] **Migrate Results page to read from `calendar.json`** — `results.astro` currently reads from `data/results.json`. Workflow: input results into `results.json` → run merge script → `calendar.json` updated. Long term, Results page should read from `calendar.json` directly and `results.json` remains only as the input staging file.
+- [ ] **Fix merge script `merge-results-into-calendar.js`** — has 3 known bugs: wrong key format parsing, series slug mismatches, venue slug mismatches. Currently bypassed by direct injection. Needs a proper fix before the workflow is reliable.
 
 ---
 
@@ -77,17 +94,18 @@ Some tracks have missing or uncertain data. Full list in `track-data-gaps.md`.
 
 ## 🔧 Code / Features
 
-- [ ] **Sitemap `lastmod` dates** — hardcoded to `2026-06-30`. Update when content changes significantly, or switch to a build-time generated sitemap
+- [x] **Sitemap `lastmod` dates** — resolved by switching to `@astrojs/sitemap` auto-generation
+- [ ] **Update `robots.txt` sitemap URL** — currently points to `/sitemap.xml` but generated file is `/sitemap-index.xml`; update the `Sitemap:` line in `public/robots.txt`
 - [ ] **Layout button label casing** — `red-bull-ring` shows "MOTOGP"; consider "MotoGP" mixed case for visual consistency
 - [ ] **Track title edge case** — `/tracks/[slug]` title says "2026 Race Schedule" even for historic/reserve tracks not on the 2026 calendar. Low priority.
-- [ ] **Self-host Google Fonts** — currently loads from `fonts.googleapis.com`, which sends IP to Google on every page load. Flagged in Privacy Policy; self-hosting would remove this dependency entirely.
-- [ ] **Cookie consent banner** — mentioned in Privacy Policy as "coming in a future update". Required for GDPR compliance if/when affiliate links are added.
+- [ ] **Self-host Google Fonts** — fonts downloaded (Orbitron 400/900, Roboto Mono 400/700, Inter 400/800); place in `public/assets/fonts/` and replace `<link>` tags in `BaseLayout.astro` with `@font-face` declarations
+- [x] **Cookie consent banner** — already implemented in `BaseLayout.astro` (Accept/Decline, stores `cookie_consent` cookie, gates GA4 load)
 
 ---
 
 ## 🔍 SEO — Remaining
 
-- [ ] **Submit sitemap to Google Search Console** — `https://dord.racing/sitemap.xml` — do this right after v1 deploy
+- [ ] **Submit sitemap to Google Search Console** — use `https://dord.racing/sitemap-index.xml` (not `sitemap.xml` — the auto-generator creates an index file)
 - [ ] **Submit to Bing Webmaster Tools**
 - [ ] **Rich Results non-critical issues** — click through the Events detail in the Rich Results Test to see what they are (likely missing `endDate` or `performer` — both optional, won't block eligibility)
 - [ ] **OG image validation** — once Figma OGs are done, run through Twitter Card Validator and verify 1200×630, under 200 KB
@@ -97,7 +115,7 @@ Some tracks have missing or uncertain data. Full list in `track-data-gaps.md`.
 
 ## 📣 Launch / Marketing
 
-- [ ] **Commit v1 and deploy**
+- [x] **Commit v1 and deploy** — live at dord.racing on Cloudflare Workers
 - [ ] **Post on X (@dord_racing)** — v1 launch announcement
 - [ ] **Post on Instagram (@dord.racing)** — carousel or reel: calendar, track browser, countdowns
 - [ ] **Post on personal X (@YannDurandet)**
@@ -113,4 +131,3 @@ Some tracks have missing or uncertain data. Full list in `track-data-gaps.md`.
 - [ ] **Calendar corrections** — race dates shift mid-season (reschedules, cancellations); update `calendar.json` and `data/series.json` accordingly
 - [ ] **Update `sitemap.xml` `lastmod`** when making significant content updates
 - [ ] **End-of-season cleanup** — after Abu Dhabi GP (Dec 6), tag repo as `v2026-final`, start a `2027` branch
-

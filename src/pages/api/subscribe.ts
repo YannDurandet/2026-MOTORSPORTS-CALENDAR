@@ -3,12 +3,12 @@
 // ============================================================================
 //
 // SETUP CHECKLIST (one-time):
-//   [x] Server adapter added (astro.config.mjs → output: 'hybrid')
-//   [ ] Turso DB created and schema applied (see db/schema.sql)
-//   [ ] TURSO_DATABASE_URL added to deployment env vars
-//   [ ] TURSO_AUTH_TOKEN added to deployment env vars
-//   [ ] RESEND_API_KEY added to deployment env vars
-//   [ ] RESEND_FROM_EMAIL added to deployment env vars (e.g. weekly@dord.racing)
+//   [x] Server adapter added (astro.config.mjs → @astrojs/cloudflare)
+//   [x] Turso DB created and schema applied
+//   [x] TURSO_DATABASE_URL added to deployment env vars (Cloudflare Workers → Settings → Variables)
+//   [x] TURSO_AUTH_TOKEN added to deployment env vars
+//   [x] RESEND_API_KEY added to deployment env vars
+//   [x] RESEND_FROM_EMAIL added to deployment env vars
 //
 // ENV VARS (Cloudflare Pages → Settings → Environment Variables):
 //   TURSO_DATABASE_URL   libsql://your-db-name.turso.io

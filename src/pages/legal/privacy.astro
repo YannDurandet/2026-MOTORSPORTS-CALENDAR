@@ -18,7 +18,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </header>
 
-  <div class="legal-page">
+  <main id="main-content" class="legal-page">
     <a href={`${base}/`} class="back-link">← Back to Calendar</a>
 
     <div class="legal-body">
@@ -26,7 +26,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <p class="legal-date">Last updated: July 3, 2026 — migrated hosting from GitHub Pages to Cloudflare Pages</p>
 
       <h2>1. Who we are</h2>
-      <p>dord.racing is operated by Yann Durandet, based in France. For privacy-related questions, contact us at <a href="mailto:durandet.yann.pro@gmail.com">durandet.yann.pro@gmail.com</a>. As the site is operated from France, it is subject to the EU General Data Protection Regulation (GDPR).</p>
+      <p>dord.racing is operated by Yann Durandet, based in France. For privacy-related questions, contact us at <a class="js-mailto" data-u="durandet.yann.pro" data-d="gmail.com" data-show></a>. As the site is operated from France, it is subject to the EU General Data Protection Regulation (GDPR).</p>
 
       <h2>2. Data we collect</h2>
       <p>dord.racing does not collect, store, or process any personal data directly. There is no account system, no contact form, and no newsletter.</p>
@@ -58,10 +58,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <p>This policy may be updated as we add new features. Material changes will be reflected in the "Last updated" date above.</p>
 
       <h2>10. Contact</h2>
-      <p>Privacy questions: <a href="mailto:durandet.yann.pro@gmail.com">durandet.yann.pro@gmail.com</a></p>
+      <p>Privacy questions: <a class="js-mailto" data-u="durandet.yann.pro" data-d="gmail.com" data-show></a></p>
 
     </div>
-  </div>
+  </main>
 
   <Footer />
 </BaseLayout>
@@ -77,7 +77,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: inline-block;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.7rem;
-    color: #445;
+    color: #8a9aaa;
     text-decoration: none;
     letter-spacing: 0.06em;
     margin-bottom: 2.5rem;
@@ -93,8 +93,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .legal-date {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #3a5060;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 2rem;

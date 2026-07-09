@@ -173,18 +173,18 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     </div>
   </header>
 
-  <div class="tracks-page">
+  <main id="main-content" class="tracks-page">
 
     <!-- Filters -->
     <div class="filter-panel">
       <div class="filter-row" id="continent-filter" role="group" aria-label="Filter by continent">
         <span class="filter-dim">Region</span>
         <div class="filter-btns">
-          <button class="cf-btn active" data-continent="all">All <span class="cf-count">{totalVenues}</span></button>
+          <button class="cf-btn active" data-continent="all" aria-pressed="true">All <span class="cf-count">{totalVenues}</span></button>
           {Object.entries(continentLabels).map(([key, label]) => {
             const count = venues.filter(v => v.continent === key).length;
             return count > 0 ? (
-              <button class="cf-btn" data-continent={key}>
+              <button class="cf-btn" data-continent={key} aria-pressed="false">
                 {label} <span class="cf-count">{count}</span>
               </button>
             ) : null;
@@ -195,9 +195,9 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
       <div class="filter-row" id="type-filter" role="group" aria-label="Filter by track type">
         <span class="filter-dim">Type</span>
         <div class="filter-btns">
-          <button class="cf-btn active" data-type="all">All</button>
+          <button class="cf-btn active" data-type="all" aria-pressed="true">All</button>
           {availableTypes.map(t => (
-            <button class="cf-btn" data-type={t}>
+            <button class="cf-btn" data-type={t} aria-pressed="false">
               {TYPE_LABELS[t]} <span class="cf-count">{typeCounts[t]}</span>
             </button>
           ))}
@@ -278,7 +278,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     <div class="tracks-empty" id="tracks-empty" hidden>
       No tracks with SVG maps yet for this region.
     </div>
-  </div>
+  </main>
 
   <Footer />
 </BaseLayout>
@@ -307,8 +307,12 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   const continentEl = document.getElementById('continent-filter');
   continentEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      continentEl.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
+      continentEl.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       activeContinent = btn.dataset.continent ?? 'all';
       applyTrackFilters();
     });
@@ -318,8 +322,12 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   const typeEl = document.getElementById('type-filter');
   typeEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      typeEl.querySelectorAll('.cf-btn').forEach(b => b.classList.remove('active'));
+      typeEl.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       activeType = btn.dataset.type ?? 'all';
       applyTrackFilters();
     });
@@ -369,8 +377,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   .filter-dim {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.58rem;
-    color: #3a5060;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     width: 42px;
@@ -396,9 +404,9 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     padding: 5px 12px;
     background: transparent;
     border: 1px solid var(--border);
-    color: #667;
+    color: #8a9aaa;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
@@ -512,12 +520,12 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   .layout-btn {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.07em;
-    color: #445;
+    color: #7a8fa0;
     background: rgba(0, 0, 0, 0.55);
-    border: 1px solid #334;
+    border: 1px solid #445;
     border-radius: 2px;
     padding: 3px 6px;
     cursor: pointer;
@@ -578,8 +586,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   .track-location {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
-    color: #556;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     margin-bottom: 10px;
     letter-spacing: 0.04em;
   }
@@ -617,14 +625,14 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   .track-ev-date {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #556;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     flex-shrink: 0;
   }
 
   .track-no-events {
-    font-size: 0.7rem;
-    color: #445;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     font-style: italic;
   }
 
@@ -632,7 +640,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   .tracks-empty {
     text-align: center;
     padding: 60px 20px;
-    color: #556;
+    color: #8a9aaa;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
   }

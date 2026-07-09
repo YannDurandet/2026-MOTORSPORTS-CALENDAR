@@ -127,7 +127,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     </div>
   </header>
 
-  <div class="main-section">
+  <main id="main-content" class="main-section">
     <div id="this-weekend" class="this-weekend-section" hidden>
       <div class="this-weekend-header">THIS WEEKEND</div>
       <div id="this-weekend-grid" class="this-weekend-grid"></div>
@@ -156,7 +156,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     </div>
 
     <details id="past-events-container" class="past-events-accordion">
-      <summary id="past-events-summary" aria-expanded="false">View Past Events</summary>
+      <summary id="past-events-summary">View Past Events</summary>
     </details>
 
     <div id="calendar-container">
@@ -192,7 +192,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
 
     <FAQ />
     <Footer />
-  </div>
+  </main>
 
   <script src="../scripts/main.js"></script>
 </BaseLayout>

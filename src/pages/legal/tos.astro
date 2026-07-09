@@ -18,7 +18,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </header>
 
-  <div class="legal-page">
+  <main id="main-content" class="legal-page">
     <a href={`${base}/`} class="back-link">← Back to Calendar</a>
 
     <div class="legal-body">
@@ -53,10 +53,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <p>These terms may be updated at any time. Continued use of the site after changes are posted constitutes acceptance of the updated terms.</p>
 
       <h2>9. Contact</h2>
-      <p>Questions about these terms: <a href="mailto:durandet.yann.pro@gmail.com">durandet.yann.pro@gmail.com</a></p>
+      <p>Questions about these terms: <a class="js-mailto" data-u="durandet.yann.pro" data-d="gmail.com" data-show></a></p>
 
     </div>
-  </div>
+  </main>
 
   <Footer />
 </BaseLayout>
@@ -72,7 +72,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: inline-block;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.7rem;
-    color: #445;
+    color: #8a9aaa;
     text-decoration: none;
     letter-spacing: 0.06em;
     margin-bottom: 2.5rem;
@@ -88,8 +88,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .legal-date {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #3a5060;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 2rem;
