@@ -1,4 +1,377 @@
 {
+  "2026-03": {
+    "gtwca": [
+      {
+        "event": "Sonoma Round",
+        "venue": "sonoma",
+        "date": "2026-03-29",
+        "winners": ["Jason Daskalos", "Philip Ellis"],
+        "team": "JMF Motorsports"
+      }
+    ]
+  },
+  "2026-04": {
+    "btcc": [
+      {
+        "race_label": "Race 1",
+        "event": "Donington Park (Races 1-3)",
+        "venue": "donington",
+        "date": "2026-04-19",
+        "winner": "Mikey Doble",
+        "team": "LKQ Euro Car Parts with Power Maxed Racing",
+        "country": "AU"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Donington Park (Races 1-3)",
+        "venue": "donington",
+        "date": "2026-04-19",
+        "winner": "Ashley Sutton",
+        "team": "NAPA Racing UK",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 3",
+        "event": "Donington Park (Races 1-3)",
+        "venue": "donington",
+        "date": "2026-04-19",
+        "winner": "Ashley Sutton",
+        "team": "NAPA Racing UK",
+        "country": "GB"
+      }
+    ],
+    "dtm": [
+      {
+        "race_label": "Race 1",
+        "event": "Red Bull Ring (Season Opener)",
+        "venue": "red-bull-ring",
+        "date": "2026-04-25",
+        "winner": "Thomas Preining",
+        "team": "Manthey",
+        "country": "AT"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Red Bull Ring (Season Opener)",
+        "venue": "red-bull-ring",
+        "date": "2026-04-26",
+        "winner": "Maro Engel",
+        "team": "Mercedes-AMG Team Ravenol",
+        "country": "DE"
+      }
+    ],
+    "erc": [
+      {
+        "event": "Andalusia Rally",
+        "venue": "spain-wrc",
+        "date": "2026-04-19",
+        "winner": "José Antonio Suárez",
+        "manufacturer": "Škoda",
+        "country": "ES"
+      }
+    ],
+    "imsa": [
+      {
+        "event": "Grand Prix of Long Beach",
+        "venue": "long-beach",
+        "date": "2026-04-19",
+        "winners": ["Nick Yelloly", "Renger van der Zande"],
+        "team": "Meyer Shank Racing"
+      }
+    ],
+    "h24eu": [
+      {
+        "event": "Spa 12H",
+        "venue": "spa",
+        "date": "2026-04-19",
+        "winners": ["George", "Owega", "Tomlinson"],
+        "team": "Optimum Motorsport"
+      }
+    ],
+    "motogp": [
+      {
+        "event": "Spanish Grand Prix (Jerez)",
+        "venue": "jerez",
+        "date": "2026-04-26",
+        "winner": "Álex Márquez",
+        "team": "BK8 Gresini Racing MotoGP",
+        "country": "ES"
+      }
+    ],
+    "gtwca": [
+      {
+        "event": "COTA Round",
+        "venue": "cota",
+        "date": "2026-04-26",
+        "winners": ["Dave Musial Jr.", "Ryan Yardley"],
+        "team": "Wright Motorsports"
+      }
+    ]
+  },
+  "2026-05": {
+    "btcc": [
+      {
+        "race_label": "Race 4",
+        "event": "Brands Hatch Indy (Races 4-6)",
+        "venue": "brands-hatch",
+        "date": "2026-05-10",
+        "winner": "Ashley Sutton",
+        "team": "NAPA Racing UK",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 5",
+        "event": "Brands Hatch Indy (Races 4-6)",
+        "venue": "brands-hatch",
+        "date": "2026-05-10",
+        "winner": "Árón Taylor-Smith",
+        "team": "Laser Tools Racing with MB Motorsport",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 6",
+        "event": "Brands Hatch Indy (Races 4-6)",
+        "venue": "brands-hatch",
+        "date": "2026-05-10",
+        "winner": "Tom Ingram",
+        "team": "Team VERTU",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 7",
+        "event": "Snetterton 300 (Races 7-9)",
+        "venue": "snetterton",
+        "date": "2026-05-24",
+        "winner": "Dan Cammish",
+        "team": "NAPA Racing UK",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 8",
+        "event": "Snetterton 300 (Races 7-9)",
+        "venue": "snetterton",
+        "date": "2026-05-24",
+        "winner": "Ashley Sutton",
+        "team": "NAPA Racing UK",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 9",
+        "event": "Snetterton 300 (Races 7-9)",
+        "venue": "snetterton",
+        "date": "2026-05-24",
+        "winner": "Gordon Shedden",
+        "team": "Laser Tools Racing with MB Motorsport",
+        "country": "GB"
+      }
+    ],
+    "dtm": [
+      {
+        "race_label": "Race 1",
+        "event": "Zandvoort Round",
+        "venue": "zandvoort",
+        "date": "2026-05-23",
+        "winner": "Matteo Cairoli",
+        "team": "Emil Frey Racing",
+        "country": "IT"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Zandvoort Round",
+        "venue": "zandvoort",
+        "date": "2026-05-24",
+        "winner": "Kelvin van der Linde",
+        "team": "Schubert Motorsport",
+        "country": "ZA"
+      }
+    ],
+    "erc": [
+      {
+        "event": "Royal Rally of Scandinavia",
+        "venue": "sweden-wrc",
+        "date": "2026-05-24",
+        "winner": "Mikko Heikkilä",
+        "manufacturer": "Škoda",
+        "country": "FI"
+      }
+    ],
+    "eurx": [
+      {
+        "round": 1,
+        "event": "Rd 1: Latvia (Biķernieki)",
+        "venue": "bikernierki",
+        "date": "2026-05-10",
+        "winner": "Johan Kristoffersson",
+        "country": "SE"
+      },
+      {
+        "round": 2,
+        "event": "Rd 2: Hungary (Nyirád)",
+        "venue": "nyirad",
+        "date": "2026-05-31",
+        "winner": "Andreas Bakkerud",
+        "country": "NO"
+      }
+    ],
+    "gtwca": [
+      {
+        "event": "Sebring Round",
+        "venue": "sebring",
+        "date": "2026-05-10",
+        "winners": ["Justin Rothberg", "Robby Foley"],
+        "team": "Turner Motorsport"
+      }
+    ],
+    "gtwce": [
+      {
+        "event": "3 Hours of Monza",
+        "venue": "monza",
+        "date": "2026-05-31",
+        "winners": ["Branden Oxley", "Adrian Ferrer"],
+        "team": "NM Racing Team"
+      }
+    ],
+    "igtc": [
+      {
+        "event": "ADAC 24h Nürburgring",
+        "venue": "nordschleife",
+        "date": "2026-05-17",
+        "winners": ["Maro Engel", "Lasse Stolz", "Fabian Schiller", "M. Martin"],
+        "team": "Winward Racing"
+      }
+    ],
+    "imsa": [
+      {
+        "event": "Detroit Sports Car Classic",
+        "venue": "detroit",
+        "date": "2026-05-31",
+        "winners": ["Earl Bamber", "Jack Aitken"],
+        "team": "Cadillac Whelen"
+      }
+    ],
+    "indycar": [
+      {
+        "event": "GMR Grand Prix (IMS Road)",
+        "venue": "indianapolis",
+        "date": "2026-05-09",
+        "winner": "Christian Lundgaard",
+        "team": "Arrow McLaren",
+        "country": "DK"
+      },
+      {
+        "event": "Indianapolis 500",
+        "venue": "indianapolis-oval",
+        "date": "2026-05-24",
+        "winner": "Felix Rosenqvist",
+        "team": "Meyer Shank",
+        "country": "SE"
+      },
+      {
+        "event": "Chevrolet Detroit GP",
+        "venue": "detroit",
+        "date": "2026-05-31",
+        "winner": "Alex Palou",
+        "team": "Chip Ganassi Racing",
+        "country": "ES"
+      }
+    ],
+    "motogp": [
+      {
+        "event": "French Grand Prix (Le Mans)",
+        "venue": "le-mans-bugatti",
+        "date": "2026-05-10",
+        "winner": "Jorge Martín",
+        "team": "Aprilia Racing",
+        "country": "ES"
+      },
+      {
+        "event": "Catalan Grand Prix",
+        "venue": "barcelona",
+        "date": "2026-05-17",
+        "winner": "Fabio Di Giannantonio",
+        "team": "Pertamina Enduro VR46 Racing Team",
+        "country": "IT"
+      },
+      {
+        "event": "Italian Grand Prix (Mugello)",
+        "venue": "mugello",
+        "date": "2026-05-31",
+        "winner": "Marco Bezzecchi",
+        "team": "Aprilia Racing",
+        "country": "IT"
+      }
+    ]
+  },
+  "2026-06": {
+    "dtm": [
+      {
+        "race_label": "Race 1",
+        "event": "Lausitzring Round",
+        "venue": "lausitzring",
+        "date": "2026-06-20",
+        "winner": "Ben Dörr",
+        "team": "Doerr Motorsport",
+        "country": "DE"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Lausitzring Round",
+        "venue": "lausitzring",
+        "date": "2026-06-21",
+        "winner": "Matteo Cairoli",
+        "team": "Emil Frey Racing",
+        "country": "IT"
+      }
+    ],
+    "fe": [
+      {
+        "event": "Sanya E-Prix",
+        "venue": "sanya",
+        "date": "2026-06-21",
+        "winner": "Jake Dennis",
+        "team": "Andretti Formula E",
+        "country": "GB"
+      }
+    ],
+    "gtwca": [
+      {
+        "event": "Road Atlanta Round",
+        "venue": "road-atlanta",
+        "date": "2026-06-14",
+        "winners": ["Jason Daskalos", "Philip Ellis"],
+        "team": "JMF Motorsports"
+      }
+    ],
+    "imsa": [
+      {
+        "event": "6 Hours of Watkins Glen",
+        "venue": "watkins-glen",
+        "date": "2026-06-28",
+        "winners": ["Bryce Ward", "Philip Ellis"],
+        "team": "Winward Racing"
+      }
+    ],
+    "indycar": [
+      {
+        "event": "Road America (R1 & R2)",
+        "venue": "road-america",
+        "date": "2026-06-21",
+        "winner": "Christian Lundgaard",
+        "team": "Arrow McLaren",
+        "country": "DK"
+      }
+    ],
+    "motogp": [
+      {
+        "event": "Dutch TT (Assen)",
+        "venue": "assen",
+        "date": "2026-06-28",
+        "winner": "Ai Ogura",
+        "team": "Trackhouse MotoGP Team",
+        "country": "JP"
+      }
+    ]
+  },
   "2026-07": {
     "f1": [
       {

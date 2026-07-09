@@ -37,17 +37,9 @@ function stripSuffix(slug) {
     .replace(/-(f1|motogp|fe|wsbk|oval|road|gp|national|nascar)$/, '');
 }
 
-// --- 1. Clear any previously-merged results (idempotency) ----------------
-
-for (const month of calendar) {
-  for (const week of month.weeks) {
-    for (const ev of week.events) {
-      delete ev.results;
-    }
-  }
-}
-
-// --- 2. Merge -----------------------------------------------------------
+// --- 1. Merge -----------------------------------------------------------
+// NOTE: existing results in calendar.json are preserved — this script only
+// adds entries from results.json that aren't already present (matched by date).
 
 const matched   = [];
 const unmatched = [];
@@ -76,15 +68,19 @@ for (const [monthKey, seriesMap] of Object.entries(results)) {
       const venueStripped = stripSuffix(venue);
 
       // Find the calendar event for this series+venue within this month.
+      // Primary match: venue slug vs track SVG name (strips layout suffixes).
+      // Fallback: for WRC/ERC flag SVGs (e.g. italy-wrc.svg) where venue
+      // is a city slug ("rome") rather than a flag name, match by series
+      // alone within the month — there should only be one event per month.
       let hit = null;
       outer: for (const week of calMonth.weeks) {
         for (const ev of week.events) {
           if (ev.series !== series) continue;
           const evVenue = stripSuffix(ev.track || '');
           if (
-            evVenue === venue         ||   // direct match
-            evVenue === venueStripped ||   // track stripped == result slug stripped
-            stripSuffix(evVenue) === venueStripped   // both stripped
+            evVenue === venue         ||
+            evVenue === venueStripped ||
+            stripSuffix(evVenue) === venueStripped
           ) {
             hit = ev;
             break outer;
@@ -92,8 +88,22 @@ for (const [monthKey, seriesMap] of Object.entries(results)) {
         }
       }
 
+      // Fallback: flag-SVG tracks (WRC/ERC) don't match by venue slug —
+      // use the sole series event in this month.
+      if (!hit) {
+        const seriesEventsInMonth = [];
+        for (const week of calMonth.weeks)
+          for (const ev of week.events)
+            if (ev.series === series) seriesEventsInMonth.push(ev);
+        if (seriesEventsInMonth.length === 1) hit = seriesEventsInMonth[0];
+      }
+
       if (hit) {
-        hit.results = (hit.results || []).concat(venueEntries);
+        const existing = new Set((hit.results || []).map(r => r.date + (r.race_label || '')));
+        const toAdd = venueEntries.filter(r => !existing.has(r.date + (r.race_label || '')));
+        if (toAdd.length) {
+          hit.results = (hit.results || []).concat(toAdd).sort((a, b) => a.date.localeCompare(b.date));
+        }
         matched.push(`  ✓  ${series.padEnd(10)} ${monthKey}  ${venue.padEnd(22)} → "${hit.title}"`);
       } else {
         unmatched.push(`  ✗  ${series.padEnd(10)} ${monthKey}  ${venue}  — no calendar event found`);
