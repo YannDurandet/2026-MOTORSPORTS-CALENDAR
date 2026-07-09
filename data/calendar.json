@@ -10,7 +10,15 @@
             "tag": "FORMULA E",
             "title": "Mexico City E-Prix",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "mexico-fe.svg"
+            "track": "mexico-fe.svg",
+            "results": [
+              {
+                "date": "2026-01-10",
+                "winner": "Nick Cassidy",
+                "team": "Citroën Racing",
+                "country": "NZ"
+              }
+            ]
           }
         ]
       },
@@ -29,6 +37,15 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-01-25",
+                "winner": "Oliver Solberg",
+                "co_driver": "Elliott Edmondson",
+                "manufacturer": "Toyota",
+                "country": "SE"
+              }
             ]
           },
           {
@@ -36,7 +53,19 @@
             "tag": "IMSA",
             "title": "Rolex 24 at Daytona",
             "time": "SAT <span class=\"hl\">19:40</span> > SUN <span class=\"hl\">19:40</span>",
-            "track": "daytona-road.svg"
+            "track": "daytona-road.svg",
+            "results": [
+              {
+                "date": "2026-01-25",
+                "winners": [
+                  "Felipe Nasr",
+                  "Julien Andlauer",
+                  "Laurin Heinrich"
+                ],
+                "team": "Porsche Penske Motorsport",
+                "country": "DE"
+              }
+            ]
           }
         ]
       },
@@ -48,7 +77,15 @@
             "tag": "FORMULA E",
             "title": "Miami E-Prix",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "miami-fe.svg"
+            "track": "miami-fe.svg",
+            "results": [
+              {
+                "date": "2026-01-31",
+                "winner": "Mitch Evans",
+                "team": "Jaguar TCS Racing",
+                "country": "NZ"
+              }
+            ]
           }
         ]
       }
@@ -72,6 +109,15 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-02-15",
+                "winner": "Elfyn Evans",
+                "co_driver": "Scott Martin",
+                "manufacturer": "Toyota",
+                "country": "GB"
+              }
             ]
           },
           {
@@ -79,21 +125,57 @@
             "tag": "FORMULA E",
             "title": "Jeddah E-Prix",
             "time": "R1 & R2: <span class=\"hl\">TBC</span>",
-            "track": "jeddah-fe.svg"
+            "track": "jeddah-fe.svg",
+            "results": [
+              {
+                "date": "2026-02-14",
+                "race_label": "Race 1",
+                "winner": "Pascal Wehrlein",
+                "team": "Porsche Formula E Team",
+                "country": "DE"
+              },
+              {
+                "date": "2026-02-15",
+                "race_label": "Race 2",
+                "winner": "António Félix da Costa",
+                "team": "Jaguar TCS Racing",
+                "country": "PT"
+              }
+            ]
           },
           {
             "series": "igtc",
             "tag": "IGTC",
             "title": "Bathurst 12 Hour",
             "time": "FRI > SUN",
-            "track": "bathurst.svg"
+            "track": "bathurst.svg",
+            "results": [
+              {
+                "date": "2026-02-15",
+                "winners": [
+                  "Maro Engel",
+                  "Mikael Grenier",
+                  "Maxime Martin"
+                ],
+                "team": "Mercedes-AMG Team GMR",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Daytona 500",
             "time": "RACE: <span class=\"hl\">20:30</span>",
-            "track": "daytona-oval.svg"
+            "track": "daytona-oval.svg",
+            "results": [
+              {
+                "date": "2026-02-15",
+                "winner": "Tyler Reddick",
+                "team": "23XI Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -105,21 +187,68 @@
             "tag": "WSBK",
             "title": "Phillip Island Round",
             "time": "FRI > SUN",
-            "track": "phillip-island-wsbk.svg"
+            "track": "phillip-island-wsbk.svg",
+            "results": [
+              {
+                "date": "2026-02-21",
+                "race_label": "Race 1",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-02-22",
+                "race_label": "Superpole Race",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-02-22",
+                "race_label": "Race 2",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "Sydney 500",
             "time": "FRI > SUN",
-            "track": "sydney.svg"
+            "track": "sydney.svg",
+            "results": [
+              {
+                "date": "2026-02-21",
+                "race_label": "Race 1",
+                "winner": "Broc Feeney",
+                "team": "Triple Eight Race Engineering",
+                "country": "AU"
+              },
+              {
+                "date": "2026-02-22",
+                "race_label": "Race 2",
+                "winner": "Anton De Pasquale",
+                "team": "DEWALT Racing",
+                "country": "AU"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Atlanta Motor Speedway",
             "time": "RACE: <span class=\"hl\">21:00</span>",
-            "track": "atlanta-oval.svg"
+            "track": "atlanta-oval.svg",
+            "results": [
+              {
+                "date": "2026-02-22",
+                "winner": "Tyler Reddick",
+                "team": "23XI Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -131,7 +260,23 @@
             "tag": "MOTOGP",
             "title": "Thai Grand Prix",
             "time": "RACE: <span class=\"hl\">08:00</span>",
-            "track": "buriram.svg"
+            "track": "buriram.svg",
+            "results": [
+              {
+                "date": "2026-02-28",
+                "race_label": "Sprint",
+                "winner": "Pedro Acosta",
+                "team": "Red Bull KTM Factory Racing",
+                "country": "ES"
+              },
+              {
+                "date": "2026-03-01",
+                "race_label": "Race",
+                "winner": "Marco Bezzecchi",
+                "team": "Aprilia Racing",
+                "country": "IT"
+              }
+            ]
           }
         ]
       }
@@ -155,6 +300,14 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-03-01",
+                "winner": "Alex Palou",
+                "team": "Chip Ganassi Racing",
+                "country": "ES"
+              }
             ]
           },
           {
@@ -162,7 +315,15 @@
             "tag": "NASCAR",
             "title": "EchoPark GP (COTA)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "cota-national.svg"
+            "track": "cota-national.svg",
+            "results": [
+              {
+                "date": "2026-03-01",
+                "winner": "Christopher Bell",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -186,6 +347,14 @@
                 "label": "F3",
                 "detail": "RACES: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-03-08",
+                "winner": "George Russell",
+                "team": "Mercedes",
+                "country": "GB"
+              }
             ]
           },
           {
@@ -193,21 +362,53 @@
             "tag": "SUPERCARS",
             "title": "Melbourne SuperSprint",
             "time": "THU > SUN",
-            "track": "albert-park.svg"
+            "track": "albert-park.svg",
+            "results": [
+              {
+                "date": "2026-03-07",
+                "race_label": "Race 1",
+                "winner": "Brodie Kostecki",
+                "team": "Dick Johnson Racing",
+                "country": "AU"
+              },
+              {
+                "date": "2026-03-08",
+                "race_label": "Race 2",
+                "winner": "Brodie Kostecki",
+                "team": "Dick Johnson Racing",
+                "country": "AU"
+              }
+            ]
           },
           {
             "series": "indycar",
             "tag": "INDYCAR",
             "title": "Phoenix Grand Prix",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "phoenix-oval.svg"
+            "track": "phoenix-oval.svg",
+            "results": [
+              {
+                "date": "2026-03-08",
+                "winner": "Josef Newgarden",
+                "team": "Team Penske",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Phoenix Raceway",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "phoenix-oval.svg"
+            "track": "phoenix-oval.svg",
+            "results": [
+              {
+                "date": "2026-03-08",
+                "winner": "Ryan Blaney",
+                "team": "Team Penske",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -226,6 +427,15 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-03-15",
+                "winner": "Takamoto Katsuta",
+                "co_driver": "Aaron Johnston",
+                "manufacturer": "Toyota",
+                "country": "JP"
+              }
             ]
           },
           {
@@ -234,14 +444,46 @@
             "title": "Chinese GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">04:00</span> • QUALI: <span class=\"hl\">08:00</span> • RACE: <span class=\"hl\">08:00</span>",
-            "track": "shanghai.svg"
+            "track": "shanghai.svg",
+            "results": [
+              {
+                "date": "2026-03-14",
+                "race_label": "Sprint",
+                "winner": "George Russell",
+                "team": "Mercedes",
+                "country": "GB"
+              },
+              {
+                "date": "2026-03-15",
+                "race_label": "Race",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 1: China",
             "time": "RACES: <span class=\"hl\">TBC</span>",
-            "track": "shanghai.svg"
+            "track": "shanghai.svg",
+            "results": [
+              {
+                "date": "2026-03-14",
+                "race_label": "Race 1",
+                "winner": "Nina Gademan",
+                "team": "MP Motorsport",
+                "country": "NL"
+              },
+              {
+                "date": "2026-03-15",
+                "race_label": "Race 2",
+                "winner": "Emma Felbermayr",
+                "team": "Rodin Motorsport",
+                "country": "AT"
+              }
+            ]
           },
           {
             "series": "indycar",
@@ -255,6 +497,14 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-03-15",
+                "winner": "Kyle Kirkwood",
+                "team": "Andretti Global",
+                "country": "US"
+              }
             ]
           },
           {
@@ -262,7 +512,15 @@
             "tag": "NASCAR",
             "title": "Pennzoil 400 (Las Vegas)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "las-vegas-oval.svg"
+            "track": "las-vegas-oval.svg",
+            "results": [
+              {
+                "date": "2026-03-15",
+                "winner": "Denny Hamlin",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -274,42 +532,109 @@
             "tag": "MOTOGP",
             "title": "Brazilian Grand Prix",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "goiania.svg"
+            "track": "goiania.svg",
+            "results": [
+              {
+                "date": "2026-03-21",
+                "race_label": "Sprint",
+                "winner": "Marc Marquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              },
+              {
+                "date": "2026-03-22",
+                "race_label": "Race",
+                "winner": "Marco Bezzecchi",
+                "team": "Aprilia Racing",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "fe",
             "tag": "FORMULA E",
             "title": "Madrid E-Prix",
             "time": "RACE: <span class=\"hl\">15:05</span>",
-            "track": "madrid-fe.svg"
+            "track": "madrid-fe.svg",
+            "results": [
+              {
+                "date": "2026-03-21",
+                "winner": "Antonio Felix da Costa",
+                "team": "Jaguar TCS Racing",
+                "country": "PT"
+              }
+            ]
           },
           {
             "series": "imsa",
             "tag": "IMSA",
             "title": "12 Hours of Sebring",
             "time": "RACE: <span class=\"hl\">15:40</span>",
-            "track": "sebring.svg"
+            "track": "sebring.svg",
+            "results": [
+              {
+                "date": "2026-03-21",
+                "winners": [
+                  "Felipe Nasr",
+                  "Julien Andlauer",
+                  "Laurin Heinrich"
+                ],
+                "team": "Porsche Penske Motorsport",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "nls",
             "tag": "NLS",
             "title": "58. ADAC Barbarossapreis (4h)",
             "time": "SAT: <span class=\"hl\">09:00</span>",
-            "track": "nordschleife.svg"
+            "track": "nordschleife.svg",
+            "results": [
+              {
+                "date": "2026-03-21",
+                "winners": [
+                  "Max Verstappen",
+                  "Daniel Juncadella",
+                  "Jules Gounon"
+                ],
+                "team": "Mercedes-AMG Team Verstappen Racing",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Goodyear 400 (Darlington)",
             "time": "RACE: <span class=\"hl\">20:00</span>",
-            "track": "darlington-oval.svg"
+            "track": "darlington-oval.svg",
+            "results": [
+              {
+                "date": "2026-03-22",
+                "winner": "Tyler Reddick",
+                "team": "23XI Racing",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "h24eu",
             "tag": "24H EU",
             "title": "Mugello 12H",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "mugello.svg"
+            "track": "mugello.svg",
+            "results": [
+              {
+                "date": "2026-03-22",
+                "winners": [
+                  "Pierre Kaffer",
+                  "Elia Erhart"
+                ],
+                "team": "Sainteloc Junior Team",
+                "country": "DE"
+              }
+            ]
           }
         ]
       },
@@ -321,14 +646,38 @@
             "tag": "FORMULA 1",
             "title": "Japanese GP",
             "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">07:00</span>",
-            "track": "suzuka.svg"
+            "track": "suzuka.svg",
+            "results": [
+              {
+                "date": "2026-03-29",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Americas Grand Prix",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "cota-national.svg"
+            "track": "cota-national.svg",
+            "results": [
+              {
+                "date": "2026-03-28",
+                "race_label": "Sprint",
+                "winner": "Jorge Martin",
+                "team": "Aprilia Racing",
+                "country": "ES"
+              },
+              {
+                "date": "2026-03-29",
+                "race_label": "Race",
+                "winner": "Marco Bezzecchi",
+                "team": "Aprilia Racing",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "wsbk",
@@ -345,7 +694,30 @@
                 "time": "SUN: <span class=\"hl\">18:00</span>"
               }
             ],
-            "track": "portimao.svg"
+            "track": "portimao.svg",
+            "results": [
+              {
+                "date": "2026-03-28",
+                "race_label": "Race 1",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-03-29",
+                "race_label": "Superpole Race",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-03-29",
+                "race_label": "Race 2",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "gtwca",
@@ -362,7 +734,23 @@
                 "time": "SUN: <span class=\"hl\">23:00</span>"
               }
             ],
-            "track": "sonoma.svg"
+            "track": "sonoma.svg",
+            "results": [
+              {
+                "date": "2026-03-28",
+                "race_label": "Race 1",
+                "winner": "Mikael Grenier / Michai Stephens",
+                "team": "JMF Motorsports",
+                "country": "US"
+              },
+              {
+                "date": "2026-03-29",
+                "race_label": "Race 2",
+                "winner": "Mikael Grenier / Michai Stephens",
+                "team": "JMF Motorsports",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "indycar",
@@ -376,6 +764,14 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-03-29",
+                "winner": "Alex Palou",
+                "team": "Chip Ganassi Racing",
+                "country": "ES"
+              }
             ]
           },
           {
@@ -383,7 +779,15 @@
             "tag": "NASCAR",
             "title": "Xfinity 500 (Martinsville)",
             "time": "RACE: <span class=\"hl\">21:30</span>",
-            "track": "martinsville-oval.svg"
+            "track": "martinsville-oval.svg",
+            "results": [
+              {
+                "date": "2026-03-29",
+                "winner": "Chase Elliott",
+                "team": "Hendrick Motorsports",
+                "country": "US"
+              }
+            ]
           }
         ]
       }
@@ -400,7 +804,23 @@
             "tag": "S. FORMULA",
             "title": "Motegi",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "motegi.svg"
+            "track": "motegi.svg",
+            "results": [
+              {
+                "date": "2026-04-04",
+                "race_label": "Race 1",
+                "winner": "Kakunoshin Ohta",
+                "team": "Docomo Team Dandelion Racing",
+                "country": "JP"
+              },
+              {
+                "date": "2026-04-05",
+                "race_label": "Race 2",
+                "winner": "Kakunoshin Ohta",
+                "team": "Docomo Team Dandelion Racing",
+                "country": "JP"
+              }
+            ]
           }
         ]
       },
@@ -419,6 +839,15 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-04-12",
+                "winner": "Takamoto Katsuta",
+                "co_driver": "Aaron Johnston",
+                "manufacturer": "Toyota",
+                "country": "JP"
+              }
             ]
           },
           {
@@ -426,28 +855,80 @@
             "tag": "SUPERCARS",
             "title": "ITM Taupō Super440",
             "time": "FRI > SUN",
-            "track": "taupo.svg"
+            "track": "taupo.svg",
+            "results": [
+              {
+                "date": "2026-04-11",
+                "race_label": "Race 1",
+                "winner": "Brodie Kostecki",
+                "team": "Dick Johnson Racing",
+                "country": "AU"
+              },
+              {
+                "date": "2026-04-11",
+                "race_label": "Race 2",
+                "winner": "Ryan Wood",
+                "team": "Walkinshaw TWG Racing",
+                "country": "NZ"
+              }
+            ]
           },
           {
             "series": "nls",
             "tag": "NLS",
             "title": "Adenauer ADAC Trophy (4h)",
             "time": "SAT: <span class=\"hl\">10:00</span>",
-            "track": "nordschleife.svg"
+            "track": "nordschleife.svg",
+            "results": [
+              {
+                "date": "2026-04-11",
+                "winners": [
+                  "Marco Wittmann",
+                  "Philipp Eng",
+                  "Robin Frijns"
+                ],
+                "team": "Schubert Motorsport",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "elms",
             "tag": "ELMS",
             "title": "4 Hours of Barcelona",
             "time": "SUN: <span class=\"hl\">12:00</span>",
-            "track": "barcelona.svg"
+            "track": "barcelona.svg",
+            "results": [
+              {
+                "date": "2026-04-12",
+                "winners": [
+                  "Oliver Gray",
+                  "Esteban Masson",
+                  "Louis Rousset"
+                ],
+                "team": "Forestier Racing by Panis",
+                "country": "FR"
+              }
+            ]
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "6 Hours of Paul Ricard",
             "time": "SAT > SUN",
-            "track": "paul-ricard.svg"
+            "track": "paul-ricard.svg",
+            "results": [
+              {
+                "date": "2026-04-12",
+                "winners": [
+                  "Mattia Drudi",
+                  "Marco Sørensen",
+                  "Nicki Thiim"
+                ],
+                "team": "Comtoyou Racing",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -466,7 +947,30 @@
             "tag": "WSBK",
             "title": "Assen Round",
             "time": "FRI > SUN",
-            "track": "assen.svg"
+            "track": "assen.svg",
+            "results": [
+              {
+                "date": "2026-04-18",
+                "race_label": "Race 1",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-04-19",
+                "race_label": "Superpole Race",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-04-19",
+                "race_label": "Race 2",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "btcc",
@@ -501,7 +1005,15 @@
             "tag": "INDYCAR",
             "title": "Acura GP of Long Beach",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "long-beach.svg"
+            "track": "long-beach.svg",
+            "results": [
+              {
+                "date": "2026-04-19",
+                "winner": "Alex Palou",
+                "team": "Chip Ganassi Racing",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "imsa",
@@ -515,7 +1027,19 @@
             "tag": "WEC",
             "title": "6 Hours of Imola",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "imola.svg"
+            "track": "imola.svg",
+            "results": [
+              {
+                "date": "2026-04-19",
+                "winners": [
+                  "Sébastien Buemi",
+                  "Brendon Hartley",
+                  "Ryo Hirakawa"
+                ],
+                "team": "Toyota Racing",
+                "country": "JP"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -601,42 +1125,132 @@
             "title": "Miami GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">18:00</span> • QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">22:00</span>",
-            "track": "miami.svg"
+            "track": "miami.svg",
+            "results": [
+              {
+                "date": "2026-05-02",
+                "race_label": "Sprint",
+                "winner": "Lando Norris",
+                "team": "McLaren",
+                "country": "GB"
+              },
+              {
+                "date": "2026-05-03",
+                "race_label": "Race",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Balaton Park Round",
             "time": "FRI > SUN",
-            "track": "balaton-motogp.svg"
+            "track": "balaton-motogp.svg",
+            "results": [
+              {
+                "date": "2026-05-02",
+                "race_label": "Race 1",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-05-03",
+                "race_label": "Superpole Race",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-05-03",
+                "race_label": "Race 2",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "fe",
             "tag": "FORMULA E",
             "title": "Berlin E-Prix",
             "time": "R1 & R2: <span class=\"hl\">TBC</span>",
-            "track": "berlin.svg"
+            "track": "berlin.svg",
+            "results": [
+              {
+                "date": "2026-05-02",
+                "race_label": "Race 1",
+                "winner": "Nico Müller",
+                "team": "Porsche Andretti",
+                "country": "CH"
+              },
+              {
+                "date": "2026-05-03",
+                "race_label": "Race 2",
+                "winner": "Mitch Evans",
+                "team": "Jaguar TCS Racing",
+                "country": "NZ"
+              }
+            ]
           },
           {
             "series": "imsa",
             "tag": "IMSA",
             "title": "Monterey Sportscar Champ.",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "laguna-seca.svg"
+            "track": "laguna-seca.svg",
+            "results": [
+              {
+                "date": "2026-05-03",
+                "winners": [
+                  "Laurin Heinrich",
+                  "Tijmen van der Helm"
+                ],
+                "team": "JDC-Miller MotorSports",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "elms",
             "tag": "ELMS",
             "title": "4 Hours of Le Castellet",
             "time": "SUN: <span class=\"hl\">11:00</span>",
-            "track": "paul-ricard.svg"
+            "track": "paul-ricard.svg",
+            "results": [
+              {
+                "date": "2026-05-03",
+                "winners": [
+                  "Graeme Peebles",
+                  "Grégoire Saucy",
+                  "Ben Hanley"
+                ],
+                "team": "United Autosports",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "Brands Hatch Sprint",
             "time": "SAT + SUN",
-            "track": "brands-hatch-gp.svg"
+            "track": "brands-hatch-gp.svg",
+            "results": [
+              {
+                "date": "2026-05-03",
+                "race_label": "Race 1",
+                "winners": [
+                  "Arthur Leclerc",
+                  "Thomas Neubauer"
+                ],
+                "team": "AF Corse",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "tcr",
@@ -668,6 +1282,15 @@
                 "badge": "wrc2",
                 "label": "WRC2",
                 "detail": "ALL STAGES"
+              }
+            ],
+            "results": [
+              {
+                "date": "2026-05-10",
+                "winner": "Thierry Neuville",
+                "co_driver": "Martijn Wydaeghe",
+                "manufacturer": "Hyundai",
+                "country": "BE"
               }
             ]
           },
@@ -771,14 +1394,46 @@
             "title": "Canadian GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">18:00</span> • QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">22:00</span>",
-            "track": "montreal.svg"
+            "track": "montreal.svg",
+            "results": [
+              {
+                "date": "2026-05-23",
+                "race_label": "Sprint",
+                "winner": "George Russell",
+                "team": "Mercedes",
+                "country": "GB"
+              },
+              {
+                "date": "2026-05-24",
+                "race_label": "Race",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 3: Canada",
             "time": "RACES: <span class=\"hl\">TBC</span>",
-            "track": "montreal.svg"
+            "track": "montreal.svg",
+            "results": [
+              {
+                "date": "2026-05-23",
+                "race_label": "Race 1",
+                "winner": "Alisha Palmowski",
+                "team": "Campos Racing",
+                "country": "GB"
+              },
+              {
+                "date": "2026-05-24",
+                "race_label": "Race 2",
+                "winner": "Mathilda Paatz",
+                "team": "Aston Martin",
+                "country": "AT"
+              }
+            ]
           },
           {
             "series": "dtm",
@@ -938,6 +1593,14 @@
                 "label": "F3",
                 "detail": "RACES: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-06-07",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
             ]
           },
           {
@@ -945,14 +1608,53 @@
             "tag": "MOTOGP",
             "title": "Hungarian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "balaton-motogp.svg"
+            "track": "balaton-motogp.svg",
+            "results": [
+              {
+                "date": "2026-06-06",
+                "race_label": "Sprint",
+                "winner": "Marc Márquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              },
+              {
+                "date": "2026-06-07",
+                "race_label": "Race",
+                "winner": "Marc Márquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Oulton Park (Races 10-12)",
             "time": "SAT + SUN",
-            "track": "oulton-park-international.svg"
+            "track": "oulton-park-international.svg",
+            "results": [
+              {
+                "date": "2026-06-07",
+                "race_label": "Race 10",
+                "winner": "Dan Cammish",
+                "team": "NAPA Racing UK",
+                "country": "GB"
+              },
+              {
+                "date": "2026-06-07",
+                "race_label": "Race 11",
+                "winner": "Ash Sutton",
+                "team": "NAPA Racing UK",
+                "country": "GB"
+              },
+              {
+                "date": "2026-06-07",
+                "race_label": "Race 12",
+                "winner": "Charles Rainford",
+                "team": "WSR",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "indycar",
@@ -966,6 +1668,14 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-06-07",
+                "winner": "Josef Newgarden",
+                "team": "Team Penske",
+                "country": "US"
+              }
             ]
           },
           {
@@ -973,21 +1683,50 @@
             "tag": "NASCAR",
             "title": "FireKeepers Casino 400 (Michigan)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "michigan.svg"
+            "track": "michigan.svg",
+            "results": [
+              {
+                "date": "2026-06-07",
+                "winner": "Denny Hamlin",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "h24eu",
             "tag": "24H EU",
             "title": "Paul Ricard 12H",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "paul-ricard.svg"
+            "track": "paul-ricard.svg",
+            "results": [
+              {
+                "date": "2026-06-07",
+                "winners": [
+                  "Torsten Kratz",
+                  "Maximilian Partl",
+                  "Alexander Prinz",
+                  "Michael Kroll"
+                ],
+                "team": "HOFOR Racing",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "psc",
             "tag": "PORSCHE SC",
             "title": "Rd 1: Monaco",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "monaco.svg"
+            "track": "monaco.svg",
+            "results": [
+              {
+                "date": "2026-06-07",
+                "winner": "Theo Oeverhaus",
+                "team": "Martinet by Alméras",
+                "country": "DE"
+              }
+            ]
           }
         ]
       },
@@ -1011,6 +1750,14 @@
                 "label": "F3",
                 "detail": "RACES: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-06-14",
+                "winner": "Lewis Hamilton",
+                "team": "Ferrari",
+                "country": "GB"
+              }
             ]
           },
           {
@@ -1018,21 +1765,72 @@
             "tag": "WSBK",
             "title": "Misano Round",
             "time": "FRI > SUN",
-            "track": "misano-wsbk.svg"
+            "track": "misano-wsbk.svg",
+            "results": [
+              {
+                "date": "2026-06-13",
+                "race_label": "Race 1",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-06-14",
+                "race_label": "Superpole Race",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "date": "2026-06-14",
+                "race_label": "Race 2",
+                "winner": "Nicolo Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "wec",
             "tag": "WEC",
             "title": "24 Hours of Le Mans",
             "time": "SAT <span class=\"hl\">16:00</span> > SUN <span class=\"hl\">16:00</span>",
-            "track": "le-mans.svg"
+            "track": "le-mans.svg",
+            "results": [
+              {
+                "date": "2026-06-14",
+                "winners": [
+                  "Mike Conway",
+                  "Kamui Kobayashi",
+                  "Nyck de Vries"
+                ],
+                "team": "Toyota Racing",
+                "country": "JP"
+              }
+            ]
           },
           {
             "series": "tcr",
             "tag": "TCR",
             "title": "Valencia Round",
             "time": "FRI > SUN",
-            "track": "valencia.svg"
+            "track": "valencia.svg",
+            "results": [
+              {
+                "date": "2026-06-14",
+                "race_label": "Race 1",
+                "winner": "Santiago Urrutia",
+                "team": "Geely Cyan Racing",
+                "country": "UY"
+              },
+              {
+                "date": "2026-06-14",
+                "race_label": "Race 2",
+                "winner": "Santiago Urrutia",
+                "team": "Geely Cyan Racing",
+                "country": "UY"
+              }
+            ]
           },
           {
             "series": "gtwca",
@@ -1046,14 +1844,30 @@
             "tag": "NASCAR",
             "title": "HighPoint.com 400 (Pocono)",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "pocono.svg"
+            "track": "pocono.svg",
+            "results": [
+              {
+                "date": "2026-06-14",
+                "winner": "Denny Hamlin",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "psc",
             "tag": "PORSCHE SC",
             "title": "Rd 2: Barcelona",
             "time": "RACE: <span class=\"hl\">TBC</span>",
-            "track": "barcelona.svg"
+            "track": "barcelona.svg",
+            "results": [
+              {
+                "date": "2026-06-14",
+                "winner": "Flynt Schuring",
+                "team": "Schumacher CLRT",
+                "country": "NL"
+              }
+            ]
           }
         ]
       },
@@ -1065,7 +1879,23 @@
             "tag": "MOTOGP",
             "title": "Czech Grand Prix (Brno)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "brno.svg"
+            "track": "brno.svg",
+            "results": [
+              {
+                "date": "2026-06-20",
+                "race_label": "Sprint",
+                "winner": "Francesco Bagnaia",
+                "team": "Ducati Lenovo Team",
+                "country": "IT"
+              },
+              {
+                "date": "2026-06-21",
+                "race_label": "Race",
+                "winner": "Marc Márquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "dtm",
@@ -1159,6 +1989,14 @@
                 "label": "F3",
                 "detail": "RACES: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-06-28",
+                "winner": "George Russell",
+                "team": "Mercedes",
+                "country": "GB"
+              }
             ]
           },
           {
@@ -1173,14 +2011,38 @@
             "tag": "GTWCE",
             "title": "24 Hours of Spa",
             "time": "WED > SUN",
-            "track": "spa.svg"
+            "track": "spa.svg",
+            "results": [
+              {
+                "date": "2026-06-28",
+                "winners": [
+                  "Ricardo Feller",
+                  "Thomas Preining",
+                  "Bastian Buus"
+                ],
+                "team": "Lionspeed GP",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "igtc",
             "tag": "IGTC",
             "title": "CrowdStrike 24 Hours of Spa",
             "time": "THU > SUN",
-            "track": "spa.svg"
+            "track": "spa.svg",
+            "results": [
+              {
+                "date": "2026-06-28",
+                "winners": [
+                  "Ricardo Feller",
+                  "Thomas Preining",
+                  "Bastian Buus"
+                ],
+                "team": "Lionspeed GP",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "imsa",

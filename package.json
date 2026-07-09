@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.1",
+    "@astrojs/sitemap": "^3.0.0",
     "@libsql/client": "^0.17.4",
     "astro": "^7.0.6",
     "resend": "^6.17.1",

@@ -70,7 +70,7 @@ const seriesImages: Record<string, string> = {
     </div>
   </header>
 
-  <div class="main-section">
+  <main id="main-content" class="main-section">
     {grouped.map(group => (
       <>
         <div class="series-index-category">{group.category}</div>
@@ -101,7 +101,7 @@ const seriesImages: Record<string, string> = {
     ))}
 
     <Footer />
-  </div>
+  </main>
 </BaseLayout>
 
 <script>

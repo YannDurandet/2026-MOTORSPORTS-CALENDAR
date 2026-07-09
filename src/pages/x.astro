@@ -1,19 +1,4 @@
 ---
-// UTM redirect — X (Twitter) bio link
-// Forwards visitors from dord.racing/x to the homepage with Twitter UTM parameters.
-// True 301 would require a server adapter; this meta-refresh is the SSG-compatible fallback.
+export const prerender = false;
+return Astro.redirect('/?utm_source=twitter&utm_medium=social', 301);
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=/?utm_source=twitter&utm_medium=social">
-  <link rel="canonical" href="https://dord.racing/">
-  <title>dord.racing</title>
-</head>
-<body>
-  <p>Redirecting… <a href="/?utm_source=twitter&utm_medium=social">Click here if not redirected</a>.</p>
-  <script>window.location.replace('/?utm_source=twitter&utm_medium=social');</script>
-</body>
-</html>

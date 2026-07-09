@@ -255,10 +255,12 @@ function initDashToggle() {
         if (isCollapsed) {
             dashGrid.classList.remove('collapsed');
             toggleBtn.classList.add('expanded');
+            toggleBtn.setAttribute('aria-expanded', 'true');
             toggleBtn.querySelector('span').textContent = 'SHOW LESS';
         } else {
             dashGrid.classList.add('collapsed');
             toggleBtn.classList.remove('expanded');
+            toggleBtn.setAttribute('aria-expanded', 'false');
             toggleBtn.querySelector('span').textContent = 'SEE ALL SERIES';
         }
     });
@@ -479,9 +481,7 @@ function dimPastEvents() {
 
     if (pastMonthCount > 0 && pastSummary) {
         pastSummary.textContent = `View Past Events (${pastMonthCount} Month${pastMonthCount > 1 ? 's' : ''})`;
-        pastContainer.addEventListener('toggle', () => {
-            pastSummary.setAttribute('aria-expanded', pastContainer.open ? 'true' : 'false');
-        });
+        // Note: <details>/<summary> manage open/closed state natively — no aria-expanded needed
     } else {
         pastContainer.hidden = true;
     }
@@ -579,9 +579,21 @@ function injectSchema() {
 // =============================================
 function initEventRowClicks() {
     document.querySelectorAll('.event[data-track-href]').forEach(row => {
+        // Make the row keyboard-focusable and activatable (link semantics)
+        row.setAttribute('role', 'link');
+        row.setAttribute('tabindex', '0');
+
         row.addEventListener('click', e => {
             if (e.target.closest('a') || e.target.closest('button')) return;
             window.location.href = row.dataset.trackHref;
+        });
+
+        row.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                if (e.target.closest('a') || e.target.closest('button')) return;
+                e.preventDefault();
+                window.location.href = row.dataset.trackHref;
+            }
         });
     });
 }
@@ -592,7 +604,9 @@ function initEventRowClicks() {
 function initToggle() {
     document.querySelectorAll('.arrow-btn').forEach(btn => {
         btn.addEventListener('click', () => {
+            const isNowActive = !btn.classList.contains('active');
             btn.classList.toggle('active');
+            btn.setAttribute('aria-expanded', isNowActive ? 'true' : 'false');
             const sibling = btn.parentElement?.nextElementSibling;
             if (sibling) sibling.classList.toggle('open');
         });

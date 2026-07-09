@@ -1,18 +1,4 @@
 ---
-// UTM redirect — Yann Durandet personal site (yanndurandet.me)
-// Forwards visitors from dord.racing/yd to the homepage with UTM parameters.
+export const prerender = false;
+return Astro.redirect('/?utm_source=yanndurandet&utm_medium=referral', 301);
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="refresh" content="0; url=/?utm_source=yanndurandet&utm_medium=referral">
-  <link rel="canonical" href="https://dord.racing/">
-  <title>dord.racing</title>
-</head>
-<body>
-  <p>Redirecting… <a href="/?utm_source=yanndurandet&utm_medium=referral">Click here if not redirected</a>.</p>
-  <script>window.location.replace('/?utm_source=yanndurandet&utm_medium=referral');</script>
-</body>
-</html>

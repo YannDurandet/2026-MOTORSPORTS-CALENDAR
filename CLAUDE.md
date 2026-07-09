@@ -102,3 +102,16 @@ Search index is built at `/data/search.json` from tracks + series. It is fetched
 
 ## Bash sandbox note
 The sandbox mounts the workspace at `/sessions/keen-charming-rubin/mnt/2026-MOTORSPORTS-CALENDAR/`. After external tools (Gemini etc.) edit files, prefer the **Read tool** over bash `cat` to verify file state — bash may show a stale cached mount.
+
+## Accessibility checklist (WCAG 2.2 AA)
+Run this before merging any new feature or page:
+
+- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI). Prefer `#8a9aaa`/`#7a8fa0` for secondary meta text on dark backgrounds.
+- [ ] Every new interactive element is keyboard-operable: Tab-reachable, Enter/Space activates, has a visible focus ring (not just `outline: none`).
+- [ ] Every new icon/SVG has `aria-hidden="true"` if decorative, or an accessible name (`aria-label`/`<title>`) if it conveys information.
+- [ ] Every color-coded element (series tags, status indicators) also conveys meaning via text — color is never the sole indicator.
+- [ ] Every new page has `<main id="main-content">` as the primary landmark, with a skip link already present in `BaseLayout.astro`.
+- [ ] Toggle/disclosure buttons carry `aria-expanded` and update it in JS. Filter/toggle buttons carry `aria-pressed`.
+- [ ] Any new animation/transition is suppressed under `@media (prefers-reduced-motion: reduce)`.
+- [ ] Flag `<img>` alt text uses the full country name, not the ISO code.
+- [ ] No new font sizes below `0.7rem` for meta/label text, and no new body text below `0.85rem`.

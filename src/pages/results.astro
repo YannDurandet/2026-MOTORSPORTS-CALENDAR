@@ -4,7 +4,7 @@ import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-import resultsData from '../../data/results.json';
+import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -23,6 +23,30 @@ function normalizeCountry(name: string): string {
     'UK': 'GB', 'USA': 'US',
   };
   return map[name] ?? '';
+}
+
+// Map ISO 2-letter codes → full country name for accessible alt text
+const isoToName: Record<string, string> = {
+  'AU': 'Australia', 'AT': 'Austria', 'AZ': 'Azerbaijan', 'BH': 'Bahrain',
+  'BE': 'Belgium', 'BR': 'Brazil', 'CA': 'Canada', 'CN': 'China',
+  'CZ': 'Czech Republic', 'FR': 'France', 'DE': 'Germany', 'HU': 'Hungary',
+  'ID': 'Indonesia', 'IE': 'Ireland', 'IT': 'Italy', 'JP': 'Japan',
+  'LV': 'Latvia', 'MO': 'Macau', 'MY': 'Malaysia', 'MX': 'Mexico',
+  'MC': 'Monaco', 'NL': 'Netherlands', 'NZ': 'New Zealand', 'PT': 'Portugal',
+  'QA': 'Qatar', 'SA': 'Saudi Arabia', 'SG': 'Singapore', 'KR': 'South Korea',
+  'ES': 'Spain', 'SE': 'Sweden', 'TH': 'Thailand', 'AE': 'UAE',
+  'GB': 'United Kingdom', 'US': 'United States',
+};
+function countryName(code: string): string {
+  return isoToName[code] ?? code;
+}
+
+// Build calendarSvg filename → track slug from tracks.json
+const svgToSlug = new Map<string, string>();
+for (const track of tracksData as any[]) {
+  for (const svg of (track.calendarSvgs ?? [])) svgToSlug.set(svg, track.slug);
+  for (const layout of (track.layouts ?? []))
+    for (const svg of (layout.calendarSvgs ?? [])) svgToSlug.set(svg, track.slug);
 }
 
 // Build venue slug → ISO country code from tracks.json
@@ -75,7 +99,6 @@ function isoWeek(dateStr: string): number {
 
 type ResultEntry = {
   series: string;
-  round: number;
   race_label?: string;
   event: string;
   venue: string;
@@ -85,40 +108,45 @@ type ResultEntry = {
   manufacturer?: string;
   winners?: string[];
   team?: string;
-  car_number?: string;
   country?: string;
 };
 
-const months = Object.keys(resultsData as Record<string, any>).sort().reverse();
+// Flatten all calendar events that have results
+const flat: ResultEntry[] = [];
+for (const month of calendarData as any[]) {
+  for (const week of month.weeks) {
+    for (const ev of week.events) {
+      if (!ev.results?.length) continue;
+      const venue = svgToSlug.get(ev.track ?? '') ?? '';
+      for (const r of ev.results) {
+        flat.push({ series: ev.series, event: ev.title, venue, ...r });
+      }
+    }
+  }
+}
 
+// Sort descending — most recent first
+flat.sort((a, b) => b.date.localeCompare(a.date));
+
+// Group by month (YYYY-MM), then by ISO week within each month
 type WeekGroup = { week: number; rows: ResultEntry[] };
 const byMonth: Record<string, WeekGroup[]> = {};
 
-for (const month of months) {
-  const seriesMap = (resultsData as Record<string, any>)[month];
-  const flat: ResultEntry[] = [];
-  for (const [slug, races] of Object.entries(seriesMap) as [string, any[]][]) {
-    for (const r of races) flat.push({ series: slug, ...r });
+for (const r of flat) {
+  const monthKey = r.date.slice(0, 7);
+  if (!byMonth[monthKey]) byMonth[monthKey] = [];
+  const w = isoWeek(r.date);
+  const groups = byMonth[monthKey];
+  const last = groups[groups.length - 1];
+  if (last && last.week === w) {
+    last.rows.push(r);
+  } else {
+    groups.push({ week: w, rows: [r] });
   }
-  // Sort descending — most recent first
-  flat.sort((a, b) => b.date.localeCompare(a.date));
-
-  const groups: WeekGroup[] = [];
-  for (const r of flat) {
-    const w = isoWeek(r.date);
-    const last = groups[groups.length - 1];
-    if (last && last.week === w) {
-      last.rows.push(r);
-    } else {
-      groups.push({ week: w, rows: [r] });
-    }
-  }
-  byMonth[month] = groups;
 }
 
-const allSeries = [...new Set(
-  months.flatMap(m => Object.keys((resultsData as Record<string, any>)[m]))
-)].sort();
+const months = Object.keys(byMonth).sort().reverse();
+const allSeries = [...new Set(flat.map(r => r.series))].sort();
 ---
 
 <BaseLayout
@@ -148,17 +176,17 @@ const allSeries = [...new Set(
     </div>
   </header>
 
-  <div class="main-section">
+  <main id="main-content" class="main-section">
     <div class="res-layout">
 
       <!-- Sidebar -->
       <aside class="res-sidebar">
         <div class="res-sidebar-label">Series</div>
-        <div class="res-filters" id="res-filters">
-          <button class="res-filter res-filter-util" id="res-select-all">Select All</button>
-          <button class="res-filter res-filter-util" id="res-deselect-all">Deselect All</button>
+        <div class="res-filters" id="res-filters" role="group" aria-label="Filter by series">
+          <button class="res-filter res-filter-util" id="res-select-all" aria-label="Select all series">Select All</button>
+          <button class="res-filter res-filter-util" id="res-deselect-all" aria-label="Deselect all series">Deselect All</button>
           {allSeries.map(s => (
-            <button class="res-filter active" data-series={s} style={`--c: var(--${s})`}>
+            <button class="res-filter active" data-series={s} style={`--c: var(--${s})`} aria-pressed="true">
               {seriesShort[s] ?? s.toUpperCase()}
             </button>
           ))}
@@ -198,13 +226,16 @@ const allSeries = [...new Set(
                       </div>
                       <div class="res-event">
                         {venueCountry[r.venue] && (
-                          <img class="res-venue-flag" src={flagSrc(venueCountry[r.venue], base)} alt={venueCountry[r.venue]} width="20" height="14" loading="lazy" />
+                          <img class="res-venue-flag" src={flagSrc(venueCountry[r.venue], base)} alt={countryName(venueCountry[r.venue])} width="20" height="14" loading="lazy" />
                         )}
-                        <a href={`${base}/tracks/${r.venue}`} class="res-venue-link">{r.event}</a>
+                        {r.venue
+                          ? <a href={`${base}/tracks/${r.venue}`} class="res-venue-link">{r.event}</a>
+                          : <span class="res-venue-link">{r.event}</span>
+                        }
                       </div>
                       <div class="res-winner">
                         {r.country && (
-                          <img class="res-flag" src={flagSrc(r.country, base)} alt={r.country} width="20" height="14" loading="lazy" />
+                          <img class="res-flag" src={flagSrc(r.country, base)} alt={countryName(r.country)} width="20" height="14" loading="lazy" />
                         )}
                         <span class="res-winner-name">
                           {r.winners ? r.winners.join(' · ') : r.winner}
@@ -225,7 +256,7 @@ const allSeries = [...new Set(
 
     </div>
     <Footer />
-  </div>
+  </main>
 </BaseLayout>
 
 <style>
@@ -251,8 +282,8 @@ const allSeries = [...new Set(
 
   .res-sidebar-label {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.54rem;
-    color: #334;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -268,13 +299,13 @@ const allSeries = [...new Set(
 
   .res-filter {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 5px 10px;
     border: 1px solid var(--border);
     background: none;
-    color: #445;
+    color: #7a8fa0;
     cursor: pointer;
     transition: color 0.13s, border-color 0.13s, background 0.13s;
     white-space: nowrap;
@@ -292,9 +323,9 @@ const allSeries = [...new Set(
   }
 
   .res-filter-util {
-    font-size: 0.5rem;
-    color: #334;
-    border-color: #141e28;
+    font-size: 0.7rem;
+    color: #7a8fa0;
+    border-color: #1c2a35;
     padding: 4px 8px;
   }
   .res-filter-util:hover {
@@ -317,8 +348,8 @@ const allSeries = [...new Set(
   .res-jump-link {
     display: block;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
-    color: #445;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     text-decoration: none;
     padding: 5px 10px;
     letter-spacing: 0.06em;
@@ -359,8 +390,8 @@ const allSeries = [...new Set(
 
   .res-month-count {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.56rem;
-    color: #334;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -416,8 +447,8 @@ const allSeries = [...new Set(
 
   .res-date {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #556;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     letter-spacing: 0.06em;
     white-space: nowrap;
   }
@@ -431,7 +462,7 @@ const allSeries = [...new Set(
 
   .res-series-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 900;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -440,8 +471,8 @@ const allSeries = [...new Set(
 
   .res-race-label {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.55rem;
-    color: #445;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -515,8 +546,8 @@ const allSeries = [...new Set(
 
   .res-team {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #445;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.04em;
     white-space: nowrap;
     overflow: hidden;
@@ -592,9 +623,11 @@ const allSeries = [...new Set(
       if (hidden.has(s)) {
         hidden.delete(s);
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
       } else {
         hidden.add(s);
         btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
       }
       applyFilter();
     });
@@ -603,13 +636,13 @@ const allSeries = [...new Set(
   // Select All
   document.getElementById('res-select-all')?.addEventListener('click', () => {
     hidden.clear();
-    seriesBtns.forEach(b => b.classList.add('active'));
+    seriesBtns.forEach(b => { b.classList.add('active'); b.setAttribute('aria-pressed', 'true'); });
     applyFilter();
   });
 
   // Deselect All
   document.getElementById('res-deselect-all')?.addEventListener('click', () => {
-    seriesBtns.forEach(b => { hidden.add(b.dataset.series ?? ''); b.classList.remove('active'); });
+    seriesBtns.forEach(b => { hidden.add(b.dataset.series ?? ''); b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
     applyFilter();
   });
 

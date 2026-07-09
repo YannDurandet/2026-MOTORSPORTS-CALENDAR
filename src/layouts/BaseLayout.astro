@@ -46,6 +46,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <slot name="head" />
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="container">
     <slot />
   </div>
@@ -81,12 +82,13 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     <div class="search-backdrop" id="search-backdrop"></div>
     <div class="search-modal">
       <div class="search-input-row">
+        <label for="search-input" class="sr-only">Search tracks and series</label>
         <svg class="search-modal-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true">
           <circle cx="8.5" cy="8.5" r="5.5"/>
           <line x1="13" y1="13" x2="17" y2="17"/>
         </svg>
         <input id="search-input" class="search-input" type="search" placeholder="Search tracks & series…" autocomplete="off" spellcheck="false" />
-        <kbd class="search-kbd">ESC</kbd>
+        <kbd class="search-kbd" aria-label="Press Escape to close">ESC</kbd>
       </div>
       <div id="search-results" class="search-results"></div>
     </div>
@@ -95,7 +97,49 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <!-- Back to top -->
   <button id="back-to-top" class="back-to-top" aria-label="Back to top" hidden>↑ TOP</button>
 
+  <!-- Email obfuscation — assembles mailto links client-side so the address
+       never appears in raw HTML. Any <a class="js-mailto" data-u="user" data-d="domain">
+       gets its href set to mailto:user@domain. Add data-show to also replace the text. -->
+  <script>
+    document.querySelectorAll<HTMLAnchorElement>('.js-mailto').forEach(el => {
+      const email = el.dataset.u + '@' + el.dataset.d;
+      el.href = 'mailto:' + email;
+      if ('show' in el.dataset) el.textContent = email;
+    });
+  </script>
+
   <style is:global>
+    /* ── Skip link ───────────────────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 0;
+      z-index: 99999;
+      background: #fff;
+      color: #000;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-bottom-right-radius: 4px;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+    /* ── Screen reader only utility ──────────────────────────────────────────── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     /* ── Search overlay ──────────────────────────────────────────────────────── */
     .search-overlay {
       position: fixed;
@@ -390,9 +434,18 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
 
     let searchIndex: any[] | null = null;
     let focusIdx = -1;
+    let searchTriggerEl: HTMLElement | null = null;
 
-    function openSearch() {
+    function getFocusableEls(): HTMLElement[] {
+      if (!overlay) return [];
+      return Array.from(overlay.querySelectorAll<HTMLElement>(
+        'input, button, a[href], [tabindex]:not([tabindex="-1"])'
+      )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+    }
+
+    function openSearch(triggerEl?: HTMLElement) {
       if (!overlay) return;
+      searchTriggerEl = triggerEl ?? (document.activeElement as HTMLElement) ?? null;
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';
       setTimeout(() => input?.focus(), 30);
@@ -405,6 +458,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       if (input) input.value = '';
       if (results) results.innerHTML = '';
       focusIdx = -1;
+      searchTriggerEl?.focus();
+      searchTriggerEl = null;
     }
 
     async function loadIndex() {
@@ -497,8 +552,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     // Wire triggers
-    document.getElementById('search-trigger')?.addEventListener('click', openSearch);
-    document.getElementById('sticky-search-trigger')?.addEventListener('click', openSearch);
+    const headerTrigger = document.getElementById('search-trigger');
+    const stickyTrigger = document.getElementById('sticky-search-trigger');
+    headerTrigger?.addEventListener('click', () => openSearch(headerTrigger));
+    stickyTrigger?.addEventListener('click', () => openSearch(stickyTrigger));
     backdrop?.addEventListener('click', closeSearch);
 
     input?.addEventListener('input', async () => {
@@ -516,11 +573,26 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       else if (e.key === 'Escape') closeSearch();
     });
 
+    // Focus trap: keep Tab / Shift+Tab cycling inside the modal
+    overlay?.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+      if (overlay.hidden) return;
+      const focusable = getFocusableEls();
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
     document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (overlay?.hidden === false) return; // already open
       if (e.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes((e.target as Element)?.tagName)) {
         e.preventDefault();
-        openSearch();
+        openSearch(document.activeElement as HTMLElement);
       }
     });
   </script>

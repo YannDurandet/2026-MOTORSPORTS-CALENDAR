@@ -147,7 +147,7 @@ header {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.78rem;
     font-weight: 700;
-    color: #667;
+    color: #8a9aaa;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -192,7 +192,7 @@ h2 {
     letter-spacing: 1px;
     margin: 0;
     padding-right: 12px;
-    background: linear-gradient(90deg, #C3C6C8, #70767C);
+    background: linear-gradient(90deg, #C3C6C8, #838f9a);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     line-height: 1.1;
@@ -200,8 +200,8 @@ h2 {
 
 .header--dept {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #4a5568;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 8px;
@@ -210,7 +210,7 @@ h2 {
 .header--page-desc {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.72rem;
-    color: #5a6a7a;
+    color: #7a8fa0;
     line-height: 1.55;
     margin: 8px 0 0;
     max-width: 520px;
@@ -219,7 +219,7 @@ h2 {
 .meta {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
-    color: #70767C;
+    color: #8a9aaa;
     margin-top: 8px;
     line-height: 1.4;
 }
@@ -768,7 +768,7 @@ h2 {
 }
 
 .sprint-badge {
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     background: #fff;
     color: #000;
     padding: 1px 3px;
@@ -876,6 +876,24 @@ h2 {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .sub-sched.open {
+        animation: none;
+    }
+    .sticky-nav-bar {
+        transition: none;
+    }
+    .series-index-card,
+    .track-card,
+    .event {
+        transition: none;
+    }
+    .series-index-img-wrap img {
+        transition: none;
     }
 }
 
@@ -1025,8 +1043,8 @@ footer {
 
 .footer--social-label {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.58rem;
-    color: #445;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 2px;
@@ -1064,8 +1082,8 @@ a {
 
 .footer--col-label {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #506070;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 4px;
@@ -1091,8 +1109,8 @@ a {
     flex-wrap: wrap;
     gap: 8px 32px;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #506070;
+    font-size: 0.75rem;
+    color: #7a8fa0;
     letter-spacing: 0.04em;
 }
 
@@ -1155,7 +1173,7 @@ a {
 
 .filter-btn.filter-util {
     border-style: dashed;
-    color: #667;
+    color: #8a9aaa;
     letter-spacing: 0.08em;
 }
 
@@ -1374,7 +1392,7 @@ a {
 .empty-state {
     text-align: center;
     padding: 60px 20px;
-    color: #556;
+    color: #8a9aaa;
 }
 
 .empty-state p {
@@ -1410,7 +1428,7 @@ a {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.75rem;
     font-weight: 800;
-    color: #556;
+    color: #8a9aaa;
     cursor: pointer;
     padding: 10px 0;
     text-transform: uppercase;
@@ -1752,9 +1770,9 @@ a {
     display: inline-block;
     margin-top: 6px;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: #556;
+    color: #7a8fa0;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.2s ease;
@@ -1932,7 +1950,7 @@ a {
     background: none;
     cursor: pointer;
     text-decoration: none;
-    opacity: 0.4;
+    opacity: 0.6;
     transition: opacity 0.15s, background 0.15s;
 }
 
@@ -1944,7 +1962,7 @@ a {
 
 .sticky-nav-label {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.5rem;
+    font-size: 0.65rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #8899aa;
@@ -1979,9 +1997,9 @@ a {
     z-index: 201;
     background: var(--card-bg);
     border: 1px solid var(--border);
-    color: #6a7a88;
+    color: #8a9aaa;
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     padding: 9px 12px;
     cursor: pointer;
@@ -2136,9 +2154,9 @@ a {
 ========================================= */
 .series-index-category {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 900;
-    color: #445566;
+    color: #7a8fa0;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     margin: 32px 0 10px;
@@ -2236,8 +2254,8 @@ a {
 
 .series-index-region {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.58rem;
-    color: #445;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 4px;
@@ -2252,8 +2270,8 @@ a {
 
 .series-index-cta {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #445;
+    font-size: 0.7rem;
+    color: #7a8fa0;
     letter-spacing: 0.08em;
     margin-top: 8px;
     transition: color 0.15s;
@@ -2279,8 +2297,8 @@ a {
 
 .sc-race {
     font-family: 'Roboto Mono', monospace;
-    font-size: 0.54rem;
-    color: rgba(180, 200, 218, 0.5);
+    font-size: 0.7rem;
+    color: rgba(180, 200, 218, 0.9);
     letter-spacing: 0.11em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -2298,10 +2316,10 @@ a {
 }
 
 .sc-time.sc-off {
-    font-size: 0.6rem;
-    color: #334 !important;
+    font-size: 0.75rem;
+    color: #6a8090 !important;
     letter-spacing: 0.14em;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 /* Subtle pulse on the time when hovering the card */

@@ -166,7 +166,7 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
     </div>
   </header>
 
-  <div class="main-section">
+  <main id="main-content" class="main-section">
     <a href={`${base}/`} class="back-link">← Full Master Calendar</a>
 
     <div class={`series-hero series-hero--${slug}`}>
@@ -279,5 +279,5 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
     <a href={`${base}/`} class="back-link back-link--bottom">← Full Master Calendar</a>
 
     <Footer />
-  </div>
+  </main>
 </BaseLayout>

@@ -41,7 +41,7 @@ const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
               <Fragment set:html={time} />
             </span>
           </div>
-          <button class="arrow-btn" aria-label="Toggle support races">&#9660;</button>
+          <button class="arrow-btn" aria-label="Toggle support races" aria-expanded="false">&#9660;</button>
         </div>
         <div class="sub-sched">
           {sub.map(s => (
