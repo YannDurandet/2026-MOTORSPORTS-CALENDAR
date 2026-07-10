@@ -9,7 +9,6 @@ _Last updated: 2026-07-05_
 | WRC / ERC flags | **17** |
 | calendarSvg-only (no browser entry) | **6** |
 | Placeholder infographics | **2** |
-| Orphans (on disk, unreferenced) | **1** (`barcelona-f1.svg`) |
 | Missing browserSvgs | **0** |
 | Missing calendar refs (not yet drawn) | **0** |
 

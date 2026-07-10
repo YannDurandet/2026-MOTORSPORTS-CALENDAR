@@ -5,7 +5,10 @@
         "event": "Sonoma Round",
         "venue": "sonoma",
         "date": "2026-03-29",
-        "winners": ["Jason Daskalos", "Philip Ellis"],
+        "winners": [
+          "Jason Daskalos",
+          "Philip Ellis"
+        ],
         "team": "JMF Motorsports"
       }
     ]
@@ -75,7 +78,10 @@
         "event": "Grand Prix of Long Beach",
         "venue": "long-beach",
         "date": "2026-04-19",
-        "winners": ["Nick Yelloly", "Renger van der Zande"],
+        "winners": [
+          "Nick Yelloly",
+          "Renger van der Zande"
+        ],
         "team": "Meyer Shank Racing"
       }
     ],
@@ -84,7 +90,11 @@
         "event": "Spa 12H",
         "venue": "spa",
         "date": "2026-04-19",
-        "winners": ["George", "Owega", "Tomlinson"],
+        "winners": [
+          "George",
+          "Owega",
+          "Tomlinson"
+        ],
         "team": "Optimum Motorsport"
       }
     ],
@@ -103,8 +113,70 @@
         "event": "COTA Round",
         "venue": "cota",
         "date": "2026-04-26",
-        "winners": ["Dave Musial Jr.", "Ryan Yardley"],
+        "winners": [
+          "Dave Musial Jr.",
+          "Ryan Yardley"
+        ],
         "team": "Wright Motorsports"
+      }
+    ],
+    "nls": [
+      {
+        "race_label": "NLS4 (Sat)",
+        "event": "ADAC 24h Qualifiers",
+        "venue": "nordschleife",
+        "date": "2026-04-18",
+        "note": "Race abandoned — fatal accident (Juha Miettinen)"
+      },
+      {
+        "race_label": "NLS5 (Sun)",
+        "event": "ADAC 24h Qualifiers",
+        "venue": "nordschleife",
+        "date": "2026-04-19",
+        "winners": [
+          "Ben Green",
+          "Christopher Haase",
+          "Alexander Sims"
+        ],
+        "team": "Scherer Sport PHX"
+      }
+    ],
+    "supercars": [
+      {
+        "race_label": "Race 1",
+        "event": "Christchurch Super440",
+        "venue": "ruapuna",
+        "date": "2026-04-18",
+        "winner": "Kai Allen",
+        "team": "Grove Racing",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Christchurch Super440",
+        "venue": "ruapuna",
+        "date": "2026-04-18",
+        "winner": "Brodie Kostecki",
+        "team": "Erebus Motorsport",
+        "country": "AU"
+      },
+      {
+        "race_label": "Race 3",
+        "event": "Christchurch Super440",
+        "venue": "ruapuna",
+        "date": "2026-04-19",
+        "winner": "Matt Payne",
+        "team": "Grove Racing",
+        "country": "NZ"
+      },
+      {
+        "race_label": "Race 4",
+        "event": "Christchurch Super440",
+        "venue": "ruapuna",
+        "date": "2026-04-19",
+        "winner": "Matt Payne",
+        "team": "Grove Racing",
+        "country": "NZ"
       }
     ]
   },
@@ -218,7 +290,10 @@
         "event": "Sebring Round",
         "venue": "sebring",
         "date": "2026-05-10",
-        "winners": ["Justin Rothberg", "Robby Foley"],
+        "winners": [
+          "Justin Rothberg",
+          "Robby Foley"
+        ],
         "team": "Turner Motorsport"
       }
     ],
@@ -227,7 +302,10 @@
         "event": "3 Hours of Monza",
         "venue": "monza",
         "date": "2026-05-31",
-        "winners": ["Branden Oxley", "Adrian Ferrer"],
+        "winners": [
+          "Branden Oxley",
+          "Adrian Ferrer"
+        ],
         "team": "NM Racing Team"
       }
     ],
@@ -236,7 +314,12 @@
         "event": "ADAC 24h Nürburgring",
         "venue": "nordschleife",
         "date": "2026-05-17",
-        "winners": ["Maro Engel", "Lasse Stolz", "Fabian Schiller", "M. Martin"],
+        "winners": [
+          "Maro Engel",
+          "Lasse Stolz",
+          "Fabian Schiller",
+          "M. Martin"
+        ],
         "team": "Winward Racing"
       }
     ],
@@ -245,7 +328,10 @@
         "event": "Detroit Sports Car Classic",
         "venue": "detroit",
         "date": "2026-05-31",
-        "winners": ["Earl Bamber", "Jack Aitken"],
+        "winners": [
+          "Earl Bamber",
+          "Jack Aitken"
+        ],
         "team": "Cadillac Whelen"
       }
     ],
@@ -300,6 +386,166 @@
         "team": "Aprilia Racing",
         "country": "IT"
       }
+    ],
+    "tcr": [
+      {
+        "race_label": "Race 1",
+        "event": "Round 1 (Misano)",
+        "venue": "misano",
+        "date": "2026-05-02",
+        "winner": "Norbert Michelisz",
+        "team": "BRC Hyundai N Squadra Corse",
+        "country": "HU"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Round 1 (Misano)",
+        "venue": "misano",
+        "date": "2026-05-03",
+        "winner": "Ma Qinghua",
+        "team": "Geely Cyan Racing",
+        "country": "CN"
+      }
+    ],
+    "wsbk": [
+      {
+        "race_label": "Race 1",
+        "event": "Most Round",
+        "venue": "most",
+        "date": "2026-05-16",
+        "winner": "Nicolò Bulega",
+        "team": "Aruba.it Racing - Ducati",
+        "country": "IT"
+      },
+      {
+        "race_label": "Superpole Race",
+        "event": "Most Round",
+        "venue": "most",
+        "date": "2026-05-17",
+        "winner": "Nicolò Bulega",
+        "team": "Aruba.it Racing - Ducati",
+        "country": "IT"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Most Round",
+        "venue": "most",
+        "date": "2026-05-17",
+        "winner": "Nicolò Bulega",
+        "team": "Aruba.it Racing - Ducati",
+        "country": "IT"
+      },
+      {
+        "race_label": "Race 1",
+        "event": "Aragon Round",
+        "venue": "motorland-aragon",
+        "date": "2026-05-30",
+        "winner": "Nicolò Bulega",
+        "team": "Aruba.it Racing - Ducati",
+        "country": "IT"
+      },
+      {
+        "race_label": "Superpole Race",
+        "event": "Aragon Round",
+        "venue": "motorland-aragon",
+        "date": "2026-05-31",
+        "winner": "Nicolò Bulega",
+        "team": "Aruba.it Racing - Ducati",
+        "country": "IT"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Aragon Round",
+        "venue": "motorland-aragon",
+        "date": "2026-05-31",
+        "winner": "Nicolò Bulega",
+        "team": "Aruba.it Racing - Ducati",
+        "country": "IT"
+      }
+    ],
+    "wrc": [
+      {
+        "event": "Rally Japan",
+        "venue": "japan-wrc",
+        "date": "2026-05-31",
+        "winner": "Elfyn Evans",
+        "co_driver": "Scott Martin",
+        "manufacturer": "Toyota GR Yaris Rally1",
+        "country": "GB"
+      }
+    ],
+    "sf": [
+      {
+        "race_label": "Round 4",
+        "event": "Suzuka",
+        "venue": "suzuka",
+        "date": "2026-05-23",
+        "winner": "Sacha Fenestraz",
+        "team": "TOM'S",
+        "country": "FR"
+      },
+      {
+        "race_label": "Round 5",
+        "event": "Suzuka",
+        "venue": "suzuka",
+        "date": "2026-05-24",
+        "winner": "Nirei Fukuzumi",
+        "team": "Nakajima Racing",
+        "country": "JP"
+      }
+    ],
+    "bgt": [
+      {
+        "race_label": "Race 1 (Rd 2)",
+        "event": "Oulton Park",
+        "venue": "oulton-park",
+        "date": "2026-05-23",
+        "winners": [
+          "Rob Collard",
+          "Hugo Cook"
+        ],
+        "team": "Barwell Motorsport"
+      },
+      {
+        "race_label": "Race 2 (Rd 3)",
+        "event": "Oulton Park",
+        "venue": "oulton-park",
+        "date": "2026-05-25",
+        "winners": [
+          "Morgan Tillbrook",
+          "Ben Barnicoat"
+        ],
+        "team": "Optimum Motorsport"
+      }
+    ],
+    "supercars": [
+      {
+        "race_label": "Race 1",
+        "event": "Tasmania Super440",
+        "venue": "symmons-plains",
+        "date": "2026-05-23",
+        "winner": "Kai Allen",
+        "team": "Grove Racing",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Tasmania Super440",
+        "venue": "symmons-plains",
+        "date": "2026-05-23",
+        "winner": "Andre Heimgartner",
+        "team": "Brad Jones Racing",
+        "country": "NZ"
+      },
+      {
+        "race_label": "Race 3",
+        "event": "Tasmania Super440",
+        "venue": "symmons-plains",
+        "date": "2026-05-24",
+        "winner": "Broc Feeney",
+        "team": "Triple Eight Race Engineering",
+        "country": "AU"
+      }
     ]
   },
   "2026-06": {
@@ -338,7 +584,10 @@
         "event": "Road Atlanta Round",
         "venue": "road-atlanta",
         "date": "2026-06-14",
-        "winners": ["Jason Daskalos", "Philip Ellis"],
+        "winners": [
+          "Jason Daskalos",
+          "Philip Ellis"
+        ],
         "team": "JMF Motorsports"
       }
     ],
@@ -347,7 +596,10 @@
         "event": "6 Hours of Watkins Glen",
         "venue": "watkins-glen",
         "date": "2026-06-28",
-        "winners": ["Bryce Ward", "Philip Ellis"],
+        "winners": [
+          "Bryce Ward",
+          "Philip Ellis"
+        ],
         "team": "Winward Racing"
       }
     ],
@@ -369,6 +621,71 @@
         "winner": "Ai Ogura",
         "team": "Trackhouse MotoGP Team",
         "country": "JP"
+      }
+    ],
+    "supercars": [
+      {
+        "race_label": "Race 1",
+        "event": "Darwin Triple Crown",
+        "venue": "hidden-valley",
+        "date": "2026-06-19",
+        "winner": "Cam Waters",
+        "team": "Tickford Racing",
+        "country": "AU"
+      },
+      {
+        "race_label": "Race 2",
+        "event": "Darwin Triple Crown",
+        "venue": "hidden-valley",
+        "date": "2026-06-20",
+        "winner": "Kai Allen",
+        "team": "Grove Racing",
+        "country": "GB"
+      },
+      {
+        "race_label": "Race 3",
+        "event": "Darwin Triple Crown",
+        "venue": "hidden-valley",
+        "date": "2026-06-21",
+        "winner": "Anton De Pasquale",
+        "team": "Dick Johnson Racing",
+        "country": "AU"
+      }
+    ],
+    "bgt": [
+      {
+        "race_label": "Race (Rd 4)",
+        "event": "Spa",
+        "venue": "spa",
+        "date": "2026-06-21",
+        "winners": [
+          "Jarod Waberski",
+          "Alex Martin"
+        ],
+        "team": "Barwell Motorsport"
+      }
+    ],
+    "nls": [
+      {
+        "event": "1. ADAC Eifel Trophy (4h)",
+        "venue": "nordschleife",
+        "date": "2026-06-20",
+        "winners": [
+          "Nico Menzel",
+          "Sven Müller"
+        ],
+        "team": "Dunlop Porsche"
+      }
+    ],
+    "psc": [
+      {
+        "round": 3,
+        "event": "Rd 3: Spielberg",
+        "venue": "red-bull-ring",
+        "date": "2026-06-28",
+        "winner": "Robert de Haan",
+        "team": "BWT Lechner Racing",
+        "country": "NL"
       }
     ]
   },
@@ -468,7 +785,11 @@
         "event": "4 Hours of Imola",
         "venue": "imola",
         "date": "2026-07-05",
-        "winners": ["Jen Reno Moller", "Cem Bölükbaşı", "Lorenzo Fluxa"],
+        "winners": [
+          "Jen Reno Moller",
+          "Cem Bölükbaşı",
+          "Lorenzo Fluxa"
+        ],
         "team": "Forestier Racing by Panis"
       }
     ],
@@ -522,7 +843,12 @@
         "event": "Nürburgring 12H",
         "venue": "nurburgring-gp",
         "date": "2026-07-05",
-        "winners": ["Patrick Liddy", "Tanner Harvey", "Jonathan Hirshberg", "Steve Jans"],
+        "winners": [
+          "Patrick Liddy",
+          "Tanner Harvey",
+          "Jonathan Hirshberg",
+          "Steve Jans"
+        ],
         "team": "GetSpeed"
       }
     ],
