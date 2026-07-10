@@ -108,11 +108,17 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
     "@type": "SportsEvent",
     "name": `${ev.title} 2026`,
     "startDate": startDate,
+    "endDate": startDate,
     "url": `https://dord.racing/series/${slug}`,
     "sport": "Motorsport",
     "eventStatus": "https://schema.org/EventScheduled",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "organizer": {
+      "@type": "SportsOrganization",
+      "name": series.name,
+      ...(series.socials?.web ? { "url": series.socials.web } : {}),
+    },
+    "performer": {
       "@type": "SportsOrganization",
       "name": series.name,
       ...(series.socials?.web ? { "url": series.socials.web } : {}),
@@ -136,9 +142,14 @@ const customTitles: Record<string, string> = {
   'wec': 'WEC 2026 Schedule & Calendar — Le Mans, Spa, Fuji & More',
 };
 const customDescriptions: Record<string, string> = {
-  'f1':     'Full 2026 Formula 1 calendar with race dates, circuits, and results. 22 Grands Prix across five continents — Australian GP to Abu Dhabi.',
-  'motogp': 'Complete 2026 MotoGP calendar — 22 rounds from Thailand to Valencia. Race dates, circuits, and results for the premier motorcycle racing class.',
-  'wec':    'Full 2026 FIA World Endurance Championship calendar including the 24 Hours of Le Mans. Hypercar race dates, circuits, and results.',
+  'f1':      'Full 2026 Formula 1 calendar with race dates, circuits, and results. 22 Grands Prix across five continents — Australian GP to Abu Dhabi.',
+  'motogp':  'Complete 2026 MotoGP calendar — 22 rounds from Thailand to Valencia. Race dates, circuits, and results for the premier motorcycle racing class.',
+  'wec':     'Full 2026 FIA World Endurance Championship calendar including the 24 Hours of Le Mans. Hypercar race dates, circuits, and results.',
+  'indycar': '2026 NTT IndyCar Series schedule — 16 rounds from St. Petersburg to Laguna Seca, including the Indianapolis 500. Race dates, circuits, and results.',
+  'nascar':  '2026 NASCAR Cup Series schedule — 36 races across ovals, short tracks, and road courses. Race dates, results, and circuits from the Daytona 500 to Phoenix.',
+  'wsbk':    '2026 WorldSBK calendar — 12 rounds, three races per weekend. Race dates, circuit guide, and results for the Superbike World Championship.',
+  'btcc':    '2026 British Touring Car Championship schedule — 10 rounds, 30 races across the UK\'s best circuits. Race dates, results, and championship standings.',
+  'wrc':     '2026 FIA World Rally Championship schedule — 13 rallies across five continents. Race dates, stages, and results from Monte Carlo to Japan.',
 };
 const pageTitle       = customTitles[slug]       ?? `${series.name} 2026 Schedule, Calendar & Results — dord.racing`;
 const pageDescription = customDescriptions[slug] ?? series.tagline;

@@ -17,6 +17,13 @@ function readSvg(filename: string | undefined | null): string | null {
   return svgByFilename[filename] ?? null;
 }
 
+const LAYOUT_DISPLAY: Record<string, string> = {
+  motogp: 'MotoGP', f1: 'F1', fe: 'FE', wsbk: 'WSBK', nascar: 'NASCAR',
+  gp: 'GP', national: 'National', indy: 'Indy', oval: 'Oval', road: 'Road',
+  full: 'Full', international: 'International', foster: 'Foster', island: 'Island',
+};
+const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
+
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
 
@@ -113,7 +120,7 @@ const continentLabel: Record<string, string> = {
 ---
 
 <BaseLayout
-  title={`${venue.name} — Track Guide, Circuit Map & 2026 Race Schedule`}
+  title={allEvents.length > 0 ? `${venue.name} — Track Guide, Circuit Map & 2026 Race Schedule` : `${venue.name} — Track Guide & Circuit Map`}
   description={venue.bio ?? `${venue.name} hosts ${activeSeries.length} series in the 2026 motorsport calendar.`}
   canonicalUrl={`https://dord.racing/tracks/${slug}`}
 >
@@ -179,7 +186,7 @@ const continentLabel: Record<string, string> = {
               data-layout-target={l.id}
               aria-pressed={i === 0 ? 'true' : 'false'}
             >
-              {l.id.toUpperCase()}
+              {layoutLabel(l.id)}
             </button>
           ))}
         </div>
@@ -258,7 +265,7 @@ const continentLabel: Record<string, string> = {
         <div class="layouts-list">
           {venue.layouts.map(l => (
             <div class="layout-row">
-              <span class="layout-id">{l.id.toUpperCase()}</span>
+              <span class="layout-id">{layoutLabel(l.id)}</span>
               <span class="layout-label">{l.label}</span>
               <div class="layout-series">
                 {allEvents
