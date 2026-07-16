@@ -2327,3 +2327,353 @@ a {
     opacity: 0.9;
     text-shadow: 0 0 14px currentColor;
 }
+
+/* =========================================
+   HOW TO WATCH
+========================================= */
+.htw-label {
+    font-size: 0.8rem;
+    color: #8a9aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 10px 0;
+}
+
+.htw-country {
+    color: #c3c6c8;
+    font-weight: 700;
+}
+
+.htw-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.htw-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    color: #c3c6c8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.htw-pill:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+.htw-badge {
+    font-size: 0.65rem;
+    font-weight: 900;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+}
+
+.htw-badge--free {
+    background: #1a4a1a;
+    color: #4ade80;
+    border: 1px solid #2a6a2a;
+}
+
+.htw-badge--stream {
+    background: #1a1a3a;
+    color: #818cf8;
+    border: 1px solid #2a2a5a;
+}
+
+.htw-note {
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: #7a8fa0;
+    margin-left: -2px;
+}
+
+.htw-disclaimer {
+    font-size: 0.72rem;
+    color: #5a6a78;
+    margin: 10px 0 0 0;
+    font-style: italic;
+}
+
+/* =========================================
+   SUBSCRIBE & EMBED
+========================================= */
+.subscribe-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.subscribe-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: #c3c6c8;
+}
+
+.subscribe-btn:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+.subscribe-btn--embed {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* =========================================
+   EMBED MODAL
+========================================= */
+.embed-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.embed-modal[hidden] {
+    display: none;
+}
+
+.embed-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+}
+
+.embed-modal-box {
+    position: relative;
+    background: #0d1720;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 24px;
+    width: min(560px, calc(100vw - 32px));
+    max-height: 90vh;
+    overflow-y: auto;
+    z-index: 1;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6);
+}
+
+.embed-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.embed-modal-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #c3c6c8;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0;
+}
+
+.embed-modal-close {
+    background: none;
+    border: none;
+    color: #6a8090;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+    transition: color 0.15s;
+}
+
+.embed-modal-close:hover { color: #fff; }
+
+.embed-modal-desc {
+    font-size: 0.82rem;
+    color: #7a8fa0;
+    margin: 0 0 16px 0;
+}
+
+.embed-code-block {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 14px;
+    font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+    font-size: 0.72rem;
+    color: #a0b4c0;
+    white-space: pre;
+    overflow-x: auto;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+}
+
+.embed-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.embed-copy-btn {
+    padding: 8px 18px;
+    background: #1a3a5a;
+    border: 1px solid #2a5a8a;
+    border-radius: 4px;
+    color: #a0c8e8;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.embed-copy-btn:hover {
+    background: #1e4a72;
+    color: #fff;
+}
+
+.embed-checks {
+    font-size: 0.72rem;
+    color: #4a7a5a;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .htw-pills { gap: 6px; }
+    .htw-pill { font-size: 0.8rem; padding: 5px 10px; }
+    .subscribe-actions { gap: 6px; }
+    .subscribe-btn { font-size: 0.78rem; padding: 6px 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .htw-pill, .subscribe-btn, .embed-copy-btn { transition: none; }
+}
+
+/* =========================================
+   TEAMS & DRIVERS TABLE
+========================================= */
+.series-season-notes {
+    font-size: 0.82rem;
+    color: #8a9aaa;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+}
+
+.series-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.series-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    table-layout: auto;
+}
+
+/* Header row */
+.series-table thead tr {
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.series-table th {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #5a7080;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 9px 14px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* First col (# / Car #) — narrow number */
+.series-table th:first-child,
+.series-table td:first-child {
+    padding-left: 14px;
+    padding-right: 10px;
+    color: #4a6070;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    width: 1%;
+    white-space: nowrap;
+}
+
+/* Body rows */
+.series-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+}
+
+.series-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.series-table tbody tr:hover {
+    background: rgba(255,255,255,0.035);
+}
+
+.series-table td {
+    padding: 10px 14px;
+    color: #b0bcc6;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Team column — slightly brighter */
+.series-table td:nth-child(2) {
+    color: #c3c6c8;
+    font-weight: 600;
+}
+
+/* Driver / name columns */
+.series-table td:nth-child(3),
+.series-table td:nth-child(4),
+.series-table td:nth-child(5) {
+    color: #9aaab6;
+}
+
+.series-table-note {
+    font-size: 0.72rem;
+    color: #5a6a78;
+    font-style: italic;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .series-table th,
+    .series-table td {
+        padding: 8px 10px;
+        font-size: 0.78rem;
+    }
+    .series-table th {
+        font-size: 0.6rem;
+    }
+}

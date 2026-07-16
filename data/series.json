@@ -95,16 +95,12 @@
       "date": "2026-03-15T08:00:00+01:00"
     },
     {
-      "name": "JEDDAH",
-      "date": "2026-04-19T19:00:00+02:00"
-    },
-    {
-      "name": "MIAMI",
-      "date": "2026-05-03T22:00:00+02:00"
-    },
-    {
       "name": "CANADA",
       "date": "2026-05-24T22:00:00+02:00"
+    },
+    {
+      "name": "SILVERSTONE",
+      "date": "2026-07-05T11:00:00+02:00"
     },
     {
       "name": "ZANDVOORT",
@@ -120,6 +116,10 @@
     }
   ],
   "fe": [
+    {
+      "name": "MEXICO CITY",
+      "date": "2026-01-10T21:00:00+01:00"
+    },
     {
       "name": "MIAMI",
       "date": "2026-01-31T20:00:00+01:00"
@@ -161,10 +161,6 @@
     {
       "name": "MOTEGI",
       "date": "2026-04-05T07:00:00+02:00"
-    },
-    {
-      "name": "AUTOPOLIS",
-      "date": "2026-04-26T07:00:00+02:00"
     },
     {
       "name": "SUZUKA",
@@ -417,28 +413,24 @@
       "date": "2026-03-29T21:30:00+01:00"
     },
     {
-      "name": "BRISTOL",
+      "name": "MARTINSVILLE 2",
       "date": "2026-04-12T21:00:00+01:00"
     },
     {
-      "name": "KANSAS",
-      "date": "2026-04-19T20:00:00+01:00"
+      "name": "TALLADEGA",
+      "date": "2026-04-19T21:00:00+01:00"
     },
     {
-      "name": "TALLADEGA",
+      "name": "DOVER",
       "date": "2026-04-26T21:00:00+01:00"
     },
     {
-      "name": "TEXAS",
+      "name": "KANSAS",
       "date": "2026-05-03T21:30:00+01:00"
     },
     {
-      "name": "WATKINS GLEN",
+      "name": "DARLINGTON 2",
       "date": "2026-05-10T21:00:00+01:00"
-    },
-    {
-      "name": "ALL-STAR RACE (DOVER)",
-      "date": "2026-05-17T21:00:00+01:00"
     },
     {
       "name": "CHARLOTTE (COCA-COLA 600)",
@@ -457,7 +449,7 @@
       "date": "2026-06-14T21:00:00+01:00"
     },
     {
-      "name": "SAN DIEGO (NAVAL BASE)",
+      "name": "SAN DIEGO",
       "date": "2026-06-21T22:00:00+01:00"
     },
     {
@@ -497,40 +489,28 @@
       "date": "2026-08-30T01:30:00+01:00"
     },
     {
-      "name": "DARLINGTON 2",
+      "name": "DARLINGTON (PLAYOFF)",
       "date": "2026-09-06T23:00:00+01:00"
     },
     {
-      "name": "WORLD WIDE TECHNOLOGY RACEWAY",
+      "name": "BRISTOL (PLAYOFF)",
       "date": "2026-09-13T21:00:00+01:00"
     },
     {
-      "name": "BRISTOL 2",
+      "name": "PLAYOFF R1 RACE 3 (TBD)",
       "date": "2026-09-20T01:30:00+01:00"
     },
     {
-      "name": "KANSAS 2",
+      "name": "PLAYOFF R2 RACE 1 (TBD)",
       "date": "2026-09-27T21:00:00+01:00"
     },
     {
-      "name": "LAS VEGAS 2",
+      "name": "PLAYOFF R2 RACE 2 (TBD)",
       "date": "2026-10-04T23:30:00+01:00"
     },
     {
-      "name": "CHARLOTTE ROVAL",
+      "name": "PLAYOFF R2 RACE 3 (TBD)",
       "date": "2026-10-11T21:00:00+01:00"
-    },
-    {
-      "name": "PHOENIX 2",
-      "date": "2026-10-18T21:00:00+01:00"
-    },
-    {
-      "name": "TALLADEGA 2",
-      "date": "2026-10-25T20:00:00+01:00"
-    },
-    {
-      "name": "MARTINSVILLE 2",
-      "date": "2026-11-01T20:00:00+01:00"
     },
     {
       "name": "HOMESTEAD-MIAMI",
@@ -629,7 +609,7 @@
       "date": "2026-02-22T05:00:00+01:00"
     },
     {
-      "name": "PORTIMÃO",
+      "name": "PORTIM\u00c3O",
       "date": "2026-03-29T14:00:00+01:00"
     },
     {
@@ -695,7 +675,7 @@
       "date": "2026-07-26T14:00:00+02:00"
     },
     {
-      "name": "NÜRBURGRING",
+      "name": "N\u00dcRBURGRING",
       "date": "2026-08-16T14:00:00+02:00"
     },
     {
@@ -759,7 +739,7 @@
       "date": "2026-03-08T04:00:00+01:00"
     },
     {
-      "name": "TAUPŌ",
+      "name": "TAUP\u014c",
       "date": "2026-04-12T04:00:00+02:00"
     },
     {
@@ -829,7 +809,7 @@
       "date": "2026-09-13T12:00:00+02:00"
     },
     {
-      "name": "PORTIMÃO 4H",
+      "name": "PORTIM\u00c3O 4H",
       "date": "2026-10-10T12:00:00+02:00"
     }
   ],
@@ -859,7 +839,7 @@
       "date": "2026-08-02T14:00:00+02:00"
     },
     {
-      "name": "NÜRBURGRING",
+      "name": "N\u00dcRBURGRING",
       "date": "2026-08-30T14:00:00+02:00"
     },
     {
@@ -871,7 +851,7 @@
       "date": "2026-10-04T13:00:00+02:00"
     },
     {
-      "name": "PORTIMÃO 3H",
+      "name": "PORTIM\u00c3O 3H",
       "date": "2026-10-18T13:00:00+02:00"
     }
   ],
@@ -907,10 +887,6 @@
   ],
   "nls": [
     {
-      "name": "WESTFALENFAHRT",
-      "date": "2026-03-14T09:00:00+01:00"
-    },
-    {
       "name": "BARBAROSSAPREIS",
       "date": "2026-03-21T09:00:00+01:00"
     },
@@ -931,12 +907,8 @@
       "date": "2026-08-01T10:00:00+02:00"
     },
     {
-      "name": "REINOLDUS",
+      "name": "REINOLDUS+BARBAROSSAPREIS II",
       "date": "2026-09-12T10:00:00+02:00"
-    },
-    {
-      "name": "BARBAROSSAPREIS II",
-      "date": "2026-09-13T10:00:00+02:00"
     },
     {
       "name": "SPORTWARTE TROPHY",
@@ -949,7 +921,7 @@
       "date": "2026-02-15T00:00:00+01:00"
     },
     {
-      "name": "24H NÜRBURGRING",
+      "name": "24H N\u00dcRBURGRING",
       "date": "2026-05-16T14:00:00+02:00"
     },
     {
@@ -1017,7 +989,7 @@
       "date": "2026-07-26T14:00:00+02:00"
     },
     {
-      "name": "CZECH (ZLÍN)",
+      "name": "CZECH (ZL\u00cdN)",
       "date": "2026-08-16T14:00:00+02:00"
     },
     {
@@ -1043,7 +1015,7 @@
       "date": "2026-06-07T14:00:00+02:00"
     },
     {
-      "name": "NÜRBURGRING",
+      "name": "N\u00dcRBURGRING",
       "date": "2026-07-05T14:00:00+02:00"
     },
     {
@@ -1117,7 +1089,7 @@
       "date": "2026-05-31T14:00:00+02:00"
     },
     {
-      "name": "SWEDEN (HÖLJES)",
+      "name": "SWEDEN (H\u00d6LJES)",
       "date": "2026-07-05T14:00:00+02:00"
     },
     {
@@ -1125,7 +1097,7 @@
       "date": "2026-07-19T14:00:00+02:00"
     },
     {
-      "name": "FRANCE (LOHÉAC)",
+      "name": "FRANCE (LOH\u00c9AC)",
       "date": "2026-08-30T14:00:00+02:00"
     },
     {

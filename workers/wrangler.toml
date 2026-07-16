@@ -1,0 +1,15 @@
+# Cloudflare Worker — Weekly Newsletter
+# Deploy: cd workers && wrangler deploy
+# Secrets: wrangler secret put RESEND_API_KEY
+#          wrangler secret put RESEND_FROM_EMAIL
+#          wrangler secret put TURSO_DATABASE_URL
+#          wrangler secret put TURSO_AUTH_TOKEN
+#          wrangler secret put CRON_SECRET
+
+name = "dord-newsletter"
+main = "newsletter.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[triggers]
+crons = ["0 8 * * 1"]
