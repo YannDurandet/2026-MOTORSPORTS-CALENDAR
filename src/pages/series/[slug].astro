@@ -94,6 +94,24 @@ const breadcrumbSchema = {
   ],
 };
 
+// Fallback location data for WRC/ERC flag SVGs (no track entry in tracks.json)
+const wrcLocations: Record<string, { name: string; city: string; country: string }> = {
+  'monte-carlo-wrc.svg': { name: 'Rallye Monte-Carlo',       city: 'Monaco',                    country: 'MC' },
+  'sweden-wrc.svg':      { name: 'Rally Sweden',             city: 'Umeå',                      country: 'SE' },
+  'kenya-wrc.svg':       { name: 'Safari Rally Kenya',       city: 'Naivasha',                  country: 'KE' },
+  'croatia-wrc.svg':     { name: 'Croatia Rally',            city: 'Zagreb',                    country: 'HR' },
+  'spain-wrc.svg':       { name: 'Rally Islas Canarias',     city: 'Las Palmas de Gran Canaria', country: 'ES' },
+  'portugal-wrc.svg':    { name: 'Rally de Portugal',        city: 'Matosinhos',                country: 'PT' },
+  'japan-wrc.svg':       { name: 'Rally Japan',              city: 'Toyota',                    country: 'JP' },
+  'greece-wrc.svg':      { name: 'Acropolis Rally Greece',   city: 'Lamia',                     country: 'GR' },
+  'estonia-wrc.svg':     { name: 'Rally Estonia',            city: 'Tartu',                     country: 'EE' },
+  'finland-wrc.svg':     { name: 'Rally Finland',            city: 'Jyväskylä',                 country: 'FI' },
+  'paraguay-wrc.svg':    { name: 'Rally del Paraguay',       city: 'Luque',                     country: 'PY' },
+  'chile-wrc.svg':       { name: 'Rally Chile',              city: 'Concepción',                country: 'CL' },
+  'italy-wrc.svg':       { name: 'Rally Italy Sardegna',     city: 'Alghero',                   country: 'IT' },
+  'saudi-wrc.svg':       { name: 'Rally Saudi Arabia',       city: 'Riyadh',                    country: 'SA' },
+};
+
 // Rich SportsEvent schemas — one per round
 const sportsEventSchemas = calEvents.map((ev, i) => {
   const seriesDate = races[i]?.date ?? null;
@@ -101,7 +119,8 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
   if (!startDate) return null;
 
   const venue = svgToVenue.get(ev.track);
-  if (!venue) return null; // skip events without a mappable location (WRC flags, tbc/tbd, etc.)
+  const wrcFallback = wrcLocations[ev.track];
+  if (!venue && !wrcFallback) return null; // skip tbc/tbd placeholders
 
   return {
     "@context": "https://schema.org",
@@ -123,8 +142,13 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
       "name": series.name,
       ...(series.socials?.web ? { "url": series.socials.web } : {}),
     },
-    ...(ogImage ? { "image": ogImage } : {}),
-    "location": {
+    "offers": {
+      "@type": "Offer",
+      "url": series.socials?.web ?? `https://dord.racing/series/${slug}`,
+      "availability": "https://schema.org/InStock",
+    },
+    "image": ogImage ?? "https://dord.racing/assets/lauda_and_mouton--large.webp",
+    "location": venue ? {
       "@type": "Place",
       "name": venue.name,
       "address": {
@@ -133,8 +157,18 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
         "addressCountry": venue.country,
       },
       ...(venue.website ? { "url": venue.website } : {}),
+    } : {
+      "@type": "Place",
+      "name": wrcFallback!.name,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": wrcFallback!.city,
+        "addressCountry": wrcFallback!.country,
+      },
     },
-    "description": `2026 ${series.name} round ${i + 1} — ${ev.title} at ${venue.name}, ${venue.city}.`,
+    "description": venue
+      ? `2026 ${series.name} round ${i + 1} — ${ev.title} at ${venue.name}, ${venue.city}.`
+      : `2026 ${series.name} round ${i + 1} — ${ev.title} in ${wrcFallback!.city}.`,
   };
 }).filter(Boolean);
 
