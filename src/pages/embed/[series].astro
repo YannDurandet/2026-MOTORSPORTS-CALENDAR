@@ -1,0 +1,326 @@
+---
+import calendarData from '../../../data/calendar.json';
+import seriesContent from '../../../data/seriesContent.json';
+import seriesRaces from '../../../data/series.json';
+import tracksData from '../../../data/tracks.json';
+
+export function getStaticPaths() {
+  const seriesSlugs = (seriesContent as any[]).map((s: any) => s.slug);
+  return [...seriesSlugs, 'all'].map((slug: string) => ({ params: { series: slug } }));
+}
+
+const { series: seriesSlug } = Astro.params;
+const isAll = seriesSlug === 'all';
+
+// Build track lookup: svg filename → track
+const svgToTrack = new Map<string, any>();
+for (const track of tracksData as any[]) {
+  for (const svg of (track.calendarSvgs ?? [])) svgToTrack.set(svg, track);
+  for (const layout of (track.layouts ?? []))
+    for (const svg of (layout.calendarSvgs ?? [])) svgToTrack.set(svg, track);
+}
+
+// Series meta
+const allSeries = seriesContent as any[];
+const seriesMeta = isAll ? null : allSeries.find((s: any) => s.slug === seriesSlug);
+const races = (seriesRaces as any);
+
+// Build flat event list with ISO dates
+interface EmbedEvent {
+  series: string;
+  seriesName: string;
+  tag: string;
+  title: string;
+  date: string | null;
+  city: string;
+  country: string;
+  trackName: string;
+}
+
+const allEvents: EmbedEvent[] = [];
+
+// Per-series counters for date index matching
+const seriesCounters: Record<string, number> = {};
+
+const targetSeries = isAll
+  ? allSeries.map((s: any) => s.slug)
+  : [seriesSlug];
+
+// Collect events per series first
+for (const slug of targetSeries) {
+  seriesCounters[slug] = 0;
+}
+
+for (const month of calendarData as any[]) {
+  for (const week of month.weeks) {
+    for (const ev of week.events) {
+      const slug = ev.series;
+      if (!targetSeries.includes(slug)) continue;
+
+      const idx = seriesCounters[slug] ?? 0;
+      seriesCounters[slug] = idx + 1;
+
+      const raceEntry = (races[slug] ?? [])[idx];
+      const date: string | null = raceEntry?.date ?? null;
+
+      const track = svgToTrack.get(ev.track ?? '');
+      const seriesMeta2 = allSeries.find((s: any) => s.slug === slug);
+
+      allEvents.push({
+        series: slug,
+        seriesName: seriesMeta2?.name ?? slug.toUpperCase(),
+        tag: ev.tag ?? slug.toUpperCase(),
+        title: ev.title,
+        date,
+        city: track?.city ?? '',
+        country: track?.country ?? '',
+        trackName: track?.name ?? '',
+      });
+    }
+  }
+}
+
+// Sort by date (nulls last)
+allEvents.sort((a, b) => {
+  if (!a.date && !b.date) return 0;
+  if (!a.date) return 1;
+  if (!b.date) return -1;
+  return a.date.localeCompare(b.date);
+});
+
+const defaultLimit = isAll ? 10 : 8;
+const pageTitle = isAll
+  ? 'Motorsport Calendar — DORD Racing'
+  : `${seriesMeta?.name ?? seriesSlug} 2026 Calendar — DORD Racing`;
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{pageTitle}</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080f16;
+      --surface: #0d1720;
+      --border: rgba(255,255,255,0.08);
+      --text: #c3c6c8;
+      --text-muted: #6a8090;
+      --accent: #3a6a9a;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Light theme */
+    body.theme-light {
+      --bg: #f4f6f8;
+      --surface: #ffffff;
+      --border: rgba(0,0,0,0.1);
+      --text: #1a2a3a;
+      --text-muted: #6a7a8a;
+      --accent: #2a5a8a;
+    }
+
+    .embed-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .embed-series-name {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .embed-logo {
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .embed-logo:hover { color: var(--text); }
+
+    .embed-events {
+      flex: 1;
+      padding: 8px 0;
+    }
+
+    .embed-event {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .embed-event:last-child { border-bottom: none; }
+
+    .embed-date {
+      min-width: 72px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .embed-date.past { opacity: 0.45; }
+
+    .embed-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .embed-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .embed-location {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .embed-tag {
+      font-size: 0.62rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      white-space: nowrap;
+      display: none; /* shown only for /all */
+    }
+
+    .embed-tag.visible { display: inline-block; }
+
+    .embed-footer {
+      padding: 8px 14px;
+      border-top: 1px solid var(--border);
+      text-align: right;
+    }
+
+    .embed-footer a {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .embed-footer a:hover { color: var(--text); }
+
+    .embed-empty {
+      padding: 24px 14px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="embed-header">
+    <span class="embed-series-name">{isAll ? 'All Series' : (seriesMeta?.name ?? seriesSlug)}</span>
+    <a href="https://dord.racing" target="_blank" rel="noopener noreferrer" class="embed-logo">dord.racing</a>
+  </header>
+
+  <div class="embed-events" id="embed-events">
+    <p class="embed-empty">Loading…</p>
+  </div>
+
+  <footer class="embed-footer">
+    <a href={`https://dord.racing/series/${seriesSlug}`} target="_blank" rel="noopener noreferrer">
+      Full {isAll ? 'motorsport' : (seriesMeta?.name ?? '')} calendar at dord.racing ↗
+    </a>
+  </footer>
+
+  <script define:vars={{ allEvents, defaultLimit, isAll }}>
+    (function () {
+      // Apply ?theme
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('theme') === 'light') document.body.classList.add('theme-light');
+
+      // Apply ?limit
+      const limit = parseInt(params.get('limit') || String(defaultLimit), 10) || defaultLimit;
+
+      const now = Date.now();
+
+      // Filter to upcoming (or all if not enough upcoming)
+      let events = allEvents.filter(ev => ev.date && new Date(ev.date).getTime() >= now);
+      if (events.length === 0) {
+        // Show last N if all past (end of season)
+        events = allEvents.slice(-limit);
+      }
+      events = events.slice(0, limit);
+
+      const container = document.getElementById('embed-events');
+      if (!container) return;
+
+      if (events.length === 0) {
+        container.innerHTML = '<p class="embed-empty">No upcoming events.</p>';
+        return;
+      }
+
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+      container.innerHTML = events.map(ev => {
+        let dateStr = '';
+        if (ev.date) {
+          const d = new Date(ev.date);
+          dateStr = `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]}`;
+        } else {
+          dateStr = 'TBD';
+        }
+
+        const locationParts = [ev.city, ev.country].filter(Boolean);
+        const location = ev.trackName
+          ? (locationParts.length ? `${ev.trackName} · ${locationParts.join(', ')}` : ev.trackName)
+          : locationParts.join(', ');
+
+        const tagClass = isAll ? 'embed-tag visible' : 'embed-tag';
+
+        return `<div class="embed-event">
+          <span class="embed-date">${dateStr}</span>
+          <div class="embed-info">
+            <div class="embed-title">${ev.title}</div>
+            ${location ? `<div class="embed-location">${location}</div>` : ''}
+          </div>
+          <span class="${tagClass}">${ev.tag}</span>
+        </div>`;
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

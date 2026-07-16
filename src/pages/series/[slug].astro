@@ -110,6 +110,10 @@ const wrcLocations: Record<string, { name: string; city: string; country: string
   'chile-wrc.svg':       { name: 'Rally Chile',              city: 'Concepción',                country: 'CL' },
   'italy-wrc.svg':       { name: 'Rally Italy Sardegna',     city: 'Alghero',                   country: 'IT' },
   'saudi-wrc.svg':       { name: 'Rally Saudi Arabia',       city: 'Riyadh',                    country: 'SA' },
+  // ERC-only flags
+  'czechia-wrc.svg':     { name: 'Barum Czech Rally Zlín',   city: 'Zlín',                      country: 'CZ' },
+  'poland-wrc.svg':      { name: '82nd Rally Poland',         city: 'Mikołajki',                 country: 'PL' },
+  'wales-wrc.svg':       { name: 'Rali Ceredigion',           city: 'Aberystwyth',               country: 'GB' },
 };
 
 // Rich SportsEvent schemas — one per round
@@ -255,6 +259,18 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
       <p class="series-history">{series.history}</p>
     </section>
 
+    {(series as any).howToWatch && (
+      <section class="series-section" id="htw-section">
+        <h3 class="series-section-title">How to Watch</h3>
+        <div
+          id="htw-root"
+          data-htw={JSON.stringify((series as any).howToWatch)}
+          aria-live="polite"
+        ></div>
+        <p class="htw-disclaimer">Broadcast rights vary by region. Check local listings.</p>
+      </section>
+    )}
+
     {series.tier === 1 && series.teamsHeaders && (
       <section class="series-section">
         <h3 class="series-section-title">Teams &amp; Drivers — 2026</h3>
@@ -321,8 +337,143 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
       )}
     </section>
 
+    <section class="series-section">
+      <h3 class="series-section-title">Subscribe &amp; Embed</h3>
+      <div class="subscribe-actions">
+        <a
+          href={`webcal://dord.racing/ical/${slug}.ics`}
+          class="subscribe-btn subscribe-btn--ical"
+          aria-label={`Subscribe to ${series.name} calendar`}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Subscribe (iCal)
+        </a>
+        <a
+          href={`https://calendar.google.com/calendar/render?cid=webcal://dord.racing/ical/${slug}.ics`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="subscribe-btn subscribe-btn--gcal"
+          aria-label={`Add ${series.name} to Google Calendar`}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          + Google Calendar
+        </a>
+        <button
+          class="subscribe-btn subscribe-btn--embed"
+          id="embed-btn"
+          aria-haspopup="dialog"
+          data-slug={slug}
+          data-name={series.name}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Embed
+        </button>
+      </div>
+    </section>
+
+    <!-- Embed modal -->
+    <div id="embed-modal" class="embed-modal" role="dialog" aria-modal="true" aria-labelledby="embed-modal-title" hidden>
+      <div class="embed-modal-backdrop"></div>
+      <div class="embed-modal-box">
+        <div class="embed-modal-header">
+          <h4 class="embed-modal-title" id="embed-modal-title">Embed the calendar</h4>
+          <button class="embed-modal-close" aria-label="Close embed modal">&times;</button>
+        </div>
+        <p class="embed-modal-desc">Copy this snippet to embed a live race calendar on any website.</p>
+        <pre id="embed-code" class="embed-code-block"></pre>
+        <div class="embed-modal-actions">
+          <button class="embed-copy-btn" id="embed-copy-btn">Copy code</button>
+          <span class="embed-checks">✓ Auto-updates &nbsp; ✓ Free &nbsp; ✓ Links to dord.racing</span>
+        </div>
+      </div>
+    </div>
+
     <a href={`${base}/`} class="back-link back-link--bottom">← Full Master Calendar</a>
 
     <Footer />
   </main>
 </BaseLayout>
+
+<script>
+// ── How to Watch ───────────────────────────────────────────────
+(function () {
+  const root = document.getElementById('htw-root');
+  if (!root) return;
+
+  const raw = root.getAttribute('data-htw');
+  if (!raw) return;
+
+  let data: Record<string, { name: string; type: string; url: string; note?: string }[]>;
+  try { data = JSON.parse(raw); } catch { return; }
+
+  const locale = (Intl.DateTimeFormat().resolvedOptions() as any).locale
+    || navigator.language || 'en-US';
+  const parts = locale.split('-');
+  const country = parts.length > 1 ? parts[parts.length - 1].toUpperCase() : parts[0].toUpperCase();
+
+  const broadcasters = data[country] || data['global'];
+  if (!broadcasters || broadcasters.length === 0) {
+    const section = document.getElementById('htw-section');
+    if (section) section.hidden = true;
+    return;
+  }
+
+  const label = data[country]
+    ? `Watch in <span class="htw-country">${country}</span>`
+    : 'Watch globally';
+
+  const pills = broadcasters.map(b => {
+    const badgeHtml = b.type === 'free'
+      ? '<span class="htw-badge htw-badge--free">FREE</span>'
+      : b.type === 'streaming'
+      ? '<span class="htw-badge htw-badge--stream">STREAM</span>'
+      : '';
+    const noteHtml = b.note ? `<span class="htw-note">${b.note}</span>` : '';
+    return `<a href="${b.url}" target="_blank" rel="noopener noreferrer" class="htw-pill">${b.name}${badgeHtml}${noteHtml}</a>`;
+  }).join('');
+
+  root.innerHTML = `<p class="htw-label">${label}</p><div class="htw-pills">${pills}</div>`;
+})();
+
+// ── Embed Modal ────────────────────────────────────────────────
+(function () {
+  const btn = document.getElementById('embed-btn') as HTMLButtonElement | null;
+  const modal = document.getElementById('embed-modal') as HTMLElement | null;
+  const closeBtn = modal?.querySelector('.embed-modal-close') as HTMLButtonElement | null;
+  const backdrop = modal?.querySelector('.embed-modal-backdrop') as HTMLElement | null;
+  const codeEl = document.getElementById('embed-code') as HTMLElement | null;
+  const copyBtn = document.getElementById('embed-copy-btn') as HTMLButtonElement | null;
+
+  if (!btn || !modal || !codeEl) return;
+
+  const slug = btn.dataset.slug || '';
+  const name = btn.dataset.name || 'Racing';
+  const iframeCode = `<iframe\n  src="https://dord.racing/embed/${slug}"\n  width="100%"\n  height="400"\n  frameborder="0"\n  style="border-radius:8px;"\n  title="${name} Race Calendar — DORD Racing"\n></iframe>\n<p style="font-size:11px;text-align:right">\n  <a href="https://dord.racing" target="_blank" rel="noopener">Full calendar at dord.racing ↗</a>\n</p>`;
+  codeEl.textContent = iframeCode;
+
+  function openModal() {
+    modal!.hidden = false;
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+  function closeModal() {
+    modal!.hidden = true;
+    document.body.style.overflow = '';
+    btn!.focus();
+  }
+
+  btn.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  modal?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  copyBtn?.addEventListener('click', () => {
+    navigator.clipboard.writeText(iframeCode).then(() => {
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => { copyBtn.textContent = 'Copy code'; }, 2000);
+    });
+  });
+})();
+</script>

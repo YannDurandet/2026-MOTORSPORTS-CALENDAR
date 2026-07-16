@@ -1,13 +1,13 @@
 # Track Map Status
-_Last updated: 2026-07-05_
+_Last updated: 2026-07-16_
 
 ## Summary
 | | Count |
 |---|---|
-| Files on disk | **171** |
-| Circuit SVGs (browser-mapped) | **146** |
+| Files on disk | **169** |
+| Circuit SVGs (browser-mapped) | **135** |
 | WRC / ERC flags | **17** |
-| calendarSvg-only (no browser entry) | **6** |
+| calendarSvg-only (no browser entry) | **15** |
 | Placeholder infographics | **2** |
 | Missing browserSvgs | **0** |
 | Missing calendar refs (not yet drawn) | **0** |

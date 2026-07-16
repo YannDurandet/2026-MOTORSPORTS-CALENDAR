@@ -3,12 +3,12 @@ _Last updated: 2026-07-10_
 
 ## 📣 Launch / Marketing
 
-- [ ] **Post on X (@dord_racing)** — v1 launch announcement
-- [ ] **Post on Instagram (@dord.racing)** — carousel or reel: calendar, track browser, countdowns
+- [X] **Post on X (@dord_racing)** — v1 launch announcement
+- [X] **Post on Instagram (@dord.racing)** — carousel or reel: calendar, track browser, countdowns
 - [ ] **Post on personal X (@YannDurandet)**
 - [ ] **Submit to motorsport subreddits** — r/formula1, r/motorsports, r/WEC, r/MotoGP
 - [ ] **Reach out to motorsport newsletter writers / journalists**
-- [ ] **Submit to Astro showcase** — astro.build/showcase (good backlink)
+- [X] **Submit to Astro showcase** — astro.build/showcase (good backlink)
 
 ---
 

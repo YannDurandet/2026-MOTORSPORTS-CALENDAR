@@ -88,6 +88,109 @@
       "ig": "https://instagram.com/f1",
       "x": "https://x.com/f1",
       "yt": "https://youtube.com/@Formula1"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "ESPN",
+          "type": "pay",
+          "url": "https://www.espn.com"
+        },
+        {
+          "name": "F1 TV Pro",
+          "type": "streaming",
+          "url": "https://f1tv.formula1.com"
+        }
+      ],
+      "GB": [
+        {
+          "name": "Sky Sports F1",
+          "type": "pay",
+          "url": "https://www.skysports.com/f1",
+          "note": "Live"
+        },
+        {
+          "name": "Channel 4",
+          "type": "free",
+          "url": "https://www.channel4.com",
+          "note": "Highlights"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Canal+",
+          "type": "pay",
+          "url": "https://www.canalplus.com"
+        }
+      ],
+      "DE": [
+        {
+          "name": "Sky Deutschland",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        }
+      ],
+      "IT": [
+        {
+          "name": "Sky Sport F1",
+          "type": "pay",
+          "url": "https://sport.sky.it"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Fox Sports",
+          "type": "pay",
+          "url": "https://www.foxsports.com.au"
+        },
+        {
+          "name": "Kayo",
+          "type": "streaming",
+          "url": "https://kayosports.com.au"
+        }
+      ],
+      "CA": [
+        {
+          "name": "TSN",
+          "type": "pay",
+          "url": "https://www.tsn.ca"
+        },
+        {
+          "name": "RDS",
+          "type": "pay",
+          "url": "https://www.rds.ca",
+          "note": "French"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/nl"
+        }
+      ],
+      "ES": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/es-ES"
+        }
+      ],
+      "BR": [
+        {
+          "name": "Bandeirantes",
+          "type": "free",
+          "url": "https://www.band.uol.com.br"
+        }
+      ],
+      "global": [
+        {
+          "name": "F1 TV Pro",
+          "type": "streaming",
+          "url": "https://f1tv.formula1.com",
+          "note": "Available in most countries"
+        }
+      ]
     }
   },
   {
@@ -222,6 +325,73 @@
       "ig": "https://instagram.com/fiaformulae",
       "x": "https://x.com/FIAFormulaE",
       "yt": "https://youtube.com/@fiaformulae"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "CBS Sports",
+          "type": "pay",
+          "url": "https://www.cbssports.com",
+          "note": "Live"
+        },
+        {
+          "name": "The Roku Channel",
+          "type": "free",
+          "url": "https://therokuchannel.roku.com",
+          "note": "Free, live"
+        }
+      ],
+      "GB": [
+        {
+          "name": "ITV4",
+          "type": "free",
+          "url": "https://www.itv.com/hub/itv4",
+          "note": "Live"
+        },
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        }
+      ],
+      "DE": [
+        {
+          "name": "DF1",
+          "type": "free",
+          "url": "https://www.df1.de",
+          "note": "Live"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.fr"
+        }
+      ],
+      "CA": [
+        {
+          "name": "TSN",
+          "type": "pay",
+          "url": "https://www.tsn.ca"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Stan Sport",
+          "type": "streaming",
+          "url": "https://www.stan.com.au/sport"
+        }
+      ],
+      "global": [
+        {
+          "name": "Formula E YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@FormulaE",
+          "note": "Some races free"
+        }
+      ]
     }
   },
   {
@@ -359,6 +529,75 @@
       "ig": "https://instagram.com/fiawec_official",
       "x": "https://x.com/FIAWEC",
       "yt": "https://youtube.com/@FIAWEC"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "MotorTrend TV",
+          "type": "pay",
+          "url": "https://www.motortrend.com/tv",
+          "note": "Live"
+        },
+        {
+          "name": "Max",
+          "type": "streaming",
+          "url": "https://www.max.com"
+        }
+      ],
+      "GB": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        },
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.fr"
+        }
+      ],
+      "DE": [
+        {
+          "name": "RTL Nitro",
+          "type": "free",
+          "url": "https://www.rtlnitro.de"
+        },
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.de"
+        }
+      ],
+      "IT": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.it"
+        }
+      ],
+      "CA": [
+        {
+          "name": "Discovery Velocity",
+          "type": "pay",
+          "url": "https://www.discoveryplus.com/ca"
+        }
+      ],
+      "global": [
+        {
+          "name": "FIAWEC+",
+          "type": "streaming",
+          "url": "https://fiawec.com",
+          "note": "Official, all races"
+        }
+      ]
     }
   },
   {
@@ -375,6 +614,30 @@
       "ig": "https://instagram.com/imsa_racing",
       "x": "https://x.com/IMSA",
       "yt": "https://youtube.com/@imsaofficial"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "NBC",
+          "type": "free",
+          "url": "https://www.nbc.com",
+          "note": "Selected races"
+        },
+        {
+          "name": "Peacock",
+          "type": "streaming",
+          "url": "https://www.peacocktv.com",
+          "note": "Full coverage, all races"
+        }
+      ],
+      "global": [
+        {
+          "name": "IMSA TrackPass",
+          "type": "streaming",
+          "url": "https://www.imsa.com/trackpass",
+          "note": "Official"
+        }
+      ]
     }
   },
   {
@@ -487,6 +750,90 @@
       "ig": "https://instagram.com/indycar",
       "x": "https://x.com/IndyCar",
       "yt": "https://youtube.com/@IndyCar"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "FOX",
+          "type": "free",
+          "url": "https://www.fox.com",
+          "note": "All races"
+        }
+      ],
+      "GB": [
+        {
+          "name": "Sky Sports F1",
+          "type": "pay",
+          "url": "https://www.skysports.com/f1",
+          "note": "Live"
+        }
+      ],
+      "CA": [
+        {
+          "name": "TSN+",
+          "type": "streaming",
+          "url": "https://www.tsn.ca",
+          "note": "Live"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Stan Sport",
+          "type": "streaming",
+          "url": "https://www.stan.com.au/sport",
+          "note": "Live"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "Sky Sports NZ",
+          "type": "pay",
+          "url": "https://www.skysports.co.nz"
+        }
+      ],
+      "BR": [
+        {
+          "name": "ESPN",
+          "type": "pay",
+          "url": "https://www.espn.com.br"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Canal+",
+          "type": "pay",
+          "url": "https://www.canalplus.com"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Ziggo Sport",
+          "type": "pay",
+          "url": "https://www.ziggosport.nl"
+        }
+      ],
+      "JP": [
+        {
+          "name": "Gaora",
+          "type": "pay",
+          "url": "https://www.gaora.co.jp"
+        }
+      ],
+      "PT": [
+        {
+          "name": "Sport TV",
+          "type": "pay",
+          "url": "https://www.sporttv.pt"
+        }
+      ],
+      "global": [
+        {
+          "name": "IndyCar+",
+          "type": "streaming",
+          "url": "https://www.indycar.com/indycarplus",
+          "note": "Official streaming"
+        }
+      ]
     }
   },
   {
@@ -503,6 +850,48 @@
       "ig": "https://instagram.com/nascar",
       "x": "https://x.com/NASCAR",
       "yt": "https://youtube.com/@NASCAR"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "FOX / FS1",
+          "type": "free",
+          "url": "https://www.fox.com",
+          "note": "First half"
+        },
+        {
+          "name": "TNT Sports",
+          "type": "streaming",
+          "url": "https://www.max.com",
+          "note": "5 races"
+        },
+        {
+          "name": "Amazon Prime Video",
+          "type": "streaming",
+          "url": "https://www.amazon.com/primevideo",
+          "note": "5 races"
+        },
+        {
+          "name": "NBC / USA Network",
+          "type": "free",
+          "url": "https://www.nbc.com",
+          "note": "Second half"
+        },
+        {
+          "name": "Peacock",
+          "type": "streaming",
+          "url": "https://www.peacocktv.com",
+          "note": "Selected races"
+        }
+      ],
+      "global": [
+        {
+          "name": "NASCAR TrackPass",
+          "type": "streaming",
+          "url": "https://www.nascar.com/trackpass",
+          "note": "Official"
+        }
+      ]
     }
   },
   {
@@ -594,6 +983,87 @@
       "ig": "https://instagram.com/motogp",
       "x": "https://x.com/MotoGP",
       "yt": "https://youtube.com/@MotoGP"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "Peacock",
+          "type": "streaming",
+          "url": "https://www.peacocktv.com",
+          "note": "Live"
+        }
+      ],
+      "GB": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Canal+",
+          "type": "pay",
+          "url": "https://www.canalplus.com",
+          "note": "Live"
+        }
+      ],
+      "DE": [
+        {
+          "name": "ServusTV",
+          "type": "free",
+          "url": "https://www.servustv.com",
+          "note": "Live"
+        },
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com"
+        }
+      ],
+      "IT": [
+        {
+          "name": "Sky Sport MotoGP",
+          "type": "pay",
+          "url": "https://sport.sky.it",
+          "note": "Live"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Fox Sports",
+          "type": "pay",
+          "url": "https://www.foxsports.com.au"
+        },
+        {
+          "name": "Kayo",
+          "type": "streaming",
+          "url": "https://kayosports.com.au"
+        }
+      ],
+      "ES": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/es-ES"
+        }
+      ],
+      "PT": [
+        {
+          "name": "Sport TV",
+          "type": "pay",
+          "url": "https://www.sporttv.pt"
+        }
+      ],
+      "global": [
+        {
+          "name": "MotoGP VideoPass",
+          "type": "streaming",
+          "url": "https://www.motogp.com/en/VideoPass",
+          "note": "All races, official"
+        }
+      ]
     }
   },
   {
@@ -610,6 +1080,116 @@
       "ig": "https://instagram.com/worldsbk",
       "x": "https://x.com/WorldSBK",
       "yt": "https://youtube.com/@WorldSBK"
+    },
+    "howToWatch": {
+      "GB": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        },
+        {
+          "name": "ITV4",
+          "type": "free",
+          "url": "https://www.itv.com/hub/itv4",
+          "note": "Highlights"
+        }
+      ],
+      "DE": [
+        {
+          "name": "ServusTV",
+          "type": "free",
+          "url": "https://www.servustv.com",
+          "note": "Live"
+        }
+      ],
+      "AT": [
+        {
+          "name": "ServusTV",
+          "type": "free",
+          "url": "https://www.servustv.com",
+          "note": "Live"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.fr"
+        }
+      ],
+      "IT": [
+        {
+          "name": "TV8",
+          "type": "free",
+          "url": "https://www.tv8.it",
+          "note": "Live"
+        },
+        {
+          "name": "Sky Sport",
+          "type": "pay",
+          "url": "https://sport.sky.it",
+          "note": "Live"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/nl"
+        }
+      ],
+      "SE": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/se"
+        }
+      ],
+      "DK": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/dk"
+        }
+      ],
+      "NO": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/no"
+        }
+      ],
+      "FI": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/fi"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "Nova Sport",
+          "type": "pay",
+          "url": "https://novasport.cz"
+        }
+      ],
+      "SK": [
+        {
+          "name": "Nova Sport",
+          "type": "pay",
+          "url": "https://novasport.sk"
+        }
+      ],
+      "global": [
+        {
+          "name": "WorldSBK VideoPass",
+          "type": "streaming",
+          "url": "https://www.worldsbk.com/en/videopass",
+          "note": "Official"
+        }
+      ]
     }
   },
   {
@@ -626,6 +1206,49 @@
       "ig": "https://instagram.com/dtm.official",
       "x": "https://x.com/dtm",
       "yt": "https://youtube.com/@dtm"
+    },
+    "howToWatch": {
+      "DE": [
+        {
+          "name": "ProSieben / Sat.1",
+          "type": "free",
+          "url": "https://www.prosieben.de",
+          "note": "Live, all races"
+        },
+        {
+          "name": "Joyn",
+          "type": "free",
+          "url": "https://www.joyn.de",
+          "note": "Free streaming"
+        }
+      ],
+      "AT": [
+        {
+          "name": "ServusTV",
+          "type": "free",
+          "url": "https://www.servustv.com"
+        }
+      ],
+      "GB": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com"
+        }
+      ],
+      "global": [
+        {
+          "name": "DTM YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@DTM",
+          "note": "Free in most countries"
+        },
+        {
+          "name": "dtm.com",
+          "type": "free",
+          "url": "https://www.dtm.com/live"
+        }
+      ]
     }
   },
   {
@@ -642,6 +1265,50 @@
       "ig": "https://instagram.com/btcc",
       "x": "https://x.com/BTCC",
       "yt": "https://youtube.com/@OfficialBTCC"
+    },
+    "howToWatch": {
+      "GB": [
+        {
+          "name": "ITV4",
+          "type": "free",
+          "url": "https://www.itv.com/hub/itv4",
+          "note": "Live"
+        },
+        {
+          "name": "ITVX",
+          "type": "free",
+          "url": "https://www.itv.com/hub",
+          "note": "Free, live"
+        }
+      ],
+      "US": [
+        {
+          "name": "RACER Network",
+          "type": "streaming",
+          "url": "https://www.racer.com"
+        }
+      ],
+      "CA": [
+        {
+          "name": "RACER Network",
+          "type": "streaming",
+          "url": "https://www.racer.com"
+        }
+      ],
+      "global": [
+        {
+          "name": "BTCC YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@BTCC",
+          "note": "Free worldwide (excl. UK & NA)"
+        },
+        {
+          "name": "TikTok @officialbtcc",
+          "type": "free",
+          "url": "https://www.tiktok.com/@officialbtcc",
+          "note": "Live"
+        }
+      ]
     }
   },
   {
@@ -658,6 +1325,43 @@
       "ig": "https://instagram.com/supercarschampionship",
       "x": "https://x.com/supercars",
       "yt": "https://youtube.com/@SupercarsChampionship"
+    },
+    "howToWatch": {
+      "AU": [
+        {
+          "name": "Fox Sports / Foxtel",
+          "type": "pay",
+          "url": "https://www.foxsports.com.au",
+          "note": "All rounds, UHD"
+        },
+        {
+          "name": "Kayo Sports",
+          "type": "streaming",
+          "url": "https://kayosports.com.au",
+          "note": "All rounds"
+        },
+        {
+          "name": "Channel 7 / 7plus",
+          "type": "free",
+          "url": "https://www.7plus.com.au",
+          "note": "5 selected rounds"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "Sky Sport NZ",
+          "type": "pay",
+          "url": "https://www.skysports.co.nz"
+        }
+      ],
+      "global": [
+        {
+          "name": "SuperView",
+          "type": "streaming",
+          "url": "https://www.superview.com.au",
+          "note": "Official international"
+        }
+      ]
     }
   },
   {
@@ -690,6 +1394,22 @@
       "ig": "https://instagram.com/gtworldcheu",
       "x": "https://x.com/GTWorldChEu",
       "yt": "https://youtube.com/@GTWorld"
+    },
+    "howToWatch": {
+      "global": [
+        {
+          "name": "GTWorld YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@GTWorld",
+          "note": "Free, live worldwide"
+        },
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "Some EU markets"
+        }
+      ]
     }
   },
   {
@@ -722,6 +1442,29 @@
       "ig": "https://instagram.com/nuerburgringls",
       "x": "https://x.com/vln_de",
       "yt": "https://youtube.com/@VLNOFFICIAL"
+    },
+    "howToWatch": {
+      "DE": [
+        {
+          "name": "ntv.de",
+          "type": "free",
+          "url": "https://www.ntv.de",
+          "note": "Free, some rounds"
+        }
+      ],
+      "global": [
+        {
+          "name": "Nürburgring YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@Nuerburgring",
+          "note": "Free, selected rounds"
+        },
+        {
+          "name": "nuerburgring.de",
+          "type": "free",
+          "url": "https://www.nuerburgring.de/live"
+        }
+      ]
     }
   },
   {
@@ -834,6 +1577,28 @@
       "ig": "https://instagram.com/fiarallycross",
       "x": "https://x.com/fiaworldrx",
       "yt": "https://youtube.com/@FIAWorldRX"
+    },
+    "howToWatch": {
+      "SE": [
+        {
+          "name": "TV4",
+          "type": "free",
+          "url": "https://www.tv4.se"
+        }
+      ],
+      "global": [
+        {
+          "name": "Rallycross World",
+          "type": "streaming",
+          "url": "https://www.rallycrossworld.com"
+        },
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "Some EU markets"
+        }
+      ]
     }
   }
 ]
