@@ -49,15 +49,27 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DORD Racing",
+      "alternateName": "The Department of Racing Drivers",
+      "url": "https://dord.racing",
+      "logo": "https://dord.racing/assets/og/og-home.webp",
+      "sameAs": [
+        "https://x.com/dord_racing",
+        "https://www.instagram.com/dord.racing/"
+      ]
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "2026 Motorsport Master Calendar",
       "alternateName": "dord.racing",
       "url": "https://dord.racing",
       "description": "The ultimate 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.",
       "publisher": {
-        "@type": "Person",
-        "name": "Yann Durandet",
-        "url": "https://durandet.studio"
+        "@type": "Organization",
+        "name": "DORD Racing",
+        "url": "https://dord.racing"
       }
     })} />
     <script type="application/ld+json" set:html={JSON.stringify({

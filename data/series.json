@@ -1073,12 +1073,8 @@
       "date": "2026-07-26T15:00:00+02:00"
     },
     {
-      "name": "ZANDVOORT (R1)",
+      "name": "ZANDVOORT",
       "date": "2026-08-22T12:00:00+02:00"
-    },
-    {
-      "name": "ZANDVOORT (R2)",
-      "date": "2026-08-23T15:00:00+02:00"
     },
     {
       "name": "MONZA",
@@ -1091,24 +1087,16 @@
       "date": "2026-04-26T12:00:00+02:00"
     },
     {
-      "name": "OULTON PARK (R1)",
+      "name": "OULTON PARK",
       "date": "2026-05-23T11:00:00+02:00"
-    },
-    {
-      "name": "OULTON PARK (R2)",
-      "date": "2026-05-25T13:00:00+02:00"
     },
     {
       "name": "SPA",
       "date": "2026-06-21T13:00:00+02:00"
     },
     {
-      "name": "SNETTERTON (R1)",
+      "name": "SNETTERTON",
       "date": "2026-08-15T11:00:00+02:00"
-    },
-    {
-      "name": "SNETTERTON (R2)",
-      "date": "2026-08-16T13:00:00+02:00"
     },
     {
       "name": "DONINGTON PARK",

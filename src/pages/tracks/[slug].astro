@@ -26,6 +26,7 @@ const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
+import seriesContentData from '../../../data/seriesContent.json';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Venue = {
@@ -117,12 +118,82 @@ const continentLabel: Record<string, string> = {
   'europe': 'Europe', 'north-america': 'North America', 'asia': 'Asia',
   'middle-east': 'Middle East', 'south-america': 'South America', 'oceania': 'Oceania',
 };
+
+// ── SEO / structured data ─────────────────────────────────────────────────────
+const seriesNameMap: Record<string, string> = Object.fromEntries(
+  (seriesContentData as any[]).map((s: any) => [s.slug, s.name])
+);
+
+function parseWeekDate(label: string): string | null {
+  // Parses "WEEK 04 • JAN 22-25" or "WEEK 02 • JAN 10" → ISO date (race/end day)
+  const m = label.match(/([A-Z]{3})\s+(\d+)(?:-(\d+))?/);
+  if (!m) return null;
+  const monthMap: Record<string, number> = {
+    JAN:1,FEB:2,MAR:3,APR:4,MAY:5,JUN:6,JUL:7,AUG:8,SEP:9,OCT:10,NOV:11,DEC:12,
+  };
+  const month = monthMap[m[1]];
+  if (!month) return null;
+  const day = parseInt(m[3] ?? m[2], 10); // use end/race day for multi-day spans
+  return `2026-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+}
+
+const champCount = activeSeries.length;
+const pageTitle = `${venue.name} — 2026 Motorsport Race Schedule | DORD`;
+const pageDescription = champCount > 0
+  ? `All 2026 races at ${venue.name} — dates, series, and session times across ${champCount} championship${champCount !== 1 ? 's' : ''}. Updated weekly.`
+  : `${venue.name} circuit guide — track map, specifications, and lap record. ${venue.city}, ${venue.country}.`;
+
+const sportsEventSchemas = [
+  ...pastResults.map((ev: any) => ({ ...ev, isoDate: ev.entries[0]?.date ?? parseWeekDate(ev.week) })),
+  ...upcomingEvents.map((ev: any) => ({ ...ev, isoDate: parseWeekDate(ev.week) })),
+]
+  .filter((ev: any) => ev.isoDate)
+  .map((ev: any) => {
+    const seriesName = seriesNameMap[ev.series] ?? ev.series;
+    return {
+      "@context": "https://schema.org",
+      "@type": "SportsEvent",
+      "name": `${seriesName} — ${ev.title} 2026`,
+      "startDate": ev.isoDate,
+      "endDate": ev.isoDate,
+      "url": `https://dord.racing/tracks/${slug}`,
+      "sport": "Motorsport",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "description": `2026 ${seriesName} event — ${ev.title} at ${venue.name}, ${venue.city}.`,
+      "image": "https://dord.racing/assets/og/og-tracks.webp",
+      "organizer": {
+        "@type": "SportsOrganization",
+        "name": seriesName,
+      },
+      "performer": {
+        "@type": "SportsOrganization",
+        "name": seriesName,
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": `https://dord.racing/tracks/${slug}`,
+        "availability": "https://schema.org/InStock",
+      },
+      "location": {
+        "@type": "Place",
+        "name": venue.name,
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": venue.city,
+          "addressCountry": venue.country,
+        },
+        ...((venue as any).website ? { "url": (venue as any).website } : {}),
+      },
+    };
+  });
 ---
 
 <BaseLayout
-  title={allEvents.length > 0 ? `${venue.name} — Track Guide, Circuit Map & 2026 Race Schedule` : `${venue.name} — Track Guide & Circuit Map`}
-  description={venue.bio ?? `${venue.name} hosts ${activeSeries.length} series in the 2026 motorsport calendar.`}
+  title={pageTitle}
+  description={pageDescription}
   canonicalUrl={`https://dord.racing/tracks/${slug}`}
+  ogImage="https://dord.racing/assets/og/og-tracks.webp"
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -146,11 +217,14 @@ const continentLabel: Record<string, string> = {
         { "@type": "ListItem", "position": 3, "name": venue.name, "item": `https://dord.racing/tracks/${slug}` },
       ],
     })} />
+    {sportsEventSchemas.length > 0 && (
+      <script type="application/ld+json" set:html={JSON.stringify(sportsEventSchemas)} />
+    )}
   </Fragment>
   <header>
     <div class="header--left">
       <div class="header--dept">The Department of Racing Drivers</div>
-      <h1>2026 Track Browser</h1>
+      <h1>{venue.name} — 2026 Race Calendar</h1>
       <div class="meta">{venue.city} · {venue.country} · {continentLabel[venue.continent] ?? venue.continent}</div>
       <Nav activePage="tracks" />
     </div>
