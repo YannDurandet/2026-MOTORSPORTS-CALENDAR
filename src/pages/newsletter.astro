@@ -309,9 +309,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         setLoading(false);
         showError(data?.error ?? 'Something went sideways. Try again.');
       }
-    } catch {
+    } catch (err: any) {
       setLoading(false);
-      showError('Something went sideways. Try again.');
+      showError(err?.message ?? 'Something went sideways. Try again.');
     }
   });
 </script>
