@@ -304,7 +304,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       const data = await res.json();
 
       if (data?.ok) {
-        showSuccess(data.message ?? "You're in. First briefing lands before the weekend.");
+        window.location.href = '/newsletter/thank-you';
       } else {
         setLoading(false);
         showError(data?.error ?? 'Something went sideways. Try again.');

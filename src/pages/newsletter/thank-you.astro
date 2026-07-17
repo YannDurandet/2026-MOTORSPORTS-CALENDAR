@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="You're on the grid — From The Pit Wall"
+  description="Thanks for subscribing to From The Pit Wall, the weekly motorsport briefing from DORD Racing."
+  canonicalUrl="https://dord.racing/newsletter/thank-you"
+>
+
+  <main id="main-content" class="ty-page">
+
+    <section class="ty-hero" aria-labelledby="ty-title">
+      <div class="ty-inner">
+
+        <div class="ty-kicker">FROM THE PIT WALL</div>
+
+        <h1 class="ty-headline" id="ty-title">You're on<br>the grid.</h1>
+
+        <p class="ty-body">
+          First briefing lands before the next race weekend.<br>
+          25 series, no filler, every Monday.
+        </p>
+
+        <a href="/" class="ty-cta">← Back to the calendar</a>
+
+      </div>
+    </section>
+
+    <Footer />
+
+  </main>
+
+</BaseLayout>
+
+<style>
+  .ty-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+  }
+
+  .ty-hero {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #080c10 url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
+    overflow: hidden;
+    min-height: 100svh;
+  }
+
+  .ty-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(8, 12, 16, 0.55) 0%,
+      rgba(8, 12, 16, 0.75) 55%,
+      rgba(8, 12, 16, 0.92) 100%
+    );
+    pointer-events: none;
+  }
+
+  .ty-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 560px;
+    padding: 100px 24px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .ty-kicker {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #4a6070;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .ty-headline {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-weight: 900;
+    color: #c3c6c8;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin: 0 0 28px;
+  }
+
+  .ty-body {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.76rem;
+    color: #7a8a9a;
+    letter-spacing: 0.02em;
+    line-height: 1.8;
+    margin: 0 0 40px;
+    max-width: 46ch;
+  }
+
+  .ty-cta {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c3c6c8;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 12px 22px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+
+  .ty-cta:hover {
+    color: #fff;
+    border-color: #4a7090;
+    background: rgba(13, 24, 34, 0.9);
+  }
+
+  .ty-cta:focus-visible {
+    outline: 2px solid #4a7090;
+    outline-offset: 3px;
+  }
+
+  @media (min-width: 769px) {
+    .ty-hero {
+      min-height: 92svh;
+      background-image: url(/assets/mailing-banner-desktop.webp);
+    }
+    .ty-inner {
+      max-width: 640px;
+      padding: 120px 64px 80px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ty-cta { transition: none; }
+  }
+</style>
