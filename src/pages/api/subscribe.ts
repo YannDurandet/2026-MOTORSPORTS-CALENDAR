@@ -20,7 +20,7 @@
 
 export const prerender = false;
 
-// Use the /web build — required for Cloudflare Workers (no Node.js APIs).
+import { env } from 'cloudflare:workers';
 import { createClient } from '@libsql/client/web';
 import { Resend } from 'resend';
 import type { APIRoute } from 'astro';
@@ -102,14 +102,13 @@ export function GET(): Response {
   });
 }
 
-export const POST: APIRoute = async ({ request, locals }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     // ── Guard: confirm required env vars are present ───────────────────────
-    const cfEnv     = (locals as any)?.runtime?.env as Record<string, string> | undefined;
-    const dbUrl     = cfEnv?.TURSO_DATABASE_URL  ?? import.meta.env.TURSO_DATABASE_URL;
-    const dbToken   = cfEnv?.TURSO_AUTH_TOKEN    ?? import.meta.env.TURSO_AUTH_TOKEN;
-    const resendKey = cfEnv?.RESEND_API_KEY      ?? import.meta.env.RESEND_API_KEY;
-    const fromEmail = (cfEnv?.RESEND_FROM_EMAIL  ?? import.meta.env.RESEND_FROM_EMAIL)
+    const dbUrl     = (env as any).TURSO_DATABASE_URL  ?? import.meta.env.TURSO_DATABASE_URL;
+    const dbToken   = (env as any).TURSO_AUTH_TOKEN    ?? import.meta.env.TURSO_AUTH_TOKEN;
+    const resendKey = (env as any).RESEND_API_KEY      ?? import.meta.env.RESEND_API_KEY;
+    const fromEmail = ((env as any).RESEND_FROM_EMAIL  ?? import.meta.env.RESEND_FROM_EMAIL)
                       ?? 'DORD Racing <weekly@dord.racing>';
 
     if (!dbUrl || !dbToken) {
