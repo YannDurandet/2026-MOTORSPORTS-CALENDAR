@@ -103,77 +103,76 @@ export function GET(): Response {
 }
 
 export const POST: APIRoute = async ({ request, locals }) => {
-  // ── Guard: confirm required env vars are present ───────────────────────
-  // Try Cloudflare runtime env first (Pages Functions), fall back to import.meta.env (local dev).
-  const cfEnv     = (locals as any)?.runtime?.env as Record<string, string> | undefined;
-  const dbUrl     = cfEnv?.TURSO_DATABASE_URL  ?? import.meta.env.TURSO_DATABASE_URL;
-  const dbToken   = cfEnv?.TURSO_AUTH_TOKEN    ?? import.meta.env.TURSO_AUTH_TOKEN;
-  const resendKey = cfEnv?.RESEND_API_KEY      ?? import.meta.env.RESEND_API_KEY;
-  const fromEmail = (cfEnv?.RESEND_FROM_EMAIL  ?? import.meta.env.RESEND_FROM_EMAIL)
-                    ?? 'DORD Racing <weekly@dord.racing>';
-
-  if (!dbUrl || !dbToken) {
-    console.error('[subscribe] Missing TURSO_DATABASE_URL or TURSO_AUTH_TOKEN');
-    return json({ error: 'Server configuration error.' }, 500);
-  }
-
-  // ── Parse body ─────────────────────────────────────────────────────────
-  let email: string;
   try {
-    const body = await request.json();
-    email = (typeof body?.email === 'string' ? body.email : '').trim().toLowerCase();
-  } catch {
-    return json({ error: 'Invalid request body.' }, 400);
-  }
+    // ── Guard: confirm required env vars are present ───────────────────────
+    const cfEnv     = (locals as any)?.runtime?.env as Record<string, string> | undefined;
+    const dbUrl     = cfEnv?.TURSO_DATABASE_URL  ?? import.meta.env.TURSO_DATABASE_URL;
+    const dbToken   = cfEnv?.TURSO_AUTH_TOKEN    ?? import.meta.env.TURSO_AUTH_TOKEN;
+    const resendKey = cfEnv?.RESEND_API_KEY      ?? import.meta.env.RESEND_API_KEY;
+    const fromEmail = (cfEnv?.RESEND_FROM_EMAIL  ?? import.meta.env.RESEND_FROM_EMAIL)
+                      ?? 'DORD Racing <weekly@dord.racing>';
 
-  // ── Validate email ─────────────────────────────────────────────────────
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return json({ error: 'Invalid email address.' }, 400);
-  }
-
-  // ── Connect to Turso ───────────────────────────────────────────────────
-  const db = createClient({ url: dbUrl, authToken: dbToken });
-
-  // ── Duplicate check ────────────────────────────────────────────────────
-  const existing = await db.execute({
-    sql:  'SELECT id FROM subscribers WHERE email = ?',
-    args: [email],
-  });
-
-  if (existing.rows.length > 0) {
-    return json({ ok: true, message: "You're already on the list." }, 200);
-  }
-
-  // ── Insert ─────────────────────────────────────────────────────────────
-  await db.execute({
-    sql:  'INSERT INTO subscribers (email) VALUES (?)',
-    args: [email],
-  });
-
-  // ── Welcome email ──────────────────────────────────────────────────────
-  // Fire-and-forget: a Resend failure must never break the subscription.
-  if (resendKey) {
-    try {
-      const resend = new Resend(resendKey);
-      const { error: resendError } = await resend.emails.send({
-        from:    fromEmail,
-        to:      email,
-        subject: "You're on the grid.",
-        text:    WELCOME_TEXT,
-        html:    WELCOME_HTML,
-      });
-      if (resendError) {
-        console.error('[subscribe] Resend error:', resendError);
-      }
-    } catch (err) {
-      console.error('[subscribe] Resend threw:', err);
+    if (!dbUrl || !dbToken) {
+      console.error('[subscribe] Missing TURSO_DATABASE_URL or TURSO_AUTH_TOKEN');
+      return json({ error: 'Server configuration error.' }, 500);
     }
-  } else {
-    console.warn('[subscribe] RESEND_API_KEY not set — welcome email skipped.');
-  }
-  // ──────────────────────────────────────────────────────────────────────
 
-  return json({ ok: true, message: "You're in. First briefing lands before the weekend." }, 200);
+    // ── Parse body ─────────────────────────────────────────────────────────
+    let email: string;
+    try {
+      const body = await request.json();
+      email = (typeof body?.email === 'string' ? body.email : '').trim().toLowerCase();
+    } catch {
+      return json({ error: 'Invalid request body.' }, 400);
+    }
+
+    // ── Validate email ─────────────────────────────────────────────────────
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return json({ error: 'Invalid email address.' }, 400);
+    }
+
+    // ── Connect to Turso ───────────────────────────────────────────────────
+    const db = createClient({ url: dbUrl, authToken: dbToken });
+
+    // ── Duplicate check ────────────────────────────────────────────────────
+    const existing = await db.execute({
+      sql:  'SELECT id FROM subscribers WHERE email = ?',
+      args: [email],
+    });
+
+    if (existing.rows.length > 0) {
+      return json({ ok: true, message: "You're already on the list." }, 200);
+    }
+
+    // ── Insert ─────────────────────────────────────────────────────────────
+    await db.execute({
+      sql:  'INSERT INTO subscribers (email) VALUES (?)',
+      args: [email],
+    });
+
+    // ── Welcome email ──────────────────────────────────────────────────────
+    if (resendKey) {
+      try {
+        const resend = new Resend(resendKey);
+        const { error: resendError } = await resend.emails.send({
+          from:    fromEmail,
+          to:      email,
+          subject: "You're on the grid.",
+          text:    WELCOME_TEXT,
+          html:    WELCOME_HTML,
+        });
+        if (resendError) console.error('[subscribe] Resend error:', resendError);
+      } catch (err) {
+        console.error('[subscribe] Resend threw:', err);
+      }
+    }
+
+    return json({ ok: true, message: "You're in. First briefing lands before the weekend." }, 200);
+
+  } catch (err: any) {
+    console.error('[subscribe] Unhandled error:', err?.message ?? err);
+    return json({ error: err?.message ?? 'Unknown server error.' }, 500);
+  }
 };
 
 // ── Helper ─────────────────────────────────────────────────────────────────
