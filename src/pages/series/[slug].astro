@@ -150,6 +150,9 @@ const sportsEventSchemas = calEvents.map((ev, i) => {
       "@type": "Offer",
       "url": series.socials?.web ?? `https://dord.racing/series/${slug}`,
       "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "validFrom": "2026-01-01",
     },
     "image": ogImage ?? "https://dord.racing/assets/lauda_and_mouton--large.webp",
     "location": venue ? {
