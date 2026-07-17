@@ -1,8 +1,8 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
-import calendarData from '../../data/calendar.json';
-import seriesContent from '../../data/seriesContent.json';
-import seriesRaces from '../../data/series.json';
-import tracksData from '../../data/tracks.json';
+import calendarData from '../../../data/calendar.json';
+import seriesContent from '../../../data/seriesContent.json';
+import seriesRaces from '../../../data/series.json';
+import tracksData from '../../../data/tracks.json';
 
 export const getStaticPaths: GetStaticPaths = () => {
   const slugs = (seriesContent as any[]).map((s: any) => s.slug);
