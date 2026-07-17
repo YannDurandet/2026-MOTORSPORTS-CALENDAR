@@ -104,13 +104,13 @@ export function GET(): Response {
 
 export const POST: APIRoute = async ({ request, locals }) => {
   // ── Guard: confirm required env vars are present ───────────────────────
-  // In Cloudflare Pages, secrets are in locals.runtime.env (not import.meta.env).
-  const env        = locals.runtime.env;
-  const dbUrl      = env.TURSO_DATABASE_URL  as string | undefined;
-  const dbToken    = env.TURSO_AUTH_TOKEN    as string | undefined;
-  const resendKey  = env.RESEND_API_KEY      as string | undefined;
-  const fromEmail  = (env.RESEND_FROM_EMAIL  as string | undefined)
-                     ?? 'DORD Racing <weekly@dord.racing>';
+  // Try Cloudflare runtime env first (Pages Functions), fall back to import.meta.env (local dev).
+  const cfEnv     = (locals as any)?.runtime?.env as Record<string, string> | undefined;
+  const dbUrl     = cfEnv?.TURSO_DATABASE_URL  ?? import.meta.env.TURSO_DATABASE_URL;
+  const dbToken   = cfEnv?.TURSO_AUTH_TOKEN    ?? import.meta.env.TURSO_AUTH_TOKEN;
+  const resendKey = cfEnv?.RESEND_API_KEY      ?? import.meta.env.RESEND_API_KEY;
+  const fromEmail = (cfEnv?.RESEND_FROM_EMAIL  ?? import.meta.env.RESEND_FROM_EMAIL)
+                    ?? 'DORD Racing <weekly@dord.racing>';
 
   if (!dbUrl || !dbToken) {
     console.error('[subscribe] Missing TURSO_DATABASE_URL or TURSO_AUTH_TOKEN');
