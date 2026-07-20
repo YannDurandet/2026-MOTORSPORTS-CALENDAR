@@ -23,6 +23,12 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <meta name="description" content={description}>
   <link rel="canonical" href={resolvedCanonical} />
   <link rel="icon" href={`${base}/assets/website-icon.svg`} type="image/svg+xml">
+  <!-- Preload critical fonts to prevent layout shifts (CLS) -->
+  <link rel="preload" href={`${base}/assets/fonts/orbitron-900.woff2`} as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href={`${base}/assets/fonts/roboto-mono-400.woff2`} as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href={`${base}/assets/fonts/roboto-mono-700.woff2`} as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href={`${base}/assets/fonts/inter-400.woff2`} as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href={`${base}/assets/fonts/inter-800.woff2`} as="font" type="font/woff2" crossorigin>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="2026 Motorsport Master Calendar">
   <meta property="og:url" content={resolvedCanonical}>
