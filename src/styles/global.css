@@ -419,7 +419,7 @@ h2 {
     padding: 8px 12px;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.7rem;
-    color: #70767C;
+    color: #8a9aaa;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid var(--border);
@@ -584,10 +584,12 @@ h2 {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.6rem;
     font-weight: 800;
-    padding: 2px 5px;
+    padding: 5px 6px;
     border-radius: 2px;
     text-transform: uppercase;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
     width: fit-content;
     margin-bottom: 4px;
     color: #000;
@@ -595,7 +597,7 @@ h2 {
 
 /* Tag Colors */
 .t-f1 {
-    background: var(--f1);
+    background: #CC1400; /* darkened from #ff1801 for WCAG AA 4.5:1 */
     color: #fff;
 }
 
@@ -610,7 +612,7 @@ h2 {
 }
 
 .t-sf {
-    background: var(--sf);
+    background: #007A5A; /* darkened from #00A67E for WCAG AA 5.4:1 */
     color: #fff;
 }
 
@@ -632,22 +634,22 @@ h2 {
 }
 
 .t-nascar {
-    background: var(--nascar);
+    background: #1565C0; /* darkened from #1A72E8 for WCAG AA 5.4:1 */
     color: #fff;
 }
 
 .t-motogp {
-    background: var(--motogp);
+    background: #C2185B; /* darkened from #E91E63 for WCAG AA 5.8:1 */
     color: #fff;
 }
 
 .t-wsbk {
-    background: var(--wsbk);
+    background: #CC0000; /* darkened from #EE0000 for WCAG AA 5.8:1 */
     color: #fff;
 }
 
 .t-dtm {
-    background: var(--dtm);
+    background: #2E7D32; /* darkened from #4CAF50 for WCAG AA 4.5:1 */
     color: #fff;
 }
 
@@ -684,15 +686,16 @@ h2 {
 
 .t-tcr {
     background: var(--tcr);
+    color: #fff; /* #E10B16 bg + white = 4.84:1 WCAG AA */
 }
 
 .t-erc {
-    background: var(--erc);
+    background: #006BBB; /* darkened from #0088DD for WCAG AA 4.5:1 */
     color: #fff;
 }
 
 .t-h24eu {
-    background: var(--h24eu);
+    background: #1565C0; /* darkened from #1A7FE8 for WCAG AA 5.4:1 */
     color: #fff;
 }
 
@@ -707,8 +710,8 @@ h2 {
 }
 
 .t-eurx {
-    background: var(--eurx);
-    color: #fff;
+    background: var(--eurx); /* #02F3E9 bright cyan — use dark text for WCAG AA 13:1 */
+    color: #000;
 }
 
 .title {
@@ -965,7 +968,6 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
 
     .arrow-btn {
         min-width: auto;
-        min-height: auto;
     }
 }
 
@@ -2028,7 +2030,7 @@ a {
     font-size: 0.6rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #5a6a78;
+    color: #8a9aaa;
     transition: color 0.2s;
 }
 
@@ -2045,17 +2047,15 @@ a {
     padding: 3px 10px;
     cursor: pointer;
     transition: background 0.15s, color 0.15s, border-color 0.15s, opacity 0.2s;
-    /* Default: greyed out */
-    color: #3a4a58;
+    /* Hidden until filters are active */
+    display: none;
     border: 1px solid #2a3540;
-    opacity: 0.6;
-    pointer-events: none;
 }
 
 .filter-active-bar.has-filters .clear-all-btn {
+    display: inline-block;
     color: var(--f1);
     border-color: rgba(255, 24, 1, 0.35);
-    opacity: 1;
     pointer-events: auto;
 }
 
