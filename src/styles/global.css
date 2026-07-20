@@ -918,9 +918,10 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
     }
 
     .hero-banner {
-        /* The 1600x400 image will scale to fit the 1200px container */
+        /* Desktop image is 1600x400 (4:1) — override mobile 600x400 intrinsic ratio */
         width: 100%;
         height: auto;
+        aspect-ratio: 4 / 1;
     }
 
     header {
@@ -969,13 +970,16 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
     .arrow-btn {
         min-width: auto;
     }
+
+    footer {
+        background-image: url(/assets/lauda_and_mouton--large.webp);
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 footer {
     margin-top: 48px;
-    background-image: url(/assets/lauda_and_mouton--large.webp);
-    background-size: cover;
-    background-position: center;
     padding: 40px 24px 96px; /* extra bottom for sticky nav island */
     display: flex;
     justify-content: center;
