@@ -94,7 +94,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   </div>
 
   <!-- Sticky bottom nav — appears when header nav scrolls off screen -->
-  <div id="sticky-nav-bar" class="sticky-nav-bar" aria-hidden="true">
+  <div id="sticky-nav-bar" class="sticky-nav-bar" aria-hidden="true" inert>
     <nav class="sticky-nav-inner">
       <a href={`${base}/`}       class="sticky-nav-link" data-page="calendar" aria-label="Calendar">
         <img src={`${base}/assets/calendar-icon.svg`} alt="" width="22" height="22">
@@ -455,6 +455,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
           const show = !entry.isIntersecting;
           stickyBar.classList.toggle('visible', show);
           stickyBar.setAttribute('aria-hidden', show ? 'false' : 'true');
+          if (show) { stickyBar.removeAttribute('inert'); } else { stickyBar.setAttribute('inert', ''); }
         },
         { threshold: 0 }
       );

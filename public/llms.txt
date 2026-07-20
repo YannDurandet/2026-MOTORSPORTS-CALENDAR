@@ -15,10 +15,10 @@ Key features:
 
 ## Pages
 
-- Homepage / full calendar: https://dord.racing
-- Series guide (all 25 championships): https://dord.racing/series
-- Track browser (130+ circuits): https://dord.racing/tracks
-- Race results: https://dord.racing/results
+- [Homepage / full calendar](https://dord.racing)
+- [Series guide (all 25 championships)](https://dord.racing/series)
+- [Track browser (130+ circuits)](https://dord.racing/tracks)
+- [Race results](https://dord.racing/results)
 
 ## The 25 Series
 
@@ -52,7 +52,7 @@ Key features:
 
 ## Individual series pages
 
-Each series has a dedicated page at https://dord.racing/series/{slug} with:
+Each series has a dedicated page at [https://dord.racing/series/{slug}](https://dord.racing/series/) with:
 - Series description and history
 - Full 2026 race calendar for that series
 - Teams and drivers (for Tier 1 series: F1, WEC, IndyCar, NASCAR, MotoGP)
@@ -68,7 +68,7 @@ dord.racing maintains technical data for 130+ circuits including:
 - Custom SVG track maps for most venues
 - Which series race at each venue
 
-Each track has a page at https://dord.racing/tracks/{slug}
+Each track has a page at [https://dord.racing/tracks/{slug}](https://dord.racing/tracks/)
 
 ## Data sources
 
@@ -78,10 +78,10 @@ Results: official series result releases
 
 ## About
 
-- Site: https://dord.racing
-- Builder: Yann Durandet — https://durandet.studio
+- Site: [dord.racing](https://dord.racing)
+- Builder: Yann Durandet — [durandet.studio](https://durandet.studio)
 - Contact: durandet.yann.pro@gmail.com
-- X / Twitter: https://x.com/dord_racing
-- Instagram: https://www.instagram.com/dord.racing/
+- X / Twitter: [@dord_racing](https://x.com/dord_racing)
+- Instagram: [@dord.racing](https://www.instagram.com/dord.racing/)
 - Tech stack: Astro (SSG), static JSON data files, vanilla JS
 - Independent fan project — not affiliated with any series, sanctioning body, or commercial rights holder
