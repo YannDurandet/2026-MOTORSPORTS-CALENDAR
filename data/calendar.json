@@ -3217,6 +3217,14 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-07-20",
+                "winner": "Álex Palou",
+                "country": "ES",
+                "team": "Chip Ganassi Racing"
+              }
             ]
           },
           {
@@ -3402,15 +3410,7 @@
             "tag": "S. FORMULA",
             "title": "Sugo",
             "time": "RACE: <span class=\"hl\">05:00</span>",
-            "track": "sugo.svg",
-            "results": [
-              {
-                "date": "2026-07-19",
-                "winner": "Kakunoshin Ohta",
-                "team": "DOCOMO TEAM DANDELION RACING",
-                "country": "JP"
-              }
-            ]
+            "track": "sugo.svg"
           },
           {
             "series": "indycar",
@@ -3471,14 +3471,7 @@
             "tag": "NASCAR",
             "title": "Cook Out 400 (Richmond)",
             "time": "RACE: <span class=\"hl\">01:00</span>",
-            "track": "richmond-oval.svg",
-            "results": [
-              {
-                "date": "2026-07-20",
-                "winner": "Joey Logano",
-                "country": "US"
-              }
-            ]
+            "track": "richmond-oval.svg"
           },
           {
             "series": "bgt",
@@ -3580,27 +3573,7 @@
             "tag": "GTWCE",
             "title": "Nürburgring Sprint",
             "time": "R1: <span class=\"hl\">09:15</span> • R2: <span class=\"hl\">13:45</span>",
-            "track": "nurburgring.svg",
-            "results": [
-              {
-                "date": "2026-07-18",
-                "race_label": "Race 1",
-                "winners": [
-                  "Kelvin van der Linde",
-                  "Charles Weerts"
-                ],
-                "team": "Team WRT"
-              },
-              {
-                "date": "2026-07-19",
-                "race_label": "Race 2",
-                "winners": [
-                  "Kelvin van der Linde",
-                  "Charles Weerts"
-                ],
-                "team": "Team WRT"
-              }
-            ]
+            "track": "nurburgring.svg"
           },
           {
             "series": "gtwca",
