@@ -1047,6 +1047,34 @@ footer {
     margin-bottom: 0;
 }
 
+.footer--byline {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer--byline-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #7a8fa0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.footer--byline-link {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #d0dce6;
+    letter-spacing: 0.01em;
+    display: inline-block;
+    transition: color 0.2s;
+}
+
+.footer--byline-link:hover {
+    color: #fff;
+}
+
 .footer--social-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.7rem;
@@ -1105,6 +1133,17 @@ a {
 
 .footer--nav-link:hover {
     color: var(--f1);
+}
+
+.footer--bottom-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.15s;
+}
+
+.footer--bottom-link:hover {
+    color: #b0c0cc;
 }
 
 /* ── Bottom bar ─────────────────────────────────────────────────── */
