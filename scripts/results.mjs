@@ -107,7 +107,11 @@ async function main() {
       const winner = (await ask(`  Winner (or "none" to skip): `)).trim();
       if (winner.toLowerCase() === 'none') continue;
 
-      const date = await prompt('Date', weekEnd);
+      let date = await prompt('Date', weekEnd);
+      // Expand bare day numbers (e.g. "20") to full ISO date using the week's month/year
+      if (date && /^\d{1,2}$/.test(date)) {
+        date = weekEnd.slice(0, 8) + date.padStart(2, '0');
+      }
 
       let coDriverOrPartner = null;
       if (RALLY_SERIES.has(series) || PAIRING_SERIES.has(series)) {
