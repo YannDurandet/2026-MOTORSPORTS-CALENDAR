@@ -3987,6 +3987,13 @@
         "label": "WEEK 40 • OCT 01-04",
         "events": [
           {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Bahrain GP",
+            "time": "QUALI: <span class=\"hl\">09:00</span> • RACE: <span class=\"hl\">07:00</span>",
+            "track": "sepang.svg"
+          },
+          {
             "series": "wrc",
             "tag": "WRC",
             "title": "Rally Italy",
