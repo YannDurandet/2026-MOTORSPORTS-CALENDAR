@@ -3290,6 +3290,14 @@
                 "label": "F3",
                 "detail": "RACES: TBC"
               }
+            ],
+            "results": [
+              {
+                "date": "2026-07-26",
+                "winner": "Lando Norris",
+                "country": "GB",
+                "team": "McLaren"
+              }
             ]
           },
           {
@@ -3297,42 +3305,113 @@
             "tag": "FORMULA E",
             "title": "Tokyo E-Prix",
             "time": "R1 & R2: <span class=\"hl\">13:05</span>",
-            "track": "tokyo.svg"
+            "track": "tokyo.svg",
+            "results": [
+              {
+                "date": "2026-07-26",
+                "winner": "Nick De Vries",
+                "country": "NL",
+                "team": "MAHINDRA RACING"
+              }
+            ]
           },
           {
             "series": "dtm",
             "tag": "DTM",
             "title": "Oschersleben Round",
             "time": "R1: <span class=\"hl\">11:30</span> • R2: <span class=\"hl\">11:30</span>",
-            "track": "oschersleben.svg"
+            "track": "oschersleben.svg",
+            "results": [
+              {
+                "date": "2026-07-25",
+                "race_label": "Race 1",
+                "winner": "Thomas Preining",
+                "country": "AT",
+                "team": "Manthey"
+              },
+              {
+                "date": "2026-07-26",
+                "race_label": "Race 2",
+                "winner": "Mirko Bortolotti",
+                "country": "IT",
+                "team": "TGI Team by GRT"
+              }
+            ]
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Thruxton (Races 13-15)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
-            "track": "thruxton.svg"
+            "track": "thruxton.svg",
+            "results": [
+              {
+                "date": "2026-07-26",
+                "race_label": "Race 1",
+                "winner": "Josh Cook",
+                "country": "GB",
+                "team": "Speedworks Corolla Racing"
+              },
+              {
+                "date": "2026-07-26",
+                "race_label": "Race 2",
+                "winner": "Ashley SUTTON",
+                "country": "GB",
+                "team": "NAPA Racing UK"
+              },
+              {
+                "date": "2026-07-26",
+                "race_label": "Race 3",
+                "winner": "Tom Ingram",
+                "country": "GB",
+                "team": "Team VERTU"
+              }
+            ]
           },
           {
             "series": "erc",
             "tag": "ERC",
             "title": "82nd Rally Poland",
             "time": "FRI > SUN",
-            "track": "poland-wrc.svg"
+            "track": "poland-wrc.svg",
+            "results": [
+              {
+                "date": "2026-07-26",
+                "winner": "Teemu SUNINEN",
+                "co_driver": "Antti HAAPALA",
+                "country": "FI",
+                "team": "Skoda"
+              }
+            ]
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Brickyard 400 (Indianapolis)",
             "time": "RACE: <span class=\"hl\">20:00</span>",
-            "track": "indianapolis.svg"
+            "track": "indianapolis.svg",
+            "results": [
+              {
+                "date": "2026-07-26",
+                "winner": "Cory Heim",
+                "country": "US",
+                "team": "23XI Racing"
+              }
+            ]
           },
           {
             "series": "psc",
             "tag": "PORSCHE SC",
             "title": "Rd 5: Budapest",
             "time": "RACE: <span class=\"hl\">10:00</span>",
-            "track": "hungaroring.svg"
+            "track": "hungaroring.svg",
+            "results": [
+              {
+                "date": "2026-07-26",
+                "winner": "Marcus Amand",
+                "country": "FI"
+              }
+            ]
           }
         ]
       },
