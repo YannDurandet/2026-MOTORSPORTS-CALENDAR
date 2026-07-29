@@ -4138,6 +4138,13 @@
         "label": "WEEK 42 • OCT 16-19",
         "events": [
           {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Barcelona",
+            "time": "RACE: TBC",
+            "track": "barcelona.svg"
+          },
+          {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Australian Grand Prix (Phillip Island)",
@@ -4251,9 +4258,9 @@
           {
             "series": "wec",
             "tag": "WEC",
-            "title": "8 Hours of Bahrain",
-            "time": "RACE: <span class=\"hl\">11:00</span>",
-            "track": "bahrain.svg"
+            "title": "6 Hours of Monza",
+            "time": "RACE: TBC",
+            "track": "monza.svg"
           },
           {
             "series": "nascar",
