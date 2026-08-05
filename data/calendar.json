@@ -18,7 +18,9 @@
                 "team": "Citroën Racing",
                 "country": "NZ"
               }
-            ]
+            ],
+            "date": "2026-01-10T21:00:00+01:00",
+            "shortName": "MEXICO CITY"
           }
         ]
       },
@@ -46,7 +48,9 @@
                 "manufacturer": "Toyota",
                 "country": "SE"
               }
-            ]
+            ],
+            "date": "2026-01-25T14:00:00+01:00",
+            "shortName": "MONTE-CARLO"
           },
           {
             "series": "imsa",
@@ -65,7 +69,9 @@
                 "team": "Porsche Penske Motorsport",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-01-25T19:40:00+01:00",
+            "shortName": "ROLEX 24"
           }
         ]
       },
@@ -85,7 +91,9 @@
                 "team": "Jaguar TCS Racing",
                 "country": "NZ"
               }
-            ]
+            ],
+            "date": "2026-01-31T20:00:00+01:00",
+            "shortName": "MIAMI"
           }
         ]
       }
@@ -118,7 +126,9 @@
                 "manufacturer": "Toyota",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-02-15T14:00:00+01:00",
+            "shortName": "SWEDEN"
           },
           {
             "series": "fe",
@@ -141,7 +151,9 @@
                 "team": "Jaguar TCS Racing",
                 "country": "PT"
               }
-            ]
+            ],
+            "date": "2026-02-14T18:00:00+01:00",
+            "shortName": "JEDDAH"
           },
           {
             "series": "igtc",
@@ -160,7 +172,9 @@
                 "team": "Mercedes-AMG Team GMR",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-02-15T00:00:00+01:00",
+            "shortName": "BATHURST 12H"
           },
           {
             "series": "nascar",
@@ -175,7 +189,9 @@
                 "team": "23XI Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-02-15T20:30:00+01:00",
+            "shortName": "DAYTONA 500"
           }
         ]
       },
@@ -210,7 +226,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-02-22T05:00:00+01:00",
+            "shortName": "PHILLIP ISLAND"
           },
           {
             "series": "supercars",
@@ -233,7 +251,9 @@
                 "team": "DEWALT Racing",
                 "country": "AU"
               }
-            ]
+            ],
+            "date": "2026-02-22T04:00:00+01:00",
+            "shortName": "SYDNEY 500"
           },
           {
             "series": "nascar",
@@ -248,7 +268,9 @@
                 "team": "Team Penske",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-02-22T21:00:00+01:00",
+            "shortName": "ATLANTA"
           }
         ]
       },
@@ -276,7 +298,9 @@
                 "team": "Aprilia Racing",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-03-01T08:00:00+01:00",
+            "shortName": "THAILAND"
           }
         ]
       }
@@ -308,7 +332,9 @@
                 "team": "Chip Ganassi Racing",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-03-01T18:00:00+01:00",
+            "shortName": "ST. PETERSBURG"
           },
           {
             "series": "nascar",
@@ -323,7 +349,9 @@
                 "team": "Joe Gibbs Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-01T21:30:00+01:00",
+            "shortName": "CIRCUIT OF THE AMERICAS"
           }
         ]
       },
@@ -355,7 +383,9 @@
                 "team": "Mercedes",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-03-08T05:00:00+01:00",
+            "shortName": "AUSTRALIA"
           },
           {
             "series": "supercars",
@@ -378,7 +408,9 @@
                 "team": "Dick Johnson Racing",
                 "country": "AU"
               }
-            ]
+            ],
+            "date": "2026-03-08T04:00:00+01:00",
+            "shortName": "MELBOURNE"
           },
           {
             "series": "indycar",
@@ -393,7 +425,9 @@
                 "team": "Team Penske",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-07T21:00:00+01:00",
+            "shortName": "PHOENIX"
           },
           {
             "series": "nascar",
@@ -408,7 +442,9 @@
                 "team": "Team Penske",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-08T21:30:00+01:00",
+            "shortName": "PHOENIX"
           }
         ]
       },
@@ -436,7 +472,9 @@
                 "manufacturer": "Toyota",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-03-15T14:00:00+01:00",
+            "shortName": "KENYA"
           },
           {
             "series": "f1",
@@ -460,7 +498,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-03-15T08:00:00+01:00",
+            "shortName": "CHINA"
           },
           {
             "series": "f1a",
@@ -483,7 +523,9 @@
                 "team": "Rodin Motorsport",
                 "country": "AT"
               }
-            ]
+            ],
+            "date": "2026-03-15T08:00:00+01:00",
+            "shortName": "CHINA"
           },
           {
             "series": "indycar",
@@ -505,7 +547,9 @@
                 "team": "Andretti Global",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-15T17:30:00+01:00",
+            "shortName": "ARLINGTON"
           },
           {
             "series": "nascar",
@@ -520,7 +564,9 @@
                 "team": "Joe Gibbs Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-15T22:00:00+01:00",
+            "shortName": "LAS VEGAS"
           }
         ]
       },
@@ -548,7 +594,9 @@
                 "team": "Aprilia Racing",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-03-22T18:00:00+01:00",
+            "shortName": "BRAZIL"
           },
           {
             "series": "fe",
@@ -563,7 +611,9 @@
                 "team": "Jaguar TCS Racing",
                 "country": "PT"
               }
-            ]
+            ],
+            "date": "2026-03-21T15:00:00+01:00",
+            "shortName": "MADRID"
           },
           {
             "series": "imsa",
@@ -582,7 +632,9 @@
                 "team": "Porsche Penske Motorsport",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-03-21T15:40:00+01:00",
+            "shortName": "SEBRING 12H"
           },
           {
             "series": "nls",
@@ -601,7 +653,9 @@
                 "team": "Mercedes-AMG Team Verstappen Racing",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-03-21T09:00:00+01:00",
+            "shortName": "BARBAROSSAPREIS"
           },
           {
             "series": "nascar",
@@ -616,7 +670,9 @@
                 "team": "23XI Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-22T21:00:00+01:00",
+            "shortName": "DARLINGTON"
           },
           {
             "series": "h24eu",
@@ -634,7 +690,9 @@
                 "team": "Sainteloc Junior Team",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-03-22T14:00:00+01:00",
+            "shortName": "MUGELLO"
           }
         ]
       },
@@ -654,7 +712,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-03-29T07:00:00+02:00",
+            "shortName": "JAPAN"
           },
           {
             "series": "motogp",
@@ -677,7 +737,9 @@
                 "team": "Aprilia Racing",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-03-29T21:00:00+02:00",
+            "shortName": "AMERICAS (COTA)"
           },
           {
             "series": "wsbk",
@@ -717,7 +779,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-03-29T14:00:00+01:00",
+            "shortName": "PORTIMÃO"
           },
           {
             "series": "gtwca",
@@ -744,7 +808,9 @@
                 ],
                 "team": "JMF Motorsports"
               }
-            ]
+            ],
+            "date": "2026-03-29T21:00:00+02:00",
+            "shortName": "SONOMA"
           },
           {
             "series": "indycar",
@@ -766,7 +832,9 @@
                 "team": "Chip Ganassi Racing",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-03-29T19:00:00+02:00",
+            "shortName": "BARBER"
           },
           {
             "series": "nascar",
@@ -781,7 +849,9 @@
                 "team": "Hendrick Motorsports",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-03-29T21:30:00+01:00",
+            "shortName": "MARTINSVILLE"
           }
         ]
       }
@@ -814,7 +884,9 @@
                 "team": "Docomo Team Dandelion Racing",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-04-05T07:00:00+02:00",
+            "shortName": "MOTEGI"
           }
         ]
       },
@@ -842,7 +914,9 @@
                 "manufacturer": "Toyota",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-04-12T14:00:00+02:00",
+            "shortName": "CROATIA"
           },
           {
             "series": "supercars",
@@ -865,7 +939,9 @@
                 "team": "Walkinshaw TWG Racing",
                 "country": "NZ"
               }
-            ]
+            ],
+            "date": "2026-04-12T04:00:00+02:00",
+            "shortName": "TAUPŌ"
           },
           {
             "series": "nls",
@@ -884,7 +960,9 @@
                 "team": "Schubert Motorsport",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-04-11T10:00:00+02:00",
+            "shortName": "ADENAUER TROPHY"
           },
           {
             "series": "elms",
@@ -903,7 +981,9 @@
                 "team": "Forestier Racing by Panis",
                 "country": "FR"
               }
-            ]
+            ],
+            "date": "2026-04-12T12:00:00+02:00",
+            "shortName": "BARCELONA 4H"
           },
           {
             "series": "gtwce",
@@ -922,7 +1002,9 @@
                 "team": "Comtoyou Racing",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-04-12T13:00:00+02:00",
+            "shortName": "PAUL RICARD 6H"
           },
           {
             "series": "nascar",
@@ -937,7 +1019,9 @@
                 "team": "Hendrick Motorsports",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-04-12T21:00:00+01:00",
+            "shortName": "MARTINSVILLE 2"
           }
         ]
       },
@@ -972,7 +1056,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-04-19T14:00:00+02:00",
+            "shortName": "ASSEN"
           },
           {
             "series": "btcc",
@@ -1002,7 +1088,9 @@
                 "team": "NAPA Racing UK",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-04-19T14:00:00+02:00",
+            "shortName": "DONINGTON PARK"
           },
           {
             "series": "supercars",
@@ -1039,7 +1127,9 @@
                 "team": "Grove Racing",
                 "country": "NZ"
               }
-            ]
+            ],
+            "date": "2026-04-19T04:00:00+02:00",
+            "shortName": "CHRISTCHURCH"
           },
           {
             "series": "erc",
@@ -1054,7 +1144,9 @@
                 "manufacturer": "Škoda",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-04-19T14:00:00+02:00",
+            "shortName": "ANDALUSIA"
           },
           {
             "series": "nls",
@@ -1078,7 +1170,9 @@
                 ],
                 "team": "Scherer Sport PHX"
               }
-            ]
+            ],
+            "date": "2026-04-19T10:00:00+02:00",
+            "shortName": "24H QUALIFIERS"
           },
           {
             "series": "indycar",
@@ -1093,7 +1187,9 @@
                 "team": "Chip Ganassi Racing",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-04-19T23:30:00+02:00",
+            "shortName": "LONG BEACH"
           },
           {
             "series": "imsa",
@@ -1110,7 +1206,9 @@
                 ],
                 "team": "Meyer Shank Racing"
               }
-            ]
+            ],
+            "date": "2026-04-18T22:30:00+02:00",
+            "shortName": "LONG BEACH"
           },
           {
             "series": "wec",
@@ -1129,7 +1227,9 @@
                 "team": "Toyota Racing",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-04-19T13:00:00+02:00",
+            "shortName": "IMOLA 6H"
           },
           {
             "series": "nascar",
@@ -1144,7 +1244,9 @@
                 "team": "Spire Motorsports",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-04-19T21:00:00+01:00",
+            "shortName": "TALLADEGA"
           },
           {
             "series": "h24eu",
@@ -1162,7 +1264,9 @@
                 ],
                 "team": "Optimum Motorsport"
               }
-            ]
+            ],
+            "date": "2026-04-19T14:00:00+02:00",
+            "shortName": "SPA"
           }
         ]
       },
@@ -1190,14 +1294,16 @@
                 "manufacturer": "Toyota GR Yaris Rally1",
                 "country": "FR"
               }
-            ]
+            ],
+            "date": "2026-04-26T14:00:00+02:00",
+            "shortName": "CANARIAS"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Spanish Grand Prix (Jerez)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "jerez-motogp.svg",
+            "track": "jerez.svg",
             "results": [
               {
                 "date": "2026-04-26",
@@ -1205,7 +1311,9 @@
                 "team": "BK8 Gresini Racing MotoGP",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-04-26T14:00:00+02:00",
+            "shortName": "SPAIN (JEREZ)"
           },
           {
             "series": "dtm",
@@ -1228,7 +1336,9 @@
                 "team": "Mercedes-AMG Team Ravenol",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-04-26T14:00:00+02:00",
+            "shortName": "RED BULL RING"
           },
           {
             "series": "gtwca",
@@ -1245,7 +1355,9 @@
                 ],
                 "team": "Wright Motorsports"
               }
-            ]
+            ],
+            "date": "2026-04-26T21:00:00+02:00",
+            "shortName": "COTA"
           },
           {
             "series": "nascar",
@@ -1260,7 +1372,9 @@
                 "team": "Hendrick Motorsports",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-04-26T21:00:00+01:00",
+            "shortName": "DOVER"
           },
           {
             "series": "bgt",
@@ -1277,7 +1391,9 @@
                 ],
                 "team": "Optimum Motorsport"
               }
-            ]
+            ],
+            "date": "2026-04-26T12:00:00+02:00",
+            "shortName": "SILVERSTONE 500"
           }
         ]
       }
@@ -1311,7 +1427,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-03T22:00:00+02:00",
+            "shortName": "MIAMI"
           },
           {
             "series": "wsbk",
@@ -1341,7 +1459,9 @@
                 "team": "Aruba.it Racing Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-03T14:00:00+02:00",
+            "shortName": "BALATON PARK"
           },
           {
             "series": "fe",
@@ -1364,7 +1484,9 @@
                 "team": "Jaguar TCS Racing",
                 "country": "NZ"
               }
-            ]
+            ],
+            "date": "2026-05-03T15:00:00+02:00",
+            "shortName": "BERLIN"
           },
           {
             "series": "imsa",
@@ -1382,7 +1504,9 @@
                 "team": "JDC-Miller MotorSports",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-05-03T21:10:00+02:00",
+            "shortName": "LAGUNA SECA"
           },
           {
             "series": "elms",
@@ -1401,7 +1525,9 @@
                 "team": "United Autosports",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-05-03T11:00:00+02:00",
+            "shortName": "LE CASTELLET 4H"
           },
           {
             "series": "gtwce",
@@ -1420,7 +1546,9 @@
                 "team": "AF Corse",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-03T14:00:00+02:00",
+            "shortName": "BRANDS HATCH"
           },
           {
             "series": "tcr",
@@ -1443,7 +1571,9 @@
                 "team": "Geely Cyan Racing",
                 "country": "CN"
               }
-            ]
+            ],
+            "date": "2026-05-03T14:00:00+02:00",
+            "shortName": "TBC (ITALY)"
           },
           {
             "series": "nascar",
@@ -1458,7 +1588,9 @@
                 "team": "23XI Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-05-03T21:30:00+01:00",
+            "shortName": "KANSAS"
           }
         ]
       },
@@ -1486,7 +1618,9 @@
                 "manufacturer": "Hyundai",
                 "country": "BE"
               }
-            ]
+            ],
+            "date": "2026-05-10T14:00:00+02:00",
+            "shortName": "PORTUGAL"
           },
           {
             "series": "motogp",
@@ -1501,7 +1635,9 @@
                 "team": "Aprilia Racing",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-05-10T14:00:00+02:00",
+            "shortName": "FRANCE (LE MANS)"
           },
           {
             "series": "wec",
@@ -1519,7 +1655,9 @@
                 ],
                 "team": "BMW M Team WRT"
               }
-            ]
+            ],
+            "date": "2026-05-09T13:00:00+02:00",
+            "shortName": "SPA 6H"
           },
           {
             "series": "btcc",
@@ -1549,7 +1687,9 @@
                 "team": "Team VERTU",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-05-10T14:00:00+02:00",
+            "shortName": "BRANDS HATCH"
           },
           {
             "series": "gtwca",
@@ -1566,7 +1706,9 @@
                 ],
                 "team": "Turner Motorsport"
               }
-            ]
+            ],
+            "date": "2026-05-10T19:00:00+02:00",
+            "shortName": "SEBRING"
           },
           {
             "series": "indycar",
@@ -1588,7 +1730,9 @@
                 "team": "Arrow McLaren",
                 "country": "DK"
               }
-            ]
+            ],
+            "date": "2026-05-09T21:00:00+02:00",
+            "shortName": "IMS ROAD COURSE"
           },
           {
             "series": "nascar",
@@ -1603,7 +1747,9 @@
                 "team": "23XI Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-05-10T21:00:00+01:00",
+            "shortName": "DARLINGTON 2"
           },
           {
             "series": "eurx",
@@ -1617,7 +1763,9 @@
                 "winner": "Johan Kristoffersson",
                 "country": "SE"
               }
-            ]
+            ],
+            "date": "2026-05-10T14:00:00+02:00",
+            "shortName": "LATVIA"
           }
         ]
       },
@@ -1637,7 +1785,9 @@
                 "team": "Pertamina Enduro VR46 Racing Team",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-17T14:00:00+02:00",
+            "shortName": "CATALONIA"
           },
           {
             "series": "wsbk",
@@ -1667,7 +1817,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-17T14:00:00+02:00",
+            "shortName": "MOST"
           },
           {
             "series": "fe",
@@ -1690,7 +1842,9 @@
                 "team": "Nissan Formula E Team",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-05-17T15:00:00+02:00",
+            "shortName": "MONACO"
           },
           {
             "series": "igtc",
@@ -1709,7 +1863,9 @@
                 ],
                 "team": "Winward Racing"
               }
-            ]
+            ],
+            "date": "2026-05-16T14:00:00+02:00",
+            "shortName": "24H NÜRBURGRING"
           }
         ]
       },
@@ -1738,7 +1894,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-24T22:00:00+02:00",
+            "shortName": "CANADA"
           },
           {
             "series": "f1a",
@@ -1761,7 +1919,9 @@
                 "team": "Aston Martin",
                 "country": "AT"
               }
-            ]
+            ],
+            "date": "2026-05-24T22:00:00+02:00",
+            "shortName": "CANADA"
           },
           {
             "series": "dtm",
@@ -1784,7 +1944,9 @@
                 "team": "Schubert Motorsport",
                 "country": "ZA"
               }
-            ]
+            ],
+            "date": "2026-05-24T14:00:00+02:00",
+            "shortName": "ZANDVOORT"
           },
           {
             "series": "btcc",
@@ -1814,7 +1976,9 @@
                 "team": "Laser Tools Racing with MB Motorsport",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-05-24T14:00:00+02:00",
+            "shortName": "SNETTERTON"
           },
           {
             "series": "supercars",
@@ -1844,7 +2008,9 @@
                 "team": "Triple Eight Race Engineering",
                 "country": "AU"
               }
-            ]
+            ],
+            "date": "2026-05-24T04:00:00+02:00",
+            "shortName": "TASMANIA"
           },
           {
             "series": "erc",
@@ -1859,7 +2025,9 @@
                 "manufacturer": "Škoda",
                 "country": "FI"
               }
-            ]
+            ],
+            "date": "2026-05-24T14:00:00+02:00",
+            "shortName": "SCANDINAVIA"
           },
           {
             "series": "indycar",
@@ -1874,7 +2042,9 @@
                 "team": "Meyer Shank",
                 "country": "SE"
               }
-            ]
+            ],
+            "date": "2026-05-24T18:45:00+02:00",
+            "shortName": "INDIANAPOLIS 500"
           },
           {
             "series": "sf",
@@ -1897,7 +2067,9 @@
                 "team": "Nakajima Racing",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-05-24T07:00:00+02:00",
+            "shortName": "SUZUKA"
           },
           {
             "series": "nascar",
@@ -1912,7 +2084,9 @@
                 "team": "Trackhouse Racing",
                 "country": "MX"
               }
-            ]
+            ],
+            "date": "2026-05-25T00:00:00+01:00",
+            "shortName": "CHARLOTTE (COCA-COLA 600)"
           },
           {
             "series": "bgt",
@@ -1939,7 +2113,9 @@
                 ],
                 "team": "Optimum Motorsport"
               }
-            ]
+            ],
+            "date": "2026-05-23T11:00:00+02:00",
+            "shortName": "OULTON PARK"
           }
         ]
       },
@@ -1967,7 +2143,9 @@
                 "manufacturer": "Toyota GR Yaris Rally1",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-05-31T14:00:00+02:00",
+            "shortName": "JAPAN"
           },
           {
             "series": "motogp",
@@ -1982,7 +2160,9 @@
                 "team": "Aprilia Racing",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-31T14:00:00+02:00",
+            "shortName": "ITALY (MUGELLO)"
           },
           {
             "series": "wsbk",
@@ -2012,7 +2192,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-05-31T14:00:00+02:00",
+            "shortName": "ARAGON"
           },
           {
             "series": "gtwce",
@@ -2029,7 +2211,9 @@
                 ],
                 "team": "NM Racing Team"
               }
-            ]
+            ],
+            "date": "2026-05-31T14:00:00+02:00",
+            "shortName": "MONZA 3H"
           },
           {
             "series": "indycar",
@@ -2051,7 +2235,9 @@
                 "team": "Chip Ganassi Racing",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-05-31T18:30:00+02:00",
+            "shortName": "DETROIT"
           },
           {
             "series": "imsa",
@@ -2068,7 +2254,9 @@
                 ],
                 "team": "Cadillac Whelen"
               }
-            ]
+            ],
+            "date": "2026-05-30T21:00:00+02:00",
+            "shortName": "DETROIT"
           },
           {
             "series": "nascar",
@@ -2083,7 +2271,9 @@
                 "team": "Joe Gibbs Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-06-01T01:00:00+01:00",
+            "shortName": "NASHVILLE"
           },
           {
             "series": "eurx",
@@ -2097,7 +2287,9 @@
                 "winner": "Andreas Bakkerud",
                 "country": "NO"
               }
-            ]
+            ],
+            "date": "2026-05-31T14:00:00+02:00",
+            "shortName": "HUNGARY"
           }
         ]
       }
@@ -2134,7 +2326,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-06-07T15:00:00+02:00",
+            "shortName": "MONACO"
           },
           {
             "series": "motogp",
@@ -2157,7 +2351,9 @@
                 "team": "Ducati Lenovo Team",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-06-07T14:00:00+02:00",
+            "shortName": "HUNGARY"
           },
           {
             "series": "btcc",
@@ -2187,7 +2383,9 @@
                 "team": "WSR",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-06-07T14:00:00+02:00",
+            "shortName": "OULTON PARK"
           },
           {
             "series": "indycar",
@@ -2209,7 +2407,9 @@
                 "team": "Team Penske",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-06-07T21:00:00+02:00",
+            "shortName": "WWT RACEWAY"
           },
           {
             "series": "nascar",
@@ -2224,7 +2424,9 @@
                 "team": "Joe Gibbs Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-06-07T21:00:00+01:00",
+            "shortName": "MICHIGAN"
           },
           {
             "series": "h24eu",
@@ -2244,7 +2446,9 @@
                 "team": "HOFOR Racing",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-06-07T14:00:00+02:00",
+            "shortName": "PAUL RICARD"
           },
           {
             "series": "psc",
@@ -2259,7 +2463,9 @@
                 "team": "Martinet by Alméras",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-06-07T15:00:00+02:00",
+            "shortName": "MONACO"
           }
         ]
       },
@@ -2291,7 +2497,9 @@
                 "team": "Ferrari",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-06-14T15:00:00+02:00",
+            "shortName": "SPAIN (BARCELONA)"
           },
           {
             "series": "wsbk",
@@ -2321,7 +2529,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-06-14T14:00:00+02:00",
+            "shortName": "MISANO"
           },
           {
             "series": "wec",
@@ -2340,7 +2550,9 @@
                 "team": "Toyota Racing",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-06-14T16:00:00+02:00",
+            "shortName": "LE MANS 24H"
           },
           {
             "series": "tcr",
@@ -2363,7 +2575,9 @@
                 "team": "Geely Cyan Racing",
                 "country": "UY"
               }
-            ]
+            ],
+            "date": "2026-06-14T14:00:00+02:00",
+            "shortName": "VALENCIA"
           },
           {
             "series": "gtwca",
@@ -2380,7 +2594,9 @@
                 ],
                 "team": "JMF Motorsports"
               }
-            ]
+            ],
+            "date": "2026-06-14T19:00:00+02:00",
+            "shortName": "ROAD ATLANTA"
           },
           {
             "series": "nascar",
@@ -2395,7 +2611,9 @@
                 "team": "Joe Gibbs Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-06-14T21:00:00+01:00",
+            "shortName": "POCONO"
           },
           {
             "series": "psc",
@@ -2410,7 +2628,9 @@
                 "team": "Schumacher CLRT",
                 "country": "NL"
               }
-            ]
+            ],
+            "date": "2026-06-14T15:00:00+02:00",
+            "shortName": "BARCELONA"
           }
         ]
       },
@@ -2438,7 +2658,9 @@
                 "team": "Ducati Lenovo Team",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-06-21T14:00:00+02:00",
+            "shortName": "CZECH REPUBLIC"
           },
           {
             "series": "dtm",
@@ -2461,7 +2683,9 @@
                 "team": "Emil Frey Racing",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-06-21T14:00:00+02:00",
+            "shortName": "LAUSITZRING"
           },
           {
             "series": "supercars",
@@ -2491,7 +2715,9 @@
                 "team": "Dick Johnson Racing",
                 "country": "AU"
               }
-            ]
+            ],
+            "date": "2026-06-21T06:30:00+02:00",
+            "shortName": "DARWIN"
           },
           {
             "series": "fe",
@@ -2506,7 +2732,9 @@
                 "team": "Andretti Formula E",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-06-20T09:00:00+02:00",
+            "shortName": "SANYA"
           },
           {
             "series": "nls",
@@ -2523,7 +2751,9 @@
                 ],
                 "team": "Dunlop Porsche"
               }
-            ]
+            ],
+            "date": "2026-06-20T10:00:00+02:00",
+            "shortName": "EIFEL TROPHY"
           },
           {
             "series": "indycar",
@@ -2545,7 +2775,9 @@
                 "team": "Arrow McLaren",
                 "country": "DK"
               }
-            ]
+            ],
+            "date": "2026-06-20T20:00:00+02:00",
+            "shortName": "ROAD AMERICA"
           },
           {
             "series": "nascar",
@@ -2560,7 +2792,9 @@
                 "team": "23XI Racing",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-06-21T22:00:00+01:00",
+            "shortName": "SAN DIEGO"
           },
           {
             "series": "bgt",
@@ -2578,7 +2812,9 @@
                 ],
                 "team": "Barwell Motorsport"
               }
-            ]
+            ],
+            "date": "2026-06-21T13:00:00+02:00",
+            "shortName": "SPA"
           }
         ]
       },
@@ -2606,7 +2842,9 @@
                 "manufacturer": "Toyota GR Yaris Rally1",
                 "country": "FR"
               }
-            ]
+            ],
+            "date": "2026-06-28T14:00:00+02:00",
+            "shortName": "GREECE"
           },
           {
             "series": "f1",
@@ -2633,7 +2871,9 @@
                 "team": "Mercedes",
                 "country": "GB"
               }
-            ]
+            ],
+            "date": "2026-06-28T15:00:00+02:00",
+            "shortName": "AUSTRIA"
           },
           {
             "series": "motogp",
@@ -2648,7 +2888,9 @@
                 "team": "Trackhouse MotoGP Team",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-06-28T14:00:00+02:00",
+            "shortName": "NETHERLANDS (ASSEN)"
           },
           {
             "series": "gtwce",
@@ -2667,7 +2909,9 @@
                 "team": "Lionspeed GP",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-06-27T16:30:00+02:00",
+            "shortName": "24H SPA"
           },
           {
             "series": "igtc",
@@ -2686,7 +2930,9 @@
                 "team": "Lionspeed GP",
                 "country": "DE"
               }
-            ]
+            ],
+            "date": "2026-06-27T16:30:00+02:00",
+            "shortName": "24H SPA"
           },
           {
             "series": "imsa",
@@ -2703,7 +2949,9 @@
                 ],
                 "team": "Winward Racing"
               }
-            ]
+            ],
+            "date": "2026-06-28T16:40:00+02:00",
+            "shortName": "WATKINS GLEN 6H"
           },
           {
             "series": "nascar",
@@ -2718,7 +2966,9 @@
                 "team": "Trackhouse Racing",
                 "country": "NZ"
               }
-            ]
+            ],
+            "date": "2026-06-28T21:30:00+01:00",
+            "shortName": "SONOMA"
           },
           {
             "series": "psc",
@@ -2733,7 +2983,9 @@
                 "team": "BWT Lechner Racing",
                 "country": "NL"
               }
-            ]
+            ],
+            "date": "2026-06-28T15:00:00+02:00",
+            "shortName": "SPIELBERG"
           }
         ]
       }
@@ -2771,7 +3023,9 @@
                 "country": "MC",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T16:00:00+02:00",
+            "shortName": "BRITISH"
           },
           {
             "series": "f1a",
@@ -2794,7 +3048,9 @@
                 "country": "GB",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T11:00:00+02:00",
+            "shortName": "SILVERSTONE"
           },
           {
             "series": "fe",
@@ -2817,7 +3073,9 @@
                 "country": "BR",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T09:00:00+02:00",
+            "shortName": "SHANGHAI"
           },
           {
             "series": "dtm",
@@ -2840,7 +3098,9 @@
                 "country": "DK",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T14:00:00+02:00",
+            "shortName": "NORISRING"
           },
           {
             "series": "erc",
@@ -2856,7 +3116,9 @@
                 "country": "IT",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T14:00:00+02:00",
+            "shortName": "ROMA CAPITALE"
           },
           {
             "series": "elms",
@@ -2874,7 +3136,9 @@
                 "team": "Forestier Racing by Panis",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T12:00:00+02:00",
+            "shortName": "IMOLA 4H"
           },
           {
             "series": "tcr",
@@ -2897,7 +3161,9 @@
                 "country": "FR",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T14:00:00+02:00",
+            "shortName": "LE CASTELLET"
           },
           {
             "series": "indycar",
@@ -2919,7 +3185,9 @@
                 "country": "MX",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-04T20:00:00+02:00",
+            "shortName": "MID-OHIO"
           },
           {
             "series": "nascar",
@@ -2934,7 +3202,9 @@
                 "country": "US",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-06T00:00:00+01:00",
+            "shortName": "CHICAGOLAND"
           },
           {
             "series": "h24eu",
@@ -2953,7 +3223,9 @@
                 "team": "GetSpeed",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T14:00:00+02:00",
+            "shortName": "NÜRBURGRING"
           },
           {
             "series": "eurx",
@@ -2967,7 +3239,9 @@
                 "country": "SE",
                 "date": "2026-07-05"
               }
-            ]
+            ],
+            "date": "2026-07-05T14:00:00+02:00",
+            "shortName": "SWEDEN (HÖLJES)"
           }
         ]
       },
@@ -2988,7 +3262,9 @@
                 "team": "Ducati Lenovo Team",
                 "country": "ES"
               }
-            ]
+            ],
+            "date": "2026-07-12T14:00:00+02:00",
+            "shortName": "GERMANY"
           },
           {
             "series": "wsbk",
@@ -3011,7 +3287,9 @@
                 "team": "Aruba.it Racing - Ducati",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-07-12T15:00:00+02:00",
+            "shortName": "DONINGTON PARK"
           },
           {
             "series": "supercars",
@@ -3041,7 +3319,9 @@
                 "team": "Shell V-Power Racing Team",
                 "country": "AU"
               }
-            ]
+            ],
+            "date": "2026-07-12T04:00:00+02:00",
+            "shortName": "TOWNSVILLE"
           },
           {
             "series": "tcr",
@@ -3064,7 +3344,9 @@
                 "team": "BRC Hyundai N Squadra Corse",
                 "country": "HU"
               }
-            ]
+            ],
+            "date": "2026-07-12T14:00:00+02:00",
+            "shortName": "VILA REAL"
           },
           {
             "series": "wec",
@@ -3082,7 +3364,9 @@
                 ],
                 "team": "BMW M Team WRT"
               }
-            ]
+            ],
+            "date": "2026-07-12T17:00:00+02:00",
+            "shortName": "SAO PAULO 6H"
           },
           {
             "series": "imsa",
@@ -3099,14 +3383,18 @@
                 ],
                 "team": "Inter Europol Competition"
               }
-            ]
+            ],
+            "date": "2026-07-12T18:00:00+02:00",
+            "shortName": "MOSPORT"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "EchoPark 400 (Atlanta)",
             "time": "RACE: <span class=\"hl\">00:00</span>",
-            "track": "atlanta-oval.svg"
+            "track": "atlanta-oval.svg",
+            "date": "2026-07-13T00:00:00+02:00",
+            "shortName": "ATLANTA 2"
           }
         ]
       },
@@ -3134,7 +3422,9 @@
                 "manufacturer": "Toyota",
                 "country": "FI"
               }
-            ]
+            ],
+            "date": "2026-07-19T14:00:00+02:00",
+            "shortName": "ESTONIA"
           },
           {
             "series": "f1",
@@ -3161,7 +3451,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "date": "2026-07-19T15:00:00+02:00",
+            "shortName": "BELGIUM"
           },
           {
             "series": "gtwce",
@@ -3188,7 +3480,9 @@
                 ],
                 "team": "Team WRT"
               }
-            ]
+            ],
+            "date": "2026-07-19T14:00:00+02:00",
+            "shortName": "MISANO"
           },
           {
             "series": "sf",
@@ -3203,7 +3497,9 @@
                 "team": "DOCOMO TEAM DANDELION RACING",
                 "country": "JP"
               }
-            ]
+            ],
+            "date": "2026-07-19T07:00:00+02:00",
+            "shortName": "FUJI"
           },
           {
             "series": "indycar",
@@ -3225,7 +3521,9 @@
                 "country": "ES",
                 "team": "Chip Ganassi Racing"
               }
-            ]
+            ],
+            "date": "2026-07-19T22:00:00+02:00",
+            "shortName": "NASHVILLE"
           },
           {
             "series": "nascar",
@@ -3239,7 +3537,9 @@
                 "winner": "Joey Logano",
                 "country": "US"
               }
-            ]
+            ],
+            "date": "2026-07-20T01:00:00+01:00",
+            "shortName": "NORTH WILKESBORO"
           },
           {
             "series": "psc",
@@ -3252,7 +3552,9 @@
                 "date": "2026-07-19",
                 "winner": "Flynt Schuring"
               }
-            ]
+            ],
+            "date": "2026-07-19T15:00:00+02:00",
+            "shortName": "SPA"
           },
           {
             "series": "eurx",
@@ -3266,7 +3568,9 @@
                 "winner": "Andreas Bakkerud",
                 "country": "NO"
               }
-            ]
+            ],
+            "date": "2026-07-19T14:00:00+02:00",
+            "shortName": "IRELAND"
           }
         ]
       },
@@ -3298,7 +3602,9 @@
                 "country": "GB",
                 "team": "McLaren"
               }
-            ]
+            ],
+            "date": "2026-07-26T15:00:00+02:00",
+            "shortName": "HUNGARY"
           },
           {
             "series": "fe",
@@ -3313,7 +3619,9 @@
                 "country": "NL",
                 "team": "MAHINDRA RACING"
               }
-            ]
+            ],
+            "date": "2026-07-26T07:00:00+02:00",
+            "shortName": "TOKYO"
           },
           {
             "series": "dtm",
@@ -3336,7 +3644,9 @@
                 "country": "IT",
                 "team": "TGI Team by GRT"
               }
-            ]
+            ],
+            "date": "2026-07-26T14:00:00+02:00",
+            "shortName": "OSCHERSLEBEN"
           },
           {
             "series": "btcc",
@@ -3366,7 +3676,9 @@
                 "country": "GB",
                 "team": "Team VERTU"
               }
-            ]
+            ],
+            "date": "2026-07-26T14:00:00+02:00",
+            "shortName": "THRUXTON"
           },
           {
             "series": "erc",
@@ -3382,7 +3694,9 @@
                 "country": "FI",
                 "team": "Skoda"
               }
-            ]
+            ],
+            "date": "2026-07-26T14:00:00+02:00",
+            "shortName": "POLAND"
           },
           {
             "series": "nascar",
@@ -3397,7 +3711,9 @@
                 "country": "US",
                 "team": "23XI Racing"
               }
-            ]
+            ],
+            "date": "2026-07-26T20:00:00+01:00",
+            "shortName": "INDIANAPOLIS"
           },
           {
             "series": "psc",
@@ -3411,7 +3727,9 @@
                 "winner": "Marcus Amand",
                 "country": "FI"
               }
-            ]
+            ],
+            "date": "2026-07-26T15:00:00+02:00",
+            "shortName": "BUDAPEST"
           }
         ]
       },
@@ -3430,6 +3748,17 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
+            ],
+            "date": "2026-08-02T14:00:00+02:00",
+            "shortName": "FINLAND",
+            "results": [
+              {
+                "date": "2026-08-02",
+                "winner": "S. Pajari",
+                "co_driver": "M. Salminen",
+                "country": "FI",
+                "team": "Toyota"
+              }
             ]
           },
           {
@@ -3437,28 +3766,85 @@
             "tag": "SUPERCARS",
             "title": "Perth Super440",
             "time": "FRI R: <span class=\"hl\">08:00</span> • SAT R: <span class=\"hl\">08:00</span> • SUN R: <span class=\"hl\">08:05</span>",
-            "track": "perth.svg"
+            "track": "perth.svg",
+            "date": "2026-08-02T06:00:00+02:00",
+            "shortName": "PERTH",
+            "results": [
+              {
+                "date": "2026-08-02",
+                "winner": "Broc Feeney",
+                "country": "AU",
+                "team": "Triple Eight Race Engineering,"
+              }
+            ]
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "Magny-Cours Sprint",
             "time": "R1: <span class=\"hl\">09:15</span> • R2: <span class=\"hl\">13:45</span>",
-            "track": "magny-cours.svg"
+            "track": "magny-cours.svg",
+            "date": "2026-08-02T14:00:00+02:00",
+            "shortName": "MAGNY-COURS",
+            "results": [
+              {
+                "date": "2026-08-01",
+                "race_label": "Race 1",
+                "winners": [
+                  "J. Gounon",
+                  "D. Juncadella"
+                ],
+                "country": "FR",
+                "team": "MERCEDES AMG VERSTAPPEN RACING"
+              },
+              {
+                "date": "2026-08-02",
+                "race_label": "Race 2",
+                "winners": [
+                  "B. Buus",
+                  "R. Feller"
+                ],
+                "country": "DK",
+                "team": "Lionspeed GP"
+              }
+            ]
           },
           {
             "series": "nls",
             "tag": "NLS",
             "title": "KW 6h ADAC Ruhr-Pokal (6h)",
             "time": "SAT: <span class=\"hl\">10:00</span>",
-            "track": "nordschleife.svg"
+            "track": "nordschleife.svg",
+            "date": "2026-08-01T10:00:00+02:00",
+            "shortName": "RUHR-POKAL 6H",
+            "results": [
+              {
+                "date": "2026-08-02",
+                "winner": "Aron Ralf & Luca Stolz",
+                "country": "EE",
+                "team": "Winward Racing"
+              }
+            ]
           },
           {
             "series": "imsa",
             "tag": "IMSA",
             "title": "6 Hours of Road America",
             "time": "RACE: <span class=\"hl\">19:30</span>",
-            "track": "road-america.svg"
+            "track": "road-america.svg",
+            "date": "2026-08-02T17:00:00+02:00",
+            "shortName": "ROAD AMERICA",
+            "results": [
+              {
+                "date": "2026-08-02",
+                "winners": [
+                  "F. Alburquerque",
+                  "R. Taylor"
+                ],
+                "country": "PT",
+                "team": "Cadillac"
+              }
+            ]
           }
         ]
       }
@@ -3475,21 +3861,27 @@
             "tag": "MOTOGP",
             "title": "British Grand Prix",
             "time": "RACE: <span class=\"hl\">15:00</span>",
-            "track": "silverstone.svg"
+            "track": "silverstone.svg",
+            "date": "2026-08-09T15:00:00+02:00",
+            "shortName": "GREAT BRITAIN"
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Knockhill (Races 16-18)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
-            "track": "knockhill.svg"
+            "track": "knockhill.svg",
+            "date": "2026-08-09T14:00:00+02:00",
+            "shortName": "KNOCKHILL"
           },
           {
             "series": "sf",
             "tag": "S. FORMULA",
             "title": "Sugo",
             "time": "RACE: <span class=\"hl\">05:00</span>",
-            "track": "sugo.svg"
+            "track": "sugo.svg",
+            "date": "2026-08-09T07:00:00+02:00",
+            "shortName": "SUGO"
           },
           {
             "series": "indycar",
@@ -3503,14 +3895,18 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
-            ]
+            ],
+            "date": "2026-08-09T22:00:00+02:00",
+            "shortName": "PORTLAND"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Iowa Speedway",
             "time": "RACE: <span class=\"hl\">21:30</span>",
-            "track": "iowa.svg"
+            "track": "iowa.svg",
+            "date": "2026-08-09T21:30:00+01:00",
+            "shortName": "IOWA"
           }
         ]
       },
@@ -3522,42 +3918,54 @@
             "tag": "DTM",
             "title": "Nürburgring Round",
             "time": "R1: <span class=\"hl\">11:30</span> • R2: <span class=\"hl\">11:30</span>",
-            "track": "nurburgring.svg"
+            "track": "nurburgring.svg",
+            "date": "2026-08-16T14:00:00+02:00",
+            "shortName": "NÜRBURGRING"
           },
           {
             "series": "erc",
             "tag": "ERC",
             "title": "Barum Czech Rally Zlín",
             "time": "FRI > SUN",
-            "track": "czechia-wrc.svg"
+            "track": "czechia-wrc.svg",
+            "date": "2026-08-16T14:00:00+02:00",
+            "shortName": "CZECH (ZLÍN)"
           },
           {
             "series": "fe",
             "tag": "FORMULA E",
             "title": "London E-Prix",
             "time": "R1 & R2: <span class=\"hl\">16:05</span>",
-            "track": "london.svg"
+            "track": "london.svg",
+            "date": "2026-08-16T18:00:00+02:00",
+            "shortName": "LONDON"
           },
           {
             "series": "indycar",
             "tag": "INDYCAR",
             "title": "Streets of Markham",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "markham.svg"
+            "track": "markham.svg",
+            "date": "2026-08-16T18:00:00+02:00",
+            "shortName": "MARKHAM"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Cook Out 400 (Richmond)",
             "time": "RACE: <span class=\"hl\">01:00</span>",
-            "track": "richmond-oval.svg"
+            "track": "richmond-oval.svg",
+            "date": "2026-08-16T01:00:00+01:00",
+            "shortName": "RICHMOND"
           },
           {
             "series": "bgt",
             "tag": "BRITISH GT",
             "title": "Rd 5 & 6: Snetterton",
             "time": "2× 1h RACES: <span class=\"hl\">11:00</span>",
-            "track": "snetterton.svg"
+            "track": "snetterton.svg",
+            "date": "2026-08-15T11:00:00+02:00",
+            "shortName": "SNETTERTON"
           }
         ]
       },
@@ -3570,56 +3978,72 @@
             "title": "Dutch GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">12:00</span> • QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
-            "track": "zandvoort.svg"
+            "track": "zandvoort.svg",
+            "date": "2026-08-23T15:00:00+02:00",
+            "shortName": "DUTCH"
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 5: Zandvoort",
             "time": "RACES: <span class=\"hl\">10:00</span>",
-            "track": "zandvoort.svg"
+            "track": "zandvoort.svg",
+            "date": "2026-08-23T15:00:00+02:00",
+            "shortName": "ZANDVOORT"
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Donington Park GP (Races 19-21)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
-            "track": "donington-gp.svg"
+            "track": "donington-gp.svg",
+            "date": "2026-08-23T14:00:00+02:00",
+            "shortName": "DONINGTON GP"
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "Century Batteries Ipswich Super440",
             "time": "FRI R: <span class=\"hl\">06:00</span> • SAT R: <span class=\"hl\">06:00</span> • SUN R: <span class=\"hl\">06:05</span>",
-            "track": "ipswich.svg"
+            "track": "ipswich.svg",
+            "date": "2026-08-23T04:00:00+02:00",
+            "shortName": "IPSWICH"
           },
           {
             "series": "imsa",
             "tag": "IMSA",
             "title": "VIR GT Challenge",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "vir.svg"
+            "track": "vir.svg",
+            "date": "2026-08-23T18:00:00+02:00",
+            "shortName": "VIR"
           },
           {
             "series": "elms",
             "tag": "ELMS",
             "title": "4 Hours of Spa-Francorchamps",
             "time": "SUN: <span class=\"hl\">11:00</span>",
-            "track": "spa.svg"
+            "track": "spa.svg",
+            "date": "2026-08-23T11:00:00+02:00",
+            "shortName": "SPA 4H"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Foxwoods 301 (New Hampshire)",
             "time": "RACE: <span class=\"hl\">21:00</span>",
-            "track": "newhampshire.svg"
+            "track": "newhampshire.svg",
+            "date": "2026-08-23T21:00:00+01:00",
+            "shortName": "NEW HAMPSHIRE"
           },
           {
             "series": "psc",
             "tag": "PORSCHE SC",
             "title": "Rd 6 & 7: Zandvoort",
             "time": "RACES: <span class=\"hl\">10:00</span>",
-            "track": "zandvoort.svg"
+            "track": "zandvoort.svg",
+            "date": "2026-08-22T12:00:00+02:00",
+            "shortName": "ZANDVOORT"
           }
         ]
       },
@@ -3638,28 +4062,36 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
-            ]
+            ],
+            "date": "2026-08-30T14:00:00+02:00",
+            "shortName": "PARAGUAY"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Aragon Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "aragon.svg"
+            "track": "aragon.svg",
+            "date": "2026-08-30T14:00:00+02:00",
+            "shortName": "ARAGON"
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "Nürburgring Sprint",
             "time": "R1: <span class=\"hl\">09:15</span> • R2: <span class=\"hl\">13:45</span>",
-            "track": "nurburgring.svg"
+            "track": "nurburgring.svg",
+            "date": "2026-08-30T14:00:00+02:00",
+            "shortName": "NÜRBURGRING"
           },
           {
             "series": "gtwca",
             "tag": "GTWCA",
             "title": "Road America Round",
             "time": "R1: <span class=\"hl\">16:00</span> • R2: <span class=\"hl\">19:30</span>",
-            "track": "road-america.svg"
+            "track": "road-america.svg",
+            "date": "2026-08-30T19:00:00+02:00",
+            "shortName": "ROAD AMERICA"
           },
           {
             "series": "indycar",
@@ -3673,21 +4105,27 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
-            ]
+            ],
+            "date": "2026-08-29T20:30:00+02:00",
+            "shortName": "MILWAUKEE"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Coke Zero 400 (Daytona)",
             "time": "RACE: <span class=\"hl\">01:30</span>",
-            "track": "daytona-oval.svg"
+            "track": "daytona-oval.svg",
+            "date": "2026-08-30T01:30:00+01:00",
+            "shortName": "DAYTONA 2"
           },
           {
             "series": "eurx",
             "tag": "EURO RX",
             "title": "Rd 5: France (Lohéac)",
             "time": "SAT–SUN: <span class=\"hl\">13:00</span>",
-            "track": "loheac.svg"
+            "track": "loheac.svg",
+            "date": "2026-08-30T14:00:00+02:00",
+            "shortName": "FRANCE (LOHÉAC)"
           }
         ]
       }
@@ -3716,35 +4154,45 @@
                 "label": "F3",
                 "detail": "RACES: TBC"
               }
-            ]
+            ],
+            "date": "2026-09-06T15:00:00+02:00",
+            "shortName": "ITALY"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Magny-Cours Round",
             "time": "R1: <span class=\"hl\">13:30</span> • SPR: <span class=\"hl\">09:00</span> • R2: <span class=\"hl\">13:30</span>",
-            "track": "magny-cours.svg"
+            "track": "magny-cours.svg",
+            "date": "2026-09-06T14:00:00+02:00",
+            "shortName": "MAGNY-COURS"
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Croft (Races 22-24)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
-            "track": "croft.svg"
+            "track": "croft.svg",
+            "date": "2026-09-06T14:00:00+02:00",
+            "shortName": "CROFT"
           },
           {
             "series": "erc",
             "tag": "ERC",
             "title": "Rali Ceredigion",
             "time": "FRI > SUN",
-            "track": "wales-wrc.svg"
+            "track": "wales-wrc.svg",
+            "date": "2026-09-06T14:00:00+02:00",
+            "shortName": "CEREDIGION"
           },
           {
             "series": "wec",
             "tag": "WEC",
             "title": "Lone Star Le Mans (COTA)",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "cota-national.svg"
+            "track": "cota-national.svg",
+            "date": "2026-09-06T20:00:00+02:00",
+            "shortName": "LONE STAR (COTA)"
           },
           {
             "series": "indycar",
@@ -3758,28 +4206,36 @@
                 "label": "NXT",
                 "detail": "RACE: TBC"
               }
-            ]
+            ],
+            "date": "2026-09-06T20:30:00+02:00",
+            "shortName": "LAGUNA SECA"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Southern 500 (Darlington) — Playoff",
             "time": "RACE: <span class=\"hl\">23:00</span>",
-            "track": "darlington-oval.svg"
+            "track": "darlington-oval.svg",
+            "date": "2026-09-06T23:00:00+01:00",
+            "shortName": "DARLINGTON (PLAYOFF)"
           },
           {
             "series": "psc",
             "tag": "PORSCHE SC",
             "title": "Rd 8: Monza",
             "time": "RACE: <span class=\"hl\">10:00</span>",
-            "track": "monza.svg"
+            "track": "monza.svg",
+            "date": "2026-09-06T15:00:00+02:00",
+            "shortName": "MONZA"
           },
           {
             "series": "bgt",
             "tag": "BRITISH GT",
             "title": "Rd 7: Donington Park",
             "time": "2h RACE: <span class=\"hl\">11:00</span>",
-            "track": "donington-gp.svg"
+            "track": "donington-gp.svg",
+            "date": "2026-09-06T13:00:00+02:00",
+            "shortName": "DONINGTON PARK"
           }
         ]
       },
@@ -3798,7 +4254,9 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
-            ]
+            ],
+            "date": "2026-09-13T14:00:00+02:00",
+            "shortName": "CHILE"
           },
           {
             "series": "f1",
@@ -3817,63 +4275,81 @@
                 "label": "F3",
                 "detail": "FINALE: TBC"
               }
-            ]
+            ],
+            "date": "2026-09-13T15:00:00+02:00",
+            "shortName": "SPAIN (MADRID)"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "San Marino Grand Prix (Misano)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "misano.svg"
+            "track": "misano.svg",
+            "date": "2026-09-13T14:00:00+02:00",
+            "shortName": "SAN MARINO (MISANO)"
           },
           {
             "series": "dtm",
             "tag": "DTM",
             "title": "Sachsenring Round",
             "time": "R1: <span class=\"hl\">11:30</span> • R2: <span class=\"hl\">11:30</span>",
-            "track": "sachsenring.svg"
+            "track": "sachsenring.svg",
+            "date": "2026-09-13T14:00:00+02:00",
+            "shortName": "SACHSENRING"
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "AirTouch 500 at The Bend",
             "time": "FRI R: <span class=\"hl\">06:30</span> • SAT R: <span class=\"hl\">06:30</span> • SUN R: <span class=\"hl\">06:30</span>",
-            "track": "the-bend.svg"
+            "track": "the-bend.svg",
+            "date": "2026-09-13T04:30:00+02:00",
+            "shortName": "THE BEND"
           },
           {
             "series": "igtc",
             "tag": "IGTC",
             "title": "Suzuka 1000km",
             "time": "RACE: <span class=\"hl\">02:00</span>",
-            "track": "suzuka.svg"
+            "track": "suzuka.svg",
+            "date": "2026-09-13T03:00:00+02:00",
+            "shortName": "SUZUKA 1000KM"
           },
           {
             "series": "elms",
             "tag": "ELMS",
             "title": "4 Hours of Silverstone",
             "time": "SUN: <span class=\"hl\">12:00</span>",
-            "track": "silverstone.svg"
+            "track": "silverstone.svg",
+            "date": "2026-09-13T12:00:00+02:00",
+            "shortName": "SILVERSTONE 4H"
           },
           {
             "series": "nls",
             "tag": "NLS",
             "title": "Reinoldus + Barbarossapreis II (4h×2)",
             "time": "SAT: <span class=\"hl\">09:00</span> • SUN: <span class=\"hl\">09:00</span>",
-            "track": "nordschleife.svg"
+            "track": "nordschleife.svg",
+            "date": "2026-09-12T10:00:00+02:00",
+            "shortName": "REINOLDUS+BARBAROSSAPREIS II"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Bass Pro Shops Night Race (Bristol) — Playoff",
             "time": "RACE: <span class=\"hl\">01:30</span>",
-            "track": "bristol.svg"
+            "track": "bristol.svg",
+            "date": "2026-09-13T21:00:00+01:00",
+            "shortName": "BRISTOL (PLAYOFF)"
           },
           {
             "series": "eurx",
             "tag": "EURO RX",
             "title": "Rd 6: Portugal (Lousada)",
             "time": "SAT–SUN: <span class=\"hl\">13:00</span>",
-            "track": "lousada.svg"
+            "track": "lousada.svg",
+            "date": "2026-09-13T14:00:00+02:00",
+            "shortName": "PORTUGAL (LOUSADA)"
           }
         ]
       },
@@ -3885,35 +4361,45 @@
             "tag": "MOTOGP",
             "title": "Austrian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "red-bull-ring-motogp.svg"
+            "track": "red-bull-ring-motogp.svg",
+            "date": "2026-09-20T14:00:00+02:00",
+            "shortName": "AUSTRIA"
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "Zandvoort Sprint",
             "time": "R1: <span class=\"hl\">09:15</span> • R2: <span class=\"hl\">13:45</span>",
-            "track": "zandvoort.svg"
+            "track": "zandvoort.svg",
+            "date": "2026-09-20T14:00:00+02:00",
+            "shortName": "ZANDVOORT"
           },
           {
             "series": "imsa",
             "tag": "IMSA",
             "title": "Battle on the Bricks (Indy)",
             "time": "RACE: <span class=\"hl\">21:00</span>",
-            "track": "indianapolis.svg"
+            "track": "indianapolis.svg",
+            "date": "2026-09-20T18:00:00+02:00",
+            "shortName": "INDIANAPOLIS"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Playoff Round 1 Race 3 (TBD)",
             "time": "RACE: <span class=\"hl\">23:30</span>",
-            "track": "tbd.svg"
+            "track": "tbd.svg",
+            "date": "2026-09-20T01:30:00+01:00",
+            "shortName": "PLAYOFF R1 RACE 3 (TBD)"
           },
           {
             "series": "h24eu",
             "tag": "24H EU",
             "title": "Barcelona 24H",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "barcelona.svg"
+            "track": "barcelona.svg",
+            "date": "2026-09-19T14:00:00+02:00",
+            "shortName": "BARCELONA"
           }
         ]
       },
@@ -3932,49 +4418,63 @@
                 "label": "F2",
                 "detail": "RACES: TBC"
               }
-            ]
+            ],
+            "date": "2026-09-27T13:00:00+02:00",
+            "shortName": "AZERBAIJAN"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Cremona Round",
             "time": "R1: <span class=\"hl\">13:30</span> • SPR: <span class=\"hl\">09:00</span> • R2: <span class=\"hl\">13:30</span>",
-            "track": "cremona.svg"
+            "track": "cremona.svg",
+            "date": "2026-09-27T14:00:00+02:00",
+            "shortName": "CREMONA"
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Silverstone (Races 25-27)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
-            "track": "silverstone-national.svg"
+            "track": "silverstone-national.svg",
+            "date": "2026-09-27T14:00:00+02:00",
+            "shortName": "SILVERSTONE"
           },
           {
             "series": "gtwca",
             "tag": "GTWCA",
             "title": "Barber Round",
             "time": "RACE: <span class=\"hl\">17:30</span>",
-            "track": "barber.svg"
+            "track": "barber.svg",
+            "date": "2026-09-27T19:00:00+02:00",
+            "shortName": "BARBER"
           },
           {
             "series": "wec",
             "tag": "WEC",
             "title": "6 Hours of Fuji",
             "time": "RACE: <span class=\"hl\">02:00</span>",
-            "track": "fuji.svg"
+            "track": "fuji.svg",
+            "date": "2026-09-27T04:00:00+02:00",
+            "shortName": "FUJI 6H"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Playoff Round 2 Race 1 (TBD)",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "tbd.svg"
+            "track": "tbd.svg",
+            "date": "2026-09-27T21:00:00+01:00",
+            "shortName": "PLAYOFF R2 RACE 1 (TBD)"
           },
           {
             "series": "bgt",
             "tag": "BRITISH GT",
             "title": "Rd 8: Brands Hatch",
             "time": "2h RACE: <span class=\"hl\">11:00</span>",
-            "track": "brands-hatch-gp.svg"
+            "track": "brands-hatch-gp.svg",
+            "date": "2026-09-27T13:00:00+02:00",
+            "shortName": "BRANDS HATCH"
           }
         ]
       }
@@ -3991,7 +4491,9 @@
             "tag": "FORMULA 1",
             "title": "Bahrain GP",
             "time": "QUALI: <span class=\"hl\">09:00</span> • RACE: <span class=\"hl\">07:00</span>",
-            "track": "sepang.svg"
+            "track": "sepang.svg",
+            "date": "2026-10-04T07:00:00+02:00",
+            "shortName": "BAHRAIN (SEPANG)"
           },
           {
             "series": "wrc",
@@ -4005,42 +4507,54 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
-            ]
+            ],
+            "date": "2026-10-04T14:00:00+02:00",
+            "shortName": "SARDINIA"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Japanese Grand Prix (Motegi)",
             "time": "RACE: <span class=\"hl\">07:00</span>",
-            "track": "motegi.svg"
+            "track": "motegi.svg",
+            "date": "2026-10-04T07:00:00+02:00",
+            "shortName": "JAPAN (MOTEGI)"
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "3 Hours of Barcelona",
             "time": "RACE: <span class=\"hl\">13:00</span>",
-            "track": "barcelona.svg"
+            "track": "barcelona.svg",
+            "date": "2026-10-04T13:00:00+02:00",
+            "shortName": "BARCELONA 3H"
           },
           {
             "series": "tcr",
             "tag": "TCR",
             "title": "South Korea Round",
             "time": "R1: <span class=\"hl\">04:15</span> • R2: <span class=\"hl\">08:00</span>",
-            "track": "inje.svg"
+            "track": "inje.svg",
+            "date": "2026-10-04T07:00:00+02:00",
+            "shortName": "SOUTH KOREA"
           },
           {
             "series": "imsa",
             "tag": "IMSA",
             "title": "Petit Le Mans",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "road-atlanta.svg"
+            "track": "road-atlanta.svg",
+            "date": "2026-10-03T17:40:00+02:00",
+            "shortName": "PETIT LE MANS"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Playoff Round 2 Race 2 (TBD)",
             "time": "RACE: <span class=\"hl\">21:30</span>",
-            "track": "tbd.svg"
+            "track": "tbd.svg",
+            "date": "2026-10-04T23:30:00+01:00",
+            "shortName": "PLAYOFF R2 RACE 2 (TBD)"
           }
         ]
       },
@@ -4053,84 +4567,108 @@
             "title": "Singapore GP",
             "sprint": true,
             "time": "SPRINT: <span class=\"hl\">11:00</span> • QUALI: <span class=\"hl\">14:00</span> • RACE: <span class=\"hl\">14:00</span>",
-            "track": "singapore.svg"
+            "track": "singapore.svg",
+            "date": "2026-10-11T14:00:00+02:00",
+            "shortName": "SINGAPORE"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Indonesian Grand Prix",
             "time": "RACE: <span class=\"hl\">08:00</span>",
-            "track": "mandalika.svg"
+            "track": "mandalika.svg",
+            "date": "2026-10-11T08:00:00+02:00",
+            "shortName": "INDONESIA"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Estoril Round",
             "time": "R1: <span class=\"hl\">14:30</span> • SPR: <span class=\"hl\">10:00</span> • R2: <span class=\"hl\">14:30</span>",
-            "track": "estoril.svg"
+            "track": "estoril.svg",
+            "date": "2026-10-11T14:00:00+02:00",
+            "shortName": "ESTORIL"
           },
           {
             "series": "dtm",
             "tag": "DTM",
             "title": "Hockenheimring (Season Finale)",
             "time": "R1: <span class=\"hl\">11:30</span> • R2: <span class=\"hl\">11:30</span>",
-            "track": "hockenheim.svg"
+            "track": "hockenheim.svg",
+            "date": "2026-10-11T14:00:00+02:00",
+            "shortName": "HOCKENHEIM"
           },
           {
             "series": "btcc",
             "tag": "BTCC",
             "title": "Brands Hatch GP (Races 28-30, Finale)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
-            "track": "brands-hatch-gp.svg"
+            "track": "brands-hatch-gp.svg",
+            "date": "2026-10-11T14:00:00+02:00",
+            "shortName": "BRANDS HATCH GP"
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "Repco Bathurst 1000",
             "time": "RACE: <span class=\"hl\">00:00</span>",
-            "track": "bathurst.svg"
+            "track": "bathurst.svg",
+            "date": "2026-10-11T01:00:00+02:00",
+            "shortName": "BATHURST 1000"
           },
           {
             "series": "elms",
             "tag": "ELMS",
             "title": "4 Hours of Portimão (Finale)",
             "time": "SAT: <span class=\"hl\">12:00</span>",
-            "track": "portimao.svg"
+            "track": "portimao.svg",
+            "date": "2026-10-10T12:00:00+02:00",
+            "shortName": "PORTIMÃO 4H"
           },
           {
             "series": "nls",
             "tag": "NLS",
             "title": "NLS Sportwarte-Trophy (4h)",
             "time": "SAT: <span class=\"hl\">10:00</span>",
-            "track": "nordschleife.svg"
+            "track": "nordschleife.svg",
+            "date": "2026-10-10T10:00:00+02:00",
+            "shortName": "SPORTWARTE TROPHY"
           },
           {
             "series": "gtwca",
             "tag": "GTWCA",
             "title": "Indianapolis 8 Hour (Finale)",
             "time": "RACE: <span class=\"hl\">16:00</span>",
-            "track": "indianapolis.svg"
+            "track": "indianapolis.svg",
+            "date": "2026-10-10T17:00:00+02:00",
+            "shortName": "INDIANAPOLIS 8H"
           },
           {
             "series": "igtc",
             "tag": "IGTC",
             "title": "Indianapolis 8 Hour (Finale)",
             "time": "RACE: <span class=\"hl\">16:00</span>",
-            "track": "indianapolis.svg"
+            "track": "indianapolis.svg",
+            "date": "2026-10-10T17:00:00+02:00",
+            "shortName": "INDIANAPOLIS 8H"
           },
           {
             "series": "sf",
             "tag": "S. FORMULA",
             "title": "Fuji II",
             "time": "RACE: <span class=\"hl\">05:00</span>",
-            "track": "fuji.svg"
+            "track": "fuji.svg",
+            "date": "2026-10-11T07:00:00+02:00",
+            "shortName": "FUJI FINALE"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Playoff Round 2 Race 3 (TBD)",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "tbd.svg"
+            "track": "tbd.svg",
+            "date": "2026-10-11T21:00:00+01:00",
+            "shortName": "PLAYOFF R2 RACE 3 (TBD)"
           }
         ]
       },
@@ -4142,35 +4680,45 @@
             "tag": "WEC",
             "title": "6 Hours of Barcelona",
             "time": "RACE: TBC",
-            "track": "barcelona.svg"
+            "track": "barcelona.svg",
+            "date": "2026-10-18T13:00:00+02:00",
+            "shortName": "BARCELONA 6H"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Australian Grand Prix (Phillip Island)",
             "time": "RACE: <span class=\"hl\">05:00</span>",
-            "track": "phillip-island.svg"
+            "track": "phillip-island.svg",
+            "date": "2026-10-19T05:00:00+02:00",
+            "shortName": "AUSTRALIA"
           },
           {
             "series": "wsbk",
             "tag": "WSBK",
             "title": "Jerez Round (Season Finale)",
             "time": "R1: <span class=\"hl\">13:30</span> • SPR: <span class=\"hl\">09:00</span> • R2: <span class=\"hl\">13:30</span>",
-            "track": "jerez-motogp.svg"
+            "track": "jerez.svg",
+            "date": "2026-10-18T14:00:00+02:00",
+            "shortName": "JEREZ"
           },
           {
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "3 Hours of Portimão",
             "time": "RACE: <span class=\"hl\">13:00</span>",
-            "track": "portimao.svg"
+            "track": "portimao.svg",
+            "date": "2026-10-18T13:00:00+02:00",
+            "shortName": "PORTIMÃO 3H"
           },
           {
             "series": "tcr",
             "tag": "TCR",
             "title": "Chengdu Round",
             "time": "R1: <span class=\"hl\">05:15</span> • R2: <span class=\"hl\">09:00</span>",
-            "track": "chengdu.svg"
+            "track": "chengdu.svg",
+            "date": "2026-10-18T08:00:00+02:00",
+            "shortName": "CHENGDU"
           }
         ]
       },
@@ -4182,42 +4730,54 @@
             "tag": "FORMULA 1",
             "title": "United States GP (Austin)",
             "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
-            "track": "cota-f1.svg"
+            "track": "cota-f1.svg",
+            "date": "2026-10-25T21:00:00+01:00",
+            "shortName": "USA (AUSTIN)"
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 6: COTA",
             "time": "RACES: <span class=\"hl\">16:00</span>",
-            "track": "cota-f1.svg"
+            "track": "cota-f1.svg",
+            "date": "2026-10-25T21:00:00+01:00",
+            "shortName": "USA (AUSTIN)"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Malaysian Grand Prix (Sepang)",
             "time": "RACE: <span class=\"hl\">08:00</span>",
-            "track": "sepang.svg"
+            "track": "sepang.svg",
+            "date": "2026-10-26T08:00:00+01:00",
+            "shortName": "MALAYSIA"
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "Boost Mobile Gold Coast 500",
             "time": "FRI R: <span class=\"hl\">05:00</span> • SAT R: <span class=\"hl\">05:00</span> • SUN R: <span class=\"hl\">05:05</span>",
-            "track": "gold-coast.svg"
+            "track": "gold-coast.svg",
+            "date": "2026-10-25T03:00:00+01:00",
+            "shortName": "GOLD COAST 500"
           },
           {
             "series": "tcr",
             "tag": "TCR",
             "title": "Zhuzhou Round",
             "time": "R1: <span class=\"hl\">05:15</span> • R2: <span class=\"hl\">09:00</span>",
-            "track": "zhuzhou.svg"
+            "track": "zhuzhou.svg",
+            "date": "2026-10-25T08:00:00+01:00",
+            "shortName": "ZHUZHOU"
           },
           {
             "series": "erc",
             "tag": "ERC",
             "title": "Rally Five Cities (Fafe, Finale)",
             "time": "FRI > SUN",
-            "track": "portugal-wrc.svg"
+            "track": "portugal-wrc.svg",
+            "date": "2026-10-25T14:00:00+01:00",
+            "shortName": "FAFE"
           }
         ]
       },
@@ -4229,14 +4789,18 @@
             "tag": "FORMULA 1",
             "title": "Mexico City GP",
             "time": "QUALI: <span class=\"hl\">21:00</span> • RACE: <span class=\"hl\">21:00</span>",
-            "track": "mexico.svg"
+            "track": "mexico.svg",
+            "date": "2026-11-01T21:00:00+01:00",
+            "shortName": "MEXICO CITY"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Portuguese Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "portimao.svg"
+            "track": "portimao.svg",
+            "date": "2026-11-01T14:00:00+01:00",
+            "shortName": "PORTUGAL"
           }
         ]
       }
@@ -4253,21 +4817,27 @@
             "tag": "FORMULA 1",
             "title": "Brazilian GP",
             "time": "QUALI: <span class=\"hl\">18:00</span> • RACE: <span class=\"hl\">18:00</span>",
-            "track": "interlagos.svg"
+            "track": "interlagos.svg",
+            "date": "2026-11-08T18:00:00+01:00",
+            "shortName": "BRAZIL"
           },
           {
             "series": "wec",
             "tag": "WEC",
             "title": "6 Hours of Monza",
             "time": "RACE: TBC",
-            "track": "monza.svg"
+            "track": "monza.svg",
+            "date": "2026-11-08T13:00:00+01:00",
+            "shortName": "MONZA 6H"
           },
           {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Championship Race (Homestead)",
             "time": "RACE: <span class=\"hl\">21:00</span>",
-            "track": "homestead-miami-oval.svg"
+            "track": "homestead-miami-oval.svg",
+            "date": "2026-11-08T21:00:00+01:00",
+            "shortName": "HOMESTEAD-MIAMI"
           }
         ]
       },
@@ -4286,14 +4856,27 @@
                 "label": "WRC2",
                 "detail": "ALL STAGES"
               }
-            ]
+            ],
+            "date": "2026-11-14T14:00:00+01:00",
+            "shortName": "SAUDI ARABIA"
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "Penrite Oil Sandown 500",
             "time": "RACE: <span class=\"hl\">01:00</span>",
-            "track": "sandown.svg"
+            "track": "sandown.svg",
+            "date": "2026-11-15T03:00:00+01:00",
+            "shortName": "SANDOWN 500"
+          },
+          {
+            "series": "asian-le-mans",
+            "tag": "ASIAN LMS",
+            "title": "Rounds 1–2: Paul Ricard",
+            "time": "FRI–SUN",
+            "track": "paul-ricard.svg",
+            "date": "2026-11-15T12:00:00+01:00",
+            "shortName": "PAUL RICARD (R1–2)"
           }
         ]
       },
@@ -4305,35 +4888,45 @@
             "tag": "FORMULA 1",
             "title": "Las Vegas GP",
             "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">05:00</span>",
-            "track": "las-vegas-strip.svg"
+            "track": "las-vegas-strip.svg",
+            "date": "2026-11-22T05:00:00+01:00",
+            "shortName": "LAS VEGAS"
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 7: Las Vegas (Finale)",
             "time": "RACES: <span class=\"hl\">00:00</span>",
-            "track": "las-vegas-strip.svg"
+            "track": "las-vegas-strip.svg",
+            "date": "2026-11-22T05:00:00+01:00",
+            "shortName": "LAS VEGAS"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
             "title": "Valencian Community GP (Finale)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "valencia.svg"
+            "track": "valencia.svg",
+            "date": "2026-11-22T14:00:00+01:00",
+            "shortName": "VALENCIA"
           },
           {
             "series": "sf",
             "tag": "S. FORMULA",
             "title": "Suzuka II",
             "time": "RACE: <span class=\"hl\">05:00</span>",
-            "track": "suzuka.svg"
+            "track": "suzuka.svg",
+            "date": "2026-11-22T06:00:00+01:00",
+            "shortName": "SUZUKA FINALE"
           },
           {
             "series": "tcr",
             "tag": "TCR",
             "title": "Macau (Season Finale)",
             "time": "R1: <span class=\"hl\">05:15</span> • R2: <span class=\"hl\">09:00</span>",
-            "track": "macau.svg"
+            "track": "macau.svg",
+            "date": "2026-11-22T08:00:00+01:00",
+            "shortName": "MACAU"
           }
         ]
       },
@@ -4352,7 +4945,9 @@
                 "label": "F2",
                 "detail": "RACES: TBC"
               }
-            ]
+            ],
+            "date": "2026-11-29T17:00:00+01:00",
+            "shortName": "QATAR"
           }
         ]
       }
@@ -4376,21 +4971,67 @@
                 "label": "F2",
                 "detail": "FINALE: TBC"
               }
-            ]
+            ],
+            "date": "2026-12-06T14:00:00+01:00",
+            "shortName": "ABU DHABI"
           },
           {
             "series": "supercars",
             "tag": "SUPERCARS",
             "title": "bp Adelaide Grand Final",
             "time": "SAT R: <span class=\"hl\">05:30</span> • SUN R: <span class=\"hl\">05:35</span>",
-            "track": "adelaide.svg"
+            "track": "adelaide.svg",
+            "date": "2026-12-06T03:30:00+01:00",
+            "shortName": "ADELAIDE"
           },
           {
             "series": "eurx",
             "tag": "EURO RX",
             "title": "World Cup: Jakarta",
             "time": "SAT–SUN: <span class=\"hl\">07:00</span>",
-            "track": "jakarta.svg"
+            "track": "jakarta.svg",
+            "date": "2026-12-06T14:00:00+07:00",
+            "shortName": "WORLD CUP: JAKARTA"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "JANUARY",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 03 • JAN 15-17",
+        "events": [
+          {
+            "series": "asian-le-mans",
+            "tag": "ASIAN LMS",
+            "title": "Rounds 3–4: Jerez",
+            "time": "FRI–SUN",
+            "track": "jerez.svg",
+            "date": "2027-01-17T12:00:00+01:00",
+            "shortName": "JEREZ (R3–4)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "FEBRUARY",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 08 • FEB 19-21",
+        "events": [
+          {
+            "series": "asian-le-mans",
+            "tag": "ASIAN LMS",
+            "title": "Rounds 5–6: Portimão",
+            "time": "FRI–SUN",
+            "track": "portimao.svg",
+            "date": "2027-02-21T12:00:00+00:00",
+            "shortName": "PORTIMÃO (R5–6)"
           }
         ]
       }

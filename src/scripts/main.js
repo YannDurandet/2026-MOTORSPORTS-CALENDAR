@@ -1,55 +1,11 @@
 // =============================================
-// TIMEZONE CONVERSION
+// TIMEZONE CONVERSION \u2014 imported from shared tz.js
 // =============================================
-const SOURCE_TIMEZONE = "Europe/Paris";
-const USER_TIMEZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
-const NEEDS_TZ_CONVERSION = SOURCE_TIMEZONE !== USER_TIMEZONE;
-
-const MONTH_MAP = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
-
-function parseWeekDate(weekLabel) {
-    const m = weekLabel.match(/\u2022\s*([A-Z]{3})\s+(\d{1,2})(?:\s*-\s*(\d{1,2}))?/);
-    if (!m) return null;
-    const mo = MONTH_MAP[m[1]];
-    if (mo === undefined) return null;
-    const day = m[3] ? parseInt(m[3]) : parseInt(m[2]);
-    return new Date(2026, mo, day);
-}
-
-function convertHHMM(hhmm, refDate) {
-    const [h, mm] = hhmm.split(':').map(Number);
-    const fakeUtc = new Date(Date.UTC(2026, refDate.getMonth(), refDate.getDate(), h, mm, 0));
-    const utcParsed = new Date(fakeUtc.toLocaleString('en-US', { timeZone: 'UTC' }));
-    const srcParsed = new Date(fakeUtc.toLocaleString('en-US', { timeZone: SOURCE_TIMEZONE }));
-    const realUtc = new Date(fakeUtc.getTime() + (utcParsed - srcParsed));
-
-    const converted = realUtc.toLocaleTimeString('en-GB', {
-        timeZone: USER_TIMEZONE, hour: '2-digit', minute: '2-digit', hour12: false
-    });
-
-    const srcDay = refDate.getDate();
-    const tgtDay = parseInt(new Intl.DateTimeFormat('en-GB', {
-        timeZone: USER_TIMEZONE, day: 'numeric'
-    }).format(realUtc));
-
-    if (tgtDay !== srcDay) {
-        let diff = tgtDay - srcDay;
-        const daysInMonth = new Date(2026, refDate.getMonth() + 1, 0).getDate();
-        if (diff > 15) diff -= daysInMonth;
-        if (diff < -15) diff += daysInMonth;
-        return `${converted}<sup class="tz-day">${diff > 0 ? '+' : ''}${diff}</sup>`;
-    }
-    return converted;
-}
-
-function convertTimeStr(timeHtml, weekLabel) {
-    if (!NEEDS_TZ_CONVERSION) return timeHtml;
-    const refDate = parseWeekDate(weekLabel);
-    if (!refDate) return timeHtml;
-    return timeHtml.replace(/<span class="hl">(\d{2}:\d{2})<\/span>/g, (_, hhmm) => {
-        return `<span class="hl">${convertHHMM(hhmm, refDate)}</span>`;
-    });
-}
+import {
+    SOURCE_TIMEZONE, DETECTED_TIMEZONE, USER_TIMEZONE, TZ_IS_OVERRIDE,
+    NEEDS_TZ_CONVERSION, MONTH_MAP, DAY_MAP,
+    parseWeekDate, convertHHMM, convertTimeStr
+} from './tz.js';
 
 // =============================================
 // SERIES METADATA (categories & regions)
@@ -79,13 +35,14 @@ const seriesMetadata = {
     h24eu: { name: "24H European Series", category: "Endurance", region: "Europe" },
     psc: { name: "Porsche Supercup", category: "GT / Sports Car", region: "Europe" },
     bgt: { name: "British GT", category: "GT / Sports Car", region: "Europe" },
-    eurx: { name: "Euro RX", category: "Rally", region: "Europe" }
+    eurx: { name: "Euro RX", category: "Rally", region: "Europe" },
+    'asian-le-mans': { name: "Asian Le Mans Series", category: "Endurance", region: "Worldwide" }
 };
 
 // =============================================
 // FILTER CONSTANTS
 // =============================================
-const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc', 'h24eu', 'psc', 'bgt', 'eurx'];
+const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc', 'h24eu', 'psc', 'bgt', 'eurx', 'asian-le-mans'];
 const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
 const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
 
@@ -94,7 +51,7 @@ const seriesLabels = {
     indycar: 'INDYCAR', nascar: 'NASCAR', motogp: 'MOTOGP', wsbk: 'WSBK', dtm: 'DTM',
     btcc: 'BTCC', supercars: 'SUPERCARS', elms: 'ELMS', gtwce: 'GTWCE', gtwca: 'GTWCA',
     nls: 'NLS', igtc: 'IGTC', tcr: 'TCR', erc: 'ERC', h24eu: '24H EU',
-    psc: 'PORSCHE SC', bgt: 'BRITISH GT', eurx: 'EURO RX'
+    psc: 'PORSCHE SC', bgt: 'BRITISH GT', eurx: 'EURO RX', 'asian-le-mans': 'ASIAN LMS'
 };
 
 // =============================================
@@ -243,30 +200,6 @@ function updateThisWeekendCountdowns() {
 }
 
 // =============================================
-// DASHBOARD TOGGLE
-// =============================================
-function initDashToggle() {
-    const dashGrid = document.getElementById('dash-grid');
-    const toggleBtn = document.getElementById('dash-toggle-btn');
-    if (!dashGrid || !toggleBtn) return;
-
-    toggleBtn.addEventListener('click', () => {
-        const isCollapsed = dashGrid.classList.contains('collapsed');
-        if (isCollapsed) {
-            dashGrid.classList.remove('collapsed');
-            toggleBtn.classList.add('expanded');
-            toggleBtn.setAttribute('aria-expanded', 'true');
-            toggleBtn.querySelector('span').textContent = 'SHOW LESS';
-        } else {
-            dashGrid.classList.add('collapsed');
-            toggleBtn.classList.remove('expanded');
-            toggleBtn.setAttribute('aria-expanded', 'false');
-            toggleBtn.querySelector('span').textContent = 'SEE ALL SERIES';
-        }
-    });
-}
-
-// =============================================
 // FILTERS
 // =============================================
 function initFilters() {
@@ -391,10 +324,6 @@ function applyFilters() {
         const allHidden = Array.from(visibleEvents).every(ev => ev.style.display === 'none');
         card.style.display = allHidden ? 'none' : '';
     }
-    const dashCards = document.querySelectorAll('.dash-card[data-series]');
-    for (const dc of dashCards) {
-        dc.style.display = isSeriesVisible(dc.dataset.series) ? '' : 'none';
-    }
     const calContainer = document.getElementById('calendar-container');
     const emptyState = document.getElementById('empty-state');
     if (calContainer && emptyState) {
@@ -413,25 +342,62 @@ function applyFilters() {
 }
 
 // =============================================
+// HASH / WEEK PERMALINK NAVIGATION
+// =============================================
+function revealHashTarget() {
+    const hash = location.hash.slice(1); // strip '#'
+    if (!hash) return false;
+
+    const el = document.getElementById(hash);
+    if (!el || !el.classList.contains('card')) return false;
+
+    const behavior = document.visibilityState === 'hidden'
+        || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto' : 'smooth';
+
+    // If card is inside the past-events accordion, open it first
+    const pastContainer = el.closest('#past-events-container');
+    if (pastContainer) pastContainer.open = true;
+
+    // If card is inside a 2027 preview section, expand it first
+    if (el.closest('[data-year="2027"]')) {
+        const btn = document.querySelector('.preview-2027-btn');
+        if (btn && btn.getAttribute('aria-expanded') === 'false') btn.click();
+    }
+
+    // If card is hidden by filters (display:none), skip scroll but still return true
+    // so scrollToCurrentWeek is suppressed
+    requestAnimationFrame(() => {
+        el.scrollIntoView({ behavior, block: 'start' });
+    });
+
+    return true;
+}
+
+// =============================================
 // AUTO-SCROLL
 // =============================================
 function scrollToCurrentWeek() {
-    const now = Date.now();
-    const allEvents = document.querySelectorAll('.event[data-series]');
-    for (const ev of allEvents) {
-        const series = ev.dataset.series;
-        const list = seriesData[series];
-        if (!list) continue;
-        const match = list.find(r => r._ts > now);
-        if (match) {
-            const card = ev.closest('.card');
-            if (card) {
-                const monthHeader = card.closest('.cal-grid')?.previousElementSibling;
-                if (monthHeader) monthHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                else card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                return;
-            }
+    // dimPastEvents has already moved past months out of #calendar-container
+    // and tagged past weeks of the current month with .past, so the first
+    // remaining visible card is the current/next race week.
+    // Smooth scrolling is skipped by browsers in hidden/background tabs and
+    // unwanted under prefers-reduced-motion — fall back to instant.
+    const behavior = document.visibilityState === 'hidden'
+        || window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto' : 'smooth';
+    const cards = document.querySelectorAll('#calendar-container .card');
+    for (const card of cards) {
+        if (card.classList.contains('past')) continue;
+        if (card.style.display === 'none') continue;       // hidden by filters
+        if (card.closest('[data-year="2027"]')) continue;  // collapsed 2027 preview
+        const monthHeader = card.closest('.cal-grid')?.previousElementSibling;
+        if (monthHeader && monthHeader.classList.contains('month-header')) {
+            monthHeader.scrollIntoView({ behavior, block: 'start' });
+        } else {
+            card.scrollIntoView({ behavior, block: 'start' });
         }
+        return;
     }
 }
 
@@ -456,6 +422,7 @@ function dimPastEvents() {
     const monthHeaders = Array.from(calContainer.querySelectorAll('.month-header'));
 
     for (const header of monthHeaders) {
+        if (header.dataset.year === '2027') continue; // handled by 2027 toggle
         const monthIdx = monthNames.indexOf(header.textContent);
         if (monthIdx >= 0 && monthIdx < currentMonth) {
             const grid = header.nextElementSibling;
@@ -467,13 +434,15 @@ function dimPastEvents() {
 
     const cards = calContainer.querySelectorAll('.card');
     for (const card of cards) {
+        if (card.closest('[data-year="2027"]')) continue; // handled by 2027 toggle
         const headText = card.querySelector('.c-head')?.textContent || '';
-        const dateMatches = headText.match(/\d{2}/g);
-        if (!dateMatches) continue;
-        const lastDate = parseInt(dateMatches[dateMatches.length - 1]);
-        const monthMatches = headText.match(/JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC/g);
-        if (!monthMatches) continue;
-        const cardMonth = shortMonths.indexOf(monthMatches[monthMatches.length - 1]);
+        // "WEEK 32 • AUG 3-9" / "WEEK 31 • JUL 27 - AUG 2" → month + day the week ends on.
+        // Anchored to the end of the label so "WEEK 32" is never mistaken for a day.
+        const m = headText.match(/([A-Z]{3})\s+(\d{1,2})(?:\s*-\s*(?:([A-Z]{3})\s+)?(\d{1,2}))?\s*$/);
+        if (!m) continue;
+        const cardMonth = shortMonths.indexOf(m[3] || m[1]);
+        const lastDate = parseInt(m[4] || m[2]);
+        if (cardMonth < 0) continue;
         if (cardMonth < currentMonth || (cardMonth === currentMonth && lastDate + 1 < currentDate)) {
             card.classList.add('past');
         }
@@ -488,47 +457,202 @@ function dimPastEvents() {
 }
 
 // =============================================
-// COUNTDOWN TIMER
+// TIMEZONE PICKER
 // =============================================
-let els = {};
-let nextIdx = {};
+// The pre-rendered HTML timezone conversion is one-shot (convertPreRenderedTimes mutates
+// the DOM and cannot run twice), so a timezone change must reload the page. This is the
+// honest, bug-free approach — no stale time strings can linger.
+function setupTzPicker() {
+    const select = document.getElementById('tz-select');
+    if (!select) return;
 
-function initCountdown() {
-    els = Object.keys(seriesData).reduce((acc, k) => {
-        acc[k] = { t: document.getElementById(`t-${k}`), n: document.querySelector(`.dc-${k} .dc-next`) };
-        return acc;
-    }, {});
-    nextIdx = {};
-    for (const k of Object.keys(seriesData)) nextIdx[k] = 0;
-}
+    // Build options: Auto first, then IANA zones grouped by region prefix
+    const FALLBACK_ZONES = [
+        'America/New_York','America/Chicago','America/Denver','America/Los_Angeles',
+        'America/Sao_Paulo','America/Toronto','America/Vancouver',
+        'Europe/London','Europe/Paris','Europe/Berlin','Europe/Madrid',
+        'Europe/Rome','Europe/Amsterdam','Europe/Moscow',
+        'Asia/Tokyo','Asia/Shanghai','Asia/Seoul','Asia/Singapore',
+        'Asia/Dubai','Asia/Kolkata','Asia/Bangkok','Asia/Jakarta',
+        'Africa/Cairo','Africa/Johannesburg','Africa/Lagos',
+        'Australia/Sydney','Australia/Melbourne','Australia/Perth',
+        'Pacific/Auckland','Pacific/Honolulu','UTC',
+    ];
 
-function update() {
-    const now = Date.now();
-    for (const [k, list] of Object.entries(seriesData)) {
-        const el = els[k];
-        if (!el || !el.t) continue;
-        while (nextIdx[k] < list.length && list[nextIdx[k]]._ts <= now) nextIdx[k]++;
+    const zones = (typeof Intl.supportedValuesOf === 'function')
+        ? Intl.supportedValuesOf('timeZone')
+        : FALLBACK_ZONES;
 
-        if (nextIdx[k] < list.length) {
-            const next = list[nextIdx[k]];
-            if (el.n) el.n.textContent = next.name;
-            const dff = next._ts - now;
-            const d = Math.floor(dff / 864e5), h = Math.floor((dff % 864e5) / 36e5), m = Math.floor((dff % 36e5) / 6e4), s = Math.floor((dff % 6e4) / 1000);
-            el.t.textContent = `${d}d ${h}h ${m}m ${s}s`;
-            el.t.style.color = "#ccc";
-        } else {
-            if (el.n) el.n.textContent = "SEASON END";
-            el.t.textContent = "OFF SEASON";
-            el.t.style.color = "#444";
-        }
+    // Group by prefix
+    const groups = {};
+    for (const z of zones) {
+        const prefix = z.includes('/') ? z.split('/')[0] : 'Other';
+        (groups[prefix] ??= []).push(z);
     }
-    updateThisWeekendCountdowns();
+
+    // Auto option
+    const autoOpt = document.createElement('option');
+    autoOpt.value = '';
+    autoOpt.textContent = `Auto — ${DETECTED_TIMEZONE.replace(/_/g, ' ')}`;
+    select.appendChild(autoOpt);
+
+    // Grouped options
+    for (const [prefix, tzList] of Object.entries(groups)) {
+        const grp = document.createElement('optgroup');
+        grp.label = prefix;
+        for (const tz of tzList) {
+            const opt = document.createElement('option');
+            opt.value = tz;
+            opt.textContent = tz.replace(/_/g, ' ');
+            if (tz === USER_TIMEZONE) opt.selected = true;
+            grp.appendChild(opt);
+        }
+        select.appendChild(grp);
+    }
+
+    // If override is active but zones list didn't include it, ensure it's selected
+    if (TZ_IS_OVERRIDE && !select.value) {
+        const opt = document.createElement('option');
+        opt.value = USER_TIMEZONE;
+        opt.textContent = USER_TIMEZONE.replace(/_/g, ' ');
+        opt.selected = true;
+        select.appendChild(opt);
+    }
+
+    select.addEventListener('change', () => {
+        const val = select.value;
+        if (val) {
+            localStorage.setItem('tzOverride', val);
+        } else {
+            localStorage.removeItem('tzOverride');
+        }
+        // Reload so the one-shot convertPreRenderedTimes() runs fresh with new timezone
+        location.reload();
+    });
 }
 
-let timerInterval = setInterval(update, 1000);
+// =============================================
+// PERSONAL ICAL SUBSCRIBE MODAL
+// =============================================
+function setupIcalModal() {
+    const btn = document.getElementById('cal-subscribe-btn');
+    const modal = document.getElementById('ical-modal');
+    if (!btn || !modal) return;
+
+    const closeBtn = document.getElementById('ical-modal-close');
+    const backdrop = document.getElementById('ical-modal-backdrop');
+    const linkInput = document.getElementById('ical-link-input');
+    const copyBtn = document.getElementById('ical-copy-btn');
+    const gcalLink = document.getElementById('ical-gcal-link');
+
+    function buildCalUrl() {
+        // Build sorted slug list from current visible series
+        const visible = allSeries.filter(isSeriesVisible).sort();
+        const allVisible = visible.length === allSeries.length;
+        const base = 'webcal://dord.racing/api/ical';
+        return allVisible ? base : base + '?series=' + visible.join(',');
+    }
+
+    function openModal() {
+        const url = buildCalUrl();
+        if (linkInput) linkInput.value = url;
+        if (gcalLink) gcalLink.href = 'https://calendar.google.com/calendar/render?cid=' + encodeURIComponent(url);
+        modal.hidden = false;
+        requestAnimationFrame(() => { if (closeBtn) closeBtn.focus(); });
+    }
+
+    function closeModal() {
+        modal.hidden = true;
+        btn.focus();
+        if (copyBtn) { copyBtn.textContent = 'Copy'; copyBtn.removeAttribute('aria-label'); }
+    }
+
+    btn.addEventListener('click', openModal);
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    if (backdrop) backdrop.addEventListener('click', closeModal);
+
+    modal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') { e.preventDefault(); closeModal(); }
+        // Trap focus within modal
+        if (e.key === 'Tab') {
+            const focusable = Array.from(modal.querySelectorAll('a[href], button:not([disabled]), input'));
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+    });
+
+    if (copyBtn && linkInput) {
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(linkInput.value).then(() => {
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+            }).catch(() => {
+                linkInput.select();
+                document.execCommand('copy');
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => { copyBtn.textContent = 'Copy'; }, 2000);
+            });
+        });
+    }
+}
+
+// =============================================
+// 2027 PREVIEW TOGGLE
+// =============================================
+function setup2027Toggle() {
+    const calContainer = document.getElementById('calendar-container');
+    if (!calContainer) return;
+
+    const els2027 = Array.from(calContainer.querySelectorAll('[data-year="2027"]'));
+    if (!els2027.length) return;
+
+    // Use style.display instead of the `hidden` attribute — CSS `display: grid`
+    // on .cal-grid can override the UA `[hidden] { display: none }` rule.
+    els2027.forEach(el => { el.style.display = 'none'; });
+
+    // Build toggle wrapper and insert it immediately before the first 2027 element
+    // (guarantees it lands between December and January regardless of grid layout).
+    const wrapper = document.createElement('div');
+    wrapper.className = 'preview-2027-wrap';
+    wrapper.innerHTML = `
+      <button class="preview-2027-btn" aria-expanded="false" aria-controls="preview-2027-content">
+        Preview 2027 season →
+      </button>
+      <div class="preview-2027-note">Some 2027 calendars may be incomplete</div>
+    `;
+    els2027[0].before(wrapper);
+
+    // Year separator sits between the button and the first 2027 month header
+    const separator = document.createElement('div');
+    separator.className = 'year-separator';
+    separator.id = 'preview-2027-content';
+    separator.textContent = '— 2027 —';
+    separator.style.display = 'none';
+    wrapper.after(separator);
+
+    const btn = wrapper.querySelector('.preview-2027-btn');
+    btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        const next = !isOpen;
+        btn.setAttribute('aria-expanded', String(next));
+        const display = next ? '' : 'none';
+        separator.style.display = display;
+        els2027.forEach(el => { el.style.display = display; });
+        btn.textContent = next ? 'Hide 2027 preview ←' : 'Preview 2027 season →';
+    });
+}
+
+// =============================================
+// COUNTDOWN TICK (This Weekend cards)
+// =============================================
+let timerInterval = setInterval(updateThisWeekendCountdowns, 1000);
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) clearInterval(timerInterval);
-    else { update(); timerInterval = setInterval(update, 1000); }
+    else { updateThisWeekendCountdowns(); timerInterval = setInterval(updateThisWeekendCountdowns, 1000); }
 });
 
 // =============================================
@@ -541,8 +665,9 @@ function convertPreRenderedTimes() {
         const headEl = card.querySelector('.c-head');
         if (!headEl) return;
         const weekLabel = headEl.textContent;
+        const year = parseInt(card.closest('[data-year]')?.dataset.year) || 2026;
         card.querySelectorAll('.meta-time').forEach(metaTime => {
-            metaTime.innerHTML = convertTimeStr(metaTime.innerHTML, weekLabel);
+            metaTime.innerHTML = convertTimeStr(metaTime.innerHTML, weekLabel, year);
         });
     });
 }
@@ -554,11 +679,13 @@ function injectSchema() {
     const now = Date.now();
     let upcomingEvents = [];
     for (const [series, list] of Object.entries(seriesData)) {
+        const meta = seriesMetadata[series];
+        if (!meta) continue; // series.json can carry keys the UI doesn't know yet
         const nextRace = list.find(r => r._ts > now);
         if (nextRace) {
             upcomingEvents.push({
                 "@type": "Event",
-                "name": `${seriesMetadata[series].name} - ${nextRace.name}`,
+                "name": `${meta.name} - ${nextRace.name}`,
                 "startDate": nextRace.date,
                 "eventStatus": "https://schema.org/EventScheduled",
                 "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -618,10 +745,17 @@ function initToggle() {
 // INIT
 // =============================================
 (async function init() {
-    // Fetch series data for countdowns — calendar HTML is pre-rendered
+    // Fetch series data for countdowns — calendar HTML is pre-rendered.
+    // A failed fetch must not kill the rest of init: filters, toggles and
+    // row clicks work fine without countdown data.
     const base = document.querySelector('meta[name="astro-base"]')?.getAttribute('content') || '';
-    const seriesRes = await fetch(`${base}/data/series.json`);
-    seriesData = await seriesRes.json();
+    try {
+        const seriesRes = await fetch(`${base}/data/series.json`);
+        seriesData = await seriesRes.json();
+    } catch (e) {
+        console.error('Failed to load series data — countdowns disabled', e);
+        seriesData = {};
+    }
 
     // Pre-cache timestamps
     for (const list of Object.values(seriesData)) {
@@ -636,25 +770,33 @@ function initToggle() {
     // Initialize interactive features
     initEventRowClicks();
     initToggle();
-    initDashToggle();
     initFilters();
-    applyFilters();
-    renderThisWeekend();
+    applyFilters(); // also renders the This Weekend section
     dimPastEvents();
-    initCountdown();
-    update();
+    setup2027Toggle();
+    setupIcalModal();
     injectSchema();
 
     // Update timezone notice
     const tzNotice = document.querySelector('.meta');
     if (tzNotice) {
-        const friendlyTz = USER_TIMEZONE.replace(/_/g, ' ');
-        if (NEEDS_TZ_CONVERSION) {
-            tzNotice.textContent = `TIMES CONVERTED TO YOUR TIMEZONE: ${friendlyTz.toUpperCase()}`;
+        const friendlyTz = USER_TIMEZONE.replace(/_/g, ' ').toUpperCase();
+        if (TZ_IS_OVERRIDE) {
+            tzNotice.textContent = `TIMES SHOWN IN: ${friendlyTz} (MANUAL)`;
+        } else if (NEEDS_TZ_CONVERSION) {
+            tzNotice.textContent = `TIMES CONVERTED TO YOUR TIMEZONE: ${friendlyTz}`;
         } else {
             tzNotice.textContent = `SYSTEM TIMEZONE: PARIS (CET/CEST)`;
         }
     }
 
-    setTimeout(scrollToCurrentWeek, 100);
+    setupTzPicker();
+
+    // Hash permalink: if a valid week hash is present, reveal & scroll to it;
+    // otherwise fall back to auto-scrolling to the current week.
+    const hasHashTarget = revealHashTarget();
+    if (!hasHashTarget) setTimeout(scrollToCurrentWeek, 100);
+
+    // React to hash changes (back/forward, clicking week anchors)
+    window.addEventListener('hashchange', revealHashTarget);
 })();

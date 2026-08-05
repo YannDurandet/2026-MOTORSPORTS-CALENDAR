@@ -1,0 +1,668 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Banner from '../components/Banner.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+import {
+  type ResultEntry,
+  getFlatResults,
+  getSeriesEventCounts,
+  computeStreak,
+  seriesShort,
+  flagSrc,
+  countryName,
+} from '../lib/results';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const flat = getFlatResults();                         // newest-first
+const counts = getSeriesEventCounts();                 // { series: { total, done } }
+const allSeries = Object.keys(counts).sort();
+
+// ── Per-series: wins by entity (driver or team for endurance) ─────────────────
+type SeriesStat = {
+  slug:      string;
+  label:     string;
+  done:      number;
+  total:     number;
+  pct:       number;
+  leader:    string;
+  leaderWins: number;
+  leaderCountry: string;
+  streak:    { name: string; count: number } | null;
+  // Only for single-driver series
+  isDriver:  boolean;
+};
+
+// Normalise diacritics for cross-series dedup
+function normalise(s: string): string {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+}
+
+const seriesStats: SeriesStat[] = [];
+
+for (const slug of allSeries) {
+  const { total, done } = counts[slug];
+  if (done === 0) continue;                            // no results yet — skip
+
+  const entries = flat.filter(r => r.series === slug);
+
+  // Endurance: use team; others: use winner
+  const isDriver = !entries.some(r => r.winners);
+  const getName  = (r: ResultEntry) => r.winners ? (r.team ?? r.winners[0] ?? '') : (r.winner ?? '');
+
+  // Win tallies
+  const tally: Record<string, { display: string; wins: number; country: string }> = {};
+  for (const r of entries) {
+    const name = getName(r);
+    if (!name) continue;
+    const key = normalise(name);
+    if (!tally[key]) tally[key] = { display: name, wins: 0, country: r.country ?? '' };
+    tally[key].wins++;
+  }
+
+  const sorted = Object.values(tally).sort((a, b) => b.wins - a.wins);
+  const leader = sorted[0];
+  if (!leader) continue;
+
+  // Streak from date-ascending slice
+  const ascending = [...entries].sort((a, b) => a.date.localeCompare(b.date));
+  const streak = computeStreak(ascending);
+
+  seriesStats.push({
+    slug,
+    label:        seriesShort[slug] ?? slug.toUpperCase(),
+    done,
+    total,
+    pct:          Math.round((done / total) * 100),
+    leader:       leader.display,
+    leaderWins:   leader.wins,
+    leaderCountry: leader.country,
+    streak,
+    isDriver,
+  });
+}
+
+// Sort by series priority for display
+const PRIORITY = [
+  'f1','wec','motogp','indycar','imsa','nascar','wsbk',
+  'fe','f1a','sf','dtm','btcc','supercars','wrc','erc',
+  'gtwce','gtwca','igtc','elms','nls','asian-le-mans','tcr','h24eu','psc','bgt','eurx',
+];
+seriesStats.sort((a, b) => {
+  const ia = PRIORITY.indexOf(a.slug);
+  const ib = PRIORITY.indexOf(b.slug);
+  return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+});
+
+// ── Cross-series: top drivers (single-driver series, non-sprint races only) ───
+type DriverStat = {
+  display:  string;
+  wins:     number;
+  country:  string;
+  series:   string[];
+};
+
+const driverMap: Record<string, DriverStat> = {};
+for (const r of flat) {
+  if (!r.winner) continue;
+  if (r.race_label === 'Sprint') continue;
+  const key = normalise(r.winner);
+  if (!driverMap[key]) driverMap[key] = { display: r.winner, wins: 0, country: r.country ?? '', series: [] };
+  driverMap[key].wins++;
+  if (!driverMap[key].series.includes(r.series)) driverMap[key].series.push(r.series);
+}
+
+const topDrivers = Object.values(driverMap)
+  .sort((a, b) => b.wins - a.wins)
+  .slice(0, 10);
+
+const maxDriverWins = topDrivers[0]?.wins ?? 1;
+
+// Total results count
+const totalResults = flat.length;
+const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
+---
+
+<BaseLayout
+  title="2026 Season Statistics — Motorsport Master Calendar"
+  description="Win tallies, series leaders, and season progress across all 25 championships — 2026 motorsport statistics."
+  canonicalUrl="https://dord.racing/stats"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",    "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "Results", "item": "https://dord.racing/results" },
+        { "@type": "ListItem", "position": 3, "name": "Statistics", "item": "https://dord.racing/stats" }
+      ]
+    })} />
+  </Fragment>
+
+  <Banner />
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Season<br>Statistics</h1>
+      <p class="header--page-desc">Win tallies and season progress across all 25 championships.</p>
+      <div class="meta">{totalResults} results across {totalRaces} race weekends</div>
+      <Nav activePage="results" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section">
+    <div class="stats-layout">
+
+      <!-- Sidebar nav -->
+      <aside class="stats-sidebar">
+        <div class="stats-sidebar-label">Jump to</div>
+        <a href="#progress"  class="stats-jump">Season Progress</a>
+        <a href="#leaders"   class="stats-jump">Series Leaders</a>
+        <a href="#drivers"   class="stats-jump">Top Drivers</a>
+        <div class="stats-sidebar-divider"></div>
+        <a href={`${base}/results`} class="stats-jump stats-jump--back">← Results</a>
+      </aside>
+
+      <!-- Content -->
+      <div class="stats-content">
+
+        <!-- ── Season Progress ── -->
+        <section class="stats-section" id="progress">
+          <h2 class="stats-section-heading">Season Progress</h2>
+          <p class="stats-section-desc">Rounds completed vs scheduled across active championships.</p>
+          <div class="progress-grid">
+            {seriesStats.map(s => (
+              <div class="progress-card">
+                <div class="progress-card-top">
+                  <span class={`tag t-${s.slug}`}>{s.label}</span>
+                  <span class="progress-fraction">{s.done}/{s.total}</span>
+                </div>
+                <div class="progress-bar-track" role="progressbar" aria-valuenow={s.pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${s.label} season progress: ${s.done} of ${s.total} rounds`}>
+                  <div class="progress-bar-fill" style={`width:${s.pct}%; background: var(--${s.slug})`}></div>
+                </div>
+                <div class="progress-pct">{s.pct}%</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ── Series Leaders ── -->
+        <section class="stats-section" id="leaders">
+          <h2 class="stats-section-heading">Series Leaders</h2>
+          <p class="stats-section-desc">Most wins in each championship so far this season. Endurance series show team wins.</p>
+          <div class="leaders-table" role="table" aria-label="Series win leaders">
+            <div class="leaders-thead" role="row">
+              <div role="columnheader">Series</div>
+              <div role="columnheader">Leader</div>
+              <div role="columnheader" class="text-right">Wins</div>
+              <div role="columnheader" class="text-right">Progress</div>
+            </div>
+            {seriesStats.map(s => (
+              <div class="leaders-row" role="row" style={`--acc: var(--${s.slug})`}>
+                <div class="leaders-series" role="cell">
+                  <span class={`tag t-${s.slug}`}>{s.label}</span>
+                </div>
+                <div class="leaders-name" role="cell">
+                  <div class="leaders-name-inner">
+                    {s.leaderCountry && (
+                      <img
+                        class="leaders-flag"
+                        src={flagSrc(s.leaderCountry, base)}
+                        alt={countryName(s.leaderCountry)}
+                        width="18"
+                        height="13"
+                        loading="lazy"
+                      />
+                    )}
+                    <span>{s.leader}</span>
+                    {!s.isDriver && <span class="leaders-type-badge">team</span>}
+                  </div>
+                  {s.streak && (
+                    <div class="streak-badge" aria-label={`${s.streak.count}-win streak`}>
+                      🔥 {s.streak.count} in a row
+                    </div>
+                  )}
+                </div>
+                <div class="leaders-wins text-right" role="cell">{s.leaderWins}</div>
+                <div class="leaders-prog text-right" role="cell">
+                  <span class="leaders-prog-text">{s.done}/{s.total}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- ── Top Drivers ── -->
+        <section class="stats-section" id="drivers">
+          <h2 class="stats-section-heading">Top Drivers — 2026</h2>
+          <p class="stats-section-desc">Race wins across all single-seat and touring championships (sprint races excluded).</p>
+          <div class="driver-list">
+            {topDrivers.map((d, i) => (
+              <div class="driver-row">
+                <div class="driver-rank">#{i + 1}</div>
+                <div class="driver-info">
+                  <div class="driver-name-row">
+                    {d.country && (
+                      <img
+                        class="driver-flag"
+                        src={flagSrc(d.country, base)}
+                        alt={countryName(d.country)}
+                        width="20"
+                        height="14"
+                        loading="lazy"
+                      />
+                    )}
+                    <span class="driver-name">{d.display}</span>
+                  </div>
+                  <div class="driver-series">
+                    {d.series.map(s => (
+                      <span class={`tag t-${s}`}>{seriesShort[s] ?? s.toUpperCase()}</span>
+                    ))}
+                  </div>
+                </div>
+                <div class="driver-bar-wrap">
+                  <div class="driver-bar-track">
+                    <div
+                      class="driver-bar-fill"
+                      style={`width: ${Math.round((d.wins / maxDriverWins) * 100)}%`}
+                    ></div>
+                  </div>
+                  <span class="driver-wins">{d.wins}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+      </div><!-- /stats-content -->
+    </div><!-- /stats-layout -->
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+/* ── Layout ── */
+.stats-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0 40px;
+  align-items: start;
+  margin-bottom: 48px;
+}
+
+/* ── Sidebar ── */
+.stats-sidebar {
+  position: sticky;
+  top: 16px;
+}
+
+.stats-sidebar-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  color: #7a8fa0;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.stats-jump {
+  display: block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  color: #7a8fa0;
+  text-decoration: none;
+  padding: 5px 10px;
+  letter-spacing: 0.06em;
+  border-left: 2px solid transparent;
+  transition: color 0.13s, border-color 0.13s;
+}
+
+.stats-jump:hover {
+  color: #8ab;
+  border-left-color: #2a4050;
+}
+
+.stats-jump:focus-visible {
+  outline: 2px solid var(--color-accent, #4a7fa5);
+  outline-offset: 2px;
+}
+
+.stats-jump--back {
+  color: #3a5060;
+  margin-top: 4px;
+}
+
+.stats-sidebar-divider {
+  border-top: 1px solid var(--border);
+  margin: 12px 10px;
+}
+
+/* ── Sections ── */
+.stats-content {
+  min-width: 0;
+}
+
+.stats-section {
+  margin-bottom: 56px;
+  scroll-margin-top: 20px;
+}
+
+.stats-section-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c3c6c8;
+  margin: 0 0 6px;
+}
+
+.stats-section-desc {
+  font-size: 0.8rem;
+  color: #7a8fa0;
+  margin: 0 0 20px;
+}
+
+/* ── Progress grid ── */
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.progress-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: 4px;
+}
+
+.progress-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.progress-fraction {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  color: #7a8fa0;
+}
+
+.progress-bar-track {
+  height: 4px;
+  background: #1a2530;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar-fill { transition: none; }
+}
+
+.progress-pct {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #3a5060;
+  text-align: right;
+}
+
+/* ── Leaders table ── */
+.leaders-table {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.leaders-thead {
+  display: grid;
+  grid-template-columns: 90px 1fr 60px 70px;
+  gap: 0 16px;
+  padding: 4px 14px 8px;
+}
+
+.leaders-thead > div {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #3a5060;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.leaders-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 1fr 60px 70px;
+  gap: 0 16px;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 11px 14px;
+}
+
+.leaders-row::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--acc, #2a4050);
+}
+
+.leaders-row:hover {
+  background: #0d1820;
+  border-color: #1e3040;
+}
+
+.leaders-series {
+  min-width: 0;
+}
+
+.leaders-name {
+  min-width: 0;
+}
+
+.leaders-name-inner {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.leaders-name-inner > span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #c3c6c8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leaders-flag {
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.leaders-type-badge {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3a5060;
+  border: 1px solid #1e2830;
+  padding: 1px 5px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.streak-badge {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #e8822a;
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.leaders-wins {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #c3c6c8;
+}
+
+.leaders-prog-text {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  color: #7a8fa0;
+}
+
+.text-right { text-align: right; }
+
+/* ── Top drivers ── */
+.driver-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.driver-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 200px;
+  gap: 0 16px;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+}
+
+.driver-row:hover {
+  background: #0d1820;
+  border-color: #1e3040;
+}
+
+.driver-rank {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #3a5060;
+  text-align: center;
+}
+
+.driver-info {
+  min-width: 0;
+}
+
+.driver-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.driver-flag {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.driver-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #c3c6c8;
+}
+
+.driver-series {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.driver-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.driver-bar-track {
+  flex: 1;
+  height: 6px;
+  background: #1a2530;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.driver-bar-fill {
+  height: 100%;
+  background: #4a7090;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .driver-bar-fill { transition: none; }
+}
+
+.driver-wins {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #c3c6c8;
+  width: 24px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .stats-layout {
+    grid-template-columns: 1fr;
+  }
+  .stats-sidebar {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  .stats-sidebar-label,
+  .stats-sidebar-divider { display: none; }
+  .stats-jump {
+    border: 1px solid var(--border);
+    border-left: 2px solid transparent;
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .leaders-thead,
+  .leaders-row {
+    grid-template-columns: 80px 1fr 40px;
+  }
+  .leaders-prog { display: none; }
+  .driver-row {
+    grid-template-columns: 28px 1fr 120px;
+  }
+}
+
+@media (max-width: 600px) {
+  .progress-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .driver-bar-wrap { width: 80px; }
+}
+</style>

@@ -22,6 +22,8 @@ jobs:
 
       - run: npm ci
 
+      - run: npm run check
+
       - run: npm run build
 
       - name: Deploy to Cloudflare Workers

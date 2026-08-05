@@ -24,6 +24,7 @@ import { env } from 'cloudflare:workers';
 import { createClient } from '@libsql/client/web';
 import { Resend } from 'resend';
 import type { APIRoute } from 'astro';
+import { computeUnsubToken, unsubUrl } from '../../lib/unsub-token';
 
 const WELCOME_TEXT = `Welcome to From The Pit Wall.
 
@@ -34,7 +35,8 @@ First briefing lands before the next race weekend.
 — The Department of Racing Drivers
 dord.racing
 
-To unsubscribe, reply with "unsubscribe" in the subject line.`;
+Unsubscribe: https://dord.racing/api/unsubscribe?email={EMAIL}&token={TOKEN}
+(This link is personalised — do not share it.)`;
 
 const WELCOME_HTML = `<!DOCTYPE html>
 <html lang="en">
@@ -133,32 +135,67 @@ export const POST: APIRoute = async ({ request }) => {
     // ── Connect to Turso ───────────────────────────────────────────────────
     const db = createClient({ url: dbUrl, authToken: dbToken });
 
-    // ── Duplicate check ────────────────────────────────────────────────────
+    // ── Duplicate / reactivation check ────────────────────────────────────
     const existing = await db.execute({
-      sql:  'SELECT id FROM subscribers WHERE email = ?',
+      sql:  'SELECT id, status FROM subscribers WHERE email = ?',
       args: [email],
     });
 
     if (existing.rows.length > 0) {
-      return json({ ok: true, message: "You're already on the list." }, 200);
+      const row = existing.rows[0];
+      if (row.status === 'active') {
+        return json({ ok: true, message: "You're already on the list." }, 200);
+      }
+      // Reactivate previously unsubscribed address
+      await db.execute({
+        sql:  `UPDATE subscribers SET status = 'active' WHERE email = ?`,
+        args: [email],
+      });
+      return json({ ok: true, message: "You're in. First briefing lands before the weekend." }, 200);
     }
 
     // ── Insert ─────────────────────────────────────────────────────────────
-    await db.execute({
-      sql:  'INSERT INTO subscribers (email) VALUES (?)',
-      args: [email],
-    });
+    try {
+      await db.execute({
+        sql:  "INSERT INTO subscribers (email, status) VALUES (?, 'active')",
+        args: [email],
+      });
+    } catch (err: any) {
+      // Concurrent double-submit can slip past the SELECT above; the UNIQUE
+      // constraint catches it — treat as "already subscribed", not an error.
+      if (String(err?.message ?? '').includes('UNIQUE')) {
+        return json({ ok: true, message: "You're already on the list." }, 200);
+      }
+      throw err;
+    }
 
     // ── Welcome email ──────────────────────────────────────────────────────
     if (resendKey) {
       try {
+        const unsubSecret = ((env as any).UNSUB_SECRET ?? import.meta.env.UNSUB_SECRET ?? '');
+        const token       = unsubSecret ? await computeUnsubToken(email, unsubSecret) : '';
+        const unsubLink   = token
+          ? unsubUrl(email, token)
+          : `mailto:weekly@dord.racing?subject=unsubscribe`;
+        const welcomeText = WELCOME_TEXT.replace(
+          'Unsubscribe: https://dord.racing/api/unsubscribe?email={EMAIL}&token={TOKEN}\n(This link is personalised — do not share it.)',
+          `Unsubscribe: ${unsubLink}`,
+        );
+        const welcomeHtml = WELCOME_HTML.replace(
+          'To unsubscribe, reply with "unsubscribe" in the subject line.',
+          `<a href="${unsubLink}" style="color:#2a3540;">Unsubscribe</a>`,
+        );
         const resend = new Resend(resendKey);
         const { error: resendError } = await resend.emails.send({
           from:    fromEmail,
           to:      email,
           subject: "You're on the grid.",
-          text:    WELCOME_TEXT,
-          html:    WELCOME_HTML,
+          text:    welcomeText,
+          html:    welcomeHtml,
+          headers: token ? {
+            'List-Unsubscribe':      `<mailto:weekly@dord.racing?subject=unsubscribe>, <${unsubLink}>`,
+            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+          } : {},
         });
         if (resendError) console.error('[subscribe] Resend error:', resendError);
       } catch (err) {
@@ -169,8 +206,10 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ ok: true, message: "You're in. First briefing lands before the weekend." }, 200);
 
   } catch (err: any) {
+    // Log details server-side only — internal messages (DB errors, URLs)
+    // must not reach the client.
     console.error('[subscribe] Unhandled error:', err?.message ?? err);
-    return json({ error: err?.message ?? 'Unknown server error.' }, 500);
+    return json({ error: 'Something went wrong. Please try again.' }, 500);
   }
 };
 

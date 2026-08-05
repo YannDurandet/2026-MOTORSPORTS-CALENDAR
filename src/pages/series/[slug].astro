@@ -8,6 +8,8 @@ import seriesContent from '../../../data/seriesContent.json';
 import calendarData from '../../../data/calendar.json';
 import seriesRaces from '../../../data/series.json';
 import tracksData from '../../../data/tracks.json';
+import standingsData from '../../../data/standings.json';
+import { flagSrc, countryName } from '../../lib/results';
 
 export function getStaticPaths() {
   return (seriesContent as any[]).map((s: any) => ({ params: { slug: s.slug } }));
@@ -40,6 +42,7 @@ const seriesImages: Record<string, string> = {
   'elms':'elms-series-bg.webp','gtwce':'gtwce-series-bg.webp','gtwca':'gtwca-series-bg.webp',
   'nls':'nls-series-bg.webp','igtc':'igtc-series-bg.webp','tcr':'tcr-series-bg.webp',
   'h24eu':'24h-series-bg.webp','psc':'psc-series-bg.webp','bgt':'bgtc-series-bg.webp','eurx':'erx-series-bg.webp',
+  'alms':'alms-series-bg.webp',
 };
 const ogImage = seriesImages[slug]
   ? `https://dord.racing/assets/series-grid-images/${seriesImages[slug]}`
@@ -298,6 +301,96 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
       </section>
     )}
 
+    {(standingsData as any)[slug] && (() => {
+      const tables = Object.values((standingsData as any)[slug]) as any[];
+      return (
+        <section class="series-section" id="standings">
+          <h3 class="series-section-title">2026 Championship Standings</h3>
+          <div class="standings-tabs-wrap">
+            {tables.map((table: any, ti: number) => (
+              <div class={`standings-table ${ti === 0 ? 'standings-table--active' : ''}`} data-standings-tab={ti}>
+                {tables.length > 1 && (
+                  <div class="standings-tab-label">{table.label}</div>
+                )}
+                {table.note && (
+                  <p class="standings-note">{table.note}</p>
+                )}
+                <div class="standings-rows" role="table" aria-label={table.label}>
+                  <div class="standings-head" role="row">
+                    <div role="columnheader" class="st-pos">Pos</div>
+                    <div role="columnheader" class="st-name">Name</div>
+                    <div role="columnheader" class="st-pts">Pts</div>
+                  </div>
+                  {(table.entries as any[]).map((entry: any, i: number) => (
+                    <div class={`standings-row ${i === 0 ? 'standings-row--lead' : ''}`} role="row">
+                      <div class="st-pos" role="cell">{entry.pos}</div>
+                      <div class="st-name" role="cell">
+                        <div class="st-name-inner">
+                          {entry.country && (
+                            <img
+                              class="st-flag"
+                              src={flagSrc(entry.country, base)}
+                              alt={countryName(entry.country)}
+                              width="18"
+                              height="13"
+                              loading="lazy"
+                            />
+                          )}
+                          <div>
+                            <div class="st-driver">{entry.name}</div>
+                            {entry.team && <div class="st-team">{entry.team}</div>}
+                            {entry.note && <div class="st-team">{entry.note}</div>}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="st-pts" role="cell">
+                        <span class="st-pts-val">{entry.points}</span>
+                        {i > 0 && (
+                          <span class="st-pts-gap">–{(table.entries as any[])[0].points - entry.points}</span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div class="standings-meta">
+                  <span>After round {table.roundsComplete} of {table.totalRounds}</span>
+                  <span>Updated {table.updatedAt}</span>
+                </div>
+              </div>
+            ))}
+            {tables.length > 1 && (
+              <div class="standings-switcher">
+                {tables.map((table: any, ti: number) => (
+                  <button
+                    class={`standings-switch-btn ${ti === 0 ? 'active' : ''}`}
+                    data-tab={ti}
+                    aria-pressed={ti === 0 ? 'true' : 'false'}
+                  >
+                    {table.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <script is:inline>
+            (function(){
+              const wrap = document.querySelector('.standings-tabs-wrap');
+              if(!wrap) return;
+              const tables = wrap.querySelectorAll('[data-standings-tab]');
+              const btns   = wrap.querySelectorAll('.standings-switch-btn');
+              btns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                  const idx = +btn.dataset.tab;
+                  tables.forEach(function(t,i){ t.classList.toggle('standings-table--active', i===idx); });
+                  btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); b.setAttribute('aria-pressed', i===idx ? 'true':'false'); });
+                });
+              });
+            })();
+          </script>
+        </section>
+      );
+    })()}
+
     <section class="series-section">
       <h3 class="series-section-title">2026 Calendar</h3>
       {filteredMonths.length === 0 ? (
@@ -480,3 +573,212 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
   });
 })();
 </script>
+
+<style>
+/* ── Standings ── */
+.standings-tabs-wrap {
+  position: relative;
+}
+
+.standings-table {
+  display: none;
+}
+.standings-table--active {
+  display: block;
+}
+
+.standings-tab-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7a8fa0;
+  margin-bottom: 10px;
+}
+
+.standings-note {
+  font-size: 0.75rem;
+  color: #3a5060;
+  margin: 0 0 10px;
+}
+
+.standings-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.standings-head {
+  display: grid;
+  grid-template-columns: 36px 1fr 80px;
+  gap: 0 12px;
+  padding: 4px 14px 8px;
+}
+
+.standings-head > div {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #3a5060;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.standings-head .st-pts { text-align: right; }
+
+.standings-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 80px;
+  gap: 0 12px;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+}
+
+.standings-row--lead {
+  border-color: #1e3040;
+  background: #0d1820;
+}
+
+.standings-row:hover {
+  background: #0d1820;
+  border-color: #1e3040;
+}
+
+.st-pos {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #3a5060;
+  text-align: center;
+}
+
+.standings-row--lead .st-pos {
+  color: var(--series-accent, #4a7090);
+}
+
+.st-name {
+  min-width: 0;
+}
+
+.st-name-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.st-flag {
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.st-driver {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #c3c6c8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.standings-row--lead .st-driver {
+  color: #e8f0f5;
+}
+
+.st-team {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #3a5060;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.st-pts {
+  text-align: right;
+  min-width: 0;
+}
+
+.st-pts-val {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #c3c6c8;
+  display: block;
+}
+
+.standings-row--lead .st-pts-val {
+  color: #e8f0f5;
+}
+
+.st-pts-gap {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #3a5060;
+  display: block;
+  margin-top: 1px;
+}
+
+.standings-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.65rem;
+  color: #3a5060;
+  letter-spacing: 0.04em;
+}
+
+/* Tab switcher (constructors vs drivers) */
+.standings-switcher {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.standings-switch-btn {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: none;
+  color: #7a8fa0;
+  cursor: pointer;
+  transition: color 0.13s, border-color 0.13s;
+}
+
+.standings-switch-btn.active {
+  color: #c3c6c8;
+  border-color: #2a4050;
+  background: rgba(255,255,255,0.04);
+}
+
+.standings-switch-btn:hover {
+  color: #8ab;
+  border-color: #2a4050;
+}
+
+.standings-switch-btn:focus-visible {
+  outline: 2px solid var(--color-accent, #4a7fa5);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .st-team { display: none; }
+  .standings-head,
+  .standings-row {
+    grid-template-columns: 30px 1fr 64px;
+  }
+}
+</style>

@@ -21,6 +21,26 @@ interface Env {
   TURSO_DATABASE_URL: string;
   TURSO_AUTH_TOKEN: string;
   CRON_SECRET: string;
+  UNSUB_SECRET: string;        // HMAC key for per-recipient unsubscribe tokens
+}
+
+// =============================================================================
+// UNSUBSCRIBE TOKEN  (mirrors src/lib/unsub-token.ts — inlined for Worker bundle)
+// =============================================================================
+
+async function computeUnsubToken(email: string, secret: string): Promise<string> {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'],
+  );
+  const sig   = await crypto.subtle.sign('HMAC', key, enc.encode(email.toLowerCase().trim()));
+  const bytes = new Uint8Array(sig);
+  return btoa(String.fromCharCode(...bytes))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function unsubUrl(email: string, token: string): string {
+  return `https://dord.racing/api/unsubscribe?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`;
 }
 
 // =============================================================================
@@ -84,12 +104,13 @@ const SERIES_INFO: Record<string, { name: string; abbr: string; color: string; t
   psc:       { name: 'Porsche Supercup',       abbr: 'PSC',   color: '#cf9d40', textColor: '#0b0f12' },
   bgt:       { name: 'British GT',             abbr: 'BGT',   color: '#C41E3A', textColor: '#ffffff' },
   eurx:      { name: 'Euro RX',                abbr: 'ERX',   color: '#02F3E9', textColor: '#0b0f12' },
+  'asian-le-mans': { name: 'Asian Le Mans Series', abbr: 'ALMS', color: '#D12F44', textColor: '#ffffff' },
 };
 
 const SERIES_PRIORITY = [
   'f1','wec','motogp','indycar','imsa','nascar','wsbk',
   'fe','f1a','sf','dtm','btcc','supercars','wrc','erc',
-  'gtwce','gtwca','igtc','elms','nls','tcr','h24eu','psc','bgt','eurx',
+  'gtwce','gtwca','igtc','elms','nls','asian-le-mans','tcr','h24eu','psc','bgt','eurx',
 ];
 
 const MONTH_MAP: Record<string, number> = {
@@ -166,16 +187,20 @@ function inferEventDay(
     return ts >= fri.getTime() && ts <= windowEnd.getTime();
   });
   if (inWindow.length === 0) return null;
+  // Resolve weekday/hour in Europe/Paris — handles CET vs CEST correctly
+  // (a fixed +2h offset mislabels late Saturday races during winter time).
+  const parisFmt = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', hourCycle: 'h23',
+  });
   const dayLabels = new Set<string>();
   for (const r of inWindow) {
-    const cestMs   = new Date(r.date).getTime() + 2 * 3600_000;
-    const cestDate = new Date(cestMs);
-    const dow      = cestDate.getUTCDay();
-    const hour     = cestDate.getUTCHours();
-    if (dow === 1 && hour < 6) { dayLabels.add('sun'); continue; }
-    if (dow === 5) { dayLabels.add('fri'); continue; }
-    if (dow === 6) { dayLabels.add('sat'); continue; }
-    if (dow === 0) { dayLabels.add('sun'); continue; }
+    const parts = parisFmt.formatToParts(new Date(r.date));
+    const wd    = parts.find(p => p.type === 'weekday')?.value ?? '';
+    const hour  = parseInt(parts.find(p => p.type === 'hour')?.value ?? '0', 10);
+    if (wd === 'Mon' && hour < 6) { dayLabels.add('sun'); continue; }
+    if (wd === 'Fri') { dayLabels.add('fri'); continue; }
+    if (wd === 'Sat') { dayLabels.add('sat'); continue; }
+    if (wd === 'Sun') { dayLabels.add('sun'); continue; }
     dayLabels.add('other');
   }
   if (dayLabels.size > 1) return 'multi';
@@ -437,6 +462,7 @@ function generateEmailHTML(events: WeekendEvent[], weekNumber: number, dateRange
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td><a href="https://dord.racing" style="${FONT}font-size:12px;font-weight:600;color:#3a5060;text-decoration:none;">dord.racing</a></td>
+              <td align="center"><a href="https://dord.racing/pit-wall/${weekNumber}" style="${FONT}font-size:11px;color:#3a5060;text-decoration:none;">Read on the web →</a></td>
               <td align="right"><a href="mailto:weekly@dord.racing?subject=unsubscribe" style="${FONT}font-size:11px;color:#2a3a44;text-decoration:none;">Unsubscribe</a></td>
             </tr>
             <tr>
@@ -472,6 +498,7 @@ function generatePlainText(events: WeekendEvent[], weekNumber: number, dateRange
     );
   }
   lines.push('', '────────────────────────────────────', '');
+  lines.push(`Read on the web: https://dord.racing/pit-wall/${weekNumber}`);
   lines.push('View results: https://dord.racing/results');
   lines.push('');
   lines.push('dord.racing');
@@ -518,7 +545,33 @@ async function sendNewsletter(env: Env): Promise<void> {
   for (let i = 0; i < emails.length; i += BATCH) {
     const batch = emails.slice(i, i + BATCH);
     const results = await Promise.allSettled(
-      batch.map(to => resend.emails.send({ from: fromEmail, to, subject, html, text: plainText }))
+      batch.map(async to => {
+        // Per-recipient unsubscribe URL (HMAC token tied to email address)
+        const token    = env.UNSUB_SECRET ? await computeUnsubToken(to, env.UNSUB_SECRET) : '';
+        const unsubLink = token ? unsubUrl(to, token) : `mailto:weekly@dord.racing?subject=unsubscribe`;
+
+        // Personalise footer links in both HTML and plain text
+        const recipHtml = html.replace(
+          `href="mailto:weekly@dord.racing?subject=unsubscribe"`,
+          `href="${unsubLink}"`,
+        );
+        const recipText = plainText.replace(
+          'To unsubscribe, reply with "unsubscribe" in the subject line.',
+          `Unsubscribe: ${unsubLink}`,
+        );
+
+        return resend.emails.send({
+          from:    fromEmail,
+          to,
+          subject,
+          html:    recipHtml,
+          text:    recipText,
+          headers: token ? {
+            'List-Unsubscribe':      `<mailto:weekly@dord.racing?subject=unsubscribe>, <${unsubLink}>`,
+            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+          } : {},
+        });
+      })
     );
     for (const [idx, result] of results.entries()) {
       if (result.status === 'fulfilled' && !result.value.error) {

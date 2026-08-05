@@ -19,3 +19,7 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+
+#internal
+agents-tasks/
+Claude.md

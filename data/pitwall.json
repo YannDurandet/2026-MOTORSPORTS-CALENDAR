@@ -1,0 +1,98 @@
+[
+  {
+    "week": 32,
+    "dateRange": "Aug 7–9, 2026",
+    "subject": "From The Pit Wall — Week 32: British Grand Prix",
+    "generatedAt": "2026-08-04",
+    "events": [
+      {
+        "series": "motogp",
+        "tag": "MGP",
+        "title": "British Grand Prix",
+        "circuit": "Silverstone Circuit",
+        "country": "UK",
+        "day": "sun",
+        "trackSvg": "silverstone.svg",
+        "timeStr": "RACE: <span class=\"hl\">15:00</span>",
+        "sessions": [
+          {
+            "label": "RACE",
+            "time": "15:00"
+          }
+        ]
+      },
+      {
+        "series": "btcc",
+        "tag": "BTCC",
+        "title": "Knockhill (Races 16-18)",
+        "circuit": "Knockhill Racing Circuit",
+        "country": "UK",
+        "day": "sun",
+        "trackSvg": "knockhill.svg",
+        "timeStr": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
+        "sessions": [
+          {
+            "label": "R1",
+            "time": "10:15"
+          },
+          {
+            "label": "R2",
+            "time": "13:25"
+          },
+          {
+            "label": "R3",
+            "time": "16:15"
+          }
+        ]
+      },
+      {
+        "series": "sf",
+        "tag": "SF",
+        "title": "Sugo",
+        "circuit": "Sportsland SUGO",
+        "country": "Japan",
+        "day": "sun",
+        "trackSvg": "sugo.svg",
+        "timeStr": "RACE: <span class=\"hl\">05:00</span>",
+        "sessions": [
+          {
+            "label": "RACE",
+            "time": "05:00"
+          }
+        ]
+      },
+      {
+        "series": "indycar",
+        "tag": "IND",
+        "title": "GP of Portland",
+        "circuit": "Portland International Raceway",
+        "country": "USA",
+        "day": "sun",
+        "trackSvg": "portland.svg",
+        "timeStr": "RACE: <span class=\"hl\">22:00</span>",
+        "sessions": [
+          {
+            "label": "RACE",
+            "time": "22:00"
+          }
+        ]
+      },
+      {
+        "series": "nascar",
+        "tag": "NAS",
+        "title": "Iowa Speedway",
+        "circuit": "Iowa Speedway",
+        "country": "USA",
+        "day": "sun",
+        "trackSvg": "iowa.svg",
+        "timeStr": "RACE: <span class=\"hl\">21:30</span>",
+        "sessions": [
+          {
+            "label": "RACE",
+            "time": "21:30"
+          }
+        ]
+      }
+    ]
+  }
+]

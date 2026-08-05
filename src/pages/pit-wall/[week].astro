@@ -1,0 +1,312 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import pitwall from '../../../data/pitwall.json';
+
+export function getStaticPaths() {
+  return (pitwall as any[]).map((issue: any) => ({
+    params: { week: String(issue.week) },
+    props:  { issue },
+  }));
+}
+
+interface PitWallEvent {
+  series: string;
+  tag: string;
+  title: string;
+  circuit: string;
+  country: string;
+  day: string | null;
+  trackSvg: string;
+  timeStr: string;
+  sessions: Array<{ label: string; time: string }>;
+}
+
+interface PitWallIssue {
+  week: number;
+  dateRange: string;
+  subject: string;
+  generatedAt: string;
+  events: PitWallEvent[];
+}
+
+const { issue } = Astro.props as { issue: PitWallIssue };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const DAY_LABEL: Record<string, string> = {
+  fri:   'Friday',
+  sat:   'Saturday',
+  sun:   'Sunday',
+  multi: 'All Weekend',
+};
+
+// Group events by day for display
+const byDay: Record<string, PitWallEvent[]> = {};
+for (const ev of issue.events) {
+  const key = ev.day ?? 'other';
+  (byDay[key] ??= []).push(ev);
+}
+const dayOrder = ['fri','sat','sun','multi','other'];
+const dayGroups = dayOrder.filter(d => byDay[d]?.length);
+
+const allSeries = issue.events.map(e => e.tag).filter((v, i, a) => a.indexOf(v) === i);
+const pageTitle = issue.subject;
+const pageDesc  = `Week ${issue.week} · ${issue.dateRange} · ${allSeries.join(', ')}`;
+
+const allIssues = pitwall as PitWallIssue[];
+const currentIdx = allIssues.findIndex(i => i.week === issue.week);
+const prev = currentIdx < allIssues.length - 1 ? allIssues[currentIdx + 1] : null;
+const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : null;
+---
+<BaseLayout
+  title={`${pageTitle} | Pit Wall Archive`}
+  description={pageDesc}
+  canonicalUrl={`https://dord.racing/pit-wall/${issue.week}`}
+>
+  <header>
+    <div class="header--left">
+      <div class="header--dept">
+        <a href={`${base}/pit-wall`} class="pw-back">← From The Pit Wall</a>
+      </div>
+      <h1 class="pw-h1">Week {issue.week} <span class="pw-h1-date">{issue.dateRange}</span></h1>
+      <div class="meta" style="margin-top:0.25rem;">{issue.subject.replace(/^From The Pit Wall — /, '')}</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section">
+    <div class="pw-detail">
+
+      {dayGroups.map(dayKey => (
+        <section class="pw-day-section">
+          <h2 class="pw-day-heading">{DAY_LABEL[dayKey] ?? dayKey.toUpperCase()}</h2>
+          <div class="pw-event-list">
+            {byDay[dayKey].map(ev => (
+              <article class="pw-event-card">
+                <div class="pw-event-left">
+                  <div class="pw-event-header">
+                    <span class={`tag t-${ev.series}`}>{ev.tag}</span>
+                    <span class="pw-event-title">{ev.title}</span>
+                  </div>
+                  <div class="pw-event-circuit">
+                    {ev.circuit}{ev.country ? `, ${ev.country}` : ''}
+                  </div>
+                  {ev.sessions.length > 0 && (
+                    <div class="pw-event-times">
+                      {ev.sessions.map(s => (
+                        <span class="pw-session">
+                          <span class="pw-session-label">{s.label}</span>
+                          <span class="pw-session-time">{s.time}</span>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                {ev.trackSvg && (
+                  <div class="pw-event-map" aria-hidden="true">
+                    <img
+                      src={`${base}/assets/track-maps/${ev.trackSvg}`}
+                      alt=""
+                      width="80"
+                      height="80"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <!-- Pagination -->
+      <nav class="pw-pagination" aria-label="Issue navigation">
+        {prev ? (
+          <a href={`${base}/pit-wall/${prev.week}`} class="pw-pag-link pw-pag-prev">
+            <span class="pw-pag-dir">← Older</span>
+            <span class="pw-pag-label">Week {prev.week} · {prev.dateRange}</span>
+          </a>
+        ) : <div />}
+        {next ? (
+          <a href={`${base}/pit-wall/${next.week}`} class="pw-pag-link pw-pag-next">
+            <span class="pw-pag-dir">Newer →</span>
+            <span class="pw-pag-label">Week {next.week} · {next.dateRange}</span>
+          </a>
+        ) : <div />}
+      </nav>
+
+    </div>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+.pw-back {
+  color: var(--color-meta, #6a7f8c);
+  text-decoration: none;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.pw-back:hover { color: var(--color-text, #c8d8e0); }
+.pw-back:focus-visible { outline: 2px solid var(--color-accent, #4a7fa5); outline-offset: 2px; }
+
+.pw-h1 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.pw-h1-date {
+  font-size: 0.55em;
+  font-weight: 400;
+  color: var(--color-meta, #6a7f8c);
+  letter-spacing: 0.04em;
+}
+
+.pw-detail {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.pw-day-section {
+  margin-bottom: 2.5rem;
+}
+
+.pw-day-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-meta, #6a7f8c);
+  border-bottom: 1px solid var(--color-border, #1e2830);
+  padding-bottom: 0.4rem;
+  margin: 0 0 1rem;
+}
+
+.pw-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.pw-event-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  background: var(--color-card-bg, #0d1317);
+  border: 1px solid var(--color-border, #1e2830);
+  border-radius: 6px;
+}
+
+.pw-event-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.pw-event-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.pw-event-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text, #c8d8e0);
+}
+
+.pw-event-circuit {
+  font-size: 0.75rem;
+  color: var(--color-meta, #6a7f8c);
+  margin-bottom: 0.4rem;
+}
+
+.pw-event-times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pw-session {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+}
+
+.pw-session-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-meta, #6a7f8c);
+}
+
+.pw-session-time {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text, #c8d8e0);
+  font-weight: 600;
+}
+
+.pw-event-map {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  opacity: 0.7;
+}
+
+.pw-event-map img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Pagination */
+.pw-pagination {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border, #1e2830);
+}
+
+.pw-pag-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-decoration: none;
+  color: inherit;
+  max-width: 280px;
+}
+
+.pw-pag-next { text-align: right; }
+
+.pw-pag-link:hover .pw-pag-dir { color: var(--color-text, #c8d8e0); }
+.pw-pag-link:focus-visible { outline: 2px solid var(--color-accent, #4a7fa5); outline-offset: 2px; border-radius: 3px; }
+
+.pw-pag-dir {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-meta, #6a7f8c);
+  transition: color 0.15s;
+}
+
+.pw-pag-label {
+  font-size: 0.8rem;
+  color: var(--color-text, #c8d8e0);
+}
+
+@media (max-width: 480px) {
+  .pw-event-map { display: none; }
+}
+</style>

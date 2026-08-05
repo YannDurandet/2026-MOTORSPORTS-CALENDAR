@@ -1,0 +1,436 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+import calendarData from '../../data/calendar.json';
+import tracksData from '../../data/tracks.json';
+import seriesContent from '../../data/seriesContent.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Build track slug → name lookup
+const trackBySlug = new Map<string, any>();
+for (const t of tracksData as any[]) trackBySlug.set(t.slug, t);
+
+function svgToSlug(svg: string): string {
+  return svg.replace(/\.svg$/, '').replace(/-(f1|motogp|fe|wsbk|oval|road)$/, '');
+}
+
+// Build howToWatch lookup
+const htwBySlug = new Map<string, any>();
+for (const s of seriesContent as any[]) {
+  if ((s as any).howToWatch) htwBySlug.set(s.slug, (s as any).howToWatch);
+}
+
+// Embed current + next week's calendar events (two weeks max)
+// Series.json dates are the source of truth for timing; we only need the
+// calendar's label, tag, title, time HTML, and track to render the rows.
+// We embed all months' weeks as a flat list; the client picks the active window.
+interface WatchEvent {
+  series: string;
+  tag: string;
+  title: string;
+  timeHtml: string;
+  weekLabel: string;
+  year: number;
+  trackName: string | null;
+  trackSlug: string | null;
+  howToWatch: any | null;
+}
+
+const watchEvents: WatchEvent[] = [];
+for (const month of calendarData as any[]) {
+  const year: number = month.year ?? 2026;
+  for (const week of month.weeks) {
+    for (const ev of week.events) {
+      const slug = svgToSlug(ev.track ?? '');
+      const track = trackBySlug.get(slug) ?? null;
+      watchEvents.push({
+        series: ev.series,
+        tag: ev.tag,
+        title: ev.title,
+        timeHtml: ev.time ?? '',
+        weekLabel: week.label,
+        year,
+        trackName: track?.name ?? null,
+        trackSlug: track ? slug : null,
+        howToWatch: htwBySlug.get(ev.series) ?? null,
+      });
+    }
+  }
+}
+---
+
+<BaseLayout
+  title="Watch This Weekend — 2026 Motorsport Schedule | DORD Racing"
+  description="Every motorsport session on TV this weekend. Times in your local timezone, broadcaster info for your country."
+  canonicalUrl="https://dord.racing/watch"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "Watch", "item": "https://dord.racing/watch" }
+      ]
+    })} />
+  </Fragment>
+
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>Watch This<br>Weekend</h1>
+      <p class="watch-subtitle meta" id="watch-subtitle">Loading…</p>
+      <Nav activePage="watch" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section watch-main">
+
+    <!-- Event data embedded at build time; client script reads it -->
+    <script
+      type="application/json"
+      id="watch-events-data"
+      set:html={JSON.stringify(watchEvents)}
+    ></script>
+
+    <div id="watch-loading" class="watch-loading">Loading schedule…</div>
+
+    <div id="watch-content" hidden>
+      <!-- Day sections rendered by JS -->
+    </div>
+
+    <div id="watch-empty" class="watch-empty" hidden>
+      <p class="watch-empty-msg" id="watch-empty-msg">No racing this weekend.</p>
+      <p class="watch-empty-next" id="watch-empty-next"></p>
+    </div>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<script type="module">
+import {
+  SOURCE_TIMEZONE, USER_TIMEZONE, TZ_IS_OVERRIDE,
+  NEEDS_TZ_CONVERSION, convertTimeStr
+} from '../scripts/tz.js';
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+const rawEl = document.getElementById('watch-events-data');
+if (!rawEl) throw new Error('watch-events-data missing');
+const ALL_EVENTS = JSON.parse(rawEl.textContent);
+
+let seriesData = {};
+try {
+  const base = document.querySelector('meta[name="astro-base"]')?.content ?? '';
+  const res = await fetch(`${base}/data/series.json`);
+  seriesData = await res.json();
+  for (const list of Object.values(seriesData)) {
+    for (const race of list) race._ts = new Date(race.date).getTime();
+  }
+} catch { /* render anyway without exact dates */ }
+
+// ── Date helpers (Paris-day semantics) ───────────────────────────────────────
+function getParisDateStr(ts) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: SOURCE_TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit'
+  }).format(new Date(ts)); // "YYYY-MM-DD"
+}
+
+const DAY_NUM = { sunday: 0, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6 };
+
+function getWeekend(offsetWeeks = 0) {
+  const now = new Date();
+  const parisDateStr = getParisDateStr(now.getTime());
+  const parisDate = new Date(parisDateStr + 'T12:00:00Z');
+  const fullDow = new Intl.DateTimeFormat('en-US', {
+    timeZone: SOURCE_TIMEZONE, weekday: 'long'
+  }).format(now).toLowerCase();
+  const dayNum = DAY_NUM[fullDow] ?? 0;
+  // How many days back to reach the most-recent Friday
+  const daysSinceFri = (dayNum - 5 + 7) % 7;
+  const fri = new Date(parisDate);
+  fri.setUTCDate(parisDate.getUTCDate() - daysSinceFri + offsetWeeks * 7);
+  const sun = new Date(fri);
+  sun.setUTCDate(fri.getUTCDate() + 2);
+  return { friStr: getParisDateStr(fri.getTime()), sunStr: getParisDateStr(sun.getTime()), daysSinceFri };
+}
+
+function inferParisDay(ts) { return getParisDateStr(ts); }
+
+// ── Match calendar events to series.json timestamps ───────────────────────────
+const seriesCounters = {};
+const eventWithTs = ALL_EVENTS.map(ev => {
+  const slug = ev.series;
+  seriesCounters[slug] = (seriesCounters[slug] ?? 0);
+  const idx = seriesCounters[slug]++;
+  const entry = (seriesData[slug] ?? [])[idx];
+  return { ...ev, ts: entry?._ts ?? null };
+});
+
+// ── Find active weekend ───────────────────────────────────────────────────────
+// Mon–Thu: we're between weekends → look at the UPCOMING Fri–Sun (offset 1).
+// Fri–Sun: we're in the current weekend → start at offset 0.
+function getActiveWeekendEvents() {
+  const { daysSinceFri } = getWeekend(0);
+  // daysSinceFri: Fri=0, Sat=1, Sun=2, Mon=3, Tue=4, Wed=5, Thu=6
+  const startOffset = daysSinceFri > 2 ? 1 : 0;
+
+  for (let w = startOffset; w <= startOffset + 1; w++) {
+    const { friStr, sunStr } = getWeekend(w);
+    const matching = eventWithTs.filter(ev => {
+      if (ev.ts === null) return false;
+      const d = inferParisDay(ev.ts);
+      return d >= friStr && d <= sunStr;
+    });
+    if (matching.length > 0) return { events: matching, friStr, sunStr, isEmpty: false };
+  }
+  return { events: [], friStr: null, sunStr: null, isEmpty: true };
+}
+
+// ── Next upcoming event (for empty state) ─────────────────────────────────────
+function getNextEvent() {
+  const now = Date.now();
+  return eventWithTs.filter(ev => ev.ts !== null && ev.ts > now)
+    .sort((a, b) => a.ts - b.ts)[0] ?? null;
+}
+
+// ── Multi-day detection ───────────────────────────────────────────────────────
+// Events that span multiple days (rallies, endurance) go in the "All Weekend"
+// section only. Point-in-time events go in their specific day section only.
+function isMultiDay(timeHtml) {
+  const plain = timeHtml.replace(/<[^>]+>/g, '');
+  if (plain.includes(' > ')) return true;
+  const days = [...(plain.matchAll(/\b(MON|TUE|WED|THU|FRI|SAT|SUN)\b/gi) ?? [])];
+  return new Set(days.map(m => m[0].toUpperCase())).size >= 2;
+}
+
+// ── Broadcaster pills ─────────────────────────────────────────────────────────
+function getCountryCode() {
+  const locale = Intl.DateTimeFormat().resolvedOptions().locale || navigator.language || 'en-US';
+  const parts = locale.split('-');
+  return (parts.length > 1 ? parts[parts.length - 1] : parts[0]).toUpperCase();
+}
+const COUNTRY = getCountryCode();
+
+function renderPills(howToWatch) {
+  if (!howToWatch) return '';
+  const broadcasters = howToWatch[COUNTRY] || howToWatch['global'];
+  if (!broadcasters?.length) return '';
+  const pills = broadcasters.map(b => {
+    const badge = b.type === 'free'
+      ? '<span class="htw-badge htw-badge--free">FREE</span>'
+      : b.type === 'streaming'
+      ? '<span class="htw-badge htw-badge--stream">STREAM</span>'
+      : '';
+    return `<a href="${b.url}" target="_blank" rel="noopener noreferrer" class="htw-pill" aria-label="${b.name} — watch ${b.type ?? ''}">${b.name}${badge}</a>`;
+  }).join('');
+  return `<div class="htw-pills watch-pills">${pills}</div>`;
+}
+
+// ── Row HTML builder ──────────────────────────────────────────────────────────
+function renderEventRow(ev) {
+  const base = document.querySelector('meta[name="astro-base"]')?.content ?? '';
+  const timeConverted = convertTimeStr(ev.timeHtml, ev.weekLabel, ev.year);
+  const trackLink = ev.trackSlug
+    ? `<a href="${base}/tracks/${ev.trackSlug}" class="watch-track">${ev.trackName}</a>`
+    : (ev.trackName ? `<span class="watch-track">${ev.trackName}</span>` : '');
+  const pills = renderPills(ev.howToWatch);
+  return `<div class="watch-row" data-series="${ev.series}">
+    <a href="${base}/series/${ev.series}" class="tag t-${ev.series} watch-tag">${ev.tag}</a>
+    <div class="watch-row-body">
+      <span class="watch-title">${ev.title}</span>
+      ${trackLink}
+      <span class="watch-times">${timeConverted}</span>
+      ${pills}
+    </div>
+  </div>`;
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────────
+const loadingEl  = document.getElementById('watch-loading');
+const contentEl  = document.getElementById('watch-content');
+const emptyEl    = document.getElementById('watch-empty');
+const subtitleEl = document.getElementById('watch-subtitle');
+
+const { events, friStr, sunStr, isEmpty } = getActiveWeekendEvents();
+if (loadingEl) loadingEl.hidden = true;
+
+if (isEmpty) {
+  emptyEl.hidden = false;
+  const next = getNextEvent();
+  const msgEl  = document.getElementById('watch-empty-msg');
+  const nextEl = document.getElementById('watch-empty-next');
+  if (msgEl) msgEl.textContent = 'No racing this weekend.';
+  if (nextEl && next) {
+    const dateStr = new Date(next.ts).toLocaleDateString('en-GB', {
+      timeZone: USER_TIMEZONE, weekday: 'short', day: 'numeric', month: 'short'
+    });
+    nextEl.textContent = `Next up: ${next.title} — ${dateStr}`;
+  }
+} else {
+  contentEl.hidden = false;
+
+  const multiDayEvs = events.filter(ev => isMultiDay(ev.timeHtml));
+  const singleDayEvs = events.filter(ev => !isMultiDay(ev.timeHtml));
+
+  // Group single-day events by their actual race day in Paris time
+  const byDay = {};
+  const DAY_ORDER = [];
+  for (const ev of singleDayEvs) {
+    const d = inferParisDay(ev.ts);
+    if (!byDay[d]) { byDay[d] = []; DAY_ORDER.push(d); }
+    byDay[d].push(ev);
+  }
+  DAY_ORDER.sort();
+
+  function dayLabel(dateStr) {
+    return new Date(dateStr + 'T12:00:00Z').toLocaleDateString('en-GB', {
+      weekday: 'long', day: 'numeric', month: 'long'
+    });
+  }
+
+  function section(heading, evList) {
+    return `<section class="watch-day-section">
+      <h2 class="watch-day-heading">${heading}</h2>
+      <div class="watch-rows">${evList.map(renderEventRow).join('')}</div>
+    </section>`;
+  }
+
+  let html = '';
+  if (multiDayEvs.length) html += section('All Weekend', multiDayEvs);
+  for (const day of DAY_ORDER) html += section(dayLabel(day), byDay[day]);
+
+  contentEl.innerHTML = html;
+
+  // Update subtitle
+  if (subtitleEl && friStr) {
+    const fStr = new Date(friStr + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    const sStr = new Date(sunStr + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+    const tzNote = TZ_IS_OVERRIDE
+      ? ` · TIMES IN: ${USER_TIMEZONE.replace(/_/g, ' ').toUpperCase()} (MANUAL)`
+      : NEEDS_TZ_CONVERSION ? ` · TIMES IN YOUR TIMEZONE` : ` · PARIS TIME (CET/CEST)`;
+    subtitleEl.textContent = `${fStr} – ${sStr}${tzNote}`;
+  }
+}
+</script>
+
+<style is:global>
+.watch-main {
+  padding-top: 0;
+}
+
+.watch-subtitle {
+  margin-top: 4px;
+  font-size: 0.75rem;
+}
+
+.watch-loading {
+  color: #566878;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  padding: 32px 0;
+}
+
+.watch-empty {
+  padding: 48px 0 32px;
+  text-align: center;
+}
+
+.watch-empty-msg {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: #8a9aaa;
+  margin-bottom: 8px;
+}
+
+.watch-empty-next {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  color: #566878;
+}
+
+.watch-day-section {
+  margin-bottom: 40px;
+}
+
+.watch-day-heading {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #566878;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding-bottom: 8px;
+  margin: 0 0 16px;
+}
+
+.watch-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.watch-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--card-bg, #0d1520);
+  border: 1px solid var(--border, rgba(255,255,255,0.07));
+  padding: 12px 14px;
+}
+
+.watch-tag {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  padding: 3px 7px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.watch-row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.watch-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.82rem;
+  color: #d0dce6;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.watch-track {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.72rem;
+  color: #566878;
+  text-decoration: none;
+}
+
+a.watch-track:hover {
+  color: #8a9aaa;
+}
+
+.watch-times {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.78rem;
+  color: #8a9aaa;
+  line-height: 1.5;
+}
+
+.watch-pills {
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .watch-row { flex-direction: column; gap: 8px; }
+}
+</style>

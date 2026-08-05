@@ -1600,5 +1600,24 @@
         }
       ]
     }
+  },
+  {
+    "slug": "asian-le-mans",
+    "name": "Asian Le Mans Series",
+    "category": "Endurance",
+    "region": "International",
+    "tier": 3,
+    "tagline": "The FIA-sanctioned winter endurance championship bridging Europe and Asia, featuring LMP2, LMP3, and GT3 machinery.",
+    "description": "The Asian Le Mans Series is an FIA-sanctioned endurance championship historically run across Asia-Pacific circuits in the winter months, designed to give drivers and teams additional seat time in prototype and GT machinery. The series runs alongside — and feeds into — the FIA World Endurance Championship ecosystem, with class winners historically earning entry into the Le Mans 24 Hours.",
+    "history": "Founded in 2005, the Asian Le Mans Series initially ran alongside the American Le Mans Series branding before becoming a standalone championship under FIA governance. The series has evolved through several formats, at times running as a sprint championship and at others as a traditional endurance format. The 2026–27 edition marks a significant geographical pivot: all three rounds are hosted at European circuits for the first time, reflecting the series' flexibility and its role as a winter testing ground for WEC and ELMS participants.",
+    "seasonNotes": "The 2026–27 Asian Le Mans Series runs three double-header rounds in Europe: Paul Ricard (November 2026), Jerez (January 2027), and Portimão (February 2027). Classes: LMP2, LMP3, GT3.",
+    "teamsHeaders": ["Class", "Car", "Drivers"],
+    "teamsRows": [],
+    "socials": {
+      "web": "https://www.asianlemans.com",
+      "ig": "https://www.instagram.com/asianlemans",
+      "x": "https://x.com/asianlemans",
+      "yt": "https://www.youtube.com/@AsianLeMans"
+    }
   }
 ]

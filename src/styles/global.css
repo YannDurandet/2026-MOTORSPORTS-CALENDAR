@@ -64,6 +64,8 @@
     --bgt-c: #C41E3A;
 
     --eurx: #02F3E9;
+
+    --asian-le-mans: #D12F44;
 }
 
 /* GLOBAL RESET & MOBILE DEFAULTS */
@@ -172,15 +174,6 @@ header {
     outline-offset: 2px;
 }
 
-/* Adjust the dashboard grid for mobile */
-.dash-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    /* 2 columns on mobile */
-    gap: 8px;
-    margin-top: 0;
-}
-
 h1,
 h2 {
     font-family: 'Orbitron', sans-serif;
@@ -220,162 +213,58 @@ h2 {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.8rem;
     color: #8a9aaa;
-    margin-top: 8px;
     line-height: 1.4;
+}
+
+.meta-tz-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.tz-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #566878;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: default;
+}
+
+.tz-select {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    color: #8a9aaa;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px;
+    padding: 2px 6px;
+    cursor: pointer;
+    max-width: 200px;
+    /* Remove UA arrow on some browsers */
+    -webkit-appearance: auto;
+    appearance: auto;
+}
+
+.tz-select:hover {
+    border-color: rgba(255,255,255,0.24);
+    color: #c8d8e4;
+}
+
+.tz-select:focus-visible {
+    outline: 2px solid var(--accent, #00b4d8);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tz-select { transition: none; }
 }
 
 .website-description {
     color: #BBB;
     padding-top: 12px;
-}
-
-.dash-card {
-    background: #101a24;
-    border: 1px solid #333;
-    padding: 10px;
-    position: relative;
-    overflow: hidden;
-    min-width: 0;
-    height: fit-content;
-    /* Prevent flex/grid item overflow */
-}
-
-.dash-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-}
-
-/* Dash Card Colors */
-.dc-f1::before {
-    background: var(--f1);
-}
-
-.dc-fe::before {
-    background: var(--fe);
-}
-
-.dc-wec::before {
-    background: var(--wec);
-}
-
-.dc-wrc::before {
-    background: var(--wrc);
-}
-
-.dc-sf::before {
-    background: var(--sf);
-}
-
-.dc-imsa::before {
-    background: var(--imsa);
-}
-
-.dc-f1a::before {
-    background: var(--f1a);
-}
-
-.dc-indycar::before {
-    background: var(--indycar);
-}
-
-.dc-nascar::before {
-    background: var(--nascar);
-}
-
-.dc-motogp::before {
-    background: var(--motogp);
-}
-
-.dc-wsbk::before {
-    background: var(--wsbk);
-}
-
-.dc-dtm::before {
-    background: var(--dtm);
-}
-
-.dc-btcc::before {
-    background: var(--btcc);
-}
-
-.dc-supercars::before {
-    background: var(--supercars);
-}
-
-.dc-elms::before {
-    background: var(--elms);
-}
-
-.dc-gtwce::before {
-    background: var(--gtwce);
-}
-
-.dc-gtwca::before {
-    background: var(--gtwca);
-}
-
-.dc-nls::before {
-    background: var(--nls);
-}
-
-.dc-igtc::before {
-    background: var(--igtc);
-}
-
-.dc-tcr::before {
-    background: var(--tcr);
-}
-
-.dc-erc::before {
-    background: var(--erc);
-}
-
-.dc-h24eu::before {
-    background: var(--h24eu);
-}
-
-.dc-psc::before {
-    background: var(--psc);
-}
-
-.dc-bgt::before {
-    background: var(--bgt);
-}
-
-.dc-eurx::before {
-    background: var(--eurx);
-}
-
-.dc-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: .85rem;
-    font-weight: 900;
-    color: #C3C6C8;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.dc-time {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 1rem;
-    color: #C3C6C8;
-    margin-top: 4px;
-    font-weight: 700;
-}
-
-.dc-next {
-    font-size: 0.75rem;
-    color: #C3C6C8;
-    text-transform: uppercase;
-    margin-top: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .main-section {
@@ -412,6 +301,26 @@ h2 {
     display: flex;
     flex-direction: column;
     width: 100%;
+    scroll-margin-top: 16px;
+}
+
+/* Week permalink anchor */
+.week-anchor {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.week-anchor:hover::after,
+.week-anchor:focus::after {
+    content: ' #';
+    color: rgba(255,255,255,0.25);
+}
+
+.week-anchor:focus-visible {
+    outline: 2px solid var(--accent, #00b4d8);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 .c-head {
@@ -580,6 +489,10 @@ h2 {
     border-color: var(--eurx-c, var(--eurx));
 }
 
+.ev-asian-le-mans {
+    border-color: var(--asian-le-mans-c, var(--asian-le-mans));
+}
+
 .tag {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.6rem;
@@ -712,6 +625,11 @@ h2 {
 .t-eurx {
     background: var(--eurx); /* #02F3E9 bright cyan — use dark text for WCAG AA 13:1 */
     color: #000;
+}
+
+.t-asian-le-mans {
+    background: var(--asian-le-mans); /* #D12F44 */
+    color: #fff; /* 4.57:1 WCAG AA */
 }
 
 .title {
@@ -937,12 +855,6 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
         letter-spacing: 2px;
     }
 
-    .dash-grid {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
 
     .month-header {
         font-size: 3rem;
@@ -1231,7 +1143,6 @@ a {
 .filter-btn:focus-visible,
 .arrow-btn:focus-visible,
 .clear-filters-btn:focus-visible,
-.dash-toggle-btn:focus-visible,
 .faq-question:focus-visible {
     outline: 2px solid #6abfff;
     outline-offset: 2px;
@@ -1505,6 +1416,96 @@ a {
 
 }
 
+/* 2027 Preview Toggle */
+.preview-2027-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin: 32px 0 8px;
+}
+
+.preview-2027-btn {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7a8fa0;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.preview-2027-btn:hover {
+    color: #d0dce6;
+    border-color: rgba(255,255,255,0.28);
+}
+
+.preview-2027-btn:focus-visible {
+    outline: 2px solid var(--accent, #00b4d8);
+    outline-offset: 2px;
+}
+
+.preview-2027-note {
+    font-size: 0.65rem;
+    color: #566878;
+    letter-spacing: 0.04em;
+    font-style: italic;
+}
+
+.year-separator {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: #566878;
+    text-align: center;
+    padding: 20px 0 8px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 12px;
+}
+
+/* Personal iCal Subscribe */
+.cal-subscribe-bar {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cal-subscribe-trigger {
+    font-size: 0.72rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ical-link-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.ical-link-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 4px;
+    color: #c8d8e4;
+    font-size: 0.78rem;
+    padding: 6px 10px;
+    font-family: monospace;
+    outline: none;
+    min-width: 0;
+}
+
+.ical-link-input:focus-visible {
+    border-color: rgba(255,255,255,0.32);
+    outline: 2px solid var(--accent, #00b4d8);
+    outline-offset: 2px;
+}
+
 /* =========================================
    PAST EVENTS DIMMING
 ========================================= */
@@ -1745,89 +1746,6 @@ a {
 }
 
 /* =========================================
-   DASHBOARD TOGGLE
-========================================= */
-.dash-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-/* Hide regional cards when the grid is collapsed */
-.dash-grid.collapsed .dash-card.regional {
-    display: none;
-}
-
-.dash-toggle-btn {
-    background: #0B1118;
-    border: 1px solid var(--border);
-    color: #70767C;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 8px 0;
-    cursor: pointer;
-    text-transform: uppercase;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    transition: all 0.2s ease;
-    border-radius: 2px;
-}
-
-.dash-toggle-btn:hover {
-    color: var(--f1);
-    border-color: #333;
-}
-
-.dash-toggle-btn .arrow {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    transition: transform 0.2s ease;
-}
-
-/* Rotate arrow when expanded */
-.dash-toggle-btn.expanded .arrow {
-    transform: rotate(180deg);
-}
-
-@media (min-width: 768px) {
-    .dash-wrapper {
-        width: auto;
-        /* Let it size naturally on desktop */
-        align-items: flex-start;
-    }
-
-    .dash-toggle-btn {
-        width: 100%;
-        max-width: 300px;
-        /* Keep it from stretching too wide */
-    }
-}
-
-/* =========================================
-   DASHBOARD ABOUT LINK
-========================================= */
-.dc-about {
-    display: inline-block;
-    margin-top: 6px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: #7a8fa0;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
-}
-
-.dc-about:hover {
-    color: #9aa;
-}
-
-/* =========================================
    SERIES PAGES
 ========================================= */
 .back-link {
@@ -1995,6 +1913,7 @@ a {
     background: none;
     cursor: pointer;
     text-decoration: none;
+    color: #d0dce6;
     opacity: 0.6;
     transition: opacity 0.15s, background 0.15s;
 }
@@ -2182,14 +2101,6 @@ a {
 }
 .back-link:hover {
     transform: translateX(-3px);
-}
-
-/* Dashboard cards: highlight border on hover */
-.dash-card {
-    transition: border-color 0.15s, box-shadow 0.15s;
-}
-.dash-card:hover {
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
 }
 
 /* =========================================

@@ -39,6 +39,9 @@ type Venue = {
   calendarSvgs: string[];
   layouts?: Layout[];
   bio?: string;
+  overview?: string;
+  history?: string;
+  notable_moments?: string;
 };
 
 export function getStaticPaths() {
@@ -237,6 +240,9 @@ const sportsEventSchemas = [
 
     <a href={`${base}/tracks`} class="back-link">← All Circuits</a>
 
+    <div class="track-split">
+    <div class="track-col-left">
+
     <!-- Hero -->
     <div class="track-hero" style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}>
       <div class="track-hero-svg">
@@ -406,6 +412,34 @@ const sportsEventSchemas = [
       </div>
     )}
 
+    </div><!-- /track-col-left -->
+
+    <div class="track-col-right">
+      {(venue.overview || venue.history || venue.notable_moments) && (
+        <div class="track-content-sections">
+          {venue.overview && (
+            <div class="track-content-block">
+              <div class="section-label">OVERVIEW</div>
+              <p class="track-content-text">{venue.overview}</p>
+            </div>
+          )}
+          {venue.history && (
+            <div class="track-content-block">
+              <div class="section-label">HISTORY</div>
+              <p class="track-content-text">{venue.history}</p>
+            </div>
+          )}
+          {venue.notable_moments && (
+            <div class="track-content-block">
+              <div class="section-label">NOTABLE MOMENTS</div>
+              <p class="track-content-text">{venue.notable_moments}</p>
+            </div>
+          )}
+        </div>
+      )}
+    </div><!-- /track-col-right -->
+    </div><!-- /track-split -->
+
     <a href={`${base}/tracks`} class="back-link back-link--bottom">← All Circuits</a>
 
   </main>
@@ -432,9 +466,9 @@ const sportsEventSchemas = [
 
 <style>
   .track-page {
-    padding: 0 24px 80px;
-    max-width: 1100px;
-    margin: 0 auto;
+    padding: 0 clamp(20px, 3vw, 60px) 80px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .back-link {
@@ -450,6 +484,52 @@ const sportsEventSchemas = [
   }
   .back-link:hover { color: #aaa; }
   .back-link--bottom { margin-top: 48px; margin-bottom: 0; }
+
+  /* ── Split layout ────────────────────────────────────────────────────────── */
+  .track-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .track-col-left,
+  .track-col-right {
+    min-width: 0;
+  }
+
+  .track-col-right {
+    position: sticky;
+    top: 24px;
+  }
+
+  /* In the narrow left column: square hero, single-col meta */
+  .track-col-left .track-hero {
+    aspect-ratio: 5 / 3;
+  }
+
+  .track-col-left .track-meta-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Content sections (overview / history / notable moments) ─────────────── */
+  .track-content-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .track-content-block {
+    border-left: 2px solid var(--border);
+    padding-left: 16px;
+  }
+
+  .track-content-text {
+    margin: 8px 0 0;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #8a9aaa;
+  }
 
   /* ── Hero ────────────────────────────────────────────────────────────────── */
   .track-hero {
@@ -798,8 +878,29 @@ const sportsEventSchemas = [
     line-height: 1;
   }
 
+  /* ── Mobile: single column, texts below events ───────────────────────────── */
+  @media (max-width: 900px) {
+    .track-split {
+      grid-template-columns: 1fr;
+    }
+    .track-col-right {
+      position: static;
+    }
+    .track-col-left .track-hero {
+      aspect-ratio: 2 / 1;
+    }
+    .track-col-left .track-meta-row {
+      grid-template-columns: 1fr 2fr;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .track-col-left .track-meta-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 560px) {
     .track-page { padding: 0 12px 60px; }
-    .track-hero { aspect-ratio: 2 / 1; }
   }
 </style>

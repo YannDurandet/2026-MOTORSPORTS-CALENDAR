@@ -4,129 +4,24 @@ import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-import calendarData from '../../data/calendar.json';
-import tracksData from '../../data/tracks.json';
+import {
+  type ResultEntry,
+  getFlatResults,
+  svgToSlug,
+  venueCountry,
+  seriesShort,
+  flagSrc,
+  fmtDate,
+  monthLabel,
+  shortMonthLabel,
+  isoWeek,
+  countryName,
+} from '../lib/results';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-// Map tracks.json country names → ISO 2-letter codes
-function normalizeCountry(name: string): string {
-  const map: Record<string, string> = {
-    'Australia': 'AU', 'Austria': 'AT', 'Azerbaijan': 'AZ', 'Bahrain': 'BH',
-    'Belgium': 'BE', 'Brazil': 'BR', 'Canada': 'CA', 'China': 'CN',
-    'Czech Republic': 'CZ', 'France': 'FR', 'Germany': 'DE', 'Hungary': 'HU',
-    'Indonesia': 'ID', 'Ireland': 'IE', 'Italy': 'IT', 'Japan': 'JP',
-    'Latvia': 'LV', 'Macau': 'MO', 'Malaysia': 'MY', 'Mexico': 'MX',
-    'Monaco': 'MC', 'Netherlands': 'NL', 'New Zealand': 'NZ', 'Portugal': 'PT',
-    'Qatar': 'QA', 'Saudi Arabia': 'SA', 'Singapore': 'SG', 'South Korea': 'KR',
-    'Spain': 'ES', 'Sweden': 'SE', 'Thailand': 'TH', 'UAE': 'AE',
-    'UK': 'GB', 'USA': 'US',
-  };
-  return map[name] ?? '';
-}
-
-// Map ISO 2-letter codes → full country name for accessible alt text
-const isoToName: Record<string, string> = {
-  'AU': 'Australia', 'AT': 'Austria', 'AZ': 'Azerbaijan', 'BH': 'Bahrain',
-  'BE': 'Belgium', 'BR': 'Brazil', 'CA': 'Canada', 'CN': 'China',
-  'CZ': 'Czech Republic', 'FR': 'France', 'DE': 'Germany', 'HU': 'Hungary',
-  'ID': 'Indonesia', 'IE': 'Ireland', 'IT': 'Italy', 'JP': 'Japan',
-  'LV': 'Latvia', 'MO': 'Macau', 'MY': 'Malaysia', 'MX': 'Mexico',
-  'MC': 'Monaco', 'NL': 'Netherlands', 'NZ': 'New Zealand', 'PT': 'Portugal',
-  'QA': 'Qatar', 'SA': 'Saudi Arabia', 'SG': 'Singapore', 'KR': 'South Korea',
-  'ES': 'Spain', 'SE': 'Sweden', 'TH': 'Thailand', 'AE': 'UAE',
-  'GB': 'United Kingdom', 'US': 'United States',
-};
-function countryName(code: string): string {
-  return isoToName[code] ?? code;
-}
-
-// Build calendarSvg filename → track slug from tracks.json
-const svgToSlug = new Map<string, string>();
-for (const track of tracksData as any[]) {
-  for (const svg of (track.calendarSvgs ?? [])) svgToSlug.set(svg, track.slug);
-  for (const layout of (track.layouts ?? []))
-    for (const svg of (layout.calendarSvgs ?? [])) svgToSlug.set(svg, track.slug);
-}
-
-// Build venue slug → ISO country code from tracks.json
-const venueCountry: Record<string, string> = {};
-for (const track of tracksData as any[]) {
-  if (track.slug && track.country) {
-    venueCountry[track.slug] = normalizeCountry(track.country);
-  }
-}
-
-const seriesShort: Record<string, string> = {
-  f1: 'F1', f1a: 'F1 Academy', fe: 'Formula E', sf: 'Super Formula',
-  wec: 'WEC', imsa: 'IMSA', wrc: 'WRC', erc: 'ERC',
-  indycar: 'IndyCar', nascar: 'NASCAR', motogp: 'MotoGP', wsbk: 'WSBK',
-  dtm: 'DTM', btcc: 'BTCC', supercars: 'Supercars', elms: 'ELMS',
-  gtwce: 'GTWCE', gtwca: 'GTWCA', nls: 'NLS', igtc: 'IGTC',
-  tcr: 'TCR', h24eu: '24H EU', psc: 'Porsche SC', bgt: 'British GT', eurx: 'Euro RX',
-};
-
-function flagSrc(code: string, base: string): string {
-  if (!code || code.length !== 2) return '';
-  return `${base}/assets/flags/${code.toUpperCase()}.svg`;
-}
-
-function fmtDate(d: string): string {
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const parts = d.split('-');
-  return `${months[parseInt(parts[1]) - 1]} ${parseInt(parts[2])}`;
-}
-
-function monthLabel(key: string): string {
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  const parts = key.split('-');
-  return `${months[parseInt(parts[1]) - 1]} ${parts[0]}`;
-}
-
-function shortMonthLabel(key: string): string {
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  const parts = key.split('-');
-  return `${months[parseInt(parts[1]) - 1]} ${parts[0]}`;
-}
-
-function isoWeek(dateStr: string): number {
-  const d = new Date(dateStr + 'T00:00:00Z');
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
-}
-
-type ResultEntry = {
-  series: string;
-  race_label?: string;
-  event: string;
-  venue: string;
-  date: string;
-  winner?: string;
-  co_driver?: string;
-  manufacturer?: string;
-  winners?: string[];
-  team?: string;
-  country?: string;
-};
-
-// Flatten all calendar events that have results
-const flat: ResultEntry[] = [];
-for (const month of calendarData as any[]) {
-  for (const week of month.weeks) {
-    for (const ev of week.events) {
-      if (!ev.results?.length) continue;
-      const venue = svgToSlug.get(ev.track ?? '') ?? '';
-      for (const r of ev.results) {
-        flat.push({ series: ev.series, event: ev.title, venue, ...r });
-      }
-    }
-  }
-}
-
-// Sort descending — most recent first
-flat.sort((a, b) => b.date.localeCompare(a.date));
+// Flatten all calendar events that have results (newest first)
+const flat: ResultEntry[] = getFlatResults();
 
 // Group by month (YYYY-MM), then by ISO week within each month
 type WeekGroup = { week: number; rows: ResultEntry[] };
@@ -199,6 +94,11 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
               {shortMonthLabel(m)}
             </a>
           ))}
+          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <a href={`${base}/stats`} class="res-jump-link" style="color: #4a7090; border-left: none; padding-left: 0;">
+              Season Stats →
+            </a>
+          </div>
         </nav>
       </aside>
 

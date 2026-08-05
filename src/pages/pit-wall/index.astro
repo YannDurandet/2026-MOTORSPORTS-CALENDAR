@@ -1,0 +1,187 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import pitwall from '../../../data/pitwall.json';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const issues = pitwall as Array<{
+  week: number;
+  dateRange: string;
+  subject: string;
+  generatedAt: string;
+  events: Array<{ series: string; tag: string; title: string; circuit: string; country: string }>;
+}>;
+---
+<BaseLayout
+  title="From The Pit Wall — Motorsport Weekend Archive"
+  description="Every weekend's racing, in one place. The From The Pit Wall archive — weekly motorsport briefings covering all major championships."
+  canonicalUrl="https://dord.racing/pit-wall"
+>
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>From The Pit Wall</h1>
+      <div class="meta" style="margin-top:0.25rem;">Weekend racing archive &amp; newsletter</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section">
+    <div class="pw-index">
+      <div class="pw-index-header">
+        <p class="pw-index-desc">
+          A weekly briefing of every race weekend across all 25 championships. Subscribe to
+          receive it in your inbox every Monday morning.
+        </p>
+        <a href={`${base}/pit-wall/rss.xml`} class="pw-rss-link" aria-label="RSS feed for From The Pit Wall">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="6.18" cy="17.82" r="2.18"/><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/></svg>
+          RSS Feed
+        </a>
+      </div>
+
+      {issues.length === 0 ? (
+        <p class="pw-empty">No issues yet — check back after the first race weekend.</p>
+      ) : (
+        <div class="pw-issue-list">
+          {issues.map(issue => (
+            <a href={`${base}/pit-wall/${issue.week}`} class="pw-issue-card">
+              <div class="pw-issue-meta">
+                <span class="pw-week-badge">Week {issue.week}</span>
+                <span class="pw-date">{issue.dateRange}</span>
+              </div>
+              <div class="pw-issue-subject">{issue.subject.replace(/^From The Pit Wall — /, '')}</div>
+              <div class="pw-issue-series">
+                {issue.events.slice(0, 6).map(ev => (
+                  <span class={`tag t-${ev.series}`}>{ev.tag}</span>
+                ))}
+                {issue.events.length > 6 && (
+                  <span class="pw-more">+{issue.events.length - 6}</span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+.pw-index {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.pw-index-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.pw-index-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-meta);
+  max-width: 520px;
+  line-height: 1.5;
+}
+
+.pw-rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #e8822a;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  transition: opacity 0.15s;
+}
+
+.pw-rss-link:hover { opacity: 0.75; }
+.pw-rss-link:focus-visible { outline: 2px solid #e8822a; outline-offset: 2px; }
+
+.pw-empty {
+  color: var(--color-meta);
+  font-size: 0.9rem;
+}
+
+.pw-issue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pw-issue-card {
+  display: block;
+  padding: 1rem 1.25rem;
+  background: var(--color-card-bg, #0d1317);
+  border: 1px solid var(--color-border, #1e2830);
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.pw-issue-card:hover {
+  border-color: #2a3f50;
+  background: #0f161b;
+}
+
+.pw-issue-card:focus-visible {
+  outline: 2px solid var(--color-accent, #4a7fa5);
+  outline-offset: 2px;
+}
+
+.pw-issue-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.pw-week-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-meta, #6a7f8c);
+  text-transform: uppercase;
+}
+
+.pw-date {
+  font-size: 0.75rem;
+  color: var(--color-meta, #6a7f8c);
+}
+
+.pw-issue-subject {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text, #c8d8e0);
+  margin-bottom: 0.75rem;
+  line-height: 1.35;
+}
+
+.pw-issue-series {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.pw-more {
+  font-size: 0.7rem;
+  color: var(--color-meta, #6a7f8c);
+  margin-left: 0.25rem;
+}
+</style>

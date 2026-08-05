@@ -41,6 +41,7 @@ const seriesImages: Record<string, string> = {
   'psc':      'psc-series-bg.webp',
   'bgt':      'bgtc-series-bg.webp',
   'eurx':     'erx-series-bg.webp',
+  'alms':     'alms-series-bg.webp',
 };
 ---
 <BaseLayout
@@ -108,11 +109,23 @@ const seriesImages: Record<string, string> = {
   (async () => {
     const base = (document.querySelector('meta[name="astro-base"]') as HTMLMetaElement)?.content ?? '';
 
-    // Update timezone notice
+    // Update timezone notice — read the same localStorage key as main.js
     const tzEl = document.querySelector<HTMLElement>('.meta');
-    const userTz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (tzEl && userTz !== 'Europe/Paris') {
-      tzEl.textContent = `ALL TIMES IN YOUR TIMEZONE: ${userTz.replace(/_/g, ' ').toUpperCase()}`;
+    if (tzEl) {
+      const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      let userTz = detected;
+      const stored = localStorage.getItem('tzOverride');
+      if (stored) {
+        try { new Intl.DateTimeFormat('en', { timeZone: stored }); userTz = stored; } catch { /* ignore */ }
+      }
+      const isOverride = userTz !== detected;
+      const friendlyTz = userTz.replace(/_/g, ' ').toUpperCase();
+      if (isOverride) {
+        tzEl.textContent = `TIMES SHOWN IN: ${friendlyTz} (MANUAL)`;
+        tzEl.title = 'Change timezone on the calendar page';
+      } else if (userTz !== 'Europe/Paris') {
+        tzEl.textContent = `ALL TIMES IN YOUR TIMEZONE: ${friendlyTz}`;
+      }
     }
 
     let data: Record<string, Array<{ name: string; date: string; _ts?: number }>> = {};
@@ -168,6 +181,15 @@ const seriesImages: Record<string, string> = {
     }
 
     tick();
-    setInterval(tick, 1000);
+    let iv = setInterval(tick, 1000);
+    // Pause while the tab is hidden (same pattern as the homepage countdown)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(iv);
+      } else {
+        tick();
+        iv = setInterval(tick, 1000);
+      }
+    });
   })();
 </script>

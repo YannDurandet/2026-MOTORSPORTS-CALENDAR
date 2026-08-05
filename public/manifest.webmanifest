@@ -1,0 +1,56 @@
+{
+  "name": "2026 Motorsport Calendar",
+  "short_name": "dord.racing",
+  "description": "The ultimate 2026 motorsport master calendar. Track F1, WEC, MotoGP, IndyCar and 25 championships with live countdowns.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f12",
+  "theme_color": "#0b0f12",
+  "lang": "en",
+  "dir": "ltr",
+  "orientation": "any",
+  "categories": ["sports", "lifestyle"],
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Race Calendar",
+      "short_name": "Calendar",
+      "description": "Full 2026 race calendar",
+      "url": "/",
+      "icons": [{ "src": "/assets/calendar-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Watch Now",
+      "short_name": "Watch",
+      "description": "What's on this weekend",
+      "url": "/watch",
+      "icons": [{ "src": "/assets/series-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Results",
+      "short_name": "Results",
+      "description": "2026 race results",
+      "url": "/results",
+      "icons": [{ "src": "/assets/results-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ]
+}

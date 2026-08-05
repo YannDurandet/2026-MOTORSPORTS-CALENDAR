@@ -7,7 +7,7 @@ Astro static site. All data lives in `data/`. Pages are pre-rendered at build ti
 - `data/tracks.json` — 133 tracks, one object per venue
 - `data/calendar.json` — race calendar, nested month → week → events
 - `data/seriesContent.json` — series metadata (name, description, history, socials, teams)
-- `data/series.json` — race date/time index used for countdowns (auto-generated or manually maintained)
+- `data/series.json` — race date/time index used for countdowns (**generated** — never edit by hand; run `npm run gen:series` after editing `calendar.json`)
 
 ## Track object shape
 ```json
@@ -71,7 +71,7 @@ Keep the status doc current:
 - Update the `_Last updated` date.
 
 ### 4. Sanity-check SVG renders
-The browser grid (`tracks/index.astro`) and track detail page (`tracks/[slug].astro`) both call `fs.existsSync(svgPath)` at build time. If `browserSvg` points to a file that doesn't exist on disk, the card silently falls back to the placeholder — no build error. So always confirm the filename in `tracks.json` exactly matches what's on disk.
+The browser grid (`tracks/index.astro`) and track detail page (`tracks/[slug].astro`) both inline SVGs via `import.meta.glob` at build time. If `browserSvg` points to a file that doesn't exist on disk, the card silently falls back to the placeholder — no build error. So always confirm the filename in `tracks.json` exactly matches what's on disk.
 
 ## Multi-layout tracks
 Some venues use multiple SVG files for different series (e.g. Daytona, Barcelona, Red Bull Ring). These have a `layouts` array:

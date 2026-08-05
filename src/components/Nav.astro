@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activePage: 'calendar' | 'series' | 'tracks' | 'results';
+  activePage: 'calendar' | 'series' | 'tracks' | 'results' | 'watch';
 }
 const { activePage } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -10,6 +10,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <a href={`${base}/series`} class:list={["site-nav-link", { active: activePage === 'series' }]}>Series</a>
   <a href={`${base}/tracks`} class:list={["site-nav-link", { active: activePage === 'tracks' }]}>Tracks</a>
   <a href={`${base}/results`} class:list={["site-nav-link", { active: activePage === 'results' }]}>Results</a>
+  <a href={`${base}/watch`} class:list={["site-nav-link", { active: activePage === 'watch' }]}>Watch</a>
   <button class="search-trigger" id="search-trigger" aria-label="Search (/)">
     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true">
       <circle cx="8.5" cy="8.5" r="5.5"/>

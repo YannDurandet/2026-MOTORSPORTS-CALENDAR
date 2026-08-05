@@ -130,7 +130,13 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <div class="header--left">
       <div class="header--dept">The Department of Racing Drivers</div>
       <h1>2026 Motorsport<br>Master Calendar</h1>
-      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <div class="meta-tz-row">
+        <div class="meta" id="tz-notice">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+        <label for="tz-select" class="tz-label">TZ</label>
+        <select id="tz-select" class="tz-select" aria-label="Display timezone">
+          <!-- Populated by main.js -->
+        </select>
+      </div>
       <div class="website-description">The ultimate 2026 motorsport master calendar. Track every race weekend
         across global and regional series, including Formula 1, WEC, IMSA, IndyCar, MotoGP, and WRC.<br> Use
         the filters to customize your schedule by open-wheel, endurance, or touring cars. All countdowns and
@@ -160,6 +166,52 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
         <span class="filter-active-label">Filters active</span>
         <button class="clear-all-btn" id="clear-all-filters">Clear all ×</button>
       </div>
+      <div class="cal-subscribe-bar">
+        <button
+          id="cal-subscribe-btn"
+          class="subscribe-btn subscribe-btn--ical cal-subscribe-trigger"
+          aria-haspopup="dialog"
+          aria-label="Subscribe to my motorsport calendar"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Subscribe to my calendar
+        </button>
+      </div>
+    </div>
+
+    <!-- Personal iCal modal -->
+    <div id="ical-modal" class="embed-modal" role="dialog" aria-modal="true" aria-labelledby="ical-modal-title" hidden>
+      <div class="embed-modal-backdrop" id="ical-modal-backdrop"></div>
+      <div class="embed-modal-box">
+        <div class="embed-modal-header">
+          <h4 class="embed-modal-title" id="ical-modal-title">Subscribe to your calendar</h4>
+          <button class="embed-modal-close" id="ical-modal-close" aria-label="Close calendar subscribe modal">&times;</button>
+        </div>
+        <p class="embed-modal-desc">Subscribe in your calendar app — events update automatically.</p>
+        <div class="ical-link-row">
+          <input
+            type="text"
+            id="ical-link-input"
+            class="ical-link-input"
+            readonly
+            aria-label="Calendar subscription link"
+          />
+          <button class="embed-copy-btn" id="ical-copy-btn">Copy</button>
+        </div>
+        <div class="embed-modal-actions" style="margin-top: 0.75rem;">
+          <a
+            id="ical-gcal-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="subscribe-btn subscribe-btn--gcal"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            + Google Calendar
+          </a>
+          <span class="embed-checks">✓ Auto-updates &nbsp; ✓ Free</span>
+        </div>
+      </div>
     </div>
 
     <div id="empty-state" class="empty-state" hidden>
@@ -174,11 +226,21 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <div id="calendar-container">
       {enrichedCalendar.map((month: any, idx: number) => (
         <>
-          <div class="month-header">{month.month}</div>
-          <div class="cal-grid">
-            {month.weeks.map((week: any) => (
-              <div class="card">
-                <div class="c-head">{week.label}</div>
+          <div class="month-header" data-year={month.year ?? 2026}>{month.month}</div>
+          <div class="cal-grid" data-year={month.year ?? 2026}>
+            {month.weeks.map((week: any) => {
+              const weekYear = month.year ?? 2026;
+              const weekNum = week.label.match(/WEEK (\d+)/)?.[1];
+              const cardId = weekNum
+                ? (weekYear === 2027 ? `2027-week-${weekNum}` : `week-${weekNum}`)
+                : undefined;
+              return (
+              <div class="card" id={cardId}>
+                <div class="c-head">
+                  {cardId
+                    ? <a class="week-anchor" href={`#${cardId}`} aria-label={`Link to ${week.label}`}>{week.label}</a>
+                    : week.label}
+                </div>
                 <div class="c-body">
                   {week.events.map((ev: any) => (
                     <EventRow
@@ -195,7 +257,8 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
                   ))}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
           {idx === newsletterAfterIdx && <NewsletterBanner />}
         </>

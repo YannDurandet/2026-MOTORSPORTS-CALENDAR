@@ -4,20 +4,12 @@ import Nav from '../../components/Nav.astro';
 import Banner from '../../components/Banner.astro';
 import Footer from '../../components/Footer.astro';
 
-// Vite reads these at bundle time — no node:fs needed, works in Cloudflare Workers prerender
-const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-}) as Record<string, string>;
-const svgByFilename: Record<string, string> = {};
-for (const [k, v] of Object.entries(_svgRaw)) {
-  svgByFilename[k.split('/').pop()!] = v;
-}
-function readSvg(filename: string | undefined | null): string | null {
-  if (!filename) return null;
-  return svgByFilename[filename] ?? null;
-}
+// SVGs are served as cleaned files by /track-svg/[file].svg and loaded as
+// lazy <img>s — inlining all ~130 maps made tracks.html ~640 KB. The glob is
+// only used (non-eager) to know which files exist at build time.
+const svgFiles = new Set(
+  Object.keys(import.meta.glob('/public/assets/track-maps/*.svg')).map(k => k.split('/').pop()!)
+);
 
 const LAYOUT_DISPLAY: Record<string, string> = {
   motogp: 'MotoGP', f1: 'F1', fe: 'FE', wsbk: 'WSBK', nascar: 'NASCAR',
@@ -70,27 +62,16 @@ type Venue = {
   type?: string;
 };
 
-type LayoutPanel = { id: string; svgContent: string | null; };
+type LayoutBtn = { id: string; file: string };
 
 type ProcessedVenue = Venue & {
-  svgContent: string | null;
   hasSvg: boolean;
+  displaySvg: string | null;
   events: Array<CalEvent & { layoutId: string | null }>;
   eventCount: number;
   type?: string;
-  layoutPanels: LayoutPanel[];
+  layoutBtns: LayoutBtn[];
 };
-
-function cleanSvg(raw: string, slug: string): string {
-  return raw
-    // Remove <defs>...</defs> blocks (avoids inline ID collisions from pattern fills)
-    .replace(/<defs>[\s\S]*?<\/defs>/g, '')
-    // Remove background rect that used the pattern fill
-    .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
-    // Remove fixed width/height attributes so CSS controls sizing
-    .replace(/(\s)width="\d+"/, '')
-    .replace(/(\s)height="\d+"/, '');
-}
 
 const venues: ProcessedVenue[] = [];
 
@@ -111,18 +92,19 @@ for (const venue of tracksRaw as Venue[]) {
     }
   }
 
-  const rawSvg = readSvg(venue.browserSvg);
-  const hasSvg = rawSvg !== null;
-  const svgContent = rawSvg ? cleanSvg(rawSvg, venue.slug) : null;
+  const hasSvg = !!venue.browserSvg && svgFiles.has(venue.browserSvg);
 
-  const layoutPanels: LayoutPanel[] = (venue.layouts && venue.layouts.length > 1)
-    ? venue.layouts.map(l => {
-        const raw = readSvg(l.calendarSvgs[0]);
-        return { id: l.id, svgContent: raw ? cleanSvg(raw, venue.slug) : null };
-      })
+  const layoutBtns: LayoutBtn[] = (venue.layouts && venue.layouts.length > 1)
+    ? venue.layouts
+        .map(l => ({ id: l.id, file: l.calendarSvgs[0] }))
+        .filter(l => l.file && svgFiles.has(l.file))
     : [];
 
-  venues.push({ ...venue, svgContent, hasSvg, events, eventCount: events.length, layoutPanels });
+  const displaySvg = layoutBtns.length > 1
+    ? layoutBtns[0].file
+    : (hasSvg ? venue.browserSvg : null);
+
+  venues.push({ ...venue, hasSvg, displaySvg, events, eventCount: events.length, layoutBtns });
 }
 
 const continentLabels: Record<string, string> = {
@@ -226,32 +208,29 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
             class="track-svg-wrap"
             style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}
           >
-            {venue.layoutPanels.length > 1 ? (
-              <>
-                {venue.layoutPanels.map((l, i) => (
-                  <div class="layout-panel" data-layout-id={l.id} style={i === 0 ? '' : 'display:none'}>
-                    {l.svgContent
-                      ? <Fragment set:html={l.svgContent} />
-                      : <div class="svg-placeholder">{venue.name}</div>
-                    }
-                  </div>
-                ))}
-                <div class="layout-btns">
-                  {venue.layoutPanels.map((l, i) => (
-                    <button
-                      class={`layout-btn${i === 0 ? ' active' : ''}`}
-                      data-layout-target={l.id}
-                      aria-pressed={i === 0 ? 'true' : 'false'}
-                    >
-                      {layoutLabel(l.id)}
-                    </button>
-                  ))}
-                </div>
-              </>
+            {venue.displaySvg ? (
+              <img
+                class="track-svg-img"
+                src={`${base}/track-svg/${venue.displaySvg}`}
+                alt={`${venue.name} track layout`}
+                loading="lazy"
+                decoding="async"
+              />
             ) : (
-              venue.svgContent
-                ? <Fragment set:html={venue.svgContent} />
-                : <div class="svg-placeholder">{venue.name}</div>
+              <div class="svg-placeholder">{venue.name}</div>
+            )}
+            {venue.layoutBtns.length > 1 && (
+              <div class="layout-btns">
+                {venue.layoutBtns.map((l, i) => (
+                  <button
+                    class={`layout-btn${i === 0 ? ' active' : ''}`}
+                    data-layout-src={`${base}/track-svg/${l.file}`}
+                    aria-pressed={i === 0 ? 'true' : 'false'}
+                  >
+                    {layoutLabel(l.id)}
+                  </button>
+                ))}
+              </div>
             )}
           </div>
 
@@ -340,21 +319,20 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     });
   });
 
-  // ─── Layout button switching ──────────────────────────────────────────────
+  // ─── Layout button switching (swaps the lazy-loaded map image) ───────────
   document.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
-    const panels = card.querySelectorAll<HTMLElement>('.layout-panel');
-    const btns   = card.querySelectorAll<HTMLButtonElement>('.layout-btn');
-    if (panels.length < 2 || btns.length === 0) return;
+    const img  = card.querySelector<HTMLImageElement>('.track-svg-img');
+    const btns = card.querySelectorAll<HTMLButtonElement>('.layout-btn');
+    if (!img || btns.length < 2) return;
 
     btns.forEach(btn => {
       btn.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
-        const target = btn.dataset.layoutTarget!;
-        panels.forEach(p => { p.style.display = p.dataset.layoutId === target ? '' : 'none'; });
+        img.src = btn.dataset.layoutSrc!;
         btns.forEach(b => {
-          b.classList.toggle('active', b.dataset.layoutTarget === target);
-          b.setAttribute('aria-pressed', b.dataset.layoutTarget === target ? 'true' : 'false');
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
         });
       });
     });
@@ -464,6 +442,9 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     flex-direction: column;
     transition: border-color 0.15s;
     position: relative;
+    /* Skip rendering work for off-screen cards (~130 in the grid) */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
   }
 
   .track-card:hover {
@@ -496,24 +477,13 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     aspect-ratio: 5 / 3;
   }
 
-  .track-svg-wrap :global(svg) {
+  /* Maps load as <img> from /track-svg/ (stroke weight is baked in there) */
+  .track-svg-img {
     width: 100%;
     height: 100%;
     max-width: 260px;
     max-height: 260px;
-  }
-
-  /* Bump up stroke weight for larger display */
-  .track-svg-wrap :global(svg path) {
-    stroke-width: 1 !important;
-  }
-
-  .track-svg-wrap :global(.layout-panel) {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: contain;
   }
 
   .layout-btns {

@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "gen:series": "node scripts/gen-series.mjs",
+    "gen:pitwall": "node scripts/gen-pitwall.mjs",
+    "test:unsub": "node scripts/test-unsub-token.mjs",
+    "check": "node scripts/check-data.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.1",

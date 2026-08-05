@@ -1,5 +1,5 @@
 # Track Map Status
-_Last updated: 2026-07-16_
+_Last updated: 2026-08-04_
 
 ## Summary
 | | Count |
@@ -77,7 +77,7 @@ _Last updated: 2026-07-16_
 - `ipswich.svg` (ipswich)
 - `jakarta.svg` (jakarta)
 - `jeddah-fe.svg` (jeddah)
-- `jerez-motogp.svg` (jerez)
+- `jerez.svg` (jerez)
 - `kansas.svg` (kansas)
 - `knockhill.svg` (knockhill)
 - `laguna-seca.svg` (laguna-seca)

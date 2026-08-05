@@ -23,6 +23,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <meta name="description" content={description}>
   <link rel="canonical" href={resolvedCanonical} />
   <link rel="icon" href={`${base}/assets/website-icon.svg`} type="image/svg+xml">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <!-- Preload critical fonts to prevent layout shifts (CLS) -->
   <link rel="preload" href={`${base}/assets/fonts/orbitron-900.woff2`} as="font" type="font/woff2" crossorigin>
   <link rel="preload" href={`${base}/assets/fonts/roboto-mono-400.woff2`} as="font" type="font/woff2" crossorigin>
@@ -118,6 +120,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
         <img src={`${base}/assets/results-icon.svg`} alt="" width="22" height="22">
         <span class="sticky-nav-label">Results</span>
       </a>
+      <a href={`${base}/watch`} class="sticky-nav-link" data-page="watch" aria-label="Watch">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        <span class="sticky-nav-label">Watch</span>
+      </a>
       <button class="sticky-nav-link" id="sticky-search-trigger" aria-label="Search">
         <img src={`${base}/assets/search-icon.svg`} alt="" width="22" height="22">
         <span class="sticky-nav-label">Search</span>
@@ -149,6 +155,16 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
        never appears in raw HTML. Any <a class="js-mailto" data-u="user" data-d="domain">
        gets its href set to mailto:user@domain. Add data-show to also replace the text. -->
   <script>
+    // ── Service worker ──────────────────────────────────────────────────────────
+    if ('serviceWorker' in navigator) {
+      const _isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+      const _forceEnable = new URLSearchParams(location.search).has('sw');
+      if (!_isLocal || _forceEnable) {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      }
+    }
+
+    // ── Email obfuscation ────────────────────────────────────────────────────────
     document.querySelectorAll<HTMLAnchorElement>('.js-mailto').forEach(el => {
       const email = el.dataset.u + '@' + el.dataset.d;
       el.href = 'mailto:' + email;
@@ -441,19 +457,15 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     const headerNav = document.querySelector('.site-nav');
     const stickyBar = document.getElementById('sticky-nav-bar');
     if (headerNav && stickyBar) {
-      // Mark active link by URL path
-      const path = window.location.pathname.replace(/\/$/, '');
+      // Mark active link by URL path — exactly one link is active
+      const path = window.location.pathname;
+      const activePage = path.includes('/series') ? 'series'
+        : path.includes('/tracks') ? 'tracks'
+        : path.includes('/results') ? 'results'
+        : path.includes('/watch') ? 'watch'
+        : 'calendar';
       stickyBar.querySelectorAll<HTMLAnchorElement>('.sticky-nav-link').forEach(link => {
-        const page = link.dataset.page;
-        if (page === 'calendar' && (path === '' || path.endsWith('/racing') || !path.includes('/series') && !path.includes('/tracks'))) {
-          link.classList.add('active');
-        } else if (page === 'series' && path.includes('/series')) {
-          link.classList.add('active');
-        } else if (page === 'tracks' && path.includes('/tracks')) {
-          link.classList.add('active');
-        } else if (page === 'results' && path.includes('/results')) {
-          link.classList.add('active');
-        }
+        link.classList.toggle('active', link.dataset.page === activePage);
       });
 
       const observer = new IntersectionObserver(
@@ -527,19 +539,21 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       const q = query.trim().toLowerCase();
       if (!q) { results.innerHTML = ''; focusIdx = -1; return; }
 
-      const matched = searchIndex.filter(item => {
-        const haystack = item.t === 'track'
-          ? `${item.name} ${item.city} ${item.country}`.toLowerCase()
-          : `${item.name} ${item.tagline}`.toLowerCase();
-        return haystack.includes(q);
-      }).slice(0, 20);
+      const haystackOf = (item: any): string => {
+        if (item.t === 'track')  return `${item.name} ${item.city} ${item.country}`.toLowerCase();
+        if (item.t === 'event')  return `${item.name} ${item.tag} ${item.series}`.toLowerCase();
+        /* series */             return `${item.name} ${item.tagline}`.toLowerCase();
+      };
 
-      const tracks  = matched.filter(i => i.t === 'track');
-      const series  = matched.filter(i => i.t === 'series');
+      const allMatched = searchIndex.filter(item => haystackOf(item).includes(q));
+
+      const series  = allMatched.filter(i => i.t === 'series').slice(0, 8);
+      const tracks  = allMatched.filter(i => i.t === 'track').slice(0, 8);
+      const events  = allMatched.filter(i => i.t === 'event').slice(0, 10);
 
       const base = document.querySelector<HTMLMetaElement>('meta[name="astro-base"]')?.content || '';
 
-      if (matched.length === 0) {
+      if (!series.length && !tracks.length && !events.length) {
         results.innerHTML = `<div class="search-empty">No results for "${escapeHtml(query)}"</div>`;
         focusIdx = -1;
         return;
@@ -574,6 +588,18 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
             <div class="search-result-body">
               <span class="search-result-name">${t.name}</span>
               <span class="search-result-sub">${t.city} · ${t.country}</span>
+            </div>
+            ${arrow}
+          </a>`;
+        }
+      }
+      if (events.length) {
+        html += groupHeader('Races');
+        for (const ev of events) {
+          html += `<a class="search-result-item" href="${base}/#${ev.anchor}">
+            <div class="search-result-body">
+              <span class="search-result-name">${escapeHtml(ev.name)}</span>
+              <span class="search-result-sub">${escapeHtml(ev.tag)}${ev.year === 2027 ? ' · 2027' : ''}</span>
             </div>
             ${arrow}
           </a>`;

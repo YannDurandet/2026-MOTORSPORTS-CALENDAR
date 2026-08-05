@@ -1171,9 +1171,9 @@
     "city": "Jerez de la Frontera",
     "country": "Spain",
     "continent": "europe",
-    "browserSvg": "jerez-motogp.svg",
+    "browserSvg": "jerez.svg",
     "calendarSvgs": [
-      "jerez-motogp.svg"
+      "jerez.svg"
     ],
     "bio": "The Circuito de Jerez has hosted MotoGP and WSBK for decades, and served as the scene of the crash that ended Ayrton Senna's life in practice for the 1994 Spanish GP at the same venue. Its infield is fast and technical.",
     "type": "permanent",
