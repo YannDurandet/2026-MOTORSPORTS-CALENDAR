@@ -9,7 +9,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import seriesContent from '../../data/seriesContent.json';
+import seriesContent from '../../../data/seriesContent.json';
 import { generateIcs } from '../../lib/ics';
 
 const allValidSlugs: string[] = (seriesContent as any[]).map((s: any) => s.slug).sort();
