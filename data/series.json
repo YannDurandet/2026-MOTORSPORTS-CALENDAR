@@ -195,6 +195,50 @@
     {
       "name": "PETIT LE MANS",
       "date": "2026-10-03T17:40:00+02:00"
+    },
+    {
+      "name": "ROLEX 24",
+      "date": "2027-01-31T19:40:00+01:00"
+    },
+    {
+      "name": "SEBRING 12H",
+      "date": "2027-03-20T15:10:00+01:00"
+    },
+    {
+      "name": "LONG BEACH",
+      "date": "2027-04-17T22:05:00+02:00"
+    },
+    {
+      "name": "LAGUNA SECA",
+      "date": "2027-05-02T21:10:00+02:00"
+    },
+    {
+      "name": "DETROIT",
+      "date": "2027-06-05T18:10:00+02:00"
+    },
+    {
+      "name": "WATKINS GLEN 6H",
+      "date": "2027-06-27T16:40:00+02:00"
+    },
+    {
+      "name": "MOSPORT",
+      "date": "2027-07-11T17:05:00+02:00"
+    },
+    {
+      "name": "ROAD AMERICA 6H",
+      "date": "2027-08-01T17:40:00+02:00"
+    },
+    {
+      "name": "VIR",
+      "date": "2027-08-22T18:05:00+02:00"
+    },
+    {
+      "name": "INDY",
+      "date": "2027-09-19T19:10:00+02:00"
+    },
+    {
+      "name": "PETIT LE MANS",
+      "date": "2027-10-09T18:10:00+02:00"
     }
   ],
   "igtc": [
@@ -325,31 +369,43 @@
       "date": "2026-08-30T01:30:00+01:00"
     },
     {
-      "name": "DARLINGTON (PLAYOFF)",
+      "name": "DARLINGTON",
       "date": "2026-09-06T23:00:00+01:00"
     },
     {
-      "name": "BRISTOL (PLAYOFF)",
-      "date": "2026-09-13T21:00:00+01:00"
+      "name": "GATEWAY",
+      "date": "2026-09-13T23:00:00+01:00"
     },
     {
-      "name": "PLAYOFF R1 RACE 3 (TBD)",
+      "name": "BRISTOL NIGHT",
       "date": "2026-09-20T01:30:00+01:00"
     },
     {
-      "name": "PLAYOFF R2 RACE 1 (TBD)",
+      "name": "KANSAS",
       "date": "2026-09-27T21:00:00+01:00"
     },
     {
-      "name": "PLAYOFF R2 RACE 2 (TBD)",
+      "name": "LAS VEGAS",
       "date": "2026-10-04T23:30:00+01:00"
     },
     {
-      "name": "PLAYOFF R2 RACE 3 (TBD)",
+      "name": "CHARLOTTE ROVAL",
       "date": "2026-10-11T21:00:00+01:00"
     },
     {
-      "name": "HOMESTEAD-MIAMI",
+      "name": "PHOENIX",
+      "date": "2026-10-18T21:00:00+01:00"
+    },
+    {
+      "name": "TALLADEGA",
+      "date": "2026-10-25T19:00:00+01:00"
+    },
+    {
+      "name": "MARTINSVILLE",
+      "date": "2026-11-01T19:00:00+01:00"
+    },
+    {
+      "name": "NASCAR CHAMP.",
       "date": "2026-11-08T21:00:00+01:00"
     }
   ],
@@ -672,7 +728,7 @@
     },
     {
       "name": "AZERBAIJAN",
-      "date": "2026-09-27T13:00:00+02:00"
+      "date": "2026-09-26T13:00:00+04:00"
     },
     {
       "name": "BAHRAIN (SEPANG)",
@@ -839,6 +895,34 @@
     {
       "name": "SUZUKA FINALE",
       "date": "2026-11-22T06:00:00+01:00"
+    },
+    {
+      "name": "SUZUKA",
+      "date": "2027-03-14T06:30:00+01:00"
+    },
+    {
+      "name": "MOTEGI",
+      "date": "2027-04-18T07:30:00+02:00"
+    },
+    {
+      "name": "AUTOPOLIS",
+      "date": "2027-05-16T07:30:00+02:00"
+    },
+    {
+      "name": "SUGO",
+      "date": "2027-06-27T07:30:00+02:00"
+    },
+    {
+      "name": "FUJI",
+      "date": "2027-07-18T07:30:00+02:00"
+    },
+    {
+      "name": "FUJI FINALE",
+      "date": "2027-10-10T07:30:00+02:00"
+    },
+    {
+      "name": "SUZUKA FINALE",
+      "date": "2027-11-28T06:30:00+01:00"
     }
   ],
   "elms": [
@@ -865,6 +949,30 @@
     {
       "name": "PORTIMÃO 4H",
       "date": "2026-10-10T12:00:00+02:00"
+    },
+    {
+      "name": "BARCELONA 4H",
+      "date": "2027-03-14T11:30:00+01:00"
+    },
+    {
+      "name": "LE CASTELLET 4H",
+      "date": "2027-05-02T11:30:00+02:00"
+    },
+    {
+      "name": "IMOLA 4H",
+      "date": "2027-07-04T11:30:00+02:00"
+    },
+    {
+      "name": "SPA 4H",
+      "date": "2027-08-22T11:30:00+02:00"
+    },
+    {
+      "name": "SILVERSTONE 4H",
+      "date": "2027-09-05T12:30:00+02:00"
+    },
+    {
+      "name": "PORTIMÃO 4H",
+      "date": "2027-10-02T14:00:00+02:00"
     }
   ],
   "gtwce": [
@@ -907,6 +1015,46 @@
     {
       "name": "PORTIMÃO 3H",
       "date": "2026-10-18T13:00:00+02:00"
+    },
+    {
+      "name": "PAUL RICARD 6H",
+      "date": "2027-04-17T18:00:00+02:00"
+    },
+    {
+      "name": "BRANDS HATCH SPRINT",
+      "date": "2027-05-02T12:00:00+02:00"
+    },
+    {
+      "name": "IMOLA 3H",
+      "date": "2027-05-23T15:00:00+02:00"
+    },
+    {
+      "name": "SPA 24H",
+      "date": "2027-06-26T16:30:00+02:00"
+    },
+    {
+      "name": "MISANO SPRINT",
+      "date": "2027-07-18T14:00:00+02:00"
+    },
+    {
+      "name": "MAGNY-COURS SPRINT",
+      "date": "2027-08-01T14:00:00+02:00"
+    },
+    {
+      "name": "NÜRBURGRING 3H",
+      "date": "2027-08-29T14:45:00+02:00"
+    },
+    {
+      "name": "ZANDVOORT SPRINT",
+      "date": "2027-09-19T14:00:00+02:00"
+    },
+    {
+      "name": "HUNGARORING SPRINT",
+      "date": "2027-10-03T13:00:00+02:00"
+    },
+    {
+      "name": "BARCELONA 3H",
+      "date": "2027-10-24T15:00:00+02:00"
     }
   ],
   "btcc": [
@@ -949,6 +1097,46 @@
     {
       "name": "BRANDS HATCH GP",
       "date": "2026-10-11T14:00:00+02:00"
+    },
+    {
+      "name": "DONINGTON PARK",
+      "date": "2027-04-11T15:30:00+02:00"
+    },
+    {
+      "name": "BRANDS HATCH",
+      "date": "2027-05-09T15:30:00+02:00"
+    },
+    {
+      "name": "SNETTERTON",
+      "date": "2027-05-30T15:30:00+02:00"
+    },
+    {
+      "name": "OULTON PARK",
+      "date": "2027-06-13T15:30:00+02:00"
+    },
+    {
+      "name": "THRUXTON",
+      "date": "2027-07-25T15:30:00+02:00"
+    },
+    {
+      "name": "KNOCKHILL",
+      "date": "2027-08-08T15:30:00+02:00"
+    },
+    {
+      "name": "CROFT",
+      "date": "2027-08-15T15:30:00+02:00"
+    },
+    {
+      "name": "DONINGTON PARK GP",
+      "date": "2027-09-12T15:30:00+02:00"
+    },
+    {
+      "name": "SILVERSTONE NATIONAL",
+      "date": "2027-09-26T15:30:00+02:00"
+    },
+    {
+      "name": "BRANDS HATCH GP",
+      "date": "2027-10-10T15:30:00+02:00"
     }
   ],
   "erc": [

@@ -4211,15 +4211,6 @@
             "shortName": "LAGUNA SECA"
           },
           {
-            "series": "nascar",
-            "tag": "NASCAR",
-            "title": "Southern 500 (Darlington) — Playoff",
-            "time": "RACE: <span class=\"hl\">23:00</span>",
-            "track": "darlington-oval.svg",
-            "date": "2026-09-06T23:00:00+01:00",
-            "shortName": "DARLINGTON (PLAYOFF)"
-          },
-          {
             "series": "psc",
             "tag": "PORSCHE SC",
             "title": "Rd 8: Monza",
@@ -4236,6 +4227,15 @@
             "track": "donington-gp.svg",
             "date": "2026-09-06T13:00:00+02:00",
             "shortName": "DONINGTON PARK"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Cook Out Southern 500 — Playoff",
+            "time": "RACE: <span class=\"hl\">23:00</span>",
+            "track": "darlington-oval.svg",
+            "date": "2026-09-06T23:00:00+01:00",
+            "shortName": "DARLINGTON"
           }
         ]
       },
@@ -4334,15 +4334,6 @@
             "shortName": "REINOLDUS+BARBAROSSAPREIS II"
           },
           {
-            "series": "nascar",
-            "tag": "NASCAR",
-            "title": "Bass Pro Shops Night Race (Bristol) — Playoff",
-            "time": "RACE: <span class=\"hl\">01:30</span>",
-            "track": "bristol.svg",
-            "date": "2026-09-13T21:00:00+01:00",
-            "shortName": "BRISTOL (PLAYOFF)"
-          },
-          {
             "series": "eurx",
             "tag": "EURO RX",
             "title": "Rd 6: Portugal (Lousada)",
@@ -4350,6 +4341,15 @@
             "track": "lousada.svg",
             "date": "2026-09-13T14:00:00+02:00",
             "shortName": "PORTUGAL (LOUSADA)"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Enjoy Illinois 300 — Playoff",
+            "time": "RACE: <span class=\"hl\">23:00</span>",
+            "track": "gateway.svg",
+            "date": "2026-09-13T23:00:00+01:00",
+            "shortName": "GATEWAY"
           }
         ]
       },
@@ -4384,15 +4384,6 @@
             "shortName": "INDIANAPOLIS"
           },
           {
-            "series": "nascar",
-            "tag": "NASCAR",
-            "title": "Playoff Round 1 Race 3 (TBD)",
-            "time": "RACE: <span class=\"hl\">23:30</span>",
-            "track": "tbd.svg",
-            "date": "2026-09-20T01:30:00+01:00",
-            "shortName": "PLAYOFF R1 RACE 3 (TBD)"
-          },
-          {
             "series": "h24eu",
             "tag": "24H EU",
             "title": "Barcelona 24H",
@@ -4400,6 +4391,15 @@
             "track": "barcelona.svg",
             "date": "2026-09-19T14:00:00+02:00",
             "shortName": "BARCELONA"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Bass Pro Shops Night Race — Playoff",
+            "time": "RACE: <span class=\"hl\">01:30</span>",
+            "track": "bristol.svg",
+            "date": "2026-09-20T01:30:00+01:00",
+            "shortName": "BRISTOL NIGHT"
           }
         ]
       },
@@ -4419,7 +4419,7 @@
                 "detail": "RACES: TBC"
               }
             ],
-            "date": "2026-09-27T13:00:00+02:00",
+            "date": "2026-09-26T13:00:00+04:00",
             "shortName": "AZERBAIJAN"
           },
           {
@@ -4459,15 +4459,6 @@
             "shortName": "FUJI 6H"
           },
           {
-            "series": "nascar",
-            "tag": "NASCAR",
-            "title": "Playoff Round 2 Race 1 (TBD)",
-            "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "tbd.svg",
-            "date": "2026-09-27T21:00:00+01:00",
-            "shortName": "PLAYOFF R2 RACE 1 (TBD)"
-          },
-          {
             "series": "bgt",
             "tag": "BRITISH GT",
             "title": "Rd 8: Brands Hatch",
@@ -4475,6 +4466,15 @@
             "track": "brands-hatch-gp.svg",
             "date": "2026-09-27T13:00:00+02:00",
             "shortName": "BRANDS HATCH"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Hollywood Casino 400 — Playoff",
+            "time": "RACE: <span class=\"hl\">19:00</span>",
+            "track": "kansas.svg",
+            "date": "2026-09-27T21:00:00+01:00",
+            "shortName": "KANSAS"
           }
         ]
       }
@@ -4550,11 +4550,11 @@
           {
             "series": "nascar",
             "tag": "NASCAR",
-            "title": "Playoff Round 2 Race 2 (TBD)",
+            "title": "South Point 400 — Playoff",
             "time": "RACE: <span class=\"hl\">21:30</span>",
-            "track": "tbd.svg",
+            "track": "las-vegas-oval.svg",
             "date": "2026-10-04T23:30:00+01:00",
-            "shortName": "PLAYOFF R2 RACE 2 (TBD)"
+            "shortName": "LAS VEGAS"
           }
         ]
       },
@@ -4664,11 +4664,11 @@
           {
             "series": "nascar",
             "tag": "NASCAR",
-            "title": "Playoff Round 2 Race 3 (TBD)",
+            "title": "Bank of America ROVAL 400 — Playoff",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "tbd.svg",
+            "track": "charlotte.svg",
             "date": "2026-10-11T21:00:00+01:00",
-            "shortName": "PLAYOFF R2 RACE 3 (TBD)"
+            "shortName": "CHARLOTTE ROVAL"
           }
         ]
       },
@@ -4719,6 +4719,15 @@
             "track": "chengdu.svg",
             "date": "2026-10-18T08:00:00+02:00",
             "shortName": "CHENGDU"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Freeway Insurance 500 — Playoff",
+            "time": "RACE: <span class=\"hl\">19:00</span>",
+            "track": "phoenix-oval.svg",
+            "date": "2026-10-18T21:00:00+01:00",
+            "shortName": "PHOENIX"
           }
         ]
       },
@@ -4778,6 +4787,15 @@
             "track": "portugal-wrc.svg",
             "date": "2026-10-25T14:00:00+01:00",
             "shortName": "FAFE"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "YellaWood 500 — Playoff",
+            "time": "RACE: <span class=\"hl\">17:00</span>",
+            "track": "talladega.svg",
+            "date": "2026-10-25T19:00:00+01:00",
+            "shortName": "TALLADEGA"
           }
         ]
       },
@@ -4801,6 +4819,15 @@
             "track": "portimao.svg",
             "date": "2026-11-01T14:00:00+01:00",
             "shortName": "PORTUGAL"
+          },
+          {
+            "series": "nascar",
+            "tag": "NASCAR",
+            "title": "Xfinity 500 — Playoff",
+            "time": "RACE: <span class=\"hl\">17:00</span>",
+            "track": "martinsville-oval.svg",
+            "date": "2026-11-01T19:00:00+01:00",
+            "shortName": "MARTINSVILLE"
           }
         ]
       }
@@ -4833,11 +4860,11 @@
           {
             "series": "nascar",
             "tag": "NASCAR",
-            "title": "Championship Race (Homestead)",
-            "time": "RACE: <span class=\"hl\">21:00</span>",
+            "title": "NASCAR Cup Series Championship",
+            "time": "RACE: <span class=\"hl\">19:00</span>",
             "track": "homestead-miami-oval.svg",
             "date": "2026-11-08T21:00:00+01:00",
-            "shortName": "HOMESTEAD-MIAMI"
+            "shortName": "NASCAR CHAMP."
           }
         ]
       },
@@ -5037,6 +5064,20 @@
             "shortName": "MEXICO CITY"
           }
         ]
+      },
+      {
+        "label": "WEEK 05 • JAN 28-31",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Rolex 24 at Daytona",
+            "time": "SAT <span class=\"hl\">19:40</span> &rsaquo; SUN <span class=\"hl\">19:40</span>",
+            "track": "daytona-road.svg",
+            "date": "2027-01-31T19:40:00+01:00",
+            "shortName": "ROLEX 24"
+          }
+        ]
       }
     ]
   },
@@ -5088,7 +5129,7 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 11 • MAR 13",
+        "label": "WEEK 11 • MAR 13-14",
         "events": [
           {
             "series": "fe",
@@ -5098,6 +5139,38 @@
             "track": "sao-paulo-fe.svg",
             "date": "2027-03-13T14:00:00-03:00",
             "shortName": "SÃO PAULO"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Barcelona",
+            "time": "SUN: <span class=\"hl\">11:30</span>",
+            "track": "barcelona.svg",
+            "date": "2027-03-14T11:30:00+01:00",
+            "shortName": "BARCELONA 4H"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Suzuka",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "suzuka.svg",
+            "date": "2027-03-14T06:30:00+01:00",
+            "shortName": "SUZUKA"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 12 • MAR 17-20",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "12 Hours of Sebring",
+            "time": "SAT <span class=\"hl\">15:10</span> &rsaquo; SUN <span class=\"hl\">03:10</span>",
+            "track": "sebring.svg",
+            "date": "2027-03-20T15:10:00+01:00",
+            "shortName": "SEBRING 12H"
           }
         ]
       },
@@ -5132,11 +5205,20 @@
             "track": "imola.svg",
             "date": "2027-04-11T13:00:00+02:00",
             "shortName": "IMOLA 6H"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Donington Park (Races 1-3)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "donington.svg",
+            "date": "2027-04-11T15:30:00+02:00",
+            "shortName": "DONINGTON PARK"
           }
         ]
       },
       {
-        "label": "WEEK 16 • APR 17",
+        "label": "WEEK 16 • APR 17-18",
         "events": [
           {
             "series": "fe",
@@ -5146,6 +5228,33 @@
             "track": "sanya.svg",
             "date": "2027-04-17T15:00:00+08:00",
             "shortName": "SANYA"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Grand Prix of Long Beach",
+            "time": "RACE: <span class=\"hl\">22:05</span>",
+            "track": "long-beach.svg",
+            "date": "2027-04-17T22:05:00+02:00",
+            "shortName": "LONG BEACH"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "6 Hours of Paul Ricard",
+            "time": "RACE: <span class=\"hl\">18:00</span>",
+            "track": "paul-ricard.svg",
+            "date": "2027-04-17T18:00:00+02:00",
+            "shortName": "PAUL RICARD 6H"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Motegi",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "motegi.svg",
+            "date": "2027-04-18T07:30:00+02:00",
+            "shortName": "MOTEGI"
           }
         ]
       },
@@ -5180,6 +5289,33 @@
             "track": "monaco.svg",
             "date": "2027-05-01T15:00:00+02:00",
             "shortName": "MONACO"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Monterey Sportscar Champ.",
+            "time": "RACE: <span class=\"hl\">21:10</span>",
+            "track": "laguna-seca.svg",
+            "date": "2027-05-02T21:10:00+02:00",
+            "shortName": "LAGUNA SECA"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Brands Hatch Sprint",
+            "time": "R1: <span class=\"hl\">12:00</span> • R2: <span class=\"hl\">17:00</span>",
+            "track": "brands-hatch.svg",
+            "date": "2027-05-02T12:00:00+02:00",
+            "shortName": "BRANDS HATCH SPRINT"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Le Castellet",
+            "time": "SUN: <span class=\"hl\">11:30</span>",
+            "track": "paul-ricard.svg",
+            "date": "2027-05-02T11:30:00+02:00",
+            "shortName": "LE CASTELLET 4H"
           }
         ]
       },
@@ -5194,11 +5330,20 @@
             "track": "berlin.svg",
             "date": "2027-05-08T15:00:00+02:00",
             "shortName": "BERLIN"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Brands Hatch Indy (Races 4-6)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "brands-hatch.svg",
+            "date": "2027-05-09T15:30:00+02:00",
+            "shortName": "BRANDS HATCH"
           }
         ]
       },
       {
-        "label": "WEEK 20 • MAY 13-15",
+        "label": "WEEK 20 • MAY 13-16",
         "events": [
           {
             "series": "wec",
@@ -5208,6 +5353,29 @@
             "track": "spa.svg",
             "date": "2027-05-15T13:00:00+02:00",
             "shortName": "SPA 6H"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Autopolis",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "autopolis.svg",
+            "date": "2027-05-16T07:30:00+02:00",
+            "shortName": "AUTOPOLIS"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 21 • MAY 22-23",
+        "events": [
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "3 Hours of Imola",
+            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "track": "imola.svg",
+            "date": "2027-05-23T15:00:00+02:00",
+            "shortName": "IMOLA 3H"
           }
         ]
       },
@@ -5222,6 +5390,15 @@
             "track": "brands-hatch-gp.svg",
             "date": "2027-05-29T15:00:00+01:00",
             "shortName": "BRANDS HATCH"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Snetterton (Races 7-9)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "snetterton.svg",
+            "date": "2027-05-30T15:30:00+02:00",
+            "shortName": "SNETTERTON"
           }
         ]
       }
@@ -5231,6 +5408,20 @@
     "month": "JUNE",
     "year": 2027,
     "weeks": [
+      {
+        "label": "WEEK 23 • JUN 04-05",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Detroit Sports Car Classic",
+            "time": "RACE: <span class=\"hl\">18:10</span>",
+            "track": "detroit.svg",
+            "date": "2027-06-05T18:10:00+02:00",
+            "shortName": "DETROIT"
+          }
+        ]
+      },
       {
         "label": "WEEK 24 • JUN 12-13",
         "events": [
@@ -5242,6 +5433,15 @@
             "track": "le-mans.svg",
             "date": "2027-06-12T16:00:00+02:00",
             "shortName": "LE MANS 24H"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Oulton Park (Races 10-12)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "oulton-park-international.svg",
+            "date": "2027-06-13T15:30:00+02:00",
+            "shortName": "OULTON PARK"
           }
         ]
       },
@@ -5270,6 +5470,33 @@
             "track": "madrid-fe.svg",
             "date": "2027-06-26T15:00:00+02:00",
             "shortName": "MADRID"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "6 Hours of Watkins Glen",
+            "time": "RACE: <span class=\"hl\">16:40</span>",
+            "track": "watkins-glen.svg",
+            "date": "2027-06-27T16:40:00+02:00",
+            "shortName": "WATKINS GLEN 6H"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "24 Hours of Spa",
+            "time": "RACE: <span class=\"hl\">16:30</span>",
+            "track": "spa.svg",
+            "date": "2027-06-26T16:30:00+02:00",
+            "shortName": "SPA 24H"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Sugo",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "sugo.svg",
+            "date": "2027-06-27T07:30:00+02:00",
+            "shortName": "SUGO"
           }
         ]
       }
@@ -5279,6 +5506,20 @@
     "month": "JULY",
     "year": 2027,
     "weeks": [
+      {
+        "label": "WEEK 27 • JUL 04",
+        "events": [
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Imola",
+            "time": "SAT: <span class=\"hl\">11:30</span>",
+            "track": "imola.svg",
+            "date": "2027-07-04T11:30:00+02:00",
+            "shortName": "IMOLA 4H"
+          }
+        ]
+      },
       {
         "label": "WEEK 28 • JUL 10-11",
         "events": [
@@ -5299,6 +5540,38 @@
             "track": "shanghai-fe.svg",
             "date": "2027-07-10T15:00:00+08:00",
             "shortName": "SHANGHAI"
+          },
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Chevrolet Grand Prix (Mosport)",
+            "time": "RACE: <span class=\"hl\">17:05</span>",
+            "track": "mosport.svg",
+            "date": "2027-07-11T17:05:00+02:00",
+            "shortName": "MOSPORT"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 29 • JUL 17-18",
+        "events": [
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Misano Sprint",
+            "time": "R1: <span class=\"hl\">21:00</span> • R2: <span class=\"hl\">14:00</span>",
+            "track": "misano.svg",
+            "date": "2027-07-18T14:00:00+02:00",
+            "shortName": "MISANO SPRINT"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Fuji",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "fuji.svg",
+            "date": "2027-07-18T07:30:00+02:00",
+            "shortName": "FUJI"
           }
         ]
       },
@@ -5313,6 +5586,109 @@
             "track": "tokyo.svg",
             "date": "2027-07-24T15:00:00+09:00",
             "shortName": "TOKYO"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Thruxton (Races 13-15)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "thruxton.svg",
+            "date": "2027-07-25T15:30:00+02:00",
+            "shortName": "THRUXTON"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 31 • JUL 29 - AUG 01",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "6 Hours of Road America",
+            "time": "RACE: <span class=\"hl\">17:40</span>",
+            "track": "road-america.svg",
+            "date": "2027-08-01T17:40:00+02:00",
+            "shortName": "ROAD AMERICA 6H"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Magny-Cours Sprint",
+            "time": "R1: <span class=\"hl\">20:15</span> • R2: <span class=\"hl\">14:00</span>",
+            "track": "magny-cours.svg",
+            "date": "2027-08-01T14:00:00+02:00",
+            "shortName": "MAGNY-COURS SPRINT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "AUGUST",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 32 • AUG 07-08",
+        "events": [
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Knockhill (Races 16-18)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "knockhill.svg",
+            "date": "2027-08-08T15:30:00+02:00",
+            "shortName": "KNOCKHILL"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 33 • AUG 14-15",
+        "events": [
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Croft (Races 19-21)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "croft.svg",
+            "date": "2027-08-15T15:30:00+02:00",
+            "shortName": "CROFT"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 34 • AUG 19-22",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "VIR GT Challenge",
+            "time": "RACE: <span class=\"hl\">18:05</span>",
+            "track": "vir.svg",
+            "date": "2027-08-22T18:05:00+02:00",
+            "shortName": "VIR"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Spa-Francorchamps",
+            "time": "SUN: <span class=\"hl\">11:30</span>",
+            "track": "spa.svg",
+            "date": "2027-08-22T11:30:00+02:00",
+            "shortName": "SPA 4H"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 35 • AUG 28-29",
+        "events": [
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "3 Hours of Nürburgring",
+            "time": "RACE: <span class=\"hl\">14:45</span>",
+            "track": "nurburgring.svg",
+            "date": "2027-08-29T14:45:00+02:00",
+            "shortName": "NÜRBURGRING 3H"
           }
         ]
       }
@@ -5322,6 +5698,20 @@
     "month": "SEPTEMBER",
     "year": 2027,
     "weeks": [
+      {
+        "label": "WEEK 36 • SEP 05",
+        "events": [
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "Goodyear 4 Hours of Silverstone",
+            "time": "SAT: <span class=\"hl\">12:30</span>",
+            "track": "silverstone.svg",
+            "date": "2027-09-05T12:30:00+02:00",
+            "shortName": "SILVERSTONE 4H"
+          }
+        ]
+      },
       {
         "label": "WEEK 37 • SEP 10-12",
         "events": [
@@ -5333,6 +5723,38 @@
             "track": "cota-national.svg",
             "date": "2027-09-12T13:00:00-05:00",
             "shortName": "LONE STAR (COTA)"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Donington Park GP (Races 22-24)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "donington-gp.svg",
+            "date": "2027-09-12T15:30:00+02:00",
+            "shortName": "DONINGTON PARK GP"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 38 • SEP 17-19",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Battle on the Bricks (Indy)",
+            "time": "RACE: <span class=\"hl\">19:10</span>",
+            "track": "indianapolis.svg",
+            "date": "2027-09-19T19:10:00+02:00",
+            "shortName": "INDY"
+          },
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Zandvoort Sprint",
+            "time": "R1: <span class=\"hl\">14:00</span> • R2: <span class=\"hl\">14:00</span>",
+            "track": "zandvoort.svg",
+            "date": "2027-09-19T14:00:00+02:00",
+            "shortName": "ZANDVOORT SPRINT"
           }
         ]
       },
@@ -5347,6 +5769,90 @@
             "track": "fuji.svg",
             "date": "2027-09-26T11:00:00+09:00",
             "shortName": "FUJI 6H"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Silverstone National (Races 25-27)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "silverstone-national.svg",
+            "date": "2027-09-26T15:30:00+02:00",
+            "shortName": "SILVERSTONE NATIONAL"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "OCTOBER",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 40 • OCT 02-03",
+        "events": [
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "Hungaroring Sprint",
+            "time": "R1: <span class=\"hl\">15:00</span> • R2: <span class=\"hl\">13:00</span>",
+            "track": "hungaroring.svg",
+            "date": "2027-10-03T13:00:00+02:00",
+            "shortName": "HUNGARORING SPRINT"
+          },
+          {
+            "series": "elms",
+            "tag": "ELMS",
+            "title": "4 Hours of Portimão (Finale)",
+            "time": "SAT: <span class=\"hl\">14:00</span>",
+            "track": "portimao.svg",
+            "date": "2027-10-02T14:00:00+02:00",
+            "shortName": "PORTIMÃO 4H"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 41 • OCT 06-10",
+        "events": [
+          {
+            "series": "imsa",
+            "tag": "IMSA",
+            "title": "Petit Le Mans",
+            "time": "RACE: <span class=\"hl\">18:10</span>",
+            "track": "road-atlanta.svg",
+            "date": "2027-10-09T18:10:00+02:00",
+            "shortName": "PETIT LE MANS"
+          },
+          {
+            "series": "btcc",
+            "tag": "BTCC",
+            "title": "Brands Hatch GP (Races 28-30, Finale)",
+            "time": "R1: <span class=\"hl\">11:45</span> • R2: <span class=\"hl\">14:30</span> • R3: <span class=\"hl\">17:15</span>",
+            "track": "brands-hatch-gp.svg",
+            "date": "2027-10-10T15:30:00+02:00",
+            "shortName": "BRANDS HATCH GP"
+          },
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Fuji II",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "fuji.svg",
+            "date": "2027-10-10T07:30:00+02:00",
+            "shortName": "FUJI FINALE"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 43 • OCT 23-24",
+        "events": [
+          {
+            "series": "gtwce",
+            "tag": "GTWCE",
+            "title": "3 Hours of Barcelona",
+            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "track": "barcelona.svg",
+            "date": "2027-10-24T15:00:00+02:00",
+            "shortName": "BARCELONA 3H"
           }
         ]
       }
@@ -5367,6 +5873,20 @@
             "track": "bahrain.svg",
             "date": "2027-11-06T14:00:00+03:00",
             "shortName": "BAHRAIN 8H"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 48 • NOV 27-28",
+        "events": [
+          {
+            "series": "sf",
+            "tag": "S. FORMULA",
+            "title": "Suzuka II",
+            "time": "RACE: <span class=\"hl\">05:30</span>",
+            "track": "suzuka.svg",
+            "date": "2027-11-28T06:30:00+01:00",
+            "shortName": "SUZUKA FINALE"
           }
         ]
       }
