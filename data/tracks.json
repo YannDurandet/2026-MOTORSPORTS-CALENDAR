@@ -3395,5 +3395,22 @@
     "overview": "The Adelaide Street Circuit runs through the Park Lands that ring Adelaide's CBD — a 3.219 km temporary circuit constructed on the public roads and park roads of the city's inner green belt. It hosted Formula 1's Australian Grand Prix from 1985 to 1995, becoming one of the most beloved circuits on that era's calendar before F1 moved to Melbourne. Today it is the host of the Supercars Adelaide 500, one of the marquee events of the Australian touring car season. The palm-lined streets, the compressed barriers, and the city-centre atmosphere make Adelaide one of the standout events on any Supercars calendar.",
     "history": "Adelaide first hosted the Australian F1 Grand Prix in 1985, the final round of the season — a role it played until 1995 when Victoria's government successfully bid for the race and moved it to Albert Park. The F1 years produced some of the most dramatic season finales in the sport's history. After F1's departure, the circuit continued hosting Supercars events. The Adelaide 500 was cancelled from 2012 to 2020 before a successful revival brought the event back to the calendar with renewed enthusiasm.",
     "notable_moments": "The 1986 Australian GP finale — Nigel Mansell's tyre blowout at 300 km/h that handed the championship to Alain Prost. The 1994 Australian GP, Schumacher and Hill's collision that decided the most controversial championship of the modern era. The 2010 Supercars Adelaide 500 finale. The circuit's revival as a Supercars event after its years away — testament to Adelaide's identity as a motorsport city."
+  },
+  {
+    "slug": "sao-paulo",
+    "name": "Anhembi Sambadrome Circuit",
+    "city": "São Paulo",
+    "country": "Brazil",
+    "continent": "south-america",
+    "browserSvg": "sao-paulo-fe.svg",
+    "calendarSvgs": [
+      "sao-paulo-fe.svg"
+    ],
+    "bio": "A temporary street circuit around the Anhembi convention complex in northern São Paulo, site of Formula E's Brazilian debut.",
+    "type": "street",
+    "direction": "clockwise",
+    "overview": "The Anhembi Sambadrome Circuit is a temporary Formula E street circuit laid out around the Anhembi convention centre and expo park in the northern Zona Norte district of São Paulo. It brings Formula E racing to Brazil's largest city for the first time, winding through the wide avenues and parking areas around the Anhembi complex with the city skyline as a backdrop.",
+    "history": "São Paulo joins the Formula E calendar for Season 13 (2026–27), marking the series' debut in Brazil. The circuit uses the streets and service roads around the Anhembi Sambadrome — a venue best known as the home of the Rio Carnival parade relocated to São Paulo — offering a dramatic urban setting for electric racing in South America.",
+    "notable_moments": "Season 13 debut — Formula E's first race in Brazil."
   }
 ]
