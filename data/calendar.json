@@ -5001,19 +5001,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Jeddah E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">18:00</span>",
+            "title": "Jeddah E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">18:00</span>",
             "track": "jeddah-fe.svg",
             "date": "2026-12-18T20:00:00+03:00",
-            "shortName": "JEDDAH"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Jeddah E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "jeddah-fe.svg",
-            "date": "2026-12-19T20:00:00+03:00",
             "shortName": "JEDDAH"
           }
         ]
@@ -5184,19 +5175,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Monaco E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "title": "Monaco E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">15:00</span>",
             "track": "monaco.svg",
             "date": "2027-05-01T15:00:00+02:00",
-            "shortName": "MONACO"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Monaco E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
-            "track": "monaco.svg",
-            "date": "2027-05-02T15:00:00+02:00",
             "shortName": "MONACO"
           }
         ]
@@ -5207,19 +5189,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Berlin E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "title": "Berlin E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">15:00</span>",
             "track": "berlin.svg",
             "date": "2027-05-08T15:00:00+02:00",
-            "shortName": "BERLIN"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Berlin E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
-            "track": "berlin.svg",
-            "date": "2027-05-09T15:00:00+02:00",
             "shortName": "BERLIN"
           }
         ]
@@ -5244,19 +5217,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Brands Hatch E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">16:00</span>",
+            "title": "Brands Hatch E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">16:00</span>",
             "track": "brands-hatch-gp.svg",
             "date": "2027-05-29T15:00:00+01:00",
-            "shortName": "BRANDS HATCH"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Brands Hatch E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">16:00</span>",
-            "track": "brands-hatch-gp.svg",
-            "date": "2027-05-30T15:00:00+01:00",
             "shortName": "BRANDS HATCH"
           }
         ]
@@ -5287,19 +5251,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Zandvoort E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "title": "Zandvoort E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">15:00</span>",
             "track": "zandvoort.svg",
             "date": "2027-06-18T15:00:00+02:00",
-            "shortName": "ZANDVOORT"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Zandvoort E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
-            "track": "zandvoort.svg",
-            "date": "2027-06-19T15:00:00+02:00",
             "shortName": "ZANDVOORT"
           }
         ]
@@ -5310,19 +5265,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Madrid E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
+            "title": "Madrid E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">15:00</span>",
             "track": "madrid-fe.svg",
             "date": "2027-06-26T15:00:00+02:00",
-            "shortName": "MADRID"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Madrid E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">15:00</span>",
-            "track": "madrid-fe.svg",
-            "date": "2027-06-27T15:00:00+02:00",
             "shortName": "MADRID"
           }
         ]
@@ -5337,24 +5283,6 @@
         "label": "WEEK 28 • JUL 10-11",
         "events": [
           {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Shanghai E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">09:00</span>",
-            "track": "shanghai-fe.svg",
-            "date": "2027-07-10T15:00:00+08:00",
-            "shortName": "SHANGHAI"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Shanghai E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">09:00</span>",
-            "track": "shanghai-fe.svg",
-            "date": "2027-07-11T15:00:00+08:00",
-            "shortName": "SHANGHAI"
-          },
-          {
             "series": "wec",
             "tag": "WEC",
             "title": "6 Hours of São Paulo",
@@ -5362,6 +5290,15 @@
             "track": "interlagos.svg",
             "date": "2027-07-11T11:30:00-03:00",
             "shortName": "SAO PAULO 6H"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Shanghai E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">09:00</span>",
+            "track": "shanghai-fe.svg",
+            "date": "2027-07-10T15:00:00+08:00",
+            "shortName": "SHANGHAI"
           }
         ]
       },
@@ -5371,19 +5308,10 @@
           {
             "series": "fe",
             "tag": "FORMULA E",
-            "title": "Tokyo E-Prix (Race 1)",
-            "time": "RACE: <span class=\"hl\">08:00</span>",
+            "title": "Tokyo E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">08:00</span>",
             "track": "tokyo.svg",
             "date": "2027-07-24T15:00:00+09:00",
-            "shortName": "TOKYO"
-          },
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Tokyo E-Prix (Race 2)",
-            "time": "RACE: <span class=\"hl\">08:00</span>",
-            "track": "tokyo.svg",
-            "date": "2027-07-25T15:00:00+09:00",
             "shortName": "TOKYO"
           }
         ]
