@@ -5246,7 +5246,7 @@
             "tag": "FORMULA E",
             "title": "Brands Hatch E-Prix (Race 1)",
             "time": "RACE: <span class=\"hl\">16:00</span>",
-            "track": "brands-hatch.svg",
+            "track": "brands-hatch-gp.svg",
             "date": "2027-05-29T15:00:00+01:00",
             "shortName": "BRANDS HATCH"
           },
@@ -5255,7 +5255,7 @@
             "tag": "FORMULA E",
             "title": "Brands Hatch E-Prix (Race 2)",
             "time": "RACE: <span class=\"hl\">16:00</span>",
-            "track": "brands-hatch.svg",
+            "track": "brands-hatch-gp.svg",
             "date": "2027-05-30T15:00:00+01:00",
             "shortName": "BRANDS HATCH"
           }
