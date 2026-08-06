@@ -5109,6 +5109,20 @@
             "shortName": "SÃO PAULO"
           }
         ]
+      },
+      {
+        "label": "WEEK 13 • MAR 27",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "Qatar 1812km",
+            "time": "RACE: <span class=\"hl\">08:00</span>",
+            "track": "lusail.svg",
+            "date": "2027-03-27T11:00:00+03:00",
+            "shortName": "LUSAIL 1812KM"
+          }
+        ]
       }
     ]
   },
@@ -5116,6 +5130,20 @@
     "month": "APRIL",
     "year": 2027,
     "weeks": [
+      {
+        "label": "WEEK 15 • APR 09-11",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Imola",
+            "time": "RACE: <span class=\"hl\">11:00</span>",
+            "track": "imola.svg",
+            "date": "2027-04-11T13:00:00+02:00",
+            "shortName": "IMOLA 6H"
+          }
+        ]
+      },
       {
         "label": "WEEK 16 • APR 17",
         "events": [
@@ -5127,6 +5155,20 @@
             "track": "sanya.svg",
             "date": "2027-04-17T15:00:00+08:00",
             "shortName": "SANYA"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 17 • APR 23-25",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Silverstone",
+            "time": "RACE: <span class=\"hl\">11:00</span>",
+            "track": "silverstone.svg",
+            "date": "2027-04-25T12:00:00+01:00",
+            "shortName": "SILVERSTONE 6H"
           }
         ]
       }
@@ -5183,6 +5225,20 @@
         ]
       },
       {
+        "label": "WEEK 20 • MAY 13-15",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Spa",
+            "time": "RACE: <span class=\"hl\">11:00</span>",
+            "track": "spa.svg",
+            "date": "2027-05-15T13:00:00+02:00",
+            "shortName": "SPA 6H"
+          }
+        ]
+      },
+      {
         "label": "WEEK 22 • MAY 29-30",
         "events": [
           {
@@ -5211,6 +5267,20 @@
     "month": "JUNE",
     "year": 2027,
     "weeks": [
+      {
+        "label": "WEEK 24 • JUN 12-13",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "24 Hours of Le Mans",
+            "time": "FRI <span class=\"hl\">16:00</span> &rsaquo; SAT <span class=\"hl\">16:00</span>",
+            "track": "le-mans.svg",
+            "date": "2027-06-12T16:00:00+02:00",
+            "shortName": "LE MANS 24H"
+          }
+        ]
+      },
       {
         "label": "WEEK 25 • JUN 18-19",
         "events": [
@@ -5283,6 +5353,15 @@
             "track": "shanghai-fe.svg",
             "date": "2027-07-11T15:00:00+08:00",
             "shortName": "SHANGHAI"
+          },
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of São Paulo",
+            "time": "RACE: <span class=\"hl\">14:30</span>",
+            "track": "interlagos.svg",
+            "date": "2027-07-11T11:30:00-03:00",
+            "shortName": "SAO PAULO 6H"
           }
         ]
       },
@@ -5306,6 +5385,60 @@
             "track": "tokyo.svg",
             "date": "2027-07-25T15:00:00+09:00",
             "shortName": "TOKYO"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "SEPTEMBER",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 37 • SEP 10-12",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "Lone Star Le Mans (COTA)",
+            "time": "RACE: <span class=\"hl\">18:00</span>",
+            "track": "cota-national.svg",
+            "date": "2027-09-12T13:00:00-05:00",
+            "shortName": "LONE STAR (COTA)"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 39 • SEP 24-26",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "6 Hours of Fuji",
+            "time": "RACE: <span class=\"hl\">02:00</span>",
+            "track": "fuji.svg",
+            "date": "2027-09-26T11:00:00+09:00",
+            "shortName": "FUJI 6H"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "NOVEMBER",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 45 • NOV 04-08",
+        "events": [
+          {
+            "series": "wec",
+            "tag": "WEC",
+            "title": "8 Hours of Bahrain",
+            "time": "RACE: <span class=\"hl\">11:00</span>",
+            "track": "bahrain.svg",
+            "date": "2027-11-06T14:00:00+03:00",
+            "shortName": "BAHRAIN 8H"
           }
         ]
       }
