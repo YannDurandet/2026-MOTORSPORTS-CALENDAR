@@ -3863,7 +3863,15 @@
             "time": "RACE: <span class=\"hl\">15:00</span>",
             "track": "silverstone.svg",
             "date": "2026-08-09T15:00:00+02:00",
-            "shortName": "GREAT BRITAIN"
+            "shortName": "GREAT BRITAIN",
+            "results": [
+              {
+                "date": "2026-08-10",
+                "winner": "R. Fernandez",
+                "country": "ES",
+                "team": "TrackHouse"
+              }
+            ]
           },
           {
             "series": "btcc",
@@ -3872,7 +3880,30 @@
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
             "track": "knockhill.svg",
             "date": "2026-08-09T14:00:00+02:00",
-            "shortName": "KNOCKHILL"
+            "shortName": "KNOCKHILL",
+            "results": [
+              {
+                "date": "2026-08-10",
+                "race_label": "Race 1",
+                "winner": "A. Morgan",
+                "country": "GB",
+                "team": "Cataclean Plato Racing"
+              },
+              {
+                "date": "2026-08-10",
+                "race_label": "Race 2",
+                "winner": "A. Sutton",
+                "country": "GB",
+                "team": "NAPA Racing UK"
+              },
+              {
+                "date": "2026-08-10",
+                "race_label": "Race 3",
+                "winner": "T. Chilton",
+                "country": "GB",
+                "team": "Team VERTU"
+              }
+            ]
           },
           {
             "series": "sf",
@@ -3881,7 +3912,15 @@
             "time": "RACE: <span class=\"hl\">05:00</span>",
             "track": "sugo.svg",
             "date": "2026-08-09T07:00:00+02:00",
-            "shortName": "SUGO"
+            "shortName": "SUGO",
+            "results": [
+              {
+                "date": "2026-08-10",
+                "winner": "N. Fukuzumi",
+                "country": "JP",
+                "team": "NTT Docomo Business Rookie"
+              }
+            ]
           },
           {
             "series": "indycar",
@@ -3897,7 +3936,15 @@
               }
             ],
             "date": "2026-08-09T22:00:00+02:00",
-            "shortName": "PORTLAND"
+            "shortName": "PORTLAND",
+            "results": [
+              {
+                "date": "2026-08-10",
+                "winner": "A. Palou",
+                "country": "ES",
+                "team": "Chip Ganassi Racing"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -3906,7 +3953,15 @@
             "time": "RACE: <span class=\"hl\">21:30</span>",
             "track": "iowa.svg",
             "date": "2026-08-09T21:30:00+01:00",
-            "shortName": "IOWA"
+            "shortName": "IOWA",
+            "results": [
+              {
+                "date": "2026-08-10",
+                "winner": "T. Gibbs",
+                "country": "US",
+                "team": "Joe Gibbs Racing"
+              }
+            ]
           }
         ]
       },
