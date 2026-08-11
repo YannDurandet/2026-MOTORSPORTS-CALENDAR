@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
+import TripPlannerCard from '../../components/TripPlannerCard.astro';
 
 // Vite reads these at bundle time — no node:fs needed, works in Cloudflare Workers prerender
 const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
@@ -437,6 +438,7 @@ const sportsEventSchemas = [
           )}
         </div>
       )}
+      <TripPlannerCard city={venue.city} slug={slug} />
     </div><!-- /track-col-right -->
     </div><!-- /track-split -->
 

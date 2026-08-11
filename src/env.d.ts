@@ -1,5 +1,14 @@
 /// <reference types="astro/client" />
 
+interface ImportMetaEnv {
+  /** Set to "true" in Cloudflare Pages env vars once Awin programmes are approved. */
+  readonly PUBLIC_AFFILIATE_LINKS_ENABLED?: string;
+}
+
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
+
 interface Env {
   TURSO_DATABASE_URL: string;
   TURSO_AUTH_TOKEN: string;

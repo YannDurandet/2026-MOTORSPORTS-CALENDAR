@@ -1,0 +1,190 @@
+---
+/**
+ * TripPlannerCard — "Plan Your Trip" affiliate module for track detail pages.
+ *
+ * Renders three outbound links (GetYourGuide tours, Viator experiences, Trivago hotels)
+ * deep-linked to the circuit's city. When AFFILIATE_ENABLED=false (the default while
+ * Awin programmes are pending approval) links fall back to plain destination URLs.
+ * Flip PUBLIC_AFFILIATE_LINKS_ENABLED=true in Cloudflare Pages env vars to activate
+ * tracking across all 136 track pages in one redeploy.
+ */
+import { buildAwinLink, MERCHANTS, AFFILIATE_ENABLED } from '../lib/affiliates';
+
+interface Props {
+  /** City name pulled from tracks.json (e.g. "Melbourne", "Silverstone") */
+  city: string;
+  /** Track slug for per-page click tracking (e.g. "albert-park") */
+  slug: string;
+}
+
+const { city, slug } = Astro.props;
+const p = `track-${slug}`;
+
+const gygUrl = buildAwinLink(
+  `https://www.getyourguide.com/s/?q=${encodeURIComponent(city)}`,
+  MERCHANTS.GETYOURGUIDE_US,
+  `${p}-gyg`,
+);
+
+const viatorUrl = buildAwinLink(
+  `https://www.viator.com/search/${encodeURIComponent(city)}`,
+  MERCHANTS.VIATOR_US,
+  `${p}-viator`,
+);
+
+const trivagoUrl = buildAwinLink(
+  `https://www.trivago.com/en-US/odr/${encodeURIComponent(city)}/hotel`,
+  MERCHANTS.TRIVAGO_USA,
+  `${p}-trivago`,
+);
+
+// rel="sponsored" signals a commercial relationship to search engines —
+// only add it when the Awin tracking is actually live.
+const rel = AFFILIATE_ENABLED
+  ? 'sponsored noopener noreferrer'
+  : 'noopener noreferrer';
+---
+
+<div class="trip-planner">
+  <div class="tp-label">PLAN YOUR TRIP</div>
+  <div class="tp-links">
+
+    <a
+      href={gygUrl}
+      target="_blank"
+      rel={rel}
+      class="tp-link"
+      data-affiliate="getyourguide"
+      data-placement={`${p}-gyg`}
+    >
+      <span class="tp-icon" aria-hidden="true">🗺️</span>
+      <span class="tp-text">
+        <span class="tp-title">Tours &amp; Activities</span>
+        <span class="tp-sub">GetYourGuide · {city}</span>
+      </span>
+      <span class="tp-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a
+      href={viatorUrl}
+      target="_blank"
+      rel={rel}
+      class="tp-link"
+      data-affiliate="viator"
+      data-placement={`${p}-viator`}
+    >
+      <span class="tp-icon" aria-hidden="true">🎟️</span>
+      <span class="tp-text">
+        <span class="tp-title">Tours &amp; Experiences</span>
+        <span class="tp-sub">Viator · {city}</span>
+      </span>
+      <span class="tp-arrow" aria-hidden="true">↗</span>
+    </a>
+
+    <a
+      href={trivagoUrl}
+      target="_blank"
+      rel={rel}
+      class="tp-link"
+      data-affiliate="trivago"
+      data-placement={`${p}-trivago`}
+    >
+      <span class="tp-icon" aria-hidden="true">🏨</span>
+      <span class="tp-text">
+        <span class="tp-title">Find Hotels</span>
+        <span class="tp-sub">Trivago · {city}</span>
+      </span>
+      <span class="tp-arrow" aria-hidden="true">↗</span>
+    </a>
+
+  </div>
+</div>
+
+<style>
+  .trip-planner {
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    padding: 20px 24px;
+    margin-bottom: 2px;
+  }
+
+  .tp-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #445;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .tp-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tp-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tp-link:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .tp-link:first-child {
+    padding-top: 0;
+  }
+
+  .tp-link:hover .tp-title { color: var(--text-main); }
+  .tp-link:hover .tp-arrow { opacity: 0.7; }
+
+  .tp-icon {
+    font-size: 1rem;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+
+  .tp-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .tp-title {
+    font-size: 0.82rem;
+    color: #8a9499;
+    font-weight: 600;
+    transition: color 0.12s;
+  }
+
+  .tp-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    color: #445;
+    letter-spacing: 0.04em;
+  }
+
+  .tp-arrow {
+    font-size: 0.75rem;
+    color: #334;
+    flex-shrink: 0;
+    opacity: 0;
+    transition: opacity 0.12s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tp-link,
+    .tp-title,
+    .tp-arrow { transition: none; }
+  }
+</style>
