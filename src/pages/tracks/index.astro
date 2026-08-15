@@ -206,7 +206,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
           <!-- SVG Map -->
           <div
             class="track-svg-wrap"
-            style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.jpg'}')`}
+            style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.webp'}')`}
           >
             {venue.displaySvg ? (
               <img
