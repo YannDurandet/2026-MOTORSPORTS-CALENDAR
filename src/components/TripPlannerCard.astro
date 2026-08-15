@@ -15,10 +15,17 @@ interface Props {
   city: string;
   /** Track slug for per-page click tracking (e.g. "albert-park") */
   slug: string;
+  /**
+   * Optional override for the hotel search only. Pass the track's
+   * `logistics.accommodation_hub` (via accommodationQuery) so Trivago targets
+   * where fans actually sleep — Haarlem, not Zandvoort. Defaults to `city`.
+   */
+  hotelQuery?: string;
 }
 
-const { city, slug } = Astro.props;
+const { city, slug, hotelQuery } = Astro.props;
 const p = `track-${slug}`;
+const stayIn = hotelQuery?.trim() || city;
 
 const gygUrl = buildAwinLink(
   `https://www.getyourguide.com/s/?q=${encodeURIComponent(city)}`,
@@ -33,7 +40,7 @@ const viatorUrl = buildAwinLink(
 );
 
 const trivagoUrl = buildAwinLink(
-  `https://www.trivago.com/en-US/odr/${encodeURIComponent(city)}/hotel`,
+  `https://www.trivago.com/en-US/odr/${encodeURIComponent(stayIn)}/hotel`,
   MERCHANTS.TRIVAGO_USA,
   `${p}-trivago`,
 );
@@ -92,7 +99,7 @@ const rel = AFFILIATE_ENABLED
       <span class="tp-icon" aria-hidden="true">🏨</span>
       <span class="tp-text">
         <span class="tp-title">Find Hotels</span>
-        <span class="tp-sub">Trivago · {city}</span>
+        <span class="tp-sub">Trivago · {stayIn}</span>
       </span>
       <span class="tp-arrow" aria-hidden="true">↗</span>
     </a>

@@ -2,6 +2,8 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import TripPlannerCard from '../../components/TripPlannerCard.astro';
+import GettingThereCard from '../../components/GettingThereCard.astro';
+import { accommodationQuery } from '../../lib/affiliates';
 
 // Vite reads these at bundle time — no node:fs needed, works in Cloudflare Workers prerender
 const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
@@ -30,6 +32,13 @@ import calendarData from '../../../data/calendar.json';
 import seriesContentData from '../../../data/seriesContent.json';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
+type Logistics = {
+  nearest_airport: string;
+  transport: string;
+  accommodation_hub: string;
+  travel_tip: string;
+  affiliate_hooks: string[];
+};
 type Venue = {
   slug: string;
   name: string;
@@ -43,6 +52,7 @@ type Venue = {
   overview?: string;
   history?: string;
   notable_moments?: string;
+  logistics?: Logistics;
 };
 
 export function getStaticPaths() {
@@ -438,7 +448,12 @@ const sportsEventSchemas = [
           )}
         </div>
       )}
-      <TripPlannerCard city={venue.city} slug={slug} />
+      {venue.logistics && <GettingThereCard logistics={venue.logistics} />}
+      <TripPlannerCard
+        city={venue.city}
+        slug={slug}
+        hotelQuery={accommodationQuery(venue.logistics?.accommodation_hub, venue.city)}
+      />
     </div><!-- /track-col-right -->
     </div><!-- /track-split -->
 

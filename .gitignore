@@ -7,6 +7,10 @@ dist/
 # astro
 .astro/
 
+# cloudflare / wrangler — local Miniflare state and generated deploy config.
+# Regenerated on every `wrangler dev`; nothing here belongs in the repo.
+.wrangler/
+
 # environment
 .env
 .env.*
@@ -21,5 +25,5 @@ dist/
 Thumbs.db
 
 #internal
-agents-tasks/
-Claude.md
+agent-tasks/
+CLAUDE.md

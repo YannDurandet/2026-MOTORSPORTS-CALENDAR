@@ -9,6 +9,7 @@ import calendarData from '../../../data/calendar.json';
 import seriesRaces from '../../../data/series.json';
 import tracksData from '../../../data/tracks.json';
 import standingsData from '../../../data/standings.json';
+import { seriesOgImage } from '../../lib/seriesImages';
 import { flagSrc, countryName } from '../../lib/results';
 
 export function getStaticPaths() {
@@ -32,21 +33,7 @@ const filteredMonths = (calendarData as any[])
   }))
   .filter((month: any) => month.weeks.length > 0);
 
-// OG image mapping
-const seriesImages: Record<string, string> = {
-  'f1':'f1-series-bg.webp','f1a':'f1a-series-bg.webp','fe':'fe-series-bg.webp',
-  'sf':'sf-series-bg.webp','wec':'wec-series-bg.webp','imsa':'imsa-series-bg.webp',
-  'wrc':'wrc-series-bg.webp','erc':'erc-series-bg.webp','indycar':'indycar-series-bg.webp',
-  'nascar':'nascar-series-bg.webp','motogp':'motogp-series-bg.webp','wsbk':'wsbk-series-bg.webp',
-  'dtm':'dtm-series-bg.webp','btcc':'btcc-series-bg.webp','supercars':'scc-series-bg.webp',
-  'elms':'elms-series-bg.webp','gtwce':'gtwce-series-bg.webp','gtwca':'gtwca-series-bg.webp',
-  'nls':'nls-series-bg.webp','igtc':'igtc-series-bg.webp','tcr':'tcr-series-bg.webp',
-  'h24eu':'24h-series-bg.webp','psc':'psc-series-bg.webp','bgt':'bgtc-series-bg.webp','eurx':'erx-series-bg.webp',
-  'alms':'alms-series-bg.webp',
-};
-const ogImage = seriesImages[slug]
-  ? `https://dord.racing/assets/series-grid-images/${seriesImages[slug]}`
-  : undefined;
+const ogImage = seriesOgImage(slug);
 
 // JSON-LD data
 const races = (seriesRaces as any)[slug] ?? [];

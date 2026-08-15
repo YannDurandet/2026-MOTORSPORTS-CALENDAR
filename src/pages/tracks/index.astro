@@ -421,12 +421,12 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   /* ─── Grid ─────────────────────────────────────────────────────────────── */
   .tracks-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
 
   @media (max-width: 900px) {
-    .tracks-grid { grid-template-columns: repeat(2, 1fr); }
+    .tracks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 
   @media (max-width: 560px) {
@@ -442,9 +442,12 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     flex-direction: column;
     transition: border-color 0.15s;
     position: relative;
-    /* Skip rendering work for off-screen cards (~130 in the grid) */
+    /* Skip rendering work for off-screen cards (~130 in the grid).
+       Only the block axis gets a placeholder size — a placeholder *width*
+       would become each column's min-content floor and blow out the grid. */
     content-visibility: auto;
-    contain-intrinsic-size: auto 420px;
+    contain-intrinsic-width: none;
+    contain-intrinsic-height: auto 420px;
   }
 
   .track-card:hover {

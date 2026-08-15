@@ -62,3 +62,51 @@ export function buildAwinLink(
   url += `&ued=${encodeURIComponent(destinationUrl)}`;
   return url;
 }
+
+// ── Accommodation targeting ────────────────────────────────────────────────────
+
+/**
+ * Derives a hotel-search destination from a track's `logistics.accommodation_hub`.
+ *
+ * The hub is deliberately NOT the venue city on many tracks — fans base in
+ * Haarlem for Zandvoort, Milton Keynes for Silverstone, Nagoya for Suzuka — so
+ * searching the hub converts far better than searching the circuit's town.
+ *
+ * The field is prose ("Haarlem — 20 minutes by train and far better value…"),
+ * so we take the first named place and drop the explanatory clause. Anything
+ * that doesn't look like a place name (too long, too many words, or a phrase
+ * like "On-site camping is the norm") falls back to `fallbackCity`, which is
+ * always safe.
+ *
+ * @param hub          logistics.accommodation_hub, if present.
+ * @param fallbackCity venue.city — used whenever extraction is not confident.
+ */
+export function accommodationQuery(
+  hub: string | undefined | null,
+  fallbackCity: string,
+): string {
+  if (!hub) return fallbackCity;
+
+  const head = hub
+    .replace(/\([^)]*\)/g, ' ')        // drop parentheticals: "(Eixample or Gràcia)"
+    .split(/[—–;]|\s-\s/)[0]           // drop the explanatory clause after the dash
+    .split(/\s+(?:or|and)\s+/i)[0]     // first named place only
+    .split(',')[0]
+    .replace(/\s+for\b[\s\S]*$/i, '')  // "Concord and Kannapolis for proximity"
+    .replace(/\s+/g, ' ')
+    .trim()
+    // Trailing filler that weakens a hotel search. Runs after whitespace is
+    // normalised so the `$` anchors actually bite. Deliberately does NOT strip
+    // a bare "city"/"town" — that would turn "Kansas City" into "Kansas".
+    .replace(/^\S+'s\s+/, '')          // "Goiânia's Setor Bueno" → "Setor Bueno"
+    .replace(/\s+(?:city|town)\s+cent(?:re|er)$/i, '')
+    .replace(/\s+(?:cent(?:re|er)|village|itself)$/i, '')
+    .trim();
+
+  const words = head ? head.split(' ') : [];
+  if (!head || words.length > 4 || head.length > 34) return fallbackCity;
+  // "On-site camping is the norm", "The on-site hotel overlooks the circuit"
+  if (/^(on[- ]site|the)$/i.test(words[0])) return fallbackCity;
+
+  return head;
+}

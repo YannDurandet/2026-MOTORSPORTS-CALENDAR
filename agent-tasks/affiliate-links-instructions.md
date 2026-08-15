@@ -1,109 +1,135 @@
-# DORD — Affiliate Links Integration
-## Instructions for Coding Claude
+# DORD — Affiliate Links
+## Current implementation
+
+_Last updated: 2026-08-15_
+
+> **History:** an earlier version of this file specified a Motorsport Tickets
+> integration (Awin merchant `21865`) with a `<TicketsButton />` component, a
+> `hasTickets` series flag and an `AWIN_PUBLISHER_ID` env var. **None of that was
+> built.** A different set of partners shipped instead. This file now documents
+> what actually exists — treat it as the source of truth, not as a plan.
 
 ---
 
-## CONTEXT
+## WHAT IS LIVE
 
-DORD is enrolled (pending approval) in the Motorsport Tickets affiliate program via AWIN (Merchant ID 21865). Once approved, links should use the AWIN deeplink format:
+| Piece | Location |
+|---|---|
+| Link builder + merchant IDs | `src/lib/affiliates.ts` |
+| "Plan Your Trip" module | `src/components/TripPlannerCard.astro` |
+| "Getting There" logistics module | `src/components/GettingThereCard.astro` |
+| Rendered on | `/tracks/[slug]` — right column, all 136 tracks |
 
+### Merchants (Awin)
+
+```ts
+export const AWIN_AFFILIATE_ID = '2961799';
+
+export const MERCHANTS = {
+  GETYOURGUIDE_US: 18925,   // Tours & Activities
+  VIATOR_US:       11018,   // Tours & Experiences
+  TRIVAGO_USA:     66034,   // Hotels
+} as const;
 ```
-https://www.awin1.com/cread.php?awinmid=21865&awinaffid=YOUR_PUBLISHER_ID&clickref=&ued=ENCODED_TARGET_URL
+
+All three programmes are **pending approval**. There is no car-rental or flight
+programme yet — see *Next steps*.
+
+### The kill switch
+
+```ts
+export const AFFILIATE_ENABLED =
+  import.meta.env.PUBLIC_AFFILIATE_LINKS_ENABLED === 'true';
 ```
 
-Replace `YOUR_PUBLISHER_ID` with the AWIN publisher ID from DRNDT STUDIO's account.
-Replace `ENCODED_TARGET_URL` with `encodeURIComponent("https://www.motorsporttickets.com/...")`.
+Default is `false`. While disabled, `buildAwinLink()` returns the plain
+destination URL, so the module stays useful to visitors and sets no tracking
+cookie. To go live: set `PUBLIC_AFFILIATE_LINKS_ENABLED=true` in Cloudflare Pages
+(Settings → Environment Variables → Production) and redeploy. **No code change.**
 
-**Until AWIN is approved:** render the CTA using the direct Motorsport Tickets URL with no affiliate tracking, so the feature is live and functional. Swap to affiliate links once approved — only the `href` changes.
+`rel="sponsored"` is applied only when tracking is actually on — a plain
+untracked link is not a paid placement and should not be marked as one.
 
----
+### Click tracking
 
-## WHERE TO ADD CTAs
-
-### 1. Series pages `/series/[id]`
-- Add a "Get Tickets" button in the page header alongside the series name
-- This links to Motorsport Tickets' search results for that series:
-  `https://www.motorsporttickets.com/search?q=[series+name]`
-- Show only for series that Motorsport Tickets actually sells — don't show for purely broadcast-only series (e.g., IndyCar may have limited ticket inventory)
-- Priority series to enable first: F1, MotoGP, WEC, WorldSBK, DTM, Formula E, GT World Challenge
-
-### 2. Race event entries in the calendar `/`
-- Add a small "🎟 Tickets" link/pill next to each event row where tickets are likely available
-- Link to: `https://www.motorsporttickets.com/search?q=[circuit+name]+[year]`
-- Don't show for: street circuits where tickets aren't sold (e.g., some Formula E venues), circuits with no known Motorsport Tickets inventory
-
-### 3. Track pages `/tracks/[id]`
-- Add a "Get tickets for events at [Circuit Name]" CTA in the page sidebar or below the circuit stats
-- Link to: `https://www.motorsporttickets.com/search?q=[circuit+name]`
+`clickref` convention is `track-{slug}-{partner}`, e.g. `track-albert-park-gyg`.
+That gives per-track attribution in Awin reporting across all 136 pages.
 
 ---
 
-## AFFILIATE DISCLOSURE (REQUIRED)
+## HOTEL TARGETING — the important bit
 
-French and EU law (and standard affiliate practice) requires disclosure. Add this near every affiliate CTA:
+The Trivago link does **not** search the venue city. It searches the track's
+`logistics.accommodation_hub` from `data/tracks.json`, via `accommodationQuery()`
+in `src/lib/affiliates.ts`.
+
+This matters because the two are frequently different, and the hub is where fans
+actually book:
+
+| Track | `city` | Hotel search |
+|---|---|---|
+| Zandvoort | Zandvoort | **Haarlem** |
+| Silverstone | Silverstone | **Milton Keynes** |
+| Suzuka | Suzuka | **Nagoya** |
+| Monza | Monza | **Milan** |
+| Sachsenring | Hohenstein-Ernstthal | **Chemnitz** |
+
+85 of 136 tracks resolve to a hub different from the venue city. The other 51
+fall back to `venue.city`, which is always safe.
+
+`accommodation_hub` is prose, so `accommodationQuery()` extracts the first named
+place and bails to `city` whenever the result doesn't look like a place name.
+If you change the shape of that field, re-check the extraction.
+
+---
+
+## DISCLOSURE
+
+Currently disclosed in two places:
+
+- `src/components/Footer.astro` — site-wide line: *"Some links are affiliate
+  links — we may earn a commission at no cost to you."*
+- `/legal/tos` §3 and `/legal/privacy` §4 — full explanation, cookie duration,
+  and the statement that affiliate relationships don't influence editorial.
+
+**Known gap:** there is no disclosure adjacent to the Trip Planner links
+themselves. Best practice (and the stricter reading of EU/French rules) is a
+visible notice next to the CTA, not only in the footer. This is low-risk while
+`AFFILIATE_ENABLED=false`, because no commission is possible. **Add an inline
+notice before flipping the switch:**
 
 ```html
 <span class="affiliate-notice">
-  Affiliate link — DORD may earn a commission at no cost to you.
+  Affiliate links — we may earn a commission at no cost to you.
 </span>
 ```
 
-CSS: small, muted text (10-11px), `color: var(--text-muted)`, displayed inline or below the button. Not intrusive, just visible.
-
-Do NOT bury the disclosure in a footer or a separate page — it must be near the link itself.
-
----
-
-## IMPLEMENTATION
-
-### Component: `<TicketsButton />`
-
-Create a reusable component:
-
-```tsx
-// components/TicketsButton.astro (or .tsx)
-interface Props {
-  query: string;          // search term to pass to Motorsport Tickets
-  label?: string;         // default: "Get Tickets"
-  size?: "sm" | "md";
-}
-
-const AWIN_MID = "21865";
-const AWIN_AFF = import.meta.env.AWIN_PUBLISHER_ID ?? "";  // env var
-
-const { query, label = "Get Tickets", size = "md" } = Astro.props;
-
-const target = `https://www.motorsporttickets.com/search?q=${encodeURIComponent(query)}`;
-
-// If AWIN publisher ID is set, use affiliate link; otherwise use direct link
-const href = AWIN_AFF
-  ? `https://www.awin1.com/cread.php?awinmid=${AWIN_MID}&awinaffid=${AWIN_AFF}&ued=${encodeURIComponent(target)}`
-  : target;
-```
-
-Add `AWIN_PUBLISHER_ID` to `.env` and `.env.example`. Set it to empty string for now; fill in when AWIN approves.
-
-### Data flag: `hasTickets`
-
-Add a boolean `hasTickets: true/false` to each series data object to control whether the button renders. Start with these as `true`:
-- f1, motogp, wec, worldsbk, dtm, gt-world-challenge, formula-e, imsa
-
-Everything else defaults to `false` until confirmed.
+Small, muted (10–11px, `color: #7a8fa0` to stay AA-legible on `--card-bg`),
+directly under `.tp-links`.
 
 ---
 
 ## WHAT NOT TO DO
 
-- Don't add affiliate links to content/editorial posts — only to calendar/track/series pages where the intent is clearly "I want to go to this event"
-- Don't auto-generate deep links to specific event pages yet — Motorsport Tickets' URL structure may not be stable; use search links for now
-- Don't add a "Book Hotels" or "Book Flights" CTA yet — those programs aren't set up
+- Don't put affiliate links in editorial content (Pit Wall posts, track bios).
+  Keep them on calendar / track / series pages where intent is "I want to go".
+- Don't add a second competing set of outbound links to a track page. The
+  `affiliate_hooks` chips in `GettingThereCard` are deliberately **not** links —
+  two modules competing for the same click cannibalise each other.
+- Don't hand-build Awin URLs. Always go through `buildAwinLink()` so the kill
+  switch and `clickref` convention hold.
+- Don't mark untracked links `rel="sponsored"`.
 
 ---
 
-## FUTURE: RALLY.TV STREAMING LINKS
+## NEXT STEPS
 
-If Rally.TV approves the affiliate application, add a "Watch Live" CTA to:
-- `/series/wrc`, `/series/erc`, `/series/euro-rx`
-- Event entries for those series in the calendar
-
-Same pattern: `<WatchButton />` component, env var for affiliate ID, disclosure label.
+1. **Get the three programmes approved**, then flip
+   `PUBLIC_AFFILIATE_LINKS_ENABLED=true`. Add the inline disclosure first.
+2. **Car rental + flights have no programme.** Every track's
+   `logistics.affiliate_hooks` already carries the search intent
+   (e.g. `"Melbourne car rental"`, `"Flights to Melbourne"`). When those
+   programmes are approved, add the IDs to `MERCHANTS` and turn the chips in
+   `GettingThereCard.astro` into links — the data is already there.
+3. **Ticketing was never built.** If revisited, note that Motorsport Tickets'
+   per-event URL structure is unstable; search URLs are the safer target.

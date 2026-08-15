@@ -6,10 +6,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "check": "node scripts/check-data.mjs && node scripts/gen-track-map-status.mjs --check",
     "gen:series": "node scripts/gen-series.mjs",
     "gen:pitwall": "node scripts/gen-pitwall.mjs",
-    "test:unsub": "node scripts/test-unsub-token.mjs",
-    "check": "node scripts/check-data.mjs"
+    "gen:icons": "node scripts/gen-icons.mjs",
+    "gen:track-pngs": "node scripts/export-track-pngs.mjs",
+    "gen:map-status": "node scripts/gen-track-map-status.mjs",
+    "results": "node scripts/results.mjs",
+    "results:gaps": "node scripts/find-gaps.mjs",
+    "times:prompt": "node scripts/gen-time-prompt.mjs",
+    "times:apply": "node scripts/apply-times.mjs",
+    "test:unsub": "node scripts/test-unsub-token.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.1.1",
