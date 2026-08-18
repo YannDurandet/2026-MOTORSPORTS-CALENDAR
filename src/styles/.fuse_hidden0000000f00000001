@@ -1531,7 +1531,7 @@ a {
     border: none;
     cursor: pointer;
     padding: 4px;
-    color: #7a8fa0;
+    color: #445;
     transition: color 0.2s;
     display: inline-flex;
     align-items: center;
@@ -2174,7 +2174,7 @@ a {
     justify-content: center;
     font-family: 'Roboto Mono', monospace;
     font-size: 0.65rem;
-    color: #7a8fa0;
+    color: #445;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     border: 1px dashed #1c2a35;

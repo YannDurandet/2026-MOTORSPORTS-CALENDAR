@@ -118,7 +118,7 @@ const rel = AFFILIATE_ENABLED
   .tp-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.6rem;
-    color: #7a8fa0;
+    color: #445;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 14px;
@@ -177,7 +177,7 @@ const rel = AFFILIATE_ENABLED
   .tp-sub {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.62rem;
-    color: #7a8fa0;
+    color: #445;
     letter-spacing: 0.04em;
   }
 

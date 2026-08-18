@@ -331,7 +331,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     .search-result-sub {
       font-family: 'Roboto Mono', monospace;
       font-size: 0.62rem;
-      color: #7a8fa0;
+      color: #445;
       letter-spacing: 0.03em;
       white-space: nowrap;
       overflow: hidden;
@@ -443,7 +443,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     .cookie-btn--decline {
-      color: #7a8fa0;
+      color: #445;
       border-color: #1a2530;
     }
     .cookie-btn--decline:hover {

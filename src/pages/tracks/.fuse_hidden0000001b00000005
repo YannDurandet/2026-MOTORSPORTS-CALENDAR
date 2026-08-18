@@ -540,27 +540,9 @@ const sportsEventSchemas = [
     min-width: 0;
   }
 
-  /* Sticky only while the column still fits on screen. Since the Getting There
-     card was added the column often exceeds the viewport, and a taller-than-
-     viewport sticky element pins its top and leaves the bottom (the Trip
-     Planner links) permanently out of reach. Scrolling its own overflow keeps
-     everything reachable. */
   .track-col-right {
     position: sticky;
     top: 24px;
-    max-height: calc(100vh - 48px);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    overscroll-behavior: contain;
-  }
-
-  /* No sticky, no clipping, on short viewports. */
-  @media (max-height: 700px) {
-    .track-col-right {
-      position: static;
-      max-height: none;
-      overflow-y: visible;
-    }
   }
 
   /* In the narrow left column: square hero, single-col meta */
@@ -655,7 +637,7 @@ const sportsEventSchemas = [
     font-size: 0.55rem;
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #7a8fa0;
+    color: #445;
     background: rgba(0, 0, 0, 0.55);
     border: 1px solid #334;
     border-radius: 3px;
@@ -726,7 +708,7 @@ const sportsEventSchemas = [
   .spec-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.55rem;
-    color: #7a8fa0;
+    color: #445;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -823,7 +805,7 @@ const sportsEventSchemas = [
   .section-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.6rem;
-    color: #7a8fa0;
+    color: #445;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 14px;
@@ -841,7 +823,7 @@ const sportsEventSchemas = [
   .layout-id {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.6rem;
-    color: #7a8fa0;
+    color: #445;
     letter-spacing: 0.08em;
     min-width: 36px;
   }
@@ -868,7 +850,7 @@ const sportsEventSchemas = [
   .ev-date {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.65rem;
-    color: #7a8fa0;
+    color: #445;
     min-width: 52px;
     flex-shrink: 0;
   }
@@ -896,7 +878,7 @@ const sportsEventSchemas = [
 
   .no-events {
     font-size: 0.75rem;
-    color: #7a8fa0;
+    color: #445;
     font-style: italic;
     margin: 0;
   }
@@ -924,7 +906,7 @@ const sportsEventSchemas = [
   .res-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.6rem;
-    color: #7a8fa0;
+    color: #445;
     letter-spacing: 0.06em;
     min-width: 80px;
     flex-shrink: 0;

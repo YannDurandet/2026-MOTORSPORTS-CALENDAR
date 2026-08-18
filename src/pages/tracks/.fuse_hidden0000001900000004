@@ -1,0 +1,629 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/Nav.astro';
+import Banner from '../../components/Banner.astro';
+import Footer from '../../components/Footer.astro';
+
+// SVGs are served as cleaned files by /track-svg/[file].svg and loaded as
+// lazy <img>s — inlining all ~130 maps made tracks.html ~640 KB. The glob is
+// only used (non-eager) to know which files exist at build time.
+const svgFiles = new Set(
+  Object.keys(import.meta.glob('/public/assets/track-maps/*.svg')).map(k => k.split('/').pop()!)
+);
+
+const LAYOUT_DISPLAY: Record<string, string> = {
+  motogp: 'MotoGP', f1: 'F1', fe: 'FE', wsbk: 'WSBK', nascar: 'NASCAR',
+  gp: 'GP', national: 'National', indy: 'Indy', oval: 'Oval', road: 'Road',
+  full: 'Full', international: 'International', foster: 'Foster', island: 'Island',
+};
+const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
+
+import tracksRaw from '../../../data/tracks.json';
+import calendarData from '../../../data/calendar.json';
+import { showOnTrackPages } from '../../lib/season';
+
+// --- Build event lookup: calendarSvgFilename → [{series, tag, title, week}] ---
+type CalEvent = { series: string; tag: string; title: string; week: string };
+const eventsBySvg: Record<string, CalEvent[]> = {};
+
+for (const month of calendarData as any[]) {
+  if (!showOnTrackPages(month)) continue;   // 2027 lives on the main calendar only
+  for (const week of month.weeks) {
+    for (const ev of week.events) {
+      if (ev.track && ev.track !== 'tbc.svg' && ev.track !== 'tbd.svg') {
+        if (!eventsBySvg[ev.track]) eventsBySvg[ev.track] = [];
+        eventsBySvg[ev.track].push({
+          series: ev.series,
+          tag: ev.tag,
+          title: ev.title,
+          week: week.label,
+        });
+      }
+    }
+  }
+}
+
+// --- Format week label: "• MAY 8-10" → "MAY 8" ---
+function shortDate(label: string): string {
+  const m = label.match(/•\s*([A-Z]{3})\s+(\d{1,2})/);
+  return m ? `${m[1]} ${m[2]}` : label.replace('•', '').trim();
+}
+
+// --- Process venues ---
+
+type Layout = { id: string; label: string; calendarSvgs: string[] };
+type Venue = {
+  slug: string;
+  name: string;
+  city: string;
+  country: string;
+  continent: string;
+  browserSvg: string;
+  calendarSvgs: string[];
+  layouts?: Layout[];
+  type?: string;
+};
+
+type LayoutBtn = { id: string; file: string };
+
+type ProcessedVenue = Venue & {
+  hasSvg: boolean;
+  displaySvg: string | null;
+  events: Array<CalEvent & { layoutId: string | null }>;
+  eventCount: number;
+  type?: string;
+  layoutBtns: LayoutBtn[];
+};
+
+const venues: ProcessedVenue[] = [];
+
+for (const venue of tracksRaw as Venue[]) {
+  // Gather events from all calendarSvgs for this venue
+  const events: Array<CalEvent & { layoutId: string | null }> = [];
+  for (const csvg of venue.calendarSvgs) {
+    const evs = eventsBySvg[csvg] || [];
+    let layoutId: string | null = null;
+    if (venue.layouts) {
+      const match = venue.layouts.find(l => l.calendarSvgs.includes(csvg));
+      layoutId = match ? match.id : null;
+    }
+    for (const ev of evs) {
+      // Deduplicate: same series+title combo across multi-layout events can repeat
+      const isDupe = events.some(e => e.series === ev.series && e.title === ev.title && e.week === ev.week);
+      if (!isDupe) events.push({ ...ev, layoutId });
+    }
+  }
+
+  const hasSvg = !!venue.browserSvg && svgFiles.has(venue.browserSvg);
+
+  const layoutBtns: LayoutBtn[] = (venue.layouts && venue.layouts.length > 1)
+    ? venue.layouts
+        .map(l => ({ id: l.id, file: l.calendarSvgs[0] }))
+        .filter(l => l.file && svgFiles.has(l.file))
+    : [];
+
+  const displaySvg = layoutBtns.length > 1
+    ? layoutBtns[0].file
+    : (hasSvg ? venue.browserSvg : null);
+
+  venues.push({ ...venue, hasSvg, displaySvg, events, eventCount: events.length, layoutBtns });
+}
+
+const continentLabels: Record<string, string> = {
+  'europe': 'Europe',
+  'north-america': 'North America',
+  'asia': 'Asia',
+  'middle-east': 'Middle East',
+  'south-america': 'South America',
+  'oceania': 'Oceania',
+};
+
+const totalVenues = venues.length;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Type filter data
+const TYPE_ORDER = ['permanent', 'street', 'oval', 'mixed'] as const;
+const TYPE_LABELS: Record<string, string> = {
+  permanent: 'Permanent',
+  street: 'Street',
+  oval: 'Oval',
+  mixed: 'Mixed',
+};
+const typeCounts = Object.fromEntries(
+  TYPE_ORDER.map(t => [t, venues.filter(v => v.type === t).length])
+);
+const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
+---
+
+<BaseLayout
+  title="Track Browser · 2026 Motorsport Calendar"
+  description="Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts."
+  canonicalUrl="https://dord.racing/tracks"
+  ogImage="https://dord.racing/assets/og/og-tracks.webp"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": "Track Browser", "item": "https://dord.racing/tracks" }
+      ]
+    })} />
+  </Fragment>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>2026 Track Browser</h1>
+      <p class="header--page-desc">Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts.</p>
+      <div class="meta">
+        {totalVenues} CIRCUITS · {venues.filter(v => v.hasSvg).length} MAPPED · EXCLUDES RALLY STAGES
+      </div>
+      <Nav activePage="tracks" />
+    </div>
+  </header>
+
+  <main id="main-content" class="tracks-page">
+
+    <!-- Filters -->
+    <div class="filter-panel">
+      <div class="filter-row" id="continent-filter" role="group" aria-label="Filter by continent">
+        <span class="filter-dim">Region</span>
+        <div class="filter-btns">
+          <button class="cf-btn active" data-continent="all" aria-pressed="true">All <span class="cf-count">{totalVenues}</span></button>
+          {Object.entries(continentLabels).map(([key, label]) => {
+            const count = venues.filter(v => v.continent === key).length;
+            return count > 0 ? (
+              <button class="cf-btn" data-continent={key} aria-pressed="false">
+                {label} <span class="cf-count">{count}</span>
+              </button>
+            ) : null;
+          })}
+        </div>
+      </div>
+      <div class="filter-divider"></div>
+      <div class="filter-row" id="type-filter" role="group" aria-label="Filter by track type">
+        <span class="filter-dim">Type</span>
+        <div class="filter-btns">
+          <button class="cf-btn active" data-type="all" aria-pressed="true">All</button>
+          {availableTypes.map(t => (
+            <button class="cf-btn" data-type={t} aria-pressed="false">
+              {TYPE_LABELS[t]} <span class="cf-count">{typeCounts[t]}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Track grid -->
+    <div class="tracks-grid" id="tracks-grid">
+      {venues.map(venue => (
+        <div
+          class:list={["track-card", { "no-svg": !venue.hasSvg }]}
+          data-continent={venue.continent}
+          data-type={venue.type ?? 'other'}
+        >
+          <a href={`${base}/tracks/${venue.slug}`} class="card-link" aria-label={venue.name}></a>
+          <!-- SVG Map -->
+          <div
+            class="track-svg-wrap"
+            style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.webp'}')`}
+          >
+            {venue.displaySvg ? (
+              <img
+                class="track-svg-img"
+                src={`${base}/track-svg/${venue.displaySvg}`}
+                alt={`${venue.name} track layout`}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <div class="svg-placeholder">{venue.name}</div>
+            )}
+            {venue.layoutBtns.length > 1 && (
+              <div class="layout-btns">
+                {venue.layoutBtns.map((l, i) => (
+                  <button
+                    class={`layout-btn${i === 0 ? ' active' : ''}`}
+                    data-layout-src={`${base}/track-svg/${l.file}`}
+                    aria-pressed={i === 0 ? 'true' : 'false'}
+                  >
+                    {layoutLabel(l.id)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <!-- Info -->
+          <div class="track-info">
+            <div class="track-name">{venue.name}</div>
+            <div class="track-location">{venue.city} · {venue.country}</div>
+
+            {venue.events.length > 0 ? (
+              <div class="track-events">
+                {venue.events.map(ev => (
+                  <div
+                    class="track-ev-row"
+                    data-layout-id={ev.layoutId ?? undefined}
+                  >
+                    <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
+                    <span class="track-ev-title">{ev.title}</span>
+                    <span class="track-ev-date">{shortDate(ev.week)}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div class="track-no-events">No events this season</div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Empty state (shown by JS when filter returns 0 results) -->
+    <div class="tracks-empty" id="tracks-empty" hidden>
+      No tracks with SVG maps yet for this region.
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // ─── Filter state ─────────────────────────────────────────────────────────
+  let activeContinent = 'all';
+  let activeType = 'all';
+
+  const grid = document.getElementById('tracks-grid');
+  const emptyEl = document.getElementById('tracks-empty');
+
+  function applyTrackFilters() {
+    let visible = 0;
+    grid?.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
+      const matchC = activeContinent === 'all' || card.dataset.continent === activeContinent;
+      const matchT = activeType === 'all' || card.dataset.type === activeType;
+      const show = matchC && matchT;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (emptyEl) emptyEl.hidden = visible > 0;
+  }
+
+  // ─── Continent filter ─────────────────────────────────────────────────────
+  const continentEl = document.getElementById('continent-filter');
+  continentEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      continentEl.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      activeContinent = btn.dataset.continent ?? 'all';
+      applyTrackFilters();
+    });
+  });
+
+  // ─── Type filter ──────────────────────────────────────────────────────────
+  const typeEl = document.getElementById('type-filter');
+  typeEl?.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      typeEl.querySelectorAll<HTMLButtonElement>('.cf-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+      activeType = btn.dataset.type ?? 'all';
+      applyTrackFilters();
+    });
+  });
+
+  // ─── Layout button switching (swaps the lazy-loaded map image) ───────────
+  document.querySelectorAll<HTMLElement>('.track-card').forEach(card => {
+    const img  = card.querySelector<HTMLImageElement>('.track-svg-img');
+    const btns = card.querySelectorAll<HTMLButtonElement>('.layout-btn');
+    if (!img || btns.length < 2) return;
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        e.stopPropagation();
+        img.src = btn.dataset.layoutSrc!;
+        btns.forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+      });
+    });
+  });
+</script>
+
+<style>
+  /* ─── Page layout ──────────────────────────────────────────────────────── */
+  .tracks-page {
+    padding: 0 24px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* ─── Filter panel ────────────────────────────────────────────────────── */
+  .filter-panel {
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  .filter-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 12px 16px;
+  }
+
+  .filter-dim {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #7a8fa0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    width: 42px;
+    flex-shrink: 0;
+    padding-top: 7px;
+  }
+
+  .filter-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .filter-divider {
+    height: 1px;
+    background: var(--border);
+  }
+
+  .cf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #8a9aaa;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+
+  .cf-btn:hover {
+    border-color: #556;
+    color: #bbb;
+  }
+
+  .cf-btn.active {
+    background: #fff;
+    border-color: #fff;
+    color: #000;
+  }
+
+  .cf-count {
+    font-size: 0.6rem;
+    opacity: 0.55;
+  }
+
+  .cf-btn.active .cf-count {
+    opacity: 0.45;
+  }
+
+  /* ─── Grid ─────────────────────────────────────────────────────────────── */
+  .tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .tracks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 560px) {
+    .tracks-grid { grid-template-columns: 1fr; }
+    .tracks-page { padding: 0 12px 60px; }
+  }
+
+  /* ─── Card ─────────────────────────────────────────────────────────────── */
+  .track-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.15s;
+    position: relative;
+    /* Skip rendering work for off-screen cards (~130 in the grid).
+       Only the block axis gets a placeholder size — a placeholder *width*
+       would become each column's min-content floor and blow out the grid. */
+    content-visibility: auto;
+    contain-intrinsic-width: none;
+    contain-intrinsic-height: auto 420px;
+  }
+
+  .track-card:hover {
+    border-color: #2e3f50;
+  }
+
+  /* Stretched link covers the full card; series badge links sit above it */
+  .card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .track-ev-row .tag {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─── SVG area ─────────────────────────────────────────────────────────── */
+  .track-svg-wrap {
+    position: relative;
+    background: var(--bg);
+    background-size: cover;
+    background-position: center;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    aspect-ratio: 5 / 3;
+  }
+
+  /* Maps load as <img> from /track-svg/ (stroke weight is baked in there) */
+  .track-svg-img {
+    width: 100%;
+    height: 100%;
+    max-width: 260px;
+    max-height: 260px;
+    object-fit: contain;
+  }
+
+  .layout-btns {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    gap: 3px;
+    z-index: 2;
+  }
+
+  .layout-btn {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #7a8fa0;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #445;
+    border-radius: 2px;
+    padding: 3px 6px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    position: relative;
+    z-index: 2;
+  }
+
+  .layout-btn:hover {
+    color: #778;
+    border-color: #556;
+  }
+
+  .layout-btn.active {
+    color: #c3c6c8;
+    border-color: #667;
+  }
+
+  /* Placeholder for tracks without an SVG file yet */
+  .svg-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #1c2a35;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 12px;
+    line-height: 1.4;
+  }
+
+  .no-svg .track-svg-wrap {
+    opacity: 0.55;
+  }
+
+  /* ─── Info section ─────────────────────────────────────────────────────── */
+  .track-info {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .track-name {
+    font-weight: 800;
+    font-size: 0.88rem;
+    color: #c3c6c8;
+    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .track-location {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: #7a8fa0;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── Events list ───────────────────────────────────────────────────────── */
+  .track-events {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .track-ev-row {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+
+  /* Reuse the site's existing .tag and .t-{series} classes */
+  .track-ev-row .tag {
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    text-decoration: none;
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+  }
+
+  .track-ev-title {
+    font-size: 0.75rem;
+    color: #9aa;
+    flex: 1;
+    min-width: 0;
+    line-height: 1.3;
+  }
+
+  .track-ev-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.75rem;
+    color: #7a8fa0;
+    flex-shrink: 0;
+  }
+
+  .track-no-events {
+    font-size: 0.75rem;
+    color: #7a8fa0;
+    font-style: italic;
+  }
+
+  /* ─── Empty state ──────────────────────────────────────────────────────── */
+  .tracks-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #8a9aaa;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.8rem;
+  }
+</style>

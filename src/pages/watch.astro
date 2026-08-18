@@ -36,7 +36,6 @@ interface WatchEvent {
   year: number;
   trackName: string | null;
   trackSlug: string | null;
-  howToWatch: any | null;
 }
 
 const watchEvents: WatchEvent[] = [];
@@ -55,11 +54,25 @@ for (const month of calendarData as any[]) {
         year,
         trackName: track?.name ?? null,
         trackSlug: track ? slug : null,
-        howToWatch: htwBySlug.get(ev.series) ?? null,
       });
     }
   }
 }
+
+// howToWatch is a property of the SERIES, not the event. Inlining it on every
+// event repeated the same 14 objects 246 times and made this page a 261 KB
+// download. Emit each once and let the client look it up by series slug.
+//
+// DO NOT filter watchEvents down to upcoming races to shrink it further. The
+// client pairs each event with its timestamp by POSITIONAL INDEX into
+// series.json (see `seriesCounters` in the script below), so every event for a
+// series must be present, in calendar order. Dropping past events shifts every
+// index and silently shows the wrong time for every remaining race.
+const howToWatchBySeries: Record<string, any> = Object.fromEntries(
+  [...new Set(watchEvents.map(e => e.series))]
+    .filter(slug => htwBySlug.has(slug))
+    .map(slug => [slug, htwBySlug.get(slug)])
+);
 ---
 
 <BaseLayout
@@ -95,6 +108,12 @@ for (const month of calendarData as any[]) {
       id="watch-events-data"
       set:html={JSON.stringify(watchEvents)}
     ></script>
+    <!-- Broadcasters, one entry per series rather than per event -->
+    <script
+      type="application/json"
+      id="watch-htw-data"
+      set:html={JSON.stringify(howToWatchBySeries)}
+    ></script>
 
     <div id="watch-loading" class="watch-loading">Loading schedule…</div>
 
@@ -121,6 +140,10 @@ import {
 const rawEl = document.getElementById('watch-events-data');
 if (!rawEl) throw new Error('watch-events-data missing');
 const ALL_EVENTS = JSON.parse(rawEl.textContent);
+
+// Broadcasters keyed by series slug — see howToWatchBySeries in the frontmatter.
+const htwEl = document.getElementById('watch-htw-data');
+const HTW = htwEl ? JSON.parse(htwEl.textContent) : {};
 
 let seriesData = {};
 try {
@@ -237,7 +260,7 @@ function renderEventRow(ev) {
   const trackLink = ev.trackSlug
     ? `<a href="${base}/tracks/${ev.trackSlug}" class="watch-track">${ev.trackName}</a>`
     : (ev.trackName ? `<span class="watch-track">${ev.trackName}</span>` : '');
-  const pills = renderPills(ev.howToWatch);
+  const pills = renderPills(HTW[ev.series] ?? null);
   return `<div class="watch-row" data-series="${ev.series}">
     <a href="${base}/series/${ev.series}" class="tag t-${ev.series} watch-tag">${ev.tag}</a>
     <div class="watch-row-body">
