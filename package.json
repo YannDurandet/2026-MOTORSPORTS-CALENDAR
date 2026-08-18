@@ -14,6 +14,10 @@
     "gen:map-status": "node scripts/gen-track-map-status.mjs",
     "results": "node scripts/results.mjs",
     "results:gaps": "node scripts/find-gaps.mjs",
+    "results:brief": "node scripts/results-sync.mjs brief",
+    "results:apply": "node scripts/results-sync.mjs apply",
+    "standings:stale": "node scripts/standings-sync.mjs stale",
+    "standings:apply": "node scripts/standings-sync.mjs apply",
     "times:prompt": "node scripts/gen-time-prompt.mjs",
     "times:apply": "node scripts/apply-times.mjs",
     "test:unsub": "node scripts/test-unsub-token.mjs"

@@ -1019,6 +1019,12 @@
     "direction": "counterclockwise",
     "length": 2.647,
     "turns": 9,
+    "lapRecord": {
+      "time": "1:01.941",
+      "driver": "Kyle Kirkwood",
+      "series": "IndyCar",
+      "year": 2023
+    },
     "website": "https://www.detroitgp.com",
     "overview": "The Streets of Detroit circuit is a temporary street circuit in downtown Detroit, Michigan — the spiritual home of American automobile manufacturing. The circuit brings IndyCar racing through the streets of a city whose entire identity is built around the car, creating a symbolically potent event for American open-wheel motorsport. The Chevrolet Detroit Grand Prix is one of IndyCar's flagship events, enhanced by the city's deep automotive heritage and the presence of both American manufacturers who power the series.",
     "history": "Detroit has hosted IndyCar street racing since the 1980s, originally on Belle Isle — an island in the Detroit River. The move to downtown Detroit streets brought the race into the city centre for the first time. The event's location reflects Detroit's complicated civic narrative — a city that defined American industrial power, faced severe economic decline, and has been in a protracted revival process. IndyCar's downtown presence is part of Detroit's broader effort to reinstate itself as a destination for major events.",
@@ -1774,6 +1780,12 @@
     "direction": "counterclockwise",
     "length": 3.602,
     "turns": 11,
+    "lapRecord": {
+      "time": "1:08.417",
+      "driver": "Álex Palou",
+      "series": "IndyCar",
+      "year": 2023
+    },
     "website": "https://weathertechraceway.com",
     "overview": "WeatherTech Raceway Laguna Seca is a 3.602 km permanent road course in the Salinas Valley hills above Monterey, California. It contains The Corkscrew — Turn 8A/8B — one of the most famous and visually distinctive corners in motorsport: a left-right chicane taken blind over a massive crest, dropping 5.6 metres in elevation across a single corner. The circuit is compact, technical, and utterly distinctive. Laguna Seca hosts IndyCar's Firestone Grand Prix of Monterey and IMSA events, and WorldSBK has used the circuit occasionally.",
     "history": "Laguna Seca opened in 1957 and hosted Can-Am, CART, and major American sports car racing events across its history. The Corkscrew became famous worldwide through its uniqueness and the drama it has generated — a corner where the run-off is essentially non-existent and an error means leaving the circuit entirely. The circuit is located on public county land and has faced closure threats at various points due to noise complaints from the nearby Monterey area — the ongoing commercial and community tension is a defining feature of the circuit's modern operation.",
@@ -1935,6 +1947,12 @@
     "direction": "clockwise",
     "length": 4.185,
     "turns": 14,
+    "lapRecord": {
+      "time": "1:22.981",
+      "driver": "Matthieu Vaxivière",
+      "series": "Formula Renault 3.5",
+      "year": 2015
+    },
     "website": "https://www.lemans.org",
     "overview": "The Circuit Bugatti is the 4.185 km permanent circuit at the Le Mans complex, used year-round for racing events separate from the famous 24 Hours. Named after Ettore Bugatti — who proposed a circuit at the site in the 1960s — it incorporates portions of the 24 Hours course (the pit straight and Dunlop sections) with a separate infield loop, making it a genuine permanent circuit in its own right. MotoGP's French Grand Prix has been held here since 2000.",
     "history": "The Circuit Bugatti was developed alongside the 24 Hours infrastructure as a way to use the Le Mans site commercially throughout the year rather than solely for one June weekend. It shares the pit complex and main straight with the 24 Hours circuit, giving MotoGP and other series access to the iconic Le Mans facilities. The MotoGP French GP's move from Paul Ricard to Le Mans brought one of the most atmospheric motorcycle events to a circuit location with unrivalled motorsport heritage. The circuit also hosts the Le Mans 24H motorcycle race for the FIM Endurance World Championship.",
@@ -1965,6 +1983,12 @@
     "direction": "counterclockwise",
     "length": 2.077,
     "turns": 20,
+    "lapRecord": {
+      "time": "1:07.950",
+      "driver": "Nick Cassidy",
+      "series": "Formula E",
+      "year": 2025
+    },
     "website": "https://www.excel.london",
     "browserSvg": "london.svg",
     "overview": "The London ExCeL ePrix Circuit is a unique hybrid indoor/outdoor racing circuit at the ExCeL exhibition centre in the Royal Docks of east London. The Formula E layout passes through the interior of the exhibition hall — running through the building under artificial lighting — before emerging onto the outdoor dockside sections along the Royal Victoria Dock. There is no other motorsport venue in the world where racing cars run indoors as part of a world championship event.",
@@ -2453,6 +2477,12 @@
     "direction": "counterclockwise",
     "length": 3.634,
     "turns": 13,
+    "lapRecord": {
+      "time": "1:05.260",
+      "driver": "Will Power",
+      "series": "IndyCar",
+      "year": 2016
+    },
     "website": "https://midohio.com",
     "browserSvg": "midohio.svg",
     "overview": "Mid-Ohio Sports Car Course is a 3.746 km permanent road course in the rolling farmland of north-central Ohio, near Lexington. One of America's classic road courses, Mid-Ohio has a technical, flowing character that rewards smooth, precise driving — the Carousel and the Keyhole are demanding corners that differentiate the skilled from the simply fast. IndyCar's Honda Indy 200 at Mid-Ohio is a regular season fixture, and IMSA also uses the circuit.",
@@ -2532,6 +2562,12 @@
     "direction": "clockwise",
     "length": 4.226,
     "turns": 16,
+    "lapRecord": {
+      "time": "1:30.877",
+      "driver": "Francesco Bagnaia",
+      "series": "MotoGP",
+      "year": 2024
+    },
     "website": "https://www.misanocircuit.com",
     "browserSvg": "misano.svg",
     "overview": "The Misano World Circuit Marco Simoncelli is a 4.226 km circuit near Rimini on the Adriatic coast of Italy. Renamed in 2012 in memory of Marco Simoncelli — the Italian MotoGP rider from nearby Coriano who died at the Malaysian Grand Prix in 2011 — the circuit is one of the most multi-discipline venues on the European calendar, hosting MotoGP, WorldSBK, and DTM rounds. Simoncelli's face and number 58 are woven into the circuit's identity.",
@@ -2711,6 +2747,12 @@
     "direction": "clockwise",
     "length": 4.212,
     "turns": 21,
+    "lapRecord": {
+      "time": "1:29.920",
+      "driver": "Nicolò Bulega",
+      "series": "WorldSBK",
+      "year": 2026
+    },
     "website": "https://www.autodrom-most.eu",
     "browserSvg": "most.svg",
     "overview": "Autodrom Most is a 4.212 km permanent circuit in the industrial town of Most in northwest Bohemia, Czech Republic. Built literally on top of a former open-pit lignite coal mine that was filled in and landscaped, the circuit sits on reclaimed industrial land — one of the most unusual foundations of any racing venue in Europe. It joined the DTM calendar in 2021 and has established itself as a consistent fixture in German touring car racing.",
@@ -2811,6 +2853,12 @@
     "direction": "counterclockwise",
     "length": 3.49,
     "turns": 11,
+    "lapRecord": {
+      "time": "1:15.749",
+      "driver": "Scott McLaughlin",
+      "series": "IndyCar",
+      "year": 2022
+    },
     "website": "https://www.musiccitygp.com",
     "overview": "The Nashville Street Circuit is a 3.445 km temporary street circuit in Nashville, Tennessee, running around and across the Cumberland River via the Korean Veterans Memorial Bridge. The distinctive circuit passes through the Nissan Stadium area and crosses a bridge during the lap — one of the few circuits in world motorsport where the racing surface spans a river. IndyCar's Big Machine Music City Grand Prix uses the circuit, connecting motorsport with Nashville's entertainment identity.",
     "history": "The Nashville street circuit debuted in 2021 for IndyCar's Big Machine Music City Grand Prix, bringing top-level open-wheel racing back to Nashville for the first time in decades. Formula E also added Nashville to its calendar. The circuit's bridge section — requiring extensive safety infrastructure to allow racing on a public highway bridge — was a significant engineering challenge that became the circuit's defining characteristic. Nashville's cultural profile as \"Music City\" has made the race weekend a music and entertainment festival as much as a motorsport event.",
@@ -3493,6 +3541,12 @@
     "direction": "clockwise",
     "length": 6.515,
     "turns": 14,
+    "lapRecord": {
+      "time": "1:41.874",
+      "driver": "Alessandro Zanardi",
+      "series": "CART",
+      "year": 1998
+    },
     "website": "https://www.roadamerica.com",
     "browserSvg": "road-america.svg",
     "overview": "Road America is a 6.515 km permanent road course in the lake district of Wisconsin near Elkhart Lake — one of the longest and most respected circuits in North America. Carved through the Wisconsin woodland, the circuit uses natural elevation changes and wide, open corners to produce a driving experience unlike any other American road course. IndyCar's Elkhart Lake race and IMSA events use the full circuit. Drivers consistently rank Road America among their favourite circuits on any calendar.",
@@ -3524,6 +3578,12 @@
     "direction": "clockwise",
     "length": 4.088,
     "turns": 12,
+    "lapRecord": {
+      "time": "1:07.056",
+      "driver": "Christian Klien",
+      "series": "ALMS",
+      "year": 2008
+    },
     "website": "https://www.roadatlanta.com",
     "browserSvg": "road-atlanta.svg",
     "overview": "Michelin Raceway Road Atlanta is a 4.088 km permanent road course north of Atlanta in Braselton, Georgia. One of America's most challenging and exciting road circuits, it is defined by blind crests, dramatic elevation changes, and corners that demand full commitment — particularly the 10A/10B Esses and the run through Turn 12. Road Atlanta hosts the Petit Le Mans — the IMSA season finale, a 10-hour endurance race — which is one of the premier endurance events in American motorsport.",
@@ -3556,6 +3616,12 @@
     "direction": "counterclockwise",
     "length": 3.671,
     "turns": 14,
+    "lapRecord": {
+      "time": "1:20.667",
+      "driver": "Jorge Martín",
+      "series": "MotoGP",
+      "year": 2024
+    },
     "website": "https://www.sachsenring-circuit.com",
     "overview": "The Sachsenring is a 3.671 km permanent circuit in the Erzgebirge hills of Saxony, Germany. It is the home of the German MotoGP — and Marc Marquez's personal circuit. Of the 13 corners, 10 turn left, rewarding riders who favour left-side tyre loading and a physically aggressive style. The shortest circuit on the MotoGP calendar, it is also one of the most demanding, with the constant left-hand bias loading the body asymmetrically across the entire race distance.",
     "history": "Motorcycle racing in the Sachsenring area dates back to the 1920s on a road circuit through Hohenstein-Ernstthal. The circuit became one of the most prominent venues in East German motorsport during the GDR era, hosting the East German motorcycle GP as part of the old world championship calendar. After German reunification, the circuit was modernised and a permanent facility built; the current layout opened in 1996. MotoGP has used Sachsenring since 1998. The circuit's history extends across nearly a century of German motorsport culture.",
@@ -3690,6 +3756,12 @@
     "direction": "clockwise",
     "length": 6.02,
     "turns": 17,
+    "lapRecord": {
+      "time": "1:41.800",
+      "driver": "Kamui Kobayashi",
+      "series": "WEC",
+      "year": 2019
+    },
     "website": "https://www.sebringraceway.com",
     "overview": "Sebring International Raceway is a 6.019 km permanent circuit on the site of Hendricks Army Airfield in central Florida, home of the 12 Hours of Sebring — one of the great endurance races and one of the oldest in the United States. The circuit uses the original WWII airfield concrete, producing a surface of legendary bumpiness and surface irregularity that destroys cars, tyres, and drivers with equal indifference. Sebring in March is hot, dusty, and relentless — an endurance test in the most literal sense.",
     "history": "Sebring has hosted endurance races since 1950 when Alec Ulmann organised a 6-hour race on the airfield using the original military runway markings. The 12 Hours format began in 1952 and has run continuously since. The circuit incorporates the original military runways, taxiways, and perimeter roads — the joins and repairs over decades have created the notorious Sebring surface that breaks components no other circuit tests. Sebring, Le Mans, and Daytona form the traditional Triple Crown of endurance racing.",
@@ -3901,6 +3973,12 @@
     "direction": "counterclockwise",
     "length": 4.779,
     "turns": 12,
+    "lapRecord": {
+      "time": "1:39.933",
+      "driver": "Felipe Nasr",
+      "series": "F3",
+      "year": 2011
+    },
     "website": "https://www.snetterton.co.uk",
     "browserSvg": "snetterton.svg",
     "overview": "Snetterton Circuit is a 3.623 km permanent circuit (300 configuration) in the Norfolk Breckland, built on a former WWII airfield. It hosts BTCC and British Superbike Championship rounds as one of the longer circuits on the British national calendar. The flat Norfolk countryside and prevailing easterly winds off the North Sea make Snetterton one of the more exposed and weather-affected venues in Britain — conditions that can change the racing character significantly.",
@@ -4308,6 +4386,12 @@
     "direction": "clockwise",
     "length": 3.792,
     "turns": 11,
+    "lapRecord": {
+      "time": "1:01.960",
+      "driver": "Earl Goddard",
+      "series": "EuroBOSS",
+      "year": 2000
+    },
     "website": "https://www.thruxton.co.uk",
     "overview": "Thruxton Circuit is a 3.812 km permanent circuit in Hampshire, England — the fastest circuit on the BTCC calendar by average speed. Built on the former RAF Thruxton airfield, its wide, flowing layout with very few slow corners produces average speeds that stress car and tyre to the maximum. The high-speed Allard and Campbell-Croft complex at the back of the circuit is one of the most demanding sustained sections in British club racing.",
     "history": "Thruxton was converted from RAF Thruxton for motorsport use in the 1960s, with its first car race held in 1968. The circuit's airfield origins give it the wide runoffs and flowing layout typical of wartime airfield conversions. BTCC has used Thruxton as a regular venue for much of the championship's history, and British Superbike also uses the circuit. The Hampshire countryside setting — between Andover and Amesbury — is pleasant but exposed, with wind a constant factor affecting race outcomes.",
@@ -4413,6 +4497,12 @@
     "direction": "counterclockwise",
     "length": 4.005,
     "turns": 14,
+    "lapRecord": {
+      "time": "1:21.244",
+      "driver": "Andreas Zuber",
+      "series": "GP2",
+      "year": 2006
+    },
     "website": "https://www.circuitricardotormo.com",
     "overview": "Circuit Ricardo Tormo is a 4.005 km permanent circuit near the city of Valencia in eastern Spain. Named after Ricardo Tormo, a Spanish motorcycle racer who died of leukaemia in 1998, the circuit hosts MotoGP's Valencia Grand Prix — the final round of the season for much of the 2000s and 2010s — as well as Formula E and WorldSBK. Hot, grippy, and technical, it is a circuit that has hosted numerous championship deciders.",
     "history": "Circuit Ricardo Tormo opened in 1999, purpose-built for MotoGP after Valencia's enthusiasm for the sport demanded a dedicated venue. It was immediately added to the MotoGP calendar. The decision to host the MotoGP season finale here for over a decade turned Valencia into one of the most emotionally charged rounds of the year — multiple world championships have been won and lost at this circuit. Formula E added a Valencia ePrix to its calendar. WorldSBK has also used Valencia regularly.",
@@ -4511,6 +4601,12 @@
     "direction": "clockwise",
     "length": 3.949,
     "turns": 11,
+    "lapRecord": {
+      "time": "1:23.917",
+      "driver": "Sébastien Bourdais",
+      "series": "IndyCar",
+      "year": 2017
+    },
     "website": "https://www.theglen.com",
     "overview": "Watkins Glen International is a 5.435 km permanent road circuit in the Finger Lakes wine region of upstate New York. One of America's great road courses, it produced some of F1's most dramatic early American Grands Prix (1961-1980) and remains a fixture for NASCAR and IMSA. The Bus Stop chicane, the long back straight, and the Esses provide a demanding, diverse lap. The natural setting in the hills above Seneca Lake gives the venue a quality unusual among American permanent circuits.",
     "history": "Watkins Glen hosted its first sports car race in 1948 using the public streets of the village — before the permanent circuit was built in 1956. The circuit hosted the United States Grand Prix in Formula 1 from 1961 to 1980, making it the longest-tenured US Grand Prix venue. F1 left Watkins Glen after 1980 as the circuit struggled financially. NASCAR arrived in 1986 and the annual Go Bowling at The Glen became one of the Cup schedule's two road course events. The circuit was rebuilt and expanded over the following decades.",
@@ -4741,6 +4837,12 @@
     "direction": "clockwise",
     "length": 3.621,
     "turns": 13,
+    "lapRecord": {
+      "time": "1:28.708",
+      "driver": "Johnny Laursen",
+      "series": "EuroBOSS",
+      "year": 2006
+    },
     "website": "https://mondellopark.ie",
     "browserSvg": "mondello.svg",
     "overview": "Mondello Park is a 3.441 km permanent circuit near Naas in County Kildare, Ireland — Ireland's only permanent motorsport facility at international grade. It hosts Irish national championships, international Superbike events, and occasional rounds of British national championships. The circuit sits in the flat Kildare countryside, 40km southwest of Dublin, and is Ireland's motorsport heartbeat.",
@@ -4865,6 +4967,12 @@
     "direction": "clockwise",
     "length": 3.16,
     "turns": 12,
+    "lapRecord": {
+      "time": "1:16.036",
+      "driver": "Aaron Cameron",
+      "series": "S5000",
+      "year": 2023
+    },
     "website": "https://www.supercars.com",
     "overview": "The Adelaide Street Circuit runs through the Park Lands that ring Adelaide's CBD — a 3.219 km temporary circuit constructed on the public roads and park roads of the city's inner green belt. It hosted Formula 1's Australian Grand Prix from 1985 to 1995, becoming one of the most beloved circuits on that era's calendar before F1 moved to Melbourne. Today it is the host of the Supercars Adelaide 500, one of the marquee events of the Australian touring car season. The palm-lined streets, the compressed barriers, and the city-centre atmosphere make Adelaide one of the standout events on any Supercars calendar.",
     "history": "Adelaide first hosted the Australian F1 Grand Prix in 1985, the final round of the season — a role it played until 1995 when Victoria's government successfully bid for the race and moved it to Albert Park. The F1 years produced some of the most dramatic season finales in the sport's history. After F1's departure, the circuit continued hosting Supercars events. The Adelaide 500 was cancelled from 2012 to 2020 before a successful revival brought the event back to the calendar with renewed enthusiasm.",

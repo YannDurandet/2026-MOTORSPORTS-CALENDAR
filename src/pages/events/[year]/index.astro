@@ -1,0 +1,200 @@
+---
+/**
+ * /events/{year} — season index.
+ *
+ * Exists so every event page has a crawlable parent. Without it the ~340 event
+ * pages would be orphans, reachable only from whichever track or series page
+ * happens to mention them.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Banner from '../../../components/Banner.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+
+import tracksData from '../../../../data/tracks.json';
+import { EVENT_YEARS, eventsForYear, weekRange } from '../../../lib/events';
+
+export function getStaticPaths() {
+  return EVENT_YEARS.map(year => ({ params: { year: String(year) }, props: { year } }));
+}
+
+interface Props { year: number }
+const { year } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const events = eventsForYear(year);
+
+const trackName: Record<string, string> = Object.fromEntries(
+  (tracksData as any[]).map(t => [t.slug, t.name])
+);
+
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+const byMonth = MONTHS
+  .map((name, i) => ({
+    name,
+    events: events.filter(e => new Date(e.date).getUTCMonth() === i),
+  }))
+  .filter(m => m.events.length > 0);
+
+const seriesCount = new Set(events.map(e => e.series)).size;
+const isPartial = year > 2026;
+
+const pageTitle = `${year} Motorsport Race Calendar — Every Event, Date & Circuit | DORD`;
+const pageDescription = `All ${events.length} races on the ${year} motorsport calendar across ${seriesCount} championships — dates, circuits and session times for every event.`;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={`https://dord.racing/events/${year}`}
+  ogImage="https://dord.racing/assets/og/og-tracks.webp"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+        { "@type": "ListItem", "position": 2, "name": `${year} Events`, "item": `https://dord.racing/events/${year}` },
+      ],
+    })} />
+  </Fragment>
+
+  <Banner />
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>{year} Race<br>Index</h1>
+      <p class="header--page-desc">
+        Every event on the {year} calendar with its own page — dates, session times, circuit and travel.
+      </p>
+      <div class="meta">{events.length} EVENTS · {seriesCount} SERIES{isPartial ? ' · PROVISIONAL' : ''}</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <main id="main-content" class="events-index">
+
+    {isPartial && (
+      <p class="ei-notice">
+        The {year} calendar is still being confirmed. Only rounds published by the
+        organising series appear here; the rest are added as they are announced.
+      </p>
+    )}
+
+    <nav class="ei-years" aria-label="Season">
+      {EVENT_YEARS.map(y => (
+        <a href={`${base}/events/${y}`} class:list={["ei-year", { "ei-year--active": y === year }]}
+           aria-current={y === year ? 'page' : undefined}>{y}</a>
+      ))}
+    </nav>
+
+    {byMonth.map(month => (
+      <section class="ei-month">
+        <h2 class="ei-month-name">{month.name}</h2>
+        <div class="ei-rows">
+          {month.events.map(e => (
+            <a href={`${base}${e.path}`} class="ei-row">
+              <span class="ei-date">{weekRange(e.weekLabel)}</span>
+              <span class={`tag t-${e.series}`}>{e.tag}</span>
+              <span class="ei-title">{e.title}</span>
+              <span class="ei-venue">{e.trackSlug ? trackName[e.trackSlug] ?? '' : ''}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .events-index {
+    padding: 0 24px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ei-notice {
+    border: 1px solid var(--border);
+    border-left: 2px solid #7a8fa0;
+    background: var(--card-bg);
+    padding: 12px 16px;
+    margin: 0 0 20px;
+    font-size: 0.82rem;
+    color: #8a9aaa;
+    line-height: 1.6;
+  }
+
+  .ei-years {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .ei-year {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: #7a8fa0;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    text-decoration: none;
+  }
+  .ei-year:hover { color: var(--text-main); border-color: #556; }
+  .ei-year--active { color: #c3c6c8; border-color: #667; }
+
+  .ei-month { margin-bottom: 28px; }
+
+  .ei-month-name {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #7a8fa0;
+    margin: 0 0 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+
+  .ei-rows { display: flex; flex-direction: column; }
+
+  .ei-row {
+    display: grid;
+    grid-template-columns: 110px auto minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    align-items: baseline;
+    padding: 10px 4px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+  }
+  .ei-row:hover { background: var(--card-bg); }
+  .ei-row:hover .ei-title { color: var(--text-main); }
+
+  .ei-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #7a8fa0;
+    letter-spacing: 0.04em;
+  }
+  .ei-row .tag { font-size: 0.6rem; padding: 2px 6px; text-decoration: none; }
+  .ei-title { font-size: 0.85rem; color: #c3c6c8; }
+  .ei-venue {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #7a8fa0;
+    text-align: right;
+  }
+
+  @media (max-width: 700px) {
+    .ei-row {
+      grid-template-columns: 90px auto 1fr;
+      row-gap: 4px;
+    }
+    .ei-venue { grid-column: 1 / -1; text-align: left; }
+    .events-index { padding: 0 12px 60px; }
+  }
+</style>

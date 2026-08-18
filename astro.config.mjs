@@ -7,6 +7,10 @@ export default defineConfig({
   base: '/',
   adapter: cloudflare(),
   integrations: [sitemap()],
+  // /events has no page of its own — send it to the current season index.
+  redirects: {
+    '/events': '/events/2026',
+  },
   build: {
     format: 'file',
   },

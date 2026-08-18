@@ -1,0 +1,479 @@
+---
+/**
+ * /events/{year}/{slug} — one page per race.
+ *
+ * The site previously had no per-event URL: every race lived only as a row
+ * inside a track or series page, and all ~250 SportsEvent JSON-LD nodes
+ * pointed at the same track URL. This page is the canonical home for an event,
+ * and owns its structured data.
+ *
+ * It also carries the travel modules. "I want to go to this race" is an
+ * event-level intent, not a circuit-level one, so GettingThereCard and
+ * TripPlannerCard belong here at least as much as on /tracks/[slug].
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Banner from '../../../components/Banner.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import GettingThereCard from '../../../components/GettingThereCard.astro';
+import TripPlannerCard from '../../../components/TripPlannerCard.astro';
+
+import tracksData from '../../../../data/tracks.json';
+import seriesContentData from '../../../../data/seriesContent.json';
+import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, weekRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
+import { accommodationQuery } from '../../../lib/affiliates';
+
+export function getStaticPaths() {
+  return ALL_EVENTS.map(ev => ({
+    params: { year: String(ev.year), slug: ev.slug },
+    props: { ev },
+  }));
+}
+
+interface Props { ev: CalendarEvent }
+const { ev } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonical = `https://dord.racing/events/${ev.year}/${ev.slug}`;
+
+const track = ev.trackSlug
+  ? (tracksData as any[]).find(t => t.slug === ev.trackSlug)
+  : null;
+
+const series = (seriesContentData as any[]).find(s => s.slug === ev.series);
+const seriesName = series?.name ?? ev.tag;
+const seriesWeb = series?.socials?.web as string | undefined;
+
+// ── Dates ────────────────────────────────────────────────────────────────────
+const when = new Date(ev.date);
+const dateLong = when.toLocaleDateString('en-GB', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris',
+});
+const isoDay = ev.date.slice(0, 10);
+const isPast = !!ev.results?.length;
+
+// ── Related ──────────────────────────────────────────────────────────────────
+const alsoAtTrack = ev.trackSlug
+  ? eventsForTrack(ev.trackSlug, ev.year).filter(e => e.slug !== ev.slug)
+  : [];
+const seriesRound = eventsForSeries(ev.series, ev.year);
+const roundIndex = seriesRound.findIndex(e => e.slug === ev.slug);
+const prevRound = roundIndex > 0 ? seriesRound[roundIndex - 1] : null;
+const nextRound = roundIndex >= 0 && roundIndex < seriesRound.length - 1 ? seriesRound[roundIndex + 1] : null;
+
+function countryFlag(code?: string): string {
+  if (!code || code.length !== 2) return '';
+  return [...code.toUpperCase()].map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
+}
+
+function winnerOf(r: RaceResult): string {
+  if (r.winners?.length) return r.winners.join(' · ');
+  return r.winner ?? '';
+}
+function entrantOf(r: RaceResult): string {
+  return r.team ?? r.manufacturer ?? '';
+}
+
+// ── SEO ──────────────────────────────────────────────────────────────────────
+const where = track ? `${track.name}, ${track.city}` : ev.title;
+const pageTitle = `${ev.title} ${ev.year} — ${seriesName} | Dates, Times & Circuit | DORD`;
+const pageDescription = isPast
+  ? `${seriesName} ${ev.title} ${ev.year} at ${where} — full result, session times and circuit guide.`
+  : `${seriesName} ${ev.title} ${ev.year} at ${where} — ${weekRange(ev.weekLabel)}. Session times, circuit guide and travel logistics.`;
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "SportsEvent",
+  "name": `${seriesName} — ${ev.title} ${ev.year}`,
+  "startDate": isoDay,
+  "endDate": isoDay,
+  "url": canonical,
+  "sport": "Motorsport",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "description": pageDescription,
+  "image": "https://dord.racing/assets/og/og-tracks.webp",
+  "organizer": {
+    "@type": "SportsOrganization",
+    "name": seriesName,
+    ...(seriesWeb ? { "url": seriesWeb } : {}),
+  },
+  "performer": {
+    "@type": "SportsOrganization",
+    "name": seriesName,
+    ...(seriesWeb ? { "url": seriesWeb } : {}),
+  },
+  ...(track ? {
+    "location": {
+      "@type": "Place",
+      "name": track.name,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": track.city,
+        "addressCountry": track.country,
+      },
+      ...(track.website ? { "url": track.website } : {}),
+    },
+  } : {}),
+};
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+    { "@type": "ListItem", "position": 2, "name": `${ev.year} Events`, "item": `https://dord.racing/events/${ev.year}` },
+    { "@type": "ListItem", "position": 3, "name": `${ev.title} ${ev.year}`, "item": canonical },
+  ],
+};
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={canonical}
+  ogImage="https://dord.racing/assets/og/og-tracks.webp"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  </Fragment>
+
+  <Banner />
+  <header>
+    <div class="header--left">
+      <div class="header--dept">The Department of Racing Drivers</div>
+      <h1>{ev.title}<br><span class="ev-year">{ev.year}</span></h1>
+      <p class="header--page-desc">
+        {seriesName}{track ? ` · ${track.name}, ${track.country}` : ''}
+      </p>
+      <div class="meta">{weekRange(ev.weekLabel)} · SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <main id="main-content" class="event-page">
+
+    <a href={`${base}/events/${ev.year}`} class="back-link">← {ev.year} Events</a>
+
+    <div class="event-split">
+      <div class="event-col-left">
+
+        {track?.browserSvg && (
+          <a href={`${base}/tracks/${track.slug}`} class="ev-hero" aria-label={`${track.name} circuit page`}>
+            <img
+              src={`${base}/track-svg/${track.browserSvg}`}
+              alt={`${track.name} track layout`}
+              width="880" height="528" loading="eager" decoding="async"
+            />
+          </a>
+        )}
+
+        <div class="ev-specs">
+          <div class="ev-spec">
+            <div class="spec-label">DATE</div>
+            <div class="spec-value"><time datetime={isoDay}>{dateLong}</time></div>
+          </div>
+          <div class="ev-spec">
+            <div class="spec-label">SERIES</div>
+            <div class="spec-value">
+              <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
+            </div>
+          </div>
+          {track && (
+            <div class="ev-spec">
+              <div class="spec-label">CIRCUIT</div>
+              <div class="spec-value">
+                <a href={`${base}/tracks/${track.slug}`} class="ev-link">{track.name}</a>
+              </div>
+              <div class="spec-sub">{track.city} · {track.country}{track.length ? ` · ${track.length} km` : ''}</div>
+            </div>
+          )}
+        </div>
+
+        <div class="ev-block">
+          <div class="section-label">SESSION TIMES</div>
+          <p class="ev-times" set:html={ev.time} />
+          {ev.hasSprint && <p class="ev-note">Sprint weekend format.</p>}
+          {ev.legs?.length && (
+            <div class="ev-legs">
+              {ev.legs.map(l => (
+                <div class="ev-leg">
+                  <span class="ev-leg-label">{l.label}</span>
+                  <span class="ev-leg-time" set:html={l.time} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {ev.results?.length && (
+          <div class="ev-block">
+            <div class="section-label">RESULT</div>
+            <div class="ev-results">
+              {ev.results.map((r: RaceResult) => (
+                <div class="ev-result">
+                  {r.race_label && <div class="res-label">{r.race_label}</div>}
+                  {r.note && <div class="res-note">{r.note}</div>}
+                  {winnerOf(r) && (
+                    <div class="res-line">
+                      <span class="res-winner">{winnerOf(r)}</span>
+                      {r.country && <span class="res-flag" aria-hidden="true">{countryFlag(r.country)}</span>}
+                    </div>
+                  )}
+                  {r.co_driver && <div class="res-sub">Co-driver: {r.co_driver}</div>}
+                  {entrantOf(r) && <div class="res-sub">{entrantOf(r)}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {ev.support?.length && (
+          <div class="ev-block">
+            <div class="section-label">SUPPORT RACES</div>
+            <div class="ev-support">
+              {ev.support.map(s => (
+                <div class="ev-support-row">
+                  <span class={`tag t-${s.badge}`}>{s.label}</span>
+                  <span class="ev-support-detail">{s.detail}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {alsoAtTrack.length > 0 && track && (
+          <div class="ev-block">
+            <div class="section-label">ALSO AT {track.name.toUpperCase()} IN {ev.year}</div>
+            <div class="ev-related">
+              {alsoAtTrack.map(e => (
+                <a href={`${base}${e.path}`} class="ev-related-row">
+                  <span class="ev-related-date">{weekRange(e.weekLabel)}</span>
+                  <span class={`tag t-${e.series}`}>{e.tag}</span>
+                  <span class="ev-related-title">{e.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <nav class="ev-rounds" aria-label={`${seriesName} season navigation`}>
+          {prevRound
+            ? <a href={`${base}${prevRound.path}`} class="ev-round ev-round--prev">← {prevRound.title}</a>
+            : <span class="ev-round ev-round--empty"></span>}
+          {nextRound
+            ? <a href={`${base}${nextRound.path}`} class="ev-round ev-round--next">{nextRound.title} →</a>
+            : <span class="ev-round ev-round--empty"></span>}
+        </nav>
+
+      </div>
+
+      <div class="event-col-right">
+        {track?.logistics && <GettingThereCard logistics={track.logistics} />}
+        {track && (
+          <TripPlannerCard
+            city={track.city}
+            slug={track.slug}
+            hotelQuery={accommodationQuery(track.logistics?.accommodation_hub, track.city)}
+          />
+        )}
+      </div>
+    </div>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .event-page {
+    padding: 0 24px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ev-year { color: #7a8fa0; }
+
+  .back-link {
+    display: inline-block;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.7rem;
+    color: #7a8fa0;
+    text-decoration: none;
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+  }
+  .back-link:hover { color: var(--text-main); }
+
+  .event-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .event-split { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .event-page { padding: 0 12px 60px; }
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────────────────── */
+  .ev-hero {
+    display: block;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    padding: 24px;
+    margin-bottom: 2px;
+  }
+  .ev-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 360px;
+    object-fit: contain;
+  }
+
+  /* ── Spec bar ─────────────────────────────────────────────────────────── */
+  .ev-specs {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--card-bg);
+    margin-bottom: 2px;
+  }
+  .ev-spec {
+    padding: 16px 20px;
+    border-right: 1px solid var(--border);
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+  .ev-spec:last-child { border-right: none; }
+
+  .spec-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #7a8fa0;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .spec-value { font-size: 0.9rem; color: #c3c6c8; font-weight: 600; }
+  .spec-sub {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #7a8fa0;
+    margin-top: 4px;
+  }
+  .ev-link { color: #c3c6c8; text-decoration: none; }
+  .ev-link:hover { text-decoration: underline; }
+  .ev-specs .tag { text-decoration: none; font-size: 0.65rem; padding: 3px 7px; }
+
+  /* ── Blocks ───────────────────────────────────────────────────────────── */
+  .ev-block {
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--card-bg);
+    padding: 20px 24px;
+    margin-bottom: 2px;
+  }
+
+  .section-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.6rem;
+    color: #7a8fa0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .ev-times {
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.85rem;
+    color: #8a9aaa;
+    line-height: 1.7;
+  }
+  .ev-note {
+    margin: 8px 0 0;
+    font-size: 0.78rem;
+    color: #7a8fa0;
+  }
+
+  .ev-legs { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+  .ev-leg { display: flex; gap: 12px; align-items: baseline; }
+  .ev-leg-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.68rem;
+    color: #7a8fa0;
+    min-width: 34px;
+  }
+  .ev-leg-time { font-family: 'Roboto Mono', monospace; font-size: 0.8rem; color: #8a9aaa; }
+
+  /* ── Results ──────────────────────────────────────────────────────────── */
+  .ev-results { display: flex; flex-direction: column; gap: 14px; }
+  .ev-result { display: flex; flex-direction: column; gap: 3px; }
+  .res-label {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.62rem;
+    color: #7a8fa0;
+    letter-spacing: 0.08em;
+  }
+  .res-note { font-size: 0.78rem; color: #7a8fa0; font-style: italic; }
+  .res-line { display: flex; align-items: baseline; gap: 8px; }
+  .res-winner { font-size: 0.95rem; color: #c3c6c8; font-weight: 700; }
+  .res-flag { font-size: 0.85rem; }
+  .res-sub { font-size: 0.78rem; color: #8a9aaa; }
+
+  /* ── Support races ────────────────────────────────────────────────────── */
+  .ev-support { display: flex; flex-direction: column; gap: 8px; }
+  .ev-support-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .ev-support-row .tag { font-size: 0.6rem; padding: 2px 6px; }
+  .ev-support-detail {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    color: #8a9aaa;
+  }
+
+  /* ── Related ──────────────────────────────────────────────────────────── */
+  .ev-related { display: flex; flex-direction: column; gap: 8px; }
+  .ev-related-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    text-decoration: none;
+  }
+  .ev-related-row:hover .ev-related-title { color: var(--text-main); }
+  .ev-related-date {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.65rem;
+    color: #7a8fa0;
+    min-width: 76px;
+  }
+  .ev-related-row .tag { font-size: 0.6rem; text-decoration: none; padding: 2px 6px; }
+  .ev-related-title { font-size: 0.8rem; color: #8a9aaa; }
+
+  /* ── Prev / next round ────────────────────────────────────────────────── */
+  .ev-rounds {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--card-bg);
+    padding: 16px 24px;
+  }
+  .ev-round {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.72rem;
+    color: #7a8fa0;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .ev-round:hover { color: var(--text-main); }
+  .ev-round--empty { visibility: hidden; }
+  .ev-round--next { text-align: right; }
+</style>

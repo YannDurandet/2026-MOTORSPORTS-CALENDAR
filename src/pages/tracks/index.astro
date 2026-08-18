@@ -20,12 +20,14 @@ const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
+import { showOnTrackPages } from '../../lib/season';
 
 // --- Build event lookup: calendarSvgFilename → [{series, tag, title, week}] ---
 type CalEvent = { series: string; tag: string; title: string; week: string };
 const eventsBySvg: Record<string, CalEvent[]> = {};
 
 for (const month of calendarData as any[]) {
+  if (!showOnTrackPages(month)) continue;   // 2027 lives on the main calendar only
   for (const week of month.weeks) {
     for (const ev of week.events) {
       if (ev.track && ev.track !== 'tbc.svg' && ev.track !== 'tbd.svg') {

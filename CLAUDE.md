@@ -144,9 +144,15 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
 | `npm run results` | Interactive results injector for `calendar.json` |
 | `npm run results:gaps` | List past events still missing results |
+| `npm run results:brief` | Emit a JSON skeleton for every raced event with no result |
+| `npm run results:apply <file>` | Validate + merge a filled skeleton into `calendar.json` |
+| `npm run standings:stale` | Which series have raced since standings were last updated |
+| `npm run standings:apply <file>` | Validate + merge a standings patch |
 | `npm run times:prompt` | Generate a research prompt for TBC session times |
 | `npm run times:apply` | Apply researched times back into `calendar.json` |
 | `npm run test:unsub` | Generate/verify unsubscribe tokens locally |
+
+Race results live **inline in `data/calendar.json`** (`event.results`). `data/results.json` is a dead file nothing reads — never write to it.
 
 `scripts/archive/` holds completed one-off migrations. Kept for history; don't run them.
 

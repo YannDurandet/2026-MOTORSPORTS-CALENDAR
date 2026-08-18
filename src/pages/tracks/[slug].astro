@@ -30,6 +30,8 @@ const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
 import seriesContentData from '../../../data/seriesContent.json';
+import { showOnTrackPages } from '../../lib/season';
+import { findEvent } from '../../lib/events';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Logistics = {
@@ -68,6 +70,8 @@ type ResultEntry = { race_label: string; winner: string; team: string; country: 
 type CalEvent = {
   series: string; tag: string; title: string;
   week: string; layoutId: string | null;
+  /** Canonical event page, e.g. "/events/2026/f1-monaco-gp". */
+  path: string | null;
 };
 type CalResult = CalEvent & { entries: ResultEntry[]; };
 
@@ -75,6 +79,7 @@ const pastResults: CalResult[] = [];
 const upcomingEvents: CalEvent[] = [];
 
 for (const month of calendarData as any[]) {
+  if (!showOnTrackPages(month)) continue;   // 2027 lives on the main calendar only
   for (const week of month.weeks) {
     for (const ev of week.events) {
       if (!ev.track || !venue.calendarSvgs.includes(ev.track)) continue;
@@ -83,12 +88,13 @@ for (const month of calendarData as any[]) {
         const match = venue.layouts.find((l: Layout) => l.calendarSvgs.includes(ev.track));
         layoutId = match ? match.id : null;
       }
+      const path = findEvent(month.year ?? 2026, ev.series, ev.title, week.label)?.path ?? null;
       if (ev.results?.length) {
         const isDupe = pastResults.some(e => e.series === ev.series && e.title === ev.title);
-        if (!isDupe) pastResults.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId, entries: ev.results });
+        if (!isDupe) pastResults.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId, path, entries: ev.results });
       } else {
         const isDupe = upcomingEvents.some(e => e.series === ev.series && e.title === ev.title && e.week === week.label);
-        if (!isDupe) upcomingEvents.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId });
+        if (!isDupe) upcomingEvents.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId, path });
       }
     }
   }
@@ -138,6 +144,16 @@ const seriesNameMap: Record<string, string> = Object.fromEntries(
   (seriesContentData as any[]).map((s: any) => [s.slug, s.name])
 );
 
+// Official series site, used as organizer/performer `url` in the SportsEvent
+// schema. Google reports "Missing field 'url' in organizer" without it.
+// series/[slug].astro reads this straight off the series object; here we only
+// have the slug, hence the lookup.
+const seriesWebMap: Record<string, string> = Object.fromEntries(
+  (seriesContentData as any[])
+    .filter((s: any) => s.socials?.web)
+    .map((s: any) => [s.slug, s.socials.web])
+);
+
 function parseWeekDate(label: string): string | null {
   // Parses "WEEK 04 • JAN 22-25" or "WEEK 02 • JAN 10" → ISO date (race/end day)
   const m = label.match(/([A-Z]{3})\s+(\d+)(?:-(\d+))?/);
@@ -164,13 +180,16 @@ const sportsEventSchemas = [
   .filter((ev: any) => ev.isoDate)
   .map((ev: any) => {
     const seriesName = seriesNameMap[ev.series] ?? ev.series;
+    const seriesWeb = seriesWebMap[ev.series];
     return {
       "@context": "https://schema.org",
       "@type": "SportsEvent",
       "name": `${seriesName} — ${ev.title} 2026`,
       "startDate": ev.isoDate,
       "endDate": ev.isoDate,
-      "url": `https://dord.racing/tracks/${slug}`,
+      // Each event's own page is the canonical URL for it. Before event pages
+      // existed every node here claimed the same track URL.
+      "url": ev.path ? `https://dord.racing${ev.path}` : `https://dord.racing/tracks/${slug}`,
       "sport": "Motorsport",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -179,10 +198,12 @@ const sportsEventSchemas = [
       "organizer": {
         "@type": "SportsOrganization",
         "name": seriesName,
+        ...(seriesWeb ? { "url": seriesWeb } : {}),
       },
       "performer": {
         "@type": "SportsOrganization",
         "name": seriesName,
+        ...(seriesWeb ? { "url": seriesWeb } : {}),
       },
       "offers": {
         "@type": "Offer",
@@ -385,7 +406,9 @@ const sportsEventSchemas = [
               <div class="result-header">
                 <span class="ev-date">{shortDate(ev.week)}</span>
                 <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
-                <span class="ev-title">{ev.title}</span>
+                {ev.path
+                  ? <a href={`${base}${ev.path}`} class="ev-title ev-title--link">{ev.title}</a>
+                  : <span class="ev-title">{ev.title}</span>}
               </div>
               <div class="result-entries">
                 {ev.entries.map((r: ResultEntry) => (
@@ -413,7 +436,9 @@ const sportsEventSchemas = [
               <div class="ev-row" data-layout-id={ev.layoutId ?? undefined}>
                 <span class="ev-date">{shortDate(ev.week)}</span>
                 <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
-                <span class="ev-title">{ev.title}</span>
+                {ev.path
+                  ? <a href={`${base}${ev.path}`} class="ev-title ev-title--link">{ev.title}</a>
+                  : <span class="ev-title">{ev.title}</span>}
               </div>
             ))}
           </div>
@@ -828,6 +853,15 @@ const sportsEventSchemas = [
     color: #445;
     min-width: 52px;
     flex-shrink: 0;
+  }
+
+  .ev-title--link {
+    color: inherit;
+    text-decoration: none;
+  }
+  .ev-title--link:hover {
+    color: var(--text-main);
+    text-decoration: underline;
   }
 
   .ev-row .tag {

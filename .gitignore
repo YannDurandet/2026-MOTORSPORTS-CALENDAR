@@ -14,6 +14,8 @@ dist/
 # environment
 .env
 .env.*
+# committed template — variable names only, no values
+!.env.example
 
 # editor
 .vscode/
