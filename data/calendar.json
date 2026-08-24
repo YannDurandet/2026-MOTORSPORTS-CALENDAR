@@ -3394,7 +3394,15 @@
             "time": "RACE: <span class=\"hl\">00:00</span>",
             "track": "atlanta-oval.svg",
             "date": "2026-07-13T00:00:00+02:00",
-            "shortName": "ATLANTA 2"
+            "shortName": "ATLANTA 2",
+            "results": [
+              {
+                "date": "2026-07-12",
+                "winner": "Ryan Blaney",
+                "team": "Team Penske",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -4092,7 +4100,15 @@
             "time": "SPRINT: <span class=\"hl\">12:00</span> • QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">15:00</span>",
             "track": "zandvoort.svg",
             "date": "2026-08-23T15:00:00+02:00",
-            "shortName": "DUTCH"
+            "shortName": "DUTCH",
+            "results": [
+              {
+                "date": "2026-08-23",
+                "winner": "Lando Norris",
+                "team": "McLaren",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "f1a",
@@ -4101,7 +4117,23 @@
             "time": "RACES: <span class=\"hl\">10:00</span>",
             "track": "zandvoort.svg",
             "date": "2026-08-23T15:00:00+02:00",
-            "shortName": "ZANDVOORT"
+            "shortName": "ZANDVOORT",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-08-22",
+                "winner": "Payton Westcott",
+                "team": "PREMA Racing",
+                "country": "US"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-08-23",
+                "winner": "Alisha Palmowski",
+                "team": "Campos Racing",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "btcc",
@@ -4110,7 +4142,30 @@
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
             "track": "donington-gp.svg",
             "date": "2026-08-23T14:00:00+02:00",
-            "shortName": "DONINGTON GP"
+            "shortName": "DONINGTON GP",
+            "results": [
+              {
+                "race_label": "Race 19",
+                "date": "2026-08-23",
+                "winner": "Adam Morgan",
+                "team": "CPRL",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 20",
+                "date": "2026-08-23",
+                "winner": "Dan Cammish",
+                "team": "NAPA Racing UK",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 21",
+                "date": "2026-08-23",
+                "winner": "Adam Morgan",
+                "team": "CPRL",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "supercars",
@@ -4119,7 +4174,30 @@
             "time": "FRI R: <span class=\"hl\">06:00</span> • SAT R: <span class=\"hl\">06:00</span> • SUN R: <span class=\"hl\">06:05</span>",
             "track": "ipswich.svg",
             "date": "2026-08-23T04:00:00+02:00",
-            "shortName": "IPSWICH"
+            "shortName": "IPSWICH",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-08-22",
+                "winner": "Brodie Kostecki",
+                "team": "Dick Johnson Racing",
+                "country": "AU"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-08-22",
+                "winner": "Will Brown",
+                "team": "Triple Eight Race Engineering",
+                "country": "AU"
+              },
+              {
+                "race_label": "Race 3",
+                "date": "2026-08-23",
+                "winner": "Broc Feeney",
+                "team": "Triple Eight Race Engineering",
+                "country": "AU"
+              }
+            ]
           },
           {
             "series": "imsa",
@@ -4128,7 +4206,18 @@
             "time": "RACE: <span class=\"hl\">18:00</span>",
             "track": "vir.svg",
             "date": "2026-08-23T18:00:00+02:00",
-            "shortName": "VIR"
+            "shortName": "VIR",
+            "results": [
+              {
+                "date": "2026-08-23",
+                "winners": [
+                  "Andrea Caldarelli",
+                  "Sandy Mitchell"
+                ],
+                "team": "Pfaff Motorsports",
+                "country": "CA"
+              }
+            ]
           },
           {
             "series": "elms",
@@ -4137,7 +4226,19 @@
             "time": "SUN: <span class=\"hl\">11:00</span>",
             "track": "spa.svg",
             "date": "2026-08-23T11:00:00+02:00",
-            "shortName": "SPA 4H"
+            "shortName": "SPA 4H",
+            "results": [
+              {
+                "date": "2026-08-23",
+                "winners": [
+                  "Jakub Smiechowski",
+                  "Nick Yelloly",
+                  "Tom Dillmann"
+                ],
+                "team": "Inter Europol Competition",
+                "country": "PL"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -4155,7 +4256,23 @@
             "time": "RACES: <span class=\"hl\">10:00</span>",
             "track": "zandvoort.svg",
             "date": "2026-08-22T12:00:00+02:00",
-            "shortName": "ZANDVOORT"
+            "shortName": "ZANDVOORT",
+            "results": [
+              {
+                "race_label": "Rd 6",
+                "date": "2026-08-22",
+                "winner": "Paul Cauhaupé",
+                "team": "Martinet by Alméras",
+                "country": "FR"
+              },
+              {
+                "race_label": "Rd 7",
+                "date": "2026-08-23",
+                "winner": "Flynt Schuring",
+                "team": "Schumacher CLRT",
+                "country": "NL"
+              }
+            ]
           }
         ]
       },
