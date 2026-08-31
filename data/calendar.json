@@ -4247,7 +4247,15 @@
             "time": "RACE: <span class=\"hl\">21:00</span>",
             "track": "newhampshire.svg",
             "date": "2026-08-23T21:00:00+01:00",
-            "shortName": "NEW HAMPSHIRE"
+            "shortName": "NEW HAMPSHIRE",
+            "results": [
+              {
+                "date": "2026-08-23",
+                "winner": "Ryan Blaney",
+                "team": "Team Penske",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "psc",
@@ -4293,7 +4301,16 @@
               }
             ],
             "date": "2026-08-30T14:00:00+02:00",
-            "shortName": "PARAGUAY"
+            "shortName": "PARAGUAY",
+            "results": [
+              {
+                "date": "2026-08-30",
+                "winner": "Sami Pajari",
+                "co_driver": "Marko Salminen",
+                "manufacturer": "Toyota",
+                "country": "FI"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -4302,7 +4319,15 @@
             "time": "RACE: <span class=\"hl\">14:00</span>",
             "track": "aragon.svg",
             "date": "2026-08-30T14:00:00+02:00",
-            "shortName": "ARAGON"
+            "shortName": "ARAGON",
+            "results": [
+              {
+                "date": "2026-08-30",
+                "winner": "Marc Márquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "gtwce",
@@ -4311,7 +4336,19 @@
             "time": "R1: <span class=\"hl\">09:15</span> • R2: <span class=\"hl\">13:45</span>",
             "track": "nurburgring.svg",
             "date": "2026-08-30T14:00:00+02:00",
-            "shortName": "NÜRBURGRING"
+            "shortName": "NÜRBURGRING",
+            "results": [
+              {
+                "date": "2026-08-30",
+                "winners": [
+                  "Mattia Drudi",
+                  "Marco Sørensen",
+                  "Nicki Thiim"
+                ],
+                "team": "Comtoyou Racing",
+                "note": "Endurance Cup round — single 3h race, not a Sprint weekend"
+              }
+            ]
           },
           {
             "series": "gtwca",
@@ -4320,7 +4357,17 @@
             "time": "R1: <span class=\"hl\">16:00</span> • R2: <span class=\"hl\">19:30</span>",
             "track": "road-america.svg",
             "date": "2026-08-30T19:00:00+02:00",
-            "shortName": "ROAD AMERICA"
+            "shortName": "ROAD AMERICA",
+            "results": [
+              {
+                "date": "2026-08-30",
+                "winners": [
+                  "Justin Rothberg",
+                  "Robby Foley"
+                ],
+                "team": "Turner Motorsport"
+              }
+            ]
           },
           {
             "series": "indycar",
@@ -4336,7 +4383,24 @@
               }
             ],
             "date": "2026-08-29T20:30:00+02:00",
-            "shortName": "MILWAUKEE"
+            "shortName": "MILWAUKEE",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-08-29",
+                "winner": "Pato O'Ward",
+                "team": "Arrow McLaren",
+                "country": "MX",
+                "note": "Stopped by rain on lap 90, completed 30 Aug"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-08-30",
+                "winner": "Pato O'Ward",
+                "team": "Arrow McLaren",
+                "country": "MX"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -4345,7 +4409,15 @@
             "time": "RACE: <span class=\"hl\">01:30</span>",
             "track": "daytona-oval.svg",
             "date": "2026-08-30T01:30:00+01:00",
-            "shortName": "DAYTONA 2"
+            "shortName": "DAYTONA 2",
+            "results": [
+              {
+                "date": "2026-08-29",
+                "winner": "Ryan Preece",
+                "team": "RFK Racing",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "eurx",
@@ -4354,7 +4426,14 @@
             "time": "SAT–SUN: <span class=\"hl\">13:00</span>",
             "track": "loheac.svg",
             "date": "2026-08-30T14:00:00+02:00",
-            "shortName": "FRANCE (LOHÉAC)"
+            "shortName": "FRANCE (LOHÉAC)",
+            "results": [
+              {
+                "date": "2026-08-30",
+                "winner": "Fabien Pailler",
+                "country": "FR"
+              }
+            ]
           }
         ]
       }
