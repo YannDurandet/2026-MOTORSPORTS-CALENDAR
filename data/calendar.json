@@ -3986,14 +3986,14 @@
             "shortName": "NÜRBURGRING",
             "results": [
               {
-                "date": "2026-15-08",
+                "date": "2026-08-15",
                 "race_label": "Race 1",
                 "winner": "M. Cairoli",
                 "country": "IT",
                 "team": "Emil Frey Racing"
               },
               {
-                "date": "2026-15-08",
+                "date": "2026-08-15",
                 "race_label": "Race 2",
                 "winner": "M. Wittmann",
                 "country": "DE",
@@ -4011,7 +4011,7 @@
             "shortName": "CZECH (ZLÍN)",
             "results": [
               {
-                "date": "2026-16-08",
+                "date": "2026-08-16",
                 "winner": "A. Brezik",
                 "co_driver": "Z. Belak",
                 "country": "CZ",
@@ -4029,7 +4029,7 @@
             "shortName": "LONDON",
             "results": [
               {
-                "date": "2026-16-08",
+                "date": "2026-08-16",
                 "winner": "T. Barnard",
                 "country": "GB",
                 "team": "DS Penske"
@@ -4046,7 +4046,7 @@
             "shortName": "MARKHAM",
             "results": [
               {
-                "date": "2026-16-08",
+                "date": "2026-08-16",
                 "winner": "M. Ericsson",
                 "country": "SW",
                 "team": "Andretti"
@@ -4063,7 +4063,7 @@
             "shortName": "RICHMOND",
             "results": [
               {
-                "date": "2026-16-08",
+                "date": "2026-08-16",
                 "winner": "J. Logano",
                 "country": "US",
                 "team": "Team Penske"
@@ -4080,7 +4080,7 @@
             "shortName": "SNETTERTON",
             "results": [
               {
-                "date": "2026-16-08",
+                "date": "2026-08-16",
                 "winner": "R. Collard",
                 "country": "GB",
                 "team": "Barwell Motorsports"
