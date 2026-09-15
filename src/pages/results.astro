@@ -65,8 +65,8 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
     <div class="header--left">
       <div class="header--dept">The Department of Racing Drivers</div>
       <h1>2026 Race<br>Results</h1>
-      <p class="header--page-desc">Winners across every championship, updated month by month.</p>
-      <div class="meta">JAN — JUL 2026</div>
+      <p class="header--page-desc">Winners across every championship, updated weekly</p>
+      <div class="meta">JAN — SEP 2026</div>
       <Nav activePage="results" />
     </div>
   </header>
@@ -81,7 +81,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
           <button class="res-filter res-filter-util" id="res-select-all" aria-label="Select all series">Select All</button>
           <button class="res-filter res-filter-util" id="res-deselect-all" aria-label="Deselect all series">Deselect All</button>
           {allSeries.map(s => (
-            <button class="res-filter active" data-series={s} style={`--c: var(--${s})`} aria-pressed="true">
+            <button class="res-filter active" data-series={s} style={`--c: var(--${s}-c, var(--${s})); --c-grad: var(--${s})`} aria-pressed="true">
               {seriesShort[s] ?? s.toUpperCase()}
             </button>
           ))}
@@ -126,7 +126,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
                       </div>
                       <div class="res-event">
                         {venueCountry[r.venue] && (
-                          <img class="res-venue-flag" src={flagSrc(venueCountry[r.venue], base)} alt={countryName(venueCountry[r.venue])} width="20" height="14" loading="lazy" />
+                          <img class="res-venue-flag" src={flagSrc(venueCountry[r.venue], base)} alt={countryName(venueCountry[r.venue])} width="20" height="20" loading="lazy" />
                         )}
                         {r.venue
                           ? <a href={`${base}/tracks/${r.venue}`} class="res-venue-link">{r.event}</a>
@@ -135,7 +135,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
                       </div>
                       <div class="res-winner">
                         {r.country && (
-                          <img class="res-flag" src={flagSrc(r.country, base)} alt={countryName(r.country)} width="20" height="14" loading="lazy" />
+                          <img class="res-flag" src={flagSrc(r.country, base)} alt={countryName(r.country)} width="20" height="20" loading="lazy" />
                         )}
                         <span class="res-winner-name">
                           {r.winners ? r.winners.join(' · ') : r.winner}
@@ -218,6 +218,8 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-filter.active {
     border-color: var(--c, #4a7090);
+    border-image-source: var(--c-grad, none);
+    border-image-slice: 1;
     color: var(--c, #8ab);
     background: rgba(255,255,255,0.04);
   }
@@ -388,10 +390,10 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-venue-flag {
     width: 20px;
-    height: 14px;
+    height: 20px;
     flex-shrink: 0;
     object-fit: cover;
-    border-radius: 2px;
+    border-radius: 50%;
   }
 
   .res-venue-link {
@@ -437,11 +439,11 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-flag {
     width: 20px;
-    height: 14px;
+    height: 20px;
     flex-shrink: 0;
     object-fit: cover;
     display: block;
-    border-radius: 2px;
+    border-radius: 50%;
   }
 
   .res-team {
