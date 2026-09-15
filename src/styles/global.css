@@ -8,7 +8,7 @@
      * Gradient vars are for background use.
      * -c vars are solid fallbacks for color: and border-color:.
      * Series without gradients work everywhere directly.
-     */
+     */ 
     --f1: #ff1801;
     --f2: #0090ff;
     --f3: #d15eff;
@@ -805,8 +805,7 @@ h2 {
     .sub-sched.open {
         animation: none;
     }
-    .sticky-nav-bar,
-    .sticky-nav-label {
+    .sticky-nav-bar {
         transition: none;
     }
     .series-index-card,
@@ -1907,7 +1906,8 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 8px;
+    gap: 4px;
+    padding: 8px 14px;
     border-radius: 3px;
     border: none;
     background: none;
@@ -1924,10 +1924,6 @@ a {
     height: 22px;
 }
 
-/* Icon-only by default. Hovering (or keyboard-focusing) anywhere on the
-   dock expands the whole bar — width as well as height, since the label's
-   own footprint is collapsed to 0 too, not just hidden — and reveals every
-   label at once, rather than one at a time. */
 .sticky-nav-label {
     font-family: 'Roboto Mono', monospace;
     font-size: 0.65rem;
@@ -1935,48 +1931,14 @@ a {
     text-transform: uppercase;
     color: #8899aa;
     line-height: 1;
-    max-height: 0;
-    max-width: 0;
-    margin-top: 0;
-    opacity: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    transition: max-height 0.2s ease, max-width 0.22s ease, opacity 0.15s ease, margin-top 0.2s ease, color 0.15s ease;
 }
 
-.sticky-nav-bar:hover .sticky-nav-label,
-.sticky-nav-bar:focus-within .sticky-nav-label {
-    max-height: 14px;
-    max-width: 90px;
-    margin-top: 4px;
-    opacity: 1;
-}
-
-/* Tighten further on narrow screens so six icon-only buttons never crowd
-   the dock — the label max-width above already covers the longest label
-   ("CALENDAR") so nothing clips when it expands. */
-@media (max-width: 480px) {
-    .sticky-nav-link {
-        padding-left: 6px;
-        padding-right: 6px;
-    }
-}
-
-/* Current page: bright/white label — stays readable the moment the dock expands. */
 .sticky-nav-link.active .sticky-nav-label {
-    color: #fff;
+    color: #ccd;
 }
 
-/* Whichever icon the pointer/focus is actually on: distinct accent color,
-   so "here" (white) and "hovering this" (accent) never look the same. */
-.sticky-nav-link:hover .sticky-nav-label,
-.sticky-nav-link:focus-visible .sticky-nav-label {
-    color: #7ec8ff;
-}
-
-.sticky-nav-link.active:hover .sticky-nav-label,
-.sticky-nav-link.active:focus-visible .sticky-nav-label {
-    color: #fff;
+@media (max-width: 600px) {
+    .sticky-nav-label { display: none; }
 }
 
 .sticky-nav-link.active {
@@ -1985,7 +1947,7 @@ a {
 }
 
 .sticky-nav-link:hover:not(.active) {
-    opacity: 0.85;
+    opacity: 0.75;
     background: rgba(255, 255, 255, 0.04);
 }
 
