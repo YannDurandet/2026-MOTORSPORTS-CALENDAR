@@ -4,13 +4,13 @@
  * Cache strategies:
  *   • Fonts, static assets (images, CSS, JS chunks)  → Cache-First (long TTL)
  *   • API / dynamic data (/data/series.json etc.)    → Network-First, fallback to cache
- *   • Calendar, series, track, results pages          → Stale-While-Revalidate
+ *   • HTML pages                                      → Network-First (always fresh, avoids stale CSS hash mismatches)
  *   • Everything else                                 → Network-First, no cache fallback
  *
  * Install: registers in BaseLayout.astro (skipped on localhost unless ?sw=1 is set).
  */
 
-const VERSION  = 'v2';
+const VERSION  = 'v3';
 const CACHE    = `dord-${VERSION}`;
 
 // Assets to precache on install (shell only — pages served SW-free initially)
@@ -76,10 +76,11 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // HTML pages → Stale-While-Revalidate
+  // HTML pages → Network-First (Stale-While-Revalidate would serve cached HTML
+  // with stale CSS content-hash references after a deploy, causing blank pages)
   const acceptsHtml = request.headers.get('accept')?.includes('text/html');
   if (acceptsHtml || path === '/' || path.endsWith('/')) {
-    event.respondWith(staleWhileRevalidate(request));
+    event.respondWith(networkFirst(request));
     return;
   }
 
