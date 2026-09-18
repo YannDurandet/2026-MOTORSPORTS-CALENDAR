@@ -683,13 +683,44 @@ function injectSchema() {
         if (!meta) continue; // series.json can carry keys the UI doesn't know yet
         const nextRace = list.find(r => r._ts > now);
         if (nextRace) {
+            const seriesUrl = `https://dord.racing/series/${series}`;
             upcomingEvents.push({
-                "@type": "Event",
+                "@type": "SportsEvent",
                 "name": `${meta.name} - ${nextRace.name}`,
                 "startDate": nextRace.date,
+                "endDate": nextRace.date,
+                "url": seriesUrl,
+                "sport": "Motorsport",
                 "eventStatus": "https://schema.org/EventScheduled",
                 "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                "location": { "@type": "Place", "name": "TBC - See Website for Track Details" }
+                "description": `2026 ${meta.name} round — ${nextRace.name}. Full schedule, session times and live countdowns on dord.racing.`,
+                "image": "https://dord.racing/assets/og/og-home.webp",
+                "organizer": {
+                    "@type": "SportsOrganization",
+                    "name": meta.name,
+                    "url": seriesUrl
+                },
+                "performer": {
+                    "@type": "SportsOrganization",
+                    "name": meta.name,
+                    "url": seriesUrl
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": seriesUrl,
+                    "availability": "https://schema.org/InStock",
+                    "price": "0",
+                    "priceCurrency": "EUR",
+                    "validFrom": "2026-01-01"
+                },
+                "location": {
+                    "@type": "Place",
+                    "name": nextRace.name,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": nextRace.name
+                    }
+                }
             });
         }
     }

@@ -103,18 +103,31 @@ const eventSchema = {
     "name": seriesName,
     ...(seriesWeb ? { "url": seriesWeb } : {}),
   },
-  ...(track ? {
-    "location": {
-      "@type": "Place",
-      "name": track.name,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": track.city,
-        "addressCountry": track.country,
-      },
-      ...(track.website ? { "url": track.website } : {}),
+  "offers": {
+    "@type": "Offer",
+    "url": seriesWeb ?? canonical,
+    "availability": "https://schema.org/InStock",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "validFrom": `${ev.year}-01-01`,
+  },
+  "location": track ? {
+    "@type": "Place",
+    "name": track.name,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": track.city,
+      "addressCountry": track.country,
     },
-  } : {}),
+    ...(track.website ? { "url": track.website } : {}),
+  } : {
+    "@type": "Place",
+    "name": ev.title,
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "ZZ",
+    },
+  },
 };
 
 const breadcrumb = {
