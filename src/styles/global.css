@@ -8,7 +8,7 @@
      * Gradient vars are for background use.
      * -c vars are solid fallbacks for color: and border-color:.
      * Series without gradients work everywhere directly.
-     */
+     */ 
     --f1: #ff1801;
     --f2: #0090ff;
     --f3: #d15eff;

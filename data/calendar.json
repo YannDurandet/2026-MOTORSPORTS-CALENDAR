@@ -4464,7 +4464,15 @@
               }
             ],
             "date": "2026-09-06T15:00:00+02:00",
-            "shortName": "ITALY"
+            "shortName": "ITALY",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "wsbk",
@@ -4473,7 +4481,23 @@
             "time": "R1: <span class=\"hl\">13:30</span> • SPR: <span class=\"hl\">09:00</span> • R2: <span class=\"hl\">13:30</span>",
             "track": "magny-cours.svg",
             "date": "2026-09-06T14:00:00+02:00",
-            "shortName": "MAGNY-COURS"
+            "shortName": "MAGNY-COURS",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-09-05",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-09-06",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "btcc",
@@ -4482,7 +4506,30 @@
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
             "track": "croft.svg",
             "date": "2026-09-06T14:00:00+02:00",
-            "shortName": "CROFT"
+            "shortName": "CROFT",
+            "results": [
+              {
+                "race_label": "Race 22",
+                "date": "2026-09-06",
+                "winner": "Josh Cook",
+                "team": "Speedworks Corolla Racing",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 23",
+                "date": "2026-09-06",
+                "winner": "Ash Sutton",
+                "team": "NAPA Racing UK",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 24",
+                "date": "2026-09-06",
+                "winner": "Mikey Doble",
+                "team": "LKQ Euro Car Parts with Power Maxed Racing",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "erc",
@@ -4491,7 +4538,16 @@
             "time": "FRI > SUN",
             "track": "wales-wrc.svg",
             "date": "2026-09-06T14:00:00+02:00",
-            "shortName": "CEREDIGION"
+            "shortName": "CEREDIGION",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winner": "Kris Meeke",
+                "co_driver": "Noel O'Sullivan",
+                "manufacturer": "Toyota",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "wec",
@@ -4500,7 +4556,19 @@
             "time": "RACE: <span class=\"hl\">18:00</span>",
             "track": "cota-national.svg",
             "date": "2026-09-06T20:00:00+02:00",
-            "shortName": "LONE STAR (COTA)"
+            "shortName": "LONE STAR (COTA)",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winners": [
+                  "Antonio Fuoco",
+                  "Miguel Molina",
+                  "Nicklas Nielsen"
+                ],
+                "team": "Ferrari AF Corse",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "indycar",
@@ -4516,7 +4584,15 @@
               }
             ],
             "date": "2026-09-06T20:30:00+02:00",
-            "shortName": "LAGUNA SECA"
+            "shortName": "LAGUNA SECA",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winner": "Scott McLaughlin",
+                "team": "Team Penske",
+                "country": "NZ"
+              }
+            ]
           },
           {
             "series": "psc",
@@ -4525,7 +4601,16 @@
             "time": "RACE: <span class=\"hl\">10:00</span>",
             "track": "monza.svg",
             "date": "2026-09-06T15:00:00+02:00",
-            "shortName": "MONZA"
+            "shortName": "MONZA",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winner": "Andrea Bristot",
+                "team": "Dinamic Motorsport",
+                "country": "IT",
+                "note": "Red-flagged and not restarted; classified result, half points"
+              }
+            ]
           },
           {
             "series": "bgt",
@@ -4534,7 +4619,18 @@
             "time": "2h RACE: <span class=\"hl\">11:00</span>",
             "track": "donington-gp.svg",
             "date": "2026-09-06T13:00:00+02:00",
-            "shortName": "DONINGTON PARK"
+            "shortName": "DONINGTON PARK",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winners": [
+                  "Rob Collard",
+                  "Hugo Cook"
+                ],
+                "team": "Barwell Motorsport",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -4543,7 +4639,15 @@
             "time": "RACE: <span class=\"hl\">23:00</span>",
             "track": "darlington-oval.svg",
             "date": "2026-09-06T23:00:00+01:00",
-            "shortName": "DARLINGTON"
+            "shortName": "DARLINGTON",
+            "results": [
+              {
+                "date": "2026-09-06",
+                "winner": "Christopher Bell",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -4612,7 +4716,15 @@
             "time": "FRI R: <span class=\"hl\">06:30</span> • SAT R: <span class=\"hl\">06:30</span> • SUN R: <span class=\"hl\">06:30</span>",
             "track": "the-bend.svg",
             "date": "2026-09-13T04:30:00+02:00",
-            "shortName": "THE BEND"
+            "shortName": "THE BEND",
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winner": "Chaz Mostert & Fabian Coulthard",
+                "team": "Walkinshaw TWG Racing",
+                "country": "AU"
+              }
+            ]
           },
           {
             "series": "igtc",
@@ -4621,7 +4733,18 @@
             "time": "RACE: <span class=\"hl\">02:00</span>",
             "track": "suzuka.svg",
             "date": "2026-09-13T03:00:00+02:00",
-            "shortName": "SUZUKA 1000KM"
+            "shortName": "SUZUKA 1000KM",
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winners": [
+                  "Julien Andlauer",
+                  "Alessio Picariello",
+                  "Laurin Heinrich"
+                ],
+                "team": "AO by Absolute Racing"
+              }
+            ]
           },
           {
             "series": "elms",
@@ -4630,7 +4753,19 @@
             "time": "SUN: <span class=\"hl\">12:00</span>",
             "track": "silverstone.svg",
             "date": "2026-09-13T12:00:00+02:00",
-            "shortName": "SILVERSTONE 4H"
+            "shortName": "SILVERSTONE 4H",
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winners": [
+                  "Matthias Kaiser",
+                  "Jake Hughes",
+                  "Ben Barnicoat"
+                ],
+                "team": "Algarve Pro Racing",
+                "country": "PT"
+              }
+            ]
           },
           {
             "series": "nls",
@@ -4639,7 +4774,30 @@
             "time": "SAT: <span class=\"hl\">09:00</span> • SUN: <span class=\"hl\">09:00</span>",
             "track": "nordschleife.svg",
             "date": "2026-09-12T10:00:00+02:00",
-            "shortName": "REINOLDUS+BARBAROSSAPREIS II"
+            "shortName": "REINOLDUS+BARBAROSSAPREIS II",
+            "results": [
+              {
+                "race_label": "Reinoldus-Langstreckenrennen",
+                "date": "2026-09-12",
+                "winners": [
+                  "Jens Klingmann",
+                  "Jordan Pepper",
+                  "Ugo de Wilde"
+                ],
+                "team": "Schubert Motorsport",
+                "country": "DE"
+              },
+              {
+                "race_label": "ADAC ACAS Cup",
+                "date": "2026-09-13",
+                "winners": [
+                  "Tim Heinemann",
+                  "Morris Schuring"
+                ],
+                "team": "Falken Motorsports",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "eurx",
