@@ -491,4 +491,40 @@ const breadcrumb = {
   .ev-round:hover { color: var(--text-main); }
   .ev-round--empty { visibility: hidden; }
   .ev-round--next { text-align: right; }
+
+  /* ── Card system ───────────────────────────────────────────────────────────
+     Track map + date/series/circuit form one identity card; every block
+     after it is its own card with a 12px gap. Same border and radius as the
+     Getting There / Plan Your Trip cards on the right. */
+  .ev-hero,
+  .ev-specs,
+  .ev-block,
+  .ev-rounds {
+    border: 1px solid var(--row-line);
+    background: var(--card-bg);
+    margin: 0;
+  }
+  .ev-hero {
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  }
+  .ev-specs {
+    border-top: 0;
+    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+    overflow: hidden;
+  }
+  .ev-spec { border-right-color: var(--row-line); }
+  .ev-block,
+  .ev-rounds {
+    border-radius: var(--radius-2xl);
+    margin-top: 12px;
+  }
+  .ev-hero:hover { border-color: var(--control-line); }
+
+  /* Phones: date / series / circuit stack with horizontal dividers instead
+     of wrapping 2 + 1 with a stray vertical rule. */
+  @media (max-width: 600px) {
+    .ev-specs { flex-direction: column; }
+    .ev-spec { flex: none; padding: 12px 20px; border-right: 0; border-bottom: 1px solid var(--row-line); }
+    .ev-spec:last-child { border-bottom: 0; }
+  }
 </style>

@@ -537,36 +537,13 @@ const sportsEventSchemas = [
     min-width: 0;
   }
 
-  /* The left column reads as one card: hero, specs, layouts and results
-     stack inside a single rounded frame. */
-  .track-col-left {
-    align-self: start;
-    border-radius: var(--radius-2xl);
-    overflow: hidden;
-    border: 1px solid var(--row-line);
-  }
 
-  /* Sticky only while the column still fits on screen. Since the Getting There
-     card was added the column often exceeds the viewport, and a taller-than-
-     viewport sticky element pins its top and leaves the bottom (the Trip
-     Planner links) permanently out of reach. Scrolling its own overflow keeps
-     everything reachable. */
+  /* The right column scrolls with the page. It used to be sticky with its
+     own inner scroll, which clipped the Getting There card mid-card at the
+     bottom of the viewport. Every track's column is taller than the screen,
+     so plain flow reads better and keeps everything reachable. */
   .track-col-right {
-    position: sticky;
-    top: 24px;
-    max-height: calc(100vh - 48px);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    overscroll-behavior: contain;
-  }
-
-  /* No sticky, no clipping, on short viewports. */
-  @media (max-height: 700px) {
-    .track-col-right {
-      position: static;
-      max-height: none;
-      overflow-y: visible;
-    }
+    position: static;
   }
 
   /* In the narrow left column: square hero, single-col meta */
@@ -977,5 +954,44 @@ const sportsEventSchemas = [
 
   @media (max-width: 560px) {
     .track-page { padding: 0 12px 60px; }
+  }
+
+  /* ── Card system ───────────────────────────────────────────────────────────
+     Hero + name + specs form one identity card (rounded top and bottom, a
+     single divider between parts). Layouts, results and upcoming are
+     separate cards with a 12px gap. No stacked 2px seams. */
+  .track-hero,
+  .track-meta-row,
+  .track-specs-row,
+  .track-layouts-section,
+  .track-events-section {
+    border: 1px solid var(--row-line);
+    margin: 0;
+  }
+  .track-hero {
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    overflow: hidden;
+  }
+  .track-meta-row { border-top: 0; }
+  .track-specs-row {
+    border-top: 1px solid var(--row-line);
+    border-bottom-left-radius: var(--radius-2xl);
+    border-bottom-right-radius: var(--radius-2xl);
+    overflow: hidden;
+  }
+  .track-layouts-section,
+  .track-events-section {
+    border-radius: var(--radius-2xl);
+    margin-top: 12px;
+  }
+  .spec-item { border-right-color: var(--row-line); }
+
+  /* Flag sits next to the winner's name, not after the team, so it never
+     wraps onto a line of its own. */
+  .result-entry .res-flag { order: 1; }
+  .result-entry .res-winner { order: 2; }
+  .result-entry .res-team { order: 3; }
+  @media (max-width: 600px) {
+    .result-entries { padding-left: 0; margin-top: 6px; }
   }
 </style>
