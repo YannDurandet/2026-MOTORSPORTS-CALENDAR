@@ -119,7 +119,9 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 - Site CSS (`global.css` and `.astro` `<style>` blocks) uses `var(--token)`, never literals. `npm run check` enforces this via `scripts/check-tokens.mjs`. If nothing fits, add a token to `tokens.css`.
 - Naming is `--{role}-{tier}`, e.g. `--text-muted`, `--line-subtle`, `--surface-raised`, `--fs-sm`. A `-N` suffix (`--text-soft-4`) is a legacy near-duplicate kept for pixel parity: don't reach for it in new code, use the tier's canonical token.
 - Roles are split on purpose (`--text-*`, `--line-*`, `--surface-*`/`--card-bg*`). Pick by what the colour does, not by matching the hex.
-- Series tokens keep the `--{slug}` / `--{slug}-c` pattern because templates build them from slugs. Per-series `-tag` (AA-darkened tag background) and `-tint` (active filter chip) live alongside.
+- Series tokens keep the `--{slug}` / `--{slug}-c` pattern because templates build them from slugs. Per-series `-tag` (tag background adjusted for AA — flat for some, gradient for f1a/fe/wrc/supercars/gtwce/nls) and `-tint` (active filter chip, derived with `color-mix` from `-c`/brand — never hand-type one) live alongside. They mirror the **Series** collection and `Series/{slug}` paint styles in the Figma file.
+- Fonts: `--font-mono` (JetBrains Mono) for UI, labels, times; `--font-body` (Inter) for prose; `--font-title` (Orbitron) **only** for page titles (`h1`, series hero, newsletter hero). Files are self-hosted in `public/assets/fonts/` and precached in `public/sw.js` — bump `VERSION` there when fonts change.
+- Floors: `--text-meta` is the dimmest readable text (passes AA on `--bg`, `--card-bg`, `--surface-raised`); `--text-dim*`/`--text-faint*` alias it. `--fs-3xs*`/`--fs-2xs*` alias `--fs-xs` (0.7rem).
 - Out of scope: email HTML (`api/subscribe.ts`, `workers/newsletter.ts`, since mail clients lack CSS variables), `api/unsubscribe.ts`, the embed iframe (own local tokens + light theme), `<meta name="theme-color">`.
 
 ## Global search
@@ -172,7 +174,7 @@ When the repo is edited through a sandbox or remote file bridge rather than loca
 ## Accessibility checklist (WCAG 2.2 AA)
 Run this before merging any new feature or page:
 
-- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI). Prefer `--text-muted`/`--text-meta` for secondary meta text on dark backgrounds; `--text-dim*` and `--text-faint*` fail AA and are decorative only.
+- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI). Prefer `--text-muted`/`--text-meta` for secondary meta text on dark backgrounds. Nothing dimmer than `--text-meta` for text.
 - [ ] Every new interactive element is keyboard-operable: Tab-reachable, Enter/Space activates, has a visible focus ring (not just `outline: none`).
 - [ ] Every new icon/SVG has `aria-hidden="true"` if decorative, or an accessible name (`aria-label`/`<title>`) if it conveys information.
 - [ ] Every color-coded element (series tags, status indicators) also conveys meaning via text — color is never the sole indicator.

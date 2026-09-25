@@ -78,7 +78,7 @@ header {
 }
 
 .site-nav-link {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-sm-3);
     font-weight: 700;
     color: var(--text-muted);
@@ -108,7 +108,7 @@ header {
 
 h1,
 h2 {
-    font-family: var(--font-display);
+    font-family: var(--font-title);
     font-size: var(--fs-3xl-2);
     /* Smaller for mobile */
     font-weight: 900;
@@ -206,7 +206,7 @@ h2 {
 
 /* MONTH HEADER */
 .month-header {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-4xl-2);
     /* Smaller for mobile */
     font-weight: 900;
@@ -426,7 +426,7 @@ h2 {
 }
 
 .tag {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-3xs);
     font-weight: 800;
     padding: 5px 6px;
@@ -447,13 +447,13 @@ h2 {
 }
 
 .t-f1a {
-    background: var(--f1a);
-    color: var(--on-series);
+    background: var(--f1a-tag);
+    color: var(--on-series-dark);
 }
 
 .t-fe {
-    background: var(--fe);
-    color: var(--on-series);
+    background: var(--fe-tag);
+    color: var(--on-series-dark);
 }
 
 .t-sf {
@@ -466,7 +466,8 @@ h2 {
 }
 
 .t-wrc {
-    background: var(--wrc);
+    background: var(--wrc-tag);
+    color: var(--on-series);
 }
 
 .t-imsa {
@@ -504,29 +505,33 @@ h2 {
 }
 
 .t-supercars {
-    background: var(--supercars);
+    background: var(--supercars-tag);
+    color: var(--on-series-dark);
 }
 
 .t-elms {
     background: var(--elms);
-    color: var(--on-series);
+    color: var(--on-series-dark);
 }
 
 .t-gtwce {
-    background: var(--gtwce);
+    background: var(--gtwce-tag);
+    color: var(--on-series-dark);
 }
 
 .t-gtwca {
     background: var(--gtwca);
+    color: var(--on-series);
 }
 
 .t-nls {
-    background: var(--nls);
+    background: var(--nls-tag);
     color: var(--on-series);
 }
 
 .t-igtc {
     background: var(--igtc);
+    color: var(--on-series);
 }
 
 .t-tcr {
@@ -1029,7 +1034,7 @@ a {
 }
 
 .filter-group legend {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-3xs);
     font-weight: 800;
     color: var(--text-muted-10);
@@ -1041,7 +1046,7 @@ a {
 }
 
 .filter-btn {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-2xs);
     font-weight: 800;
     padding: 8px 14px;
@@ -1275,6 +1280,30 @@ a {
     background: var(--h24eu-tint);
     color: var(--text-strong);
 }
+.filter-psc.active {
+    border-color: var(--psc-c, var(--psc));
+    background: var(--psc-tint);
+    color: var(--text-strong);
+}
+
+.filter-bgt.active {
+    border-color: var(--bgt-c, var(--bgt));
+    background: var(--bgt-tint);
+    color: var(--text-strong);
+}
+
+.filter-eurx.active {
+    border-color: var(--eurx-c, var(--eurx));
+    background: var(--eurx-tint);
+    color: var(--text-strong);
+}
+
+.filter-asian-le-mans.active {
+    border-color: var(--asian-le-mans-c, var(--asian-le-mans));
+    background: var(--asian-le-mans-tint);
+    color: var(--text-strong);
+}
+
 
 /* Empty State */
 .empty-state {
@@ -1284,13 +1313,13 @@ a {
 }
 
 .empty-state p {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-xl);
     margin-bottom: 16px;
 }
 
 .clear-filters-btn {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-sm);
     font-weight: 800;
     padding: 10px 24px;
@@ -1313,7 +1342,7 @@ a {
 }
 
 .past-events-accordion summary {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-sm);
     font-weight: 800;
     color: var(--text-muted);
@@ -1358,7 +1387,7 @@ a {
 }
 
 .preview-2027-btn {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-xs-2);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -1389,7 +1418,7 @@ a {
 }
 
 .year-separator {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-xs);
     letter-spacing: 0.15em;
     color: var(--text-dim);
@@ -1495,7 +1524,7 @@ a {
 }
 
 .this-weekend-header {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-4xl-2);
     font-weight: 900;
     color: var(--text-soft);
@@ -1587,7 +1616,7 @@ a {
 }
 
 .faq-header-title {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-4xl-2);
     font-weight: 900;
     color: var(--text-soft);
@@ -1613,7 +1642,7 @@ a {
 }
 
 .faq-question {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-lg-2);
     font-weight: 800;
     color: var(--text-main);
@@ -1740,7 +1769,7 @@ a {
 }
 
 .series-hero-name {
-    font-family: var(--font-display);
+    font-family: var(--font-title);
     font-size: var(--fs-2xl-3);
     font-weight: 900;
     color: var(--text-soft);
@@ -1788,7 +1817,7 @@ a {
 }
 
 .series-section-title {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-xl);
     font-weight: 900;
     color: var(--text-soft);
@@ -2039,7 +2068,7 @@ a {
    SERIES INDEX PAGE
 ========================================= */
 .series-index-category {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-sm);
     font-weight: 900;
     color: var(--text-meta);
@@ -2129,7 +2158,7 @@ a {
 }
 
 .series-index-name {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-md-2);
     font-weight: 900;
     color: var(--text-soft);
@@ -2327,7 +2356,7 @@ a {
 }
 
 .subscribe-btn--embed {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
 }
 
 /* =========================================
@@ -2374,7 +2403,7 @@ a {
 }
 
 .embed-modal-title {
-    font-family: var(--font-display);
+    font-family: var(--font-mono);
     font-size: var(--fs-lg-2);
     font-weight: 900;
     color: var(--text-soft);

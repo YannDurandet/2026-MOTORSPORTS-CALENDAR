@@ -30,25 +30,26 @@
 :root {
     /* ── Typography: families ─────────────────────────────────────────── */
     --font-body:        'Inter', sans-serif;
-    --font-mono:        'Roboto Mono', monospace;
-    --font-display:     'Orbitron', sans-serif;
+    --font-mono:        'JetBrains Mono', monospace;
+    --font-title:       'Orbitron', sans-serif;   /* page titles only (h1, series hero, newsletter hero) */
     --font-code:        'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
     --font-system-mono: monospace;
 
     /* ── Typography: sizes ────────────────────────────────────────────────
      * Tiers sit ~1px apart; -N variants are within ~1px of their tier.
      * Accessibility floor (see CLAUDE.md): meta/label text >= 0.7rem
-     * (--fs-xs), body text >= 0.85rem (--fs-base). Everything in the 3xs and
-     * 2xs tiers is below that floor and should move up in the redesign.     */
-    --fs-3xs:     0.6rem;
-    --fs-3xs-2:   0.54rem;
-    --fs-3xs-3:   0.55rem;
-    --fs-3xs-4:   0.56rem;
-    --fs-3xs-5:   0.58rem;
-    --fs-3xs-6:   0.62rem;
-    --fs-2xs:     0.65rem;
-    --fs-2xs-2:   0.66rem;
-    --fs-2xs-3:   0.68rem;
+     * (--fs-xs), body text >= 0.85rem (--fs-base). The 3xs and 2xs tiers
+     * used to sit below that floor; they now resolve to --fs-xs. Keep the
+     * names so markup doesn't churn, but don't use them in new code.      */
+    --fs-3xs:     var(--fs-xs);
+    --fs-3xs-2:   var(--fs-xs);
+    --fs-3xs-3:   var(--fs-xs);
+    --fs-3xs-4:   var(--fs-xs);
+    --fs-3xs-5:   var(--fs-xs);
+    --fs-3xs-6:   var(--fs-xs);
+    --fs-2xs:     var(--fs-xs);
+    --fs-2xs-2:   var(--fs-xs);
+    --fs-2xs-3:   var(--fs-xs);
     --fs-xs:      0.7rem;
     --fs-xs-2:    0.72rem;
     --fs-sm:      0.75rem;
@@ -217,27 +218,30 @@
     --text-muted-10: #888899;
     --text-muted-11: #888888;
 
-    /* -2, -3, -6, -7, -8, -9 are under 4.5:1 on --bg (3.1–4.3). */
-    --text-meta:   #7a8fa0;        /* labels, timestamps, meta */
-    --text-meta-2: #6a7f8c;
-    --text-meta-3: #6a8090;
-    --text-meta-4: #7a8a9a;
-    --text-meta-5: #7a8890;
-    --text-meta-6: #777788;
-    --text-meta-7: #70767c;
-    --text-meta-8: #666666;
-    --text-meta-9: #5a7080;
+    /* Lowest-emphasis readable text. Passes AA (>= 4.6:1) on --bg, --card-bg
+     * and --surface-raised. Everything dimmer used to fail, so the old meta
+     * variants and the dim / faint tiers now all resolve here.            */
+    --text-meta:   #7f93a4;        /* labels, timestamps, meta */
+    --text-meta-2: var(--text-meta);
+    --text-meta-3: var(--text-meta);
+    --text-meta-4: var(--text-meta);
+    --text-meta-5: var(--text-meta);
+    --text-meta-6: var(--text-meta);
+    --text-meta-7: var(--text-meta);
+    --text-meta-8: var(--text-meta);
+    --text-meta-9: var(--text-meta);
 
-    /* Below AA on --bg. Decorative / de-emphasised only. */
-    --text-dim:   #566878;
-    --text-dim-2: #5a6a78;
-    --text-dim-3: #4a6070;
-    --text-dim-4: #555566;
+    /* Formerly below AA (1.4–3.2:1). Kept as aliases so the redesign can give
+     * them a distinct value again, as long as it still passes AA.          */
+    --text-dim:   var(--text-meta);
+    --text-dim-2: var(--text-meta);
+    --text-dim-3: var(--text-meta);
+    --text-dim-4: var(--text-meta);
 
-    --text-faint:   #3a5060;
-    --text-faint-2: #333344;
-    --text-faint-3: #2a3540;
-    --text-faint-4: rgba(255, 255, 255, 0.25);
+    --text-faint:   var(--text-meta);
+    --text-faint-2: var(--text-meta);
+    --text-faint-3: var(--text-meta);
+    --text-faint-4: var(--text-meta);
 
     --text-inverse: #000;          /* on --surface-inverse */
 
@@ -368,30 +372,42 @@
     --on-series:      #fff;
     --on-series-dark: #000;
 
-    /* Active series filter chip background.
-     * NOTE: several of these do not match their series colour (btcc is
-     * purple, elms teal, h24eu orange…). Legacy, kept as-is; fix in the
-     * redesign, e.g. color-mix(in srgb, var(--{slug}-c) 15%, transparent). */
-    --f1-tint:        rgba(255, 24, 1, 0.15);
-    --f1a-tint:       rgba(6, 247, 251, 0.1);
-    --fe-tint:        rgba(0, 252, 255, 0.1);
-    --sf-tint:        rgba(0, 109, 83, 0.2);
-    --wec-tint:       rgba(0, 185, 255, 0.12);
-    --imsa-tint:      rgba(255, 215, 0, 0.12);
-    --wrc-tint:       rgba(252, 76, 2, 0.15);
-    --indycar-tint:   rgba(200, 16, 46, 0.15);
-    --nascar-tint:    rgba(0, 71, 149, 0.2);
-    --motogp-tint:    rgba(233, 30, 99, 0.15);
-    --wsbk-tint:      rgba(216, 27, 96, 0.15);
-    --dtm-tint:       rgba(76, 175, 80, 0.15);
-    --btcc-tint:      rgba(156, 39, 176, 0.15);
-    --supercars-tint: rgba(255, 152, 0, 0.12);
-    --elms-tint:      rgba(0, 150, 136, 0.15);
-    --gtwce-tint:     rgba(0, 172, 193, 0.12);
-    --gtwca-tint:     rgba(0, 188, 212, 0.12);
-    --nls-tint:       rgba(96, 125, 139, 0.2);
-    --igtc-tint:      rgba(120, 144, 156, 0.2);
-    --tcr-tint:       rgba(205, 220, 57, 0.12);
-    --erc-tint:       rgba(141, 110, 99, 0.2);
-    --h24eu-tint:     rgba(245, 127, 23, 0.15);
+    /* Active series filter chip background: the series' own solid colour at
+     * 15%. Derived, so it can never drift from the brand colour again.      */
+    --f1-tint:             color-mix(in srgb, var(--f1-c, var(--f1)) 15%, transparent);
+    --f1a-tint:            color-mix(in srgb, var(--f1a-c, var(--f1a)) 15%, transparent);
+    --fe-tint:             color-mix(in srgb, var(--fe-c, var(--fe)) 15%, transparent);
+    --sf-tint:             color-mix(in srgb, var(--sf-c, var(--sf)) 15%, transparent);
+    --wec-tint:            color-mix(in srgb, var(--wec-c, var(--wec)) 15%, transparent);
+    --imsa-tint:           color-mix(in srgb, var(--imsa-c, var(--imsa)) 15%, transparent);
+    --wrc-tint:            color-mix(in srgb, var(--wrc-c, var(--wrc)) 15%, transparent);
+    --indycar-tint:        color-mix(in srgb, var(--indycar-c, var(--indycar)) 15%, transparent);
+    --nascar-tint:         color-mix(in srgb, var(--nascar-c, var(--nascar)) 15%, transparent);
+    --motogp-tint:         color-mix(in srgb, var(--motogp-c, var(--motogp)) 15%, transparent);
+    --wsbk-tint:           color-mix(in srgb, var(--wsbk-c, var(--wsbk)) 15%, transparent);
+    --dtm-tint:            color-mix(in srgb, var(--dtm-c, var(--dtm)) 15%, transparent);
+    --btcc-tint:           color-mix(in srgb, var(--btcc-c, var(--btcc)) 15%, transparent);
+    --supercars-tint:      color-mix(in srgb, var(--supercars-c, var(--supercars)) 15%, transparent);
+    --elms-tint:           color-mix(in srgb, var(--elms-c, var(--elms)) 15%, transparent);
+    --gtwce-tint:          color-mix(in srgb, var(--gtwce-c, var(--gtwce)) 15%, transparent);
+    --gtwca-tint:          color-mix(in srgb, var(--gtwca-c, var(--gtwca)) 15%, transparent);
+    --nls-tint:            color-mix(in srgb, var(--nls-c, var(--nls)) 15%, transparent);
+    --igtc-tint:           color-mix(in srgb, var(--igtc-c, var(--igtc)) 15%, transparent);
+    --tcr-tint:            color-mix(in srgb, var(--tcr-c, var(--tcr)) 15%, transparent);
+    --erc-tint:            color-mix(in srgb, var(--erc-c, var(--erc)) 15%, transparent);
+    --h24eu-tint:          color-mix(in srgb, var(--h24eu-c, var(--h24eu)) 15%, transparent);
+    --psc-tint:            color-mix(in srgb, var(--psc-c, var(--psc)) 15%, transparent);
+    --bgt-tint:            color-mix(in srgb, var(--bgt-c, var(--bgt)) 15%, transparent);
+    --eurx-tint:           color-mix(in srgb, var(--eurx-c, var(--eurx)) 15%, transparent);
+    --asian-le-mans-tint:  color-mix(in srgb, var(--asian-le-mans-c, var(--asian-le-mans)) 15%, transparent);
+
+    /* Gradient series tags. Where the brand gradient can't carry readable
+     * text end to end, one stop is shifted just enough for AA (mirrors the
+     * Series/{slug} paint styles in Figma).                                  */
+    --f1a-tag:       linear-gradient(135deg, #06F7FB 0%, #D5479B 100%);  /* dark text */
+    --fe-tag:        linear-gradient(135deg, #4F72FF 0%, #00EFFF 100%);  /* dark text */
+    --wrc-tag:       linear-gradient(135deg, #D44002 0%, #1A0800 100%);  /* white text */
+    --supercars-tag: linear-gradient(135deg, #F9CB0F 0%, #ED3348 100%);  /* dark text */
+    --gtwce-tag:     linear-gradient(135deg, #E83D33 0%, #FF6B1A 100%);  /* dark text */
+    --nls-tag:       linear-gradient(135deg, #008643 0%, #004422 100%);  /* white text */
 }

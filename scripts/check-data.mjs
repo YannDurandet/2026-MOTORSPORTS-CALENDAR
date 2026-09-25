@@ -30,7 +30,9 @@ const seriesJson    = JSON.parse(readFileSync(resolve(root, 'data/series.json'),
 const tracksJson    = JSON.parse(readFileSync(resolve(root, 'data/tracks.json'), 'utf8'));
 const seriesContent = JSON.parse(readFileSync(resolve(root, 'data/seriesContent.json'), 'utf8'));
 const standingsJson = JSON.parse(readFileSync(resolve(root, 'data/standings.json'), 'utf8'));
-const cssText       = readFileSync(resolve(root, 'src/styles/global.css'), 'utf8');
+// Series colour vars are defined in tokens.css; .t-{slug} tag rules live in global.css.
+const cssText       = ['src/styles/tokens.css', 'src/styles/global.css']
+  .map(f => readFileSync(resolve(root, f), 'utf8')).join('\n');
 const mainJsText    = readFileSync(resolve(root, 'src/scripts/main.js'), 'utf8');
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
