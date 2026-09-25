@@ -62,6 +62,33 @@ header {
     /* Ensures the 600x400 fills the space perfectly */
 }
 
+/* Brand banner: logo centred over the striped background */
+.brand-banner {
+    position: relative;
+    background: var(--brand-blue);
+}
+@media (max-width: 767px) {
+    .brand-banner .hero-banner { aspect-ratio: 2 / 1; }
+}
+.brand-link {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--brand-logo);
+}
+.brand-logo {
+    width: min(62%, 726px);
+    height: auto;
+}
+@media (min-width: 768px) {
+    .brand-logo { width: min(40%, 726px); }
+}
+.brand-link:focus-visible {
+    outline: 2px solid var(--brand-logo);
+    outline-offset: -6px;
+}
+
 .header--left {
     height: auto;
     width: fit-content;

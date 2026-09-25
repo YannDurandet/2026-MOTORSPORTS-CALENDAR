@@ -1,9 +1,23 @@
 ---
+/**
+ * Site banner: DORD lockup (dord_logo_phase_2 in Figma) over the striped
+ * brand background. The logo is inlined so it stays crisp at any size and
+ * takes its colour from CSS.
+ */
+import logoRaw from '../assets/dord-logo.svg?raw';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const logo = logoRaw
+  .replace('<svg ', '<svg class="brand-logo" aria-hidden="true" focusable="false" ')
+  .replace(' width="726" height="171"', '')
+  .replace('fill="#F5F5F5"', 'fill="currentColor"');
 ---
-<div class="banner-container">
+<div class="banner-container brand-banner">
   <picture>
-    <source media="(min-width: 768px)" srcset={`${base}/assets/lauda_and_mouton--large.webp`}>
-    <img src={`${base}/assets/lauda_and_mouton--mobile.webp`} alt="2026 Motorsport Calendar Banner" class="hero-banner" width="600" height="400" fetchpriority="high">
+    <source media="(min-width: 768px)" srcset={`${base}/assets/brand/banner-bg--large.webp`} width="1800" height="450">
+    <img src={`${base}/assets/brand/banner-bg--mobile.webp`} alt="" class="hero-banner" width="900" height="450" fetchpriority="high">
   </picture>
+  <a href={`${base}/`} class="brand-link" aria-label="DORD — The Department of Racing Drivers, home">
+    <Fragment set:html={logo} />
+  </a>
 </div>

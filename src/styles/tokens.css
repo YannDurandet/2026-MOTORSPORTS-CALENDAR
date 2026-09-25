@@ -287,6 +287,10 @@
     --shadow-hover-2: 0 8px 24px rgba(0, 0, 0, 0.45);
     --shadow-hover-3: 0 6px 18px rgba(0, 0, 0, 0.4);
 
+    /* ── Brand ──────────────────────────────────────────────────────────── */
+    --brand-blue: #183878;         /* banner background (placeholder while the image loads) */
+    --brand-logo: #f5f5f5;         /* DORD lockup on --brand-blue */
+
     /* ── Calendar week card (Figma: Theme collection, Dark mode) ──────────
      * The first surfaces ported from the redesign. Names follow the Figma
      * variables so the two stay easy to diff.                             */
