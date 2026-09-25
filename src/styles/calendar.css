@@ -1,0 +1,304 @@
+/* ==========================================================================
+ * Home calendar — Week Card + Event Row (Figma: 🧱 Atomic Design Elements).
+ *
+ * Scoped to .cal-v2 so the shared .card / .event / .tag rules in global.css
+ * keep working unchanged on the track, series, event and watch pages.
+ * ========================================================================== */
+
+/* ── Week card ─────────────────────────────────────────────────────────── */
+.cal-v2 .wk-card {
+    background: var(--wk-bg);
+    border: 1px solid var(--wk-line);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+}
+.cal-v2 .wk-card:hover { box-shadow: none; }
+.cal-v2 .card.past { border-left-width: 1px; }
+
+.cal-v2 .wk-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 12px 14px 12px 16px;
+    border-bottom: 1px solid var(--wk-line);
+}
+.cal-v2 .c-head {
+    background: none;
+    border: 0;
+    padding: 0;
+    font-size: var(--fs-sm);
+    color: var(--text-date);
+    letter-spacing: 0.04em;
+}
+.cal-v2 .wk-num { color: var(--text-week); font-weight: 700; }
+/* The bullet stays in the text (main.js parses the label) but reads as a gap. */
+.cal-v2 .wk-sep { color: transparent; }
+
+.focus-switch {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-pill);
+    background: var(--row-bg);
+    overflow: hidden;
+}
+.focus-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-chip-muted);
+    padding: 0 8px 0 10px;
+}
+.focus-btn {
+    min-width: 28px;
+    min-height: 24px;
+    border: 0;
+    border-left: 1px solid var(--control-line);
+    background: none;
+    color: var(--text-chip-muted);
+    font-size: var(--fs-xs);
+    cursor: pointer;
+}
+.focus-btn:hover { color: var(--text-strong); background: var(--row-bg-open); }
+.focus-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
+
+.cal-v2 .c-body {
+    padding: 10px 12px 12px;
+    gap: 6px;
+}
+
+/* ── Event row ─────────────────────────────────────────────────────────── */
+.cal-v2 .ev-row {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+    padding: 0;
+    gap: 0;
+    background: var(--row-bg);
+    /* Only the left edge is a real border, so the series .ev-{slug} colour
+       (border-color / border-image) lands on it alone. No border-color here:
+       it would out-rank the .ev-{slug} rules. */
+    border-width: 0 0 0 3px;
+    border-style: solid;
+    box-shadow: inset 0 0 0 1px var(--row-line);
+    border-radius: var(--radius-xl);
+    transition: background 0.14s ease;
+}
+.cal-v2 .ev-row:hover { transform: none; background: var(--row-bg-open); }
+.cal-v2 .ev-row.is-open { background: var(--row-bg-open); }
+
+.ev-head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 8px 10px 8px 6px;
+    cursor: pointer;
+}
+.ev-toggle {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-sm);
+    background: none;
+    color: var(--text-meta);
+    cursor: pointer;
+}
+.ev-toggle:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 1px; }
+.ev-chevron { transition: transform 0.15s ease; }
+.ev-row.is-open .ev-chevron { transform: rotate(-90deg); }
+
+.cal-v2 .ev-head .tag {
+    flex: none;
+    margin: 0;
+    padding: 2px 6px;
+    min-height: 24px;
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+.cal-v2 .ev-head .title {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-heading);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cal-v2 .ev-row.is-open .title { color: var(--text-strong); font-weight: 800; white-space: normal; }
+.cal-v2 .ev-row.is-finished:not(.is-open) .title { color: var(--text-muted); }
+
+.class-tag {
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-meta);
+    border: 1px solid var(--class-line);
+    border-radius: var(--radius-sm);
+    padding: 1px 5px;
+}
+
+.time-chip {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: var(--text-strong);
+    background: var(--chip-bg);
+    border-radius: var(--radius-md);
+    padding: 3px 7px;
+}
+.time-chip .hl { background: none; padding: 0; color: inherit; font-weight: inherit; }
+.time-chip.is-muted { background: var(--chip-bg-muted); color: var(--text-chip-muted); }
+
+.live-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--fs-xs);
+    color: var(--on-series);
+    background: var(--live-bg);
+    border-radius: var(--radius-xs);
+    padding: 0 5px;
+}
+.live-flag[hidden] { display: none; }
+.live-flag::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-round);
+    background: currentColor;
+    animation: live-pulse 1.4s ease-in-out infinite;
+}
+@keyframes live-pulse { 50% { opacity: 0.25; } }
+
+/* ── Expanded panel ────────────────────────────────────────────────────── */
+.ev-panel {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 12px 12px 38px;
+}
+.ev-panel[hidden] { display: none; }
+.ev-panel-body { display: flex; align-items: flex-start; gap: 12px; }
+.ev-panel-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+
+.session-line,
+.ev-result {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+.session-day {
+    flex: none;
+    min-width: 4.5em;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-meta);
+}
+.ev-winner { color: var(--text-strong); font-weight: 700; }
+.ev-team { color: var(--text-meta); }
+
+.ev-map {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-xl);
+    background: var(--row-bg);
+    box-shadow: inset 0 0 0 1px var(--row-line);
+}
+.ev-map img { width: 44px; height: 44px; object-fit: contain; }
+a.ev-map:hover { box-shadow: inset 0 0 0 1px var(--class-line); }
+a.ev-map:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+.ev-support { display: flex; flex-direction: column; gap: 6px; }
+.support-lane {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
+}
+.cal-v2 .support-lane .badge {
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+}
+
+.ev-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.ev-links a {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 0;
+}
+.ev-links a:hover { color: var(--text-strong); }
+.ev-links a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* Track ghost behind the row, as in the Figma rows. Decorative. */
+.ev-ghost {
+    position: absolute;
+    z-index: 0;
+    right: -10px;
+    top: 50%;
+    width: 96px;
+    height: 96px;
+    transform: translateY(-50%);
+    opacity: 0.07;
+    pointer-events: none;
+}
+.ev-row.is-open .ev-ghost { top: -6px; transform: none; width: 160px; height: 160px; opacity: 0.05; }
+
+@media (max-width: 480px) {
+    .cal-v2 .ev-head .class-tag { display: none; }
+    .ev-panel { padding-left: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ev-chevron,
+    .cal-v2 .ev-row { transition: none; }
+    .live-flag::before { animation: none; }
+}

@@ -1,14 +1,21 @@
 ---
-interface SubRace {
-  badge: string;
-  label: string;
-  detail: string;
-}
+/**
+ * One race in a calendar week card (the "Event Row" component in Figma).
+ *
+ * Collapsed: chevron · series badge · title · time chip.
+ * Expanded:  session times, races, support series, result, track map, links.
+ *
+ * Hooks main.js depends on — keep them:
+ *   .event[data-series]      filters
+ *   .meta-time > .hl         timezone conversion (chip + sessions)
+ *   .ev-toggle / .ev-panel   expand/collapse + week focus switch
+ *   data-ts                  live-state detection
+ */
+import { findEvent } from '../lib/events';
 
-interface Race {
-  label: string;
-  time: string;
-}
+interface SubRace { badge: string; label: string; detail: string }
+interface Race { label: string; time: string }
+interface Result { winner?: string; winners?: string[]; team?: string; manufacturer?: string; race_label?: string }
 
 interface Props {
   series: string;
@@ -16,84 +23,109 @@ interface Props {
   title: string;
   time: string;
   track: string;
+  date: string;
+  weekLabel: string;
+  year: number;
   sprint?: boolean;
   sub?: SubRace[];
   races?: Race[];
+  results?: Result[];
   trackHref?: string | null;
 }
 
-const { series, tag, title, time, track, sprint, sub, races, trackHref } = Astro.props;
+const { series, tag, title, time, track, date, weekLabel, year, sprint, sub, races, results, trackHref } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesHref = `${base}/series/${series}`;
-const hasSub = sub && sub.length > 0;
-const hasRaces = races && races.length > 0;
-const sprintBadge = sprint ? ' <span class="sprint-badge">SPRINT</span>' : '';
+const eventPath = findEvent(year, series, title, weekLabel)?.path;
+const panelId = `evp-${`${year}-${weekLabel.match(/WEEK (\d+)/)?.[1] ?? ''}-${series}-${title}`.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+// ── Time chip ────────────────────────────────────────────────────────────────
+// Weekday comes from the event's date (Paris, the source timezone); the clock
+// time is the last session time in the row — normally the main race. It is
+// wrapped as .meta-time/.hl so main.js converts it with everything else.
+const allTimes = [...(time ?? '').matchAll(/<span class="hl">(\d{2}:\d{2})<\/span>/g)].map(m => m[1]);
+const lastTime = allTimes.at(-1) ?? (races ?? []).flatMap(r => [...r.time.matchAll(/<span class="hl">(\d{2}:\d{2})<\/span>/g)].map(m => m[1])).at(-1);
+const weekday = new Date(date).toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'Europe/Paris' }).toUpperCase();
+const plain = (time ?? '').replace(/<[^>]+>/g, '').trim();
+const chipHtml = lastTime
+  ? `${weekday} <span class="hl">${lastTime}</span>`
+  : /TBC/.test(plain) ? `${weekday} TBC` : plain.replace(/\s*>\s*/, '–');
+const isTbc = !lastTime;
+
+const winnerOf = (r: Result) => r.winners?.length ? r.winners.join(' · ') : (r.winner ?? '');
+const finished = !!results?.length;
 ---
-<div class="event" class:list={[`ev-${series}`]} data-series={series} data-track-href={trackHref ?? undefined}>
-  <div class="ev-details">
-    {hasSub ? (
-      <>
-        <div class="toggle-row">
-          <div>
-            <a href={seriesHref} class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></a>
-            <span class="title">{title}</span>
-            <span class="meta-time">
-              <Fragment set:html={time} />
-            </span>
+<div
+  class:list={['event', 'ev-row', `ev-${series}`, { 'is-finished': finished, 'is-tbc': isTbc }]}
+  data-series={series}
+  data-ts={date}
+>
+  <div class="ev-head">
+    <button
+      class="ev-toggle"
+      aria-expanded="false"
+      aria-controls={panelId}
+      aria-label={`${tag} ${title} — show details`}
+    >
+      <svg class="ev-chevron" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <a href={seriesHref} class={`tag t-${series}`}>{tag}</a>
+    <span class="title">{title}</span>
+    {sprint && <span class="class-tag">SPRINT</span>}
+    <span class="time-chip meta-time" class:list={{ 'is-muted': finished || isTbc }}>
+      <span class="live-flag" hidden>LIVE</span>
+      <Fragment set:html={chipHtml} />
+    </span>
+  </div>
+
+  <div class="ev-panel" id={panelId} hidden>
+    <div class="ev-panel-body">
+      <div class="ev-panel-main">
+        {time && (
+          <div class="session-line">
+            <span class="session-day">TIMES</span>
+            <span class="meta-time"><Fragment set:html={time} /></span>
           </div>
-          <button class="arrow-btn" aria-label="Toggle support races" aria-expanded="false">&#9660;</button>
-        </div>
-        <div class="sub-sched">
-          {sub.map(s => (
-            <div class="sub-row">
-              <span class={`badge b-${s.badge}`}>{s.label}</span>
-              <span class="sub-det">{s.detail}</span>
-            </div>
-          ))}
-        </div>
-      </>
-    ) : hasRaces ? (
-      <>
-        <span class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></span>
-        <span class="title">{title}</span>
-        <div class="races-wrap">
-          {races.map(r => (
-            <span class="race-slot">
-              <span class="race-label">{r.label}</span>
-              <span class="meta-time"><Fragment set:html={r.time} /></span>
-            </span>
-          ))}
-        </div>
-      </>
-    ) : (
-      <>
-        <span class={`tag t-${series}`}><Fragment set:html={tag + sprintBadge} /></span>
-        <span class="title">{title}</span>
-        <span class="meta-time">
-          <Fragment set:html={time} />
-        </span>
-      </>
+        )}
+        {races?.map(r => (
+          <div class="session-line">
+            <span class="session-day">{r.label}</span>
+            <span class="meta-time"><Fragment set:html={r.time} /></span>
+          </div>
+        ))}
+        {finished && results!.map(r => (
+          <div class="ev-result">
+            <span class="session-day">{r.race_label ?? 'WINNER'}</span>
+            <span class="ev-winner">{winnerOf(r)}</span>
+            {(r.team ?? r.manufacturer) && <span class="ev-team">{r.team ?? r.manufacturer}</span>}
+          </div>
+        ))}
+      </div>
+      {track && (
+        trackHref
+          ? <a href={trackHref} class="ev-map" aria-label={`${title} circuit guide`}>
+              <img src={`${base}/assets/track-maps/${track}`} alt="" loading="lazy" width="56" height="56" />
+            </a>
+          : <span class="ev-map"><img src={`${base}/assets/track-maps/${track}`} alt="" loading="lazy" width="56" height="56" /></span>
+      )}
+    </div>
+
+    {sub && sub.length > 0 && (
+      <div class="ev-support">
+        {sub.map(s => (
+          <div class="support-lane">
+            <span class={`badge b-${s.badge}`}>{s.label}</span>
+            <span class="support-detail">{s.detail}</span>
+          </div>
+        ))}
+      </div>
     )}
+
+    <div class="ev-links">
+      {eventPath && <a href={`${base}${eventPath}`}>Event page →</a>}
+      {trackHref && <a href={trackHref}>Circuit guide →</a>}
+    </div>
   </div>
-  <div class="track-map">
-    {trackHref ? (
-      <a href={trackHref} tabindex="-1" aria-hidden="true">
-        <img
-          src={`${base}/assets/track-maps/${track}`}
-          alt={`2026 ${tag} ${title} track map layout`}
-          loading="lazy"
-          width="60"
-          height="60"
-        />
-      </a>
-    ) : (
-      <img
-        src={`${base}/assets/track-maps/${track}`}
-        alt={`2026 ${tag} ${title} track map layout`}
-        loading="lazy"
-        width="60"
-        height="60"
-      />
-    )}
-  </div>
+
+  {track && <img class="ev-ghost" src={`${base}/assets/track-maps/${track}`} alt="" aria-hidden="true" loading="lazy" width="96" height="96" />}
 </div>

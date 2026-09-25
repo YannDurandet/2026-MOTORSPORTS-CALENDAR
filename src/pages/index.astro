@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/calendar.css';
 import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
 import EventRow from '../components/EventRow.astro';
@@ -223,7 +224,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
       <summary id="past-events-summary">View Past Events</summary>
     </details>
 
-    <div id="calendar-container">
+    <div id="calendar-container" class="cal-v2">
       {enrichedCalendar.map((month: any, idx: number) => (
         <>
           <div class="month-header" data-year={month.year ?? 2026}>{month.month}</div>
@@ -235,11 +236,20 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
                 ? (weekYear === 2027 ? `2027-week-${weekNum}` : `week-${weekNum}`)
                 : undefined;
               return (
-              <div class="card" id={cardId}>
-                <div class="c-head">
-                  {cardId
-                    ? <a class="week-anchor" href={`#${cardId}`} aria-label={`Link to ${week.label}`}>{week.label}</a>
-                    : week.label}
+              <div class="card wk-card" id={cardId}>
+                <div class="wk-head">
+                  <div class="c-head">
+                    {cardId
+                      ? <a class="week-anchor" href={`#${cardId}`} aria-label={`Link to ${week.label}`}><span class="wk-num">{week.label.split(' • ')[0]}</span><span class="wk-sep"> • </span><span class="wk-dates">{week.label.split(' • ')[1]}</span></a>
+                      : week.label}
+                  </div>
+                  {week.events.length > 1 && (
+                    <div class="focus-switch" role="group" aria-label={`Step through ${week.label} races`}>
+                      <span class="focus-label" aria-hidden="true">FOCUS</span>
+                      <button class="focus-btn" data-dir="-1" aria-label="Previous race">▲</button>
+                      <button class="focus-btn" data-dir="1" aria-label="Next race">▼</button>
+                    </div>
+                  )}
                 </div>
                 <div class="c-body">
                   {week.events.map((ev: any) => (
@@ -249,9 +259,13 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
                       title={ev.title}
                       time={ev.time}
                       track={ev.track}
+                      date={ev.date}
+                      weekLabel={week.label}
+                      year={weekYear}
                       sprint={ev.sprint}
                       sub={ev.sub}
                       races={ev.races}
+                      results={ev.results}
                       trackHref={ev.trackHref}
                     />
                   ))}

@@ -287,6 +287,25 @@
     --shadow-hover-2: 0 8px 24px rgba(0, 0, 0, 0.45);
     --shadow-hover-3: 0 6px 18px rgba(0, 0, 0, 0.4);
 
+    /* ── Calendar week card (Figma: Theme collection, Dark mode) ──────────
+     * The first surfaces ported from the redesign. Names follow the Figma
+     * variables so the two stay easy to diff.                             */
+    --wk-bg:            #070b12;   /* bg/app          */
+    --wk-line:          #161e2b;   /* stroke/app      */
+    --row-bg:           #0e141e;   /* bg/card         */
+    --row-bg-open:      #131c2a;   /* bg/card-focused */
+    --row-line:         #1a2231;   /* stroke/card     */
+    --chip-bg:          #223043;   /* bg/chip         */
+    --chip-bg-muted:    #161e2a;   /* bg/chip-muted   */
+    --control-line:     #232f41;   /* stroke/control  */
+    --class-line:       #4e5a6b;   /* stroke/class    */
+    --text-heading:     #dce4ee;   /* text/heading    */
+    --text-week:        #e4eaf2;   /* text/week       */
+    --text-date:        #788595;   /* text/date (AA)  */
+    --text-secondary:   #a7b4c6;   /* text/secondary  */
+    --text-chip-muted:  #93a1b4;   /* text/chip-muted */
+    --live-bg:          #d92d20;   /* white text 4.9:1 */
+
     /* ── SERIES COLORS ────────────────────────────────────────────────────
      * Templates build these names from series slugs (`var(--${slug})`,
      * `var(--${slug}-c)`), so keep the `--{slug}` pattern.

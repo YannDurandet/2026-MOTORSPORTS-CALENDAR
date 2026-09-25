@@ -733,44 +733,71 @@ function injectSchema() {
 }
 
 // =============================================
-// EVENT ROW → TRACK PAGE CLICK
+// CALENDAR EVENT ROWS — expand/collapse, week focus switch, live state
 // =============================================
-function initEventRowClicks() {
-    document.querySelectorAll('.event[data-track-href]').forEach(row => {
-        // Make the row keyboard-focusable and activatable (link semantics)
-        row.setAttribute('role', 'link');
-        row.setAttribute('tabindex', '0');
+// One row per week card is "focused" (expanded) at a time. The ▲/▼ focus
+// switch in the card header steps through the visible rows. On load the next
+// upcoming race is focused so the current week opens on something useful.
+const LIVE_WINDOW_MS = 3 * 3600e3;
 
-        row.addEventListener('click', e => {
-            if (e.target.closest('a') || e.target.closest('button')) return;
-            window.location.href = row.dataset.trackHref;
-        });
-
-        row.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                if (e.target.closest('a') || e.target.closest('button')) return;
-                e.preventDefault();
-                window.location.href = row.dataset.trackHref;
-            }
-        });
-    });
+function setRowOpen(row, open) {
+    const btn = row.querySelector('.ev-toggle');
+    const panel = row.querySelector('.ev-panel');
+    if (!btn || !panel) return;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace(/— (show|hide) details$/, open ? '— hide details' : '— show details'));
+    panel.hidden = !open;
+    row.classList.toggle('is-open', open);
 }
 
-// =============================================
-// SUPPORT RACE TOGGLE (arrow buttons)
-// =============================================
-function initToggle() {
-    document.querySelectorAll('.arrow-btn').forEach(btn => {
+function focusRow(row) {
+    const card = row.closest('.card');
+    card?.querySelectorAll('.ev-row.is-open').forEach(r => { if (r !== row) setRowOpen(r, false); });
+    setRowOpen(row, true);
+}
+
+function initEventRows() {
+    const rows = document.querySelectorAll('.cal-v2 .ev-row');
+    for (const row of rows) {
+        const btn = row.querySelector('.ev-toggle');
+        btn?.addEventListener('click', () => {
+            if (row.classList.contains('is-open')) setRowOpen(row, false);
+            else focusRow(row);
+        });
+        // The whole header is a click target; keyboard users get the button.
+        row.querySelector('.ev-head')?.addEventListener('click', e => {
+            if (e.target.closest('a, button')) return;
+            btn?.click();
+        });
+    }
+
+    document.querySelectorAll('.cal-v2 .focus-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            const isNowActive = !btn.classList.contains('active');
-            btn.classList.toggle('active');
-            btn.setAttribute('aria-expanded', isNowActive ? 'true' : 'false');
-            const sibling = btn.parentElement?.nextElementSibling;
-            if (sibling) sibling.classList.toggle('open');
+            const card = btn.closest('.card');
+            const visible = [...card.querySelectorAll('.ev-row')].filter(r => r.style.display !== 'none');
+            if (!visible.length) return;
+            const dir = Number(btn.dataset.dir);
+            const cur = visible.findIndex(r => r.classList.contains('is-open'));
+            const next = cur < 0 ? (dir > 0 ? 0 : visible.length - 1) : (cur + dir + visible.length) % visible.length;
+            focusRow(visible[next]);
         });
     });
-}
 
+    // Live flag + focus the next race that hasn't finished yet.
+    const now = Date.now();
+    let next = null, nextTs = Infinity;
+    for (const row of rows) {
+        const ts = Date.parse(row.dataset.ts);
+        if (Number.isNaN(ts) || row.closest('[data-year="2027"]')) continue;
+        if (!row.classList.contains('is-finished') && now >= ts && now <= ts + LIVE_WINDOW_MS) {
+            row.classList.add('is-live');
+            const flag = row.querySelector('.live-flag');
+            if (flag) flag.hidden = false;
+        }
+        if (ts + LIVE_WINDOW_MS >= now && ts < nextTs && row.style.display !== 'none') { next = row; nextTs = ts; }
+    }
+    if (next) focusRow(next);
+}
 
 // =============================================
 // INIT
@@ -799,12 +826,11 @@ function initToggle() {
     convertPreRenderedTimes();
 
     // Initialize interactive features
-    initEventRowClicks();
-    initToggle();
     initFilters();
     applyFilters(); // also renders the This Weekend section
     dimPastEvents();
     setup2027Toggle();
+    initEventRows();
     setupIcalModal();
     injectSchema();
 
