@@ -8,7 +8,7 @@
 }
 
 :focus-visible {
-    outline: 2px solid var(--f1);
+    outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
 }
 
@@ -161,6 +161,12 @@ h2 {
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 8px;
+}
+
+/* Only page titles are italic. h2s are section headings, mostly in the mono
+   face, which has no italic cut. */
+h2 {
+    font-style: normal;
 }
 
 .header--page-desc {
@@ -472,6 +478,7 @@ h2 {
     width: fit-content;
     margin-bottom: 4px;
     color: var(--on-series-dark);
+    white-space: nowrap;
 }
 
 /* Tag Colors */
@@ -911,7 +918,7 @@ footer {
 }
 .footer--logo-svg {
     display: block;
-    width: 220px;
+    width: 170px;
     height: auto;
 }
 .footer--logo:focus-visible {
@@ -1842,19 +1849,20 @@ a {
 
 .series-badge {
     font-family: var(--font-mono);
-    font-size: var(--fs-2xs);
+    font-size: var(--fs-xs);
     font-weight: 700;
-    color: var(--text-meta-7);
+    color: var(--text-chip-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    background: var(--card-bg-8);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: var(--radius-xs);
+    letter-spacing: 0.06em;
+    background: transparent;
+    border: 1px solid var(--control-line);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
 }
 
 .series-hero-name {
     font-family: var(--font-title);
+    font-style: italic;
     font-size: var(--fs-2xl-3);
     font-weight: 900;
     color: var(--text-soft);
@@ -1954,28 +1962,32 @@ a {
     justify-content: center;
     gap: 4px;
     padding: 8px 14px;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-xl);
     border: none;
     background: none;
     cursor: pointer;
     text-decoration: none;
     color: var(--text-soft-2);
-    opacity: 0.6;
-    transition: opacity 0.15s, background 0.15s;
+    transition: background 0.15s;
 }
 
 .sticky-nav-link img {
     display: block;
     width: 22px;
     height: 22px;
+    opacity: 0.6;
+    transition: opacity 0.15s;
 }
+
+.sticky-nav-link.active img { opacity: 1; }
+.sticky-nav-link:hover:not(.active) img { opacity: 0.85; }
 
 .sticky-nav-label {
     font-family: var(--font-mono);
     font-size: var(--fs-2xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--text-muted-8);
+    color: var(--text-meta);
     line-height: 1;
 }
 
@@ -1988,13 +2000,11 @@ a {
 }
 
 .sticky-nav-link.active {
-    opacity: 1;
-    background: var(--overlay-soft-3);
+    background: var(--chip-bg);
 }
 
 .sticky-nav-link:hover:not(.active) {
-    opacity: 0.75;
-    background: var(--overlay-faint);
+    background: var(--row-bg-open);
 }
 
 /* =========================================
@@ -2360,9 +2370,9 @@ a {
     align-items: center;
     gap: 6px;
     padding: 6px 12px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    background: var(--overlay-faint);
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-xl);
+    background: var(--row-bg);
     color: var(--text-soft);
     font-size: var(--fs-base);
     font-weight: 600;
@@ -2700,3 +2710,8 @@ a {
     border-radius: var(--radius-2xl);
 }
 .series-index-card { overflow: hidden; }
+
+/* Keep "back to top" clear of the floating bottom nav on phones. */
+@media (max-width: 767px) {
+    .back-to-top { bottom: 104px; right: 16px; }
+}

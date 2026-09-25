@@ -3,7 +3,7 @@ import logoRaw from '../assets/dord-logo.svg?raw';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const logo = logoRaw
   .replace('<svg ', '<svg class="footer--logo-svg" aria-hidden="true" focusable="false" ')
-  .replace(' width="726" height="171"', '')
+  .replace(' width="726" height="171" viewBox="0 0 726 171"', ' viewBox="0 0 726 140"')
   .replace('fill="#F5F5F5"', 'fill="currentColor"');
 const year = new Date().getFullYear();
 ---

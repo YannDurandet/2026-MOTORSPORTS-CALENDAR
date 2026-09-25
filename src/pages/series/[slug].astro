@@ -267,7 +267,7 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
       <section class="series-section">
         <h3 class="series-section-title">Teams &amp; Drivers — 2026</h3>
         {series.seasonNotes && <p class="series-season-notes">{series.seasonNotes}</p>}
-        <div class="series-table-wrap">
+        <div class="series-table-wrap" tabindex="0" role="region" aria-label="Teams and drivers table">
           <table class="series-table">
             <thead>
               <tr>

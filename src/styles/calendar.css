@@ -13,7 +13,12 @@
     overflow: hidden;
 }
 .cal-v2 .wk-card:hover { box-shadow: none; }
-.cal-v2 .card.past { border-left-width: 1px; }
+/* Past weeks: drained of colour rather than faded, so text keeps AA contrast. */
+.cal-v2 .card.past {
+    border-left-width: 1px;
+    opacity: 1;
+    filter: saturate(0.3);
+}
 
 .cal-v2 .wk-head {
     display: flex;
