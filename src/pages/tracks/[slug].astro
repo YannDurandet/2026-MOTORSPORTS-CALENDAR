@@ -6,11 +6,9 @@ import GettingThereCard from '../../components/GettingThereCard.astro';
 import { accommodationQuery } from '../../lib/affiliates';
 
 // Vite reads these at bundle time — no node:fs needed, works in Cloudflare Workers prerender
-const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
-  query: '?raw',
-  import: 'default',
-  eager: true,
-}) as Record<string, string>;
+// Options stay on one line: Astro's dev dependency scanner treats any
+// frontmatter line starting with `import` as an import statement.
+const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 const svgByFilename: Record<string, string> = {};
 for (const [k, v] of Object.entries(_svgRaw)) {
   svgByFilename[k.split('/').pop()!] = v;
