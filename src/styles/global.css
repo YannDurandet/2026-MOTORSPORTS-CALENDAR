@@ -627,31 +627,6 @@ h2 {
     line-height: 1.4;
 }
 
-.races-wrap {
-    display: flex;
-    gap: 10px;
-    margin-top: 2px;
-}
-
-.race-slot {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.race-slot .meta-time {
-    display: inline;
-}
-
-.race-label {
-    font-family: var(--font-mono);
-    font-size: var(--fs-2xs);
-    font-weight: 700;
-    color: var(--text-meta-7);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
 .hl {
     color: var(--text-soft);
     font-weight: 700;
@@ -664,72 +639,6 @@ h2 {
     font-size: 0.6em;
     color: var(--accent-bright);
     margin-left: 1px;
-}
-
-.sprint-badge {
-    font-size: var(--fs-2xs);
-    background: var(--surface-inverse);
-    color: var(--text-inverse);
-    padding: 1px 3px;
-    border-radius: var(--radius-xs);
-    font-weight: 800;
-    vertical-align: top;
-    margin-left: 5px;
-    width: fit-content;
-}
-
-/* TOGGLE & SUB-SCHEDULE */
-.toggle-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.arrow-btn {
-    background: none;
-    border: 1px solid var(--line-neutral-5);
-    color: var(--text-meta-8);
-    cursor: pointer;
-    font-size: var(--fs-md);
-    padding: 2px 8px;
-    transition: 0.2s;
-    /* Increase touch target size */
-    min-width: 30px;
-    min-height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.arrow-btn:hover {
-    border-color: var(--f1-c, var(--f1));
-    color: var(--f1);
-}
-
-.arrow-btn.active {
-    transform: rotate(180deg);
-    background: var(--f1);
-    color: var(--text-strong);
-    border-color: var(--f1-c, var(--f1));
-}
-
-.sub-sched {
-    display: none;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed var(--line-neutral-5);
-}
-
-.sub-sched.open {
-    display: block;
-    animation: slideDown 0.2s ease-out;
-}
-
-.sub-row {
-    display: flex;
-    align-items: center;
-    margin-bottom: 6px;
-    font-size: var(--fs-sm);
 }
 
 .badge {
@@ -754,11 +663,6 @@ h2 {
 .b-wrc2 { background: var(--wrc-tag);  color: var(--on-series); }
 .b-nxt  { background: var(--nxt);      color: var(--on-series); }
 
-.sub-det {
-    color: var(--text-muted-11);
-    font-family: var(--font-mono);
-}
-
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -773,9 +677,7 @@ h2 {
 
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
-    .sub-sched.open {
-        animation: none;
-    }
+
     .sticky-nav-bar {
         transition: none;
     }
@@ -826,7 +728,6 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
         letter-spacing: 2px;
     }
 
-
     .month-header {
         font-size: var(--fs-4xl);
     }
@@ -847,10 +748,6 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
 
     .meta-time {
         font-size: var(--fs-md);
-    }
-
-    .arrow-btn {
-        min-width: auto;
     }
 
     footer {
@@ -898,17 +795,6 @@ footer {
 
 @media (max-width: 480px) {
     .footer--inner { grid-template-columns: 1fr; }
-}
-
-/* ── Brand column ───────────────────────────────────────────────── */
-.footer--name {
-    font-size: var(--fs-2xl);
-    font-weight: 800;
-    color: var(--text-strong-2);
-    margin: 0 0 10px;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
 }
 
 .footer--logo {
@@ -1140,7 +1026,6 @@ a {
 
 /* Focus-visible for keyboard navigation */
 .filter-btn:focus-visible,
-.arrow-btn:focus-visible,
 .clear-filters-btn:focus-visible,
 .faq-question:focus-visible {
     outline: 2px solid var(--accent-bright);
@@ -1368,7 +1253,6 @@ a {
     color: var(--text-strong);
 }
 
-
 /* Empty State */
 .empty-state {
     text-align: center;
@@ -1568,37 +1452,6 @@ a {
 }
 
 /* =========================================
-   ICS EXPORT BUTTON
-========================================= */
-.ics-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    color: var(--text-meta);
-    transition: color 0.2s;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-    margin-left: 6px;
-}
-
-.ics-btn:hover {
-    color: var(--accent-bright);
-}
-
-.ics-btn:focus-visible {
-    outline: 2px solid var(--accent-bright);
-    outline-offset: 2px;
-    border-radius: var(--radius-xs);
-}
-
-.ics-btn svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* =========================================
    "THIS WEEKEND" SECTION
 ========================================= */
 .this-weekend-section {
@@ -1694,9 +1547,6 @@ a {
         gap: 8px;
     }
 
-    .ics-btn {
-        padding: 6px;
-    }
 }
 
 /* =========================================
@@ -2693,7 +2543,6 @@ a {
         font-size: var(--fs-3xs);
     }
 }
-
 
 /* =========================================
    REDESIGN: SHARED CARD SHAPE
