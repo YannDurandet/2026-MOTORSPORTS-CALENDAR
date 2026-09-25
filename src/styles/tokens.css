@@ -31,7 +31,7 @@
     /* ── Typography: families ─────────────────────────────────────────── */
     --font-body:        'Inter', sans-serif;
     --font-mono:        'JetBrains Mono', monospace;
-    --font-title:       'Orbitron', sans-serif;   /* page titles only (h1, series hero, newsletter hero) */
+    --font-title:       'Orbitron', sans-serif;   /* page titles + calendar month headers only */
     --font-code:        'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
     --font-system-mono: monospace;
 

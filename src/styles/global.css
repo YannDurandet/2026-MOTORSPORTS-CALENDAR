@@ -206,7 +206,7 @@ h2 {
 
 /* MONTH HEADER */
 .month-header {
-    font-family: var(--font-mono);
+    font-family: var(--font-title);
     font-size: var(--fs-4xl-2);
     /* Smaller for mobile */
     font-weight: 900;
