@@ -124,6 +124,9 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 - Floors: `--text-meta` is the dimmest readable text (passes AA on `--bg`, `--card-bg`, `--surface-raised`); `--text-dim*`/`--text-faint*` alias it. `--fs-3xs*`/`--fs-2xs*` alias `--fs-xs` (0.7rem).
 - Out of scope: email HTML (`api/subscribe.ts`, `workers/newsletter.ts`, since mail clients lack CSS variables), `api/unsubscribe.ts`, the embed iframe (own local tokens + light theme), `<meta name="theme-color">`.
 
+## Home calendar (Week Card / Event Row)
+`src/components/EventRow.astro` + `src/styles/calendar.css` implement the Figma **Event Row** and **Week Card** components. Styles are scoped to `.cal-v2` (the calendar container) so shared `.card` / `.event` / `.tag` rules on other pages are unaffected. `main.js` depends on these hooks — keep them: `.card`, `.c-head` (text must end with the week's date range, it is parsed), `.event[data-series]` (filters), `.meta-time > .hl` (timezone conversion, including the time chip), `.ev-toggle` / `.ev-panel` (expand), `.focus-btn` (week focus switch), `data-ts` (live state).
+
 ## Global search
 Search index is built at `/data/search.json` from tracks + series. It is fetched lazily on first open. Trigger: click the 🔍 button in nav, or press `/`.
 
