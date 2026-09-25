@@ -145,7 +145,6 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   <Banner />
   <header>
     <div class="header--left">
-      <div class="header--dept">The Department of Racing Drivers</div>
       <h1>2026 Season<br>Statistics</h1>
       <p class="header--page-desc">Win tallies and season progress across all 25 championships.</p>
       <div class="meta">{totalResults} results across {totalRaces} race weekends</div>
@@ -378,7 +377,7 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   background: var(--card-bg);
   border: 1px solid var(--border);
   padding: 12px 14px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-2xl);
 }
 
 .progress-card-top {
@@ -450,6 +449,7 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   background: var(--card-bg);
   border: 1px solid var(--border);
   padding: 11px 14px;
+  border-radius: var(--radius-xl);
 }
 
 .leaders-row::before {
@@ -547,6 +547,7 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   background: var(--card-bg);
   border: 1px solid var(--border);
   padding: 12px 16px;
+  border-radius: var(--radius-xl);
 }
 
 .driver-row:hover {

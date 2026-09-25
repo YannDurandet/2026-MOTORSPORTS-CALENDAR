@@ -64,7 +64,6 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
   <Banner />
   <header>
     <div class="header--left">
-      <div class="header--dept">The Department of Racing Drivers</div>
       <h1>{year} Race<br>Index</h1>
       <p class="header--page-desc">
         Every event on the {year} calendar with its own page — dates, session times, circuit and travel.
@@ -127,6 +126,7 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
     font-size: var(--fs-md-2);
     color: var(--text-muted);
     line-height: 1.6;
+    border-radius: var(--radius-2xl);
   }
 
   .ei-years {
@@ -138,8 +138,9 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
     font-family: var(--font-mono);
     font-size: var(--fs-xs-2);
     letter-spacing: 0.06em;
-    color: var(--text-meta);
-    border: 1px solid var(--border);
+    color: var(--text-chip-muted);
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-pill);
     padding: 6px 14px;
     text-decoration: none;
   }

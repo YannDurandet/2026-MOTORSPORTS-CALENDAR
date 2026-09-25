@@ -155,7 +155,6 @@ const breadcrumb = {
   <Banner />
   <header>
     <div class="header--left">
-      <div class="header--dept">The Department of Racing Drivers</div>
       <h1>{ev.title}<br><span class="ev-year">{ev.year}</span></h1>
       <p class="header--page-desc">
         {seriesName}{track ? ` · ${track.name}, ${track.country}` : ''}
@@ -248,7 +247,7 @@ const breadcrumb = {
             <div class="ev-support">
               {ev.support.map(s => (
                 <div class="ev-support-row">
-                  <span class={`tag t-${s.badge}`}>{s.label}</span>
+                  <span class={`badge b-${s.badge}`}>{s.label}</span>
                   <span class="ev-support-detail">{s.detail}</span>
                 </div>
               ))}
@@ -340,6 +339,7 @@ const breadcrumb = {
     background: var(--card-bg);
     padding: 24px;
     margin-bottom: 2px;
+    border-radius: var(--radius-2xl);
   }
   .ev-hero img {
     display: block;
@@ -357,6 +357,7 @@ const breadcrumb = {
     border-top: none;
     background: var(--card-bg);
     margin-bottom: 2px;
+    border-radius: var(--radius-2xl);
   }
   .ev-spec {
     padding: 16px 20px;
@@ -391,6 +392,7 @@ const breadcrumb = {
     background: var(--card-bg);
     padding: 20px 24px;
     margin-bottom: 2px;
+    border-radius: var(--radius-2xl);
   }
 
   .section-label {

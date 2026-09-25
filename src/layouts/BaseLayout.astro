@@ -216,6 +216,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     .search-modal {
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
       position: relative;
       z-index: 1;
       width: min(660px, calc(100vw - 32px));

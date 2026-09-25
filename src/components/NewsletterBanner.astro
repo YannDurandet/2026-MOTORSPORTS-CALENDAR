@@ -6,7 +6,7 @@
 
 <section class="nl-banner" aria-label="Newsletter signup">
   <div class="nl-inner">
-    <p class="nl-headline">FROM THE<br>PIT WALL</p>
+    <p class="nl-headline">FROM THE <br>PIT WALL</p>
     <div class="nl-content-row">
       <div class="nl-text">
         <p class="nl-body">A weekly briefing from The Department of Racing Drivers. What's on, where it is, and why the next three days are going to be chaos.</p>
@@ -44,8 +44,8 @@
   .nl-banner {
     position: relative;
     margin: 40px 0;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-2xl);
     background: var(--surface-sunken-2) url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
     overflow: hidden;
     /* Mobile: full viewport height so the banner is a dedicated scroll moment */
@@ -84,7 +84,7 @@
 
   /* ── Text block ──────────────────────────────────────────────────────────── */
   .nl-headline {
-    font-family: var(--font-mono);
+    font-family: var(--font-title);
     font-size: var(--fs-display);
     font-weight: 900;
     color: var(--text-soft);
@@ -115,6 +115,7 @@
     background: var(--surface-sunken-4);
     border: 1px solid var(--border);
     border-right: none;
+    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
     color: var(--text-soft);
     font-family: var(--font-mono);
     font-size: var(--fs-sm-3);
@@ -125,7 +126,7 @@
     transition: border-color 0.15s;
   }
   .nl-input::placeholder { color: var(--text-faint-3); }
-  .nl-input:focus { border-color: var(--line-4); }
+  .nl-input:focus { border-color: var(--accent-bright); box-shadow: 0 0 0 1px var(--accent-bright); }
 
   .nl-btn {
     font-family: var(--font-mono);
@@ -140,6 +141,7 @@
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
+    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
   }
   .nl-btn:hover:not(:disabled) {

@@ -24,16 +24,23 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 34px;
+    min-height: 32px;
     background: none;
-    border: 1px solid var(--border);
-    color: var(--text-dim-4);
+    border: 0;
+    border-radius: var(--radius-xl);
+    color: var(--text-muted);
     cursor: pointer;
-    padding: 4px 7px;
-    margin-left: 6px;
-    transition: color 0.15s, border-color 0.15s;
+    padding: 0 10px;
+    margin-left: 2px;
+    transition: color 0.15s, background 0.15s;
   }
   .search-trigger:hover {
-    color: var(--text-muted-2);
-    border-color: var(--line-neutral);
+    color: var(--text-strong);
+    background: var(--row-bg-open);
+  }
+  .search-trigger:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 </style>

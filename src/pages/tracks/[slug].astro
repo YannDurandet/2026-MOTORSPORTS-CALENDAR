@@ -261,7 +261,6 @@ const sportsEventSchemas = [
   </Fragment>
   <header>
     <div class="header--left">
-      <div class="header--dept">The Department of Racing Drivers</div>
       <h1>{venue.name} — 2026 Race Calendar</h1>
       <div class="meta">{venue.city} · {venue.country} · {continentLabel[venue.continent] ?? venue.continent}</div>
       <Nav activePage="tracks" />
@@ -538,6 +537,15 @@ const sportsEventSchemas = [
   .track-col-left,
   .track-col-right {
     min-width: 0;
+  }
+
+  /* The left column reads as one card: hero, specs, layouts and results
+     stack inside a single rounded frame. */
+  .track-col-left {
+    align-self: start;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    border: 1px solid var(--row-line);
   }
 
   /* Sticky only while the column still fits on screen. Since the Getting There

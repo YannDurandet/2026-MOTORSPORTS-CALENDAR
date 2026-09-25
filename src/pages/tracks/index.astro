@@ -154,7 +154,6 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   <Banner />
   <header>
     <div class="header--left">
-      <div class="header--dept">The Department of Racing Drivers</div>
       <h1>2026 Track Browser</h1>
       <p class="header--page-desc">Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts.</p>
       <div class="meta">
@@ -351,7 +350,10 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   /* ─── Filter panel ────────────────────────────────────────────────────── */
   .filter-panel {
-    border: 1px solid var(--border);
+    background: var(--row-bg);
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
     margin-bottom: 28px;
   }
 
@@ -388,12 +390,15 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    min-height: 30px;
     padding: 5px 12px;
     background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-pill);
+    color: var(--text-chip-muted);
     font-family: var(--font-mono);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
+    font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
@@ -401,23 +406,28 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .cf-btn:hover {
-    border-color: var(--line-neutral);
-    color: var(--text-soft-9);
+    border-color: var(--class-line);
+    color: var(--text-strong);
   }
 
   .cf-btn.active {
-    background: var(--surface-inverse);
-    border-color: var(--line-strong);
-    color: var(--text-inverse);
+    background: var(--chip-bg);
+    border-color: var(--class-line);
+    color: var(--text-strong);
+  }
+
+  .cf-btn:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 
   .cf-count {
-    font-size: var(--fs-3xs);
-    opacity: 0.55;
+    font-weight: 500;
+    color: var(--text-meta);
   }
 
   .cf-btn.active .cf-count {
-    opacity: 0.45;
+    color: var(--text-chip-muted);
   }
 
   /* ─── Grid ─────────────────────────────────────────────────────────────── */
@@ -450,6 +460,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     content-visibility: auto;
     contain-intrinsic-width: none;
     contain-intrinsic-height: auto 420px;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
   }
 
   .track-card:hover {

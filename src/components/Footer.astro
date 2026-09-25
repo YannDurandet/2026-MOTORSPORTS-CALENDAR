@@ -1,5 +1,10 @@
 ---
+import logoRaw from '../assets/dord-logo.svg?raw';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const logo = logoRaw
+  .replace('<svg ', '<svg class="footer--logo-svg" aria-hidden="true" focusable="false" ')
+  .replace(' width="726" height="171"', '')
+  .replace('fill="#F5F5F5"', 'fill="currentColor"');
 const year = new Date().getFullYear();
 ---
 <footer>
@@ -9,7 +14,7 @@ const year = new Date().getFullYear();
 
       <!-- Brand -->
       <div class="footer--brand">
-        <h2 class="footer--name">dord.racing</h2>
+        <a href={`${base}/`} class="footer--logo" aria-label="DORD — The Department of Racing Drivers, home"><Fragment set:html={logo} /></a>
         <p class="footer--tagline">An independent 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.</p>
         <div class="footer--social-group">
           <div class="footer--social-label">Follow DORD</div>

@@ -31,7 +31,7 @@
     /* ── Typography: families ─────────────────────────────────────────── */
     --font-body:        'Inter', sans-serif;
     --font-mono:        'JetBrains Mono', monospace;
-    --font-title:       'Orbitron', sans-serif;   /* page titles + calendar month headers only */
+    --font-title:       'Orbitron', sans-serif;   /* page titles + big section headers (months, FAQ, newsletter) only */
     --font-code:        'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
     --font-system-mono: monospace;
 
@@ -92,19 +92,19 @@
     --surface-sunken-4: #040608;
     --surface-sunken-5: rgba(4, 6, 8, 0.85);
 
-    --bg: #101a24;                 /* page */
+    --bg: #070b12;                 /* page = Figma bg/app */                 /* page */
 
-    --card-bg:   #0d151d;          /* cards, panels */
-    --card-bg-2: #0d1820;
-    --card-bg-3: #0d1822;
-    --card-bg-4: #0d1317;
-    --card-bg-5: #0d1720;
-    --card-bg-6: #0f161b;
-    --card-bg-7: #0f1820;
+    --card-bg:   #0e141e;          /* = Figma bg/card */          /* cards, panels */
+    --card-bg-2: var(--card-bg);
+    --card-bg-3: var(--card-bg);
+    --card-bg-4: var(--card-bg);
+    --card-bg-5: var(--card-bg);
+    --card-bg-6: var(--card-bg);
+    --card-bg-7: var(--card-bg);
     --card-bg-8: #0b1118;
     --card-bg-9: rgba(13, 24, 34, 0.9);
 
-    --surface-raised:   #1a2530;   /* chips, bars, hovered rows */
+    --surface-raised:   #131b27;   /* = Figma bg/surface */   /* chips, bars, hovered rows */
     --surface-raised-2: #1a2a3a;
 
     --surface-accent:   #1e3a52;   /* active / selected */
@@ -158,15 +158,15 @@
     /* ── Lines (borders, dividers), faintest → strongest ─────────────── */
     --line-faint: #0b1118;
 
-    --border: #1c262f;             /* default card border */
+    --border: #1a2231;             /* = Figma stroke/card */             /* default card border */
 
-    --line-subtle:   #1a2530;
-    --line-subtle-2: #1e2830;
-    --line-subtle-3: #1c2a35;
-    --line-subtle-4: #1e2d38;
-    --line-subtle-5: #1e3040;
+    --line-subtle:   #1a2231;
+    --line-subtle-2: var(--line-subtle);
+    --line-subtle-3: var(--line-subtle);
+    --line-subtle-4: var(--line-subtle);
+    --line-subtle-5: var(--line-subtle);
 
-    --line:   #2a4050;
+    --line:   #232f41;             /* = Figma stroke/control */
     --line-2: #2e3f50;
     --line-3: #2a3f50;
     --line-4: #2e4a5e;
@@ -189,9 +189,9 @@
     --text-strong-2: #f0f2f5;
     --text-strong-3: #e8f0f5;
 
-    --text-main: #e0e0e0;          /* body default */
+    --text-main: #dce4ee;          /* = Figma text/heading */          /* body default */
 
-    --text-soft:    #c3c6c8;       /* readable copy inside cards */
+    --text-soft:    #c9d3de;       /* readable copy inside cards */
     --text-soft-2:  #d0dce6;
     --text-soft-3:  #c8d8e0;
     --text-soft-4:  #c8d8e4;
@@ -206,7 +206,7 @@
     --text-soft-13: rgba(180, 200, 218, 0.9);
     --text-soft-fade: #838f9a;     /* end stop of the gradient page title */
 
-    --text-muted:    #8a9aaa;      /* secondary copy */
+    --text-muted:    #93a1b4;      /* = Figma text/chip-muted */      /* secondary copy */
     --text-muted-2:  #aaaaaa;
     --text-muted-3:  #99aaaa;
     --text-muted-4:  #88aabb;
@@ -378,6 +378,9 @@
     --eurx: #02F3E9;
 
     --asian-le-mans: #D12F44;
+
+    /* Support series (badges only, no calendar row of their own) */
+    --nxt: #1d4f91;                /* Indy NXT; white text 8.5:1 */
 
     /* Series tag backgrounds (.t-{slug}), darkened where the brand colour
      * fails WCAG AA against white text. Series not listed use --{slug}.   */

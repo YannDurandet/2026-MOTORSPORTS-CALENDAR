@@ -93,7 +93,6 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
 
   <header>
     <div class="header--left">
-      <div class="header--dept">The Department of Racing Drivers</div>
       <h1>Watch This<br>Weekend</h1>
       <p class="watch-subtitle meta" id="watch-subtitle">Loading…</p>
       <Nav activePage="watch" />
@@ -403,6 +402,7 @@ if (isEmpty) {
   background: var(--card-bg);
   border: 1px solid var(--border);
   padding: 12px 14px;
+  border-radius: var(--radius-xl);
 }
 
 .watch-tag {
@@ -424,9 +424,9 @@ if (isEmpty) {
 }
 
 .watch-title {
-  font-family: var(--font-mono);
-  font-size: var(--fs-md-2);
-  color: var(--text-soft-2);
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  color: var(--text-heading);
   font-weight: 700;
   letter-spacing: 0.03em;
 }
