@@ -46,7 +46,7 @@
     margin: 40px 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    background: #080c10 url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
+    background: var(--surface-sunken-2) url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
     overflow: hidden;
     /* Mobile: full viewport height so the banner is a dedicated scroll moment */
     min-height: 100svh;
@@ -59,12 +59,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(8, 12, 16, 0.55) 0%,
-      rgba(8, 12, 16, 0.72) 60%,
-      rgba(8, 12, 16, 0.88) 100%
-    );
+    background: var(--scrim-banner);
     pointer-events: none;
   }
 
@@ -89,19 +84,19 @@
 
   /* ── Text block ──────────────────────────────────────────────────────────── */
   .nl-headline {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-family: var(--font-display);
+    font-size: var(--fs-display);
     font-weight: 900;
-    color: #C3C6C8;
+    color: var(--text-soft);
     line-height: 0.9;
     letter-spacing: -0.01em;
     margin: 0 0 24px;
   }
 
   .nl-body {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.78rem;
-    color: #8a9aaa;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm-3);
+    color: var(--text-muted);
     letter-spacing: 0.02em;
     line-height: 1.75;
     margin: 0;
@@ -117,40 +112,40 @@
 
   .nl-input {
     flex: 1;
-    background: #040608;
+    background: var(--surface-sunken-4);
     border: 1px solid var(--border);
     border-right: none;
-    color: #c3c6c8;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.78rem;
+    color: var(--text-soft);
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm-3);
     letter-spacing: 0.02em;
     padding: 11px 14px;
     outline: none;
     min-width: 0;
     transition: border-color 0.15s;
   }
-  .nl-input::placeholder { color: #2a3540; }
-  .nl-input:focus { border-color: #2e4a5e; }
+  .nl-input::placeholder { color: var(--text-faint-3); }
+  .nl-input:focus { border-color: var(--line-4); }
 
   .nl-btn {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 11px 18px;
     background: none;
     border: 1px solid var(--border);
-    color: #c3c6c8;
+    color: var(--text-soft);
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
   }
   .nl-btn:hover:not(:disabled) {
-    color: #fff;
-    border-color: #4a7090;
-    background: #0d1822;
+    color: var(--text-strong);
+    border-color: var(--accent);
+    background: var(--card-bg-3);
   }
   .nl-btn:disabled {
     opacity: 0.45;
@@ -158,18 +153,18 @@
   }
 
   .nl-error {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
-    color: #b05a5a;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--error);
     letter-spacing: 0.03em;
     margin: 8px 0 0;
   }
   .nl-error[hidden] { display: none; }
 
   .nl-success {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.78rem;
-    color: #5a9a7a;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm-3);
+    color: var(--success);
     letter-spacing: 0.02em;
     line-height: 1.5;
     margin: 0;
@@ -187,7 +182,7 @@
 
     /* Centered uniform scrim for centered layout */
     .nl-banner::before {
-      background: rgba(8, 12, 16, 0.70);
+      background: var(--scrim-banner-flat);
     }
 
     .nl-inner {

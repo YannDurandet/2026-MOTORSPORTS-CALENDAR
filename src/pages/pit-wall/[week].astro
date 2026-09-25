@@ -144,13 +144,13 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
 
 <style>
 .pw-back {
-  color: var(--color-meta, #6a7f8c);
+  color: var(--text-meta-2);
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: var(--fs-md);
   letter-spacing: 0.04em;
 }
-.pw-back:hover { color: var(--color-text, #c8d8e0); }
-.pw-back:focus-visible { outline: 2px solid var(--color-accent, #4a7fa5); outline-offset: 2px; }
+.pw-back:hover { color: var(--text-soft-3); }
+.pw-back:focus-visible { outline: 2px solid var(--focus-ring-2); outline-offset: 2px; }
 
 .pw-h1 {
   display: flex;
@@ -162,7 +162,7 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
 .pw-h1-date {
   font-size: 0.55em;
   font-weight: 400;
-  color: var(--color-meta, #6a7f8c);
+  color: var(--text-meta-2);
   letter-spacing: 0.04em;
 }
 
@@ -177,12 +177,12 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
 }
 
 .pw-day-heading {
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-meta, #6a7f8c);
-  border-bottom: 1px solid var(--color-border, #1e2830);
+  color: var(--text-meta-2);
+  border-bottom: 1px solid var(--line-subtle-2);
   padding-bottom: 0.4rem;
   margin: 0 0 1rem;
 }
@@ -199,9 +199,9 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
   justify-content: space-between;
   gap: 1rem;
   padding: 0.875rem 1rem;
-  background: var(--color-card-bg, #0d1317);
-  border: 1px solid var(--color-border, #1e2830);
-  border-radius: 6px;
+  background: var(--card-bg-4);
+  border: 1px solid var(--line-subtle-2);
+  border-radius: var(--radius-lg);
 }
 
 .pw-event-left {
@@ -218,14 +218,14 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
 }
 
 .pw-event-title {
-  font-size: 0.9rem;
+  font-size: var(--fs-lg);
   font-weight: 600;
-  color: var(--color-text, #c8d8e0);
+  color: var(--text-soft-3);
 }
 
 .pw-event-circuit {
-  font-size: 0.75rem;
-  color: var(--color-meta, #6a7f8c);
+  font-size: var(--fs-sm);
+  color: var(--text-meta-2);
   margin-bottom: 0.4rem;
 }
 
@@ -239,19 +239,19 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
 }
 
 .pw-session-label {
-  font-size: 0.65rem;
+  font-size: var(--fs-2xs);
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--color-meta, #6a7f8c);
+  color: var(--text-meta-2);
 }
 
 .pw-session-time {
   font-variant-numeric: tabular-nums;
-  color: var(--color-text, #c8d8e0);
+  color: var(--text-soft-3);
   font-weight: 600;
 }
 
@@ -275,7 +275,7 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
   gap: 1rem;
   margin-top: 3rem;
   padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border, #1e2830);
+  border-top: 1px solid var(--line-subtle-2);
 }
 
 .pw-pag-link {
@@ -289,21 +289,21 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
 
 .pw-pag-next { text-align: right; }
 
-.pw-pag-link:hover .pw-pag-dir { color: var(--color-text, #c8d8e0); }
-.pw-pag-link:focus-visible { outline: 2px solid var(--color-accent, #4a7fa5); outline-offset: 2px; border-radius: 3px; }
+.pw-pag-link:hover .pw-pag-dir { color: var(--text-soft-3); }
+.pw-pag-link:focus-visible { outline: 2px solid var(--focus-ring-2); outline-offset: 2px; border-radius: var(--radius-sm); }
 
 .pw-pag-dir {
-  font-size: 0.7rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-meta, #6a7f8c);
+  color: var(--text-meta-2);
   transition: color 0.15s;
 }
 
 .pw-pag-label {
-  font-size: 0.8rem;
-  color: var(--color-text, #c8d8e0);
+  font-size: var(--fs-md);
+  color: var(--text-soft-3);
 }
 
 @media (max-width: 480px) {

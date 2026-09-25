@@ -363,9 +363,9 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .filter-dim {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     width: 42px;
@@ -391,9 +391,9 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     padding: 5px 12px;
     background: transparent;
     border: 1px solid var(--border);
-    color: #8a9aaa;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
@@ -401,18 +401,18 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .cf-btn:hover {
-    border-color: #556;
-    color: #bbb;
+    border-color: var(--line-neutral);
+    color: var(--text-soft-9);
   }
 
   .cf-btn.active {
-    background: #fff;
-    border-color: #fff;
-    color: #000;
+    background: var(--surface-inverse);
+    border-color: var(--line-strong);
+    color: var(--text-inverse);
   }
 
   .cf-count {
-    font-size: 0.6rem;
+    font-size: var(--fs-3xs);
     opacity: 0.55;
   }
 
@@ -453,7 +453,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .track-card:hover {
-    border-color: #2e3f50;
+    border-color: var(--line-2);
   }
 
   /* Stretched link covers the full card; series badge links sit above it */
@@ -501,14 +501,14 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .layout-btn {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
     font-weight: 700;
     letter-spacing: 0.07em;
-    color: #7a8fa0;
-    background: rgba(0, 0, 0, 0.55);
-    border: 1px solid #445;
-    border-radius: 2px;
+    color: var(--text-meta);
+    background: var(--scrim);
+    border: 1px solid var(--line-neutral-4);
+    border-radius: var(--radius-xs);
     padding: 3px 6px;
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s;
@@ -517,13 +517,13 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .layout-btn:hover {
-    color: #778;
-    border-color: #556;
+    color: var(--text-meta-6);
+    border-color: var(--line-neutral);
   }
 
   .layout-btn.active {
-    color: #c3c6c8;
-    border-color: #667;
+    color: var(--text-soft);
+    border-color: var(--line-neutral-2);
   }
 
   /* Placeholder for tracks without an SVG file yet */
@@ -533,10 +533,10 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px dashed #1c2a35;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #fff;
+    border: 1px dashed var(--line-subtle-3);
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    color: var(--text-strong);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -559,17 +559,17 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   .track-name {
     font-weight: 800;
-    font-size: 0.88rem;
-    color: #c3c6c8;
+    font-size: var(--fs-base-2);
+    color: var(--text-soft);
     line-height: 1.25;
     text-transform: uppercase;
     letter-spacing: 0.03em;
   }
 
   .track-location {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
     margin-bottom: 10px;
     letter-spacing: 0.04em;
   }
@@ -590,7 +590,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   /* Reuse the site's existing .tag and .t-{series} classes */
   .track-ev-row .tag {
-    font-size: 0.6rem;
+    font-size: var(--fs-3xs);
     padding: 2px 5px;
     text-decoration: none;
     flex-shrink: 0;
@@ -598,23 +598,23 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   }
 
   .track-ev-title {
-    font-size: 0.75rem;
-    color: #9aa;
+    font-size: var(--fs-sm);
+    color: var(--text-muted-3);
     flex: 1;
     min-width: 0;
     line-height: 1.3;
   }
 
   .track-ev-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
     flex-shrink: 0;
   }
 
   .track-no-events {
-    font-size: 0.75rem;
-    color: #7a8fa0;
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
     font-style: italic;
   }
 
@@ -622,8 +622,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   .tracks-empty {
     text-align: center;
     padding: 60px 20px;
-    color: #8a9aaa;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-md);
   }
 </style>

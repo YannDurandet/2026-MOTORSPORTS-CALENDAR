@@ -113,6 +113,15 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 | `/data/series.json` | `src/pages/data/series.json.ts` | Race dates for countdowns |
 | `/data/search.json` | `src/pages/data/search.json.ts` | Search index (tracks + series) |
 
+## Design tokens
+`src/styles/tokens.css` holds every colour, font family, font size, radius, shadow and series colour. It is imported once, before `global.css`, in `BaseLayout.astro`. Rules:
+
+- Site CSS (`global.css` and `.astro` `<style>` blocks) uses `var(--token)`, never literals. `npm run check` enforces this via `scripts/check-tokens.mjs`. If nothing fits, add a token to `tokens.css`.
+- Naming is `--{role}-{tier}`, e.g. `--text-muted`, `--line-subtle`, `--surface-raised`, `--fs-sm`. A `-N` suffix (`--text-soft-4`) is a legacy near-duplicate kept for pixel parity: don't reach for it in new code, use the tier's canonical token.
+- Roles are split on purpose (`--text-*`, `--line-*`, `--surface-*`/`--card-bg*`). Pick by what the colour does, not by matching the hex.
+- Series tokens keep the `--{slug}` / `--{slug}-c` pattern because templates build them from slugs. Per-series `-tag` (AA-darkened tag background) and `-tint` (active filter chip) live alongside.
+- Out of scope: email HTML (`api/subscribe.ts`, `workers/newsletter.ts`, since mail clients lack CSS variables), `api/unsubscribe.ts`, the embed iframe (own local tokens + light theme), `<meta name="theme-color">`.
+
 ## Global search
 Search index is built at `/data/search.json` from tracks + series. It is fetched lazily on first open. Trigger: click the 🔍 button in nav, or press `/`.
 
@@ -137,7 +146,8 @@ Everything in `scripts/` is reachable through `npm run`:
 
 | Command | Does |
 |---|---|
-| `npm run check` | Data integrity checks — run before every commit |
+| `npm run check` | Data integrity + design-token checks — run before every commit |
+| `npm run check:tokens` | Just the token check: no colour/font/size/radius literals in site CSS |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
 | `npm run gen:pitwall` | Regenerate `data/pitwall.json` archive snapshot |
 | `npm run gen:icons` | Rebuild PWA icons from `website-icon.svg` (needs `sharp`) |
@@ -162,7 +172,7 @@ When the repo is edited through a sandbox or remote file bridge rather than loca
 ## Accessibility checklist (WCAG 2.2 AA)
 Run this before merging any new feature or page:
 
-- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI). Prefer `#8a9aaa`/`#7a8fa0` for secondary meta text on dark backgrounds.
+- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI). Prefer `--text-muted`/`--text-meta` for secondary meta text on dark backgrounds; `--text-dim*` and `--text-faint*` fail AA and are decorative only.
 - [ ] Every new interactive element is keyboard-operable: Tab-reachable, Enter/Space activates, has a visible focus ring (not just `outline: none`).
 - [ ] Every new icon/SVG has `aria-hidden="true"` if decorative, or an accessible name (`aria-label`/`<title>`) if it conveys information.
 - [ ] Every color-coded element (series tags, status indicators) also conveys meaning via text — color is never the sole indicator.
@@ -170,4 +180,4 @@ Run this before merging any new feature or page:
 - [ ] Toggle/disclosure buttons carry `aria-expanded` and update it in JS. Filter/toggle buttons carry `aria-pressed`.
 - [ ] Any new animation/transition is suppressed under `@media (prefers-reduced-motion: reduce)`.
 - [ ] Flag `<img>` alt text uses the full country name, not the ISO code.
-- [ ] No new font sizes below `0.7rem` for meta/label text, and no new body text below `0.85rem`.
+- [ ] No new font sizes below `0.7rem` (`--fs-xs`) for meta/label text, and no new body text below `0.85rem` (`--fs-base`).

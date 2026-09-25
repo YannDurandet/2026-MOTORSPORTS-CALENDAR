@@ -75,51 +75,51 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .back-link {
     display: inline-block;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #8a9aaa;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
     text-decoration: none;
     letter-spacing: 0.06em;
     margin-bottom: 2.5rem;
     transition: color 0.15s;
   }
-  .back-link:hover { color: #aaa; }
+  .back-link:hover { color: var(--text-muted-2); }
 
   .legal-body {
-    font-family: 'Inter', sans-serif;
-    color: #9aa;
+    font-family: var(--font-body);
+    color: var(--text-muted-3);
     line-height: 1.75;
   }
 
   .legal-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 2rem;
   }
 
   .legal-body h2 {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
-    color: #6a9ab0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs-3);
+    color: var(--accent-muted);
     letter-spacing: 0.12em;
     text-transform: uppercase;
     margin: 2rem 0 0.6rem;
     padding-bottom: 0.4rem;
-    border-bottom: 1px solid #1a2530;
+    border-bottom: 1px solid var(--line-subtle);
   }
 
   .legal-body p {
-    font-size: 0.85rem;
+    font-size: var(--fs-base);
     margin: 0 0 0.9rem;
-    color: #8a9aaa;
+    color: var(--text-muted);
   }
 
   .legal-body a {
-    color: #5a8fa8;
+    color: var(--link);
     text-decoration: none;
   }
-  .legal-body a:hover { color: #aad; text-decoration: underline; }
+  .legal-body a:hover { color: var(--link-hover); text-decoration: underline; }
 </style>

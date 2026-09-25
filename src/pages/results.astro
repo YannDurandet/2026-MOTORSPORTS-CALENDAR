@@ -95,7 +95,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
             </a>
           ))}
           <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
-            <a href={`${base}/stats`} class="res-jump-link" style="color: #4a7090; border-left: none; padding-left: 0;">
+            <a href={`${base}/stats`} class="res-jump-link" style="color: var(--accent); border-left: none; padding-left: 0;">
               Season Stats →
             </a>
           </div>
@@ -181,9 +181,9 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   .res-sidebar::-webkit-scrollbar { display: none; }
 
   .res-sidebar-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -198,41 +198,41 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   }
 
   .res-filter {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 5px 10px;
     border: 1px solid var(--border);
     background: none;
-    color: #7a8fa0;
+    color: var(--text-meta);
     cursor: pointer;
     transition: color 0.13s, border-color 0.13s, background 0.13s;
     white-space: nowrap;
   }
 
   .res-filter:hover {
-    color: #8ab;
-    border-color: #2a4050;
+    color: var(--text-muted-4);
+    border-color: var(--line);
   }
 
   .res-filter.active {
-    border-color: var(--c, #4a7090);
+    border-color: var(--c, var(--accent));
     border-image-source: var(--c-grad, none);
     border-image-slice: 1;
-    color: var(--c, #8ab);
-    background: rgba(255,255,255,0.04);
+    color: var(--c, var(--text-muted-4));
+    background: var(--overlay-faint);
   }
 
   .res-filter-util {
-    font-size: 0.7rem;
-    color: #7a8fa0;
-    border-color: #1c2a35;
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
+    border-color: var(--line-subtle-3);
     padding: 4px 8px;
   }
   .res-filter-util:hover {
-    color: #8ab;
-    border-color: #2a4050;
+    color: var(--text-muted-4);
+    border-color: var(--line);
   }
 
   /* Visibility — use class, not [hidden], to beat display:grid/flex specificity */
@@ -249,9 +249,9 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-jump-link {
     display: block;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     text-decoration: none;
     padding: 5px 10px;
     letter-spacing: 0.06em;
@@ -262,8 +262,8 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-jump-link:hover,
   .res-jump-link.active {
-    color: #8ab;
-    border-left-color: #2a4050;
+    color: var(--text-muted-4);
+    border-left-color: var(--line);
   }
 
   /* ── Month section ── */
@@ -282,18 +282,18 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   }
 
   .res-month-label {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-sm);
     font-weight: 900;
-    color: #c3c6c8;
+    color: var(--text-soft);
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
   .res-month-count {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -314,7 +314,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   .res-week + .res-week {
     margin-top: 20px;
     padding-top: 20px;
-    border-top: 1px dashed #1a2530;
+    border-top: 1px dashed var(--line-subtle);
   }
 
   /* ── Result row ── */
@@ -339,18 +339,18 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
     top: 0;
     bottom: 0;
     width: 3px;
-    background: var(--acc, #2a4050);
+    background: var(--acc, var(--surface-accent-4));
   }
 
   .res-row:hover {
-    background: #0d1820;
-    border-color: #1e3040;
+    background: var(--card-bg-2);
+    border-color: var(--line-subtle-5);
   }
 
   .res-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.75rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
     letter-spacing: 0.06em;
     white-space: nowrap;
   }
@@ -363,8 +363,8 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   }
 
   .res-series-name {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-sm);
     font-weight: 900;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -372,9 +372,9 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   }
 
   .res-race-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     letter-spacing: 0.06em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -393,14 +393,14 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
     height: 20px;
     flex-shrink: 0;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: var(--radius-round);
   }
 
   .res-venue-link {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-md-2);
     font-weight: 600;
-    color: #7a8fa0;
+    color: var(--text-meta);
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
@@ -410,7 +410,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   }
 
   .res-venue-link:hover {
-    color: #c3c6c8;
+    color: var(--text-soft);
     text-decoration: underline;
   }
 
@@ -423,10 +423,10 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   }
 
   .res-winner-name {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.84rem;
+    font-family: var(--font-body);
+    font-size: var(--fs-md-3);
     font-weight: 700;
-    color: #c3c6c8;
+    color: var(--text-soft);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -434,7 +434,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-codriver {
     font-weight: 400;
-    color: #6a8090;
+    color: var(--text-meta-3);
   }
 
   .res-flag {
@@ -443,13 +443,13 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
     flex-shrink: 0;
     object-fit: cover;
     display: block;
-    border-radius: 50%;
+    border-radius: var(--radius-round);
   }
 
   .res-team {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     letter-spacing: 0.04em;
     white-space: nowrap;
     overflow: hidden;

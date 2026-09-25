@@ -79,16 +79,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     top: 20px;
     left: 24px;
     z-index: 10;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #4a6070;
+    color: var(--text-dim-3);
     text-decoration: none;
     transition: color 0.15s;
   }
-  .nl-back:hover { color: #c3c6c8; }
+  .nl-back:hover { color: var(--text-soft); }
 
   /* ── Hero ───────────────────────────────────────────────────────── */
   .nl-hero {
@@ -96,7 +96,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     flex: 1;
     display: flex;
     align-items: center;
-    background: #080c10 url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
+    background: var(--surface-sunken-2) url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
     overflow: hidden;
     /* Full viewport on mobile */
     min-height: 100svh;
@@ -107,12 +107,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(8, 12, 16, 0.55) 0%,
-      rgba(8, 12, 16, 0.75) 55%,
-      rgba(8, 12, 16, 0.92) 100%
-    );
+    background: var(--scrim-hero);
     pointer-events: none;
   }
 
@@ -129,29 +124,29 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   }
 
   .nl-kicker {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.58rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-5);
     font-weight: 700;
     letter-spacing: 0.2em;
-    color: #4a6070;
+    color: var(--text-dim-3);
     text-transform: uppercase;
     margin-bottom: 18px;
   }
 
   .nl-headline {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-family: var(--font-display);
+    font-size: var(--fs-display-2);
     font-weight: 900;
-    color: #c3c6c8;
+    color: var(--text-soft);
     line-height: 0.95;
     letter-spacing: -0.01em;
     margin: 0 0 28px;
   }
 
   .nl-body {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.76rem;
-    color: #7a8a9a;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm-2);
+    color: var(--text-meta-4);
     letter-spacing: 0.02em;
     line-height: 1.8;
     margin: 0 0 36px;
@@ -168,56 +163,56 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   .nl-input {
     flex: 1;
-    background: rgba(4, 6, 8, 0.85);
+    background: var(--surface-sunken-5);
     border: 1px solid var(--border);
     border-right: none;
-    color: #c3c6c8;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.78rem;
+    color: var(--text-soft);
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm-3);
     letter-spacing: 0.02em;
     padding: 13px 16px;
     outline: none;
     min-width: 0;
     transition: border-color 0.15s;
   }
-  .nl-input::placeholder { color: #2a3540; }
-  .nl-input:focus { border-color: #2e4a5e; }
+  .nl-input::placeholder { color: var(--text-faint-3); }
+  .nl-input:focus { border-color: var(--line-4); }
 
   .nl-btn {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     padding: 13px 20px;
     background: none;
     border: 1px solid var(--border);
-    color: #c3c6c8;
+    color: var(--text-soft);
     cursor: pointer;
     white-space: nowrap;
     flex-shrink: 0;
     transition: color 0.15s, border-color 0.15s, background 0.15s;
   }
   .nl-btn:hover:not(:disabled) {
-    color: #fff;
-    border-color: #4a7090;
-    background: rgba(13, 24, 34, 0.9);
+    color: var(--text-strong);
+    border-color: var(--accent);
+    background: var(--card-bg-9);
   }
   .nl-btn:disabled { opacity: 0.45; cursor: wait; }
 
   .nl-error {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
-    color: #b05a5a;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--error);
     letter-spacing: 0.03em;
     margin: 8px 0 0;
   }
   .nl-error[hidden] { display: none; }
 
   .nl-success {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.78rem;
-    color: #5a9a7a;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm-3);
+    color: var(--success);
     letter-spacing: 0.02em;
     line-height: 1.6;
     margin: 0;
@@ -225,9 +220,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .nl-success[hidden] { display: none; }
 
   .nl-fine {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.56rem;
-    color: #2a3540;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-4);
+    color: var(--text-faint-3);
     letter-spacing: 0.06em;
     margin: 12px 0 0;
   }

@@ -120,12 +120,12 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
 
   .ei-notice {
     border: 1px solid var(--border);
-    border-left: 2px solid #7a8fa0;
+    border-left: 2px solid var(--line-strong-2);
     background: var(--card-bg);
     padding: 12px 16px;
     margin: 0 0 20px;
-    font-size: 0.82rem;
-    color: #8a9aaa;
+    font-size: var(--fs-md-2);
+    color: var(--text-muted);
     line-height: 1.6;
   }
 
@@ -135,25 +135,25 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
     margin-bottom: 24px;
   }
   .ei-year {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs-2);
     letter-spacing: 0.06em;
-    color: #7a8fa0;
+    color: var(--text-meta);
     border: 1px solid var(--border);
     padding: 6px 14px;
     text-decoration: none;
   }
-  .ei-year:hover { color: var(--text-main); border-color: #556; }
-  .ei-year--active { color: #c3c6c8; border-color: #667; }
+  .ei-year:hover { color: var(--text-main); border-color: var(--line-neutral); }
+  .ei-year--active { color: var(--text-soft); border-color: var(--line-neutral-2); }
 
   .ei-month { margin-bottom: 28px; }
 
   .ei-month-name {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #7a8fa0;
+    color: var(--text-meta);
     margin: 0 0 10px;
     padding-bottom: 8px;
     border-bottom: 1px solid var(--border);
@@ -175,17 +175,17 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
   .ei-row:hover .ei-title { color: var(--text-main); }
 
   .ei-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs-3);
+    color: var(--text-meta);
     letter-spacing: 0.04em;
   }
-  .ei-row .tag { font-size: 0.6rem; padding: 2px 6px; text-decoration: none; }
-  .ei-title { font-size: 0.85rem; color: #c3c6c8; }
+  .ei-row .tag { font-size: var(--fs-3xs); padding: 2px 6px; text-decoration: none; }
+  .ei-title { font-size: var(--fs-base); color: var(--text-soft); }
   .ei-venue {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     text-align: right;
   }
 

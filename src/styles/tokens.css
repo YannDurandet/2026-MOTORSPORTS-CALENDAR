@@ -1,0 +1,397 @@
+/* ==========================================================================
+ * DESIGN TOKENS — the single source of truth for colour, type and radius.
+ *
+ * Every colour, font family, font size and border radius used by the site's
+ * stylesheets resolves to a variable in this file. To restyle the site, change
+ * values here, not in components.
+ *
+ * NAMING
+ *   --{role}-{tier}      canonical value for that tier (the one to reach for)
+ *   --{role}-{tier}-N    a legacy near-duplicate of the tier. These crept in
+ *                        page by page. They are kept exact so this refactor
+ *                        changes nothing visually. In the redesign, collapse
+ *                        each one into its tier: `--text-soft-4: var(--text-soft);`
+ *
+ * Roles are split on purpose. The same hex can appear under text, line and
+ * surface, so a redesign can move borders without moving text.
+ *
+ * Not covered here, and why:
+ *   - src/pages/api/subscribe.ts + workers/newsletter.ts: email HTML. Mail
+ *     clients do not support CSS variables, so colours stay inline.
+ *   - src/pages/api/unsubscribe.ts: standalone HTML, does not load this file.
+ *   - src/pages/embed/[series].astro: third-party iframe with its own local
+ *     tokens and a light theme. Does not load this file.
+ *   - <meta name="theme-color"> and manifest.webmanifest: must be literals.
+ *   - Spacing: the current CSS has no underlying grid (5, 7, 11, 13, 15px…).
+ *     A 1:1 token rename would just move the mess, so spacing is left for the
+ *     redesign to set from the Figma spacing scale.
+ * ========================================================================== */
+
+:root {
+    /* ── Typography: families ─────────────────────────────────────────── */
+    --font-body:        'Inter', sans-serif;
+    --font-mono:        'Roboto Mono', monospace;
+    --font-display:     'Orbitron', sans-serif;
+    --font-code:        'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+    --font-system-mono: monospace;
+
+    /* ── Typography: sizes ────────────────────────────────────────────────
+     * Tiers sit ~1px apart; -N variants are within ~1px of their tier.
+     * Accessibility floor (see CLAUDE.md): meta/label text >= 0.7rem
+     * (--fs-xs), body text >= 0.85rem (--fs-base). Everything in the 3xs and
+     * 2xs tiers is below that floor and should move up in the redesign.     */
+    --fs-3xs:     0.6rem;
+    --fs-3xs-2:   0.54rem;
+    --fs-3xs-3:   0.55rem;
+    --fs-3xs-4:   0.56rem;
+    --fs-3xs-5:   0.58rem;
+    --fs-3xs-6:   0.62rem;
+    --fs-2xs:     0.65rem;
+    --fs-2xs-2:   0.66rem;
+    --fs-2xs-3:   0.68rem;
+    --fs-xs:      0.7rem;
+    --fs-xs-2:    0.72rem;
+    --fs-sm:      0.75rem;
+    --fs-sm-2:    0.76rem;
+    --fs-sm-3:    0.78rem;
+    --fs-md:      0.8rem;
+    --fs-md-2:    0.82rem;
+    --fs-md-3:    0.84rem;
+    --fs-base:    0.85rem;
+    --fs-base-2:  0.88rem;
+    --fs-lg:      0.9rem;
+    --fs-lg-2:    0.95rem;
+    --fs-xl:      1rem;
+    --fs-xl-2:    1.05rem;
+    --fs-xl-3:    1.1rem;
+    --fs-2xl:     1.5rem;
+    --fs-2xl-2:   1.4rem;
+    --fs-2xl-3:   1.6rem;
+    --fs-3xl:     2rem;
+    --fs-3xl-2:   1.8rem;
+    --fs-4xl:     3rem;
+    --fs-4xl-2:   2.5rem;
+    --fs-display:   clamp(2.8rem, 8vw, 5.5rem);
+    --fs-display-2: clamp(2.4rem, 7vw, 4rem);
+
+    /* ── Radius ───────────────────────────────────────────────────────── */
+    --radius-xs:    2px;
+    --radius-sm:    3px;
+    --radius-md:    4px;
+    --radius-lg:    6px;
+    --radius-xl:    8px;
+    --radius-2xl:   12px;
+    --radius-pill:  20px;
+    --radius-round: 50%;
+
+    /* ── Surfaces (backgrounds), darkest → lightest ───────────────────── */
+    --surface-sunken:   #0b0f12;   /* below the page: search modal */
+    --surface-sunken-2: #080c10;
+    --surface-sunken-3: #080d12;
+    --surface-sunken-4: #040608;
+    --surface-sunken-5: rgba(4, 6, 8, 0.85);
+
+    --bg: #101a24;                 /* page */
+
+    --card-bg:   #0d151d;          /* cards, panels */
+    --card-bg-2: #0d1820;
+    --card-bg-3: #0d1822;
+    --card-bg-4: #0d1317;
+    --card-bg-5: #0d1720;
+    --card-bg-6: #0f161b;
+    --card-bg-7: #0f1820;
+    --card-bg-8: #0b1118;
+    --card-bg-9: rgba(13, 24, 34, 0.9);
+
+    --surface-raised:   #1a2530;   /* chips, bars, hovered rows */
+    --surface-raised-2: #1a2a3a;
+
+    --surface-accent:   #1e3a52;   /* active / selected */
+    --surface-accent-2: #1a3a5a;
+    --surface-accent-3: #1e4a72;
+    --surface-accent-4: #2a4050;
+
+    --surface-inverse: #fff;       /* skip link, active filter chip */
+
+    --surface-popover:   rgba(8, 15, 22, 0.97);  /* frosted popovers (blur behind) */
+    --surface-popover-2: rgba(8, 15, 22, 0.92);
+
+    /* ── Overlays: white at low alpha, for tints and hairlines ────────── */
+    --overlay-faint:    rgba(255, 255, 255, 0.04);
+    --overlay-faint-2:  rgba(255, 255, 255, 0.018);
+    --overlay-faint-3:  rgba(255, 255, 255, 0.025);
+    --overlay-faint-4:  rgba(255, 255, 255, 0.03);
+    --overlay-faint-5:  rgba(255, 255, 255, 0.035);
+    --overlay-soft:     rgba(255, 255, 255, 0.08);
+    --overlay-soft-2:   rgba(255, 255, 255, 0.06);
+    --overlay-soft-3:   rgba(255, 255, 255, 0.07);
+    --overlay-soft-4:   rgba(255, 255, 255, 0.09);
+    --overlay-soft-5:   rgba(255, 255, 255, 0.1);
+    --overlay-medium:   rgba(255, 255, 255, 0.12);
+    --overlay-medium-2: rgba(255, 255, 255, 0.14);
+    --overlay-strong:   rgba(255, 255, 255, 0.2);
+    --overlay-strong-2: rgba(255, 255, 255, 0.24);
+    --overlay-strong-3: rgba(255, 255, 255, 0.28);
+    --overlay-strong-4: rgba(255, 255, 255, 0.32);
+
+    /* ── Scrims: dark layers over imagery and behind modals ───────────── */
+    --scrim:          rgba(0, 0, 0, 0.55);
+    --scrim-2:        rgba(0, 0, 0, 0.4);
+    --scrim-modal:    rgba(0, 0, 0, 0.75);
+    --scrim-modal-2:  rgba(0, 0, 0, 0.7);
+    --scrim-banner: linear-gradient(
+        to bottom,
+        rgba(8, 12, 16, 0.55) 0%,
+        rgba(8, 12, 16, 0.72) 60%,
+        rgba(8, 12, 16, 0.88) 100%
+    );
+    --scrim-banner-flat: rgba(8, 12, 16, 0.70);
+    --scrim-hero: linear-gradient(
+        to bottom,
+        rgba(8, 12, 16, 0.55) 0%,
+        rgba(8, 12, 16, 0.75) 55%,
+        rgba(8, 12, 16, 0.92) 100%
+    );
+    --scrim-card: linear-gradient(to top, rgba(4, 8, 12, 0.97) 0%, rgba(4, 8, 12, 0.55) 55%, transparent 100%);
+
+    /* ── Lines (borders, dividers), faintest → strongest ─────────────── */
+    --line-faint: #0b1118;
+
+    --border: #1c262f;             /* default card border */
+
+    --line-subtle:   #1a2530;
+    --line-subtle-2: #1e2830;
+    --line-subtle-3: #1c2a35;
+    --line-subtle-4: #1e2d38;
+    --line-subtle-5: #1e3040;
+
+    --line:   #2a4050;
+    --line-2: #2e3f50;
+    --line-3: #2a3f50;
+    --line-4: #2e4a5e;
+    --line-5: #2a3540;
+    --line-6: #3a5068;
+    --line-7: #2a5070;
+
+    --line-neutral:   #555566;     /* grey (not blue-grey) chip borders */
+    --line-neutral-2: #666677;
+    --line-neutral-3: #555555;
+    --line-neutral-4: #444455;
+    --line-neutral-5: #333333;
+    --line-neutral-6: #333344;
+
+    --line-strong:   #fff;
+    --line-strong-2: #7a8fa0;
+
+    /* ── Text, brightest → dimmest ────────────────────────────────────── */
+    --text-strong:   #fff;         /* headings, active labels */
+    --text-strong-2: #f0f2f5;
+    --text-strong-3: #e8f0f5;
+
+    --text-main: #e0e0e0;          /* body default */
+
+    --text-soft:    #c3c6c8;       /* readable copy inside cards */
+    --text-soft-2:  #d0dce6;
+    --text-soft-3:  #c8d8e0;
+    --text-soft-4:  #c8d8e4;
+    --text-soft-5:  #ccccdd;
+    --text-soft-6:  #cccccc;
+    --text-soft-7:  #bbcccc;
+    --text-soft-8:  #b0c0cc;
+    --text-soft-9:  #bbbbbb;
+    --text-soft-10: #b0bcc6;
+    --text-soft-11: #a0b4c4;
+    --text-soft-12: #a0b4c0;
+    --text-soft-13: rgba(180, 200, 218, 0.9);
+    --text-soft-fade: #838f9a;     /* end stop of the gradient page title */
+
+    --text-muted:    #8a9aaa;      /* secondary copy */
+    --text-muted-2:  #aaaaaa;
+    --text-muted-3:  #99aaaa;
+    --text-muted-4:  #88aabb;
+    --text-muted-5:  #99aabb;
+    --text-muted-6:  #9aaab6;
+    --text-muted-7:  #8a9aa8;
+    --text-muted-8:  #8899aa;
+    --text-muted-9:  #8a9499;
+    --text-muted-10: #888899;
+    --text-muted-11: #888888;
+
+    /* -2, -3, -6, -7, -8, -9 are under 4.5:1 on --bg (3.1–4.3). */
+    --text-meta:   #7a8fa0;        /* labels, timestamps, meta */
+    --text-meta-2: #6a7f8c;
+    --text-meta-3: #6a8090;
+    --text-meta-4: #7a8a9a;
+    --text-meta-5: #7a8890;
+    --text-meta-6: #777788;
+    --text-meta-7: #70767c;
+    --text-meta-8: #666666;
+    --text-meta-9: #5a7080;
+
+    /* Below AA on --bg. Decorative / de-emphasised only. */
+    --text-dim:   #566878;
+    --text-dim-2: #5a6a78;
+    --text-dim-3: #4a6070;
+    --text-dim-4: #555566;
+
+    --text-faint:   #3a5060;
+    --text-faint-2: #333344;
+    --text-faint-3: #2a3540;
+    --text-faint-4: rgba(255, 255, 255, 0.25);
+
+    --text-inverse: #000;          /* on --surface-inverse */
+
+    /* ── Accent & interactive ─────────────────────────────────────────── */
+    --accent:        #4a7090;      /* DORD blue: links, active borders */
+    --accent-bright: #6abfff;
+    --accent-mid:    #3a8fd4;
+    --accent-deep:   #2a5a8a;
+    --accent-pale:   #a0c8e8;
+    --accent-muted:  #6a9ab0;
+    --accent-orange: #e8822a;      /* RSS, streaks */
+
+    --link:       #5a8fa8;
+    --link-hover: #aaaadd;
+
+    --focus-ring:   #00b4d8;
+    --focus-ring-2: #4a7fa5;
+
+    /* ── Status ───────────────────────────────────────────────────────── */
+    --success:          #5a9a7a;
+    --success-2:        #4a7a5a;
+    --success-bright:   #4ade80;
+    --success-bright-2: #81c784;
+    --success-line:     #4caf50;
+    --success-line-2:   #2a6a2a;
+    --success-bg:       #1a2e1a;
+    --success-bg-2:     #1a4a1a;
+
+    --error: #b05a5a;
+
+    --danger-line: rgba(255, 24, 1, 0.35);
+    --danger-bg:   rgba(255, 24, 1, 0.1);
+
+    --indigo:      #818cf8;
+    --indigo-line: #2a2a5a;
+    --indigo-bg:   #1a1a3a;
+
+    /* ── Shadows ──────────────────────────────────────────────────────── */
+    --shadow-modal:   0 24px 80px rgba(0, 0, 0, 0.9);
+    --shadow-modal-2: 0 24px 64px rgba(0, 0, 0, 0.6);
+    --shadow-popover: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-hover:   0 4px 20px rgba(0, 0, 0, 0.35);
+    --shadow-hover-2: 0 8px 24px rgba(0, 0, 0, 0.45);
+    --shadow-hover-3: 0 6px 18px rgba(0, 0, 0, 0.4);
+
+    /* ── SERIES COLORS ────────────────────────────────────────────────────
+     * Templates build these names from series slugs (`var(--${slug})`,
+     * `var(--${slug}-c)`), so keep the `--{slug}` pattern.
+     * Gradient vars are for background use.
+     * -c vars are solid fallbacks for color: and border-color:.
+     * Series without gradients work everywhere directly.                   */
+    --f1: #ff1801;
+    --f2: #0090ff;
+    --f3: #d15eff;
+
+    --f1a-start: #06F7FB;
+    --f1a-end: #C60678;
+    --f1a: linear-gradient(135deg, var(--f1a-start) 0%, var(--f1a-end) 100%);
+    --f1a-c: var(--f1a-end);
+
+    --fe: linear-gradient(135deg, #0033FF 0%, #00EFFF 100%);
+    --fe-c: #0099FF;
+    /* Event-row border and filter chip use a brighter pair than --fe. */
+    --fe-edge-start: #0000FF;
+    --fe-edge-end: #00FCFF;
+
+    --sf: #00A67E;
+    --wec: #00B9FF;
+
+    --imsa: linear-gradient(135deg, #FFD700 0%, #FF6B00 100%);
+    --imsa-c: #FFD700;
+
+    --wrc: linear-gradient(135deg, #FC4C02 0%, #1A0800 100%);
+    --wrc-c: #FC4C02;
+
+    --indycar: linear-gradient(135deg, #C8102E 0%, #003087 100%);
+    --indycar-c: #C8102E;
+
+    --nascar: #1A72E8;
+    --motogp: #E91E63;
+    --wsbk: #EE0000;
+    --dtm: #4CAF50;
+    --btcc: #3355EE;
+
+    --supercars: linear-gradient(135deg, #F9CB0F 0%, #E8001A 100%);
+    --supercars-c: #F9CB0F;
+
+    --elms: linear-gradient(135deg, #FF6600 0%, #FFCC00 100%);
+    --elms-c: #FF6600;
+
+    --gtwce: linear-gradient(135deg, #E52014 0%, #FF6B1A 100%);
+    --gtwce-c: #E52014;
+
+    --gtwca: linear-gradient(135deg, #E52014 0%, #8B0000 100%);
+    --gtwca-c: #E52014;
+
+    --nls: linear-gradient(135deg, #00B85C 0%, #004422 100%);
+    --nls-c: #00B85C;
+
+    --igtc: linear-gradient(135deg, #CC1A10 0%, #1A0A2E 100%);
+    --igtc-c: #CC1A10;
+
+    --tcr: #E10B16;
+    --erc: #0088DD;
+    --h24eu: #1A7FE8;
+    --psc: #cf9d40;
+
+    --bgt: linear-gradient(135deg, #C41E3A 0%, #330055 100%);
+    --bgt-c: #C41E3A;
+
+    --eurx: #02F3E9;
+
+    --asian-le-mans: #D12F44;
+
+    /* Series tag backgrounds (.t-{slug}), darkened where the brand colour
+     * fails WCAG AA against white text. Series not listed use --{slug}.   */
+    --f1-tag:     #CC1400;  /* from #ff1801, AA 4.5:1 */
+    --sf-tag:     #007A5A;  /* from #00A67E, AA 5.4:1 */
+    --nascar-tag: #1565C0;  /* from #1A72E8, AA 5.4:1 */
+    --motogp-tag: #C2185B;  /* from #E91E63, AA 5.8:1 */
+    --wsbk-tag:   #CC0000;  /* from #EE0000, AA 5.8:1 */
+    --dtm-tag:    #2E7D32;  /* from #4CAF50, AA 4.5:1 */
+    --erc-tag:    #006BBB;  /* from #0088DD, AA 4.5:1 */
+    --h24eu-tag:  #1565C0;  /* from #1A7FE8, AA 5.4:1 */
+
+    /* Text on series tags. White passes AA on every tag above plus tcr
+     * (4.84:1) and asian-le-mans (4.57:1); psc and eurx need dark text.   */
+    --on-series:      #fff;
+    --on-series-dark: #000;
+
+    /* Active series filter chip background.
+     * NOTE: several of these do not match their series colour (btcc is
+     * purple, elms teal, h24eu orange…). Legacy, kept as-is; fix in the
+     * redesign, e.g. color-mix(in srgb, var(--{slug}-c) 15%, transparent). */
+    --f1-tint:        rgba(255, 24, 1, 0.15);
+    --f1a-tint:       rgba(6, 247, 251, 0.1);
+    --fe-tint:        rgba(0, 252, 255, 0.1);
+    --sf-tint:        rgba(0, 109, 83, 0.2);
+    --wec-tint:       rgba(0, 185, 255, 0.12);
+    --imsa-tint:      rgba(255, 215, 0, 0.12);
+    --wrc-tint:       rgba(252, 76, 2, 0.15);
+    --indycar-tint:   rgba(200, 16, 46, 0.15);
+    --nascar-tint:    rgba(0, 71, 149, 0.2);
+    --motogp-tint:    rgba(233, 30, 99, 0.15);
+    --wsbk-tint:      rgba(216, 27, 96, 0.15);
+    --dtm-tint:       rgba(76, 175, 80, 0.15);
+    --btcc-tint:      rgba(156, 39, 176, 0.15);
+    --supercars-tint: rgba(255, 152, 0, 0.12);
+    --elms-tint:      rgba(0, 150, 136, 0.15);
+    --gtwce-tint:     rgba(0, 172, 193, 0.12);
+    --gtwca-tint:     rgba(0, 188, 212, 0.12);
+    --nls-tint:       rgba(96, 125, 139, 0.2);
+    --igtc-tint:      rgba(120, 144, 156, 0.2);
+    --tcr-tint:       rgba(205, 220, 57, 0.12);
+    --erc-tint:       rgba(141, 110, 99, 0.2);
+    --h24eu-tint:     rgba(245, 127, 23, 0.15);
+}

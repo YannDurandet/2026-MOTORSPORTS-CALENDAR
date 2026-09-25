@@ -1,4 +1,5 @@
 ---
+import '../styles/tokens.css';
 import '../styles/global.css';
 
 interface Props {
@@ -179,14 +180,14 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       top: -100%;
       left: 0;
       z-index: 99999;
-      background: #fff;
-      color: #000;
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.9rem;
+      background: var(--surface-inverse);
+      color: var(--text-inverse);
+      font-family: var(--font-mono);
+      font-size: var(--fs-lg);
       font-weight: 700;
       padding: 12px 20px;
       text-decoration: none;
-      border-bottom-right-radius: 4px;
+      border-bottom-right-radius: var(--radius-md);
     }
     .skip-link:focus {
       top: 0;
@@ -219,7 +220,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     .search-backdrop {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.75);
+      background: var(--scrim-modal);
       backdrop-filter: blur(4px);
     }
 
@@ -227,9 +228,9 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       position: relative;
       z-index: 1;
       width: min(660px, calc(100vw - 32px));
-      background: #0b0f12;
-      border: 1px solid #1e2d38;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+      background: var(--surface-sunken);
+      border: 1px solid var(--line-subtle-4);
+      box-shadow: var(--shadow-modal);
     }
 
     /* ── Input row ───────────────────────────────────────────────────────────── */
@@ -238,29 +239,29 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       align-items: center;
       gap: 12px;
       padding: 16px 18px;
-      border-bottom: 1px solid #1e2d38;
+      border-bottom: 1px solid var(--line-subtle-4);
     }
 
-    .search-modal-icon { color: #3a5060; flex-shrink: 0; }
+    .search-modal-icon { color: var(--text-faint); flex-shrink: 0; }
 
     .search-input {
       flex: 1;
       background: none;
       border: none;
       outline: none;
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.9rem;
-      color: #c3c6c8;
+      font-family: var(--font-mono);
+      font-size: var(--fs-lg);
+      color: var(--text-soft);
       letter-spacing: 0.02em;
     }
-    .search-input::placeholder { color: #334; }
+    .search-input::placeholder { color: var(--text-faint-2); }
     .search-input::-webkit-search-cancel-button { display: none; }
 
     .search-kbd {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.58rem;
-      color: #334;
-      border: 1px solid #1e2d38;
+      font-family: var(--font-mono);
+      font-size: var(--fs-3xs-5);
+      color: var(--text-faint-2);
+      border: 1px solid var(--line-subtle-4);
       padding: 3px 7px;
       letter-spacing: 0.06em;
       flex-shrink: 0;
@@ -272,7 +273,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       max-height: 58vh;
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: #1e2d38 transparent;
+      scrollbar-color: var(--line-subtle-4) transparent;
     }
 
     .search-group-header {
@@ -282,9 +283,9 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       padding: 12px 18px 6px;
     }
     .search-group-header-label {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.54rem;
-      color: #3a5060;
+      font-family: var(--font-mono);
+      font-size: var(--fs-3xs-2);
+      color: var(--text-faint);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       white-space: nowrap;
@@ -292,7 +293,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     .search-group-header-line {
       flex: 1;
       height: 1px;
-      background: #1a2530;
+      background: var(--surface-raised);
     }
 
     .search-result-item {
@@ -306,8 +307,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
     .search-result-item:hover,
     .search-result-item.focused {
-      background: #0f1820;
-      border-left-color: #2a5070;
+      background: var(--card-bg-7);
+      border-left-color: var(--line-7);
     }
 
     .search-result-body {
@@ -318,10 +319,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     .search-result-name {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.82rem;
+      font-family: var(--font-body);
+      font-size: var(--fs-md-2);
       font-weight: 700;
-      color: #c3c6c8;
+      color: var(--text-soft);
       letter-spacing: 0.01em;
       white-space: nowrap;
       overflow: hidden;
@@ -329,9 +330,9 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     .search-result-sub {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.62rem;
-      color: #7a8fa0;
+      font-family: var(--font-mono);
+      font-size: var(--fs-3xs-6);
+      color: var(--text-meta);
       letter-spacing: 0.03em;
       white-space: nowrap;
       overflow: hidden;
@@ -340,21 +341,21 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
 
     .search-result-arrow {
       margin-left: auto;
-      color: #2a3540;
-      font-size: 0.7rem;
+      color: var(--text-faint-3);
+      font-size: var(--fs-xs);
       flex-shrink: 0;
       transition: color 0.1s;
     }
     .search-result-item:hover .search-result-arrow,
     .search-result-item.focused .search-result-arrow {
-      color: #4a7090;
+      color: var(--accent);
     }
 
     .search-empty {
       padding: 28px 18px;
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.7rem;
-      color: #334;
+      font-family: var(--font-mono);
+      font-size: var(--fs-xs);
+      color: var(--text-faint-2);
       text-align: center;
       letter-spacing: 0.04em;
     }
@@ -363,19 +364,19 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       display: flex;
       gap: 16px;
       padding: 8px 18px;
-      border-top: 1px solid #1a2530;
+      border-top: 1px solid var(--line-subtle);
     }
     .search-hint {
       display: flex;
       align-items: center;
       gap: 5px;
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.56rem;
-      color: #2a3540;
+      font-family: var(--font-mono);
+      font-size: var(--fs-3xs-4);
+      color: var(--text-faint-3);
       letter-spacing: 0.06em;
     }
     .search-hint kbd {
-      border: 1px solid #1e2d38;
+      border: 1px solid var(--line-subtle-4);
       padding: 1px 5px;
       font-family: inherit;
       font-size: inherit;
@@ -395,19 +396,19 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       padding: 14px 18px;
       width: max-content;
       max-width: min(480px, calc(100vw - 32px));
-      background: rgba(8, 15, 22, 0.97);
+      background: var(--surface-popover);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 4px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--overlay-soft);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-popover);
     }
     .cookie-banner[hidden] { display: none; }
 
     .cookie-banner-text {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.66rem;
-      color: #8a9aaa;
+      font-family: var(--font-mono);
+      font-size: var(--fs-2xs-2);
+      color: var(--text-muted);
       letter-spacing: 0.02em;
       line-height: 1.6;
       margin: 0;
@@ -420,8 +421,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     .cookie-btn {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: var(--fs-3xs);
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -433,22 +434,22 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     .cookie-btn--accept {
-      color: #c3c6c8;
-      border-color: #2e4a5e;
+      color: var(--text-soft);
+      border-color: var(--line-4);
     }
     .cookie-btn--accept:hover {
-      color: #fff;
-      border-color: #4a7090;
-      background: #0d1822;
+      color: var(--text-strong);
+      border-color: var(--accent);
+      background: var(--card-bg-3);
     }
 
     .cookie-btn--decline {
-      color: #7a8fa0;
-      border-color: #1a2530;
+      color: var(--text-meta);
+      border-color: var(--line-subtle);
     }
     .cookie-btn--decline:hover {
-      color: #8a9aaa;
-      border-color: #2e3f50;
+      color: var(--text-muted);
+      border-color: var(--line-2);
     }
   </style>
 

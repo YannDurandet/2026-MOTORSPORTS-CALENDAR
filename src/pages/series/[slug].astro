@@ -575,17 +575,17 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
 }
 
 .standings-tab-label {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #7a8fa0;
+  color: var(--text-meta);
   margin-bottom: 10px;
 }
 
 .standings-note {
-  font-size: 0.75rem;
-  color: #3a5060;
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
   margin: 0 0 10px;
 }
 
@@ -603,9 +603,9 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
 }
 
 .standings-head > div {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #3a5060;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -623,25 +623,25 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
 }
 
 .standings-row--lead {
-  border-color: #1e3040;
-  background: #0d1820;
+  border-color: var(--line-subtle-5);
+  background: var(--card-bg-2);
 }
 
 .standings-row:hover {
-  background: #0d1820;
-  border-color: #1e3040;
+  background: var(--card-bg-2);
+  border-color: var(--line-subtle-5);
 }
 
 .st-pos {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
   font-weight: 700;
-  color: #3a5060;
+  color: var(--text-faint);
   text-align: center;
 }
 
 .standings-row--lead .st-pos {
-  color: var(--series-accent, #4a7090);
+  color: var(--accent);
 }
 
 .st-name {
@@ -659,27 +659,27 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
   width: 18px;
   height: 13px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   flex-shrink: 0;
 }
 
 .st-driver {
-  font-size: 0.85rem;
+  font-size: var(--fs-base);
   font-weight: 600;
-  color: #c3c6c8;
+  color: var(--text-soft);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .standings-row--lead .st-driver {
-  color: #e8f0f5;
+  color: var(--text-strong-3);
 }
 
 .st-team {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #3a5060;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
   letter-spacing: 0.04em;
   margin-top: 2px;
   white-space: nowrap;
@@ -693,21 +693,21 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
 }
 
 .st-pts-val {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
   font-weight: 700;
-  color: #c3c6c8;
+  color: var(--text-soft);
   display: block;
 }
 
 .standings-row--lead .st-pts-val {
-  color: #e8f0f5;
+  color: var(--text-strong-3);
 }
 
 .st-pts-gap {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #3a5060;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
   display: block;
   margin-top: 1px;
 }
@@ -718,9 +718,9 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
   margin-top: 10px;
   padding-top: 8px;
   border-top: 1px solid var(--border);
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #3a5060;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
   letter-spacing: 0.04em;
 }
 
@@ -733,31 +733,31 @@ const pageDescription = customDescriptions[slug] ?? series.tagline;
 }
 
 .standings-switch-btn {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 5px 12px;
   border: 1px solid var(--border);
   background: none;
-  color: #7a8fa0;
+  color: var(--text-meta);
   cursor: pointer;
   transition: color 0.13s, border-color 0.13s;
 }
 
 .standings-switch-btn.active {
-  color: #c3c6c8;
-  border-color: #2a4050;
-  background: rgba(255,255,255,0.04);
+  color: var(--text-soft);
+  border-color: var(--line);
+  background: var(--overlay-faint);
 }
 
 .standings-switch-btn:hover {
-  color: #8ab;
-  border-color: #2a4050;
+  color: var(--text-muted-4);
+  border-color: var(--line);
 }
 
 .standings-switch-btn:focus-visible {
-  outline: 2px solid var(--color-accent, #4a7fa5);
+  outline: 2px solid var(--focus-ring-2);
   outline-offset: 2px;
 }
 

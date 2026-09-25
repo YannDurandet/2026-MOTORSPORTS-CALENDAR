@@ -515,16 +515,16 @@ const sportsEventSchemas = [
 
   .back-link {
     display: inline-block;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.72rem;
-    color: #556;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs-2);
+    color: var(--text-dim-4);
     text-decoration: none;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 24px;
     transition: color 0.15s;
   }
-  .back-link:hover { color: #aaa; }
+  .back-link:hover { color: var(--text-muted-2); }
   .back-link--bottom { margin-top: 48px; margin-bottom: 0; }
 
   /* ── Split layout ────────────────────────────────────────────────────────── */
@@ -586,9 +586,9 @@ const sportsEventSchemas = [
 
   .track-content-text {
     margin: 8px 0 0;
-    font-size: 0.88rem;
+    font-size: var(--fs-base-2);
     line-height: 1.7;
-    color: #8a9aaa;
+    color: var(--text-muted);
   }
 
   /* ── Hero ────────────────────────────────────────────────────────────────── */
@@ -633,9 +633,9 @@ const sportsEventSchemas = [
   }
 
   .hero-placeholder {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.8rem;
-    color: #fff;
+    font-family: var(--font-mono);
+    font-size: var(--fs-md);
+    color: var(--text-strong);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     opacity: 0.4;
@@ -651,27 +651,27 @@ const sportsEventSchemas = [
   }
 
   .layout-btn {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.55rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-3);
     font-weight: 700;
     letter-spacing: 0.08em;
-    color: #7a8fa0;
-    background: rgba(0, 0, 0, 0.55);
-    border: 1px solid #334;
-    border-radius: 3px;
+    color: var(--text-meta);
+    background: var(--scrim);
+    border: 1px solid var(--line-neutral-6);
+    border-radius: var(--radius-sm);
     padding: 4px 8px;
     cursor: pointer;
     transition: color 0.15s, border-color 0.15s;
   }
 
   .layout-btn:hover {
-    color: #778;
-    border-color: #556;
+    color: var(--text-meta-6);
+    border-color: var(--line-neutral);
   }
 
   .layout-btn.active {
-    color: #c3c6c8;
-    border-color: #667;
+    color: var(--text-soft);
+    border-color: var(--line-neutral-2);
   }
 
   /* ── Meta row ────────────────────────────────────────────────────────────── */
@@ -724,26 +724,26 @@ const sportsEventSchemas = [
   }
 
   .spec-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.55rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-3);
+    color: var(--text-meta);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 5px;
   }
 
   .spec-value {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.78rem;
+    font-family: var(--font-display);
+    font-size: var(--fs-sm-3);
     font-weight: 700;
-    color: #c3c6c8;
+    color: var(--text-soft);
     letter-spacing: 0.03em;
   }
 
   .spec-sub {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #556;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-dim-4);
     margin-top: 3px;
     letter-spacing: 0.03em;
   }
@@ -752,9 +752,9 @@ const sportsEventSchemas = [
     display: flex;
     align-items: center;
     gap: 7px;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #556;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    color: var(--text-dim-4);
     text-decoration: none;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -762,7 +762,7 @@ const sportsEventSchemas = [
     white-space: nowrap;
   }
 
-  .spec-website:hover { color: #aaa; }
+  .spec-website:hover { color: var(--text-muted-2); }
 
   .spec-website img { opacity: 0.5; }
 
@@ -773,9 +773,9 @@ const sportsEventSchemas = [
   }
 
   .track-name {
-    font-size: 1.05rem;
+    font-size: var(--fs-xl-2);
     font-weight: 800;
-    color: #c3c6c8;
+    color: var(--text-soft);
     text-transform: uppercase;
     letter-spacing: 0.04em;
     margin: 0 0 4px;
@@ -783,9 +783,9 @@ const sportsEventSchemas = [
   }
 
   .track-location {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
-    color: #556;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs-3);
+    color: var(--text-dim-4);
     letter-spacing: 0.05em;
     margin-bottom: 14px;
   }
@@ -797,14 +797,14 @@ const sportsEventSchemas = [
   }
 
   .track-series-list .tag {
-    font-size: 0.62rem;
+    font-size: var(--fs-3xs-6);
     text-decoration: none;
     padding: 3px 7px;
   }
 
   .track-bio {
-    font-size: 0.82rem;
-    color: #8a9499;
+    font-size: var(--fs-md-2);
+    color: var(--text-muted-9);
     line-height: 1.65;
     margin: 0;
     padding-top: 2px;
@@ -821,9 +821,9 @@ const sportsEventSchemas = [
   }
 
   .section-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 14px;
@@ -839,21 +839,21 @@ const sportsEventSchemas = [
   }
 
   .layout-id {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
     letter-spacing: 0.08em;
     min-width: 36px;
   }
 
   .layout-label {
-    font-size: 0.78rem;
-    color: #7a8890;
+    font-size: var(--fs-sm-3);
+    color: var(--text-meta-5);
     flex: 1;
   }
 
   .layout-series { display: flex; gap: 5px; flex-wrap: wrap; }
-  .layout-series .tag { font-size: 0.6rem; text-decoration: none; padding: 2px 6px; }
+  .layout-series .tag { font-size: var(--fs-3xs); text-decoration: none; padding: 2px 6px; }
 
   /* ── Events ──────────────────────────────────────────────────────────────── */
   .events-list { display: flex; flex-direction: column; gap: 8px; }
@@ -866,9 +866,9 @@ const sportsEventSchemas = [
   }
 
   .ev-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    color: var(--text-meta);
     min-width: 52px;
     flex-shrink: 0;
   }
@@ -883,20 +883,20 @@ const sportsEventSchemas = [
   }
 
   .ev-row .tag {
-    font-size: 0.62rem;
+    font-size: var(--fs-3xs-6);
     text-decoration: none;
     padding: 2px 6px;
     flex-shrink: 0;
   }
 
   .ev-title {
-    font-size: 0.8rem;
-    color: #8a9499;
+    font-size: var(--fs-md);
+    color: var(--text-muted-9);
   }
 
   .no-events {
-    font-size: 0.75rem;
-    color: #7a8fa0;
+    font-size: var(--fs-sm);
+    color: var(--text-meta);
     font-style: italic;
     margin: 0;
   }
@@ -922,28 +922,28 @@ const sportsEventSchemas = [
   }
 
   .res-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
     letter-spacing: 0.06em;
     min-width: 80px;
     flex-shrink: 0;
   }
 
   .res-winner {
-    font-size: 0.8rem;
-    color: #c3c6c8;
+    font-size: var(--fs-md);
+    color: var(--text-soft);
     font-weight: 600;
   }
 
   .res-team {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
-    color: #556;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-dim-4);
   }
 
   .res-flag {
-    font-size: 0.8rem;
+    font-size: var(--fs-md);
     line-height: 1;
   }
 

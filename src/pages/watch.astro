@@ -347,13 +347,13 @@ if (isEmpty) {
 
 .watch-subtitle {
   margin-top: 4px;
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
 }
 
 .watch-loading {
-  color: #566878;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.8rem;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
   padding: 32px 0;
 }
 
@@ -363,16 +363,16 @@ if (isEmpty) {
 }
 
 .watch-empty-msg {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1rem;
-  color: #8a9aaa;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  color: var(--text-muted);
   margin-bottom: 8px;
 }
 
 .watch-empty-next {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.8rem;
-  color: #566878;
+  font-family: var(--font-mono);
+  font-size: var(--fs-md);
+  color: var(--text-dim);
 }
 
 .watch-day-section {
@@ -380,12 +380,12 @@ if (isEmpty) {
 }
 
 .watch-day-heading {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #566878;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--overlay-soft-3);
   padding-bottom: 8px;
   margin: 0 0 16px;
 }
@@ -400,18 +400,18 @@ if (isEmpty) {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: var(--card-bg, #0d1520);
-  border: 1px solid var(--border, rgba(255,255,255,0.07));
+  background: var(--card-bg);
+  border: 1px solid var(--border);
   padding: 12px 14px;
 }
 
 .watch-tag {
   flex-shrink: 0;
-  font-size: 0.68rem;
+  font-size: var(--fs-2xs-3);
   padding: 3px 7px;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   text-decoration: none;
-  font-family: 'Roboto Mono', monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
   letter-spacing: 0.04em;
 }
@@ -424,28 +424,28 @@ if (isEmpty) {
 }
 
 .watch-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.82rem;
-  color: #d0dce6;
+  font-family: var(--font-display);
+  font-size: var(--fs-md-2);
+  color: var(--text-soft-2);
   font-weight: 700;
   letter-spacing: 0.03em;
 }
 
 .watch-track {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.72rem;
-  color: #566878;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs-2);
+  color: var(--text-dim);
   text-decoration: none;
 }
 
 a.watch-track:hover {
-  color: #8a9aaa;
+  color: var(--text-muted);
 }
 
 .watch-times {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.78rem;
-  color: #8a9aaa;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm-3);
+  color: var(--text-muted);
   line-height: 1.5;
 }
 

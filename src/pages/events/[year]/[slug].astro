@@ -306,13 +306,13 @@ const breadcrumb = {
     margin: 0 auto;
   }
 
-  .ev-year { color: #7a8fa0; }
+  .ev-year { color: var(--text-meta); }
 
   .back-link {
     display: inline-block;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.7rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
     text-decoration: none;
     margin-bottom: 16px;
     letter-spacing: 0.06em;
@@ -367,22 +367,22 @@ const breadcrumb = {
   .ev-spec:last-child { border-right: none; }
 
   .spec-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
     letter-spacing: 0.1em;
     margin-bottom: 6px;
   }
-  .spec-value { font-size: 0.9rem; color: #c3c6c8; font-weight: 600; }
+  .spec-value { font-size: var(--fs-lg); color: var(--text-soft); font-weight: 600; }
   .spec-sub {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs-3);
+    color: var(--text-meta);
     margin-top: 4px;
   }
-  .ev-link { color: #c3c6c8; text-decoration: none; }
+  .ev-link { color: var(--text-soft); text-decoration: none; }
   .ev-link:hover { text-decoration: underline; }
-  .ev-specs .tag { text-decoration: none; font-size: 0.65rem; padding: 3px 7px; }
+  .ev-specs .tag { text-decoration: none; font-size: var(--fs-2xs); padding: 3px 7px; }
 
   /* ── Blocks ───────────────────────────────────────────────────────────── */
   .ev-block {
@@ -394,9 +394,9 @@ const breadcrumb = {
   }
 
   .section-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.6rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 14px;
@@ -404,50 +404,50 @@ const breadcrumb = {
 
   .ev-times {
     margin: 0;
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.85rem;
-    color: #8a9aaa;
+    font-family: var(--font-mono);
+    font-size: var(--fs-base);
+    color: var(--text-muted);
     line-height: 1.7;
   }
   .ev-note {
     margin: 8px 0 0;
-    font-size: 0.78rem;
-    color: #7a8fa0;
+    font-size: var(--fs-sm-3);
+    color: var(--text-meta);
   }
 
   .ev-legs { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
   .ev-leg { display: flex; gap: 12px; align-items: baseline; }
   .ev-leg-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.68rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs-3);
+    color: var(--text-meta);
     min-width: 34px;
   }
-  .ev-leg-time { font-family: 'Roboto Mono', monospace; font-size: 0.8rem; color: #8a9aaa; }
+  .ev-leg-time { font-family: var(--font-mono); font-size: var(--fs-md); color: var(--text-muted); }
 
   /* ── Results ──────────────────────────────────────────────────────────── */
   .ev-results { display: flex; flex-direction: column; gap: 14px; }
   .ev-result { display: flex; flex-direction: column; gap: 3px; }
   .res-label {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.62rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-meta);
     letter-spacing: 0.08em;
   }
-  .res-note { font-size: 0.78rem; color: #7a8fa0; font-style: italic; }
+  .res-note { font-size: var(--fs-sm-3); color: var(--text-meta); font-style: italic; }
   .res-line { display: flex; align-items: baseline; gap: 8px; }
-  .res-winner { font-size: 0.95rem; color: #c3c6c8; font-weight: 700; }
-  .res-flag { font-size: 0.85rem; }
-  .res-sub { font-size: 0.78rem; color: #8a9aaa; }
+  .res-winner { font-size: var(--fs-lg-2); color: var(--text-soft); font-weight: 700; }
+  .res-flag { font-size: var(--fs-base); }
+  .res-sub { font-size: var(--fs-sm-3); color: var(--text-muted); }
 
   /* ── Support races ────────────────────────────────────────────────────── */
   .ev-support { display: flex; flex-direction: column; gap: 8px; }
   .ev-support-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .ev-support-row .tag { font-size: 0.6rem; padding: 2px 6px; }
+  .ev-support-row .tag { font-size: var(--fs-3xs); padding: 2px 6px; }
   .ev-support-detail {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.72rem;
-    color: #8a9aaa;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs-2);
+    color: var(--text-muted);
   }
 
   /* ── Related ──────────────────────────────────────────────────────────── */
@@ -461,13 +461,13 @@ const breadcrumb = {
   }
   .ev-related-row:hover .ev-related-title { color: var(--text-main); }
   .ev-related-date {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.65rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    color: var(--text-meta);
     min-width: 76px;
   }
-  .ev-related-row .tag { font-size: 0.6rem; text-decoration: none; padding: 2px 6px; }
-  .ev-related-title { font-size: 0.8rem; color: #8a9aaa; }
+  .ev-related-row .tag { font-size: var(--fs-3xs); text-decoration: none; padding: 2px 6px; }
+  .ev-related-title { font-size: var(--fs-md); color: var(--text-muted); }
 
   /* ── Prev / next round ────────────────────────────────────────────────── */
   .ev-rounds {
@@ -480,9 +480,9 @@ const breadcrumb = {
     padding: 16px 24px;
   }
   .ev-round {
-    font-family: 'Roboto Mono', monospace;
-    font-size: 0.72rem;
-    color: #7a8fa0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs-2);
+    color: var(--text-meta);
     text-decoration: none;
     letter-spacing: 0.04em;
   }

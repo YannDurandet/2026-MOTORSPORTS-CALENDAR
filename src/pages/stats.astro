@@ -301,9 +301,9 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .stats-sidebar-label {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.7rem;
-  color: #7a8fa0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-meta);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   margin-bottom: 10px;
@@ -311,9 +311,9 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 
 .stats-jump {
   display: block;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.7rem;
-  color: #7a8fa0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-meta);
   text-decoration: none;
   padding: 5px 10px;
   letter-spacing: 0.06em;
@@ -322,17 +322,17 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .stats-jump:hover {
-  color: #8ab;
-  border-left-color: #2a4050;
+  color: var(--text-muted-4);
+  border-left-color: var(--line);
 }
 
 .stats-jump:focus-visible {
-  outline: 2px solid var(--color-accent, #4a7fa5);
+  outline: 2px solid var(--focus-ring-2);
   outline-offset: 2px;
 }
 
 .stats-jump--back {
-  color: #3a5060;
+  color: var(--text-faint);
   margin-top: 4px;
 }
 
@@ -352,18 +352,18 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .stats-section-heading {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.8rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
   font-weight: 900;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #c3c6c8;
+  color: var(--text-soft);
   margin: 0 0 6px;
 }
 
 .stats-section-desc {
-  font-size: 0.8rem;
-  color: #7a8fa0;
+  font-size: var(--fs-md);
+  color: var(--text-meta);
   margin: 0 0 20px;
 }
 
@@ -378,7 +378,7 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   background: var(--card-bg);
   border: 1px solid var(--border);
   padding: 12px 14px;
-  border-radius: 4px;
+  border-radius: var(--radius-md);
 }
 
 .progress-card-top {
@@ -389,22 +389,22 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .progress-fraction {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.7rem;
-  color: #7a8fa0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-meta);
 }
 
 .progress-bar-track {
   height: 4px;
-  background: #1a2530;
-  border-radius: 2px;
+  background: var(--surface-raised);
+  border-radius: var(--radius-xs);
   overflow: hidden;
   margin-bottom: 5px;
 }
 
 .progress-bar-fill {
   height: 100%;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   transition: width 0.3s ease;
 }
 
@@ -413,9 +413,9 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .progress-pct {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #3a5060;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
   text-align: right;
 }
 
@@ -434,9 +434,9 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .leaders-thead > div {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #3a5060;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -457,12 +457,12 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 3px;
-  background: var(--acc, #2a4050);
+  background: var(--acc, var(--surface-accent-4));
 }
 
 .leaders-row:hover {
-  background: #0d1820;
-  border-color: #1e3040;
+  background: var(--card-bg-2);
+  border-color: var(--line-subtle-5);
 }
 
 .leaders-series {
@@ -481,9 +481,9 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .leaders-name-inner > span {
-  font-size: 0.85rem;
+  font-size: var(--fs-base);
   font-weight: 600;
-  color: #c3c6c8;
+  color: var(--text-soft);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -493,41 +493,41 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   width: 18px;
   height: 13px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   flex-shrink: 0;
 }
 
 .leaders-type-badge {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-3xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #3a5060;
-  border: 1px solid #1e2830;
+  color: var(--text-faint);
+  border: 1px solid var(--line-subtle-2);
   padding: 1px 5px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   flex-shrink: 0;
 }
 
 .streak-badge {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.65rem;
-  color: #e8822a;
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--accent-orange);
   letter-spacing: 0.04em;
   margin-top: 4px;
 }
 
 .leaders-wins {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg);
   font-weight: 700;
-  color: #c3c6c8;
+  color: var(--text-soft);
 }
 
 .leaders-prog-text {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.7rem;
-  color: #7a8fa0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-meta);
 }
 
 .text-right { text-align: right; }
@@ -550,15 +550,15 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .driver-row:hover {
-  background: #0d1820;
-  border-color: #1e3040;
+  background: var(--card-bg-2);
+  border-color: var(--line-subtle-5);
 }
 
 .driver-rank {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
   font-weight: 700;
-  color: #3a5060;
+  color: var(--text-faint);
   text-align: center;
 }
 
@@ -577,14 +577,14 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   width: 20px;
   height: 14px;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: var(--radius-xs);
   flex-shrink: 0;
 }
 
 .driver-name {
-  font-size: 0.9rem;
+  font-size: var(--fs-lg);
   font-weight: 700;
-  color: #c3c6c8;
+  color: var(--text-soft);
 }
 
 .driver-series {
@@ -602,15 +602,15 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 .driver-bar-track {
   flex: 1;
   height: 6px;
-  background: #1a2530;
-  border-radius: 3px;
+  background: var(--surface-raised);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
 .driver-bar-fill {
   height: 100%;
-  background: #4a7090;
-  border-radius: 3px;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
   transition: width 0.3s ease;
 }
 
@@ -619,10 +619,10 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
 }
 
 .driver-wins {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
   font-weight: 700;
-  color: #c3c6c8;
+  color: var(--text-soft);
   width: 24px;
   text-align: right;
   flex-shrink: 0;
@@ -647,7 +647,7 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
     border: 1px solid var(--border);
     border-left: 2px solid transparent;
     padding: 4px 10px;
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
   }
   .leaders-thead,
   .leaders-row {
