@@ -1,0 +1,8 @@
+# Permanent redirects. Cloudflare's asset handling answers trailing-slash
+# URLs (/series/, /tracks/silverstone/) with a temporary 307, which tells
+# search engines to keep the slashed URL indexed. These rules come first
+# and answer with a 301 instead. Most specific first; first match wins.
+/events/ /events/2026 301
+/:a/:b/:c/ /:a/:b/:c 301
+/:a/:b/ /:a/:b 301
+/:a/ /:a 301

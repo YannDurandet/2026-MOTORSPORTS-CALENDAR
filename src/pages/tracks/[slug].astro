@@ -30,6 +30,7 @@ import calendarData from '../../../data/calendar.json';
 import seriesContentData from '../../../data/seriesContent.json';
 import { showOnTrackPages } from '../../lib/season';
 import { findEvent } from '../../lib/events';
+import { fitTitle } from '../../lib/seo';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Logistics = {
@@ -166,7 +167,12 @@ function parseWeekDate(label: string): string | null {
 }
 
 const champCount = activeSeries.length;
-const pageTitle = `${venue.name} — 2026 Motorsport Race Schedule | DORD`;
+const pageTitle = fitTitle([
+  `${venue.name} — 2026 Race Schedule & Guide | DORD`,
+  `${venue.name} — 2026 Race Schedule | DORD`,
+  `${venue.name} 2026 Races | DORD`,
+  `${venue.name} | DORD`,
+]);
 const pageDescription = champCount > 0
   ? `All 2026 races at ${venue.name} — dates, series, and session times across ${champCount} championship${champCount !== 1 ? 's' : ''}. Updated weekly.`
   : `${venue.name} circuit guide — track map, specifications, and lap record. ${venue.city}, ${venue.country}.`;

@@ -51,7 +51,7 @@ const seriesLinks = [...new Set(events.map(e => e.series))].map(slug => ({
   count: events.filter(e => e.series === slug).length,
 })).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
-const pageTitle = `${year} Motorsport Race Calendar — Every Event, Date & Circuit | DORD`;
+const pageTitle = `${year} Motorsport Race Calendar: Every Event & Circuit | DORD`;
 const pageDescription = `All ${events.length} races on the ${year} motorsport calendar across ${seriesCount} championships — dates, circuits and session times for every event.`;
 ---
 

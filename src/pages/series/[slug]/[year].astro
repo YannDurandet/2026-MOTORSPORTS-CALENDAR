@@ -20,6 +20,7 @@ import { ALL_EVENTS, eventsForSeries, eventRange } from '../../../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
 import { seriesShort } from '../../../lib/seriesShort';
 import { seriesOgImage } from '../../../lib/seriesImages';
+import { fitTitle } from '../../../lib/seo';
 
 export function getStaticPaths() {
   const pairs = new Set(
@@ -47,7 +48,11 @@ const span = `${eventRange(first)} – ${eventRange(last)}`;
 const sprints = rounds.filter(r => r.hasSprint).length;
 
 const canonical = `https://dord.racing/series/${slug}/${year}`;
-const pageTitle = `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`;
+const pageTitle = fitTitle([
+  `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
+  `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
+  `${short} ${year} Calendar | DORD`,
+]);
 const pageDescription = notes?.summary
   ?? `The ${series.name} ${year} calendar: all ${rounds.length} rounds with dates, circuits and links to every event, ${eventRange(first)} to ${eventRange(last)}.`;
 

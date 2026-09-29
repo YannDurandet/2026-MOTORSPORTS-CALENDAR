@@ -23,6 +23,8 @@ import seriesContentData from '../../../../data/seriesContent.json';
 import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
 import { accommodationQuery } from '../../../lib/affiliates';
 import { venueFor } from '../../../lib/venues';
+import { fitTitle } from '../../../lib/seo';
+import { seriesShort } from '../../../lib/seriesShort';
 
 export function getStaticPaths() {
   return ALL_EVENTS.map(ev => ({
@@ -79,7 +81,23 @@ function entrantOf(r: RaceResult): string {
 
 // ── SEO ──────────────────────────────────────────────────────────────────────
 const where = venue ? `${venue.name}, ${venue.city}` : ev.title;
-const pageTitle = `${ev.title} ${ev.year} — ${seriesName} | Dates, Times & Circuit | DORD`;
+// Two same-series events with one title (Jeddah E-Prix ×2) carry the month in
+// their slug; show it in the title and H1 so the pages aren't duplicates.
+const monthTag = /-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)$/.test(ev.slug)
+  ? ` (${ev.slug.slice(-3).replace(/^./, c => c.toUpperCase())})` : '';
+const short = seriesShort(ev.series, seriesName);
+const name = `${ev.title}${monthTag} ${ev.year}`;
+// Shared rounds (GTWCA + IGTC at Indianapolis) and generic titles ("Rd 4: Spa")
+// exist in more than one series; name the series in the H1 there.
+const sharedTitle = ALL_EVENTS.some(o => o.year === ev.year && o.title === ev.title && o.series !== ev.series);
+const pageTitle = fitTitle([
+  `${name} — ${short} Race Times & Circuit | DORD`,
+  `${name} — ${short} Times & Circuit | DORD`,
+  `${name} — ${short} Race Times | DORD`,
+  `${name} — ${short} | DORD`,
+  `${name} | DORD`,
+  name,
+]);
 const pageDescription = isPast
   ? `${seriesName} ${ev.title} ${ev.year} at ${where} — full result, session times and circuit guide.`
   : `${seriesName} ${ev.title} ${ev.year} at ${where} — ${eventRange(ev)}. Session times, circuit guide and travel logistics.`;
@@ -158,7 +176,7 @@ const breadcrumb = {
   <Banner />
   <header>
     <div class="header--left">
-      <h1>{ev.title}<br><span class="ev-year">{ev.year}</span></h1>
+      <h1>{sharedTitle && `${short} `}{ev.title}{monthTag}<br><span class="ev-year">{ev.year}</span></h1>
       <p class="header--page-desc">
         {seriesName}{venue ? ` · ${venue.name}, ${venue.country}` : ''}
       </p>
