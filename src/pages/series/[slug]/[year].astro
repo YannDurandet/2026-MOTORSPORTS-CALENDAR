@@ -21,6 +21,7 @@ import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
 import { seriesShort } from '../../../lib/seriesShort';
 import { seriesOgImage } from '../../../lib/seriesImages';
 import { fitTitle } from '../../../lib/seo';
+import { alternatesFor, frPathFor } from '../../../lib/fr';
 
 export function getStaticPaths() {
   const pairs = new Set(
@@ -48,6 +49,7 @@ const span = `${eventRange(first)} – ${eventRange(last)}`;
 const sprints = rounds.filter(r => r.hasSprint).length;
 
 const canonical = `https://dord.racing/series/${slug}/${year}`;
+const frPath = frPathFor(`/series/${slug}/${year}`);
 const pageTitle = fitTitle([
   `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
   `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
@@ -82,6 +84,7 @@ const itemList = {
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={canonical}
+  alternates={frPath ? alternatesFor(`/series/${slug}/${year}`, frPath) : []}
   ogImage={seriesOgImage(slug)}
 >
   <Fragment slot="head">
@@ -94,7 +97,7 @@ const itemList = {
     <div class="header--left">
       <h1>{short} {year}<br><span class="h1-sub">Calendar</span></h1>
       <p class="header--page-desc">{series.name} · {rounds.length} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
-      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST){frPath && <> · <a href={`${base}${frPath}`} hreflang="fr" lang="fr" class="lang-link">Version française</a></>}</div>
       <Nav activePage="series" />
     </div>
   </header>

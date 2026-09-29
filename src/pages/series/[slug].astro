@@ -13,6 +13,7 @@ import { flagSrc, countryName } from '../../lib/results';
 import { eventsForSeries } from '../../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
 import { seriesShort } from '../../lib/seriesShort';
+import { alternatesFor, frPathFor } from '../../lib/fr';
 
 export function getStaticPaths() {
   return (seriesContent as any[]).map((s: any) => ({ params: { slug: s.slug } }));
@@ -81,11 +82,13 @@ const customDescriptions: Record<string, string> = {
 };
 const pageTitle = `${short} ${year} Calendar, Results${hasStandings ? ' & Standings' : ''} | DORD`;
 const pageDescription = customDescriptions[slug!] ?? series.tagline;
+const frPath = frPathFor(`/series/${slug}`);
 ---
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={`https://dord.racing/series/${slug}`}
+  alternates={frPath ? alternatesFor(`/series/${slug}`, frPath) : []}
   ogImage={ogImage}
 >
   <Fragment slot="head">
@@ -97,7 +100,7 @@ const pageDescription = customDescriptions[slug!] ?? series.tagline;
   <header>
     <div class="header--left">
       <h1>{series.name}<br><span class="h1-sub">{year} Calendar &amp; Results</span></h1>
-      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST){frPath && <> · <a href={`${base}${frPath}`} hreflang="fr" lang="fr" class="lang-link">Version française</a></>}</div>
       <Nav activePage="series" />
     </div>
   </header>

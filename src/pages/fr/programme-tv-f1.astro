@@ -1,0 +1,189 @@
+---
+/**
+ * /fr/programme-tv-f1 — "which channel, what time" for the rest of the F1
+ * season, in French and in Paris time. Answers the "programme tv f1" search.
+ *
+ * Session days: in Paris time every non-race F1 session (qualifying, Sprint)
+ * falls the day before the race, including the Saturday-night races (Baku,
+ * Las Vegas), so the day is derived from the race's Paris date.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Banner from '../../components/Banner.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+import seriesContent from '../../../data/seriesContent.json';
+import { eventsForSeries } from '../../lib/events';
+import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
+import { parseSessions } from '../../lib/sessions';
+import { gpNameFr, rangeFr, heureFr } from '../../lib/fr';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = DEFAULT_CALENDAR_YEAR;
+const f1 = (seriesContent as any[]).find(s => s.slug === 'f1')!;
+const frTv = (f1.howToWatch?.FR ?? []) as { name: string; url: string; type: string }[];
+const channel = frTv.map(b => b.name).join(' / ') || 'Canal+';
+
+const LABEL: Record<string, string> = { QUALI: 'Qualifications', RACE: 'Course', SPRINT: 'Sprint', SQ: 'Qualif. Sprint' };
+
+const parisDay = (iso: string) => {
+  // YYYY-MM-DD of the instant in Paris
+  const d = new Date(iso);
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris' }).format(d);
+};
+const addDays = (ymd: string, n: number) => {
+  const d = new Date(`${ymd}T12:00:00Z`); d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
+};
+const dayFr = (ymd: string) => new Date(`${ymd}T12:00:00Z`)
+  .toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const now = Date.now();
+const all = eventsForSeries('f1', year);
+const upcoming = all.filter(e => !e.results?.length && new Date(e.date).getTime() > now - 6 * 3600e3);
+
+const rows = upcoming.map(ev => {
+  const raceDay = parisDay(ev.date);
+  const sessions = parseSessions(ev.time).map(s => ({
+    label: LABEL[s.label.toUpperCase()] ?? s.label,
+    time: s.time ? heureFr(s.time) : 'à confirmer',
+    day: s.label.toUpperCase() === 'RACE' ? raceDay : addDays(raceDay, -1),
+  }));
+  return { ev, sessions, raceDay };
+});
+const next = rows[0];
+
+const title = `Programme TV F1 ${year} : horaires et chaînes des GP | DORD`;
+const description = next
+  ? `Programme TV F1 : ${gpNameFr(next.ev.title)} ${rangeFr(next.ev)}, puis tous les Grands Prix restants de ${year}. Horaires des qualifications et de la course à l'heure de Paris, en direct sur ${channel}.`
+  : `Programme TV F1 ${year} : horaires des séances à l'heure de Paris et chaînes de diffusion en France.`;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalUrl="https://dord.racing/fr/programme-tv-f1"
+  ogImage="https://dord.racing/assets/og/og-home.webp"
+  lang="fr"
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>Programme TV<br>F1 {year}</h1>
+      <p class="header--page-desc">Horaires de chaque Grand Prix à l'heure de Paris, et où les regarder en France.</p>
+      <div class="meta">HEURES DE PARIS (CET/CEST)</div>
+      <Nav activePage="watch" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section fr-tv">
+    <a href={`${base}/fr`} class="back-link">← Calendriers en français</a>
+
+    <section class="series-section">
+      <p class="fr-lead">
+        En France, les Grands Prix de Formule 1 sont diffusés en direct sur{' '}
+        {frTv.length ? frTv.map((b, i) => <>{i > 0 && ' et '}<a href={b.url} target="_blank" rel="noopener noreferrer">{b.name}</a></>) : ' Canal+'}.
+        Il reste {rows.length} Grand{rows.length > 1 ? 's' : ''} Prix au calendrier {year} ; tous les horaires ci-dessous sont à l'heure de Paris.
+      </p>
+    </section>
+
+    {next && (
+      <section class="series-section" aria-labelledby="tv-next">
+        <h2 class="series-section-title" id="tv-next">Prochain Grand Prix</h2>
+        <div class="tv-next">
+          <p class="tv-next-name"><a href={`${base}${next.ev.path}`}>{gpNameFr(next.ev.title)}</a> <span class="tv-next-dates">{rangeFr(next.ev)}</span></p>
+          <dl class="tv-sessions">
+            {next.sessions.map(s => (
+              <div class="tv-session">
+                <dt>{cap(dayFr(s.day))} · {s.label}</dt>
+                <dd>{s.time}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="tv-channel">En direct sur {channel}</p>
+        </div>
+      </section>
+    )}
+
+    <section class="series-section" aria-labelledby="tv-all">
+      <h2 class="series-section-title" id="tv-all">Tous les Grands Prix restants</h2>
+      <div class="fr-table-wrap" tabindex="0" role="region" aria-label={`Programme TV F1 ${year}`}>
+        <table class="fr-table">
+          <thead>
+            <tr>
+              <th scope="col">Grand Prix</th>
+              <th scope="col">Séances (heure de Paris)</th>
+              <th scope="col" class="tv-col-ch">Chaîne</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(r => (
+              <tr>
+                <td>
+                  <a href={`${base}${r.ev.path}`} class="fr-gp">{gpNameFr(r.ev.title)}</a>
+                  <div class="tv-dates">{rangeFr(r.ev)}{r.ev.hasSprint ? ' · Sprint' : ''}</div>
+                </td>
+                <td>
+                  <ul class="tv-list">
+                    {r.sessions.map(s => <li><span class="tv-when">{dayFr(s.day).split(' ')[0]} {s.label.toLowerCase()}</span> <strong>{s.time}</strong></li>)}
+                  </ul>
+                </td>
+                <td class="tv-col-ch">{channel}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="fr-status">
+        Heure locale du circuit et fuseaux du monde entier sur la page de chaque Grand Prix.
+        Calendrier complet : <a href={`${base}/fr/calendrier-f1-${year}`}>calendrier F1 {year}</a> ·
+        <a href={`${base}/fr/calendrier-f1-${year + 1}`}>calendrier F1 {year + 1}</a>.
+      </p>
+    </section>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+  .fr-tv { max-width: 1100px; }
+  .fr-lead { font-family: var(--font-body); font-size: var(--fs-lg); line-height: 1.6; color: var(--text-soft); margin: 0; }
+  .fr-lead a, .fr-status a, .tv-next-name a { color: var(--text-strong); text-decoration: underline; text-underline-offset: 3px; }
+  .fr-status { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-meta); line-height: 1.7; margin: 14px 0 0; }
+  .fr-status a { padding: 4px 0; display: inline-block; }
+
+  .tv-next { border: 1px solid var(--row-line); border-radius: var(--radius-2xl); background: var(--card-bg); padding: 20px 24px; }
+  .tv-next-name { margin: 0 0 14px; font-family: var(--font-body); font-size: var(--fs-xl); font-weight: 700; }
+  .tv-next-dates { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-date); margin-left: 8px; }
+  .tv-sessions { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .tv-session { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--row-line); }
+  .tv-session:first-child { border-top: 0; }
+  .tv-session dt { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-muted); }
+  .tv-session dd { margin: 0; font-family: var(--font-mono); font-size: var(--fs-md); font-weight: 700; color: var(--text-strong); }
+  .tv-channel { margin: 12px 0 0; font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-meta); }
+
+  .fr-table-wrap { overflow-x: auto; border: 1px solid var(--row-line); border-radius: var(--radius-2xl); background: var(--card-bg); }
+  .fr-table-wrap:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .fr-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--fs-sm); }
+  .fr-table th {
+    text-align: left; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-meta); padding: 12px 14px; border-bottom: 1px solid var(--row-line);
+  }
+  .fr-table td { padding: 12px 14px; border-top: 1px solid var(--row-line); color: var(--text-secondary); vertical-align: top; }
+  .fr-table tbody tr:first-child td { border-top: 0; }
+  .fr-gp {
+    display: inline-block; padding: 3px 0; min-height: 24px;
+    font-family: var(--font-body); font-size: var(--fs-base); font-weight: 600; color: var(--text-heading);
+  }
+  .fr-gp:hover { color: var(--text-strong); }
+  .fr-gp:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .tv-dates { font-size: var(--fs-xs); color: var(--text-meta); }
+  .tv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+  .tv-when { color: var(--text-muted); }
+  .tv-list strong { color: var(--text-strong); }
+  @media (max-width: 640px) {
+    .tv-col-ch { display: none; }
+    .fr-table th, .fr-table td { padding: 10px 8px; }
+  }
+</style>

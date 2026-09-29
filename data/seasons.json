@@ -8,7 +8,15 @@
         "Ten Sprint weekends, up from six: Bahrain, Australia, Japan, Canada, Monaco (its first Sprint), Britain, Italy, São Paulo, Qatar and Abu Dhabi.",
         "Spain's only round is Madrid (10–12 September); Portimão takes the slot Barcelona held."
       ],
-      "status": "Dates are confirmed. Session times are published closer to each weekend, so every race shows TBC until then."
+      "status": "Dates are confirmed. Session times are published closer to each weekend, so every race shows TBC until then.",
+      "summary_fr": "La Formule 1 a publié un calendrier de 24 Grands Prix pour 2027. La saison s'ouvre à Bahreïn du 12 au 14 mars et se termine à Abou Dhabi du 10 au 12 décembre.",
+      "changes_fr": [
+        "Retour du Portugal à Portimão (18–20 juin) et de la Turquie à Istanbul Park (1er–3 octobre).",
+        "Bahreïn retrouve Sakhir après sa course exceptionnelle de 2026 à Sepang, et l'Arabie saoudite revient à Djeddah (19–21 mars).",
+        "Dix week-ends Sprint au lieu de six : Bahreïn, Australie, Japon, Canada, Monaco (son premier Sprint), Grande-Bretagne, Italie, São Paulo, Qatar et Abou Dhabi.",
+        "L'Espagne n'a plus qu'une manche, à Madrid (10–12 septembre) ; Portimão reprend la place de Barcelone."
+      ],
+      "status_fr": "Les dates sont confirmées. Les horaires des séances sont publiés à l'approche de chaque week-end : ils s'affichent « à confirmer » d'ici là."
     }
   },
   "motogp": {
@@ -20,7 +28,15 @@
         "Qatar moves back to the start of the season (12–14 March) after its 2026 round was pushed to November.",
         "Portimão moves to early October (1–3 October), between Aragon and the Asian flyaways."
       ],
-      "status": "The calendar is provisional and subject to FIM approval. Session times are TBC."
+      "status": "The calendar is provisional and subject to FIM approval. Session times are TBC.",
+      "summary_fr": "Le calendrier provisoire MotoGP 2027 compte 22 manches et ouvre l'ère des 850 cm³. Il débute en Thaïlande du 5 au 7 mars et s'achève à Valence du 26 au 28 novembre.",
+      "changes_fr": [
+        "Deux nouveaux circuits : Buenos Aires (Autódromo Oscar y Juan Gálvez, 9–11 avril) et le circuit urbain d'Adélaïde (12–14 novembre), qui reprend le GP d'Australie à Phillip Island.",
+        "Balaton Park (Hongrie) ne figure pas au calendrier 2027.",
+        "Le Qatar revient en début de saison (12–14 mars) après sa manche 2026 repoussée en novembre.",
+        "Portimão passe début octobre (1er–3 octobre), entre Aragon et la tournée asiatique."
+      ],
+      "status_fr": "Calendrier provisoire, sous réserve de validation par la FIM. Horaires à confirmer."
     }
   }
 }

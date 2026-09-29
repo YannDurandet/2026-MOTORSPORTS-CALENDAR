@@ -1,0 +1,221 @@
+---
+/**
+ * /fr/calendrier-{f1|motogp}-{year} — French season calendars.
+ *
+ * Built for French searches ("calendrier f1 2027"). Round rows link to the
+ * English event pages; hreflang pairs each page with /series/{slug}[/{year}].
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Banner from '../../components/Banner.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+import seriesContent from '../../../data/seriesContent.json';
+import seasons from '../../../data/seasons.json';
+import { eventsForSeries } from '../../lib/events';
+import { parseSessions, mainRaceTime } from '../../lib/sessions';
+import { venueFor } from '../../lib/venues';
+import { fitTitle } from '../../lib/seo';
+import { seriesOgImage } from '../../lib/seriesImages';
+import { FR_SEASON_PAGES, alternatesFor, gpNameFr, rangeFr, longDayFr, heureFr } from '../../lib/fr';
+
+export function getStaticPaths() {
+  return FR_SEASON_PAGES.map(p => ({ params: { page: p.slug }, props: { p } }));
+}
+
+interface Props { p: typeof FR_SEASON_PAGES[number] }
+const { p } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const series = (seriesContent as any[]).find(s => s.slug === p.series)!;
+const S = p.series === 'f1' ? 'F1' : 'MotoGP';
+const rounds = eventsForSeries(p.series, p.year);
+const notes = (seasons as any)[p.series]?.[String(p.year)];
+
+const raceTime = (ev: typeof rounds[number]) => {
+  const t = mainRaceTime(parseSessions(ev.time));
+  return t ? heureFr(t) : 'à confirmer';
+};
+const winner = (ev: typeof rounds[number]) => {
+  const r = ev.results?.[0];
+  return r ? (r.winners?.join(' / ') ?? r.winner ?? null) : null;
+};
+
+const now = Date.now();
+const done = rounds.filter(r => r.results?.length).length;
+const next = rounds.find(r => !r.results?.length && new Date(r.date).getTime() > now - 6 * 3600e3);
+const frTv = ((series.howToWatch ?? {}).FR ?? []) as { name: string; type: string; url: string; note?: string }[];
+const tvNames = frTv.map(b => b.name).join(' et ');
+
+const summary = notes?.summary_fr ?? (
+  `Le calendrier ${S} ${p.year} compte ${rounds.length} Grands Prix, du ${rangeFr(rounds[0])} au ${rangeFr(rounds[rounds.length - 1])}.` +
+  (done ? ` ${done} ${done > 1 ? 'courses ont' : 'course a'} déjà été ${done > 1 ? 'disputées' : 'disputée'}.` : '') +
+  (next ? ` Prochaine course : ${gpNameFr(next.title)}, ${longDayFr(next.date.slice(0, 10))}${mainRaceTime(parseSessions(next.time)) ? ` à ${raceTime(next)} (heure de Paris)` : ''}${tvNames ? `, en direct sur ${tvNames}` : ''}.` : '')
+);
+
+const pagePath = `/fr/${p.slug}`;
+const canonical = `https://dord.racing${pagePath}`;
+const title = fitTitle([
+  `Calendrier ${S} ${p.year} : dates et horaires des ${rounds.length} GP | DORD`,
+  `Calendrier ${S} ${p.year} : dates et horaires | DORD`,
+]);
+const description = notes?.summary_fr
+  ?? `Calendrier ${S} ${p.year} complet : les ${rounds.length} Grands Prix, dates, circuits et heures de départ à l'heure de Paris.`;
+
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": `Calendrier ${S} ${p.year}`,
+  "numberOfItems": rounds.length,
+  "itemListElement": rounds.map((ev, i) => ({
+    "@type": "ListItem", "position": i + 1, "name": gpNameFr(ev.title), "url": `https://dord.racing${ev.path}`,
+  })),
+};
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://dord.racing/fr" },
+    { "@type": "ListItem", "position": 2, "name": `Calendrier ${S} ${p.year}`, "item": canonical },
+  ],
+};
+const otherYear = FR_SEASON_PAGES.find(o => o.series === p.series && o.year !== p.year);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalUrl={canonical}
+  ogImage={seriesOgImage(p.series)}
+  lang="fr"
+  alternates={alternatesFor(p.en, pagePath)}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+  </Fragment>
+
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>Calendrier<br>{S} {p.year}</h1>
+      <p class="header--page-desc">{series.name} · {rounds.length} Grands Prix · {rangeFr(rounds[0])} – {rangeFr(rounds[rounds.length - 1])}</p>
+      <div class="meta">HEURES DE PARIS · <a href={`${base}${p.en}`} hreflang="en" lang="en" class="fr-lang">English version</a></div>
+      <Nav activePage="series" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section fr-page">
+    <a href={`${base}/fr`} class="back-link">← Calendriers en français</a>
+
+    <section class="series-section">
+      <p class="fr-lead">{summary}</p>
+      {notes?.changes_fr && (
+        <>
+          <h2 class="series-section-title">Les nouveautés {p.year}</h2>
+          <ul class="fr-list">{notes.changes_fr.map((c: string) => <li>{c}</li>)}</ul>
+          <p class="fr-status">{notes.status_fr}</p>
+        </>
+      )}
+    </section>
+
+    <section class="series-section">
+      <h2 class="series-section-title">Les {rounds.length} manches</h2>
+      <div class="fr-table-wrap" tabindex="0" role="region" aria-label={`Calendrier ${S} ${p.year}`}>
+        <table class="fr-table">
+          <thead>
+            <tr>
+              <th scope="col">Manche</th>
+              <th scope="col">Dates</th>
+              <th scope="col">Grand Prix</th>
+              <th scope="col" class="fr-col-circuit">Circuit</th>
+              <th scope="col" class="fr-col-right">{done ? 'Départ / vainqueur' : 'Départ (Paris)'}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rounds.map((ev, i) => {
+              const v = venueFor(ev);
+              const w = winner(ev);
+              return (
+                <tr class:list={{ 'is-next': ev === next }}>
+                  <td class="fr-num">{i + 1}</td>
+                  <td class="fr-date">{rangeFr(ev)}</td>
+                  <td>
+                    <a href={`${base}${ev.path}`} class="fr-gp">{gpNameFr(ev.title)}</a>
+                    {ev.hasSprint && <span class="fr-chip">SPRINT</span>}
+                  </td>
+                  <td class="fr-col-circuit">{v ? `${v.name}, ${v.city}` : ''}</td>
+                  <td class="fr-col-right">{w ? <span class="fr-winner">{w}</span> : raceTime(ev)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    {frTv.length > 0 && (
+      <section class="series-section">
+        <h2 class="series-section-title">Où regarder la {S} en France</h2>
+        <p class="fr-lead">
+          {frTv.map((b, i) => <>{i > 0 && ', '}<a href={b.url} target="_blank" rel="noopener noreferrer">{b.name}</a>{b.type === 'free' ? ' (gratuit)' : b.type === 'streaming' ? ' (streaming)' : ' (payant)'}</>)}.
+          {p.series === 'f1' && <> Horaires de chaque séance et du week-end dans notre <a href={`${base}/fr/programme-tv-f1`}>programme TV F1</a>.</>}
+        </p>
+      </section>
+    )}
+
+    <nav class="fr-more" aria-label="Autres calendriers">
+      {otherYear && <a href={`${base}/fr/${otherYear.slug}`}>Calendrier {S} {otherYear.year} →</a>}
+      <a href={`webcal://dord.racing/ical/${p.series}.ics`}>Ajouter à mon agenda (iCal) →</a>
+      <a href={`${base}/newsletter`} lang="en">Newsletter (in English) →</a>
+    </nav>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+  .fr-page { max-width: 1100px; }
+  .fr-lang { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
+  .fr-lang:hover { color: var(--text-strong); }
+  .fr-lead { font-family: var(--font-body); font-size: var(--fs-lg); line-height: 1.6; color: var(--text-soft); margin: 0 0 18px; }
+  .fr-lead a { color: var(--text-strong); text-decoration: underline; text-underline-offset: 3px; }
+  .fr-list { margin: 0 0 10px; padding-left: 1.2em; font-family: var(--font-body); font-size: var(--fs-base); line-height: 1.6; color: var(--text-muted); }
+  .fr-list li { margin-bottom: 6px; }
+  .fr-status { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-meta); line-height: 1.6; margin: 0; }
+
+  .fr-table-wrap { overflow-x: auto; border: 1px solid var(--row-line); border-radius: var(--radius-2xl); background: var(--card-bg); }
+  .fr-table-wrap:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .fr-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: var(--fs-sm); }
+  .fr-table th {
+    text-align: left; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-meta); padding: 12px 14px; border-bottom: 1px solid var(--row-line);
+  }
+  .fr-table td { padding: 10px 14px; border-top: 1px solid var(--row-line); color: var(--text-secondary); vertical-align: baseline; }
+  .fr-table tbody tr:first-child td { border-top: 0; }
+  .fr-table tr.is-next td { background: var(--row-bg-open); }
+  .fr-num { color: var(--text-meta); width: 3em; }
+  .fr-date { white-space: nowrap; color: var(--text-date); font-weight: 700; }
+  .fr-gp {
+    display: inline-block; padding: 3px 0; min-height: 24px;
+    font-family: var(--font-body); font-size: var(--fs-base); font-weight: 600; color: var(--text-heading);
+  }
+  .fr-gp:hover { color: var(--text-strong); }
+  .fr-gp:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .fr-chip {
+    margin-left: 8px; font-size: var(--fs-xs); font-weight: 700; color: var(--text-chip-muted);
+    border: 1px solid var(--class-line); border-radius: var(--radius-sm); padding: 1px 5px;
+  }
+  .fr-col-right { text-align: right; white-space: nowrap; }
+  .fr-winner { color: var(--text-strong); font-weight: 700; font-family: var(--font-body); }
+
+  .fr-more { display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 8px 0 32px; }
+  .fr-more a { font-family: var(--font-mono); font-size: var(--fs-sm); font-weight: 700; color: var(--text-muted); padding: 4px 0; }
+  .fr-more a:hover { color: var(--text-strong); }
+  .fr-more a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+  @media (max-width: 700px) {
+    .fr-col-circuit { display: none; }
+    .fr-table th, .fr-table td { padding: 10px 8px; }
+    .fr-table { font-size: var(--fs-xs); }
+  }
+</style>

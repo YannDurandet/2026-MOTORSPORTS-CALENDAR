@@ -2643,3 +2643,6 @@ a {
 .season-link:hover { color: var(--text-strong); background: var(--row-bg-open); }
 .season-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .season-link--all { border-color: transparent; color: var(--text-muted); }
+
+.lang-link { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
+.lang-link:hover { color: var(--text-strong); }

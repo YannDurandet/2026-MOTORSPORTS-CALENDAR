@@ -1,0 +1,115 @@
+---
+/**
+ * /fr — French landing: the calendars and TV schedule, plus the week's races.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Banner from '../../components/Banner.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+import { ALL_EVENTS } from '../../lib/events';
+import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
+import { parseSessions, mainRaceTime } from '../../lib/sessions';
+import { seriesShort } from '../../lib/seriesShort';
+import { FR_SEASON_PAGES, alternatesFor, gpNameFr, rangeFr, heureFr } from '../../lib/fr';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const year = DEFAULT_CALENDAR_YEAR;
+
+// Next 12 races across every series, soonest first.
+const now = Date.now();
+const upcoming = ALL_EVENTS
+  .filter(e => !e.results?.length && new Date(e.date).getTime() > now - 6 * 3600e3)
+  .sort((a, b) => a.date.localeCompare(b.date))
+  .slice(0, 12);
+
+const label = (p: typeof FR_SEASON_PAGES[number]) => `Calendrier ${p.series === 'f1' ? 'F1' : 'MotoGP'} ${p.year}`;
+---
+<BaseLayout
+  title={`Calendrier sport automobile ${year}–${year + 1} : F1, MotoGP | DORD`}
+  description={`Calendriers F1 et MotoGP ${year} et ${year + 1}, programme TV F1 et prochaines courses de 25 championnats, à l'heure de Paris.`}
+  canonicalUrl="https://dord.racing/fr"
+  lang="fr"
+  alternates={alternatesFor('/', '/fr')}
+>
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>Calendrier<br>sport auto</h1>
+      <p class="header--page-desc">F1, MotoGP, endurance, rallye : les dates et les heures de départ, à l'heure de Paris.</p>
+      <div class="meta">HEURES DE PARIS · <a href={`${base}/`} hreflang="en" lang="en" class="fr-lang">English version</a></div>
+      <Nav activePage="calendar" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section fr-home">
+    <nav class="fr-cards" aria-label="Calendriers">
+      {FR_SEASON_PAGES.map(p => (
+        <a class="fr-card" href={`${base}/fr/${p.slug}`}>
+          <span class="fr-card-title">{label(p)}</span>
+          <span class="fr-card-sub">{p.year > year ? 'Dates du calendrier publié' : 'Dates, résultats et horaires'}</span>
+        </a>
+      ))}
+      <a class="fr-card" href={`${base}/fr/programme-tv-f1`}>
+        <span class="fr-card-title">Programme TV F1</span>
+        <span class="fr-card-sub">Chaînes et horaires des GP restants</span>
+      </a>
+    </nav>
+
+    <section class="series-section">
+      <h2 class="series-section-title">Prochaines courses</h2>
+      <ul class="fr-upcoming">
+        {upcoming.map(ev => {
+          const t = mainRaceTime(parseSessions(ev.time));
+          return (
+            <li>
+              <span class="fr-up-date">{rangeFr(ev)}</span>
+              <span class={`tag t-${ev.series}`}>{ev.tag}</span>
+              <a href={`${base}${ev.path}`} class="fr-up-title">{ev.series === 'f1' || ev.series === 'motogp' ? gpNameFr(ev.title) : ev.title}</a>
+              <span class="fr-up-time">{t ? `${heureFr(t)}` : ''}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <p class="fr-note">Les pages de chaque course (horaires dans le monde entier, où regarder, billets, accès au circuit) sont en anglais.
+        Tout le calendrier : <a href={`${base}/`} lang="en">dord.racing</a>.</p>
+    </section>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+  .fr-home { max-width: 1100px; }
+  .fr-lang { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
+  .fr-lang:hover { color: var(--text-strong); }
+  .fr-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 32px; }
+  .fr-card {
+    display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; text-decoration: none;
+    border: 1px solid var(--row-line); border-radius: var(--radius-2xl); background: var(--card-bg);
+  }
+  .fr-card:hover { background: var(--row-bg-open); border-color: var(--control-line); }
+  .fr-card:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .fr-card-title { font-family: var(--font-body); font-size: var(--fs-lg); font-weight: 700; color: var(--text-strong); }
+  .fr-card-sub { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-meta); }
+
+  .fr-upcoming { list-style: none; margin: 0; padding: 0; border: 1px solid var(--row-line); border-radius: var(--radius-2xl); background: var(--card-bg); }
+  .fr-upcoming li {
+    display: grid; grid-template-columns: 9em auto minmax(0, 1fr) auto; gap: 12px; align-items: center;
+    padding: 10px 16px; border-top: 1px solid var(--row-line);
+  }
+  .fr-upcoming li:first-child { border-top: 0; }
+  .fr-up-date { font-family: var(--font-mono); font-size: var(--fs-sm); font-weight: 700; color: var(--text-date); white-space: nowrap; }
+  .fr-upcoming .tag { font-size: var(--fs-xs); padding: 2px 6px; }
+  .fr-up-title { display: inline-block; padding: 3px 0; font-family: var(--font-body); font-size: var(--fs-base); font-weight: 600; color: var(--text-heading); }
+  .fr-up-title:hover { color: var(--text-strong); }
+  .fr-up-title:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .fr-up-time { font-family: var(--font-mono); font-size: var(--fs-sm); font-weight: 700; color: var(--text-strong); white-space: nowrap; }
+  .fr-note { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--text-meta); line-height: 1.7; margin: 14px 0 0; }
+  .fr-note a { color: var(--text-soft); display: inline-block; padding: 4px 0; text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 640px) {
+    .fr-upcoming li { grid-template-columns: auto minmax(0, 1fr) auto; }
+    .fr-up-date { grid-column: 1 / -1; }
+  }
+</style>

@@ -1,13 +1,13 @@
 # DORD — Affiliate Links
 ## Current implementation
 
-_Last updated: 2026-08-15_
+_Last updated: 2026-09-29_
 
 > **History:** an earlier version of this file specified a Motorsport Tickets
-> integration (Awin merchant `21865`) with a `<TicketsButton />` component, a
-> `hasTickets` series flag and an `AWIN_PUBLISHER_ID` env var. **None of that was
-> built.** A different set of partners shipped instead. This file now documents
-> what actually exists — treat it as the source of truth, not as a plan.
+> integration with a `<TicketsButton />` component, a `hasTickets` series flag
+> and an `AWIN_PUBLISHER_ID` env var. That design was never built. Motorsport
+> Tickets now ships differently (see *Tickets* below). This file documents what
+> actually exists — treat it as the source of truth, not as a plan.
 
 ---
 
@@ -18,7 +18,8 @@ _Last updated: 2026-08-15_
 | Link builder + merchant IDs | `src/lib/affiliates.ts` |
 | "Plan Your Trip" module | `src/components/TripPlannerCard.astro` |
 | "Getting There" logistics module | `src/components/GettingThereCard.astro` |
-| Rendered on | `/tracks/[slug]` — right column, all 136 tracks |
+| Rendered on | `/tracks/[slug]` and `/events/[year]/[slug]` — right column |
+| Tickets module | `src/lib/tickets.ts`, rendered on upcoming event pages |
 
 ### Merchants (Awin)
 
@@ -29,10 +30,12 @@ export const MERCHANTS = {
   GETYOURGUIDE_US: 18925,   // Tours & Activities
   VIATOR_US:       11018,   // Tours & Experiences
   TRIVAGO_USA:     66034,   // Hotels
+  MOTORSPORT_TICKETS: 21865, // F1, MotoGP, WEC / Le Mans tickets — 2%, 30-day cookie
 } as const;
 ```
 
-All three programmes are **pending approval**. There is no car-rental or flight
+All four programmes are **pending approval** (check Motorsport Tickets' status in
+the Awin dashboard; the ID is from its public merchant profile). There is no car-rental or flight
 programme yet — see *Next steps*.
 
 ### The kill switch
@@ -48,12 +51,23 @@ cookie. To go live: set `PUBLIC_AFFILIATE_LINKS_ENABLED=true` in Cloudflare Page
 (Settings → Environment Variables → Production) and redeploy. **No code change.**
 
 `rel="sponsored"` is applied only when tracking is actually on — a plain
-untracked link is not a paid placement and should not be marked as one.
+untracked link is not a paid placement and should not be marked as one. Use
+`PARTNER_REL` from `affiliates.ts`; don't recompute it.
 
 ### Click tracking
 
-`clickref` convention is `track-{slug}-{partner}`, e.g. `track-albert-park-gyg`.
-That gives per-track attribution in Awin reporting across all 136 pages.
+`clickref` convention is `{page}-{slug}-{partner}`:
+`track-albert-park-gyg` on track pages, `event-f1-monaco-gp-gyg` on event pages
+(`TripPlannerCard` takes a `placement` prop), `event-f1-monaco-gp-mst` for
+Motorsport Tickets.
+
+### Tickets
+
+`ticketLinks()` in `src/lib/tickets.ts` builds the Tickets card on upcoming
+event pages: the official seller (F1 Ticket Store, MotoGP Tickets, 24h-lemans.com
+for Le Mans), the circuit's own site from `tracks.json`, and Motorsport Tickets
+for F1, F1 Academy, Supercup, MotoGP and WEC. Motorsport Tickets' per-event URLs
+are unstable, so it links to `https://motorsporttickets.com/en/events`.
 
 ---
 
@@ -92,20 +106,9 @@ Currently disclosed in two places:
 - `/legal/tos` §3 and `/legal/privacy` §4 — full explanation, cookie duration,
   and the statement that affiliate relationships don't influence editorial.
 
-**Known gap:** there is no disclosure adjacent to the Trip Planner links
-themselves. Best practice (and the stricter reading of EU/French rules) is a
-visible notice next to the CTA, not only in the footer. This is low-risk while
-`AFFILIATE_ENABLED=false`, because no commission is possible. **Add an inline
-notice before flipping the switch:**
-
-```html
-<span class="affiliate-notice">
-  Affiliate links — we may earn a commission at no cost to you.
-</span>
-```
-
-Small, muted (10–11px, `color: #7a8fa0` to stay AA-legible on `--card-bg`),
-directly under `.tp-links`.
+- Inline, next to the links: `.affiliate-notice` under the Trip Planner links
+  and under the Tickets card. Required by the stricter reading of EU/French
+  rules; keep it when adding partners.
 
 ---
 
@@ -124,12 +127,12 @@ directly under `.tp-links`.
 
 ## NEXT STEPS
 
-1. **Get the three programmes approved**, then flip
-   `PUBLIC_AFFILIATE_LINKS_ENABLED=true`. Add the inline disclosure first.
+1. **Get the four programmes approved**, then flip
+   `PUBLIC_AFFILIATE_LINKS_ENABLED=true`. The inline disclosures are in place.
 2. **Car rental + flights have no programme.** Every track's
    `logistics.affiliate_hooks` already carries the search intent
    (e.g. `"Melbourne car rental"`, `"Flights to Melbourne"`). When those
    programmes are approved, add the IDs to `MERCHANTS` and turn the chips in
    `GettingThereCard.astro` into links — the data is already there.
-3. **Ticketing was never built.** If revisited, note that Motorsport Tickets'
-   per-event URL structure is unstable; search URLs are the safer target.
+3. **Tickets deep links.** If Motorsport Tickets exposes stable series or
+   event URLs, point `ticketLinks()` at them instead of the events index.
