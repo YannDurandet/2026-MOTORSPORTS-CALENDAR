@@ -780,7 +780,7 @@ footer {
 .footer--inner {
     padding: 48px 40px 36px;
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 40px;
     align-items: start;
 }

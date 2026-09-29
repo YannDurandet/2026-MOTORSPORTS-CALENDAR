@@ -127,7 +127,9 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
                         {venueCountry[r.venue] && (
                           <img class="res-venue-flag" src={flagSrc(venueCountry[r.venue], base)} alt={countryName(venueCountry[r.venue])} width="20" height="20" loading="lazy" />
                         )}
-                        {r.venue
+                        {r.path
+                          ? <a href={`${base}${r.path}`} class="res-venue-link">{r.event}</a>
+                          : r.venue
                           ? <a href={`${base}/tracks/${r.venue}`} class="res-venue-link">{r.event}</a>
                           : <span class="res-venue-link">{r.event}</span>
                         }

@@ -1,11 +1,16 @@
 ---
 import logoRaw from '../assets/dord-logo.svg?raw';
+import { EVENT_YEARS } from '../lib/events';
+import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const logo = logoRaw
   .replace('<svg ', '<svg class="footer--logo-svg" aria-hidden="true" focusable="false" ')
   .replace(' width="726" height="171" viewBox="0 0 726 171"', ' viewBox="0 0 726 140"')
   .replace('fill="#F5F5F5"', 'fill="currentColor"');
 const year = new Date().getFullYear();
+const season = DEFAULT_CALENDAR_YEAR;
+const nextSeason = season + 1;
+const hasNextSeason = EVENT_YEARS.includes(nextSeason);
 ---
 <footer>
   <div class="footer--container">
@@ -38,6 +43,18 @@ const year = new Date().getFullYear();
         <a href={`${base}/results`}   class="footer--nav-link">Results</a>
         <a href={`${base}/stats`}     class="footer--nav-link">Season Stats</a>
         <a href={`${base}/pit-wall`}  class="footer--nav-link">Pit Wall Archive</a>
+        <a href={`${base}/newsletter`} class="footer--nav-link">Newsletter</a>
+      </div>
+
+      <!-- Seasons -->
+      <div class="footer--col">
+        <div class="footer--col-label">Seasons</div>
+        <a href={`${base}/events/${season}`} class="footer--nav-link">All {season} events</a>
+        {hasNextSeason && <>
+          <a href={`${base}/events/${nextSeason}`} class="footer--nav-link">All {nextSeason} events</a>
+          <a href={`${base}/series/f1/${nextSeason}`} class="footer--nav-link">F1 {nextSeason} calendar</a>
+          <a href={`${base}/series/motogp/${nextSeason}`} class="footer--nav-link">MotoGP {nextSeason} calendar</a>
+        </>}
       </div>
 
       <!-- Legal -->

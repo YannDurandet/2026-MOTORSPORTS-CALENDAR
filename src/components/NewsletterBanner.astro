@@ -10,6 +10,7 @@
     <div class="nl-content-row">
       <div class="nl-text">
         <p class="nl-body">A weekly briefing from The Department of Racing Drivers. What's on, where it is, and why the next three days are going to be chaos.</p>
+        <a class="nl-more" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/newsletter`}>What's in it →</a>
       </div>
 
       <div class="nl-form-wrap">
@@ -102,6 +103,18 @@
     margin: 0;
     max-width: 48ch;
   }
+  .nl-more {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-soft);
+  }
+  .nl-more:hover { color: var(--text-strong); }
+  .nl-more:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
   /* ── Form ────────────────────────────────────────────────────────────────── */
   .nl-row {

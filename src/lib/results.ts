@@ -6,10 +6,14 @@
 
 import calendarData from '../../data/calendar.json';
 import tracksData   from '../../data/tracks.json';
+import { findEvent } from './events';
+import { monthYear } from './season';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export type ResultEntry = {
+  /** Event page path, when the event has one. */
+  path?: string;
   series:        string;
   race_label?:   string;
   event:         string;
@@ -136,8 +140,9 @@ export function getFlatResults(): ResultEntry[] {
       for (const ev of week.events) {
         if (!ev.results?.length) continue;
         const venue = svgToSlug.get(ev.track ?? '') ?? '';
+        const path = findEvent(monthYear(month), ev.series, ev.title, week.label)?.path;
         for (const r of ev.results) {
-          flat.push({ series: ev.series, event: ev.title, venue, ...r });
+          flat.push({ series: ev.series, event: ev.title, venue, path, ...r });
         }
       }
     }
