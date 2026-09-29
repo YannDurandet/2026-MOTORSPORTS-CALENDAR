@@ -20,11 +20,19 @@ export const MERCHANTS = {
   GETYOURGUIDE_US: 18925,
   VIATOR_US:       11018,
   TRIVAGO_USA:     66034,
+  /** Official F1, MotoGP, WEC / Le Mans ticket reseller. 2% commission, 30-day cookie. */
+  MOTORSPORT_TICKETS: 21865,
 } as const;
+
 
 // TODO: enable Awin tracking once each programme is approved.
 export const AFFILIATE_ENABLED =
   import.meta.env.PUBLIC_AFFILIATE_LINKS_ENABLED === 'true';
+
+/** rel for an outbound partner link: sponsored only while tracking is live. */
+export const PARTNER_REL = AFFILIATE_ENABLED
+  ? 'sponsored noopener noreferrer'
+  : 'noopener noreferrer';
 
 // ── Link builder ───────────────────────────────────────────────────────────────
 

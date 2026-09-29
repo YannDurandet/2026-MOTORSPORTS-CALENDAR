@@ -21,7 +21,11 @@ import TripPlannerCard from '../../../components/TripPlannerCard.astro';
 import tracksData from '../../../../data/tracks.json';
 import seriesContentData from '../../../../data/seriesContent.json';
 import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
-import { accommodationQuery } from '../../../lib/affiliates';
+import { accommodationQuery, PARTNER_REL } from '../../../lib/affiliates';
+import { parseSessions, mainRaceTime } from '../../../lib/sessions';
+import { venueTimeZone, formatIn, zoneAbbr } from '../../../lib/timezones';
+import { ticketLinks } from '../../../lib/tickets';
+import { countryName } from '../../../lib/results';
 import { venueFor } from '../../../lib/venues';
 import { fitTitle } from '../../../lib/seo';
 import { seriesShort } from '../../../lib/seriesShort';
@@ -65,6 +69,81 @@ const seriesRound = eventsForSeries(ev.series, ev.year);
 const roundIndex = seriesRound.findIndex(e => e.slug === ev.slug);
 const prevRound = roundIndex > 0 ? seriesRound[roundIndex - 1] : null;
 const nextRound = roundIndex >= 0 && roundIndex < seriesRound.length - 1 ? seriesRound[roundIndex + 1] : null;
+
+// ── Sessions & world clock ───────────────────────────────────────────────────
+// Calendar times are Paris time. `ev.date` is the exact start of the one race
+// it refers to; only when the time string names a single RACE at that same
+// Paris time do we convert it to other zones, so a mismatch never publishes a
+// wrong local time.
+const sessions = parseSessions(ev.time);
+const raceHHMM = mainRaceTime(sessions);
+const raceKnown = !!raceHHMM && raceHHMM === formatIn(ev.date, 'Europe/Paris').time;
+const timesTbc = /TBC/.test(ev.time);
+const localTz = venueTimeZone(venue);
+const ZONES: { label: string; tz: string; local?: boolean }[] = [
+  ...(localTz && venue ? [{ label: `Circuit · ${venue.city}`, tz: localTz, local: true }] : []),
+  { label: 'France · Paris', tz: 'Europe/Paris' },
+  { label: 'UK · London', tz: 'Europe/London' },
+  { label: 'US · New York', tz: 'America/New_York' },
+  { label: 'US · Los Angeles', tz: 'America/Los_Angeles' },
+  { label: 'Australia · Sydney', tz: 'Australia/Sydney' },
+  { label: 'Japan · Tokyo', tz: 'Asia/Tokyo' },
+];
+const worldTimes = raceKnown
+  ? ZONES.filter(z => z.local || z.tz !== localTz)
+      .map(z => ({ ...z, ...formatIn(ev.date, z.tz), abbr: zoneAbbr(ev.date, z.tz) }))
+  : [];
+const localStart = worldTimes.find(z => z.local);
+const utcStart = raceKnown ? formatIn(ev.date, 'UTC') : null;
+
+// ── Overview prose ───────────────────────────────────────────────────────────
+const longDay = (d: string) => new Date(`${d}T12:00:00Z`)
+  .toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', timeZone: 'UTC' });
+const typeWord: Record<string, string> = { permanent: 'permanent road', street: 'street', oval: 'oval', mixed: 'road and oval' };
+const firstResult = ev.results?.length === 1 ? ev.results[0] : null;
+const overview: string[] = [];
+overview.push(
+  `The ${ev.title} is round ${roundIndex + 1} of ${seriesRound.length} in the ${ev.year} ${seriesName} season` +
+  (venue ? `, at ${venue.name} in ${venue.city}, ${venue.country}` : '') +
+  (ev.start && ev.end ? `, from ${longDay(ev.start)} to ${longDay(ev.end)}.` : ` (${eventRange(ev)}).`)
+);
+if (isPast && firstResult) {
+  const w = firstResult.winners?.join(' and ') ?? firstResult.winner;
+  const team = firstResult.team ?? firstResult.manufacturer;
+  if (w) overview.push(`${w} won${team ? ` for ${team}` : ''}.`);
+} else if (raceKnown && utcStart) {
+  overview.push(
+    `The race starts at ${raceHHMM} Paris time` +
+    (localStart ? ` (${localStart.time} local, ${utcStart.time} UTC)` : ` (${utcStart.time} UTC)`) +
+    ` on ${longDay(ev.date.slice(0, 10))}.`
+  );
+} else if (timesTbc) {
+  overview.push(`Session times have not been published yet; they appear here as soon as ${seriesName} confirms them.`);
+}
+if (ev.hasSprint) overview.push('It is a Sprint weekend, with a shorter Sprint race on the Saturday alongside qualifying.');
+if (track?.length) {
+  const lr = track.lapRecord;
+  overview.push(
+    `${track.name} is a ${track.length} km ${typeWord[track.type] ?? ''} circuit` +
+    (track.turns ? ` with ${track.turns} turns` : '') +
+    (lr?.time ? `; the lap record is ${lr.time}, set by ${lr.driver}${lr.series ? ` (${lr.series}` : ''}${lr.year ? `, ${lr.year})` : lr.series ? ')' : ''}.` : '.')
+  );
+}
+
+// ── How to watch ─────────────────────────────────────────────────────────────
+const TYPE_LABEL: Record<string, string> = { free: 'Free-to-air', pay: 'Pay TV', streaming: 'Streaming' };
+const watch = Object.entries((series?.howToWatch ?? {}) as Record<string, { name: string; type: string; url: string; note?: string }[]>)
+  .map(([code, list]) => ({ code, country: code === 'global' ? 'Everywhere else' : countryName(code), list }))
+  .sort((a, b) => (a.code === 'global' ? 1 : b.code === 'global' ? -1 : a.country.localeCompare(b.country)));
+
+// ── Tickets ──────────────────────────────────────────────────────────────────
+const tickets = isPast ? [] : ticketLinks({
+  series: ev.series,
+  title: ev.title,
+  eventSlug: ev.slug,
+  circuitName: track?.name,
+  circuitUrl: track?.website,
+});
 
 function countryFlag(code?: string): string {
   if (!code || code.length !== 2) return '';
@@ -222,10 +301,43 @@ const breadcrumb = {
           )}
         </div>
 
-        <div class="ev-block">
-          <div class="section-label">SESSION TIMES</div>
-          <p class="ev-times" set:html={ev.time} />
+        <section class="ev-block ev-overview" aria-labelledby="ev-overview-h">
+          <h2 class="section-label" id="ev-overview-h">OVERVIEW</h2>
+          <p>{overview.join(' ')}</p>
+        </section>
+
+        <section class="ev-block" aria-labelledby="ev-sessions-h">
+          <h2 class="section-label" id="ev-sessions-h">SESSION TIMES · PARIS (CET/CEST)</h2>
+          <dl class="ev-sessions">
+            {sessions.map(s => (
+              <div class="ev-session">
+                <dt>{s.label}</dt>
+                <dd>{s.time ?? (timesTbc ? 'TBC' : '')}</dd>
+              </div>
+            ))}
+          </dl>
           {ev.hasSprint && <p class="ev-note">Sprint weekend format.</p>}
+          {worldTimes.length > 0 && (
+            <div class="ev-world">
+              <h3 class="ev-subhead">Race start around the world</h3>
+              <table class="ev-world-table">
+                <tbody>
+                  {worldTimes.map(z => (
+                    <tr class:list={{ 'is-local': z.local }}>
+                      <th scope="row">{z.label}</th>
+                      <td>{z.day}</td>
+                      <td class="ev-world-time">{z.time} <span class="ev-world-abbr">{z.abbr}</span></td>
+                    </tr>
+                  ))}
+                  <tr class="ev-world-yours" hidden>
+                    <th scope="row">Your time</th>
+                    <td class="js-your-day"></td>
+                    <td class="ev-world-time js-your-time" data-iso={ev.date}></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
           {ev.legs?.length && (
             <div class="ev-legs">
               {ev.legs.map(l => (
@@ -236,11 +348,11 @@ const breadcrumb = {
               ))}
             </div>
           )}
-        </div>
+        </section>
 
         {ev.results?.length && (
           <div class="ev-block">
-            <div class="section-label">RESULT</div>
+            <h2 class="section-label">RESULT</h2>
             <div class="ev-results">
               {ev.results.map((r: RaceResult) => (
                 <div class="ev-result">
@@ -260,9 +372,32 @@ const breadcrumb = {
           </div>
         )}
 
+        {watch.length > 0 && (
+          <section class="ev-block" aria-labelledby="ev-watch-h">
+            <h2 class="section-label" id="ev-watch-h">HOW TO WATCH</h2>
+            <table class="ev-watch-table">
+              <tbody>
+                {watch.map(w => (
+                  <tr>
+                    <th scope="row">{w.country}</th>
+                    <td>
+                      <ul class="ev-watch-list">
+                        {w.list.map(b => (
+                          <li><a href={b.url} target="_blank" rel="noopener noreferrer">{b.name}</a> <span class="ev-watch-type">({TYPE_LABEL[b.type] ?? b.type}{b.note ? `, ${b.note}` : ''})</span></li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p class="ev-note">Broadcast rights change by season and region; check local listings.</p>
+          </section>
+        )}
+
         {ev.support?.length && (
           <div class="ev-block">
-            <div class="section-label">SUPPORT RACES</div>
+            <h2 class="section-label">SUPPORT RACES</h2>
             <div class="ev-support">
               {ev.support.map(s => (
                 <div class="ev-support-row">
@@ -276,7 +411,7 @@ const breadcrumb = {
 
         {alsoAtTrack.length > 0 && track && (
           <div class="ev-block">
-            <div class="section-label">ALSO AT {track.name.toUpperCase()} IN {ev.year}</div>
+            <h2 class="section-label">ALSO AT {track.name.toUpperCase()} IN {ev.year}</h2>
             <div class="ev-related">
               {alsoAtTrack.map(e => (
                 <a href={`${base}${e.path}`} class="ev-related-row">
@@ -301,14 +436,40 @@ const breadcrumb = {
       </div>
 
       <div class="event-col-right">
+        {tickets.length > 0 && (
+          <section class="ev-card ev-tickets" aria-labelledby="ev-tickets-h">
+            <h2 class="section-label" id="ev-tickets-h">TICKETS</h2>
+            <ul class="ev-tickets-list">
+              {tickets.map(tk => (
+                <li>
+                  <a href={tk.url} target="_blank" rel={tk.partner ? PARTNER_REL : 'noopener noreferrer'} class="ev-ticket"
+                     data-affiliate={tk.partner ? 'motorsport-tickets' : undefined}>
+                    <span class="ev-ticket-name">{tk.name}</span>
+                    <span class="ev-ticket-note">{tk.note}</span>
+                    <span class="ev-ticket-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {tickets.some(tk => tk.partner) && (
+              <p class="affiliate-notice">Motorsport Tickets is an affiliate link: we may earn a commission at no cost to you.</p>
+            )}
+          </section>
+        )}
         {track?.logistics && <GettingThereCard logistics={track.logistics} />}
         {track && (
           <TripPlannerCard
             city={track.city}
             slug={track.slug}
             hotelQuery={accommodationQuery(track.logistics?.accommodation_hub, track.city)}
+            placement={`event-${ev.slug}`}
           />
         )}
+        <a class="ev-card ev-newsletter" href={`${base}/newsletter`}>
+          <span class="section-label">NEWSLETTER</span>
+          <span class="ev-newsletter-text">Every Monday: the week's races with start times, in one email.</span>
+          <span class="ev-newsletter-cta">Sign up →</span>
+        </a>
       </div>
     </div>
 
@@ -316,6 +477,22 @@ const breadcrumb = {
 
   <Footer />
 </BaseLayout>
+
+<script>
+  // Fill in the race start in the visitor's own timezone.
+  const cell = document.querySelector<HTMLElement>('.js-your-time');
+  if (cell?.dataset.iso) {
+    const d = new Date(cell.dataset.iso);
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    cell.textContent = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
+    const day = document.querySelector('.js-your-day');
+    if (day) day.textContent = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+    const row = cell.closest('tr');
+    const th = row?.querySelector('th');
+    if (th && tz) th.textContent = `Your time · ${tz.split('/').pop()!.replace(/_/g, ' ')}`;
+    row?.removeAttribute('hidden');
+  }
+</script>
 
 <style>
   .event-page {
@@ -415,13 +592,140 @@ const breadcrumb = {
   }
 
   .section-label {
+    display: block;
     font-family: var(--font-mono);
     font-size: var(--fs-3xs);
+    font-weight: 400;
     color: var(--text-meta);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin: 0 0 14px;
+    padding: 0;
+    line-height: 1.4;
+    /* h2 by default carries the gradient title treatment. */
+    background: none;
+    -webkit-text-fill-color: currentColor;
   }
+
+  /* ── Overview ─────────────────────────────────────────────────────────── */
+  .ev-overview p {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.7;
+    color: var(--text-soft);
+  }
+
+  /* ── Sessions + world clock ───────────────────────────────────────────── */
+  .ev-sessions { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ev-session {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 10px;
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-md);
+    background: var(--row-bg);
+  }
+  .ev-session dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-meta);
+  }
+  .ev-session dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-md);
+    font-weight: 700;
+    color: var(--text-strong);
+  }
+  .ev-subhead {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 18px 0 8px;
+  }
+  .ev-world-table,
+  .ev-watch-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+  }
+  .ev-world-table th,
+  .ev-world-table td,
+  .ev-watch-table th,
+  .ev-watch-table td {
+    text-align: left;
+    padding: 7px 8px 7px 0;
+    border-top: 1px solid var(--row-line);
+    vertical-align: baseline;
+  }
+  .ev-world-table tr:first-child > *,
+  .ev-watch-table tr:first-child > * { border-top: 0; }
+  .ev-world-table th,
+  .ev-watch-table th { font-weight: 400; color: var(--text-muted); white-space: nowrap; }
+  .ev-world-table td { color: var(--text-secondary); }
+  .ev-world-time { text-align: right; font-weight: 700; color: var(--text-strong); white-space: nowrap; }
+  .ev-world-table .ev-world-time { text-align: right; padding-right: 0; }
+  .ev-world-abbr { font-weight: 400; color: var(--text-meta); font-size: var(--fs-xs); }
+  .ev-world-table tr.is-local th,
+  .ev-world-table tr.is-local td { color: var(--text-strong); }
+  .ev-world-yours th { color: var(--text-strong); }
+
+  .ev-watch-table th { width: 34%; }
+  .ev-watch-table td { color: var(--text-secondary); line-height: 1.6; }
+  .ev-watch-table a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 2px; }
+  .ev-watch-table a:hover { color: var(--text-strong); }
+  .ev-watch-table a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .ev-watch-type { color: var(--text-meta); font-size: var(--fs-xs); }
+  .ev-watch-list { list-style: none; margin: 0; padding: 0; }
+  .ev-watch-list li { display: inline; }
+  .ev-watch-list li + li::before { content: ', '; }
+
+  /* ── Right column cards ───────────────────────────────────────────────── */
+  .ev-card {
+    display: block;
+    border: 1px solid var(--row-line);
+    background: var(--card-bg);
+    border-radius: var(--radius-2xl);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+  }
+  .ev-tickets-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .ev-ticket {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-lg);
+    background: var(--row-bg);
+    text-decoration: none;
+  }
+  .ev-ticket:hover { background: var(--row-bg-open); border-color: var(--control-line); }
+  .ev-ticket:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .ev-ticket-name { font-family: var(--font-body); font-size: var(--fs-base); font-weight: 700; color: var(--text-strong); }
+  .ev-ticket-note { grid-column: 1; font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-meta); }
+  .ev-ticket-arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; color: var(--text-muted); }
+  .affiliate-notice {
+    margin: 10px 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--text-meta);
+  }
+  .ev-newsletter { text-decoration: none; }
+  .ev-newsletter .section-label { margin-bottom: 8px; }
+  .ev-newsletter-text { display: block; font-family: var(--font-body); font-size: var(--fs-base); line-height: 1.5; color: var(--text-soft); }
+  .ev-newsletter-cta { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: var(--fs-sm); font-weight: 700; color: var(--text-strong); }
+  .ev-newsletter:hover { border-color: var(--control-line); background: var(--row-bg-open); }
+  .ev-newsletter:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
   .ev-times {
     margin: 0;

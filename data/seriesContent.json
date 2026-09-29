@@ -642,6 +642,7 @@
   },
   {
     "slug": "wrc",
+    "howToWatch": { "global": [{ "name": "Rally.TV", "type": "streaming", "url": "https://rally.tv", "note": "Every stage live" }] },
     "name": "FIA World Rally Championship",
     "category": "Rally",
     "region": "Worldwide",
@@ -1501,6 +1502,7 @@
   },
   {
     "slug": "erc",
+    "howToWatch": { "global": [{ "name": "Rally.TV", "type": "streaming", "url": "https://rally.tv", "note": "Every stage live" }] },
     "name": "European Rally Championship",
     "category": "Rally",
     "region": "Europe",

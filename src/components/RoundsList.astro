@@ -99,8 +99,12 @@ const nextIdx = events.findIndex(e => !e.results?.length && new Date(e.date).get
     color: var(--text-date);
     white-space: nowrap;
   }
-  .rd-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .rd-main { display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-width: 0; }
   .rd-title {
+    display: inline-block;
+    padding: 3px 0;
+    min-height: 24px;
+    line-height: 1.2;
     font-family: var(--font-body);
     font-size: var(--fs-lg);
     font-weight: 600;
@@ -113,7 +117,14 @@ const nextIdx = events.findIndex(e => !e.results?.length && new Date(e.date).get
     font-size: var(--fs-xs);
     color: var(--text-meta);
   }
-  .rd-venue a { color: var(--text-muted); text-decoration: none; }
+  .rd-venue a {
+    display: inline-block;
+    padding: 4px 0;
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-decoration-color: var(--class-line);
+    text-underline-offset: 3px;
+  }
   .rd-venue a:hover { color: var(--text-strong); text-decoration: underline; }
   .rd-title:focus-visible,
   .rd-venue a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }

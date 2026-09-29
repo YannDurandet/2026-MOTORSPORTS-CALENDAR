@@ -8,7 +8,7 @@
  * Flip PUBLIC_AFFILIATE_LINKS_ENABLED=true in Cloudflare Pages env vars to activate
  * tracking across all 136 track pages in one redeploy.
  */
-import { buildAwinLink, MERCHANTS, AFFILIATE_ENABLED } from '../lib/affiliates';
+import { buildAwinLink, MERCHANTS, PARTNER_REL } from '../lib/affiliates';
 
 interface Props {
   /** City name pulled from tracks.json (e.g. "Melbourne", "Silverstone") */
@@ -21,10 +21,12 @@ interface Props {
    * where fans actually sleep — Haarlem, not Zandvoort. Defaults to `city`.
    */
   hotelQuery?: string;
+  /** clickref prefix for Awin reporting. Defaults to "track-{slug}"; event pages pass "event-{slug}". */
+  placement?: string;
 }
 
-const { city, slug, hotelQuery } = Astro.props;
-const p = `track-${slug}`;
+const { city, slug, hotelQuery, placement } = Astro.props;
+const p = placement ?? `track-${slug}`;
 const stayIn = hotelQuery?.trim() || city;
 
 const gygUrl = buildAwinLink(
@@ -45,11 +47,8 @@ const trivagoUrl = buildAwinLink(
   `${p}-trivago`,
 );
 
-// rel="sponsored" signals a commercial relationship to search engines —
-// only add it when the Awin tracking is actually live.
-const rel = AFFILIATE_ENABLED
-  ? 'sponsored noopener noreferrer'
-  : 'noopener noreferrer';
+// rel="sponsored" only while Awin tracking is live (see PARTNER_REL).
+const rel = PARTNER_REL;
 ---
 
 <div class="trip-planner">
@@ -105,9 +104,17 @@ const rel = AFFILIATE_ENABLED
     </a>
 
   </div>
+  <p class="affiliate-notice">Affiliate links: we may earn a commission at no cost to you.</p>
 </div>
 
 <style>
+  .affiliate-notice {
+    margin: 10px 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    color: var(--text-meta);
+  }
   .trip-planner {
     border: 1px solid var(--border);
     background: var(--card-bg);
