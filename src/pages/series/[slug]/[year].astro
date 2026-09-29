@@ -1,0 +1,179 @@
+---
+/**
+ * /series/{slug}/{year} — a future season's calendar, e.g. /series/f1/2027.
+ *
+ * /series/{slug} covers the current season (results, standings, teams). Once a
+ * series publishes next year's dates, people search for that calendar on its
+ * own ("f1 calendar 2027"), so it gets its own page with the rounds, what
+ * changed, and links to every event page. Generated for each series that has
+ * rounds in a year after DEFAULT_CALENDAR_YEAR.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Banner from '../../../components/Banner.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import RoundsList from '../../../components/RoundsList.astro';
+
+import seriesContent from '../../../../data/seriesContent.json';
+import seasons from '../../../../data/seasons.json';
+import { ALL_EVENTS, eventsForSeries, eventRange } from '../../../lib/events';
+import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
+import { seriesShort } from '../../../lib/seriesShort';
+import { seriesOgImage } from '../../../lib/seriesImages';
+
+export function getStaticPaths() {
+  const pairs = new Set(
+    ALL_EVENTS.filter(e => e.year > DEFAULT_CALENDAR_YEAR).map(e => `${e.series}|${e.year}`)
+  );
+  return [...pairs].map(p => {
+    const [slug, year] = p.split('|');
+    return { params: { slug, year } };
+  });
+}
+
+const slug = Astro.params.slug!;
+const year = Number(Astro.params.year);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const series = (seriesContent as any[]).find(s => s.slug === slug)!;
+const short = seriesShort(slug, series.name);
+const rounds = eventsForSeries(slug, year);
+const notes = (seasons as any)[slug]?.[String(year)] as
+  { summary: string; changes: string[]; status: string } | undefined;
+
+const first = rounds[0];
+const last = rounds[rounds.length - 1];
+const span = `${eventRange(first)} – ${eventRange(last)}`;
+const sprints = rounds.filter(r => r.hasSprint).length;
+
+const canonical = `https://dord.racing/series/${slug}/${year}`;
+const pageTitle = `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`;
+const pageDescription = notes?.summary
+  ?? `The ${series.name} ${year} calendar: all ${rounds.length} rounds with dates, circuits and links to every event, ${eventRange(first)} to ${eventRange(last)}.`;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+    { "@type": "ListItem", "position": 2, "name": series.name, "item": `https://dord.racing/series/${slug}` },
+    { "@type": "ListItem", "position": 3, "name": `${year} Calendar`, "item": canonical },
+  ],
+};
+const itemList = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": `${series.name} ${year} calendar`,
+  "numberOfItems": rounds.length,
+  "itemListElement": rounds.map((ev, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "name": `${ev.title} ${ev.year}`,
+    "url": `https://dord.racing${ev.path}`,
+  })),
+};
+---
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalUrl={canonical}
+  ogImage={seriesOgImage(slug)}
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
+  </Fragment>
+
+  <Banner />
+  <header>
+    <div class="header--left">
+      <h1>{short} {year}<br><span class="h1-sub">Calendar</span></h1>
+      <p class="header--page-desc">{series.name} · {rounds.length} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <Nav activePage="series" />
+    </div>
+  </header>
+
+  <main id="main-content" class="main-section season-page">
+    <a href={`${base}/series/${slug}`} class="back-link">← {short} {DEFAULT_CALENDAR_YEAR} calendar &amp; results</a>
+
+    {notes && (
+      <section class="series-section season-notes">
+        <p class="season-summary">{notes.summary}</p>
+        <h2 class="series-section-title">What's new in {year}</h2>
+        <ul class="season-changes">
+          {notes.changes.map(c => <li>{c}</li>)}
+        </ul>
+        <p class="season-status">{notes.status}</p>
+      </section>
+    )}
+
+    <section class="series-section" id="calendar">
+      <h2 class="series-section-title">{year} Rounds</h2>
+      <p class="series-cal-note">Select a round for its event page. Times are Paris (CET/CEST) once published.</p>
+      <RoundsList events={rounds} label={`${series.name} ${year} rounds`} />
+    </section>
+
+    <section class="series-section">
+      <h2 class="series-section-title">Add it to your calendar</h2>
+      <p class="season-status">
+        The {short} feed covers every season we list, so {year} rounds appear in your calendar app as
+        soon as they are added here, and session times update automatically.
+      </p>
+      <div class="subscribe-actions">
+        <a href={`webcal://dord.racing/ical/${slug}.ics`} class="subscribe-btn subscribe-btn--ical">Subscribe (iCal)</a>
+        <a href={`https://calendar.google.com/calendar/render?cid=webcal://dord.racing/ical/${slug}.ics`}
+           target="_blank" rel="noopener noreferrer" class="subscribe-btn subscribe-btn--gcal">+ Google Calendar</a>
+      </div>
+    </section>
+
+    <nav class="season-more" aria-label="More calendars">
+      <a href={`${base}/events/${year}`}>All {year} events across every series →</a>
+      <a href={`${base}/newsletter`}>Get calendar changes by email every Monday →</a>
+    </nav>
+
+    <Footer />
+  </main>
+</BaseLayout>
+
+<style>
+  .season-page { max-width: 980px; }
+  .season-summary {
+    font-family: var(--font-body);
+    font-size: var(--fs-lg);
+    line-height: 1.6;
+    color: var(--text-soft);
+    margin: 0 0 20px;
+  }
+  .season-changes {
+    margin: 0 0 12px;
+    padding-left: 1.2em;
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .season-changes li { margin-bottom: 6px; }
+  .season-status {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    color: var(--text-meta);
+    margin: 0 0 12px;
+  }
+  .season-more {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    margin: 8px 0 32px;
+  }
+  .season-more a {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .season-more a:hover { color: var(--text-strong); text-decoration: underline; }
+  .season-more a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+</style>

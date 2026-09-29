@@ -5667,8 +5667,47 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 11 • MAR 13-14",
+        "label": "WEEK 10 • MAR 05-07",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Thai Grand Prix",
+            "time": "RACE: TBC",
+            "track": "buriram.svg",
+            "date": "2027-03-07T09:00:00+01:00",
+            "shortName": "THAILAND",
+            "start": "2027-03-05",
+            "end": "2027-03-07"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 11 • MAR 12-14",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Bahrain GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "bahrain.svg",
+            "date": "2027-03-14T16:00:00+01:00",
+            "shortName": "BAHRAIN",
+            "start": "2027-03-12",
+            "end": "2027-03-14"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Qatar Grand Prix (Lusail)",
+            "time": "RACE: TBC",
+            "track": "lusail.svg",
+            "date": "2027-03-14T17:00:00+01:00",
+            "shortName": "QATAR (LUSAIL)",
+            "start": "2027-03-12",
+            "end": "2027-03-14"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -5699,8 +5738,19 @@
         ]
       },
       {
-        "label": "WEEK 12 • MAR 17-20",
+        "label": "WEEK 12 • MAR 17-21",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Saudi Arabian GP",
+            "time": "RACE: TBC",
+            "track": "jeddah-fe.svg",
+            "date": "2027-03-21T18:00:00+01:00",
+            "shortName": "SAUDI ARABIA",
+            "start": "2027-03-19",
+            "end": "2027-03-21"
+          },
           {
             "series": "imsa",
             "tag": "IMSA",
@@ -5733,8 +5783,64 @@
     "year": 2027,
     "weeks": [
       {
+        "label": "WEEK 14 • APR 02-04",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Australian GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "albert-park.svg",
+            "date": "2027-04-04T06:00:00+02:00",
+            "shortName": "AUSTRALIA",
+            "start": "2027-04-02",
+            "end": "2027-04-04"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Brazilian Grand Prix",
+            "time": "RACE: TBC",
+            "track": "goiania.svg",
+            "date": "2027-04-04T19:00:00+02:00",
+            "shortName": "BRAZIL",
+            "start": "2027-04-02",
+            "end": "2027-04-04"
+          }
+        ]
+      },
+      {
         "label": "WEEK 15 • APR 09-11",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Japanese GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "suzuka.svg",
+            "date": "2027-04-11T07:00:00+02:00",
+            "shortName": "JAPAN",
+            "start": "2027-04-09",
+            "end": "2027-04-11"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Argentine Grand Prix (Buenos Aires)",
+            "time": "RACE: TBC",
+            "track": "tbc.svg",
+            "venue": {
+              "name": "Autódromo Oscar y Juan Gálvez",
+              "city": "Buenos Aires",
+              "country": "Argentina"
+            },
+            "date": "2027-04-11T20:00:00+02:00",
+            "shortName": "ARGENTINA",
+            "start": "2027-04-09",
+            "end": "2027-04-11"
+          },
           {
             "series": "wec",
             "tag": "WEC",
@@ -5756,8 +5862,19 @@
         ]
       },
       {
-        "label": "WEEK 16 • APR 17-18",
+        "label": "WEEK 16 • APR 16-18",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Chinese GP",
+            "time": "RACE: TBC",
+            "track": "shanghai.svg",
+            "date": "2027-04-18T09:00:00+02:00",
+            "shortName": "CHINA",
+            "start": "2027-04-16",
+            "end": "2027-04-18"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -5800,6 +5917,17 @@
         "label": "WEEK 17 • APR 23-25",
         "events": [
           {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Americas Grand Prix",
+            "time": "RACE: TBC",
+            "track": "cota-national.svg",
+            "date": "2027-04-25T21:00:00+02:00",
+            "shortName": "AMERICAS (COTA)",
+            "start": "2027-04-23",
+            "end": "2027-04-25"
+          },
+          {
             "series": "wec",
             "tag": "WEC",
             "title": "6 Hours of Silverstone",
@@ -5817,8 +5945,19 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 18 • MAY 01-02",
+        "label": "WEEK 18 • APR 30 - MAY 02",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Miami GP",
+            "time": "RACE: TBC",
+            "track": "miami.svg",
+            "date": "2027-05-02T22:00:00+02:00",
+            "shortName": "MIAMI",
+            "start": "2027-04-30",
+            "end": "2027-05-02"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -5858,8 +5997,19 @@
         ]
       },
       {
-        "label": "WEEK 19 • MAY 08-09",
+        "label": "WEEK 19 • MAY 07-09",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Spanish Grand Prix (Jerez)",
+            "time": "RACE: TBC",
+            "track": "jerez.svg",
+            "date": "2027-05-09T14:00:00+02:00",
+            "shortName": "SPAIN (JEREZ)",
+            "start": "2027-05-07",
+            "end": "2027-05-09"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -5884,6 +6034,17 @@
         "label": "WEEK 20 • MAY 13-16",
         "events": [
           {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "French Grand Prix (Le Mans)",
+            "time": "RACE: TBC",
+            "track": "le-mans-bugatti.svg",
+            "date": "2027-05-16T14:00:00+02:00",
+            "shortName": "FRANCE (LE MANS)",
+            "start": "2027-05-14",
+            "end": "2027-05-16"
+          },
+          {
             "series": "wec",
             "tag": "WEC",
             "title": "6 Hours of Spa",
@@ -5904,8 +6065,20 @@
         ]
       },
       {
-        "label": "WEEK 21 • MAY 22-23",
+        "label": "WEEK 21 • MAY 21-23",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Canadian GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "montreal.svg",
+            "date": "2027-05-23T22:00:00+02:00",
+            "shortName": "CANADA",
+            "start": "2027-05-21",
+            "end": "2027-05-23"
+          },
           {
             "series": "gtwce",
             "tag": "GTWCE",
@@ -5918,8 +6091,19 @@
         ]
       },
       {
-        "label": "WEEK 22 • MAY 29-30",
+        "label": "WEEK 22 • MAY 28-30",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Italian Grand Prix (Mugello)",
+            "time": "RACE: TBC",
+            "track": "mugello.svg",
+            "date": "2027-05-30T14:00:00+02:00",
+            "shortName": "ITALY (MUGELLO)",
+            "start": "2027-05-28",
+            "end": "2027-05-30"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -5947,8 +6131,20 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 23 • JUN 04-05",
+        "label": "WEEK 23 • JUN 04-06",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Monaco GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "monaco.svg",
+            "date": "2027-06-06T15:00:00+02:00",
+            "shortName": "MONACO",
+            "start": "2027-06-04",
+            "end": "2027-06-06"
+          },
           {
             "series": "imsa",
             "tag": "IMSA",
@@ -5961,8 +6157,19 @@
         ]
       },
       {
-        "label": "WEEK 24 • JUN 12-13",
+        "label": "WEEK 24 • JUN 11-13",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Catalan Grand Prix",
+            "time": "RACE: TBC",
+            "track": "barcelona.svg",
+            "date": "2027-06-13T14:00:00+02:00",
+            "shortName": "CATALONIA",
+            "start": "2027-06-11",
+            "end": "2027-06-13"
+          },
           {
             "series": "wec",
             "tag": "WEC",
@@ -5984,8 +6191,19 @@
         ]
       },
       {
-        "label": "WEEK 25 • JUN 18-19",
+        "label": "WEEK 25 • JUN 18-20",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Portuguese GP",
+            "time": "RACE: TBC",
+            "track": "portimao.svg",
+            "date": "2027-06-20T15:00:00+02:00",
+            "shortName": "PORTUGAL",
+            "start": "2027-06-18",
+            "end": "2027-06-20"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -5998,8 +6216,19 @@
         ]
       },
       {
-        "label": "WEEK 26 • JUN 26-27",
+        "label": "WEEK 26 • JUN 25-27",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Dutch TT (Assen)",
+            "time": "RACE: TBC",
+            "track": "assen.svg",
+            "date": "2027-06-27T14:00:00+02:00",
+            "shortName": "NETHERLANDS (ASSEN)",
+            "start": "2027-06-25",
+            "end": "2027-06-27"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -6045,8 +6274,20 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 27 • JUL 04",
+        "label": "WEEK 27 • JUL 02-04",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "British GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "silverstone.svg",
+            "date": "2027-07-04T16:00:00+02:00",
+            "shortName": "BRITISH",
+            "start": "2027-07-02",
+            "end": "2027-07-04"
+          },
           {
             "series": "elms",
             "tag": "ELMS",
@@ -6059,8 +6300,30 @@
         ]
       },
       {
-        "label": "WEEK 28 • JUL 10-11",
+        "label": "WEEK 28 • JUL 09-11",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Austrian GP",
+            "time": "RACE: TBC",
+            "track": "red-bull-ring.svg",
+            "date": "2027-07-11T15:00:00+02:00",
+            "shortName": "AUSTRIA",
+            "start": "2027-07-09",
+            "end": "2027-07-11"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "German Grand Prix (Sachsenring)",
+            "time": "RACE: TBC",
+            "track": "sachsenring.svg",
+            "date": "2027-07-11T14:00:00+02:00",
+            "shortName": "GERMANY",
+            "start": "2027-07-09",
+            "end": "2027-07-11"
+          },
           {
             "series": "wec",
             "tag": "WEC",
@@ -6091,8 +6354,19 @@
         ]
       },
       {
-        "label": "WEEK 29 • JUL 17-18",
+        "label": "WEEK 29 • JUL 16-18",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Czech Grand Prix (Brno)",
+            "time": "RACE: TBC",
+            "track": "brno.svg",
+            "date": "2027-07-18T14:00:00+02:00",
+            "shortName": "CZECH REPUBLIC",
+            "start": "2027-07-16",
+            "end": "2027-07-18"
+          },
           {
             "series": "gtwce",
             "tag": "GTWCE",
@@ -6114,8 +6388,19 @@
         ]
       },
       {
-        "label": "WEEK 30 • JUL 24-25",
+        "label": "WEEK 30 • JUL 23-25",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Belgian GP",
+            "time": "RACE: TBC",
+            "track": "spa.svg",
+            "date": "2027-07-25T15:00:00+02:00",
+            "shortName": "BELGIUM",
+            "start": "2027-07-23",
+            "end": "2027-07-25"
+          },
           {
             "series": "fe",
             "tag": "FORMULA E",
@@ -6139,6 +6424,17 @@
       {
         "label": "WEEK 31 • JUL 29 - AUG 01",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Hungarian GP",
+            "time": "RACE: TBC",
+            "track": "hungaroring.svg",
+            "date": "2027-08-01T15:00:00+02:00",
+            "shortName": "HUNGARY",
+            "start": "2027-07-30",
+            "end": "2027-08-01"
+          },
           {
             "series": "imsa",
             "tag": "IMSA",
@@ -6180,8 +6476,19 @@
         ]
       },
       {
-        "label": "WEEK 33 • AUG 14-15",
+        "label": "WEEK 33 • AUG 13-15",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "British Grand Prix",
+            "time": "RACE: TBC",
+            "track": "silverstone.svg",
+            "date": "2027-08-15T14:00:00+02:00",
+            "shortName": "GREAT BRITAIN",
+            "start": "2027-08-13",
+            "end": "2027-08-15"
+          },
           {
             "series": "btcc",
             "tag": "BTCC",
@@ -6217,8 +6524,19 @@
         ]
       },
       {
-        "label": "WEEK 35 • AUG 28-29",
+        "label": "WEEK 35 • AUG 27-29",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Austrian Grand Prix",
+            "time": "RACE: TBC",
+            "track": "red-bull-ring-motogp.svg",
+            "date": "2027-08-29T14:00:00+02:00",
+            "shortName": "AUSTRIA",
+            "start": "2027-08-27",
+            "end": "2027-08-29"
+          },
           {
             "series": "gtwce",
             "tag": "GTWCE",
@@ -6237,8 +6555,20 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 36 • SEP 05",
+        "label": "WEEK 36 • SEP 03-05",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Italian GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "monza.svg",
+            "date": "2027-09-05T15:00:00+02:00",
+            "shortName": "ITALY",
+            "start": "2027-09-03",
+            "end": "2027-09-05"
+          },
           {
             "series": "elms",
             "tag": "ELMS",
@@ -6253,6 +6583,28 @@
       {
         "label": "WEEK 37 • SEP 10-12",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Spanish GP (Madrid)",
+            "time": "RACE: TBC",
+            "track": "madrid-f1.svg",
+            "date": "2027-09-12T15:00:00+02:00",
+            "shortName": "SPAIN (MADRID)",
+            "start": "2027-09-10",
+            "end": "2027-09-12"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "San Marino Grand Prix (Misano)",
+            "time": "RACE: TBC",
+            "track": "misano.svg",
+            "date": "2027-09-12T14:00:00+02:00",
+            "shortName": "SAN MARINO (MISANO)",
+            "start": "2027-09-10",
+            "end": "2027-09-12"
+          },
           {
             "series": "wec",
             "tag": "WEC",
@@ -6277,6 +6629,17 @@
         "label": "WEEK 38 • SEP 17-19",
         "events": [
           {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Aragon Grand Prix",
+            "time": "RACE: TBC",
+            "track": "aragon.svg",
+            "date": "2027-09-19T14:00:00+02:00",
+            "shortName": "ARAGON",
+            "start": "2027-09-17",
+            "end": "2027-09-19"
+          },
+          {
             "series": "imsa",
             "tag": "IMSA",
             "title": "Battle on the Bricks (Indy)",
@@ -6299,6 +6662,17 @@
       {
         "label": "WEEK 39 • SEP 24-26",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Azerbaijan GP",
+            "time": "RACE: TBC",
+            "track": "baku.svg",
+            "date": "2027-09-26T13:00:00+02:00",
+            "shortName": "AZERBAIJAN",
+            "start": "2027-09-24",
+            "end": "2027-09-26"
+          },
           {
             "series": "wec",
             "tag": "WEC",
@@ -6326,8 +6700,35 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 40 • OCT 02-03",
+        "label": "WEEK 40 • OCT 01-03",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Turkish GP",
+            "time": "RACE: TBC",
+            "track": "tbc.svg",
+            "venue": {
+              "name": "Istanbul Park",
+              "city": "Istanbul",
+              "country": "Türkiye"
+            },
+            "date": "2027-10-03T14:00:00+02:00",
+            "shortName": "TURKEY (ISTANBUL)",
+            "start": "2027-10-01",
+            "end": "2027-10-03"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Portuguese Grand Prix",
+            "time": "RACE: TBC",
+            "track": "portimao.svg",
+            "date": "2027-10-03T14:00:00+02:00",
+            "shortName": "PORTUGAL",
+            "start": "2027-10-01",
+            "end": "2027-10-03"
+          },
           {
             "series": "gtwce",
             "tag": "GTWCE",
@@ -6351,6 +6752,17 @@
       {
         "label": "WEEK 41 • OCT 06-10",
         "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Singapore GP",
+            "time": "RACE: TBC",
+            "track": "singapore.svg",
+            "date": "2027-10-10T14:00:00+02:00",
+            "shortName": "SINGAPORE",
+            "start": "2027-10-08",
+            "end": "2027-10-10"
+          },
           {
             "series": "imsa",
             "tag": "IMSA",
@@ -6381,8 +6793,46 @@
         ]
       },
       {
-        "label": "WEEK 43 • OCT 23-24",
+        "label": "WEEK 42 • OCT 15-17",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Japanese Grand Prix (Motegi)",
+            "time": "RACE: TBC",
+            "track": "motegi.svg",
+            "date": "2027-10-17T07:00:00+02:00",
+            "shortName": "JAPAN (MOTEGI)",
+            "start": "2027-10-15",
+            "end": "2027-10-17"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 43 • OCT 22-24",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "United States GP (Austin)",
+            "time": "RACE: TBC",
+            "track": "cota-f1.svg",
+            "date": "2027-10-24T21:00:00+02:00",
+            "shortName": "USA (AUSTIN)",
+            "start": "2027-10-22",
+            "end": "2027-10-24"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Malaysian Grand Prix (Sepang)",
+            "time": "RACE: TBC",
+            "track": "sepang.svg",
+            "date": "2027-10-24T09:00:00+02:00",
+            "shortName": "MALAYSIA",
+            "start": "2027-10-22",
+            "end": "2027-10-24"
+          },
           {
             "series": "gtwce",
             "tag": "GTWCE",
@@ -6391,6 +6841,33 @@
             "track": "barcelona.svg",
             "date": "2027-10-24T15:00:00+02:00",
             "shortName": "BARCELONA 3H"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 44 • OCT 29-31",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Mexico City GP",
+            "time": "RACE: TBC",
+            "track": "mexico.svg",
+            "date": "2027-10-31T21:00:00+01:00",
+            "shortName": "MEXICO CITY",
+            "start": "2027-10-29",
+            "end": "2027-10-31"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Indonesian Grand Prix",
+            "time": "RACE: TBC",
+            "track": "mandalika.svg",
+            "date": "2027-10-31T09:00:00+01:00",
+            "shortName": "INDONESIA",
+            "start": "2027-10-29",
+            "end": "2027-10-31"
           }
         ]
       }
@@ -6404,6 +6881,18 @@
         "label": "WEEK 45 • NOV 04-08",
         "events": [
           {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "São Paulo GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "interlagos.svg",
+            "date": "2027-11-07T18:00:00+01:00",
+            "shortName": "BRAZIL",
+            "start": "2027-11-05",
+            "end": "2027-11-07"
+          },
+          {
             "series": "wec",
             "tag": "WEC",
             "title": "8 Hours of Bahrain",
@@ -6415,8 +6904,51 @@
         ]
       },
       {
-        "label": "WEEK 48 • NOV 27-28",
+        "label": "WEEK 46 • NOV 12-14",
         "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Australian Grand Prix (Adelaide)",
+            "time": "RACE: TBC",
+            "track": "adelaide.svg",
+            "date": "2027-11-14T05:00:00+01:00",
+            "shortName": "AUSTRALIA (ADELAIDE)",
+            "start": "2027-11-12",
+            "end": "2027-11-14"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 47 • NOV 18-20",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Las Vegas GP",
+            "time": "RACE: TBC",
+            "track": "las-vegas-strip.svg",
+            "date": "2027-11-20T05:00:00+01:00",
+            "shortName": "LAS VEGAS",
+            "start": "2027-11-18",
+            "end": "2027-11-20"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 48 • NOV 26-28",
+        "events": [
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Valencian Community GP (Finale)",
+            "time": "RACE: TBC",
+            "track": "valencia.svg",
+            "date": "2027-11-28T14:00:00+01:00",
+            "shortName": "VALENCIA",
+            "start": "2027-11-26",
+            "end": "2027-11-28"
+          },
           {
             "series": "sf",
             "tag": "S. FORMULA",
@@ -6425,6 +6957,46 @@
             "track": "suzuka.svg",
             "date": "2027-11-28T06:30:00+01:00",
             "shortName": "SUZUKA FINALE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "month": "DECEMBER",
+    "year": 2027,
+    "weeks": [
+      {
+        "label": "WEEK 49 • DEC 03-05",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Qatar GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "lusail.svg",
+            "date": "2027-12-05T17:00:00+01:00",
+            "shortName": "QATAR",
+            "start": "2027-12-03",
+            "end": "2027-12-05"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 50 • DEC 10-12",
+        "events": [
+          {
+            "series": "f1",
+            "tag": "FORMULA 1",
+            "title": "Abu Dhabi GP",
+            "sprint": true,
+            "time": "RACE: TBC",
+            "track": "yas-marina.svg",
+            "date": "2027-12-12T14:00:00+01:00",
+            "shortName": "ABU DHABI",
+            "start": "2027-12-10",
+            "end": "2027-12-12"
           }
         ]
       }

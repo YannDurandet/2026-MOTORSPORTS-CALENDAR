@@ -22,6 +22,7 @@ import tracksData from '../../../../data/tracks.json';
 import seriesContentData from '../../../../data/seriesContent.json';
 import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
 import { accommodationQuery } from '../../../lib/affiliates';
+import { venueFor } from '../../../lib/venues';
 
 export function getStaticPaths() {
   return ALL_EVENTS.map(ev => ({
@@ -39,6 +40,8 @@ const canonical = `https://dord.racing/events/${ev.year}/${ev.slug}`;
 const track = ev.trackSlug
   ? (tracksData as any[]).find(t => t.slug === ev.trackSlug)
   : null;
+
+const venue = venueFor(ev);
 
 const series = (seriesContentData as any[]).find(s => s.slug === ev.series);
 const seriesName = series?.name ?? ev.tag;
@@ -75,7 +78,7 @@ function entrantOf(r: RaceResult): string {
 }
 
 // ── SEO ──────────────────────────────────────────────────────────────────────
-const where = track ? `${track.name}, ${track.city}` : ev.title;
+const where = venue ? `${venue.name}, ${venue.city}` : ev.title;
 const pageTitle = `${ev.title} ${ev.year} — ${seriesName} | Dates, Times & Circuit | DORD`;
 const pageDescription = isPast
   ? `${seriesName} ${ev.title} ${ev.year} at ${where} — full result, session times and circuit guide.`
@@ -111,15 +114,15 @@ const eventSchema = {
     "priceCurrency": "EUR",
     "validFrom": `${ev.year}-01-01`,
   },
-  "location": track ? {
+  "location": venue ? {
     "@type": "Place",
-    "name": track.name,
+    "name": venue.name,
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": track.city,
-      "addressCountry": track.country,
+      "addressLocality": venue.city,
+      "addressCountry": venue.country,
     },
-    ...(track.website ? { "url": track.website } : {}),
+    ...(venue.website ? { "url": venue.website } : {}),
   } : {
     "@type": "Place",
     "name": ev.title,
@@ -157,7 +160,7 @@ const breadcrumb = {
     <div class="header--left">
       <h1>{ev.title}<br><span class="ev-year">{ev.year}</span></h1>
       <p class="header--page-desc">
-        {seriesName}{track ? ` · ${track.name}, ${track.country}` : ''}
+        {seriesName}{venue ? ` · ${venue.name}, ${venue.country}` : ''}
       </p>
       <div class="meta">{eventRange(ev)} · SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="calendar" />
@@ -192,13 +195,19 @@ const breadcrumb = {
               <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
             </div>
           </div>
-          {track && (
+          {track ? (
             <div class="ev-spec">
               <div class="spec-label">CIRCUIT</div>
               <div class="spec-value">
                 <a href={`${base}/tracks/${track.slug}`} class="ev-link">{track.name}</a>
               </div>
               <div class="spec-sub">{track.city} · {track.country}{track.length ? ` · ${track.length} km` : ''}</div>
+            </div>
+          ) : venue && (
+            <div class="ev-spec">
+              <div class="spec-label">{ev.trackSvg.endsWith('-wrc.svg') ? 'RALLY BASE' : 'CIRCUIT'}</div>
+              <div class="spec-value">{venue.name}</div>
+              <div class="spec-sub">{venue.city} · {venue.country}</div>
             </div>
           )}
         </div>

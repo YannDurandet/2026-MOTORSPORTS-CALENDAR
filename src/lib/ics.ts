@@ -6,8 +6,9 @@
 
 import calendarData from '../../data/calendar.json';
 import seriesContent from '../../data/seriesContent.json';
-import seriesRaces from '../../data/series.json';
 import tracksData from '../../data/tracks.json';
+import { findEvent, slugify } from './events';
+import { monthYear } from './season';
 
 export function escapeIcal(str: string): string {
   return str
@@ -49,7 +50,6 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
       for (const svg of (layout.calendarSvgs ?? [])) svgToTrack.set(svg, track);
   }
 
-  const races = seriesRaces as any;
   const allSeriesMeta = seriesContent as any[];
 
   interface IcsEvent {
@@ -63,23 +63,21 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
   }
 
   const events: IcsEvent[] = [];
-  const seriesCounters: Record<string, number> = {};
-  for (const slug of targetSlugs) seriesCounters[slug] = 0;
+  const roundCounters: Record<string, number> = {};
 
   for (const month of calendarData as any[]) {
+    const year = monthYear(month);
     for (const week of month.weeks) {
       for (const ev of week.events) {
         const slug = ev.series;
-        if (!targetSlugs.includes(slug)) continue;
+        if (!targetSlugs.includes(slug) || !ev.date) continue;
 
-        const idx = seriesCounters[slug] ?? 0;
-        seriesCounters[slug] = idx + 1;
+        const key = `${slug}-${year}`;
+        const round = (roundCounters[key] ?? 0) + 1;
+        roundCounters[key] = round;
 
-        const raceEntry = (races[slug] ?? [])[idx];
-        if (!raceEntry?.date) continue;
-
-        const dtstart = toIcalDate(raceEntry.date);
-        const startMs = new Date(raceEntry.date).getTime();
+        const dtstart = toIcalDate(ev.date);
+        const startMs = new Date(ev.date).getTime();
         const endDate = new Date(startMs + 3 * 60 * 60 * 1000);
         const pad = (n: number) => String(n).padStart(2, '0');
         const dtend = `${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}T${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}00Z`;
@@ -90,10 +88,16 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
 
         const locationParts = [track?.name, track?.city, track?.country].filter(Boolean);
         const location = locationParts.join(', ');
-        const url = `https://dord.racing/series/${slug}`;
-        const uid = `dord-${slug}-${idx + 1}-2026@dord.racing`;
-        const summary = `${ev.title} 2026`;
-        const description = `${seriesName} · Round ${idx + 1} of the 2026 season. ${location ? 'Venue: ' + location + '.' : ''}`;
+        const page = findEvent(year, slug, ev.title, week.label);
+        const url = page ? `https://dord.racing${page.path}` : `https://dord.racing/series/${slug}`;
+        // Keyed on the event, not its position, so inserting a round mid-season
+        // doesn't reassign every later UID in subscribers' calendars.
+        const uid = page
+          ? `dord-${page.slug}-${year}@dord.racing`
+          : `dord-${slugify(`${slug}-${ev.title}`)}-${year}-${ev.date.slice(5, 10)}@dord.racing`;
+        const summary = `${ev.title} ${year}`;
+        const timeNote = /TBC/.test(ev.time ?? '') ? ' Start time TBC.' : '';
+        const description = `${seriesName} · Round ${round} of the ${year} season. ${location ? 'Venue: ' + location + '.' : ''}${timeNote}`;
 
         events.push({ uid, summary, dtstart, dtend, location, url, description });
       }
@@ -105,14 +109,14 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
 
   const resolvedCalName = calName ?? (
     targetSlugs.length === 1
-      ? ((allSeriesMeta.find((s: any) => s.slug === targetSlugs[0])?.name ?? targetSlugs[0]) + ' 2026 Calendar')
-      : 'Motorsport 2026 Calendar — DORD Racing'
+      ? ((allSeriesMeta.find((s: any) => s.slug === targetSlugs[0])?.name ?? targetSlugs[0]) + ' Calendar')
+      : 'Motorsport Calendar — DORD Racing'
   );
 
   const lines: string[] = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
-    'PRODID:-//DORD Racing//Motorsport Calendar 2026//EN',
+    'PRODID:-//DORD Racing//Motorsport Calendar//EN',
     `X-WR-CALNAME:${escapeIcal(resolvedCalName)}`,
     'X-WR-TIMEZONE:UTC',
     'CALSCALE:GREGORIAN',

@@ -11,6 +11,10 @@ import Footer from '../components/Footer.astro';
 // Import data at build time
 import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
+import seriesContent from '../../data/seriesContent.json';
+import { ALL_EVENTS } from '../lib/events';
+import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
+import { seriesShort } from '../lib/seriesShort';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const trackSlugs = new Set((tracksData as any[]).map((t: any) => t.slug));
@@ -27,6 +31,20 @@ const newsletterAfterIdx = (calendarData as any[]).findIndex((m: any) =>
 function stripTrackSuffix(svgName: string): string {
   return svgName.replace(/\.svg$/, '').replace(/-(f1|motogp|fe|wsbk|oval|road)$/, '');
 }
+
+// Next season's published calendars, as plain links: the in-page 2027 preview
+// is a JS toggle, so without these nothing crawlable points at 2027.
+const nextYear = DEFAULT_CALENDAR_YEAR + 1;
+const SEASON_ORDER = ['f1', 'motogp', 'wec', 'fe', 'imsa', 'indycar', 'wrc', 'wsbk'];
+const nextSeasonSeries = [...new Set(ALL_EVENTS.filter(e => e.year === nextYear).map(e => e.series))]
+  .sort((a, b) => {
+    const ia = SEASON_ORDER.indexOf(a), ib = SEASON_ORDER.indexOf(b);
+    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+  })
+  .map(slug => ({
+    slug,
+    label: seriesShort(slug, (seriesContent as any[]).find(s => s.slug === slug)?.name),
+  }));
 
 const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
   ...month,
@@ -142,8 +160,18 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
         the filters to customize your schedule by open-wheel, endurance, or touring cars. All countdowns and
         schedules are localized to Paris CET/CEST time.</div>
       <Nav activePage="calendar" />
+      {nextSeasonSeries.length > 0 && (
+        <nav class="season-links" aria-label={`${nextYear} calendars`}>
+          <span class="season-links-label">{nextYear} calendars</span>
+          {nextSeasonSeries.map(s => (
+            <a class="season-link" href={`${base}/series/${s.slug}/${nextYear}`}>{s.label} {nextYear}</a>
+          ))}
+          <a class="season-link season-link--all" href={`${base}/events/${nextYear}`}>All {nextYear} events →</a>
+        </nav>
+      )}
     </div>
   </header>
+
 
   <main id="main-content" class="main-section">
     <div id="this-weekend" class="this-weekend-section" hidden>
@@ -226,7 +254,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <div id="calendar-container" class="cal-v2">
       {enrichedCalendar.map((month: any, idx: number) => (
         <>
-          <div class="month-header" data-year={month.year ?? 2026}>{month.month}</div>
+          <div class="month-header" data-year={month.year ?? 2026}>{month.month}{month.year ? ` ${month.year}` : ''}</div>
           <div class="cal-grid" data-year={month.year ?? 2026}>
             {month.weeks.map((week: any) => {
               const weekYear = month.year ?? 2026;

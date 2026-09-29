@@ -1,0 +1,161 @@
+---
+/**
+ * A season's rounds as a crawlable list: every row links to its event page
+ * and, when the venue has one, its track page. Used by /series/[slug] and
+ * /series/[slug]/[year].
+ */
+import { eventRange, plainTime, type CalendarEvent } from '../lib/events';
+import { venueFor } from '../lib/venues';
+
+interface Props {
+  events: CalendarEvent[];
+  /** Accessible name for the list, e.g. "Formula 1 2027 rounds". */
+  label: string;
+}
+const { events, label } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function winnerOf(ev: CalendarEvent): string | null {
+  const r = ev.results?.[0];
+  if (!r) return null;
+  return r.winners?.length ? r.winners.join(' · ') : (r.winner ?? null);
+}
+
+/** "QUALI: 11:00 • RACE: 09:00" → "RACE 09:00"; "RACE: TBC" → "TIME TBC". */
+function raceTime(ev: CalendarEvent): string {
+  const t = plainTime(ev.time);
+  if (/TBC/.test(t)) return 'TIME TBC';
+  const race = t.match(/RACE[S]?:\s*(\d\d:\d\d)/);
+  if (race) return `RACE ${race[1]}`;
+  const parts = t.split('•').map(s => s.trim()).filter(Boolean);
+  return (parts[parts.length - 1] ?? '').replace(/:\s*/, ' ');
+}
+
+const now = Date.now();
+const nextIdx = events.findIndex(e => !e.results?.length && new Date(e.date).getTime() > now - 6 * 3600e3);
+---
+<ol class="rounds" aria-label={label}>
+  {events.map((ev, i) => {
+    const venue = venueFor(ev);
+    const winner = winnerOf(ev);
+    return (
+      <li class:list={['round', { 'is-done': !!winner, 'is-next': i === nextIdx }]}>
+        <span class="rd-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+        <span class="rd-date"><span class="sr-only">Round {i + 1}, </span>{eventRange(ev)}</span>
+        <span class="rd-main">
+          <a class="rd-title" href={`${base}${ev.path}`}>{ev.title}</a>
+          {venue && (
+            <span class="rd-venue">
+              {venue.trackSlug
+                ? <a href={`${base}/tracks/${venue.trackSlug}`}>{venue.name}</a>
+                : venue.name}
+              {venue.city && ` · ${venue.city}`}
+            </span>
+          )}
+        </span>
+        <span class="rd-side">
+          {ev.hasSprint && <span class="rd-chip rd-chip--sprint">SPRINT</span>}
+          {winner
+            ? <span class="rd-winner"><span class="rd-winner-label">WINNER</span> {winner}</span>
+            : <span class="rd-chip">{raceTime(ev)}</span>}
+        </span>
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+  .rounds {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-2xl);
+    background: var(--card-bg);
+    overflow: hidden;
+  }
+  .round {
+    display: grid;
+    grid-template-columns: 2.2em 7.5em minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 4px 14px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--row-line);
+  }
+  .round:first-child { border-top: 0; }
+  .round.is-next { background: var(--row-bg-open); box-shadow: inset 3px 0 0 var(--focus-ring); }
+
+  .rd-num {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--text-meta);
+  }
+  .rd-date {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-date);
+    white-space: nowrap;
+  }
+  .rd-main { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .rd-title {
+    font-family: var(--font-body);
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--text-heading);
+    text-decoration: none;
+  }
+  .rd-title:hover { color: var(--text-strong); text-decoration: underline; }
+  .rd-venue {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
+  }
+  .rd-venue a { color: var(--text-muted); text-decoration: none; }
+  .rd-venue a:hover { color: var(--text-strong); text-decoration: underline; }
+  .rd-title:focus-visible,
+  .rd-venue a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+  .rd-side { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+  .rd-chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: var(--text-strong);
+    background: var(--chip-bg);
+    border-radius: var(--radius-md);
+    padding: 3px 7px;
+  }
+  .rd-chip--sprint { background: none; color: var(--text-chip-muted); border: 1px solid var(--class-line); }
+  .rd-winner {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--text-strong);
+    text-align: right;
+  }
+  .rd-winner-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--text-meta);
+    margin-right: 4px;
+  }
+  .is-done .rd-title { color: var(--text-muted); }
+
+  @media (max-width: 640px) {
+    .round {
+      grid-template-columns: 2em minmax(0, 1fr) auto;
+      padding: 12px;
+    }
+    .rd-date { grid-column: 2; }
+    .rd-side { grid-column: 3; grid-row: 1; }
+    .rd-main { grid-column: 2 / -1; }
+    .rd-num { grid-row: 1 / span 2; align-self: start; padding-top: 2px; }
+  }
+</style>

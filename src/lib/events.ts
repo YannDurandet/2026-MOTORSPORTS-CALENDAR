@@ -66,6 +66,8 @@ export type CalendarEvent = {
    *  The week label spans every event in the week, so it can start a day early. */
   start?: string;
   end?: string;
+  /** Venue for a confirmed event whose circuit has no track entry or map yet. */
+  venue?: { name: string; city: string; country: string };
 };
 
 // ── Slugs ────────────────────────────────────────────────────────────────────
@@ -103,8 +105,10 @@ for (const month of calendarData as any[]) {
   const year: number = month.year ?? DEFAULT_CALENDAR_YEAR;
   for (const week of month.weeks ?? []) {
     for (const ev of week.events ?? []) {
-      // tbc/tbd are placeholder infographics for unannounced venues — no page.
-      if (!ev.track || ev.track === 'tbc.svg' || ev.track === 'tbd.svg') continue;
+      // tbc/tbd are placeholder infographics for unannounced venues — no page,
+      // unless the event names its venue inline (circuit known, map not drawn yet).
+      if (!ev.track) continue;
+      if ((ev.track === 'tbc.svg' || ev.track === 'tbd.svg') && !ev.venue) continue;
       raw.push({
         year,
         // `slug` pins the URL when a title changes after the page was indexed
@@ -125,6 +129,7 @@ for (const month of calendarData as any[]) {
         hasSprint: ev.sprint === true,
         start: ev.start,
         end: ev.end,
+        venue: ev.venue,
       });
     }
   }

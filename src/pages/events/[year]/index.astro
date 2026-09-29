@@ -12,7 +12,10 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 
 import tracksData from '../../../../data/tracks.json';
+import seriesContent from '../../../../data/seriesContent.json';
 import { EVENT_YEARS, eventsForYear, eventRange } from '../../../lib/events';
+import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
+import { seriesShort } from '../../../lib/seriesShort';
 
 export function getStaticPaths() {
   return EVENT_YEARS.map(year => ({ params: { year: String(year) }, props: { year } }));
@@ -38,7 +41,15 @@ const byMonth = MONTHS
   .filter(m => m.events.length > 0);
 
 const seriesCount = new Set(events.map(e => e.series)).size;
-const isPartial = year > 2026;
+const isPartial = year > DEFAULT_CALENDAR_YEAR;
+
+// Per-series calendars for this season: /series/{slug} for the current one,
+// /series/{slug}/{year} for a future one.
+const seriesLinks = [...new Set(events.map(e => e.series))].map(slug => ({
+  href: `${base}/series/${slug}${year === DEFAULT_CALENDAR_YEAR ? '' : `/${year}`}`,
+  label: `${seriesShort(slug, (seriesContent as any[]).find(s => s.slug === slug)?.name)} ${year}`,
+  count: events.filter(e => e.series === slug).length,
+})).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const pageTitle = `${year} Motorsport Race Calendar — Every Event, Date & Circuit | DORD`;
 const pageDescription = `All ${events.length} races on the ${year} motorsport calendar across ${seriesCount} championships — dates, circuits and session times for every event.`;
@@ -87,6 +98,10 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
         <a href={`${base}/events/${y}`} class:list={["ei-year", { "ei-year--active": y === year }]}
            aria-current={y === year ? 'page' : undefined}>{y}</a>
       ))}
+    </nav>
+
+    <nav class="ei-series" aria-label={`${year} calendars by series`}>
+      {seriesLinks.map(s => <a href={s.href} class="ei-series-link">{s.label} calendar</a>)}
     </nav>
 
     {byMonth.map(month => (
@@ -146,6 +161,22 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
   }
   .ei-year:hover { color: var(--text-main); border-color: var(--line-neutral); }
   .ei-year--active { color: var(--text-soft); border-color: var(--line-neutral-2); }
+
+  .ei-series {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin: -8px 0 28px;
+  }
+  .ei-series-link {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 0;
+  }
+  .ei-series-link:hover { color: var(--text-strong); text-decoration: underline; }
+  .ei-series-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
   .ei-month { margin-bottom: 28px; }
 

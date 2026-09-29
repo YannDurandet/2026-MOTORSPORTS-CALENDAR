@@ -1,0 +1,26 @@
+{
+  "f1": {
+    "2027": {
+      "summary": "Formula 1 has published a 24-race calendar for 2027. The season opens in Bahrain on 12–14 March and ends in Abu Dhabi on 10–12 December.",
+      "changes": [
+        "Portugal returns at Portimão (18–20 June) and Türkiye returns at Istanbul Park (1–3 October).",
+        "Bahrain goes back to Sakhir after its one-off 2026 race at Sepang, and Saudi Arabia is back in Jeddah (19–21 March).",
+        "Ten Sprint weekends, up from six: Bahrain, Australia, Japan, Canada, Monaco (its first Sprint), Britain, Italy, São Paulo, Qatar and Abu Dhabi.",
+        "Spain's only round is Madrid (10–12 September); Portimão takes the slot Barcelona held."
+      ],
+      "status": "Dates are confirmed. Session times are published closer to each weekend, so every race shows TBC until then."
+    }
+  },
+  "motogp": {
+    "2027": {
+      "summary": "MotoGP's provisional 2027 calendar has 22 rounds and opens the new 850cc era. It starts in Thailand on 5–7 March and finishes in Valencia on 26–28 November.",
+      "changes": [
+        "Two new venues: Buenos Aires (Autódromo Oscar y Juan Gálvez, 9–11 April) and the Adelaide street circuit (12–14 November), which takes over the Australian Grand Prix from Phillip Island.",
+        "Balaton Park (Hungary) is not on the 2027 calendar.",
+        "Qatar moves back to the start of the season (12–14 March) after its 2026 round was pushed to November.",
+        "Portimão moves to early October (1–3 October), between Aragon and the Asian flyaways."
+      ],
+      "status": "The calendar is provisional and subject to FIM approval. Session times are TBC."
+    }
+  }
+}

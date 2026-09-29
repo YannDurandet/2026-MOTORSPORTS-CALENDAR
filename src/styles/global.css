@@ -1771,6 +1771,39 @@ a {
     border-bottom: 1px solid var(--border);
     background: none;
     -webkit-text-fill-color: var(--text-soft);
+    padding-right: 0;
+    line-height: 1.3;
+}
+
+.series-cal-note {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
+    letter-spacing: 0.04em;
+    margin: 0 0 12px;
+}
+
+.season-next-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-strong);
+    text-decoration: none;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-pill);
+    padding: 8px 14px;
+}
+.season-next-link:hover { background: var(--row-bg-open); }
+.season-next-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* Second line of a page title: "{Series}" / "2026 Calendar & Results". */
+.h1-sub {
+    display: block;
+    font-size: var(--fs-xl);
+    margin-top: 6px;
 }
 
 /* =========================================
@@ -2564,3 +2597,49 @@ a {
 @media (max-width: 767px) {
     .back-to-top { bottom: 104px; right: 16px; }
 }
+
+/* Visually hidden, still read by screen readers. */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Home: next season's calendars, as plain links under the header. */
+.season-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+.season-links-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-meta);
+    margin-right: 4px;
+}
+.season-link {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-soft);
+    text-decoration: none;
+    border: 1px solid var(--control-line);
+    border-radius: var(--radius-pill);
+    padding: 6px 12px;
+    min-height: 24px;
+}
+.season-link:hover { color: var(--text-strong); background: var(--row-bg-open); }
+.season-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.season-link--all { border-color: transparent; color: var(--text-muted); }

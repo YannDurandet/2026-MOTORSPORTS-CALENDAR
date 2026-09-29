@@ -46,6 +46,15 @@ Present on all 136 tracks. Rendered by `src/components/GettingThereCard.astro` i
 - `travel_tip` — one actionable, non-obvious tip. Not marketing copy.
 - `affiliate_hooks` — exactly 3 search keywords. Rendered as non-clickable chips; see `agent-tasks/affiliate-links-instructions.md` before making them links.
 
+## Optional event fields in `calendar.json`
+Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
+
+- `start` / `end` — ISO dates of the event's own weekend. The week label spans every series in that week, so without these an event page can show the wrong first day. Set for every F1 round.
+- `slug` — pins the event URL when a title changes after the page went live (`"Bahrain GP"` → `"Bahrain GP in Malaysia (Sepang)"` keeps `/events/2026/f1-bahrain-gp`). Never change an existing one.
+- `venue` — `{ name, city, country }` for a confirmed event whose circuit has no track entry or SVG yet (`track: "tbc.svg"`). Without it a `tbc.svg` event gets no page.
+
+`data/seasons.json` holds per-series, per-year notes (summary, what changed, status) rendered on `/series/{slug}/{year}`.
+
 ## SVG naming convention
 | Pattern | Use |
 |---|---|
@@ -107,7 +116,10 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 |---|---|---|
 | `/` | `src/pages/index.astro` | Main calendar |
 | `/series` | `src/pages/series/index.astro` | Series grid |
-| `/series/[slug]` | `src/pages/series/[slug].astro` | Series detail |
+| `/series/[slug]` | `src/pages/series/[slug].astro` | Series detail (current season) |
+| `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | Future season calendar, e.g. `/series/f1/2027` |
+| `/events/[year]` | `src/pages/events/[year]/index.astro` | Season index |
+| `/events/[year]/[slug]` | `src/pages/events/[year]/[slug].astro` | Event page |
 | `/tracks` | `src/pages/tracks/index.astro` | Track browser (continent + type filter) |
 | `/tracks/[slug]` | `src/pages/tracks/[slug].astro` | Track detail |
 | `/data/series.json` | `src/pages/data/series.json.ts` | Race dates for countdowns |
