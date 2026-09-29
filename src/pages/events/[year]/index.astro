@@ -12,7 +12,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 
 import tracksData from '../../../../data/tracks.json';
-import { EVENT_YEARS, eventsForYear, weekRange } from '../../../lib/events';
+import { EVENT_YEARS, eventsForYear, eventRange } from '../../../lib/events';
 
 export function getStaticPaths() {
   return EVENT_YEARS.map(year => ({ params: { year: String(year) }, props: { year } }));
@@ -95,7 +95,7 @@ const pageDescription = `All ${events.length} races on the ${year} motorsport ca
         <div class="ei-rows">
           {month.events.map(e => (
             <a href={`${base}${e.path}`} class="ei-row">
-              <span class="ei-date">{weekRange(e.weekLabel)}</span>
+              <span class="ei-date">{eventRange(e)}</span>
               <span class={`tag t-${e.series}`}>{e.tag}</span>
               <span class="ei-title">{e.title}</span>
               <span class="ei-venue">{e.trackSlug ? trackName[e.trackSlug] ?? '' : ''}</span>

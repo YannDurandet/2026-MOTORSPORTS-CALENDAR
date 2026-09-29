@@ -20,7 +20,7 @@ import TripPlannerCard from '../../../components/TripPlannerCard.astro';
 
 import tracksData from '../../../../data/tracks.json';
 import seriesContentData from '../../../../data/seriesContent.json';
-import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, weekRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
+import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
 import { accommodationQuery } from '../../../lib/affiliates';
 
 export function getStaticPaths() {
@@ -79,7 +79,7 @@ const where = track ? `${track.name}, ${track.city}` : ev.title;
 const pageTitle = `${ev.title} ${ev.year} — ${seriesName} | Dates, Times & Circuit | DORD`;
 const pageDescription = isPast
   ? `${seriesName} ${ev.title} ${ev.year} at ${where} — full result, session times and circuit guide.`
-  : `${seriesName} ${ev.title} ${ev.year} at ${where} — ${weekRange(ev.weekLabel)}. Session times, circuit guide and travel logistics.`;
+  : `${seriesName} ${ev.title} ${ev.year} at ${where} — ${eventRange(ev)}. Session times, circuit guide and travel logistics.`;
 
 const eventSchema = {
   "@context": "https://schema.org",
@@ -159,7 +159,7 @@ const breadcrumb = {
       <p class="header--page-desc">
         {seriesName}{track ? ` · ${track.name}, ${track.country}` : ''}
       </p>
-      <div class="meta">{weekRange(ev.weekLabel)} · SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+      <div class="meta">{eventRange(ev)} · SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="calendar" />
     </div>
   </header>
@@ -261,7 +261,7 @@ const breadcrumb = {
             <div class="ev-related">
               {alsoAtTrack.map(e => (
                 <a href={`${base}${e.path}`} class="ev-related-row">
-                  <span class="ev-related-date">{weekRange(e.weekLabel)}</span>
+                  <span class="ev-related-date">{eventRange(e)}</span>
                   <span class={`tag t-${e.series}`}>{e.tag}</span>
                   <span class="ev-related-title">{e.title}</span>
                 </a>

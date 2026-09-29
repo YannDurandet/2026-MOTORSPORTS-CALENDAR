@@ -385,7 +385,9 @@
               }
             ],
             "date": "2026-03-08T05:00:00+01:00",
-            "shortName": "AUSTRALIA"
+            "shortName": "AUSTRALIA",
+            "start": "2026-03-06",
+            "end": "2026-03-08"
           },
           {
             "series": "supercars",
@@ -500,7 +502,9 @@
               }
             ],
             "date": "2026-03-15T08:00:00+01:00",
-            "shortName": "CHINA"
+            "shortName": "CHINA",
+            "start": "2026-03-13",
+            "end": "2026-03-15"
           },
           {
             "series": "f1a",
@@ -714,7 +718,9 @@
               }
             ],
             "date": "2026-03-29T07:00:00+02:00",
-            "shortName": "JAPAN"
+            "shortName": "JAPAN",
+            "start": "2026-03-27",
+            "end": "2026-03-29"
           },
           {
             "series": "motogp",
@@ -1429,7 +1435,9 @@
               }
             ],
             "date": "2026-05-03T22:00:00+02:00",
-            "shortName": "MIAMI"
+            "shortName": "MIAMI",
+            "start": "2026-05-01",
+            "end": "2026-05-03"
           },
           {
             "series": "wsbk",
@@ -1896,7 +1904,9 @@
               }
             ],
             "date": "2026-05-24T22:00:00+02:00",
-            "shortName": "CANADA"
+            "shortName": "CANADA",
+            "start": "2026-05-22",
+            "end": "2026-05-24"
           },
           {
             "series": "f1a",
@@ -2328,7 +2338,9 @@
               }
             ],
             "date": "2026-06-07T15:00:00+02:00",
-            "shortName": "MONACO"
+            "shortName": "MONACO",
+            "start": "2026-06-05",
+            "end": "2026-06-07"
           },
           {
             "series": "motogp",
@@ -2499,7 +2511,9 @@
               }
             ],
             "date": "2026-06-14T15:00:00+02:00",
-            "shortName": "SPAIN (BARCELONA)"
+            "shortName": "SPAIN (BARCELONA)",
+            "start": "2026-06-12",
+            "end": "2026-06-14"
           },
           {
             "series": "wsbk",
@@ -2873,7 +2887,9 @@
               }
             ],
             "date": "2026-06-28T15:00:00+02:00",
-            "shortName": "AUSTRIA"
+            "shortName": "AUSTRIA",
+            "start": "2026-06-26",
+            "end": "2026-06-28"
           },
           {
             "series": "motogp",
@@ -3025,7 +3041,9 @@
               }
             ],
             "date": "2026-07-05T16:00:00+02:00",
-            "shortName": "BRITISH"
+            "shortName": "BRITISH",
+            "start": "2026-07-03",
+            "end": "2026-07-05"
           },
           {
             "series": "f1a",
@@ -3461,7 +3479,9 @@
               }
             ],
             "date": "2026-07-19T15:00:00+02:00",
-            "shortName": "BELGIUM"
+            "shortName": "BELGIUM",
+            "start": "2026-07-17",
+            "end": "2026-07-19"
           },
           {
             "series": "gtwce",
@@ -3612,7 +3632,9 @@
               }
             ],
             "date": "2026-07-26T15:00:00+02:00",
-            "shortName": "HUNGARY"
+            "shortName": "HUNGARY",
+            "start": "2026-07-24",
+            "end": "2026-07-26"
           },
           {
             "series": "fe",
@@ -4108,7 +4130,9 @@
                 "team": "McLaren",
                 "country": "GB"
               }
-            ]
+            ],
+            "start": "2026-08-21",
+            "end": "2026-08-23"
           },
           {
             "series": "f1a",
@@ -4472,7 +4496,9 @@
                 "team": "Mercedes",
                 "country": "IT"
               }
-            ]
+            ],
+            "start": "2026-09-04",
+            "end": "2026-09-06"
           },
           {
             "series": "wsbk",
@@ -4689,7 +4715,17 @@
               }
             ],
             "date": "2026-09-13T15:00:00+02:00",
-            "shortName": "SPAIN (MADRID)"
+            "shortName": "SPAIN (MADRID)",
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ],
+            "start": "2026-09-11",
+            "end": "2026-09-13"
           },
           {
             "series": "motogp",
@@ -4886,7 +4922,17 @@
               }
             ],
             "date": "2026-09-26T13:00:00+04:00",
-            "shortName": "AZERBAIJAN"
+            "shortName": "AZERBAIJAN",
+            "results": [
+              {
+                "date": "2026-09-26",
+                "winner": "George Russell",
+                "team": "Mercedes",
+                "country": "GB"
+              }
+            ],
+            "start": "2026-09-24",
+            "end": "2026-09-26"
           },
           {
             "series": "wsbk",
@@ -4955,11 +5001,14 @@
           {
             "series": "f1",
             "tag": "FORMULA 1",
-            "title": "Bahrain GP",
-            "time": "QUALI: <span class=\"hl\">09:00</span> • RACE: <span class=\"hl\">07:00</span>",
+            "title": "Bahrain GP in Malaysia (Sepang)",
+            "time": "QUALI: <span class=\"hl\">11:00</span> • RACE: <span class=\"hl\">09:00</span>",
             "track": "sepang.svg",
-            "date": "2026-10-04T07:00:00+02:00",
-            "shortName": "BAHRAIN (SEPANG)"
+            "date": "2026-10-04T09:00:00+02:00",
+            "shortName": "BAHRAIN GP · SEPANG, MALAYSIA",
+            "slug": "f1-bahrain-gp",
+            "start": "2026-10-02",
+            "end": "2026-10-04"
           },
           {
             "series": "wrc",
@@ -5032,10 +5081,12 @@
             "tag": "FORMULA 1",
             "title": "Singapore GP",
             "sprint": true,
-            "time": "SPRINT: <span class=\"hl\">11:00</span> • QUALI: <span class=\"hl\">14:00</span> • RACE: <span class=\"hl\">14:00</span>",
+            "time": "SPRINT: <span class=\"hl\">11:00</span> • QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">14:00</span>",
             "track": "singapore.svg",
             "date": "2026-10-11T14:00:00+02:00",
-            "shortName": "SINGAPORE"
+            "shortName": "SINGAPORE",
+            "start": "2026-10-09",
+            "end": "2026-10-11"
           },
           {
             "series": "motogp",
@@ -5139,7 +5190,7 @@
         ]
       },
       {
-        "label": "WEEK 42 • OCT 16-19",
+        "label": "WEEK 42 • OCT 16-18",
         "events": [
           {
             "series": "wec",
@@ -5149,15 +5200,6 @@
             "track": "barcelona.svg",
             "date": "2026-10-18T13:00:00+02:00",
             "shortName": "BARCELONA 6H"
-          },
-          {
-            "series": "motogp",
-            "tag": "MOTOGP",
-            "title": "Australian Grand Prix (Phillip Island)",
-            "time": "RACE: <span class=\"hl\">05:00</span>",
-            "track": "phillip-island.svg",
-            "date": "2026-10-19T05:00:00+02:00",
-            "shortName": "AUSTRALIA"
           },
           {
             "series": "wsbk",
@@ -5198,7 +5240,7 @@
         ]
       },
       {
-        "label": "WEEK 43 • OCT 23-26",
+        "label": "WEEK 43 • OCT 23-25",
         "events": [
           {
             "series": "f1",
@@ -5207,7 +5249,9 @@
             "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
             "track": "cota-f1.svg",
             "date": "2026-10-25T21:00:00+01:00",
-            "shortName": "USA (AUSTIN)"
+            "shortName": "USA (AUSTIN)",
+            "start": "2026-10-23",
+            "end": "2026-10-25"
           },
           {
             "series": "f1a",
@@ -5221,11 +5265,11 @@
           {
             "series": "motogp",
             "tag": "MOTOGP",
-            "title": "Malaysian Grand Prix (Sepang)",
-            "time": "RACE: <span class=\"hl\">08:00</span>",
-            "track": "sepang.svg",
-            "date": "2026-10-26T08:00:00+01:00",
-            "shortName": "MALAYSIA"
+            "title": "Australian Grand Prix (Phillip Island)",
+            "time": "RACE: <span class=\"hl\">04:00</span>",
+            "track": "phillip-island.svg",
+            "date": "2026-10-25T04:00:00+01:00",
+            "shortName": "AUSTRALIA"
           },
           {
             "series": "supercars",
@@ -5275,16 +5319,18 @@
             "time": "QUALI: <span class=\"hl\">21:00</span> • RACE: <span class=\"hl\">21:00</span>",
             "track": "mexico.svg",
             "date": "2026-11-01T21:00:00+01:00",
-            "shortName": "MEXICO CITY"
+            "shortName": "MEXICO CITY",
+            "start": "2026-10-30",
+            "end": "2026-11-01"
           },
           {
             "series": "motogp",
             "tag": "MOTOGP",
-            "title": "Portuguese Grand Prix",
-            "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "portimao.svg",
-            "date": "2026-11-01T14:00:00+01:00",
-            "shortName": "PORTUGAL"
+            "title": "Malaysian Grand Prix (Sepang)",
+            "time": "RACE: <span class=\"hl\">08:00</span>",
+            "track": "sepang.svg",
+            "date": "2026-11-01T08:00:00+01:00",
+            "shortName": "MALAYSIA"
           },
           {
             "series": "nascar",
@@ -5312,7 +5358,18 @@
             "time": "QUALI: <span class=\"hl\">18:00</span> • RACE: <span class=\"hl\">18:00</span>",
             "track": "interlagos.svg",
             "date": "2026-11-08T18:00:00+01:00",
-            "shortName": "BRAZIL"
+            "shortName": "BRAZIL",
+            "start": "2026-11-06",
+            "end": "2026-11-08"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Qatar Grand Prix (Lusail)",
+            "time": "RACE: TBC",
+            "track": "lusail.svg",
+            "date": "2026-11-08T17:00:00+01:00",
+            "shortName": "QATAR (LUSAIL)"
           },
           {
             "series": "wec",
@@ -5383,7 +5440,9 @@
             "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">05:00</span>",
             "track": "las-vegas-strip.svg",
             "date": "2026-11-22T05:00:00+01:00",
-            "shortName": "LAS VEGAS"
+            "shortName": "LAS VEGAS",
+            "start": "2026-11-19",
+            "end": "2026-11-21"
           },
           {
             "series": "f1a",
@@ -5397,11 +5456,11 @@
           {
             "series": "motogp",
             "tag": "MOTOGP",
-            "title": "Valencian Community GP (Finale)",
+            "title": "Portuguese Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
-            "track": "valencia.svg",
+            "track": "portimao.svg",
             "date": "2026-11-22T14:00:00+01:00",
-            "shortName": "VALENCIA"
+            "shortName": "PORTUGAL"
           },
           {
             "series": "sf",
@@ -5440,7 +5499,18 @@
               }
             ],
             "date": "2026-11-29T17:00:00+01:00",
-            "shortName": "QATAR"
+            "shortName": "QATAR",
+            "start": "2026-11-27",
+            "end": "2026-11-29"
+          },
+          {
+            "series": "motogp",
+            "tag": "MOTOGP",
+            "title": "Valencian Community GP (Finale)",
+            "time": "RACE: <span class=\"hl\">14:00</span>",
+            "track": "valencia.svg",
+            "date": "2026-11-29T14:00:00+01:00",
+            "shortName": "VALENCIA"
           }
         ]
       }
@@ -5466,7 +5536,9 @@
               }
             ],
             "date": "2026-12-06T14:00:00+01:00",
-            "shortName": "ABU DHABI"
+            "shortName": "ABU DHABI",
+            "start": "2026-12-04",
+            "end": "2026-12-06"
           },
           {
             "series": "supercars",

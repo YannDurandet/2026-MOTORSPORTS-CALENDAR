@@ -62,6 +62,10 @@ export type CalendarEvent = {
   support?: SupportRace[];
   legs?: RaceLeg[];
   hasSprint: boolean;
+  /** First and last day of this event's own weekend (ISO dates), when known.
+   *  The week label spans every event in the week, so it can start a day early. */
+  start?: string;
+  end?: string;
 };
 
 // ── Slugs ────────────────────────────────────────────────────────────────────
@@ -103,7 +107,9 @@ for (const month of calendarData as any[]) {
       if (!ev.track || ev.track === 'tbc.svg' || ev.track === 'tbd.svg') continue;
       raw.push({
         year,
-        baseSlug: slugify(`${ev.series}-${ev.title}`),
+        // `slug` pins the URL when a title changes after the page was indexed
+        // (e.g. "Bahrain GP" → "Bahrain GP in Malaysia (Sepang)").
+        baseSlug: ev.slug ?? slugify(`${ev.series}-${ev.title}`),
         series: ev.series,
         tag: ev.tag,
         title: ev.title,
@@ -117,6 +123,8 @@ for (const month of calendarData as any[]) {
         support: ev.sub,
         legs: ev.races,
         hasSprint: ev.sprint === true,
+        start: ev.start,
+        end: ev.end,
       });
     }
   }
@@ -179,4 +187,16 @@ export function plainTime(time: string): string {
 export function weekRange(label: string): string {
   const m = label.match(/•\s*(.+)$/);
   return m ? m[1].trim() : label;
+}
+
+/** The event's own date range, e.g. "OCT 09-11" or "OCT 30 - NOV 01".
+ *  Falls back to the week label when the event has no start/end. */
+export function eventRange(ev: Pick<CalendarEvent, 'weekLabel' | 'start' | 'end'>): string {
+  if (!ev.start || !ev.end) return weekRange(ev.weekLabel);
+  const [, sm, sd] = ev.start.split('-').map(Number);
+  const [, em, ed] = ev.end.split('-').map(Number);
+  const mon = (m: number) => MONTH_ABBR[m - 1].toUpperCase();
+  const dd = (d: number) => String(d).padStart(2, '0');
+  if (ev.start === ev.end) return `${mon(sm)} ${dd(sd)}`;
+  return sm === em ? `${mon(sm)} ${dd(sd)}-${dd(ed)}` : `${mon(sm)} ${dd(sd)} - ${mon(em)} ${dd(ed)}`;
 }

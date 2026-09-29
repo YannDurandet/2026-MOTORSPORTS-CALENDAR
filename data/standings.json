@@ -2,8 +2,8 @@
   "f1": {
     "drivers": {
       "label": "Drivers Championship",
-      "updatedAt": "2026-09-15",
-      "roundsComplete": 14,
+      "updatedAt": "2026-09-27",
+      "roundsComplete": 15,
       "totalRounds": 23,
       "entries": [
         {
@@ -11,21 +11,21 @@
           "name": "Kimi Antonelli",
           "country": "IT",
           "team": "Mercedes",
-          "points": 292
+          "points": 302
         },
         {
           "pos": 2,
           "name": "George Russell",
           "country": "GB",
           "team": "Mercedes",
-          "points": 211
+          "points": 236
         },
         {
           "pos": 3,
           "name": "Lewis Hamilton",
           "country": "GB",
           "team": "Ferrari",
-          "points": 191
+          "points": 199
         },
         {
           "pos": 4,
@@ -39,14 +39,14 @@
           "name": "Charles Leclerc",
           "country": "MC",
           "team": "Ferrari",
-          "points": 167
+          "points": 179
         },
         {
           "pos": 6,
           "name": "Max Verstappen",
           "country": "NL",
           "team": "RedBull Racing",
-          "points": 145
+          "points": 163
         },
         {
           "pos": 7,
@@ -60,13 +60,13 @@
           "name": "Isack Hadjar",
           "country": "FR",
           "team": "RedBull Racing",
-          "points": 71
+          "points": 86
         },
         {
           "pos": 9,
           "name": "Liam Lawson",
           "country": "NZ",
-          "team": "RedBull Racing",
+          "team": "Racing Bulls",
           "points": 59
         },
         {
@@ -81,7 +81,7 @@
           "name": "Arvid Lindblad",
           "country": "GB",
           "team": "Racing Bulls",
-          "points": 31
+          "points": 37
         },
         {
           "pos": 12,
@@ -95,7 +95,7 @@
           "name": "Oliver Bearman",
           "country": "GB",
           "team": "Haas",
-          "points": 18
+          "points": 20
         },
         {
           "pos": 14,
@@ -113,24 +113,24 @@
         },
         {
           "pos": 16,
-          "name": "Carlos Sainz",
-          "country": "ES",
-          "team": "Williams",
-          "points": 6
+          "name": "Esteban Ocon",
+          "country": "FR",
+          "team": "Haas",
+          "points": 7
         },
         {
           "pos": 17,
+          "name": "Carlos Sainz",
+          "country": "ES",
+          "team": "Williams",
+          "points": 7
+        },
+        {
+          "pos": 18,
           "name": "Alexander Albon",
           "country": "TH",
           "team": "Williams",
           "points": 5
-        },
-        {
-          "pos": 18,
-          "name": "Esteban Ocon",
-          "country": "FR",
-          "team": "Haas",
-          "points": 3
         },
         {
           "pos": 19,
@@ -171,19 +171,19 @@
     },
     "constructors": {
       "label": "Constructors Championship",
-      "updatedAt": "2026-09-15",
-      "roundsComplete": 14,
+      "updatedAt": "2026-09-27",
+      "roundsComplete": 15,
       "totalRounds": 23,
       "entries": [
         {
           "pos": 1,
           "name": "Mercedes",
-          "points": 503
+          "points": 538
         },
         {
           "pos": 2,
           "name": "Ferrari",
-          "points": 358
+          "points": 378
         },
         {
           "pos": 3,
@@ -193,12 +193,12 @@
         {
           "pos": 4,
           "name": "RedBull Racing",
-          "points": 230
+          "points": 263
         },
         {
           "pos": 5,
           "name": "Racing Bulls",
-          "points": 77
+          "points": 83
         },
         {
           "pos": 6,
@@ -208,7 +208,7 @@
         {
           "pos": 7,
           "name": "Haas",
-          "points": 21
+          "points": 27
         },
         {
           "pos": 8,
@@ -218,7 +218,7 @@
         {
           "pos": 9,
           "name": "Williams",
-          "points": 11
+          "points": 12
         },
         {
           "pos": 10,
