@@ -673,66 +673,6 @@ function convertPreRenderedTimes() {
 }
 
 // =============================================
-// SEO: INJECT JSON-LD EVENT SCHEMA
-// =============================================
-function injectSchema() {
-    const now = Date.now();
-    let upcomingEvents = [];
-    for (const [series, list] of Object.entries(seriesData)) {
-        const meta = seriesMetadata[series];
-        if (!meta) continue; // series.json can carry keys the UI doesn't know yet
-        const nextRace = list.find(r => r._ts > now);
-        if (nextRace) {
-            const seriesUrl = `https://dord.racing/series/${series}`;
-            upcomingEvents.push({
-                "@type": "SportsEvent",
-                "name": `${meta.name} - ${nextRace.name}`,
-                "startDate": nextRace.date,
-                "endDate": nextRace.date,
-                "url": seriesUrl,
-                "sport": "Motorsport",
-                "eventStatus": "https://schema.org/EventScheduled",
-                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                "description": `2026 ${meta.name} round — ${nextRace.name}. Full schedule, session times and live countdowns on dord.racing.`,
-                "image": "https://dord.racing/assets/og/og-home.webp",
-                "organizer": {
-                    "@type": "SportsOrganization",
-                    "name": meta.name,
-                    "url": seriesUrl
-                },
-                "performer": {
-                    "@type": "SportsOrganization",
-                    "name": meta.name,
-                    "url": seriesUrl
-                },
-                "offers": {
-                    "@type": "Offer",
-                    "url": seriesUrl,
-                    "availability": "https://schema.org/InStock",
-                    "price": "0",
-                    "priceCurrency": "EUR",
-                    "validFrom": "2026-01-01"
-                },
-                "location": {
-                    "@type": "Place",
-                    "name": nextRace.name,
-                    "address": {
-                        "@type": "PostalAddress",
-                        "addressLocality": nextRace.name
-                    }
-                }
-            });
-        }
-    }
-    if (upcomingEvents.length > 0) {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.text = JSON.stringify({ "@context": "https://schema.org", "@graph": upcomingEvents });
-        document.head.appendChild(script);
-    }
-}
-
-// =============================================
 // CALENDAR EVENT ROWS — expand/collapse, week focus switch, live state
 // =============================================
 // One row per week card is "focused" (expanded) at a time. The ▲/▼ focus
@@ -832,7 +772,6 @@ function initEventRows() {
     setup2027Toggle();
     initEventRows();
     setupIcalModal();
-    injectSchema();
 
     // Update timezone notice
     const tzNotice = document.querySelector('.meta');
