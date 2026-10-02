@@ -669,7 +669,7 @@
             "track": "darlington-oval.svg",
             "results": [
               {
-                "date": "2026-03-22",
+                "date": "2026-05-10",
                 "winner": "Tyler Reddick",
                 "team": "23XI Racing",
                 "country": "US"
@@ -4693,6 +4693,15 @@
                 "detail": "ALL STAGES"
               }
             ],
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winner": "Oliver Solberg",
+                "co_driver": "Elliott Edmondson",
+                "manufacturer": "Toyota",
+                "country": "SE"
+              }
+            ],
             "date": "2026-09-13T14:00:00+02:00",
             "shortName": "CHILE"
           },
@@ -4733,6 +4742,14 @@
             "title": "San Marino Grand Prix (Misano)",
             "time": "RACE: <span class=\"hl\">14:00</span>",
             "track": "misano.svg",
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winner": "Marc Márquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ],
             "date": "2026-09-13T14:00:00+02:00",
             "shortName": "SAN MARINO (MISANO)"
           },
@@ -4742,6 +4759,22 @@
             "title": "Sachsenring Round",
             "time": "R1: <span class=\"hl\">11:30</span> • R2: <span class=\"hl\">11:30</span>",
             "track": "sachsenring.svg",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-09-12",
+                "winner": "Marco Wittmann",
+                "team": "Schubert Motorsport",
+                "country": "DE"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-09-13",
+                "winner": "Ben Dörr",
+                "team": "Dörr Motorsport",
+                "country": "DE"
+              }
+            ],
             "date": "2026-09-13T14:00:00+02:00",
             "shortName": "SACHSENRING"
           },
@@ -4841,6 +4874,20 @@
             "title": "Rd 6: Portugal (Lousada)",
             "time": "SAT–SUN: <span class=\"hl\">13:00</span>",
             "track": "lousada.svg",
+            "results": [
+              {
+                "race_label": "Rd 6 Final",
+                "date": "2026-09-12",
+                "winner": "Johan Kristoffersson",
+                "country": "SE"
+              },
+              {
+                "race_label": "Rd 7 Final",
+                "date": "2026-09-13",
+                "winner": "Johan Kristoffersson",
+                "country": "SE"
+              }
+            ],
             "date": "2026-09-13T14:00:00+02:00",
             "shortName": "PORTUGAL (LOUSADA)"
           },
@@ -4850,6 +4897,14 @@
             "title": "Enjoy Illinois 300 — Playoff",
             "time": "RACE: <span class=\"hl\">23:00</span>",
             "track": "gateway.svg",
+            "results": [
+              {
+                "date": "2026-09-13",
+                "winner": "Kyle Larson",
+                "team": "Hendrick Motorsports",
+                "country": "US"
+              }
+            ],
             "date": "2026-09-13T23:00:00+01:00",
             "shortName": "GATEWAY"
           }
@@ -4864,6 +4919,14 @@
             "title": "Austrian Grand Prix",
             "time": "RACE: <span class=\"hl\">14:00</span>",
             "track": "red-bull-ring-motogp.svg",
+            "results": [
+              {
+                "date": "2026-09-20",
+                "winner": "Pedro Acosta",
+                "team": "Red Bull KTM Factory Racing",
+                "country": "ES"
+              }
+            ],
             "date": "2026-09-20T14:00:00+02:00",
             "shortName": "AUSTRIA"
           },
@@ -4873,6 +4936,28 @@
             "title": "Zandvoort Sprint",
             "time": "R1: <span class=\"hl\">09:15</span> • R2: <span class=\"hl\">13:45</span>",
             "track": "zandvoort.svg",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-09-19",
+                "winners": [
+                  "Thomas Fleming",
+                  "Louis Prette"
+                ],
+                "team": "Garage 59",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-09-20",
+                "winners": [
+                  "Thierry Vermeulen",
+                  "Ben Green"
+                ],
+                "team": "Emil Frey Racing",
+                "country": "NL"
+              }
+            ],
             "date": "2026-09-20T14:00:00+02:00",
             "shortName": "ZANDVOORT"
           },
@@ -4882,6 +4967,17 @@
             "title": "Battle on the Bricks (Indy)",
             "time": "RACE: <span class=\"hl\">21:00</span>",
             "track": "indianapolis.svg",
+            "results": [
+              {
+                "date": "2026-09-20",
+                "winners": [
+                  "Dries Vanthoor",
+                  "Sheldon van der Linde"
+                ],
+                "team": "BMW M Team WRT",
+                "country": "BE"
+              }
+            ],
             "date": "2026-09-20T18:00:00+02:00",
             "shortName": "INDIANAPOLIS"
           },
@@ -4891,6 +4987,19 @@
             "title": "Barcelona 24H",
             "time": "RACE: <span class=\"hl\">14:00</span>",
             "track": "barcelona.svg",
+            "results": [
+              {
+                "date": "2026-09-19",
+                "winners": [
+                  "Tim Heinemann",
+                  "Oleksiy Kikireshko",
+                  "Fabio Grosse",
+                  "Alfred Renauer"
+                ],
+                "team": "Up2Race",
+                "country": "DE"
+              }
+            ],
             "date": "2026-09-19T14:00:00+02:00",
             "shortName": "BARCELONA"
           },
@@ -4900,6 +5009,14 @@
             "title": "Bass Pro Shops Night Race — Playoff",
             "time": "RACE: <span class=\"hl\">01:30</span>",
             "track": "bristol.svg",
+            "results": [
+              {
+                "date": "2026-09-19",
+                "winner": "Joey Logano",
+                "team": "Team Penske",
+                "country": "US"
+              }
+            ],
             "date": "2026-09-20T01:30:00+01:00",
             "shortName": "BRISTOL NIGHT"
           }
@@ -4967,6 +5084,18 @@
             "title": "6 Hours of Fuji",
             "time": "RACE: <span class=\"hl\">02:00</span>",
             "track": "fuji.svg",
+            "results": [
+              {
+                "date": "2026-09-27",
+                "winners": [
+                  "Sébastien Buemi",
+                  "Brendon Hartley",
+                  "Ryo Hirakawa"
+                ],
+                "team": "Toyota Racing",
+                "country": "JP"
+              }
+            ],
             "date": "2026-09-27T04:00:00+02:00",
             "shortName": "FUJI 6H"
           },
@@ -4976,6 +5105,17 @@
             "title": "Rd 8: Brands Hatch",
             "time": "2h RACE: <span class=\"hl\">11:00</span>",
             "track": "brands-hatch-gp.svg",
+            "results": [
+              {
+                "date": "2026-09-27",
+                "winners": [
+                  "Simon Orange",
+                  "Marcus Clutton"
+                ],
+                "team": "Orange Racing powered by JMH",
+                "country": "GB"
+              }
+            ],
             "date": "2026-09-27T13:00:00+02:00",
             "shortName": "BRANDS HATCH"
           },
@@ -5569,6 +5709,22 @@
             "title": "Jeddah E-Prix",
             "time": "R1 & R2: <span class=\"hl\">18:00</span>",
             "track": "jeddah-fe.svg",
+            "results": [
+              {
+                "date": "2026-02-14",
+                "race_label": "Race 1",
+                "winner": "Pascal Wehrlein",
+                "team": "Porsche Formula E Team",
+                "country": "DE"
+              },
+              {
+                "date": "2026-02-15",
+                "race_label": "Race 2",
+                "winner": "António Félix da Costa",
+                "team": "Jaguar TCS Racing",
+                "country": "PT"
+              }
+            ],
             "date": "2026-12-18T20:00:00+03:00",
             "shortName": "JEDDAH"
           }
