@@ -31,6 +31,7 @@ import seriesContentData from '../../../data/seriesContent.json';
 import { showOnTrackPages } from '../../lib/season';
 import { findEvent } from '../../lib/events';
 import { fitTitle } from '../../lib/seo';
+import { ogPath } from '../../lib/ogPaths';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Logistics = {
@@ -177,7 +178,7 @@ const eventListSchema = (() => {
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={`https://dord.racing/tracks/${slug}`}
-  ogImage="https://dord.racing/assets/og/og-tracks.webp"
+  ogImage={ogPath(`tracks/${slug}`)}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({

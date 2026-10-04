@@ -10,7 +10,7 @@
  * Install: registers in BaseLayout.astro (skipped on localhost unless ?sw=1 is set).
  */
 
-const VERSION  = 'v4';
+const VERSION  = 'v5';
 const CACHE    = `dord-${VERSION}`;
 
 // Assets to precache on install (shell only — pages served SW-free initially)

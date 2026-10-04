@@ -145,6 +145,10 @@ Search index is built at `/data/search.json` from tracks + series. It is fetched
 ## Affiliate links
 `src/lib/affiliates.ts` holds the Awin merchant IDs and `buildAwinLink()`. All outbound partner links go through it, so the `PUBLIC_AFFILIATE_LINKS_ENABLED` kill switch and the `clickref` convention hold everywhere. Default is off: links render as plain untracked URLs. Read `agent-tasks/affiliate-links-instructions.md` before touching any of this.
 
+## Share images & icons
+- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~35 s, ~560 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
+- **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
+
 ## French section (`/fr`)
 `src/pages/fr/`: `/fr` (landing), `/fr/calendrier-{f1|motogp}-{2026|2027}`, `/fr/programme-tv-f1`. Helpers, GP names and the EN ↔ FR page map live in `src/lib/fr.ts`; French season notes are the `*_fr` fields in `data/seasons.json`. `BaseLayout` takes `lang` and `alternates` (hreflang; the English URL doubles as x-default). Pair a new French page with its English one in `FR_SEASON_PAGES` so both sides get hreflang and the "Version française" link. Nav and footer stay English.
 
@@ -173,7 +177,7 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run check:tokens` | Just the token check: no colour/font/size/radius literals in site CSS |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
 | `npm run gen:pitwall` | Regenerate `data/pitwall.json` archive snapshot |
-| `npm run gen:icons` | Rebuild PWA icons from `website-icon.svg` (needs `sharp`) |
+| `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
 | `npm run results` | Interactive results injector for `calendar.json` |
 | `npm run results:gaps` | List past events still missing results |

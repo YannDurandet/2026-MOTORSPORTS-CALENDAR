@@ -27,6 +27,7 @@ import { venueTimeZone, formatIn, zoneAbbr } from '../../../lib/timezones';
 import { ticketLinks } from '../../../lib/tickets';
 import { countryName } from '../../../lib/results';
 import { venueFor } from '../../../lib/venues';
+import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
 import { seriesShort } from '../../../lib/seriesShort';
 
@@ -192,7 +193,7 @@ const eventSchema = {
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "description": pageDescription,
-  "image": "https://dord.racing/assets/og/og-tracks.webp",
+  "image": ogPath(`events/${ev.year}/${ev.slug}`),
   "organizer": {
     "@type": "SportsOrganization",
     "name": seriesName,
@@ -237,7 +238,7 @@ const breadcrumb = {
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={canonical}
-  ogImage="https://dord.racing/assets/og/og-tracks.webp"
+  ogImage={ogPath(`events/${ev.year}/${ev.slug}`)}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />

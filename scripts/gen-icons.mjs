@@ -1,56 +1,33 @@
 #!/usr/bin/env node
 /**
- * gen-icons.mjs — Regenerate PWA icons from public/assets/website-icon.svg
+ * gen-icons.mjs — Regenerate favicons and PWA icons from src/assets/dord-mark.png
+ * (the square DORD mark, white on brand blue, 900×900).
  *
- * Requires: npm install sharp  (not in devDependencies by default — run once)
+ * The mark already sits inside an ~80% safe zone, so the same artwork serves
+ * as the maskable icon.
  *
  * Outputs to public/assets/:
- *   icon-192.png          — standard PWA icon
- *   icon-512.png          — large PWA icon
- *   icon-512-maskable.png — maskable icon (safe area: 80% of canvas)
- *   apple-touch-icon.png  — iOS 180×180
+ *   favicon-32.png, favicon-48.png — browser tabs
+ *   apple-touch-icon.png           — iOS 180×180
+ *   icon-192.png, icon-512.png     — PWA
+ *   icon-512-maskable.png          — PWA maskable
  *
- * Usage: node scripts/gen-icons.mjs
+ * Usage: npm run gen:icons
  */
-
-import { readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root   = resolve(__dirname, '..');
-const outDir = resolve(root, 'public/assets');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const src = resolve(root, 'src/assets/dord-mark.png');
+const out = (f) => resolve(root, 'public/assets', f);
 
-let sharp;
-try {
-  sharp = (await import('sharp')).default;
-} catch {
-  console.error('sharp is not installed. Run: npm install sharp');
-  process.exit(1);
-}
-
-// Wrap the SVG in a coloured background and add safe-zone padding for maskable
-function makeSvg(size, paddingPct = 0.1) {
-  const pad = Math.round(size * paddingPct);
-  const inner = size - pad * 2;
-  return `<svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
-  <rect width="${size}" height="${size}" fill="#0b0f12"/>
-  <svg x="${pad}" y="${pad}" width="${inner}" height="${inner}" viewBox="0 0 24 24" fill="none">
-    <path d="M21 12C21 16.9706 16.9706 21 12 21M21 12C21 7.02944 16.9706 3 12 3M21 12H3M12 21C7.02944 21 3 16.9706 3 12M12 21C14.2512 18.5355 15.5305 15.3372 15.6 12C15.5305 8.66283 14.2512 5.46452 12 3M12 21C9.74885 18.5355 8.46952 15.3372 8.4 12C8.46952 8.66283 9.74885 5.46452 12 3M3 12C3 7.02944 7.02944 3 12 3"
-      stroke="#4a7090" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</svg>`;
-}
-
-const configs = [
-  { name: 'icon-192.png',          size: 192, pad: 0.10 },
-  { name: 'icon-512.png',          size: 512, pad: 0.10 },
-  { name: 'icon-512-maskable.png', size: 512, pad: 0.20 },
-  { name: 'apple-touch-icon.png',  size: 180, pad: 0.10 },
+const sizes = [
+  ['favicon-32.png', 32], ['favicon-48.png', 48], ['apple-touch-icon.png', 180],
+  ['icon-192.png', 192], ['icon-512.png', 512], ['icon-512-maskable.png', 512],
 ];
-
-for (const { name, size, pad } of configs) {
-  const svg = Buffer.from(makeSvg(size, pad));
-  await sharp(svg).png().toFile(resolve(outDir, name));
-  console.log(`✓ ${name}`);
+for (const [file, size] of sizes) {
+  await sharp(src).resize(size, size, { kernel: 'lanczos3' }).flatten({ background: '#143374' })
+    .png({ compressionLevel: 9, palette: size <= 48 }).toFile(out(file));
+  console.log(`✓ ${file} (${size}×${size})`);
 }

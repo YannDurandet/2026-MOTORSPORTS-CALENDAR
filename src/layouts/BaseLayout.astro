@@ -31,7 +31,8 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <link rel="canonical" href={resolvedCanonical} />
   {alternates.map(a => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
   {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
-  <link rel="icon" href={`${base}/assets/website-icon.svg`} type="image/svg+xml">
+  <link rel="icon" href={`${base}/assets/favicon-32.png`} type="image/png" sizes="32x32">
+  <link rel="icon" href={`${base}/assets/favicon-48.png`} type="image/png" sizes="48x48">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <!-- Preload critical fonts to prevent layout shifts (CLS) -->

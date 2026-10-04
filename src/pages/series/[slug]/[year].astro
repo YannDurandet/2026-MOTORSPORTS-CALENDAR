@@ -19,7 +19,7 @@ import seasons from '../../../../data/seasons.json';
 import { ALL_EVENTS, eventsForSeries, eventRange } from '../../../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
 import { seriesShort } from '../../../lib/seriesShort';
-import { seriesOgImage } from '../../../lib/seriesImages';
+import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
 import { alternatesFor, frPathFor } from '../../../lib/fr';
 
@@ -85,7 +85,7 @@ const itemList = {
   description={pageDescription}
   canonicalUrl={canonical}
   alternates={frPath ? alternatesFor(`/series/${slug}/${year}`, frPath) : []}
-  ogImage={seriesOgImage(slug)}
+  ogImage={ogPath(`series/${slug}/${year}`)}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />

@@ -8,11 +8,11 @@ import RoundsList from '../../components/RoundsList.astro';
 
 import seriesContent from '../../../data/seriesContent.json';
 import standingsData from '../../../data/standings.json';
-import { seriesOgImage } from '../../lib/seriesImages';
 import { flagSrc, countryName } from '../../lib/results';
 import { eventsForSeries } from '../../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
 import { seriesShort } from '../../lib/seriesShort';
+import { ogPath } from '../../lib/ogPaths';
 import { alternatesFor, frPathFor } from '../../lib/fr';
 
 export function getStaticPaths() {
@@ -28,8 +28,6 @@ const short = seriesShort(slug!, series.name);
 const rounds = eventsForSeries(slug!, year);
 const nextYearRounds = eventsForSeries(slug!, year + 1);
 const hasStandings = !!(standingsData as any)[slug!];
-
-const ogImage = seriesOgImage(slug);
 
 const sportsOrgSchema = {
   "@context": "https://schema.org",
@@ -89,7 +87,7 @@ const frPath = frPathFor(`/series/${slug}`);
   description={pageDescription}
   canonicalUrl={`https://dord.racing/series/${slug}`}
   alternates={frPath ? alternatesFor(`/series/${slug}`, frPath) : []}
-  ogImage={ogImage}
+  ogImage={ogPath(`series/${slug}`)}
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(sportsOrgSchema)} />

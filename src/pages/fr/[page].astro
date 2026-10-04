@@ -16,7 +16,8 @@ import { eventsForSeries } from '../../lib/events';
 import { parseSessions, mainRaceTime } from '../../lib/sessions';
 import { venueFor } from '../../lib/venues';
 import { fitTitle } from '../../lib/seo';
-import { seriesOgImage } from '../../lib/seriesImages';
+import { ogPath } from '../../lib/ogPaths';
+import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
 import { FR_SEASON_PAGES, alternatesFor, gpNameFr, rangeFr, longDayFr, heureFr } from '../../lib/fr';
 
 export function getStaticPaths() {
@@ -85,7 +86,7 @@ const otherYear = FR_SEASON_PAGES.find(o => o.series === p.series && o.year !== 
   title={title}
   description={description}
   canonicalUrl={canonical}
-  ogImage={seriesOgImage(p.series)}
+  ogImage={ogPath(p.year === DEFAULT_CALENDAR_YEAR ? `series/${p.series}` : `series/${p.series}/${p.year}`)}
   lang="fr"
   alternates={alternatesFor(p.en, pagePath)}
 >

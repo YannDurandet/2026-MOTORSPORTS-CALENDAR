@@ -1,12 +1,14 @@
 import { defineConfig } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import sitemap from '@astrojs/sitemap';
+import ogImages from './src/integrations/og.ts';
 
 export default defineConfig({
   site: 'https://dord.racing',
   base: '/',
   adapter: cloudflare(),
   integrations: [
+    ogImages(),
     sitemap({
       // Keep noindex and redirect-only routes out of the sitemap. Submitting a
       // URL while also serving it `noindex` is a contradiction Google resolves
