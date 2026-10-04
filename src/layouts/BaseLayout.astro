@@ -229,7 +229,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       overflow: hidden;
       position: relative;
       z-index: 1;
-      width: min(660px, calc(100vw - 32px));
+      width: min(660px, calc(100% - 32px));
       background: var(--surface-sunken);
       border: 1px solid var(--line-subtle-4);
       box-shadow: var(--shadow-modal);
@@ -397,7 +397,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       gap: 12px;
       padding: 14px 18px;
       width: max-content;
-      max-width: min(480px, calc(100vw - 32px));
+      max-width: min(480px, calc(100% - 64px));
       background: var(--surface-popover);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -406,6 +406,11 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       box-shadow: var(--shadow-popover);
     }
     .cookie-banner[hidden] { display: none; }
+    /* Phones: pin to both edges rather than sizing from 100vw, which
+       in-app browsers can measure wider than the visible screen. */
+    @media (max-width: 560px) {
+      .cookie-banner { left: 12px; right: 12px; bottom: 96px; width: auto; max-width: none; }
+    }
 
     .cookie-banner-text {
       font-family: var(--font-mono);

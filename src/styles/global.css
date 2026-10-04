@@ -12,14 +12,22 @@
     outline-offset: 2px;
 }
 
+/* In-app browsers (X, Instagram) are WebKit/WebView shells: stop them
+   auto-inflating text, and clip anything wider than the screen. `clip` on
+   both elements never creates a scroll container, so the sticky nav keeps
+   working; iOS webviews ignore `overflow-x: hidden` on body alone. */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: clip;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text-main);
     font-family: var(--font-body);
     margin: 0;
-    /* Reduced padding for mobile */
-    overflow-x: hidden;
-    /* Prevent horizontal scroll */
+    overflow-x: clip;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -93,6 +101,7 @@ header {
     height: auto;
     width: fit-content;
     max-width: 100%;
+    min-width: 0;
     padding: 28px 15px 8px;
 }
 
@@ -142,6 +151,7 @@ h1,
 h2 {
     font-family: var(--font-title);
     font-size: var(--fs-3xl-2);
+    overflow-wrap: break-word;
     font-weight: 900;
     font-style: italic;
     text-transform: uppercase;
@@ -162,6 +172,11 @@ h2 {
     text-transform: uppercase;
     margin-bottom: 8px;
 }
+
+/* Page titles have long single words ("MOTORSPORT") that can't wrap. Cap
+   the size to the screen width so they fit even when a webview enlarges
+   text; vw is unaffected by text zoom. */
+h1 { font-size: min(var(--fs-3xl-2), 8.6vw); }
 
 /* Only page titles are italic. h2s are section headings, mostly in the mono
    face, which has no italic cut. */
@@ -262,7 +277,9 @@ h2 {
 /* CALENDAR GRID (MOBILE: 1 Column) */
 .cal-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    /* minmax(0, …): a plain 1fr grows to the card's widest unbreakable
+       content (a long week label) and pushes past the screen on phones. */
+    grid-template-columns: minmax(0, 1fr);
     /* Full width on mobile */
     gap: 15px;
 }
@@ -2372,7 +2389,7 @@ a {
     border: 1px solid var(--overlay-soft-5);
     border-radius: var(--radius-xl);
     padding: 24px;
-    width: min(560px, calc(100vw - 32px));
+    width: min(560px, calc(100% - 32px));
     max-height: 90vh;
     overflow-y: auto;
     z-index: 1;

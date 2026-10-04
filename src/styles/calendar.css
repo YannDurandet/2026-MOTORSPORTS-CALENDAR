@@ -29,6 +29,7 @@
     border-bottom: 1px solid var(--wk-line);
 }
 .cal-v2 .c-head {
+    min-width: 0;
     background: none;
     border: 0;
     padding: 0;
