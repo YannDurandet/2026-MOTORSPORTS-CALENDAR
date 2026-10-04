@@ -38,5 +38,28 @@
       ],
       "status_fr": "Calendrier provisoire, sous réserve de validation par la FIM. Horaires à confirmer."
     }
+  },
+  "wsbk": {
+    "2027": {
+      "summary": "WorldSBK's provisional 2027 calendar has 12 rounds across nine countries, from Phillip Island on 19–21 February to a first-ever round in China, at Shanghai, on 29–31 October.",
+      "changes": [
+        "Shanghai International Circuit joins the calendar and hosts the season finale.",
+        "Valencia (Circuit Ricardo Tormo) returns for the first time since 2010.",
+        "Jerez and Balaton Park are not on the 2027 calendar.",
+        "It is the last WorldSBK visit to Phillip Island: the Australian round moves to The Bend in 2028."
+      ],
+      "status": "Provisional calendar, subject to FIM approval. Session times are TBC."
+    }
+  },
+  "nascar": {
+    "2027": {
+      "summary": "The 2027 NASCAR Cup Series has 36 points races plus the All-Star Race, from the Daytona 500 on 21 February to the Championship race at Homestead-Miami on 14 November.",
+      "changes": [
+        "The 26-race regular season ends at Darlington on 5 September; the 10-race playoffs open at Richmond on 11 September.",
+        "Watkins Glen and New Hampshire move into the playoffs; Homestead-Miami hosts the championship finale.",
+        "Naval Base Coronado in San Diego hosts a street race on 1 August, and Texas Motor Speedway returns on 2 May."
+      ],
+      "status": "Dates are confirmed. Race times are published closer to each event."
+    }
   }
 }
