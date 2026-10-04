@@ -2,8 +2,8 @@
   "f1": {
     "drivers": {
       "label": "Drivers Championship",
-      "updatedAt": "2026-09-28",
-      "roundsComplete": 15,
+      "updatedAt": "2026-10-04",
+      "roundsComplete": 16,
       "totalRounds": 23,
       "entries": [
         {
@@ -11,7 +11,7 @@
           "name": "Kimi Antonelli",
           "country": "IT",
           "team": "Mercedes",
-          "points": 302
+          "points": 320
         },
         {
           "pos": 2,
@@ -25,49 +25,49 @@
           "name": "Lewis Hamilton",
           "country": "GB",
           "team": "Ferrari",
-          "points": 199
+          "points": 214
         },
         {
           "pos": 4,
-          "name": "Lando Norris",
-          "country": "GB",
-          "team": "McLaren",
-          "points": 186
-        },
-        {
-          "pos": 5,
           "name": "Charles Leclerc",
           "country": "MC",
           "team": "Ferrari",
-          "points": 179
+          "points": 191
+        },
+        {
+          "pos": 5,
+          "name": "Lando Norris",
+          "country": "GB",
+          "team": "McLaren",
+          "points": 188
         },
         {
           "pos": 6,
           "name": "Max Verstappen",
           "country": "NL",
           "team": "RedBull Racing",
-          "points": 163
+          "points": 188
         },
         {
           "pos": 7,
           "name": "Oscar Piastri",
           "country": "AU",
           "team": "McLaren",
-          "points": 120
+          "points": 128
         },
         {
           "pos": 8,
           "name": "Isack Hadjar",
           "country": "FR",
           "team": "RedBull Racing",
-          "points": 86
+          "points": 96
         },
         {
           "pos": 9,
           "name": "Liam Lawson",
           "country": "NZ",
           "team": "Racing Bulls",
-          "points": 59
+          "points": 65
         },
         {
           "pos": 10,
@@ -81,7 +81,7 @@
           "name": "Arvid Lindblad",
           "country": "GB",
           "team": "Racing Bulls",
-          "points": 37
+          "points": 38
         },
         {
           "pos": 12,
@@ -127,17 +127,17 @@
         },
         {
           "pos": 18,
+          "name": "Fernando Alonso",
+          "country": "ES",
+          "team": "Aston Martin",
+          "points": 7
+        },
+        {
+          "pos": 19,
           "name": "Alexander Albon",
           "country": "TH",
           "team": "Williams",
           "points": 5
-        },
-        {
-          "pos": 19,
-          "name": "Fernando Alonso",
-          "country": "ES",
-          "team": "Aston Martin",
-          "points": 3
         },
         {
           "pos": 20,
@@ -171,34 +171,34 @@
     },
     "constructors": {
       "label": "Constructors Championship",
-      "updatedAt": "2026-09-28",
-      "roundsComplete": 15,
+      "updatedAt": "2026-10-04",
+      "roundsComplete": 16,
       "totalRounds": 23,
       "entries": [
         {
           "pos": 1,
           "name": "Mercedes",
-          "points": 538
+          "points": 556
         },
         {
           "pos": 2,
           "name": "Ferrari",
-          "points": 378
+          "points": 405
         },
         {
           "pos": 3,
           "name": "McLaren",
-          "points": 306
+          "points": 316
         },
         {
           "pos": 4,
           "name": "RedBull Racing",
-          "points": 263
+          "points": 298
         },
         {
           "pos": 5,
           "name": "Racing Bulls",
-          "points": 83
+          "points": 90
         },
         {
           "pos": 6,
@@ -223,7 +223,7 @@
         {
           "pos": 10,
           "name": "Aston Martin",
-          "points": 3
+          "points": 7
         },
         {
           "pos": 11,

@@ -5057,6 +5057,29 @@
             "title": "Cremona Round",
             "time": "R1: <span class=\"hl\">13:30</span> • SPR: <span class=\"hl\">09:00</span> • R2: <span class=\"hl\">13:30</span>",
             "track": "cremona.svg",
+            "results": [
+              {
+                "date": "2026-09-26",
+                "race_label": "Race 1",
+                "winner": "Iker Lecuona",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "ES"
+              },
+              {
+                "date": "2026-09-27",
+                "race_label": "Superpole Race",
+                "winner": "Iker Lecuona",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "ES"
+              },
+              {
+                "date": "2026-09-27",
+                "race_label": "Race 2",
+                "winner": "Iker Lecuona",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "ES"
+              }
+            ],
             "date": "2026-09-27T14:00:00+02:00",
             "shortName": "CREMONA"
           },
@@ -5066,6 +5089,29 @@
             "title": "Silverstone (Races 25-27)",
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
             "track": "silverstone-national.svg",
+            "results": [
+              {
+                "race_label": "Race 25",
+                "date": "2026-09-27",
+                "winner": "Aiden Moffat",
+                "team": "LKQ Euro Car Parts with Power Maxed Racing",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 26",
+                "date": "2026-09-27",
+                "winner": "Ashley Sutton",
+                "team": "NAPA Racing UK",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 27",
+                "date": "2026-09-27",
+                "winner": "Tom Ingram",
+                "team": "Team VERTU",
+                "country": "GB"
+              }
+            ],
             "date": "2026-09-27T14:00:00+02:00",
             "shortName": "SILVERSTONE"
           },
@@ -5075,6 +5121,16 @@
             "title": "Barber Round",
             "time": "RACE: <span class=\"hl\">17:30</span>",
             "track": "barber.svg",
+            "results": [
+              {
+                "date": "2026-09-27",
+                "winners": [
+                  "Manny Perez Companc",
+                  "Frederik Schandorff"
+                ],
+                "team": "AF Corse USA"
+              }
+            ],
             "date": "2026-09-27T19:00:00+02:00",
             "shortName": "BARBER"
           },
@@ -5125,6 +5181,14 @@
             "title": "Hollywood Casino 400 — Playoff",
             "time": "RACE: <span class=\"hl\">19:00</span>",
             "track": "kansas.svg",
+            "results": [
+              {
+                "date": "2026-09-27",
+                "winner": "Kyle Larson",
+                "team": "Hendrick Motorsports",
+                "country": "US"
+              }
+            ],
             "date": "2026-09-27T21:00:00+01:00",
             "shortName": "KANSAS"
           }
@@ -5144,6 +5208,14 @@
             "title": "Bahrain GP in Malaysia (Sepang)",
             "time": "QUALI: <span class=\"hl\">11:00</span> • RACE: <span class=\"hl\">09:00</span>",
             "track": "sepang.svg",
+            "results": [
+              {
+                "date": "2026-10-04",
+                "winner": "Max Verstappen",
+                "team": "Red Bull Racing",
+                "country": "NL"
+              }
+            ],
             "date": "2026-10-04T09:00:00+02:00",
             "shortName": "BAHRAIN GP · SEPANG, MALAYSIA",
             "slug": "f1-bahrain-gp",
@@ -5172,6 +5244,22 @@
             "title": "Japanese Grand Prix (Motegi)",
             "time": "RACE: <span class=\"hl\">07:00</span>",
             "track": "motegi.svg",
+            "results": [
+              {
+                "date": "2026-10-03",
+                "race_label": "Sprint",
+                "winner": "Marc Marquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              },
+              {
+                "date": "2026-10-04",
+                "race_label": "Race",
+                "winner": "Marc Marquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ],
             "date": "2026-10-04T07:00:00+02:00",
             "shortName": "JAPAN (MOTEGI)"
           },
@@ -5190,6 +5278,28 @@
             "title": "South Korea Round",
             "time": "R1: <span class=\"hl\">04:15</span> • R2: <span class=\"hl\">08:00</span>",
             "track": "inje.svg",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-03",
+                "winner": "Mikel Azcona",
+                "team": "BRC Hyundai N Squadra Corse",
+                "country": "ES"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-04",
+                "winner": "Viktor Andersson",
+                "country": "SE"
+              },
+              {
+                "race_label": "Race 3",
+                "date": "2026-10-04",
+                "winner": "Mikel Azcona",
+                "team": "BRC Hyundai N Squadra Corse",
+                "country": "ES"
+              }
+            ],
             "date": "2026-10-04T07:00:00+02:00",
             "shortName": "SOUTH KOREA"
           },
@@ -5199,6 +5309,18 @@
             "title": "Petit Le Mans",
             "time": "RACE: <span class=\"hl\">18:00</span>",
             "track": "road-atlanta.svg",
+            "results": [
+              {
+                "date": "2026-10-03",
+                "winners": [
+                  "Laurens Vanthoor",
+                  "Kevin Estre",
+                  "Matt Campbell"
+                ],
+                "team": "Porsche Penske Motorsport",
+                "country": "DE"
+              }
+            ],
             "date": "2026-10-03T17:40:00+02:00",
             "shortName": "PETIT LE MANS"
           },
@@ -5386,7 +5508,7 @@
             "series": "f1",
             "tag": "FORMULA 1",
             "title": "United States GP (Austin)",
-            "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
+            "time": "QUALI: <span class=\"hl\">23:00</span> • RACE: <span class=\"hl\">21:00</span>",
             "track": "cota-f1.svg",
             "date": "2026-10-25T21:00:00+01:00",
             "shortName": "USA (AUSTIN)",
@@ -5456,7 +5578,7 @@
             "series": "f1",
             "tag": "FORMULA 1",
             "title": "Mexico City GP",
-            "time": "QUALI: <span class=\"hl\">21:00</span> • RACE: <span class=\"hl\">21:00</span>",
+            "time": "QUALI: <span class=\"hl\">22:00</span> • RACE: <span class=\"hl\">21:00</span>",
             "track": "mexico.svg",
             "date": "2026-11-01T21:00:00+01:00",
             "shortName": "MEXICO CITY",
@@ -5577,7 +5699,7 @@
             "series": "f1",
             "tag": "FORMULA 1",
             "title": "Las Vegas GP",
-            "time": "QUALI: <span class=\"hl\">07:00</span> • RACE: <span class=\"hl\">05:00</span>",
+            "time": "QUALI: <span class=\"hl\">05:00</span> • RACE: <span class=\"hl\">05:00</span>",
             "track": "las-vegas-strip.svg",
             "date": "2026-11-22T05:00:00+01:00",
             "shortName": "LAS VEGAS",
@@ -5629,7 +5751,7 @@
             "series": "f1",
             "tag": "FORMULA 1",
             "title": "Qatar GP",
-            "time": "QUALI: <span class=\"hl\">17:00</span> • RACE: <span class=\"hl\">17:00</span>",
+            "time": "QUALI: <span class=\"hl\">19:00</span> • RACE: <span class=\"hl\">17:00</span>",
             "track": "lusail.svg",
             "sub": [
               {
@@ -5666,7 +5788,7 @@
             "series": "f1",
             "tag": "FORMULA 1",
             "title": "Abu Dhabi GP",
-            "time": "QUALI: <span class=\"hl\">14:00</span> • RACE: <span class=\"hl\">14:00</span>",
+            "time": "QUALI: <span class=\"hl\">15:00</span> • RACE: <span class=\"hl\">14:00</span>",
             "track": "yas-marina.svg",
             "sub": [
               {
