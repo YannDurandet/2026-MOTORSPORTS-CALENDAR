@@ -3,6 +3,8 @@
 # search engines to keep the slashed URL indexed. These rules come first
 # and answer with a 301 instead. Most specific first; first match wins.
 /events/ /events/2026 301
+# /embed/all used to link here; Google has it on file.
+/series/all / 301
 /:a/:b/:c/ /:a/:b/:c 301
 /:a/:b/ /:a/:b 301
 /:a/ /:a 301

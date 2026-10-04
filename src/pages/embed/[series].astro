@@ -260,7 +260,7 @@ const pageTitle = isAll
   </div>
 
   <footer class="embed-footer">
-    <a href={`https://dord.racing/series/${seriesSlug}`} target="_blank" rel="noopener noreferrer">
+    <a href={isAll ? 'https://dord.racing/' : `https://dord.racing/series/${seriesSlug}`} target="_blank" rel="noopener noreferrer">
       Full {isAll ? 'motorsport' : (seriesMeta?.name ?? '')} calendar at dord.racing ↗
     </a>
   </footer>

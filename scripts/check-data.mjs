@@ -192,6 +192,25 @@ check('result-dates', allEvents, ({ ev, week }) => {
   return null;
 });
 
+// ── (g2) every winner / standings country code has a flag file ──────────────
+// An unknown code ("SW" for Sweden) renders a broken image on results pages.
+const flagDir = resolve(root, 'public/assets/flags');
+const hasFlag = (code) => existsSync(resolve(flagDir, `${code}.svg`));
+check('result-flags', allEvents, ({ ev, week }) => {
+  for (const r of ev.results ?? []) {
+    if (r.country && !hasFlag(r.country)) return `[${ev.series}] "${ev.title}" (${week.label}) country "${r.country}" has no public/assets/flags/${r.country}.svg`;
+  }
+  return null;
+});
+for (const [slug, tables] of Object.entries(standingsJson)) {
+  for (const [tab, table] of Object.entries(tables)) {
+    for (const e of table.entries ?? []) {
+      checked++;
+      if (e.country && !hasFlag(e.country)) fail.push(`[standings.json] ${slug}.${tab} "${e.name}" country "${e.country}" has no flag SVG`);
+    }
+  }
+}
+
 // ── (h) standings.json structure ─────────────────────────────────────────────
 const isoDateRe2 = /^\d{4}-\d{2}-\d{2}$/;
 const validSeriesSlugs = new Set([...Object.keys(seriesJson), 'asian-le-mans']);
