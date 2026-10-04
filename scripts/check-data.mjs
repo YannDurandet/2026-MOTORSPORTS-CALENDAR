@@ -211,6 +211,25 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
   }
 }
 
+// ── (g3) _redirects: one rule per path ──────────────────────────────────────
+// Cloudflare rejects the whole deploy on a duplicate path, and `wrangler dev`
+// doesn't catch it. Astro's config `redirects` are appended to the same file,
+// so they must stay empty.
+{
+  const lines = readFileSync(resolve(root, 'public/_redirects'), 'utf8').split('\n')
+    .map(l => l.replace(/#.*/, '').trim()).filter(Boolean);
+  const seen = new Set();
+  for (const l of lines) {
+    checked++;
+    const src = l.split(/\s+/)[0];
+    if (seen.has(src)) fail.push(`[public/_redirects] duplicate rule for ${src}`);
+    seen.add(src);
+  }
+  checked++;
+  if (/^\s*redirects\s*:/m.test(readFileSync(resolve(root, 'astro.config.mjs'), 'utf8')))
+    fail.push('[astro.config.mjs] has `redirects`: put them in public/_redirects instead (Astro appends them there and duplicates fail the deploy)');
+}
+
 // ── (h) standings.json structure ─────────────────────────────────────────────
 const isoDateRe2 = /^\d{4}-\d{2}-\d{2}$/;
 const validSeriesSlugs = new Set([...Object.keys(seriesJson), 'asian-le-mans']);

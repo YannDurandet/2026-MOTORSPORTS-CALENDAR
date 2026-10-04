@@ -149,7 +149,7 @@ Search index is built at `/data/search.json` from tracks + series. It is fetched
 `src/pages/fr/`: `/fr` (landing), `/fr/calendrier-{f1|motogp}-{2026|2027}`, `/fr/programme-tv-f1`. Helpers, GP names and the EN ↔ FR page map live in `src/lib/fr.ts`; French season notes are the `*_fr` fields in `data/seasons.json`. `BaseLayout` takes `lang` and `alternates` (hreflang; the English URL doubles as x-default). Pair a new French page with its English one in `FR_SEASON_PAGES` so both sides get hreflang and the "Version française" link. Nav and footer stay English.
 
 ## Redirects
-`public/_redirects` answers trailing-slash URLs with 301s. Cloudflare's asset handler would otherwise send a 307. Astro's `redirects` config entries are appended after it.
+`public/_redirects` holds every redirect: `/events`, legacy URLs, and 301s for trailing-slash URLs (Cloudflare's asset handler would otherwise send a 307). Don't add redirects to `astro.config.mjs`: Astro appends them to the same file, and Cloudflare rejects the deploy if a path appears twice.
 
 ## Deployment
 Two separate Cloudflare Workers, hence two configs — this is intentional, not a duplicate:

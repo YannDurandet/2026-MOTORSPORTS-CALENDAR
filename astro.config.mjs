@@ -19,10 +19,8 @@ export default defineConfig({
       },
     }),
   ],
-  // /events has no page of its own — send it to the current season index.
-  redirects: {
-    '/events': '/events/2026',
-  },
+  // Redirects live in public/_redirects (one file, so Cloudflare never sees
+  // a path twice and rule order is under our control).
   build: {
     format: 'file',
   },

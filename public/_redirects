@@ -2,6 +2,10 @@
 # URLs (/series/, /tracks/silverstone/) with a temporary 307, which tells
 # search engines to keep the slashed URL indexed. These rules come first
 # and answer with a 301 instead. Most specific first; first match wins.
+# Cloudflare rejects the whole deploy if a path appears twice, so keep every
+# redirect in this file (none in astro.config.mjs).
+# /events has no page of its own — send it to the current season index.
+/events /events/2026 301
 /events/ /events/2026 301
 # /embed/all used to link here; Google has it on file.
 /series/all / 301
