@@ -375,111 +375,140 @@ h2 {
     justify-content: center;
 }
 
-/* Series styling */
+/* Series styling. `--edge` is the same colour for components that draw the
+   series as an accent bar (calendar rows, This Weekend) instead of a border:
+   a thick border on a rounded box bends into a crescent at the corners, and
+   border-image (the gradient series) ignores border-radius altogether. */
 .ev-f1 {
     border-color: var(--f1-c, var(--f1));
+    --edge: var(--f1-c, var(--f1));
 }
 
 .ev-f1a {
     border-image-source: linear-gradient(180deg, var(--f1a-start) 0%, var(--f1a-end) 100%);
     border-image-slice: 1;
+    --edge: linear-gradient(180deg, var(--f1a-start) 0%, var(--f1a-end) 100%);
 }
 
 .ev-fe {
     border-image-source: linear-gradient(180deg, var(--fe-edge-start) 0%, var(--fe-edge-end) 100%);
     border-image-slice: 1;
+    --edge: linear-gradient(180deg, var(--fe-edge-start) 0%, var(--fe-edge-end) 100%);
 }
 
 .ev-sf {
     border-color: var(--sf-c, var(--sf));
+    --edge: var(--sf-c, var(--sf));
 }
 
 .ev-wec {
     border-color: var(--wec-c, var(--wec));
+    --edge: var(--wec-c, var(--wec));
 }
 
 .ev-wrc {
     border-color: var(--wrc-c, var(--wrc));
+    --edge: var(--wrc-c, var(--wrc));
 }
 
 .ev-imsa {
     border-color: var(--imsa-c, var(--imsa));
+    --edge: var(--imsa-c, var(--imsa));
 }
 
 .ev-indycar {
     border-color: var(--indycar-c, var(--indycar));
+    --edge: var(--indycar-c, var(--indycar));
 }
 
 .ev-nascar {
     border-color: var(--nascar-c, var(--nascar));
+    --edge: var(--nascar-c, var(--nascar));
 }
 
 .ev-motogp {
     border-color: var(--motogp-c, var(--motogp));
+    --edge: var(--motogp-c, var(--motogp));
 }
 
 .ev-wsbk {
     border-color: var(--wsbk-c, var(--wsbk));
+    --edge: var(--wsbk-c, var(--wsbk));
 }
 
 .ev-dtm {
     border-color: var(--dtm-c, var(--dtm));
+    --edge: var(--dtm-c, var(--dtm));
 }
 
 .ev-btcc {
     border-color: var(--btcc-c, var(--btcc));
+    --edge: var(--btcc-c, var(--btcc));
 }
 
 .ev-supercars {
     border-color: var(--supercars-c, var(--supercars));
+    --edge: var(--supercars-c, var(--supercars));
 }
 
 .ev-elms {
     border-color: var(--elms-c, var(--elms));
+    --edge: var(--elms-c, var(--elms));
 }
 
 .ev-gtwce {
     border-color: var(--gtwce-c, var(--gtwce));
+    --edge: var(--gtwce-c, var(--gtwce));
 }
 
 .ev-gtwca {
     border-color: var(--gtwca-c, var(--gtwca));
+    --edge: var(--gtwca-c, var(--gtwca));
 }
 
 .ev-nls {
     border-color: var(--nls-c, var(--nls));
+    --edge: var(--nls-c, var(--nls));
 }
 
 .ev-igtc {
     border-color: var(--igtc-c, var(--igtc));
+    --edge: var(--igtc-c, var(--igtc));
 }
 
 .ev-tcr {
     border-color: var(--tcr-c, var(--tcr));
+    --edge: var(--tcr-c, var(--tcr));
 }
 
 .ev-erc {
     border-color: var(--erc-c, var(--erc));
+    --edge: var(--erc-c, var(--erc));
 }
 
 .ev-h24eu {
     border-color: var(--h24eu-c, var(--h24eu));
+    --edge: var(--h24eu-c, var(--h24eu));
 }
 
 .ev-psc {
     border-color: var(--psc-c, var(--psc));
+    --edge: var(--psc-c, var(--psc));
 }
 
 .ev-bgt {
     border-color: var(--bgt-c, var(--bgt));
+    --edge: var(--bgt-c, var(--bgt));
 }
 
 .ev-eurx {
     border-color: var(--eurx-c, var(--eurx));
+    --edge: var(--eurx-c, var(--eurx));
 }
 
 .ev-asian-le-mans {
     border-color: var(--asian-le-mans-c, var(--asian-le-mans));
+    --edge: var(--asian-le-mans-c, var(--asian-le-mans));
 }
 
 .tag {
@@ -1120,16 +1149,26 @@ a {
 }
 
 .filter-f1a.active {
-    border-image-source: linear-gradient(135deg, var(--f1a-start), var(--f1a-end));
-    border-image-slice: 1;
-    background: var(--f1a-tint);
+    /* Gradient border that follows the pill's radius (border-image would
+       square the corners): tint over an opaque fill in the padding box,
+       gradient in the border box showing through a transparent border. */
+    border-color: transparent;
+    background:
+        linear-gradient(var(--f1a-tint), var(--f1a-tint)) padding-box,
+        linear-gradient(var(--row-bg), var(--row-bg)) padding-box,
+        linear-gradient(135deg, var(--f1a-start), var(--f1a-end)) border-box;
     color: var(--text-strong);
 }
 
 .filter-fe.active {
-    border-image-source: linear-gradient(135deg, var(--fe-edge-start), var(--fe-edge-end));
-    border-image-slice: 1;
-    background: var(--fe-tint);
+    /* Gradient border that follows the pill's radius (border-image would
+       square the corners): tint over an opaque fill in the padding box,
+       gradient in the border box showing through a transparent border. */
+    border-color: transparent;
+    background:
+        linear-gradient(var(--fe-tint), var(--fe-tint)) padding-box,
+        linear-gradient(var(--row-bg), var(--row-bg)) padding-box,
+        linear-gradient(135deg, var(--fe-edge-start), var(--fe-edge-end)) border-box;
     color: var(--text-strong);
 }
 
@@ -1496,16 +1535,30 @@ a {
 }
 
 .tw-card {
+    position: relative;
     background: var(--row-bg);
-    border-width: 0 0 0 3px;
-    border-style: solid;
+    border: 0;
     box-shadow: inset 0 0 0 1px var(--row-line);
     border-radius: var(--radius-xl);
-    padding: 12px 14px;
+    padding: 12px 14px 12px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
+}
+
+/* Series accent: a rounded bar inset from the edge, so it never fights the
+   card's corner radius. */
+.tw-card::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 12px;
+    bottom: 12px;
+    width: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--edge, var(--line-strong));
+    pointer-events: none;
 }
 
 .tw-card .tag {

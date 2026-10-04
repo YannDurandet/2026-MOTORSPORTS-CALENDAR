@@ -132,11 +132,22 @@ const rows = [
 
   /* ── Insider tip ─────────────────────────────────────────────────────────── */
   .gt-tip {
+    position: relative;
     margin-top: 16px;
-    padding: 12px 14px;
-    border: 1px solid var(--border);
-    border-left: 2px solid var(--line-strong-2);
+    padding: 12px 14px 12px 20px;
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-lg);
     background: var(--bg);
+  }
+  .gt-tip::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 12px;
+    bottom: 12px;
+    width: 3px;
+    border-radius: var(--radius-pill);
+    background: var(--line-strong-2);
   }
 
   .gt-tip-label {

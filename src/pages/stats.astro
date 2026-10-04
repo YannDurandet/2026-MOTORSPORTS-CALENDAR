@@ -646,10 +646,10 @@ const totalRaces   = seriesStats.reduce((n, s) => n + s.done, 0);
   .stats-sidebar-divider { display: none; }
   .stats-jump {
     border: 1px solid var(--border);
-    border-left: 2px solid transparent;
     padding: 4px 10px;
     border-radius: var(--radius-sm);
   }
+  .stats-jump:hover { border-color: var(--line); }
   .leaders-thead,
   .leaders-row {
     grid-template-columns: 80px 1fr 40px;
