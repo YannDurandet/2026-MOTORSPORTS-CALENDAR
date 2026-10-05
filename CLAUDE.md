@@ -1,5 +1,9 @@
 # 2026 Motorsport Calendar — Project Notes for Claude
 
+## Working with Yann
+- **One command per code block.** When giving Yann commands to run, put each command in its own fenced block, even when they run back to back. The copy button copies the whole block, and he usually needs one line at a time. Number the steps in the prose between blocks instead of stacking commands in one box.
+- He works on Windows in PowerShell: quote git refs that contain braces (`'stash@{0}'`), and don't assume a POSIX shell.
+
 ## Stack
 Astro static site. All data lives in `data/`. Pages are pre-rendered at build time. Client-side JS handles filters, countdowns, and search.
 
