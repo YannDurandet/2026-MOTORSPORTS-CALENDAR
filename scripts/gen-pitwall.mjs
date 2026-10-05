@@ -83,25 +83,34 @@ function getTargetWeekend() {
   return { fri, sun };
 }
 
-function parseWeekLabel(label) {
-  const m = label.match(
-    /WEEK\s+(\d+)\s*[•·]\s*([A-Z]{3})\s+(\d{1,2})(?:\s*[-–]\s*(?:([A-Z]{3})\s+)?(\d{1,2}))?/
-  );
-  if (!m) return null;
-  const weekNum    = parseInt(m[1], 10);
-  const startMonth = MONTH_MAP[m[2]];
-  const startDay   = parseInt(m[3], 10);
-  const endMonth   = m[4] ? MONTH_MAP[m[4]] : startMonth;
-  const endDay     = m[5] ? parseInt(m[5], 10) : startDay;
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  const startYear = now.getMonth() >= 10 && startMonth <= 1 ? currentYear + 1 : currentYear;
-  const endYear   = now.getMonth() >= 10 && endMonth   <= 1 ? currentYear + 1 : currentYear;
-  return {
-    weekNum,
-    start: new Date(startYear, startMonth, startDay, 0, 0, 0, 0),
-    end:   new Date(endYear,   endMonth,   endDay,   23, 59, 59, 999),
-  };
+/** "WEEK 41 • OCT 08-11" → 41 */
+function weekNumberOf(label) {
+  const m = label.match(/WEEK\s+(\d+)/);
+  return m ? parseInt(m[1], 10) : null;
+}
+
+// An event belongs to the target weekend when its main race (ev.date, an exact
+// ISO timestamp with offset) falls between Friday 00:00 and Monday 06:00.
+// Selecting by week label instead dated every label in the current year, so
+// 2027 rounds with the same week number leaked into 2026 newsletters.
+const PARIS_DAY = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', hourCycle: 'h23',
+});
+
+function inWeekend(date, fri, sun) {
+  const ts = date ? Date.parse(date) : NaN;
+  return !Number.isNaN(ts) && ts >= fri.getTime() && ts <= sun.getTime() + 6 * 3600_000;
+}
+
+/** Day bucket for one event: its race day in Paris; 'multi' for events that span the weekend. */
+function eventDay(ev) {
+  if (/&rsaquo;|›|\s>\s/.test(ev.time ?? '')) return 'multi';   // "THU > SUN", "SAT 15:10 › SUN 03:10"
+  if (!ev.date) return null;
+  const parts = PARIS_DAY.formatToParts(new Date(ev.date));
+  const wd   = parts.find(p => p.type === 'weekday')?.value ?? '';
+  const hour = parseInt(parts.find(p => p.type === 'hour')?.value ?? '0', 10);
+  if (wd === 'Mon' && hour < 6) return 'sun';
+  return wd === 'Fri' ? 'fri' : wd === 'Sat' ? 'sat' : wd === 'Sun' ? 'sun' : null;
 }
 
 function buildSvgTrackMap() {
@@ -115,35 +124,6 @@ function buildSvgTrackMap() {
     for (const svg of svgs) map.set(svg, t);
   }
   return map;
-}
-
-function inferEventDay(seriesSlug, fri, sun) {
-  const races = seriesJson[seriesSlug];
-  if (!races) return null;
-  const windowEnd = new Date(sun.getTime() + 6 * 3600_000);
-  const inWindow = races.filter(r => {
-    const ts = new Date(r.date).getTime();
-    return ts >= fri.getTime() && ts <= windowEnd.getTime();
-  });
-  if (inWindow.length === 0) return null;
-  const parisFmt = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', hourCycle: 'h23',
-  });
-  const dayLabels = new Set();
-  for (const r of inWindow) {
-    const parts = parisFmt.formatToParts(new Date(r.date));
-    const wd   = parts.find(p => p.type === 'weekday')?.value ?? '';
-    const hour = parseInt(parts.find(p => p.type === 'hour')?.value ?? '0', 10);
-    if (wd === 'Mon' && hour < 6) { dayLabels.add('sun'); continue; }
-    if (wd === 'Fri') { dayLabels.add('fri'); continue; }
-    if (wd === 'Sat') { dayLabels.add('sat'); continue; }
-    if (wd === 'Sun') { dayLabels.add('sun'); continue; }
-    dayLabels.add('other');
-  }
-  if (dayLabels.size > 1) return 'multi';
-  const only = [...dayLabels][0];
-  if (only === 'fri' || only === 'sat' || only === 'sun') return only;
-  return null;
 }
 
 function parseSessionTimes(html) {
@@ -185,13 +165,14 @@ function run() {
   const svgToTrack = buildSvgTrackMap();
   const events = [];
 
+  let weekNumber = 0;
   for (const month of calendar) {
     for (const week of month.weeks) {
-      const parsed = parseWeekLabel(week.label);
-      if (!parsed) continue;
-      if (parsed.end < fri || parsed.start > sun) continue;
-
+      const weekNum = weekNumberOf(week.label);
+      if (weekNum === null) continue;
       for (const ev of week.events) {
+        if (!inWeekend(ev.date, fri, sun)) continue;
+        weekNumber ||= weekNum;
         const trackEntry = svgToTrack.get(ev.track);
         const sessions = parseSessionTimes(ev.time ?? '');
         events.push({
@@ -200,7 +181,7 @@ function run() {
           title:    ev.title,
           circuit:  trackEntry?.name    ?? ev.title,
           country:  trackEntry?.country ?? '',
-          day:      inferEventDay(ev.series, fri, sun),
+          day:      eventDay(ev),
           trackSvg: ev.track ?? '',
           timeStr:  ev.time  ?? '',
           sessions,
@@ -212,20 +193,6 @@ function run() {
   if (events.length === 0) {
     console.log('No events found for this weekend — skipping.');
     process.exit(0);
-  }
-
-  // Determine week number from the first matched week label
-  let weekNumber = 0;
-  for (const month of calendar) {
-    for (const week of month.weeks) {
-      const parsed = parseWeekLabel(week.label);
-      if (!parsed) continue;
-      if (parsed.end >= fri && parsed.start <= sun) {
-        weekNumber = parsed.weekNum;
-        break;
-      }
-    }
-    if (weekNumber) break;
   }
 
   const dateRange = formatDateRange(fri, sun);

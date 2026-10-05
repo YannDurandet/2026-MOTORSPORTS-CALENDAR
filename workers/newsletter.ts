@@ -63,7 +63,7 @@ interface VenueGroup { trackSvg: string; events: WeekendEvent[] }
 
 interface CalendarEvent {
   series: string; tag: string; title: string; time: string;
-  track: string; results?: unknown[]; sub?: unknown[];
+  track: string; date?: string; results?: unknown[]; sub?: unknown[];
 }
 
 interface TrackEntry {
@@ -139,25 +139,34 @@ function getTargetWeekend(): { fri: Date; sun: Date } {
   return { fri, sun };
 }
 
-function parseWeekLabel(label: string): { weekNum: number; start: Date; end: Date } | null {
-  const m = label.match(
-    /WEEK\s+(\d+)\s*[•·]\s*([A-Z]{3})\s+(\d{1,2})(?:\s*[-–]\s*(?:([A-Z]{3})\s+)?(\d{1,2}))?/
-  );
-  if (!m) return null;
-  const weekNum    = parseInt(m[1], 10);
-  const startMonth = MONTH_MAP[m[2]];
-  const startDay   = parseInt(m[3], 10);
-  const endMonth   = m[4] ? MONTH_MAP[m[4]] : startMonth;
-  const endDay     = m[5] ? parseInt(m[5], 10) : startDay;
-  const currentYear = new Date().getFullYear();
-  const now = new Date();
-  const startYear = now.getMonth() >= 10 && startMonth <= 1 ? currentYear + 1 : currentYear;
-  const endYear   = now.getMonth() >= 10 && endMonth   <= 1 ? currentYear + 1 : currentYear;
-  return {
-    weekNum,
-    start: new Date(startYear, startMonth, startDay, 0, 0, 0, 0),
-    end:   new Date(endYear,   endMonth,   endDay,   23, 59, 59, 999),
-  };
+/** "WEEK 41 • OCT 08-11" → 41 */
+function weekNumberOf(label: string): number | null {
+  const m = label.match(/WEEK\s+(\d+)/);
+  return m ? parseInt(m[1], 10) : null;
+}
+
+// An event belongs to the target weekend when its main race (ev.date, an exact
+// ISO timestamp with offset) falls between Friday 00:00 and Monday 06:00.
+// Selecting by week label instead dated every label in the current year, so
+// 2027 rounds with the same week number leaked into 2026 newsletters.
+const PARIS_DAY = new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', hourCycle: 'h23',
+});
+
+function inWeekend(date: string | undefined, fri: Date, sun: Date): boolean {
+  const ts = date ? Date.parse(date) : NaN;
+  return !Number.isNaN(ts) && ts >= fri.getTime() && ts <= sun.getTime() + 6 * 3600_000;
+}
+
+/** Day bucket for one event: its race day in Paris; 'multi' for events that span the weekend. */
+function eventDay(ev: { date?: string; time?: string }): 'fri' | 'sat' | 'sun' | 'multi' | null {
+  if (/&rsaquo;|›|\s>\s/.test(ev.time ?? '')) return 'multi';   // "THU > SUN", "SAT 15:10 › SUN 03:10"
+  if (!ev.date) return null;
+  const parts = PARIS_DAY.formatToParts(new Date(ev.date));
+  const wd   = parts.find(p => p.type === 'weekday')?.value ?? '';
+  const hour = parseInt(parts.find(p => p.type === 'hour')?.value ?? '0', 10);
+  if (wd === 'Mon' && hour < 6) return 'sun';
+  return wd === 'Fri' ? 'fri' : wd === 'Sat' ? 'sat' : wd === 'Sun' ? 'sun' : null;
 }
 
 function buildSvgTrackMap(tracks: TrackEntry[]): Map<string, TrackEntry> {
@@ -173,46 +182,10 @@ function buildSvgTrackMap(tracks: TrackEntry[]): Map<string, TrackEntry> {
   return map;
 }
 
-function inferEventDay(
-  seriesSlug: string,
-  fri: Date,
-  sun: Date,
-  seriesJson: Record<string, SeriesRace[]>
-): 'fri' | 'sat' | 'sun' | 'multi' | null {
-  const races = seriesJson[seriesSlug];
-  if (!races) return null;
-  const windowEnd = new Date(sun.getTime() + 6 * 3600_000);
-  const inWindow = races.filter(r => {
-    const ts = new Date(r.date).getTime();
-    return ts >= fri.getTime() && ts <= windowEnd.getTime();
-  });
-  if (inWindow.length === 0) return null;
-  // Resolve weekday/hour in Europe/Paris — handles CET vs CEST correctly
-  // (a fixed +2h offset mislabels late Saturday races during winter time).
-  const parisFmt = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'Europe/Paris', weekday: 'short', hour: 'numeric', hourCycle: 'h23',
-  });
-  const dayLabels = new Set<string>();
-  for (const r of inWindow) {
-    const parts = parisFmt.formatToParts(new Date(r.date));
-    const wd    = parts.find(p => p.type === 'weekday')?.value ?? '';
-    const hour  = parseInt(parts.find(p => p.type === 'hour')?.value ?? '0', 10);
-    if (wd === 'Mon' && hour < 6) { dayLabels.add('sun'); continue; }
-    if (wd === 'Fri') { dayLabels.add('fri'); continue; }
-    if (wd === 'Sat') { dayLabels.add('sat'); continue; }
-    if (wd === 'Sun') { dayLabels.add('sun'); continue; }
-    dayLabels.add('other');
-  }
-  if (dayLabels.size > 1) return 'multi';
-  const only = [...dayLabels][0];
-  if (only === 'fri' || only === 'sat' || only === 'sun') return only;
-  return null;
-}
-
 async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
   // Fetch data from the live site's API endpoints (replaces fs.readFileSync)
   const [calendar, tracks, seriesJson] = await Promise.all([
-    fetch('https://dord.racing/data/calendar.json').then(r => r.json()) as Promise<Array<{ month: string; weeks: Array<{ label: string; events: CalendarEvent[] }> }>>,
+    fetch('https://dord.racing/data/calendar.json').then(r => r.json()) as Promise<Array<{ month: string; year?: number; weeks: Array<{ label: string; events: CalendarEvent[] }> }>>,
     fetch('https://dord.racing/data/tracks.json').then(r => r.json())   as Promise<TrackEntry[]>,
     fetch('https://dord.racing/data/series.json').then(r => r.json())   as Promise<Record<string, SeriesRace[]>>,
   ]);
@@ -223,11 +196,10 @@ async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
 
   for (const month of calendar) {
     for (const week of month.weeks) {
-      const parsed = parseWeekLabel(week.label);
-      if (!parsed) continue;
-      if (parsed.end < fri || parsed.start > sun) continue;
-
+      const weekNum = weekNumberOf(week.label);
+      if (weekNum === null) continue;
       for (const ev of week.events) {
+        if (!inWeekend(ev.date, fri, sun)) continue;
         const info = SERIES_INFO[ev.series] ?? {
           name: ev.tag, abbr: ev.tag.slice(0, 6), color: '#334455', textColor: '#ffffff',
         };
@@ -237,9 +209,9 @@ async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
           eventName:  ev.title,
           circuit:    trackEntry?.name    ?? ev.title,
           country:    trackEntry?.country ?? '',
-          weekNumber: parsed.weekNum,
+          weekNumber: weekNum,
           weekLabel:  week.label,
-          day:        inferEventDay(ev.series, fri, sun, seriesJson),
+          day:        eventDay(ev),
           trackSvg:   ev.track  ?? '',
           timeStr:    ev.time   ?? '',
         });
@@ -462,7 +434,7 @@ function generateEmailHTML(events: WeekendEvent[], weekNumber: number, dateRange
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td><a href="https://dord.racing" style="${FONT}font-size:12px;font-weight:600;color:#3a5060;text-decoration:none;">dord.racing</a></td>
-              <td align="center"><a href="https://dord.racing/pit-wall/${weekNumber}" style="${FONT}font-size:11px;color:#3a5060;text-decoration:none;">Read on the web →</a></td>
+              <td align="center"><a href="https://dord.racing/#week-${weekNumber}" style="${FONT}font-size:11px;color:#3a5060;text-decoration:none;">Open in the calendar →</a></td>
               <td align="right"><a href="mailto:weekly@dord.racing?subject=unsubscribe" style="${FONT}font-size:11px;color:#2a3a44;text-decoration:none;">Unsubscribe</a></td>
             </tr>
             <tr>
@@ -498,7 +470,7 @@ function generatePlainText(events: WeekendEvent[], weekNumber: number, dateRange
     );
   }
   lines.push('', '────────────────────────────────────', '');
-  lines.push(`Read on the web: https://dord.racing/pit-wall/${weekNumber}`);
+  lines.push(`Full calendar: https://dord.racing/#week-${weekNumber}`);
   lines.push('View results: https://dord.racing/results');
   lines.push('');
   lines.push('dord.racing');
