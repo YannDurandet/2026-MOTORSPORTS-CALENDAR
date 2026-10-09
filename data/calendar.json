@@ -5270,7 +5270,29 @@
             "time": "RACE: <span class=\"hl\">13:00</span>",
             "track": "barcelona.svg",
             "date": "2026-10-04T13:00:00+02:00",
-            "shortName": "BARCELONA 3H"
+            "shortName": "BARCELONA 3H",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-03",
+                "winners": [
+                  "Dylan Pereira",
+                  "Alex Aka"
+                ],
+                "team": "Tresor Attempto Racing",
+                "country": "DE"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-04",
+                "winners": [
+                  "Ben Green",
+                  "Thierry Vermeulen"
+                ],
+                "team": "Emil Frey Racing",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "tcr",
