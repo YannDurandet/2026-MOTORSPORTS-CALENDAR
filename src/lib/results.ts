@@ -54,6 +54,9 @@ export const isoToName: Record<string, string> = {
   'QA': 'Qatar', 'SA': 'Saudi Arabia', 'SG': 'Singapore', 'KR': 'South Korea',
   'ES': 'Spain', 'SE': 'Sweden', 'TH': 'Thailand', 'AE': 'UAE',
   'GB': 'United Kingdom', 'US': 'United States',
+  // Rally countries (WRC / ERC bases)
+  'KE': 'Kenya', 'HR': 'Croatia', 'GR': 'Greece', 'EE': 'Estonia',
+  'FI': 'Finland', 'PY': 'Paraguay', 'CL': 'Chile', 'PL': 'Poland',
 };
 
 export function countryName(code: string): string {

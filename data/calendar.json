@@ -5882,6 +5882,29 @@
         ]
       },
       {
+        "label": "WEEK 04 • JAN 21-24",
+        "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rallye Monte-Carlo",
+            "time": "THU > SUN",
+            "track": "monte-carlo-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-01-24T14:00:00+01:00",
+            "shortName": "MONTE-CARLO",
+            "start": "2027-01-21",
+            "end": "2027-01-24"
+          }
+        ]
+      },
+      {
         "label": "WEEK 05 • JAN 28-31",
         "events": [
           {
@@ -5916,8 +5939,26 @@
         ]
       },
       {
-        "label": "WEEK 08 • FEB 19-21",
+        "label": "WEEK 08 • FEB 18-21",
         "events": [
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Sweden",
+            "time": "THU > SUN",
+            "track": "sweden-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-02-21T14:00:00+01:00",
+            "shortName": "SWEDEN",
+            "start": "2027-02-18",
+            "end": "2027-02-21"
+          },
           {
             "series": "nascar",
             "tag": "NASCAR",
@@ -6090,6 +6131,24 @@
             "end": "2027-03-21"
           },
           {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Safari Rally Kenya",
+            "time": "THU > SUN",
+            "track": "kenya-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-03-21T14:00:00+01:00",
+            "shortName": "KENYA",
+            "start": "2027-03-18",
+            "end": "2027-03-21"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Las Vegas Motor Speedway",
@@ -6193,7 +6252,7 @@
         ]
       },
       {
-        "label": "WEEK 15 • APR 09-11",
+        "label": "WEEK 15 • APR 08-11",
         "events": [
           {
             "series": "f1",
@@ -6221,6 +6280,24 @@
             "date": "2027-04-11T20:00:00+02:00",
             "shortName": "ARGENTINA",
             "start": "2027-04-09",
+            "end": "2027-04-11"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Croatia Rally",
+            "time": "THU > SUN",
+            "track": "croatia-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-04-11T14:00:00+02:00",
+            "shortName": "CROATIA",
+            "start": "2027-04-08",
             "end": "2027-04-11"
           },
           {
@@ -6439,7 +6516,7 @@
         ]
       },
       {
-        "label": "WEEK 19 • MAY 07-09",
+        "label": "WEEK 19 • MAY 06-09",
         "events": [
           {
             "series": "motogp",
@@ -6450,6 +6527,24 @@
             "date": "2027-05-09T14:00:00+02:00",
             "shortName": "SPAIN (JEREZ)",
             "start": "2027-05-07",
+            "end": "2027-05-09"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Islas Canarias",
+            "time": "THU > SUN",
+            "track": "spain-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-05-09T14:00:00+02:00",
+            "shortName": "CANARIAS",
+            "start": "2027-05-06",
             "end": "2027-05-09"
           },
           {
@@ -6628,7 +6723,7 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 23 • JUN 04-06",
+        "label": "WEEK 23 • JUN 03-06",
         "events": [
           {
             "series": "f1",
@@ -6640,6 +6735,24 @@
             "date": "2027-06-06T15:00:00+02:00",
             "shortName": "MONACO",
             "start": "2027-06-04",
+            "end": "2027-06-06"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Japan",
+            "time": "THU > SUN",
+            "track": "japan-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-06-06T14:00:00+02:00",
+            "shortName": "JAPAN",
+            "start": "2027-06-03",
             "end": "2027-06-06"
           },
           {
@@ -6768,7 +6881,7 @@
         ]
       },
       {
-        "label": "WEEK 26 • JUN 25-27",
+        "label": "WEEK 26 • JUN 24-27",
         "events": [
           {
             "series": "motogp",
@@ -6779,6 +6892,24 @@
             "date": "2027-06-27T14:00:00+02:00",
             "shortName": "NETHERLANDS (ASSEN)",
             "start": "2027-06-25",
+            "end": "2027-06-27"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Acropolis Rally Greece",
+            "time": "THU > SUN",
+            "track": "greece-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-06-27T14:00:00+02:00",
+            "shortName": "GREECE",
+            "start": "2027-06-24",
             "end": "2027-06-27"
           },
           {
@@ -6874,7 +7005,7 @@
         ]
       },
       {
-        "label": "WEEK 28 • JUL 09-11",
+        "label": "WEEK 28 • JUL 08-11",
         "events": [
           {
             "series": "f1",
@@ -6896,6 +7027,29 @@
             "date": "2027-07-11T14:00:00+02:00",
             "shortName": "GERMANY",
             "start": "2027-07-09",
+            "end": "2027-07-11"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally d'Italia (Rome)",
+            "time": "THU > SUN",
+            "track": "italy-wrc.svg",
+            "venue": {
+              "name": "Rally d'Italia",
+              "city": "Rome",
+              "country": "IT"
+            },
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-07-11T14:00:00+02:00",
+            "shortName": "ROME",
+            "start": "2027-07-08",
             "end": "2027-07-11"
           },
           {
@@ -6995,7 +7149,7 @@
         ]
       },
       {
-        "label": "WEEK 30 • JUL 23-25",
+        "label": "WEEK 30 • JUL 22-25",
         "events": [
           {
             "series": "f1",
@@ -7006,6 +7160,24 @@
             "date": "2027-07-25T15:00:00+02:00",
             "shortName": "BELGIUM",
             "start": "2027-07-23",
+            "end": "2027-07-25"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Estonia",
+            "time": "THU > SUN",
+            "track": "estonia-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-07-25T14:00:00+02:00",
+            "shortName": "ESTONIA",
+            "start": "2027-07-22",
             "end": "2027-07-25"
           },
           {
@@ -7051,6 +7223,24 @@
             "date": "2027-08-01T15:00:00+02:00",
             "shortName": "HUNGARY",
             "start": "2027-07-30",
+            "end": "2027-08-01"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Finland",
+            "time": "THU > SUN",
+            "track": "finland-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-08-01T14:00:00+02:00",
+            "shortName": "FINLAND",
+            "start": "2027-07-29",
             "end": "2027-08-01"
           },
           {
@@ -7175,7 +7365,7 @@
         ]
       },
       {
-        "label": "WEEK 35 • AUG 27-29",
+        "label": "WEEK 35 • AUG 26-29",
         "events": [
           {
             "series": "motogp",
@@ -7186,6 +7376,29 @@
             "date": "2027-08-29T14:00:00+02:00",
             "shortName": "AUSTRIA",
             "start": "2027-08-27",
+            "end": "2027-08-29"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally US",
+            "time": "THU > SUN",
+            "track": "tbc.svg",
+            "venue": {
+              "name": "Rally US",
+              "city": "Tennessee",
+              "country": "US"
+            },
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-08-29T14:00:00+02:00",
+            "shortName": "USA",
+            "start": "2027-08-26",
             "end": "2027-08-29"
           },
           {
@@ -7428,7 +7641,7 @@
     "year": 2027,
     "weeks": [
       {
-        "label": "WEEK 40 • OCT 01-03",
+        "label": "WEEK 40 • SEP 30 - OCT 03",
         "events": [
           {
             "series": "f1",
@@ -7455,6 +7668,29 @@
             "date": "2027-10-03T14:00:00+02:00",
             "shortName": "PORTUGAL",
             "start": "2027-10-01",
+            "end": "2027-10-03"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Scotland",
+            "time": "THU > SUN",
+            "track": "tbc.svg",
+            "venue": {
+              "name": "Rally Scotland",
+              "city": "Aberdeen",
+              "country": "GB"
+            },
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-10-03T14:00:00+02:00",
+            "shortName": "SCOTLAND",
+            "start": "2027-09-30",
             "end": "2027-10-03"
           },
           {
@@ -7581,7 +7817,7 @@
         ]
       },
       {
-        "label": "WEEK 43 • OCT 22-24",
+        "label": "WEEK 43 • OCT 21-24",
         "events": [
           {
             "series": "f1",
@@ -7603,6 +7839,24 @@
             "date": "2027-10-24T09:00:00+02:00",
             "shortName": "MALAYSIA",
             "start": "2027-10-22",
+            "end": "2027-10-24"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally del Paraguay",
+            "time": "THU > SUN",
+            "track": "paraguay-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-10-24T14:00:00+02:00",
+            "shortName": "PARAGUAY",
+            "start": "2027-10-21",
             "end": "2027-10-24"
           },
           {
@@ -7698,6 +7952,24 @@
             "end": "2027-11-07"
           },
           {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Chile",
+            "time": "THU > SUN",
+            "track": "chile-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-11-07T14:00:00+01:00",
+            "shortName": "CHILE",
+            "start": "2027-11-04",
+            "end": "2027-11-07"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Martinsville — Playoff",
@@ -7763,7 +8035,7 @@
         ]
       },
       {
-        "label": "WEEK 48 • NOV 26-28",
+        "label": "WEEK 48 • NOV 25-28",
         "events": [
           {
             "series": "motogp",
@@ -7774,6 +8046,24 @@
             "date": "2027-11-28T14:00:00+01:00",
             "shortName": "VALENCIA",
             "start": "2027-11-26",
+            "end": "2027-11-28"
+          },
+          {
+            "series": "wrc",
+            "tag": "WRC",
+            "title": "Rally Saudi Arabia (Finale)",
+            "time": "THU > SUN",
+            "track": "saudi-wrc.svg",
+            "sub": [
+              {
+                "badge": "wrc2",
+                "label": "WRC2",
+                "detail": "ALL STAGES"
+              }
+            ],
+            "date": "2027-11-28T14:00:00+01:00",
+            "shortName": "SAUDI ARABIA",
+            "start": "2027-11-25",
             "end": "2027-11-28"
           },
           {

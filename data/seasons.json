@@ -61,5 +61,18 @@
       ],
       "status": "Dates are confirmed. Race times are published closer to each event."
     }
+  },
+  "wrc": {
+    "2027": {
+      "summary": "The 2027 World Rally Championship has 15 rounds on five continents, one more than 2026. It opens with the Rallye Monte-Carlo on 21–24 January and ends in Saudi Arabia on 25–28 November.",
+      "changes": [
+        "Rally US (26–29 August) brings the WRC back to the United States for the first time since 1988, with gravel stages in Tennessee and Kentucky.",
+        "Rally Scotland (30 September – 3 October), based in Aberdeen, is the first British round since Wales Rally GB.",
+        "Rally d'Italia moves from Sardinia to Rome and switches from gravel to tarmac, in a July slot (8–11 July).",
+        "Rally de Portugal is not on the calendar.",
+        "Paraguay moves from August to October and Chile from September to November."
+      ],
+      "status": "Dates are confirmed. Itineraries and stage times are published closer to each rally; the Rally US service park is still to be confirmed."
+    }
   }
 }

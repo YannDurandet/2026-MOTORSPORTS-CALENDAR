@@ -1,6 +1,6 @@
 # 2027 Calendar Integration Status
 
-_Last updated: 2026-10-04_
+_Last updated: 2026-10-09_
 
 ## ✅ Incorporated
 
@@ -17,6 +17,7 @@ _Last updated: 2026-10-04_
 | `motogp` | MotoGP World Championship | 22, provisional (times TBC; Buenos Aires has no track map yet) |
 | `sf` | Super Formula | 7 weekends |
 | `wsbk` | Superbike World Championship | 12, provisional (times TBC) |
+| `wrc` | FIA World Rally Championship | 15 (Rally US and Rally Scotland use `tbc.svg` + inline venue until flag SVGs exist; Rome overrides the Italy flag's Sardinia location) |
 | `wec` | FIA World Endurance Championship | 9 |
 
 ## ❌ Still Missing
@@ -24,7 +25,6 @@ _Last updated: 2026-10-04_
 | Slug | Series |
 |------|--------|
 | `indycar` | IndyCar Series (phase one of the 2027 schedule is out, 8 races; waiting for the full list) |
-| `wrc` | FIA World Rally Championship (14 rounds announced, dates expected October 2026) |
 | `dtm` | Deutsche Tourenwagen Masters |
 | `supercars` | Supercars Championship |
 | `bgt` | British GT Championship |

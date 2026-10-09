@@ -42,7 +42,9 @@ function eventCard(ev: CalendarEvent): Card {
     title: `${ev.title} ${ev.year}`,
     meta: [eventRange(ev), v ? `${v.city}, ${v.country}`.toUpperCase() : null].filter(Boolean).join(' · '),
     chip: w ? `WINNER · ${w}` : raceKnown ? `RACE ${paris.day.split(' ')[0].toUpperCase()} ${race} PARIS` : /TBC/.test(ev.time) ? 'TIMES TBC' : undefined,
-    footer: w ? 'Result · Session times · Circuit guide' : 'Session times · How to watch · Tickets',
+    footer: w ? 'Result · Session times · Circuit guide'
+      : ev.series === 'wrc' || ev.series === 'erc' ? 'Dates · Rally base · How to watch'
+      : 'Session times · How to watch · Tickets',
     map: trackMapDataUri(track?.browserSvg ?? ev.trackSvg),
   };
 }

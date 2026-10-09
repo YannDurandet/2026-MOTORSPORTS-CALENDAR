@@ -49,6 +49,10 @@ const track = ev.trackSlug
   : null;
 
 const venue = venueFor(ev);
+// Rallies have a base town and stages, not a circuit; their venues carry ISO
+// country codes (rallyLocations / inline venue), so spell those out.
+const isRally = ev.series === 'wrc' || ev.series === 'erc';
+const venueCountry = venue ? (venue.country.length === 2 ? countryName(venue.country) : venue.country) : '';
 
 const series = (seriesContentData as any[]).find(s => s.slug === ev.series);
 const seriesName = series?.name ?? ev.tag;
@@ -105,7 +109,7 @@ const firstResult = ev.results?.length === 1 ? ev.results[0] : null;
 const overview: string[] = [];
 overview.push(
   `The ${ev.title} is round ${roundIndex + 1} of ${seriesRound.length} in the ${ev.year} ${seriesName} season` +
-  (venue ? `, at ${venue.name} in ${venue.city}, ${venue.country}` : '') +
+  (venue ? (isRally ? `, based in ${venue.city}, ${venueCountry}` : `, at ${venue.name} in ${venue.city}, ${venueCountry}`) : '') +
   (ev.start && ev.end ? `, from ${longDay(ev.start)} to ${longDay(ev.end)}.` : ` (${eventRange(ev)}).`)
 );
 if (isPast && firstResult) {
@@ -160,7 +164,7 @@ function entrantOf(r: RaceResult): string {
 }
 
 // ── SEO ──────────────────────────────────────────────────────────────────────
-const where = venue ? `${venue.name}, ${venue.city}` : ev.title;
+const where = venue ? (isRally ? `${venue.city}, ${venueCountry}` : `${venue.name}, ${venue.city}`) : ev.title;
 // Two same-series events with one title (Jeddah E-Prix ×2) carry the month in
 // their slug; show it in the title and H1 so the pages aren't duplicates.
 const monthTag = /-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)$/.test(ev.slug)
@@ -171,6 +175,7 @@ const name = `${ev.title}${monthTag} ${ev.year}`;
 // exist in more than one series; name the series in the H1 there.
 const sharedTitle = ALL_EVENTS.some(o => o.year === ev.year && o.title === ev.title && o.series !== ev.series);
 const pageTitle = fitTitle([
+  ...(isRally ? [`${name} — ${short} Dates, Base & How to Watch | DORD`, `${name} — ${short} Dates & Info | DORD`] : []),
   `${name} — ${short} Race Times & Circuit | DORD`,
   `${name} — ${short} Times & Circuit | DORD`,
   `${name} — ${short} Race Times | DORD`,
@@ -250,7 +255,7 @@ const breadcrumb = {
     <div class="header--left">
       <h1>{sharedTitle && `${short} `}{ev.title}{monthTag}<br><span class="ev-year">{ev.year}</span></h1>
       <p class="header--page-desc">
-        {seriesName}{venue ? ` · ${venue.name}, ${venue.country}` : ''}
+        {seriesName}{venue ? ` · ${isRally ? venue.city : venue.name}, ${venueCountry}` : ''}
       </p>
       <div class="meta">{eventRange(ev)} · SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="calendar" />
@@ -295,9 +300,9 @@ const breadcrumb = {
             </div>
           ) : venue && (
             <div class="ev-spec">
-              <div class="spec-label">{ev.trackSvg.endsWith('-wrc.svg') ? 'RALLY BASE' : 'CIRCUIT'}</div>
+              <div class="spec-label">{isRally ? 'RALLY BASE' : 'CIRCUIT'}</div>
               <div class="spec-value">{venue.name}</div>
-              <div class="spec-sub">{venue.city} · {venue.country}</div>
+              <div class="spec-sub">{venue.city} · {venueCountry}</div>
             </div>
           )}
         </div>
