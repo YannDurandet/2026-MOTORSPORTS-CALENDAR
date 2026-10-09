@@ -12,14 +12,43 @@ interface Props {
   /** Translations of this page, e.g. [{ hreflang: 'fr', href: 'https://dord.racing/fr/…' }].
    *  Include the page itself; the English URL doubles as x-default. */
   alternates?: { hreflang: string; href: string }[];
+  /** id of the above-the-fold element the first paint waits for (view transitions).
+   *  Defaults to the site nav. Pages without <Nav> must name another small element near
+   *  the top (NOT `main-content` when it wraps the whole page: paint would wait for the footer). */
+  expect?: string;
 }
 
-const { title, description, ogImage, canonicalUrl, lang = 'en', alternates = [] } = Astro.props;
+const { title, description, ogImage, canonicalUrl, lang = 'en', alternates = [], expect = 'site-nav' } = Astro.props;
 const xDefault = alternates.find(a => a.hreflang === 'en');
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const defaultOgImage = `https://dord.racing/assets/lauda_and_mouton--large.webp`;
 const resolvedOgImage = ogImage || defaultOgImage;
 const resolvedCanonical = canonicalUrl || Astro.url.href;
+
+// Speculative loading: while a visitor hovers (desktop) or presses (mobile) an
+// internal link, the browser fetches that page so the click lands on a warm
+// cache. Prefetch only — prerender would run page scripts early, and the
+// calendar's timezone/filter/countdown JS must not run before it's visible.
+// Links that change state or aren't pages are excluded.
+const speculationRules = {
+  prefetch: [{
+    where: {
+      and: [
+        { href_matches: '/*' },
+        { not: { or: [
+          { href_matches: '/api/*' },
+          { href_matches: '/data/*' },
+          { href_matches: '/ical/*' },
+          { href_matches: '/og/*' },
+          { href_matches: '/embed/*' },
+          { href_matches: '/*.*' },
+        ] } },
+        { not: { selector_matches: '[rel~="nofollow"], [download], [target="_blank"]' } },
+      ],
+    },
+    eagerness: 'moderate',
+  }],
+};
 ---
 <!DOCTYPE html>
 <html lang={lang}>
@@ -27,7 +56,15 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0f12">
+  <!-- Follow the OS text-size setting (Dynamic Type, Android font scale). All type is rem-based
+       and the root font-size is never overridden, so the layout reflows instead of breaking. -->
+  <meta name="text-scale" content="scale">
   <meta name="description" content={description}>
+  <!-- Cross-document view transitions (see global.css): hold the first paint until the nav is
+       parsed so the cross-fade lands on a styled page, not a blank one. The nav sits at the top of
+       every page; #main-content wraps the whole page and would delay paint on big pages. -->
+  <link rel="expect" href={`#${expect}`} blocking="render">
+  <script type="speculationrules" set:html={JSON.stringify(speculationRules)} />
   <link rel="canonical" href={resolvedCanonical} />
   {alternates.map(a => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
   {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
@@ -38,8 +75,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
   <!-- Preload critical fonts to prevent layout shifts (CLS) -->
   <link rel="preload" href={`${base}/assets/fonts/orbitron-900.woff2`} as="font" type="font/woff2" crossorigin>
   <link rel="preload" href={`${base}/assets/fonts/jetbrains-mono-latin.woff2`} as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href={`${base}/assets/fonts/inter-400.woff2`} as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href={`${base}/assets/fonts/inter-800.woff2`} as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href={`${base}/assets/fonts/inter-latin-var.woff2`} as="font" type="font/woff2" crossorigin>
   <meta property="og:type" content="website">
   {lang !== 'en' && <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : lang}>}
   <meta property="og:site_name" content="2026 Motorsport Master Calendar">
@@ -78,12 +114,15 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       src: url('/assets/fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
       unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
     }
+    /* Inter is one variable font (wght axis). Two rules, one file: weights 500/600/700 keep
+       resolving to the 400/800 faces exactly as before (CSS font matching), and the identical
+       URL means the browser downloads it once. Do not merge into `font-weight: 400 800`. */
     @font-face {
       font-family: 'Inter';
       font-style: normal;
       font-weight: 400;
       font-display: swap;
-      src: url('/assets/fonts/inter-400.woff2') format('woff2');
+      src: url('/assets/fonts/inter-latin-var.woff2') format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
     @font-face {
@@ -91,7 +130,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       font-style: normal;
       font-weight: 800;
       font-display: swap;
-      src: url('/assets/fonts/inter-800.woff2') format('woff2');
+      src: url('/assets/fonts/inter-latin-var.woff2') format('woff2');
       unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
     }
   </style>
@@ -540,7 +579,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
     }
 
     function escapeHtml(s: string): string {
-      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
     function renderResults(query: string) {
@@ -581,10 +620,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       if (series.length) {
         html += groupHeader('Series');
         for (const s of series) {
-          html += `<a class="search-result-item" href="${base}/series/${s.slug}">
+          html += `<a class="search-result-item" href="${base}/series/${escapeHtml(s.slug)}">
             <div class="search-result-body">
-              <span class="search-result-name">${s.name}</span>
-              <span class="search-result-sub">${s.tagline}</span>
+              <span class="search-result-name">${escapeHtml(s.name)}</span>
+              <span class="search-result-sub">${escapeHtml(s.tagline)}</span>
             </div>
             ${arrow}
           </a>`;
@@ -593,10 +632,10 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       if (tracks.length) {
         html += groupHeader('Circuits');
         for (const t of tracks) {
-          html += `<a class="search-result-item" href="${base}/tracks/${t.slug}">
+          html += `<a class="search-result-item" href="${base}/tracks/${escapeHtml(t.slug)}">
             <div class="search-result-body">
-              <span class="search-result-name">${t.name}</span>
-              <span class="search-result-sub">${t.city} · ${t.country}</span>
+              <span class="search-result-name">${escapeHtml(t.name)}</span>
+              <span class="search-result-sub">${escapeHtml(t.city)} · ${escapeHtml(t.country)}</span>
             </div>
             ${arrow}
           </a>`;
@@ -605,7 +644,7 @@ const resolvedCanonical = canonicalUrl || Astro.url.href;
       if (events.length) {
         html += groupHeader('Races');
         for (const ev of events) {
-          html += `<a class="search-result-item" href="${base}/#${ev.anchor}">
+          html += `<a class="search-result-item" href="${base}/#${escapeHtml(ev.anchor)}">
             <div class="search-result-body">
               <span class="search-result-name">${escapeHtml(ev.name)}</span>
               <span class="search-result-sub">${escapeHtml(ev.tag)}${ev.year === 2027 ? ' · 2027' : ''}</span>

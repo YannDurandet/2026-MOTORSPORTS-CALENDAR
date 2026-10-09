@@ -5,6 +5,10 @@
 ---
 
 <section class="nl-banner" aria-label="Newsletter signup">
+  <picture class="nl-bg">
+    <source media="(min-width: 769px)" srcset="/assets/mailing-banner-desktop.webp" width="1500" height="500" />
+    <img src="/assets/mailing-banner-mobile.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" width="500" height="1036" />
+  </picture>
   <div class="nl-inner">
     <p class="nl-headline">FROM THE <br>PIT WALL</p>
     <div class="nl-content-row">
@@ -47,12 +51,30 @@
     margin: 40px 0;
     border: 1px solid var(--row-line);
     border-radius: var(--radius-2xl);
-    background: var(--surface-sunken-2) url(/assets/mailing-banner-mobile.webp) center center / cover no-repeat;
+    background-color: var(--surface-sunken-2); /* placeholder until the lazy image arrives */
+    isolation: isolate; /* keeps the z-index:-1 image above this background, below the scrim */
     overflow: hidden;
     /* Mobile: full viewport height so the banner is a dedicated scroll moment */
     min-height: 100svh;
     display: flex;
     align-items: center;
+  }
+
+  /* Cover image as a lazy <img> layer (a CSS background would be fetched eagerly,
+     even though the banner sits below the fold). */
+  .nl-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .nl-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* Dark scrim so text stays legible over the image */
@@ -191,8 +213,6 @@
   @media (min-width: 769px) {
     .nl-banner {
       min-height: auto;
-      background-image: url(/assets/mailing-banner-desktop.webp);
-      background-position: center center;
     }
 
     /* Centered uniform scrim for centered layout */

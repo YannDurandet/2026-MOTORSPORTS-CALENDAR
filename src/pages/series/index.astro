@@ -16,6 +16,23 @@ const grouped = categoryOrder.map(cat => ({
   series: (seriesContent as any[]).filter((s: any) => s.category === cat),
 })).filter(g => g.series.length > 0);
 
+// The first row of the first grid (3 columns) is above the fold: lazy-loading it would delay LCP.
+const eagerImageCount = 3;
+
+// Card images: the 880w original (also the `src` fallback) plus a 640w sibling
+// from `npm run gen:series-images`. `sizes` mirrors the grid CSS in global.css:
+// the grid is 96% of the viewport (capped at 0.96 × 1800px = 1728px), with a
+// 10px gap and a 1px card border either side of the image:
+//   >= 1800px  3 cols, capped  (1728 - 2×10 - 6) / 3 = 567px
+//   >= 901px   3 cols          (96vw - 26px) / 3
+//   >= 561px   2 cols          (96vw - 14px) / 2
+//   below      1 col           96vw - 2px
+const gridImageSizes =
+  '(min-width: 1800px) 567px, (min-width: 901px) calc((96vw - 26px) / 3), (min-width: 561px) calc((96vw - 14px) / 2), calc(96vw - 2px)';
+const gridImageSrc = (slug: string) => `${base}/assets/series-grid-images/${seriesImages[slug]}`;
+const gridImageSrcset = (slug: string) =>
+  `${gridImageSrc(slug).replace(/\.webp$/, '-640w.webp')} 640w, ${gridImageSrc(slug)} 880w`;
+
 ---
 <BaseLayout
   title="2026 Motorsport Series Guide — F1, MotoGP, WEC & More | DORD"
@@ -44,15 +61,24 @@ const grouped = categoryOrder.map(cat => ({
   </header>
 
   <main id="main-content" class="main-section">
-    {grouped.map(group => (
+    {grouped.map((group, groupIndex) => (
       <>
         <div class="series-index-category">{group.category}</div>
         <div class="series-index-grid">
-          {group.series.map((s: any) => (
+          {group.series.map((s: any, i: number) => (
             <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>
               <div class="series-index-img-wrap">
                 {seriesImages[s.slug]
-                  ? <img src={`${base}/assets/series-grid-images/${seriesImages[s.slug]}`} alt={`${s.name} 2026 race schedule`} loading="lazy" />
+                  ? <img
+                      src={gridImageSrc(s.slug)}
+                      srcset={gridImageSrcset(s.slug)}
+                      sizes={gridImageSizes}
+                      width="880"
+                      height="532"
+                      alt={`${s.name} 2026 race schedule`}
+                      loading={groupIndex === 0 && i < eagerImageCount ? 'eager' : 'lazy'}
+                      decoding="async"
+                    />
                   : <div class="series-index-img-placeholder">{s.name}</div>
                 }
                 <div class="sc-countdown" data-series={s.slug}>

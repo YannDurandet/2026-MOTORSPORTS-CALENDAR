@@ -10,7 +10,7 @@
  * Install: registers in BaseLayout.astro (skipped on localhost unless ?sw=1 is set).
  */
 
-const VERSION  = 'v5';
+const VERSION  = 'v6';
 const CACHE    = `dord-${VERSION}`;
 
 // Assets to precache on install (shell only — pages served SW-free initially)
@@ -19,8 +19,7 @@ const PRECACHE = [
   '/manifest.webmanifest',
   '/assets/fonts/orbitron-900.woff2',
   '/assets/fonts/jetbrains-mono-latin.woff2',
-  '/assets/fonts/inter-400.woff2',
-  '/assets/fonts/inter-800.woff2',
+  '/assets/fonts/inter-latin-var.woff2',
 ];
 
 // ── Install: precache shell ────────────────────────────────────────────────────

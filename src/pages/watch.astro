@@ -6,8 +6,12 @@ import Footer from '../components/Footer.astro';
 import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
+import seriesIndex from '../../data/series.json';
+import { jsonForScript } from '../lib/jsonForScript';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// Race dates, embedded so the schedule renders without a post-paint fetch.
+const seriesIndexJson = jsonForScript(seriesIndex);
 
 // Build track slug → name lookup
 const trackBySlug = new Map<string, any>();
@@ -105,13 +109,20 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
     <script
       type="application/json"
       id="watch-events-data"
-      set:html={JSON.stringify(watchEvents)}
+      set:html={jsonForScript(watchEvents)}
     ></script>
     <!-- Broadcasters, one entry per series rather than per event -->
     <script
       type="application/json"
       id="watch-htw-data"
-      set:html={JSON.stringify(howToWatchBySeries)}
+      set:html={jsonForScript(howToWatchBySeries)}
+    ></script>
+    <!-- Race dates (generated data/series.json), so the schedule renders in the
+         same task as the script instead of after a network round trip -->
+    <script
+      type="application/json"
+      id="watch-series-data"
+      set:html={seriesIndexJson}
     ></script>
 
     <div id="watch-loading" class="watch-loading">Loading schedule…</div>
@@ -144,15 +155,28 @@ const ALL_EVENTS = JSON.parse(rawEl.textContent);
 const htwEl = document.getElementById('watch-htw-data');
 const HTW = htwEl ? JSON.parse(htwEl.textContent) : {};
 
+// Race dates keyed by series slug. watch.astro embeds them as #watch-series-data
+// so the schedule is built in this same task, before first paint. Fetching
+// /data/series.json first rendered the page empty, then inserted the schedule
+// after paint and pushed the footer down (CLS ≈ 0.46). The fetch below is only
+// a fallback for a missing or unparseable block.
 let seriesData = {};
-try {
-  const base = document.querySelector('meta[name="astro-base"]')?.content ?? '';
-  const res = await fetch(`${base}/data/series.json`);
-  seriesData = await res.json();
+function setSeriesData(data) {
+  seriesData = data;
   for (const list of Object.values(seriesData)) {
     for (const race of list) race._ts = new Date(race.date).getTime();
   }
-} catch { /* render anyway without exact dates */ }
+}
+
+try {
+  setSeriesData(JSON.parse(document.getElementById('watch-series-data').textContent));
+} catch {
+  try {
+    const base = document.querySelector('meta[name="astro-base"]')?.content ?? '';
+    const res = await fetch(`${base}/data/series.json`);
+    setSeriesData(await res.json());
+  } catch { /* render anyway without exact dates */ }
+}
 
 // ── Date helpers (Paris-day semantics) ───────────────────────────────────────
 function getParisDateStr(ts) {
@@ -354,6 +378,9 @@ if (isEmpty) {
   font-family: var(--font-mono);
   font-size: var(--fs-md);
   padding: 32px 0;
+  /* Reserve the schedule's space while it loads, so the footer is below the
+     fold and never shifts if the fetch fallback (or a slow device) renders late. */
+  min-height: 80svh;
 }
 
 .watch-empty {

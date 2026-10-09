@@ -12,12 +12,15 @@ import Footer from '../components/Footer.astro';
 import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
+import seriesIndex from '../../data/series.json';
 import { ALL_EVENTS } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
+import { jsonForScript } from '../lib/jsonForScript';
 import { alternatesFor } from '../lib/fr';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const seriesIndexJson = jsonForScript(seriesIndex);
 const trackSlugs = new Set((tracksData as any[]).map((t: any) => t.slug));
 
 // Find the calendar index of the current month so we can inject the newsletter
@@ -312,5 +315,9 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <Footer />
   </main>
 
+  <!-- Race dates for the "This Weekend" countdowns (generated: npm run gen:series).
+       Inline so main.js renders the strip before first paint; /data/series.json
+       remains the fallback. -->
+  <script type="application/json" id="series-data" set:html={seriesIndexJson}></script>
   <script src="../scripts/main.js"></script>
 </BaseLayout>

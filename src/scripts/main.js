@@ -102,8 +102,10 @@ function saveFilterState() {
 
 const filterState = loadFilterState();
 
-// Data loaded from JSON via fetch
+// Race dates per series. Read from the inline #series-data block (fetch of
+// /data/series.json is only a fallback); see init().
 let seriesData = {};
+let seriesLoaded = false;
 
 
 // =============================================
@@ -158,6 +160,9 @@ function renderThisWeekend() {
     const section = document.getElementById('this-weekend');
     const grid = document.getElementById('this-weekend-grid');
     if (!section || !grid) return;
+    // No race data yet: leave the section as the HTML shipped it rather than
+    // hiding it and re-showing it once series.json arrives.
+    if (!seriesLoaded) return;
 
     const allRaces = getWeekRaces();
     // Only show upcoming races; hide finished ones so a midnight race doesn't
@@ -686,9 +691,21 @@ function setRowOpen(row, open) {
     if (!btn || !panel) return;
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace(/— (show|hide) details$/, open ? '— hide details' : '— show details'));
-    panel.hidden = !open;
+    // 'until-found' keeps collapsed text reachable by find-in-page (and the
+    // beforematch listener below opens the row when it matches). Browsers
+    // without support read it as a plain `hidden` (both here and in the
+    // server-rendered markup); calendar.css only lays the panel out while it is
+    // NOT hidden, so those browsers still get the UA display:none.
+    panel.hidden = open ? false : 'until-found';
     row.classList.toggle('is-open', open);
 }
+
+// Find-in-page matched text inside a collapsed panel: open its row so the
+// toggle button's aria-expanded / label / chevron stay in sync with what's shown.
+document.addEventListener('beforematch', e => {
+    const row = e.target.closest?.('.ev-row');
+    if (row) focusRow(row);
+});
 
 function focusRow(row) {
     const card = row.closest('.card');
@@ -742,24 +759,49 @@ function initEventRows() {
 // =============================================
 // INIT
 // =============================================
-(async function init() {
-    // Fetch series data for countdowns — calendar HTML is pre-rendered.
-    // A failed fetch must not kill the rest of init: filters, toggles and
-    // row clicks work fine without countdown data.
-    const base = document.querySelector('meta[name="astro-base"]')?.getAttribute('content') || '';
-    try {
-        const seriesRes = await fetch(`${base}/data/series.json`);
-        seriesData = await seriesRes.json();
-    } catch (e) {
-        console.error('Failed to load series data — countdowns disabled', e);
-        seriesData = {};
-    }
-
+function setSeriesData(data) {
+    seriesData = data;
     // Pre-cache timestamps
     for (const list of Object.values(seriesData)) {
         for (const race of list) {
             race._ts = new Date(race.date).getTime();
         }
+    }
+}
+
+(function init() {
+    // Race dates for the "This Weekend" countdowns — calendar HTML is pre-rendered.
+    // index.astro embeds them as #series-data so the strip renders in the same
+    // task as the rest of init, before first paint: a network fetch here
+    // inserted the strip (and its height) above the calendar after the page
+    // had painted. The fetch below is only a fallback if the block is missing.
+    //
+    // Whichever path supplies the data, nothing else waits on it: everything
+    // below is DOM-only and must run before the reader sees the page settle.
+    // Awaiting a fetch first left every past month on screen until the response
+    // landed, then collapsed them into the accordion (CLS ≈ 1).
+    // A failed load must not kill the rest of init: filters, toggles and
+    // row clicks work fine without countdown data.
+    const base = document.querySelector('meta[name="astro-base"]')?.getAttribute('content') || '';
+    try {
+        setSeriesData(JSON.parse(document.getElementById('series-data').textContent));
+        seriesLoaded = true; // applyFilters() below renders "This Weekend" straight away
+    } catch (e) {
+        // Fallback: fetch the data and fill in "This Weekend" once it lands.
+        // Chained here (not at the end of init) so it still happens even if a
+        // later init step throws; init is synchronous, so this always runs
+        // after the DOM work above has finished.
+        fetch(`${base}/data/series.json`)
+            .then(res => res.json())
+            .then(setSeriesData)
+            .catch(err => {
+                console.error('Failed to load series data — countdowns disabled', err);
+                seriesData = {};
+            })
+            .then(() => {
+                seriesLoaded = true;
+                renderThisWeekend();
+            });
     }
 
     // Convert times for non-Paris timezones

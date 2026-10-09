@@ -13,6 +13,10 @@ const nextSeason = season + 1;
 const hasNextSeason = EVENT_YEARS.includes(nextSeason);
 ---
 <footer>
+  <picture class="footer--bg">
+    <source type="image/avif" srcset={`${base}/assets/footer-bg.avif`} />
+    <img src={`${base}/assets/footer-bg.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" width="1920" height="400" />
+  </picture>
   <div class="footer--container">
 
     <div class="footer--inner">

@@ -1,0 +1,52 @@
+# Cache-Control for static assets (Cloudflare Workers static assets).
+#
+# Without this, everything under /assets/ is served with the default
+# "public, max-age=0, must-revalidate", so every repeat visit sends a
+# conditional request per file. That hurts in-app browsers (X, Instagram),
+# which often skip the service worker (public/sw.js).
+#
+# /_astro/* (content-hashed) gets its immutable header from the Astro adapter,
+# which prepends it at build time. Don't add it here.
+#
+# Rules must NOT overlap. When several rules match one URL, Cloudflare merges
+# their values (comma-joined) instead of letting the most specific one win, so
+# a broad /assets/* plus /assets/fonts/* would send two Cache-Control values.
+# Hence one rule per directory. A splat (*) also matches "/", so top-level
+# files use the :file placeholder, which matches a single path segment only.
+# A new /assets/<dir>/ needs its own rule here.
+#
+# Deliberately unmatched, so they keep revalidating: HTML pages, /data/*,
+# /api/*, /og/* (generated share cards) and /sw.js.
+
+# Fonts must be RENAMED when they change (never replaced in place under the
+# same name): immutable means browsers won't re-check them for a year, and the
+# service worker's cache-first fetch goes through this HTTP cache too, so
+# bumping VERSION in sw.js alone can't refresh a font that kept its filename.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Everything below keeps the same URL when its content changes: cache for a
+# day, then serve stale for up to a week while revalidating in the background.
+/assets/:file
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/brand/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/flags/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/og/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/series-grid-images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/track-bgs/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/track-maps/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/tracks/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800

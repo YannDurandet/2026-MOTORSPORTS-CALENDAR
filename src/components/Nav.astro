@@ -5,7 +5,7 @@ interface Props {
 const { activePage } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<nav class="site-nav">
+<nav class="site-nav" id="site-nav">
   <a href={`${base}/`} class:list={["site-nav-link", { active: activePage === 'calendar' }]}>Calendar</a>
   <a href={`${base}/series`} class:list={["site-nav-link", { active: activePage === 'series' }]}>Series</a>
   <a href={`${base}/tracks`} class:list={["site-nav-link", { active: activePage === 'tracks' }]}>Tracks</a>

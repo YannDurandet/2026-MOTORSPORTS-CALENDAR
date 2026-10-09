@@ -11,6 +11,7 @@
     "gen:series": "node scripts/gen-series.mjs",
     "gen:pitwall": "node scripts/gen-pitwall.mjs",
     "gen:icons": "node scripts/gen-icons.mjs",
+    "gen:series-images": "node scripts/gen-series-images.mjs",
     "gen:track-pngs": "node scripts/export-track-pngs.mjs",
     "gen:map-status": "node scripts/gen-track-map-status.mjs",
     "results": "node scripts/results.mjs",
