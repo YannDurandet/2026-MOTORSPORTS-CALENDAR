@@ -5236,7 +5236,16 @@
               }
             ],
             "date": "2026-10-04T14:00:00+02:00",
-            "shortName": "SARDINIA"
+            "shortName": "SARDINIA",
+            "results": [
+              {
+                "date": "2026-10-04",
+                "winner": "Oliver Solberg",
+                "co_driver": "Elliott Edmondson",
+                "manufacturer": "Toyota GR Yaris Rally1",
+                "country": "SE"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -5353,7 +5362,15 @@
             "time": "RACE: <span class=\"hl\">21:30</span>",
             "track": "las-vegas-oval.svg",
             "date": "2026-10-04T23:30:00+01:00",
-            "shortName": "LAS VEGAS"
+            "shortName": "LAS VEGAS",
+            "results": [
+              {
+                "date": "2026-10-04",
+                "winner": "Chase Briscoe",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -5379,7 +5396,15 @@
             "time": "RACE: <span class=\"hl\">08:00</span>",
             "track": "mandalika.svg",
             "date": "2026-10-11T08:00:00+02:00",
-            "shortName": "INDONESIA"
+            "shortName": "INDONESIA",
+            "results": [
+              {
+                "date": "2026-10-11",
+                "winner": "Marco Bezzecchi",
+                "team": "Aprilia Racing",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "wsbk",
@@ -5415,43 +5440,193 @@
             "time": "RACE: <span class=\"hl\">00:00</span>",
             "track": "bathurst.svg",
             "date": "2026-10-11T01:00:00+02:00",
-            "shortName": "BATHURST 1000"
+            "shortName": "BATHURST 1000",
+            "results": [
+              {
+                "date": "2026-10-11",
+                "winner": "Brodie Kostecki / Todd Hazelwood",
+                "team": "Dick Johnson Racing",
+                "country": "AU"
+              }
+            ]
           },
           {
             "series": "elms",
             "tag": "ELMS",
             "title": "4 Hours of Portimão (Finale)",
-            "time": "SAT: <span class=\"hl\">12:00</span>",
+            "time": "SAT: <span class=\"hl\">15:30</span>",
+            "classes": [
+              "LMP2",
+              "LMP2 PRO/AM",
+              "LMP3",
+              "LMGT3"
+            ],
+            "sessions": [
+              {
+                "day": "THU",
+                "label": "FP1",
+                "time": "12:00"
+              },
+              {
+                "day": "FRI",
+                "label": "FP2",
+                "time": "11:15"
+              },
+              {
+                "day": "FRI",
+                "label": "Qualifying",
+                "time": "16:15"
+              },
+              {
+                "day": "SAT",
+                "label": "RACE",
+                "time": "15:30",
+                "duration": "4h"
+              }
+            ],
             "track": "portimao.svg",
-            "date": "2026-10-10T12:00:00+02:00",
-            "shortName": "PORTIMÃO 4H"
+            "date": "2026-10-10T15:30:00+02:00",
+            "shortName": "PORTIMÃO 4H",
+            "results": [
+              {
+                "date": "2026-10-10",
+                "winners": [
+                  "Griffin Peebles",
+                  "Gregoire Saucy",
+                  "Ben Hanley"
+                ],
+                "team": "United Autosports"
+              }
+            ]
           },
           {
             "series": "nls",
             "tag": "NLS",
             "title": "NLS Sportwarte-Trophy (4h)",
-            "time": "SAT: <span class=\"hl\">10:00</span>",
+            "time": "SAT: <span class=\"hl\">12:00</span>",
+            "sessions": [
+              {
+                "day": "SAT",
+                "label": "Qualifying",
+                "time": "08:30"
+              },
+              {
+                "day": "SAT",
+                "label": "RACE",
+                "time": "12:00",
+                "duration": "4h"
+              }
+            ],
             "track": "nordschleife.svg",
-            "date": "2026-10-10T10:00:00+02:00",
-            "shortName": "SPORTWARTE TROPHY"
+            "date": "2026-10-10T12:00:00+02:00",
+            "shortName": "SPORTWARTE TROPHY",
+            "results": [
+              {
+                "date": "2026-10-10",
+                "winners": [
+                  "Nico Menzel",
+                  "Sven Müller"
+                ],
+                "team": "Dunlop Motorsport",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "gtwca",
             "tag": "GTWCA",
             "title": "Indianapolis 8 Hour (Finale)",
-            "time": "RACE: <span class=\"hl\">16:00</span>",
+            "time": "RACE: <span class=\"hl\">18:30</span>",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "FP",
+                "time": "01:00"
+              },
+              {
+                "day": "FRI",
+                "label": "Pre-Qualifying",
+                "time": "15:50"
+              },
+              {
+                "day": "FRI",
+                "label": "Qualifying",
+                "time": "21:35"
+              },
+              {
+                "day": "FRI",
+                "label": "Pole Shootout",
+                "time": "23:35"
+              },
+              {
+                "day": "SAT",
+                "label": "RACE",
+                "time": "18:30",
+                "duration": "8h"
+              }
+            ],
             "track": "indianapolis.svg",
-            "date": "2026-10-10T17:00:00+02:00",
-            "shortName": "INDIANAPOLIS 8H"
+            "date": "2026-10-10T18:30:00+02:00",
+            "shortName": "INDIANAPOLIS 8H",
+            "results": [
+              {
+                "date": "2026-10-10",
+                "winners": [
+                  "Ayhancan Güven",
+                  "Kyle Washington",
+                  "Riccardo Pera"
+                ],
+                "team": "GMG Racing"
+              }
+            ]
           },
           {
             "series": "igtc",
             "tag": "IGTC",
             "title": "Indianapolis 8 Hour (Finale)",
-            "time": "RACE: <span class=\"hl\">16:00</span>",
+            "time": "RACE: <span class=\"hl\">18:30</span>",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "FP",
+                "time": "01:00"
+              },
+              {
+                "day": "FRI",
+                "label": "Pre-Qualifying",
+                "time": "15:50"
+              },
+              {
+                "day": "FRI",
+                "label": "Qualifying",
+                "time": "21:35"
+              },
+              {
+                "day": "FRI",
+                "label": "Pole Shootout",
+                "time": "23:35"
+              },
+              {
+                "day": "SAT",
+                "label": "RACE",
+                "time": "18:30",
+                "duration": "8h"
+              }
+            ],
             "track": "indianapolis.svg",
-            "date": "2026-10-10T17:00:00+02:00",
-            "shortName": "INDIANAPOLIS 8H"
+            "date": "2026-10-10T18:30:00+02:00",
+            "shortName": "INDIANAPOLIS 8H",
+            "results": [
+              {
+                "date": "2026-10-10",
+                "winners": [
+                  "Ayhancan Güven",
+                  "Kyle Washington",
+                  "Riccardo Pera"
+                ],
+                "team": "GMG Racing"
+              }
+            ]
           },
           {
             "series": "sf",
@@ -5460,7 +5635,23 @@
             "time": "RACE: <span class=\"hl\">05:00</span>",
             "track": "fuji.svg",
             "date": "2026-10-11T07:00:00+02:00",
-            "shortName": "FUJI FINALE"
+            "shortName": "FUJI FINALE",
+            "results": [
+              {
+                "race_label": "Round 9",
+                "date": "2026-10-10",
+                "winner": "Igor Fraga",
+                "team": "PONOS Nakajima Racing",
+                "country": "BR"
+              },
+              {
+                "race_label": "Round 10",
+                "date": "2026-10-11",
+                "winner": "Ayumu Iwasa",
+                "team": "TEAM MUGEN",
+                "country": "JP"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -5481,6 +5672,10 @@
             "tag": "WEC",
             "title": "6 Hours of Barcelona",
             "time": "RACE: TBC",
+            "classes": [
+              "HYPERCAR",
+              "LMGT3"
+            ],
             "track": "barcelona.svg",
             "date": "2026-10-18T13:00:00+02:00",
             "shortName": "BARCELONA 6H"
@@ -5498,9 +5693,32 @@
             "series": "gtwce",
             "tag": "GTWCE",
             "title": "3 Hours of Portimão",
-            "time": "RACE: <span class=\"hl\">13:00</span>",
+            "time": "RACE: <span class=\"hl\">18:00</span>",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "FP1",
+                "time": "09:45"
+              },
+              {
+                "day": "FRI",
+                "label": "FP2",
+                "time": "13:45"
+              },
+              {
+                "day": "FRI",
+                "label": "Qualifying",
+                "time": "18:55"
+              },
+              {
+                "day": "SAT",
+                "label": "RACE",
+                "time": "18:00",
+                "duration": "3h"
+              }
+            ],
             "track": "portimao.svg",
-            "date": "2026-10-18T13:00:00+02:00",
+            "date": "2026-10-17T18:00:00+02:00",
             "shortName": "PORTIMÃO 3H"
           },
           {
@@ -5660,6 +5878,10 @@
             "tag": "WEC",
             "title": "6 Hours of Monza",
             "time": "RACE: TBC",
+            "classes": [
+              "HYPERCAR",
+              "LMGT3"
+            ],
             "track": "monza.svg",
             "date": "2026-11-08T13:00:00+01:00",
             "shortName": "MONZA 6H"

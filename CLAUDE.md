@@ -57,6 +57,9 @@ Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
 - `start` / `end` — ISO dates of the event's own weekend. The week label spans every series in that week, so without these an event page can show the wrong first day. Set for every F1 round.
 - `slug` — pins the event URL when a title changes after the page went live (`"Bahrain GP"` → `"Bahrain GP in Malaysia (Sepang)"` keeps `/events/2026/f1-bahrain-gp`). Never change an existing one.
 - `venue` — `{ name, city, country }` for a confirmed event whose circuit has no track entry or SVG yet (`track: "tbc.svg"`). Without it a `tbc.svg` event gets no page.
+- `classes` — `["GTD PRO", "GTD"]`: classes on the grid, shown as chips in the home-row panel. Only add what an official source confirms for that round.
+- `sessions` — `[{ day: "SAT", label: "Qualifying", time: "21:35", duration?: "2h40" }]`: the weekend in **Paris time**, in weekday order, one home-row line per day. Optional; `time` stays the source for the time chip, countdowns, `series.json` and the OG images, so keep the single `RACE` session equal to it (`npm run check` enforces this, and that its weekday matches `date`). A session after midnight Paris belongs to the next `day`.
+- `sub[].round` / `sub[].day` / `sub[].time` — extend a support-series row (`"Rd 5"`, `"SUN"`, `"10:00"`) so it gets its own time chip. `time` needs a `day`. A `badge` key with no `.b-{key}` rule in `global.css` renders without a background.
 
 `data/seasons.json` holds per-series, per-year notes (summary, what changed, status) rendered on `/series/{slug}/{year}`.
 

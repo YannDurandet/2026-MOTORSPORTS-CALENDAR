@@ -2,8 +2,8 @@
   "f1": {
     "drivers": {
       "label": "Drivers Championship",
-      "updatedAt": "2026-10-04",
-      "roundsComplete": 16,
+      "updatedAt": "2026-10-12",
+      "roundsComplete": 17,
       "totalRounds": 23,
       "entries": [
         {
@@ -11,63 +11,63 @@
           "name": "Kimi Antonelli",
           "country": "IT",
           "team": "Mercedes",
-          "points": 320
+          "points": 340
         },
         {
           "pos": 2,
           "name": "George Russell",
           "country": "GB",
           "team": "Mercedes",
-          "points": 236
+          "points": 238
         },
         {
           "pos": 3,
           "name": "Lewis Hamilton",
           "country": "GB",
           "team": "Ferrari",
-          "points": 214
+          "points": 229
         },
         {
           "pos": 4,
-          "name": "Charles Leclerc",
-          "country": "MC",
-          "team": "Ferrari",
-          "points": 191
-        },
-        {
-          "pos": 5,
-          "name": "Lando Norris",
-          "country": "GB",
-          "team": "McLaren",
-          "points": 188
-        },
-        {
-          "pos": 6,
           "name": "Max Verstappen",
           "country": "NL",
           "team": "RedBull Racing",
-          "points": 188
+          "points": 221
+        },
+        {
+          "pos": 5,
+          "name": "Charles Leclerc",
+          "country": "MC",
+          "team": "Ferrari",
+          "points": 215
+        },
+        {
+          "pos": 6,
+          "name": "Lando Norris",
+          "country": "GB",
+          "team": "McLaren",
+          "points": 201
         },
         {
           "pos": 7,
           "name": "Oscar Piastri",
           "country": "AU",
           "team": "McLaren",
-          "points": 128
+          "points": 138
         },
         {
           "pos": 8,
           "name": "Isack Hadjar",
           "country": "FR",
           "team": "RedBull Racing",
-          "points": 96
+          "points": 97
         },
         {
           "pos": 9,
           "name": "Liam Lawson",
           "country": "NZ",
           "team": "Racing Bulls",
-          "points": 65
+          "points": 75
         },
         {
           "pos": 10,
@@ -95,21 +95,21 @@
           "name": "Oliver Bearman",
           "country": "GB",
           "team": "Haas",
-          "points": 20
+          "points": 23
         },
         {
           "pos": 14,
+          "name": "Nico Hulkenberg",
+          "country": "DE",
+          "team": "Audi",
+          "points": 13
+        },
+        {
+          "pos": 15,
           "name": "Gabriel Bortoleto",
           "country": "BR",
           "team": "Audi",
           "points": 10
-        },
-        {
-          "pos": 15,
-          "name": "Nico Hulkenberg",
-          "country": "DE",
-          "team": "Audi",
-          "points": 7
         },
         {
           "pos": 16,
@@ -120,16 +120,16 @@
         },
         {
           "pos": 17,
-          "name": "Carlos Sainz",
+          "name": "Fernando Alonso",
           "country": "ES",
-          "team": "Williams",
+          "team": "Aston Martin",
           "points": 7
         },
         {
           "pos": 18,
-          "name": "Fernando Alonso",
+          "name": "Carlos Sainz",
           "country": "ES",
-          "team": "Aston Martin",
+          "team": "Williams",
           "points": 7
         },
         {
@@ -171,34 +171,34 @@
     },
     "constructors": {
       "label": "Constructors Championship",
-      "updatedAt": "2026-10-04",
-      "roundsComplete": 16,
+      "updatedAt": "2026-10-12",
+      "roundsComplete": 17,
       "totalRounds": 23,
       "entries": [
         {
           "pos": 1,
           "name": "Mercedes",
-          "points": 556
+          "points": 578
         },
         {
           "pos": 2,
           "name": "Ferrari",
-          "points": 405
+          "points": 444
         },
         {
           "pos": 3,
           "name": "McLaren",
-          "points": 316
+          "points": 339
         },
         {
           "pos": 4,
           "name": "RedBull Racing",
-          "points": 298
+          "points": 318
         },
         {
           "pos": 5,
           "name": "Racing Bulls",
-          "points": 90
+          "points": 114
         },
         {
           "pos": 6,
@@ -208,12 +208,12 @@
         {
           "pos": 7,
           "name": "Haas",
-          "points": 27
+          "points": 30
         },
         {
           "pos": 8,
           "name": "Audi",
-          "points": 17
+          "points": 23
         },
         {
           "pos": 9,
@@ -236,8 +236,8 @@
   "motogp": {
     "riders": {
       "label": "Riders Championship",
-      "updatedAt": "2026-10-08",
-      "roundsComplete": 16,
+      "updatedAt": "2026-10-12",
+      "roundsComplete": 17,
       "totalRounds": 21,
       "entries": [
         {
@@ -245,119 +245,119 @@
           "name": "Jorge Martín",
           "country": "ES",
           "team": "Aprilia Racing",
-          "points": 333
+          "points": 355
         },
         {
           "pos": 2,
           "name": "Marc Márquez",
           "country": "ES",
           "team": "Ducati Lenovo Team",
-          "points": 331
+          "points": 353
         },
         {
           "pos": 3,
           "name": "Marco Bezzecchi",
           "country": "IT",
           "team": "Aprilia Racing",
-          "points": 284
+          "points": 309
         },
         {
           "pos": 4,
-          "name": "Pedro Acosta",
-          "country": "ES",
-          "team": "Red Bull KTM Factory Racing",
-          "points": 243
-        },
-        {
-          "pos": 5,
           "name": "Ai Ogura",
           "country": "JP",
           "team": "Trackhouse MotoGP Team",
-          "points": 237
+          "points": 259
+        },
+        {
+          "pos": 5,
+          "name": "Pedro Acosta",
+          "country": "ES",
+          "team": "Red Bull KTM Factory Racing",
+          "points": 258
         },
         {
           "pos": 6,
           "name": "Fabio Di Giannantonio",
           "country": "IT",
           "team": "Pertamina VR46 Racing Team",
-          "points": 230
+          "points": 245
         },
         {
           "pos": 7,
           "name": "Raúl Fernández",
           "country": "ES",
           "team": "Trackhouse MotoGP Team",
-          "points": 216
+          "points": 236
         },
         {
           "pos": 8,
-          "name": "Francesco Bagnaia",
-          "country": "IT",
-          "team": "Ducati Lenovo Team",
-          "points": 164
-        },
-        {
-          "pos": 9,
           "name": "Álex Márquez",
           "country": "ES",
           "team": "BK8 Gresini Racing MotoGP",
-          "points": 158
+          "points": 172
+        },
+        {
+          "pos": 9,
+          "name": "Francesco Bagnaia",
+          "country": "IT",
+          "team": "Ducati Lenovo Team",
+          "points": 166
         },
         {
           "pos": 10,
           "name": "Fermín Aldeguer",
           "country": "ES",
           "team": "BK8 Gresini Racing MotoGP",
-          "points": 122
+          "points": 125
         },
         {
           "pos": 11,
           "name": "Enea Bastianini",
           "country": "IT",
           "team": "Red Bull KTM Tech3",
-          "points": 116
+          "points": 122
         },
         {
           "pos": 12,
           "name": "Luca Marini",
           "country": "IT",
           "team": "Honda HRC Castrol",
-          "points": 104
+          "points": 108
         },
         {
           "pos": 13,
           "name": "Brad Binder",
           "country": "ZA",
           "team": "Red Bull KTM Factory Racing",
-          "points": 99
+          "points": 104
         },
         {
           "pos": 14,
+          "name": "Fabio Quartararo",
+          "country": "FR",
+          "team": "Monster Energy Yamaha MotoGP",
+          "points": 74
+        },
+        {
+          "pos": 15,
           "name": "Diogo Moreira",
           "country": "BR",
           "team": "Pro Honda LCR",
           "points": 74
         },
         {
-          "pos": 15,
-          "name": "Fabio Quartararo",
-          "country": "FR",
-          "team": "Monster Energy Yamaha MotoGP",
-          "points": 66
-        },
-        {
           "pos": 16,
           "name": "Franco Morbidelli",
           "country": "IT",
           "team": "Pertamina VR46 Racing Team",
-          "points": 57
+          "points": 59
         },
         {
           "pos": 17,
           "name": "Johann Zarco",
           "country": "FR",
           "team": "Castrol Honda LCR",
-          "points": 48
+          "points": 51
         },
         {
           "pos": 18,
@@ -378,7 +378,7 @@
           "name": "Álex Rins",
           "country": "ES",
           "team": "Monster Energy Yamaha MotoGP",
-          "points": 24
+          "points": 25
         },
         {
           "pos": 21,
@@ -7812,99 +7812,99 @@
   "dtm": {
     "drivers": {
       "label": "Drivers Championship",
-      "updatedAt": "2026-09-15",
-      "roundsComplete": 7,
+      "updatedAt": "2026-10-12",
+      "roundsComplete": 8,
       "totalRounds": 9,
       "entries": [
         {
           "pos": 1,
           "name": "Thomas Preining",
-          "points": 197
+          "points": 225
         },
         {
           "pos": 2,
           "name": "Maro Engel",
-          "points": 174
+          "points": 213
         },
         {
           "pos": 3,
           "name": "Marco Wittmann",
-          "points": 173
+          "points": 198
         },
         {
           "pos": 4,
           "name": "Lucas Auer",
-          "points": 152
+          "points": 182
         },
         {
           "pos": 5,
           "name": "Matteo Cairoli",
-          "points": 150
+          "points": 160
         },
         {
           "pos": 6,
           "name": "Nicki Thiim",
-          "points": 147
+          "points": 149
         },
         {
           "pos": 7,
           "name": "Ben Dörr",
-          "points": 123
+          "points": 139
         },
         {
           "pos": 8,
           "name": "Arjun Maini",
-          "points": 117
+          "points": 133
         },
         {
           "pos": 9,
-          "name": "Jules Gounon",
-          "points": 102
+          "name": "Ricardo Feller",
+          "points": 121
         },
         {
           "pos": 10,
-          "name": "Thierry Vermeulen",
-          "points": 99
+          "name": "Jules Gounon",
+          "points": 111
         },
         {
           "pos": 11,
-          "name": "Ricardo Feller",
-          "points": 98
+          "name": "Thierry Vermeulen",
+          "points": 107
         },
         {
           "pos": 12,
           "name": "Luca Engstler",
-          "points": 96
+          "points": 99
         },
         {
           "pos": 13,
-          "name": "Kelvin van der Linde",
-          "points": 86
+          "name": "Mirko Bortolotti",
+          "points": 97
         },
         {
           "pos": 14,
-          "name": "Mirko Bortolotti",
-          "points": 71
+          "name": "Kelvin van der Linde",
+          "points": 96
         },
         {
           "pos": 15,
           "name": "Finn Wiebelhaus",
-          "points": 67
+          "points": 78
         },
         {
           "pos": 16,
           "name": "Bastian Buus",
-          "points": 50
+          "points": 66
         },
         {
           "pos": 17,
-          "name": "Tom Kalender",
-          "points": 46
+          "name": "Marco Mapelli",
+          "points": 57
         },
         {
           "pos": 18,
-          "name": "Marco Mapelli",
-          "points": 43
+          "name": "Tom Kalender",
+          "points": 49
         },
         {
           "pos": 19,
@@ -7914,7 +7914,7 @@
         {
           "pos": 20,
           "name": "Maximilian Paul",
-          "points": 11
+          "points": 14
         },
         {
           "pos": 21,
@@ -7935,64 +7935,64 @@
     },
     "teams": {
       "label": "Teams Championship",
-      "updatedAt": "2026-09-15",
-      "roundsComplete": 7,
+      "updatedAt": "2026-10-12",
+      "roundsComplete": 8,
       "totalRounds": 9,
       "entries": [
         {
           "pos": 1,
           "name": "Manthey EMA",
-          "points": 282
+          "points": 330
         },
         {
           "pos": 2,
           "name": "Winward Racing",
-          "points": 262
+          "points": 309
         },
         {
           "pos": 3,
           "name": "Schubert Motorsport",
-          "points": 249
+          "points": 284
         },
         {
           "pos": 4,
           "name": "Emil Frey Racing",
-          "points": 236
+          "points": 254
         },
         {
           "pos": 5,
           "name": "Mercedes-AMG Team Landgraf",
-          "points": 194
+          "points": 225
         },
         {
           "pos": 6,
           "name": "HRT Ford Racing",
-          "points": 173
+          "points": 200
         },
         {
           "pos": 7,
           "name": "Dörr Motorsport",
-          "points": 149
+          "points": 165
         },
         {
           "pos": 8,
-          "name": "Comtoyou Racing",
-          "points": 145
+          "name": "ABT Sportsline",
+          "points": 148
         },
         {
           "pos": 9,
-          "name": "ABT Sportsline",
-          "points": 134
+          "name": "Comtoyou Racing",
+          "points": 147
         },
         {
           "pos": 10,
           "name": "GRT Grasser Racing Team",
-          "points": 84
+          "points": 113
         },
         {
           "pos": 11,
           "name": "Land-Motorsport",
-          "points": 50
+          "points": 63
         }
       ]
     },
@@ -8164,87 +8164,87 @@
   "wsbk": {
     "riders": {
       "label": "Riders Championship",
-      "updatedAt": "2026-09-28",
-      "roundsComplete": 10,
+      "updatedAt": "2026-10-12",
+      "roundsComplete": 11,
       "totalRounds": 13,
       "entries": [
         {
           "pos": 1,
           "name": "Nicolò Bulega",
           "team": "Aruba.it Racing - Ducati",
-          "points": 602
+          "points": 664
         },
         {
           "pos": 2,
           "name": "Iker Lecuona",
           "team": "Aruba.it Racing - Ducati",
-          "points": 469
+          "points": 518
         },
         {
           "pos": 3,
           "name": "Yari Montella",
           "team": "Barni Spark Racing Team",
-          "points": 269
+          "points": 290
         },
         {
           "pos": 4,
           "name": "Alex Lowes",
           "team": "Bimota by Kawasaki Racing Team",
-          "points": 226
+          "points": 237
         },
         {
           "pos": 5,
           "name": "Sam Lowes",
           "team": "Marc VDS Racing Team",
-          "points": 219
+          "points": 225
         },
         {
           "pos": 6,
           "name": "Lorenzo Baldassarri",
           "team": "Team Go Eleven",
-          "points": 193
+          "points": 214
         },
         {
           "pos": 7,
           "name": "Axel Bassani",
           "team": "Bimota by Kawasaki Racing Team",
-          "points": 184
+          "points": 208
         },
         {
           "pos": 8,
-          "name": "Garrett Gerloff",
-          "team": "Kawasaki WorldSBK Team",
-          "points": 145
+          "name": "Alberto Surra",
+          "team": "Motocorsa Racing",
+          "points": 179
         },
         {
           "pos": 9,
-          "name": "Alberto Surra",
-          "team": "Motocorsa Racing",
-          "points": 140
+          "name": "Garrett Gerloff",
+          "team": "Kawasaki WorldSBK Team",
+          "points": 160
         },
         {
           "pos": 10,
           "name": "Álvaro Bautista",
           "team": "Barni Spark Racing Team",
-          "points": 125
+          "points": 137
         },
         {
           "pos": 11,
+          "name": "Miguel Oliveira",
+          "team": "ROKiT BMW Motorrad WorldSBK Team",
+          "points": 136
+        },
+        {
+          "pos": 12,
           "name": "Andrea Locatelli",
           "team": "Pata Maxus Yamaha",
           "points": 118
         },
         {
-          "pos": 12,
-          "name": "Miguel Oliveira",
-          "team": "ROKiT BMW Motorrad WorldSBK Team",
-          "points": 109
-        },
-        {
           "pos": 13,
           "name": "Xavi Vierge",
           "team": "Pata Maxus Yamaha",
-          "points": 95
+          "points": 108
         },
         {
           "pos": 14,
@@ -8256,43 +8256,43 @@
           "pos": 15,
           "name": "Tommy Bridewell",
           "team": "Superbike Advocates Racing",
-          "points": 66
+          "points": 71
         },
         {
           "pos": 16,
+          "name": "Remy Gardner",
+          "team": "GYTR GRT Yamaha",
+          "points": 62
+        },
+        {
+          "pos": 17,
           "name": "Danilo Petrucci",
           "team": "ROKiT BMW Motorrad WorldSBK Team",
           "points": 61
         },
         {
-          "pos": 17,
-          "name": "Remy Gardner",
-          "team": "GYTR GRT Yamaha",
-          "points": 57
-        },
-        {
           "pos": 18,
           "name": "Stefano Manzi",
           "team": "GYTR GRT Yamaha",
-          "points": 44
+          "points": 46
         },
         {
           "pos": 19,
-          "name": "Michael van der Mark",
-          "team": "ROKiT BMW Motorrad WorldSBK Team",
-          "points": 23
+          "name": "Jake Dixon",
+          "team": "Honda HRC",
+          "points": 35
         },
         {
           "pos": 20,
-          "name": "Jake Dixon",
-          "team": "Honda HRC",
+          "name": "Michael van der Mark",
+          "team": "ROKiT BMW Motorrad WorldSBK Team",
           "points": 23
         },
         {
           "pos": 21,
           "name": "Somkiat Chantra",
           "team": "Honda HRC",
-          "points": 16
+          "points": 21
         },
         {
           "pos": 22,

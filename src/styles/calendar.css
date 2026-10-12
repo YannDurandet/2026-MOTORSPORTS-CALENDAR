@@ -257,6 +257,39 @@
     letter-spacing: 0.06em;
     color: var(--text-meta);
 }
+/* One line per day: "SAT  FP 15:10 · Qualifying 21:35". The row itself is the
+   .meta-time so the day label and its times convert together. */
+.session-row.meta-time {
+    display: flex;
+    align-items: baseline;
+    gap: 4px 10px;
+    color: var(--text-secondary);
+}
+/* The day label stays in its own column; long lists wrap inside .session-items,
+   breaking only between sessions. */
+.session-items { flex: 1; min-width: 0; }
+.session-item { white-space: nowrap; }
+.session-row .hl { background: none; padding: 0; color: inherit; font-weight: 500; }
+.session-dur { color: var(--text-meta); }
+
+.class-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 2px;
+    padding: 0;
+    list-style: none;
+}
+.class-chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--class-chip-text);
+    background: var(--class-chip-bg);
+    border-radius: var(--radius-sm);
+    padding: 2px 8px;
+}
 .ev-winner { color: var(--text-strong); font-weight: 700; }
 .ev-team { color: var(--text-meta); }
 
@@ -274,15 +307,23 @@
 a.ev-map:hover { box-shadow: inset 0 0 0 1px var(--class-line); }
 a.ev-map:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
-.ev-support { display: flex; flex-direction: column; gap: 6px; }
-.support-lane {
-    display: flex;
+/* Badge · detail · time as three grid columns, so every badge in the list takes
+   the width of the widest one and the details line up (MX5 CUP / MUSTANG).
+   Each lane is display:contents: still the font/colour parent, no box of its own. */
+.ev-support {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr) max-content;
     align-items: center;
-    gap: 8px;
+    gap: 6px 8px;
+}
+.support-lane {
+    display: contents;
     font-family: var(--font-mono);
     font-size: var(--fs-sm);
     color: var(--text-meta);
 }
+.support-lane .badge { justify-content: center; }
+.support-lane .time-chip { grid-column: 3; }
 
 .ev-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
 .ev-links a {

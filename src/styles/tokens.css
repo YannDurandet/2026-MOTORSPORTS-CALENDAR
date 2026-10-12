@@ -303,6 +303,8 @@
     --chip-bg-muted:    #161e2a;   /* bg/chip-muted   */
     --control-line:     #232f41;   /* stroke/control  */
     --class-line:       #4e5a6b;   /* stroke/class    */
+    --class-chip-bg:    #9aa7bb;   /* class chips (GTD PRO, LMP2…); text below is 7.8:1 */
+    --class-chip-text:  #0a0f17;
     --text-heading:     #dce4ee;   /* text/heading    */
     --text-week:        #e4eaf2;   /* text/week       */
     --text-date:        #788595;   /* text/date (AA)  */

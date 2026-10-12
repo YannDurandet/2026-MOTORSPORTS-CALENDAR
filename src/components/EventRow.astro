@@ -3,7 +3,7 @@
  * One race in a calendar week card (the "Event Row" component in Figma).
  *
  * Collapsed: chevron · series badge · title · time chip.
- * Expanded:  session times, races, support series, result, track map, links.
+ * Expanded:  classes, session times, races, support series, result, track map, links.
  *
  * Hooks main.js depends on — keep them:
  *   .event[data-series]      filters
@@ -13,8 +13,9 @@
  */
 import { findEvent } from '../lib/events';
 
-interface SubRace { badge: string; label: string; detail: string }
+interface SubRace { badge: string; label: string; detail: string; round?: string; day?: string; time?: string }
 interface Race { label: string; time: string }
+interface Session { day: string; label: string; time: string; duration?: string }
 interface Result { winner?: string; winners?: string[]; team?: string; manufacturer?: string; race_label?: string }
 
 interface Props {
@@ -27,13 +28,15 @@ interface Props {
   weekLabel: string;
   year: number;
   sprint?: boolean;
+  classes?: string[];
+  sessions?: Session[];
   sub?: SubRace[];
   races?: Race[];
   results?: Result[];
   trackHref?: string | null;
 }
 
-const { series, tag, title, time, track, date, weekLabel, year, sprint, sub, races, results, trackHref } = Astro.props;
+const { series, tag, title, time, track, date, weekLabel, year, sprint, classes, sessions, sub, races, results, trackHref } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesHref = `${base}/series/${series}`;
 const eventPath = findEvent(year, series, title, weekLabel)?.path;
@@ -51,6 +54,18 @@ const chipHtml = lastTime
   ? `${weekday} <span class="hl">${lastTime}</span>`
   : /TBC/.test(plain) ? `${weekday} TBC` : plain.replace(/\s*>\s*/, '–');
 const isTbc = !lastTime;
+
+// ── Session schedule ─────────────────────────────────────────────────────────
+// Optional `sessions` replaces the single TIMES line / race legs with one line
+// per day ("SAT  FP 15:10 · Qualifying 21:35"). Consecutive sessions on the
+// same day share a line. `time` stays the source for the chip and countdowns.
+const sessionDays = (sessions ?? []).reduce<{ day: string; items: Session[] }[]>((days, s) => {
+  const last = days.at(-1);
+  if (last?.day === s.day) last.items.push(s);
+  else days.push({ day: s.day, items: [s] });
+  return days;
+}, []);
+const hasSessions = sessionDays.length > 0;
 
 const winnerOf = (r: Result) => r.winners?.length ? r.winners.join(' · ') : (r.winner ?? '');
 const finished = !!results?.length;
@@ -81,13 +96,36 @@ const finished = !!results?.length;
   <div class="ev-panel" id={panelId} hidden="until-found">
     <div class="ev-panel-body">
       <div class="ev-panel-main">
-        {time && (
+        {classes && classes.length > 0 && (
+          <ul class="class-chips" aria-label="Classes">
+            {classes.map(c => <li class="class-chip">{c}</li>)}
+          </ul>
+        )}
+        {hasSessions && sessionDays.map(g => (
+          <div class="session-line">
+            {/* The day label sits inside .meta-time on purpose: timezone
+                conversion reads the nearest day token to pick the right UTC
+                offset on daylight-saving weekends. */}
+            <span class="session-row meta-time">
+              <span class="session-day">{g.day}</span>
+              <span class="session-items">
+                {g.items.map((s, i) => (
+                  <>
+                    {i > 0 && <span class="session-sep" aria-hidden="true"> · </span>}
+                    <span class="session-item">{s.label} <span class="hl">{s.time}</span>{s.duration && <span class="session-dur"> — {s.duration}</span>}</span>
+                  </>
+                ))}
+              </span>
+            </span>
+          </div>
+        ))}
+        {!hasSessions && time && (
           <div class="session-line">
             <span class="session-day">TIMES</span>
             <span class="meta-time"><Fragment set:html={time} /></span>
           </div>
         )}
-        {races?.map(r => (
+        {!hasSessions && races?.map(r => (
           <div class="session-line">
             <span class="session-day">{r.label}</span>
             <span class="meta-time"><Fragment set:html={r.time} /></span>
@@ -115,7 +153,10 @@ const finished = !!results?.length;
         {sub.map(s => (
           <div class="support-lane">
             <span class={`badge b-${s.badge}`}>{s.label}</span>
-            <span class="support-detail">{s.detail}</span>
+            <span class="support-detail">{[s.round, s.detail].filter(Boolean).join(' · ')}</span>
+            {s.day && s.time && (
+              <span class="time-chip is-muted meta-time">{s.day} <span class="hl">{s.time}</span></span>
+            )}
           </div>
         ))}
       </div>

@@ -192,6 +192,57 @@ check('result-dates', allEvents, ({ ev, week }) => {
   return null;
 });
 
+// ── (g1) optional display fields: classes, sessions, support-race times ─────
+// `time` stays the source for the chip and countdowns; `sessions` is the richer
+// view of the same weekend, so its race must agree with it.
+const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const hhmmRe = /^([01]\d|2[0-3]):[0-5]\d$/;
+const durationRe = /^(\d+h(\d{2})?|\d+min)$/;
+const plainTime = (html) => html.replace(/<[^>]*>/g, '');
+const parisParts = (iso) => {
+  const d = new Date(iso);
+  const f = (opts) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', ...opts }).format(d);
+  return { day: f({ weekday: 'short' }).toUpperCase(), hhmm: f({ hour: '2-digit', minute: '2-digit', hour12: false }) };
+};
+check('event-display-fields', allEvents, ({ ev, week }) => {
+  const id = `[${ev.series}] "${ev.title}" (${week.label})`;
+  if (ev.classes !== undefined) {
+    if (!Array.isArray(ev.classes) || !ev.classes.length || ev.classes.some(c => typeof c !== 'string' || !c.trim())) {
+      return `${id} "classes" must be a non-empty array of non-empty strings`;
+    }
+  }
+  for (const s of ev.sub ?? []) {
+    if (s.time !== undefined && !hhmmRe.test(s.time)) return `${id} sub "${s.label}" time "${s.time}" is not HH:MM`;
+    if (s.day !== undefined && !DAYS.includes(s.day)) return `${id} sub "${s.label}" day "${s.day}" is not MON–SUN`;
+    if (s.time && !s.day) return `${id} sub "${s.label}" has a time but no day`;
+  }
+  if (ev.sessions === undefined) return null;
+  if (!Array.isArray(ev.sessions) || !ev.sessions.length) return `${id} "sessions" must be a non-empty array`;
+  let prev = -1;
+  for (const s of ev.sessions) {
+    if (!DAYS.includes(s.day)) return `${id} session day "${s.day}" is not MON–SUN`;
+    if (!s.label || typeof s.label !== 'string') return `${id} session on ${s.day} has no label`;
+    if (!hhmmRe.test(s.time ?? '')) return `${id} session "${s.label}" time "${s.time}" is not HH:MM`;
+    if (s.duration !== undefined && !durationRe.test(s.duration)) return `${id} session "${s.label}" duration "${s.duration}" is not like "2h40", "6h" or "45min"`;
+    const idx = DAYS.indexOf(s.day);
+    if (idx < prev) return `${id} sessions must be in weekday order (${s.day} "${s.label}" comes after a later day)`;
+    prev = idx;
+  }
+  // The single RACE session must match both `time` and `date`.
+  const races = ev.sessions.filter(s => /^RACE$/i.test(s.label));
+  const timeRaces = [...plainTime(ev.time).matchAll(/RACE:?\s*(\d{2}:\d{2})/gi)].map(m => m[1]);
+  if (races.length === 1 && timeRaces.length === 1 && races[0].time !== timeRaces[0]) {
+    return `${id} sessions RACE ${races[0].time} disagrees with time "${plainTime(ev.time)}"`;
+  }
+  if (races.length === 1) {
+    const p = parisParts(ev.date);
+    if (p.hhmm === races[0].time && p.day !== races[0].day) {
+      return `${id} sessions RACE is on ${races[0].day} but date falls on ${p.day}`;
+    }
+  }
+  return null;
+});
+
 // ── (g2) every winner / standings country code has a flag file ──────────────
 // An unknown code ("SW" for Sweden) renders a broken image on results pages.
 const flagDir = resolve(root, 'public/assets/flags');
