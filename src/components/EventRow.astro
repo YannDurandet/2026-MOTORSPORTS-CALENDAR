@@ -37,6 +37,8 @@ interface Props {
 }
 
 const { series, tag, title, time, track, date, weekLabel, year, sprint, classes, sessions, sub, races, results, trackHref } = Astro.props;
+// Rally rows use a national flag, not a white-stroke map: it must not take the light-theme map inversion.
+const mapImgClass = track?.endsWith('-wrc.svg') ? 'is-flag' : undefined;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesHref = `${base}/series/${series}`;
 const eventPath = findEvent(year, series, title, weekLabel)?.path;
@@ -142,9 +144,9 @@ const finished = !!results?.length;
       {track && (
         trackHref
           ? <a href={trackHref} class="ev-map" aria-label={`${title} circuit guide`}>
-              <img src={`${base}/assets/track-maps/${track}`} alt="" loading="lazy" width="56" height="56" />
+              <img class={mapImgClass} src={`${base}/assets/track-maps/${track}`} alt="" loading="lazy" width="56" height="56" />
             </a>
-          : <span class="ev-map"><img src={`${base}/assets/track-maps/${track}`} alt="" loading="lazy" width="56" height="56" /></span>
+          : <span class="ev-map"><img class={mapImgClass} src={`${base}/assets/track-maps/${track}`} alt="" loading="lazy" width="56" height="56" /></span>
       )}
     </div>
 
@@ -168,5 +170,5 @@ const finished = !!results?.length;
     </div>
   </div>
 
-  {track && <img class="ev-ghost" src={`${base}/assets/track-maps/${track}`} alt="" aria-hidden="true" loading="lazy" width="96" height="96" />}
+  {track && <img class:list={["ev-ghost", mapImgClass]} src={`${base}/assets/track-maps/${track}`} alt="" aria-hidden="true" loading="lazy" width="96" height="96" />}
 </div>

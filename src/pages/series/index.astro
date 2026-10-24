@@ -67,7 +67,7 @@ const gridImageSrcset = (slug: string) =>
         <div class="series-index-grid">
           {group.series.map((s: any, i: number) => (
             <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>
-              <div class="series-index-img-wrap">
+              <div class="series-index-img-wrap theme-dark">
                 {seriesImages[s.slug]
                   ? <img
                       src={gridImageSrc(s.slug)}

@@ -883,7 +883,7 @@ footer {
 
 .footer--logo {
     display: inline-block;
-    color: var(--brand-logo);
+    color: var(--logo-on-surface);
     margin: 0 0 16px;
 }
 .footer--logo-svg {
@@ -974,7 +974,7 @@ a {
 }
 
 .footer--link:hover {
-    color: var(--f1);
+    color: var(--accent-red);
 }
 
 /* ── Nav columns ────────────────────────────────────────────────── */
@@ -1002,7 +1002,7 @@ a {
 }
 
 .footer--nav-link:hover {
-    color: var(--f1);
+    color: var(--accent-red);
 }
 
 .footer--bottom-link {
@@ -1722,14 +1722,14 @@ a {
 }
 
 .faq-question:hover {
-    color: var(--f1);
+    color: var(--accent-red);
     /* F1 Red hover state */
 }
 
 /* Open state styling */
 .faq-card[open] .faq-question::after {
     transform: rotate(180deg);
-    color: var(--f1);
+    color: var(--accent-red);
 }
 
 .faq-answer {
@@ -2138,7 +2138,7 @@ a {
 
 .filter-active-bar.has-filters .clear-all-btn {
     display: inline-block;
-    color: var(--f1);
+    color: var(--accent-red);
     border-color: var(--danger-line);
     pointer-events: auto;
 }
@@ -2825,3 +2825,23 @@ a {
 
 .lang-link { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
 .lang-link:hover { color: var(--text-strong); }
+
+/* =========================================
+   WHITE-STROKE ARTWORK
+   Nav/social icons and track maps are white-stroke files used as <img>, so they
+   can't follow currentColor. --icon-filter / --map-filter (tokens.css) are `none`
+   in dark and `invert(1)` in light, and `.theme-dark` areas reset them to `none`.
+   `.is-flag`: rally rows show a national flag, which must keep its colours.
+========================================= */
+.sticky-nav-link img,
+.social-link img,
+.spec-website img { filter: var(--icon-filter); }
+
+.ev-map img,
+.ev-ghost,
+.pw-event-map img,
+.ev-hero img { filter: var(--map-filter); }
+
+.ev-map img.is-flag,
+.ev-ghost.is-flag,
+.pw-event-map img.is-flag { filter: none; }

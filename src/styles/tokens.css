@@ -27,7 +27,17 @@
  *     redesign to set from the Figma spacing scale.
  * ========================================================================== */
 
-:root {
+/* THEMES. This block is the dark theme and the default. `.theme-dark` re-applies
+ * it inside a light page, for areas that sit on photography and keep white text
+ * (newsletter banner, track hero, series image cards). The light theme is the
+ * `:root[data-theme="light"]` block at the end of this file; it only overrides
+ * what differs, so a token that is the same in both themes (fonts, sizes, radii,
+ * series colours) is declared once, here. A token that is new in the light block
+ * must also be declared here, or `.theme-dark` areas will inherit the light value. */
+:root,
+.theme-dark {
+    color-scheme: dark;
+
     /* ── Typography: families ─────────────────────────────────────────── */
     --font-body:        'Inter', sans-serif;
     --font-mono:        'JetBrains Mono', monospace;
@@ -262,6 +272,8 @@
     --focus-ring:   #00b4d8;
     --focus-ring-2: #4a7fa5;
 
+    --accent-red: var(--f1);       /* red as text: hover states, clear-all, FAQ arrows */
+
     /* ── Status ───────────────────────────────────────────────────────── */
     --success:          #5a9a7a;
     --success-2:        #4a7a5a;
@@ -292,6 +304,13 @@
     /* ── Brand ──────────────────────────────────────────────────────────── */
     --brand-blue: #183878;         /* banner background (placeholder while the image loads) */
     --brand-logo: #f5f5f5;         /* DORD lockup on --brand-blue */
+    --logo-on-surface: #f5f5f5;    /* DORD lockup on a page surface (footer) */
+
+    /* ── Monochrome white artwork ─────────────────────────────────────────
+     * Nav/social icons and track maps are white-stroke files used as <img>,
+     * so they can't take currentColor. Light theme inverts them.           */
+    --icon-filter: none;
+    --map-filter:  none;
 
     /* ── Calendar week card (Figma: Theme collection, Dark mode) ──────────
      * The first surfaces ported from the redesign. Names follow the Figma
@@ -440,4 +459,205 @@
     --supercars-tag: linear-gradient(135deg, #F9CB0F 0%, #ED3348 100%);  /* dark text */
     --gtwce-tag:     linear-gradient(135deg, #E83D33 0%, #FF6B1A 100%);  /* dark text */
     --nls-tag:       linear-gradient(135deg, #008643 0%, #004422 100%);  /* white text */
+}
+
+/* ==========================================================================
+ * LIGHT THEME. Applied by `data-theme="light"` on <html>, which the inline
+ * script in BaseLayout sets from the stored choice or the OS preference.
+ * Same cool navy/slate family as the dark theme, so the two read as one brand.
+ *
+ * Rules of thumb used to pick values:
+ *   - Page is a tinted off-white, cards are white, raised bits (chips, bars,
+ *     hovered rows) step darker, so depth still reads upward like in dark.
+ *   - Text tiers keep their order (strong > main > soft > muted > meta) and
+ *     every readable tier passes AA on --bg, --card-bg and --surface-raised.
+ *   - Overlays flip from white-at-low-alpha to ink-at-low-alpha.
+ *   - Legacy `-N` tiers that are exact aliases in dark stay aliases (not
+ *     redeclared here); the ones with their own hex get a matching light hex.
+ *   - Series colours and series tags are not redeclared: tags already carry
+ *     AA-tested white/dark text and read the same on either theme.
+ *   - Not redeclared on purpose (stay dark in both themes because they sit on
+ *     photography): --scrim, --scrim-2, --scrim-banner*, --scrim-hero,
+ *     --scrim-card, --brand-*.
+ * ========================================================================== */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    /* ── Surfaces ─────────────────────────────────────────────────────── */
+    --surface-sunken:   #ffffff;
+    --surface-sunken-2: #f7f9fc;
+    --surface-sunken-3: #f7f9fc;
+    --surface-sunken-4: #eef2f7;
+    --surface-sunken-5: rgba(255, 255, 255, 0.85);
+
+    --bg: #f2f5f9;
+
+    --card-bg:   #ffffff;
+    --card-bg-8: #f7f9fc;
+    --card-bg-9: rgba(255, 255, 255, 0.9);
+
+    --surface-raised:   #e9eef5;
+    --surface-raised-2: #dfe6ef;
+
+    --surface-accent:   #d6e6f5;
+    --surface-accent-2: #cfe1f4;
+    --surface-accent-3: #c2d9f0;
+    --surface-accent-4: #d3e0ea;
+
+    --surface-inverse: #0b1018;    /* skip link, active filter chip */
+
+    --surface-popover:   rgba(255, 255, 255, 0.97);
+    --surface-popover-2: rgba(255, 255, 255, 0.92);
+
+    /* ── Overlays: ink at low alpha instead of white ──────────────────── */
+    --overlay-faint:    rgba(12, 28, 52, 0.04);
+    --overlay-faint-2:  rgba(12, 28, 52, 0.025);
+    --overlay-faint-3:  rgba(12, 28, 52, 0.03);
+    --overlay-faint-4:  rgba(12, 28, 52, 0.035);
+    --overlay-faint-5:  rgba(12, 28, 52, 0.04);
+    --overlay-soft:     rgba(12, 28, 52, 0.1);
+    --overlay-soft-2:   rgba(12, 28, 52, 0.08);
+    --overlay-soft-3:   rgba(12, 28, 52, 0.09);
+    --overlay-soft-4:   rgba(12, 28, 52, 0.11);
+    --overlay-soft-5:   rgba(12, 28, 52, 0.12);
+    --overlay-medium:   rgba(12, 28, 52, 0.14);
+    --overlay-medium-2: rgba(12, 28, 52, 0.16);
+    --overlay-strong:   rgba(12, 28, 52, 0.22);
+    --overlay-strong-2: rgba(12, 28, 52, 0.26);
+    --overlay-strong-3: rgba(12, 28, 52, 0.3);
+    --overlay-strong-4: rgba(12, 28, 52, 0.34);
+
+    /* ── Scrims behind modals (image scrims stay dark, see header) ────── */
+    --scrim-modal:   rgba(14, 22, 34, 0.5);
+    --scrim-modal-2: rgba(14, 22, 34, 0.45);
+
+    /* ── Lines ────────────────────────────────────────────────────────── */
+    --line-faint: #eef1f6;
+
+    --border: #dfe5ee;
+
+    --line-subtle: #dfe5ee;
+
+    --line:   #d3dae5;
+    --line-2: #c3ccd9;
+    --line-3: #c7d0dc;
+    --line-4: #b6c3d2;
+    --line-5: #cbd2dc;
+    --line-6: #a9b8c9;
+    --line-7: #9db4cc;
+
+    --line-neutral:   #b8bcc8;
+    --line-neutral-2: #aab0be;
+    --line-neutral-3: #bdbdbd;
+    --line-neutral-4: #c7c9d4;
+    --line-neutral-5: #d0d0d0;
+    --line-neutral-6: #d0d2dc;
+
+    --line-strong:   #0b1018;
+    --line-strong-2: #5d7184;
+
+    /* ── Text ─────────────────────────────────────────────────────────── */
+    --text-strong:   #0a111a;
+    --text-strong-2: #111924;
+    --text-strong-3: #131d29;
+
+    --text-main: #1b2634;
+
+    --text-soft:    #2b3849;
+    --text-soft-2:  #2d3b4c;
+    --text-soft-3:  #2c3b47;
+    --text-soft-4:  #2c3b49;
+    --text-soft-5:  #36374a;
+    --text-soft-6:  #333333;
+    --text-soft-7:  #334444;
+    --text-soft-8:  #3a4a5a;
+    --text-soft-9:  #3d3d3d;
+    --text-soft-10: #3b4755;
+    --text-soft-11: #405367;
+    --text-soft-12: #3e505d;
+    --text-soft-13: rgba(38, 54, 74, 0.92);
+    --text-soft-fade: #566475;
+
+    --text-muted:    #4b596c;
+    --text-muted-2:  #595959;
+    --text-muted-3:  #536464;
+    --text-muted-4:  #476071;
+    --text-muted-5:  #4f5f70;
+    --text-muted-6:  #51606c;
+    --text-muted-7:  #4d5c69;
+    --text-muted-8:  #4c5c6c;
+    --text-muted-9:  #4f585d;
+    --text-muted-10: #545468;
+    --text-muted-11: #565656;
+
+    --text-meta: #566679;          /* dimmest readable tier; AA on --bg, --card-bg, --surface-raised */
+
+    --text-inverse: #ffffff;       /* on --surface-inverse */
+
+    /* ── Accent & interactive ─────────────────────────────────────────── */
+    --accent:        #3b6587;
+    --accent-bright: #0a62a6;
+    --accent-mid:    #1865a2;
+    --accent-deep:   #24527f;
+    --accent-pale:   #1d5a8c;
+    --accent-muted:  #3e6d85;
+    --accent-orange: #a14a06;
+
+    --link:       #1d6182;
+    --link-hover: #3c3c9c;
+
+    --focus-ring:   #0073a3;
+    --focus-ring-2: #2b5f8c;
+
+    --accent-red: #c41200;         /* --f1 is 3.7:1 on white; this is 6.3:1 */
+
+    /* ── Status ───────────────────────────────────────────────────────── */
+    --success:          #2a6c4a;
+    --success-2:        #2c6a42;
+    --success-bright:   #106d2f;
+    --success-bright-2: #276d2a;
+    --success-line:     #3c9a40;
+    --success-line-2:   #a5d6a7;
+    --success-bg:       #e6f5e8;
+    --success-bg-2:     #d3ecd6;
+
+    --error: #b03a3a;
+
+    --danger-line: rgba(204, 20, 0, 0.35);
+    --danger-bg:   rgba(204, 20, 0, 0.08);
+
+    --indigo:      #4a53c9;
+    --indigo-line: #c4c8f2;
+    --indigo-bg:   #eceeff;
+
+    /* ── Shadows: softer, bluish ink instead of black ─────────────────── */
+    --shadow-modal:   0 24px 80px rgba(20, 32, 52, 0.28);
+    --shadow-modal-2: 0 24px 64px rgba(20, 32, 52, 0.22);
+    --shadow-popover: 0 8px 32px rgba(20, 32, 52, 0.18), 0 2px 8px rgba(20, 32, 52, 0.12);
+    --shadow-hover:   0 4px 20px rgba(20, 32, 52, 0.12);
+    --shadow-hover-2: 0 8px 24px rgba(20, 32, 52, 0.16);
+    --shadow-hover-3: 0 6px 18px rgba(20, 32, 52, 0.14);
+
+    /* ── Brand artwork ────────────────────────────────────────────────── */
+    --logo-on-surface: #0b121c;
+    --icon-filter: invert(1);
+    --map-filter:  invert(1);
+
+    /* ── Calendar week card (Figma Theme collection, Light mode) ──────── */
+    --wk-bg:            #f2f5f9;
+    --wk-line:          #dde3ec;
+    --row-bg:           #ffffff;
+    --row-bg-open:      #f1f4f9;
+    --row-line:         #e1e6ee;
+    --chip-bg:          #dfe7f1;
+    --chip-bg-muted:    #edf0f5;
+    --control-line:     #d3dae5;
+    --class-line:       #9aa6b6;
+    --class-chip-bg:    #c5cedc;
+    --class-chip-text:  #0a0f17;
+    --text-heading:     #0f1722;
+    --text-week:        #172230;
+    --text-date:        #566679;
+    --text-secondary:   #3f4c5e;
+    --text-chip-muted:  #4b596c;
 }

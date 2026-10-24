@@ -107,6 +107,7 @@ const next = currentIdx > 0                     ? allIssues[currentIdx - 1] : nu
                 {ev.trackSvg && (
                   <div class="pw-event-map" aria-hidden="true">
                     <img
+                      class={ev.trackSvg.endsWith('-wrc.svg') ? 'is-flag' : undefined}
                       src={`${base}/assets/track-maps/${ev.trackSvg}`}
                       alt=""
                       width="80"

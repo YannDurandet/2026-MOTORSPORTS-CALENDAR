@@ -142,7 +142,17 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 - Series tokens keep the `--{slug}` / `--{slug}-c` pattern because templates build them from slugs. Per-series `-tag` (tag background adjusted for AA — flat for some, gradient for f1a/fe/wrc/supercars/gtwce/nls) and `-tint` (active filter chip, derived with `color-mix` from `-c`/brand — never hand-type one) live alongside. They mirror the **Series** collection and `Series/{slug}` paint styles in the Figma file.
 - Fonts: `--font-mono` (JetBrains Mono) for UI, labels, times; `--font-body` (Inter) for prose; `--font-title` (Orbitron) **only** for page titles (`h1`, series hero, newsletter hero) and big section headers (calendar months, FAQ, newsletter banner). Files are self-hosted in `public/assets/fonts/` and precached in `public/sw.js` — bump `VERSION` there when fonts change.
 - Floors: `--text-meta` is the dimmest readable text (passes AA on `--bg`, `--card-bg`, `--surface-raised`); `--text-dim*`/`--text-faint*` alias it. `--fs-3xs*`/`--fs-2xs*` alias `--fs-xs` (0.7rem).
-- Out of scope: email HTML (`api/subscribe.ts`, `workers/newsletter.ts`, since mail clients lack CSS variables), `api/unsubscribe.ts`, the embed iframe (own local tokens + light theme), `<meta name="theme-color">`.
+- Out of scope: email HTML (`api/subscribe.ts`, `workers/newsletter.ts`, since mail clients lack CSS variables), `api/unsubscribe.ts`, the embed iframe (own local tokens + light theme), `<meta name="theme-color">` (a literal, kept in step by the theme script), the OG share cards (always dark).
+
+### Light / dark theme
+Dark is the base and the default; light is an override block, so adding light mode did not touch a single dark value.
+
+- **Where.** `tokens.css` declares the dark theme under `:root, .theme-dark`, and a `:root[data-theme="light"]` block at the end that redeclares only what differs. Fonts, sizes, radii, series colours and series tags are shared. Image scrims (`--scrim`, `--scrim-banner*`, `--scrim-hero`, `--scrim-card`) and `--brand-*` stay dark in both themes on purpose.
+- **Who sets it.** An inline script in `BaseLayout.astro` `<head>` sets `<html data-theme>` before first paint: the choice stored under `localStorage['dord-theme']`, else the OS `prefers-color-scheme`. The module script further down (`applyTheme`) keeps it in sync: the switch in `Nav.astro` (`.theme-toggle`, label "Dark mode" + `aria-pressed`), live OS changes, and other tabs. The toggle stores a value only when it differs from the OS, so flipping back returns to "follow the OS". Without JS the site stays dark.
+- **New colour token.** Declare it in the base block first (otherwise `.theme-dark` areas inherit the light value), then give it a light value. Check AA in both themes; the light text tiers are tuned so every readable one passes on `--bg`, `--card-bg` and `--surface-raised`.
+- **Areas on photography keep white text.** Put `class="theme-dark"` on the container (newsletter banner, newsletter and thank-you heroes, track hero, track-browser card images, series-index image cards). It re-applies the dark tokens inside a light page. Don't use it for ordinary cards.
+- **White-stroke `<img>` artwork** (nav and social icons, track maps) can't take `currentColor`, so it uses `filter: var(--icon-filter)` / `var(--map-filter)`: `none` in dark, `invert(1)` in light, reset by `.theme-dark`. Rally rows show a national flag, not a map: the `-wrc.svg` images carry `.is-flag` to opt out of the inversion. Inline SVG that needs to follow the theme should use `currentColor`.
+- **Red as text.** Use `--accent-red`, not `--f1`: the series red is 3.7:1 on white.
 
 ## Home calendar (Week Card / Event Row)
 `src/components/EventRow.astro` + `src/styles/calendar.css` implement the Figma **Event Row** and **Week Card** components. Styles are scoped to `.cal-v2` (the calendar container) so shared `.card` / `.event` / `.tag` rules on other pages are unaffected. `main.js` depends on these hooks — keep them: `.card`, `.c-head` (text must end with the week's date range, it is parsed), `.event[data-series]` (filters), `.meta-time > .hl` (timezone conversion, including the time chip), `.ev-toggle` / `.ev-panel` (expand), `.focus-btn` (week focus switch), `data-ts` (live state).
@@ -207,7 +217,7 @@ When the repo is edited through a sandbox or remote file bridge rather than loca
 ## Accessibility checklist (WCAG 2.2 AA)
 Run this before merging any new feature or page:
 
-- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI). Prefer `--text-muted`/`--text-meta` for secondary meta text on dark backgrounds. Nothing dimmer than `--text-meta` for text.
+- [ ] Every new text/background color pairing passes AA (4.5:1 normal text, 3:1 large/UI) **in both themes**. Prefer `--text-muted`/`--text-meta` for secondary meta text. Nothing dimmer than `--text-meta` for text.
 - [ ] Every new interactive element is keyboard-operable: Tab-reachable, Enter/Space activates, has a visible focus ring (not just `outline: none`).
 - [ ] Every new icon/SVG has `aria-hidden="true"` if decorative, or an accessible name (`aria-label`/`<title>`) if it conveys information.
 - [ ] Every color-coded element (series tags, status indicators) also conveys meaning via text — color is never the sole indicator.

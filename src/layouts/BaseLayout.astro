@@ -56,6 +56,21 @@ const speculationRules = {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0f12">
+  <meta name="color-scheme" content="dark light">
+  <!-- Pick the theme before first paint so there is no flash: a stored choice wins, else the OS
+       setting. Must stay inline and synchronous. applyTheme() in the module script below keeps
+       the same state in sync afterwards (toggle, OS change, other tabs). Light values live in
+       tokens.css under :root[data-theme="light"]; without JS the site stays dark. -->
+  <script is:inline>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('dord-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('meta[name="color-scheme"]').setAttribute('content', t);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', t === 'light' ? '#f2f5f9' : '#0b0f12');
+    })();
+  </script>
   <!-- Follow the OS text-size setting (Dynamic Type, Android font scale). All type is rem-based
        and the root font-size is never overridden, so the layout reflows instead of breaking. -->
   <meta name="text-scale" content="scale">
@@ -504,6 +519,38 @@ const speculationRules = {
   </style>
 
   <script>
+    // ── Theme ───────────────────────────────────────────────────────────────────
+    // Three states, stored under one key: no value = follow the OS, 'light' or 'dark' = pinned.
+    // The toggle flips what is on screen and only stores the result when it differs from the OS,
+    // so undoing a tweak returns to "follow the OS" instead of pinning it forever.
+    const THEME_KEY = 'dord-theme';
+    const osLight = window.matchMedia('(prefers-color-scheme: light)');
+    const readTheme = (): 'light' | 'dark' | null => {
+      try {
+        const v = localStorage.getItem(THEME_KEY);
+        return v === 'light' || v === 'dark' ? v : null;
+      } catch { return null; }
+    };
+    const osTheme = () => (osLight.matches ? 'light' : 'dark');
+    function applyTheme(theme: 'light' | 'dark') {
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', theme);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f2f5f9' : '#0b0f12');
+      document.querySelectorAll('.theme-toggle').forEach(b => b.setAttribute('aria-pressed', String(theme === 'dark')));
+    }
+    applyTheme(readTheme() ?? osTheme());
+    document.querySelectorAll('.theme-toggle').forEach(btn => btn.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      try {
+        if (next === osTheme()) localStorage.removeItem(THEME_KEY);
+        else localStorage.setItem(THEME_KEY, next);
+      } catch { /* storage blocked: still switch for this page view */ }
+      applyTheme(next);
+    }));
+    // Follow the OS while nothing is pinned, and follow a choice made in another tab.
+    osLight.addEventListener('change', () => { if (!readTheme()) applyTheme(osTheme()); });
+    window.addEventListener('storage', e => { if (e.key === THEME_KEY) applyTheme(readTheme() ?? osTheme()); });
+
     // ── Sticky nav ──────────────────────────────────────────────────────────────
     const headerNav = document.querySelector('.site-nav');
     const stickyBar = document.getElementById('sticky-nav-bar');
