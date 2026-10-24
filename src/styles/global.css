@@ -738,7 +738,8 @@ h2 {
 /* Respect reduced-motion preference */
 @media (prefers-reduced-motion: reduce) {
 
-    .sticky-nav-bar {
+    .sticky-nav-bar,
+    .sticky-nav-blur {
         transition: none;
     }
     .series-index-card,
@@ -1995,6 +1996,77 @@ a {
 
 .sticky-nav-link:hover:not(.active) {
     background: var(--row-bg-open);
+}
+
+/* Progressive blur (phones): content scrolling under the floating nav goes
+   from sharp at the nav's top edge to blurred at the bottom of the screen.
+   Five stacked backdrop-filter layers, each doubling the radius and masked to
+   an overlapping band, so the blur ramps up instead of stepping.
+   Rules that keep it working:
+   - The wrapper must stay a plain box: opacity, filter, mask or backdrop-filter
+     on it would make it the backdrop root and the layers would blur nothing.
+     So it slides in with transform, like the nav, never with opacity.
+   - It can't live inside .sticky-nav-bar for the same reason (that has its own
+     backdrop-filter), so it is a sibling that follows the nav's state.
+   - --nav-blur-h = the nav's bottom offset (32px) + its height. */
+.sticky-nav-blur { display: none; }
+
+@media (max-width: 767px) {
+    .sticky-nav-blur {
+        --nav-blur-h: 84px;
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: var(--nav-blur-h);
+        z-index: 199;              /* under the nav (200) and back-to-top (201) */
+        pointer-events: none;
+        background: var(--scrim-nav);
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); /* no overshoot: it would open a gap at the screen edge */
+    }
+    .sticky-nav-bar.visible + .sticky-nav-blur { transform: translateY(0); }
+
+    .sticky-nav-blur > span {
+        position: absolute;
+        inset: 0;
+    }
+    .sticky-nav-blur > span:nth-child(1) {
+        -webkit-backdrop-filter: blur(0.5px);
+        backdrop-filter: blur(0.5px);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 16.7%, black 33.3%, transparent 50%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 16.7%, black 33.3%, transparent 50%);
+    }
+    .sticky-nav-blur > span:nth-child(2) {
+        -webkit-backdrop-filter: blur(1px);
+        backdrop-filter: blur(1px);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 16.7%, black 33.3%, black 50%, transparent 66.7%);
+        mask-image: linear-gradient(to bottom, transparent 16.7%, black 33.3%, black 50%, transparent 66.7%);
+    }
+    .sticky-nav-blur > span:nth-child(3) {
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 33.3%, black 50%, black 66.7%, transparent 83.3%);
+        mask-image: linear-gradient(to bottom, transparent 33.3%, black 50%, black 66.7%, transparent 83.3%);
+    }
+    .sticky-nav-blur > span:nth-child(4) {
+        -webkit-backdrop-filter: blur(4px);
+        backdrop-filter: blur(4px);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 66.7%, black 83.3%, transparent 100%);
+        mask-image: linear-gradient(to bottom, transparent 50%, black 66.7%, black 83.3%, transparent 100%);
+    }
+    .sticky-nav-blur > span:nth-child(5) {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 66.7%, black 83.3%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 66.7%, black 83.3%, black 100%);
+    }
+}
+
+/* Labels reappear above 600px (see .sticky-nav-label), so the nav is taller. */
+@media (min-width: 601px) and (max-width: 767px) {
+    .sticky-nav-blur { --nav-blur-h: 100px; }
 }
 
 /* =========================================

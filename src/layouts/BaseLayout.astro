@@ -171,6 +171,9 @@ const speculationRules = {
       </button>
     </nav>
   </div>
+  <!-- Progressive blur under the nav (phones only, see global.css). Must follow the
+       nav: its `.visible` state is read with a sibling selector. -->
+  <div class="sticky-nav-blur" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 
   <!-- Search modal -->
   <div id="search-overlay" class="search-overlay" hidden role="dialog" aria-modal="true" aria-label="Search">
