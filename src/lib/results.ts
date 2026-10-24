@@ -7,7 +7,7 @@
 import calendarData from '../../data/calendar.json';
 import tracksData   from '../../data/tracks.json';
 import { findEvent } from './events';
-import { monthYear } from './season';
+import { monthYear, seasonOf } from './season';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -154,17 +154,36 @@ export function getFlatResults(): ResultEntry[] {
   return flat;
 }
 
-/** Total calendar events per series (including future) */
-export function getSeriesEventCounts(): Record<string, { total: number; done: number }> {
-  const out: Record<string, { total: number; done: number }> = {};
+/**
+ * Rounds completed vs scheduled, per series, for its CURRENT season only.
+ *
+ * calendar.json holds 2026 and 2027 side by side, so a plain count of every
+ * event doubles the total for any series whose 2027 calendar is already in.
+ * The current season is the one of the series' latest completed round (a
+ * finished season stays at 100% until the next one has raced), or its first
+ * season when it has not raced yet. Seasons come from `seasonOf`, which knows
+ * that Formula E and the Asian Le Mans Series start before January.
+ */
+export function getSeriesEventCounts(): Record<string, { total: number; done: number; season: number }> {
+  const bySeries: Record<string, { season: number; date: string; done: boolean }[]> = {};
   for (const month of calendarData as any[]) {
     for (const week of month.weeks) {
       for (const ev of week.events) {
-        if (!out[ev.series]) out[ev.series] = { total: 0, done: 0 };
-        out[ev.series].total++;
-        if (ev.results?.length) out[ev.series].done++;
+        (bySeries[ev.series] ??= []).push({
+          season: seasonOf(ev.series, ev.date),
+          date: ev.date,
+          done: !!ev.results?.length,
+        });
       }
     }
+  }
+
+  const out: Record<string, { total: number; done: number; season: number }> = {};
+  for (const [series, events] of Object.entries(bySeries)) {
+    const latestRaced = events.filter(e => e.done).sort((a, b) => b.date.localeCompare(a.date))[0];
+    const season = latestRaced?.season ?? Math.min(...events.map(e => e.season));
+    const inSeason = events.filter(e => e.season === season);
+    out[series] = { season, total: inSeason.length, done: inSeason.filter(e => e.done).length };
   }
   return out;
 }

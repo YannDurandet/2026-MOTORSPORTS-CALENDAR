@@ -74,5 +74,79 @@
       ],
       "status": "Dates are confirmed. Itineraries and stage times are published closer to each rally; the Rally US service park is still to be confirmed."
     }
+  },
+  "indycar": {
+    "2027": {
+      "summary": "The 2027 NTT INDYCAR SERIES has 17 races across 16 race weekends, from St. Petersburg on 7 March to Laguna Seca on 5 September.",
+      "changes": [
+        "Barcelona joins the calendar on 18 July. Nashville, on the 2026 calendar, is not on the 2027 list.",
+        "Milwaukee stays a doubleheader (28–29 August), while Road America (27 June) and Mid-Ohio (4 July) are single races.",
+        "The Indianapolis 500 is on 30 May, after the Indy road course race on 15 May."
+      ],
+      "status": "Dates are confirmed. Session times are published closer to each weekend, so every race shows TBC until then."
+    }
+  },
+  "dtm": {
+    "2027": {
+      "summary": "The 2027 DTM has 16 races on eight race weekends in three countries, from the Red Bull Ring on 23–25 April to the Hockenheimring on 8–10 October.",
+      "changes": [
+        "Oschersleben (7–9 May) and Zandvoort (6–8 August) swap places: Oschersleben is now the second weekend and Zandvoort the fifth, hosting races nine and ten.",
+        "The Red Bull Ring opens the season and the Hockenheimring closes it, as in 2026."
+      ],
+      "status": "Dates are published by the DTM. Session times are published closer to each event, so every race shows TBC until then."
+    }
+  },
+  "bgt": {
+    "2027": {
+      "summary": "British GT has eight races on six weekends in 2027, from Snetterton on 10–11 April to Donington Park on 16–17 October.",
+      "changes": [
+        "Snetterton opens the season for the first time in the championship's 35-year history; Silverstone moves to 7–8 August.",
+        "Brands Hatch and Donington Park swap: Brands Hatch is now the penultimate round and Donington Park the decider.",
+        "Spa (19–20 June) is the only round outside the UK and the first endurance race of the year."
+      ],
+      "status": "Dates are provisional (revised in July 2026). Session times are published closer to each event, so every race shows TBC until then."
+    }
+  },
+  "gtwca": {
+    "2027": {
+      "summary": "GT World Challenge America has seven race weekends in 2027, from Sonoma on 2–4 April to Indianapolis on 1–3 October.",
+      "changes": [
+        "The Texas 8 Hour at Circuit of The Americas (7–9 May) replaces the Indianapolis 8 Hour as the series' longest race and is also an Intercontinental GT Challenge round.",
+        "Watkins Glen returns after five years away (21–23 May); Sebring is not on the 2027 list.",
+        "Indianapolis Motor Speedway hosts the finale as a regular three-hour round."
+      ],
+      "status": "Dates are provisional. Session times are published closer to each event, so every race shows TBC until then."
+    }
+  },
+  "igtc": {
+    "2027": {
+      "summary": "The 2027 Intercontinental GT Challenge has five rounds on four continents, from the Bathurst 12 Hour in February to the Suzuka 1000km in September.",
+      "changes": [
+        "The new Texas 8 Hour at Circuit of The Americas (7–8 May) replaces the Indianapolis 8 Hour.",
+        "Suzuka 1000km becomes the season finale (3–5 September) and runs together with Super GT.",
+        "Bathurst (11–14 February) is still subject to agreement."
+      ],
+      "status": "Dates come from the series' June 2026 announcement. Session times are published closer to each event, so every race shows TBC until then."
+    }
+  },
+  "h24eu": {
+    "2027": {
+      "summary": "The Michelin 24H SERIES European Series has five rounds in 2027: four 12-hour races from March to June, then the Barcelona 24H on 10–12 September.",
+      "changes": [
+        "The Red Bull Ring (14–16 May) joins the calendar, the series' first visit to Austria since 2017.",
+        "The Nürburgring 12H, on the 2026 calendar, is not on the 2027 list."
+      ],
+      "status": "Dates are provisional and subject to final approval. Session times are published closer to each event, so every race shows TBC until then."
+    }
+  },
+  "nls": {
+    "2027": {
+      "summary": "The NLS has eight races on seven weekends in 2027, its 50th anniversary season, from 20 March to 9 October.",
+      "changes": [
+        "Round 4 on 7 August is the 6-hour race, and rounds 5 and 6 run as a double-header on 11–12 September.",
+        "2027 is also the 100th anniversary of the Nürburgring."
+      ],
+      "status": "Dates are provisional. Race names and session times have not been published yet, so the rounds are listed by number and every race shows TBC."
+    }
   }
 }

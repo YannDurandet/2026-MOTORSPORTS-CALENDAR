@@ -31,3 +31,23 @@ export function monthYear(month: { year?: number }): number {
 export function showOnTrackPages(month: { year?: number }): boolean {
   return TRACK_PAGE_YEARS.has(monthYear(month));
 }
+
+/**
+ * Series whose season straddles New Year, mapped to the first month (1–12) that
+ * already belongs to the NEXT season. A cross-winter season is named for the
+ * year it ends in: Formula E "2027" runs Dec 2026 – Aug 2027, the Asian Le Mans
+ * Series "2027" runs Nov 2026 – Feb 2027. Every other series races within one
+ * calendar year. Add a series here when its calendar starts before January.
+ */
+export const CROSS_WINTER_SERIES: Readonly<Record<string, number>> = {
+  fe: 10,
+  'asian-le-mans': 10,
+};
+
+/** The season an event belongs to, from the series slug and its ISO `date`. */
+export function seasonOf(series: string, isoDate: string): number {
+  const year = Number(isoDate.slice(0, 4));
+  const month = Number(isoDate.slice(5, 7));
+  const rollover = CROSS_WINTER_SERIES[series];
+  return rollover !== undefined && month >= rollover ? year + 1 : year;
+}

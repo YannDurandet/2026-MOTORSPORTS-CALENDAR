@@ -727,7 +727,7 @@
             "tag": "MOTOGP",
             "title": "Americas Grand Prix",
             "time": "RACE: <span class=\"hl\">19:00</span>",
-            "track": "cota-national.svg",
+            "track": "cota-f1.svg",
             "results": [
               {
                 "date": "2026-03-28",
@@ -1351,7 +1351,7 @@
             "tag": "GTWCA",
             "title": "COTA Round",
             "time": "RACE: <span class=\"hl\">17:30</span>",
-            "track": "cota-national.svg",
+            "track": "cota-f1.svg",
             "results": [
               {
                 "date": "2026-04-26",
@@ -4580,7 +4580,7 @@
             "tag": "WEC",
             "title": "Lone Star Le Mans (COTA)",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "cota-national.svg",
+            "track": "cota-f1.svg",
             "date": "2026-09-06T20:00:00+02:00",
             "shortName": "LONE STAR (COTA)",
             "results": [
@@ -6199,22 +6199,6 @@
             "title": "Jeddah E-Prix",
             "time": "R1 & R2: <span class=\"hl\">18:00</span>",
             "track": "jeddah-fe.svg",
-            "results": [
-              {
-                "date": "2026-02-14",
-                "race_label": "Race 1",
-                "winner": "Pascal Wehrlein",
-                "team": "Porsche Formula E Team",
-                "country": "DE"
-              },
-              {
-                "date": "2026-02-15",
-                "race_label": "Race 2",
-                "winner": "António Félix da Costa",
-                "team": "Jaguar TCS Racing",
-                "country": "PT"
-              }
-            ],
             "date": "2026-12-18T20:00:00+03:00",
             "shortName": "JEDDAH"
           }
@@ -6300,9 +6284,25 @@
             "tag": "FORMULA E",
             "title": "Austin E-Prix",
             "time": "RACE: <span class=\"hl\">22:00</span>",
-            "track": "cota-national.svg",
+            "track": "cota-f1.svg",
             "date": "2027-02-06T15:00:00-06:00",
             "shortName": "AUSTIN"
+          }
+        ]
+      },
+      {
+        "label": "WEEK 07 • FEB 11-14",
+        "events": [
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "Bathurst 12 Hour",
+            "time": "RACE: TBC",
+            "track": "bathurst.svg",
+            "date": "2027-02-14T00:00:00+01:00",
+            "shortName": "BATHURST 12H",
+            "start": "2027-02-11",
+            "end": "2027-02-14"
           }
         ]
       },
@@ -6406,6 +6406,17 @@
             "end": "2027-03-07"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Streets of St. Petersburg",
+            "time": "RACE: TBC",
+            "track": "st-petersburg.svg",
+            "date": "2027-03-07T18:00:00+01:00",
+            "shortName": "ST. PETERSBURG",
+            "start": "2027-03-07",
+            "end": "2027-03-07"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Circuit of the Americas",
@@ -6443,6 +6454,17 @@
             "shortName": "QATAR (LUSAIL)",
             "start": "2027-03-12",
             "end": "2027-03-14"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Phoenix Grand Prix",
+            "time": "RACE: TBC",
+            "track": "phoenix-oval.svg",
+            "date": "2027-03-13T21:00:00+01:00",
+            "shortName": "PHOENIX",
+            "start": "2027-03-13",
+            "end": "2027-03-13"
           },
           {
             "series": "nascar",
@@ -6515,6 +6537,39 @@
             "shortName": "KENYA",
             "start": "2027-03-18",
             "end": "2027-03-21"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Streets of Arlington",
+            "time": "RACE: TBC",
+            "track": "arlington.svg",
+            "date": "2027-03-21T18:30:00+01:00",
+            "shortName": "ARLINGTON",
+            "start": "2027-03-21",
+            "end": "2027-03-21"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Mugello 12H",
+            "time": "RACE: TBC",
+            "track": "mugello.svg",
+            "date": "2027-03-21T14:00:00+01:00",
+            "shortName": "MUGELLO",
+            "start": "2027-03-19",
+            "end": "2027-03-21"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Round 1",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-03-20T12:00:00+01:00",
+            "shortName": "NLS 1",
+            "start": "2027-03-20",
+            "end": "2027-03-20"
           },
           {
             "series": "nascar",
@@ -6596,6 +6651,28 @@
             "end": "2027-04-04"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Grand Prix of Alabama (Barber)",
+            "time": "RACE: TBC",
+            "track": "barber.svg",
+            "date": "2027-04-04T19:00:00+02:00",
+            "shortName": "BARBER",
+            "start": "2027-04-04",
+            "end": "2027-04-04"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Sonoma Round",
+            "time": "RACE: TBC",
+            "track": "sonoma.svg",
+            "date": "2027-04-04T21:00:00+02:00",
+            "shortName": "SONOMA",
+            "start": "2027-04-02",
+            "end": "2027-04-04"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Darlington Raceway",
@@ -6669,6 +6746,28 @@
             "end": "2027-04-11"
           },
           {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 1 & 2: Snetterton 300",
+            "time": "2× 1h RACES: TBC",
+            "track": "snetterton.svg",
+            "date": "2027-04-11T11:00:00+02:00",
+            "shortName": "SNETTERTON",
+            "start": "2027-04-10",
+            "end": "2027-04-11"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Spa 12H",
+            "time": "RACE: TBC",
+            "track": "spa.svg",
+            "date": "2027-04-11T14:00:00+02:00",
+            "shortName": "SPA",
+            "start": "2027-04-09",
+            "end": "2027-04-11"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Bristol Motor Speedway",
@@ -6712,6 +6811,28 @@
             "shortName": "CHINA",
             "start": "2027-04-16",
             "end": "2027-04-18"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Grand Prix of Long Beach",
+            "time": "RACE: TBC",
+            "track": "long-beach.svg",
+            "date": "2027-04-18T23:30:00+02:00",
+            "shortName": "LONG BEACH",
+            "start": "2027-04-18",
+            "end": "2027-04-18"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Round 2",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-04-17T12:00:00+02:00",
+            "shortName": "NLS 2",
+            "start": "2027-04-17",
+            "end": "2027-04-17"
           },
           {
             "series": "nascar",
@@ -6781,9 +6902,20 @@
             "tag": "MOTOGP",
             "title": "Americas Grand Prix",
             "time": "RACE: TBC",
-            "track": "cota-national.svg",
+            "track": "cota-f1.svg",
             "date": "2027-04-25T21:00:00+02:00",
             "shortName": "AMERICAS (COTA)",
+            "start": "2027-04-23",
+            "end": "2027-04-25"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Red Bull Ring (Season Opener)",
+            "time": "R1 & R2: TBC",
+            "track": "red-bull-ring.svg",
+            "date": "2027-04-25T14:00:00+02:00",
+            "shortName": "RED BULL RING",
             "start": "2027-04-23",
             "end": "2027-04-25"
           },
@@ -6916,6 +7048,39 @@
             "end": "2027-05-09"
           },
           {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Oschersleben Round",
+            "time": "R1 & R2: TBC",
+            "track": "oschersleben.svg",
+            "date": "2027-05-09T14:00:00+02:00",
+            "shortName": "OSCHERSLEBEN",
+            "start": "2027-05-07",
+            "end": "2027-05-09"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Texas 8 Hour (COTA)",
+            "time": "RACE: TBC",
+            "track": "cota-f1.svg",
+            "date": "2027-05-08T19:30:00+02:00",
+            "shortName": "TEXAS 8H",
+            "start": "2027-05-07",
+            "end": "2027-05-09"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "Texas 8 Hour (COTA)",
+            "time": "RACE: TBC",
+            "track": "cota-f1.svg",
+            "date": "2027-05-08T19:30:00+02:00",
+            "shortName": "TEXAS 8H",
+            "start": "2027-05-07",
+            "end": "2027-05-08"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Kansas Speedway",
@@ -6957,6 +7122,28 @@
             "track": "le-mans-bugatti.svg",
             "date": "2027-05-16T14:00:00+02:00",
             "shortName": "FRANCE (LE MANS)",
+            "start": "2027-05-14",
+            "end": "2027-05-16"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Grand Prix of Indianapolis (IMS Road)",
+            "time": "RACE: TBC",
+            "track": "indianapolis.svg",
+            "date": "2027-05-15T21:00:00+02:00",
+            "shortName": "IMS ROAD COURSE",
+            "start": "2027-05-15",
+            "end": "2027-05-15"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Red Bull Ring 12H",
+            "time": "RACE: TBC",
+            "track": "red-bull-ring.svg",
+            "date": "2027-05-16T14:00:00+02:00",
+            "shortName": "RED BULL RING",
             "start": "2027-05-14",
             "end": "2027-05-16"
           },
@@ -7007,6 +7194,17 @@
             "end": "2027-05-23"
           },
           {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Watkins Glen Round",
+            "time": "RACE: TBC",
+            "track": "watkins-glen.svg",
+            "date": "2027-05-23T19:00:00+02:00",
+            "shortName": "WATKINS GLEN",
+            "start": "2027-05-21",
+            "end": "2027-05-23"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "All-Star Race (North Wilkesboro)",
@@ -7051,6 +7249,39 @@
             "date": "2027-05-30T14:00:00+02:00",
             "shortName": "ITALY (MUGELLO)",
             "start": "2027-05-28",
+            "end": "2027-05-30"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Indianapolis 500",
+            "time": "RACE: TBC",
+            "track": "indianapolis-oval.svg",
+            "date": "2027-05-30T18:45:00+02:00",
+            "shortName": "INDIANAPOLIS 500",
+            "start": "2027-05-30",
+            "end": "2027-05-30"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 3 & 4: Oulton Park",
+            "time": "2× 1h RACES: TBC",
+            "track": "oulton-park-international.svg",
+            "date": "2027-05-29T11:00:00+02:00",
+            "shortName": "OULTON PARK",
+            "start": "2027-05-29",
+            "end": "2027-05-31"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "ADAC 24h Nürburgring",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-05-29T14:00:00+02:00",
+            "shortName": "24H NÜRBURGRING",
+            "start": "2027-05-27",
             "end": "2027-05-30"
           },
           {
@@ -7124,6 +7355,28 @@
             "end": "2027-06-06"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Detroit Grand Prix",
+            "time": "RACE: TBC",
+            "track": "detroit.svg",
+            "date": "2027-06-06T18:30:00+02:00",
+            "shortName": "DETROIT",
+            "start": "2027-06-06",
+            "end": "2027-06-06"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Paul Ricard 12H",
+            "time": "RACE: TBC",
+            "track": "paul-ricard.svg",
+            "date": "2027-06-06T14:00:00+02:00",
+            "shortName": "PAUL RICARD",
+            "start": "2027-06-04",
+            "end": "2027-06-06"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Nashville Superspeedway",
@@ -7171,6 +7424,17 @@
             "end": "2027-06-13"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "St. Louis (WWT Raceway)",
+            "time": "RACE: TBC",
+            "track": "gateway.svg",
+            "date": "2027-06-13T21:00:00+02:00",
+            "shortName": "ST. LOUIS",
+            "start": "2027-06-13",
+            "end": "2027-06-13"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Pocono Raceway",
@@ -7212,6 +7476,39 @@
             "track": "portimao.svg",
             "date": "2027-06-20T15:00:00+02:00",
             "shortName": "PORTUGAL",
+            "start": "2027-06-18",
+            "end": "2027-06-20"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Lausitzring Round",
+            "time": "R1 & R2: TBC",
+            "track": "lausitzring.svg",
+            "date": "2027-06-20T14:00:00+02:00",
+            "shortName": "LAUSITZRING",
+            "start": "2027-06-18",
+            "end": "2027-06-20"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 5: Spa",
+            "time": "2h RACE: TBC",
+            "track": "spa.svg",
+            "date": "2027-06-20T13:00:00+02:00",
+            "shortName": "SPA",
+            "start": "2027-06-19",
+            "end": "2027-06-20"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Road Atlanta Round",
+            "time": "RACE: TBC",
+            "track": "road-atlanta.svg",
+            "date": "2027-06-20T19:00:00+02:00",
+            "shortName": "ROAD ATLANTA",
             "start": "2027-06-18",
             "end": "2027-06-20"
           },
@@ -7278,6 +7575,28 @@
             "date": "2027-06-27T14:00:00+02:00",
             "shortName": "GREECE",
             "start": "2027-06-24",
+            "end": "2027-06-27"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Road America",
+            "time": "RACE: TBC",
+            "track": "road-america.svg",
+            "date": "2027-06-27T20:00:00+02:00",
+            "shortName": "ROAD AMERICA",
+            "start": "2027-06-27",
+            "end": "2027-06-27"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "24 Hours of Spa",
+            "time": "RACE: TBC",
+            "track": "spa.svg",
+            "date": "2027-06-26T16:30:00+02:00",
+            "shortName": "24H SPA",
+            "start": "2027-06-23",
             "end": "2027-06-27"
           },
           {
@@ -7349,6 +7668,39 @@
             "shortName": "BRITISH",
             "start": "2027-07-02",
             "end": "2027-07-04"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Mid-Ohio",
+            "time": "RACE: TBC",
+            "track": "midohio.svg",
+            "date": "2027-07-04T20:00:00+02:00",
+            "shortName": "MID-OHIO",
+            "start": "2027-07-04",
+            "end": "2027-07-04"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Norisring Round",
+            "time": "R1 & R2: TBC",
+            "track": "norisring.svg",
+            "date": "2027-07-04T14:00:00+02:00",
+            "shortName": "NORISRING",
+            "start": "2027-07-02",
+            "end": "2027-07-04"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Round 3",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-07-03T12:00:00+02:00",
+            "shortName": "NLS 3",
+            "start": "2027-07-03",
+            "end": "2027-07-03"
           },
           {
             "series": "nascar",
@@ -7486,6 +7838,17 @@
             "end": "2027-07-18"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Barcelona",
+            "time": "RACE: TBC",
+            "track": "barcelona.svg",
+            "date": "2027-07-18T15:00:00+02:00",
+            "shortName": "BARCELONA",
+            "start": "2027-07-18",
+            "end": "2027-07-18"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "EchoPark Speedway (Atlanta) II",
@@ -7612,6 +7975,17 @@
             "end": "2027-08-01"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Grand Prix of Portland",
+            "time": "RACE: TBC",
+            "track": "portland.svg",
+            "date": "2027-08-01T22:00:00+02:00",
+            "shortName": "PORTLAND",
+            "start": "2027-08-01",
+            "end": "2027-08-01"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Naval Base Coronado (San Diego)",
@@ -7659,6 +8033,39 @@
             "track": "knockhill.svg",
             "date": "2027-08-08T15:30:00+02:00",
             "shortName": "KNOCKHILL"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Zandvoort Round",
+            "time": "R1 & R2: TBC",
+            "track": "zandvoort.svg",
+            "date": "2027-08-08T14:00:00+02:00",
+            "shortName": "ZANDVOORT",
+            "start": "2027-08-06",
+            "end": "2027-08-08"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 6: Silverstone 500",
+            "time": "3h RACE: TBC",
+            "track": "silverstone.svg",
+            "date": "2027-08-08T12:00:00+02:00",
+            "shortName": "SILVERSTONE 500",
+            "start": "2027-08-07",
+            "end": "2027-08-08"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Round 4 (6h)",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-08-07T10:00:00+02:00",
+            "shortName": "NLS 4",
+            "start": "2027-08-07",
+            "end": "2027-08-07"
           }
         ]
       },
@@ -7674,6 +8081,17 @@
             "date": "2027-08-15T14:00:00+02:00",
             "shortName": "GREAT BRITAIN",
             "start": "2027-08-13",
+            "end": "2027-08-15"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Streets of Markham",
+            "time": "RACE: TBC",
+            "track": "markham.svg",
+            "date": "2027-08-15T18:00:00+02:00",
+            "shortName": "MARKHAM",
+            "start": "2027-08-15",
             "end": "2027-08-15"
           },
           {
@@ -7701,6 +8119,17 @@
       {
         "label": "WEEK 34 • AUG 19-22",
         "events": [
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Nürburgring Round",
+            "time": "R1 & R2: TBC",
+            "track": "nurburgring.svg",
+            "date": "2027-08-22T14:00:00+02:00",
+            "shortName": "NÜRBURGRING",
+            "start": "2027-08-20",
+            "end": "2027-08-22"
+          },
           {
             "series": "nascar",
             "tag": "NASCAR",
@@ -7770,6 +8199,28 @@
             "end": "2027-08-29"
           },
           {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Milwaukee Mile (R1 & R2)",
+            "time": "SAT + SUN: TBC",
+            "track": "milwaukee.svg",
+            "date": "2027-08-29T20:30:00+02:00",
+            "shortName": "MILWAUKEE",
+            "start": "2027-08-28",
+            "end": "2027-08-29"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Road America Round",
+            "time": "RACE: TBC",
+            "track": "road-america.svg",
+            "date": "2027-08-29T19:00:00+02:00",
+            "shortName": "ROAD AMERICA",
+            "start": "2027-08-27",
+            "end": "2027-08-29"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Daytona (Summer)",
@@ -7809,6 +8260,28 @@
             "track": "monza.svg",
             "date": "2027-09-05T15:00:00+02:00",
             "shortName": "ITALY",
+            "start": "2027-09-03",
+            "end": "2027-09-05"
+          },
+          {
+            "series": "indycar",
+            "tag": "INDYCAR",
+            "title": "Grand Prix of Monterey (Laguna Seca)",
+            "time": "RACE: TBC",
+            "track": "laguna-seca.svg",
+            "date": "2027-09-05T20:30:00+02:00",
+            "shortName": "LAGUNA SECA",
+            "start": "2027-09-05",
+            "end": "2027-09-05"
+          },
+          {
+            "series": "igtc",
+            "tag": "IGTC",
+            "title": "Suzuka 1000km (Finale)",
+            "time": "RACE: TBC",
+            "track": "suzuka.svg",
+            "date": "2027-09-05T03:00:00+02:00",
+            "shortName": "SUZUKA 1000KM",
             "start": "2027-09-03",
             "end": "2027-09-05"
           },
@@ -7871,6 +8344,50 @@
             "end": "2027-09-12"
           },
           {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 7: Brands Hatch",
+            "time": "2h RACE: TBC",
+            "track": "brands-hatch-gp.svg",
+            "date": "2027-09-12T13:00:00+02:00",
+            "shortName": "BRANDS HATCH",
+            "start": "2027-09-11",
+            "end": "2027-09-12"
+          },
+          {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Barber Round",
+            "time": "RACE: TBC",
+            "track": "barber.svg",
+            "date": "2027-09-12T19:00:00+02:00",
+            "shortName": "BARBER",
+            "start": "2027-09-10",
+            "end": "2027-09-12"
+          },
+          {
+            "series": "h24eu",
+            "tag": "24H EU",
+            "title": "Barcelona 24H",
+            "time": "RACE: TBC",
+            "track": "barcelona.svg",
+            "date": "2027-09-11T14:00:00+02:00",
+            "shortName": "BARCELONA",
+            "start": "2027-09-10",
+            "end": "2027-09-12"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Rounds 5 & 6 (double-header)",
+            "time": "R1 & R2: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-09-12T12:00:00+02:00",
+            "shortName": "NLS 5 & 6",
+            "start": "2027-09-11",
+            "end": "2027-09-12"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Richmond Raceway — Playoff",
@@ -7886,7 +8403,7 @@
             "tag": "WEC",
             "title": "Lone Star Le Mans (COTA)",
             "time": "RACE: <span class=\"hl\">18:00</span>",
-            "track": "cota-national.svg",
+            "track": "cota-f1.svg",
             "date": "2027-09-12T13:00:00-05:00",
             "shortName": "LONE STAR (COTA)"
           },
@@ -7959,6 +8476,28 @@
             "shortName": "AZERBAIJAN",
             "start": "2027-09-24",
             "end": "2027-09-26"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Sachsenring Round",
+            "time": "R1 & R2: TBC",
+            "track": "sachsenring.svg",
+            "date": "2027-09-26T14:00:00+02:00",
+            "shortName": "SACHSENRING",
+            "start": "2027-09-24",
+            "end": "2027-09-26"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Round 7",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-09-25T12:00:00+02:00",
+            "shortName": "NLS 7",
+            "start": "2027-09-25",
+            "end": "2027-09-25"
           },
           {
             "series": "nascar",
@@ -8062,6 +8601,17 @@
             "end": "2027-10-03"
           },
           {
+            "series": "gtwca",
+            "tag": "GTWCA",
+            "title": "Indianapolis Round (Finale)",
+            "time": "RACE: TBC",
+            "track": "indianapolis.svg",
+            "date": "2027-10-03T19:00:00+02:00",
+            "shortName": "INDIANAPOLIS",
+            "start": "2027-10-01",
+            "end": "2027-10-03"
+          },
+          {
             "series": "nascar",
             "tag": "NASCAR",
             "title": "Kansas — Playoff",
@@ -8105,6 +8655,28 @@
             "shortName": "SINGAPORE",
             "start": "2027-10-08",
             "end": "2027-10-10"
+          },
+          {
+            "series": "dtm",
+            "tag": "DTM",
+            "title": "Hockenheimring (Season Finale)",
+            "time": "R1 & R2: TBC",
+            "track": "hockenheim.svg",
+            "date": "2027-10-10T14:00:00+02:00",
+            "shortName": "HOCKENHEIM",
+            "start": "2027-10-08",
+            "end": "2027-10-10"
+          },
+          {
+            "series": "nls",
+            "tag": "NLS",
+            "title": "Round 8 (Season Finale)",
+            "time": "RACE: TBC",
+            "track": "nordschleife.svg",
+            "date": "2027-10-09T12:00:00+02:00",
+            "shortName": "NLS 8",
+            "start": "2027-10-09",
+            "end": "2027-10-09"
           },
           {
             "series": "nascar",
@@ -8158,6 +8730,17 @@
             "date": "2027-10-17T07:00:00+02:00",
             "shortName": "JAPAN (MOTEGI)",
             "start": "2027-10-15",
+            "end": "2027-10-17"
+          },
+          {
+            "series": "bgt",
+            "tag": "BRITISH GT",
+            "title": "Rd 8: Donington Park",
+            "time": "2h RACE: TBC",
+            "track": "donington-gp.svg",
+            "date": "2027-10-17T13:00:00+02:00",
+            "shortName": "DONINGTON PARK",
+            "start": "2027-10-16",
             "end": "2027-10-17"
           },
           {

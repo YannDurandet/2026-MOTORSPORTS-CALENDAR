@@ -774,14 +774,14 @@
     "layouts": [
       {
         "id": "f1",
-        "label": "F1 / F1 Academy",
+        "label": "Full circuit (F1 / F1 Academy / MotoGP / WEC / GTWCA / IGTC)",
         "calendarSvgs": [
           "cota-f1.svg"
         ]
       },
       {
         "id": "national",
-        "label": "Road Course (NASCAR / MotoGP / WEC / GTWCA)",
+        "label": "NASCAR road course",
         "calendarSvgs": [
           "cota-national.svg"
         ]
