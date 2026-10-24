@@ -5387,7 +5387,15 @@
             "date": "2026-10-11T14:00:00+02:00",
             "shortName": "SINGAPORE",
             "start": "2026-10-09",
-            "end": "2026-10-11"
+            "end": "2026-10-11",
+            "results": [
+              {
+                "date": "2026-10-11",
+                "winner": "Max Verstappen",
+                "team": "Red Bull Racing",
+                "country": "NL"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -5413,7 +5421,30 @@
             "time": "R1: <span class=\"hl\">14:30</span> • SPR: <span class=\"hl\">10:00</span> • R2: <span class=\"hl\">14:30</span>",
             "track": "estoril.svg",
             "date": "2026-10-11T14:00:00+02:00",
-            "shortName": "ESTORIL"
+            "shortName": "ESTORIL",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-10",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "race_label": "Superpole Race",
+                "date": "2026-10-11",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-11",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "dtm",
@@ -5422,7 +5453,23 @@
             "time": "R1: <span class=\"hl\">11:30</span> • R2: <span class=\"hl\">11:30</span>",
             "track": "hockenheim.svg",
             "date": "2026-10-11T14:00:00+02:00",
-            "shortName": "HOCKENHEIM"
+            "shortName": "HOCKENHEIM",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-10",
+                "winner": "Lucas Auer",
+                "team": "Mercedes-AMG Team Landgraf",
+                "country": "AT"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-11",
+                "winner": "Maro Engel",
+                "team": "Mercedes-AMG Team Ravenol",
+                "country": "DE"
+              }
+            ]
           },
           {
             "series": "btcc",
@@ -5431,7 +5478,30 @@
             "time": "R1: <span class=\"hl\">10:15</span> • R2: <span class=\"hl\">13:25</span> • R3: <span class=\"hl\">16:15</span>",
             "track": "brands-hatch-gp.svg",
             "date": "2026-10-11T14:00:00+02:00",
-            "shortName": "BRANDS HATCH GP"
+            "shortName": "BRANDS HATCH GP",
+            "results": [
+              {
+                "race_label": "Race 28",
+                "date": "2026-10-11",
+                "winner": "Tom Ingram",
+                "team": "Team VERTU",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 29",
+                "date": "2026-10-11",
+                "winner": "Tom Ingram",
+                "team": "Team VERTU",
+                "country": "GB"
+              },
+              {
+                "race_label": "Race 30",
+                "date": "2026-10-11",
+                "winner": "Dan Cammish",
+                "team": "NAPA Racing UK",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "supercars",
@@ -5660,7 +5730,15 @@
             "time": "RACE: <span class=\"hl\">19:00</span>",
             "track": "charlotte.svg",
             "date": "2026-10-11T21:00:00+01:00",
-            "shortName": "CHARLOTTE ROVAL"
+            "shortName": "CHARLOTTE ROVAL",
+            "results": [
+              {
+                "date": "2026-10-11",
+                "winner": "Chase Briscoe",
+                "team": "Joe Gibbs Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -5678,7 +5756,19 @@
             ],
             "track": "barcelona.svg",
             "date": "2026-10-18T13:00:00+02:00",
-            "shortName": "BARCELONA 6H"
+            "shortName": "BARCELONA 6H",
+            "results": [
+              {
+                "date": "2026-10-18",
+                "winners": [
+                  "Sébastien Buemi",
+                  "Brendon Hartley",
+                  "Ryo Hirakawa"
+                ],
+                "team": "Toyota Racing",
+                "country": "JP"
+              }
+            ]
           },
           {
             "series": "wsbk",
@@ -5719,7 +5809,18 @@
             ],
             "track": "portimao.svg",
             "date": "2026-10-17T18:00:00+02:00",
-            "shortName": "PORTIMÃO 3H"
+            "shortName": "PORTIMÃO 3H",
+            "results": [
+              {
+                "date": "2026-10-17",
+                "winners": [
+                  "Maximilian Götz",
+                  "Ralf Aron",
+                  "Fabian Schiller"
+                ],
+                "team": "Mercedes-AMG Team GetSpeed"
+              }
+            ]
           },
           {
             "series": "tcr",
@@ -5728,7 +5829,30 @@
             "time": "R1: <span class=\"hl\">05:15</span> • R2: <span class=\"hl\">09:00</span>",
             "track": "chengdu.svg",
             "date": "2026-10-18T08:00:00+02:00",
-            "shortName": "CHENGDU"
+            "shortName": "CHENGDU",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-17",
+                "winner": "Santiago Urrutia",
+                "team": "Geely Cyan Racing",
+                "country": "UY"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-18",
+                "winner": "Aurélien Comte",
+                "team": "SP Competition",
+                "country": "FR"
+              },
+              {
+                "race_label": "Race 3",
+                "date": "2026-10-18",
+                "winner": "Santiago Urrutia",
+                "team": "Geely Cyan Racing",
+                "country": "UY"
+              }
+            ]
           },
           {
             "series": "nascar",

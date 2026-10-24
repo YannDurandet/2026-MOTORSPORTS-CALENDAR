@@ -819,39 +819,39 @@
   "wec": {
     "hypercar": {
       "label": "Hypercar — Manufacturers",
-      "updatedAt": "2026-09-28",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 8,
       "entries": [
         {
           "pos": 1,
           "name": "Toyota",
-          "points": 169
+          "points": 212
         },
         {
           "pos": 2,
           "name": "BMW",
-          "points": 146
+          "points": 154
         },
         {
           "pos": 3,
           "name": "Ferrari",
-          "points": 115
+          "points": 130
         },
         {
           "pos": 4,
-          "name": "Alpine",
-          "points": 96
+          "name": "Cadillac",
+          "points": 118
         },
         {
           "pos": 5,
-          "name": "Cadillac",
-          "points": 96
+          "name": "Alpine",
+          "points": 104
         },
         {
           "pos": 6,
           "name": "Aston Martin",
-          "points": 54
+          "points": 58
         },
         {
           "pos": 7,
@@ -861,105 +861,105 @@
         {
           "pos": 8,
           "name": "Genesis",
-          "points": 12
+          "points": 14
         }
       ]
     },
     "lmgt3": {
       "label": "LMGT3 — Teams",
-      "updatedAt": "2026-09-28",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 8,
       "entries": [
         {
           "pos": 1,
-          "name": "Corvette #33",
-          "points": 86
+          "name": "#33 TF Sport",
+          "points": 92
         },
         {
           "pos": 2,
-          "name": "Aston Martin #27",
-          "points": 62
+          "name": "#92 The Bend Manthey",
+          "points": 74
         },
         {
           "pos": 3,
-          "name": "Corvette #34",
-          "points": 58
+          "name": "#34 Racing Team Turkey by TF",
+          "points": 70
         },
         {
           "pos": 4,
-          "name": "Porsche #91",
-          "points": 54
+          "name": "#69 Team WRT",
+          "points": 66
         },
         {
           "pos": 5,
-          "name": "Ferrari #21",
-          "points": 54
+          "name": "#21 Vista AF Corse",
+          "points": 64
         },
         {
           "pos": 6,
-          "name": "BMW #69",
-          "points": 51
+          "name": "#27 Heart of Racing Team",
+          "points": 62
         },
         {
           "pos": 7,
-          "name": "Porsche #92",
-          "points": 49
+          "name": "#10 Garage 59",
+          "points": 57
         },
         {
           "pos": 8,
-          "name": "Aston Martin #23",
-          "points": 49
+          "name": "#91 Manthey DK Engineering",
+          "points": 54
         },
         {
           "pos": 9,
-          "name": "BMW #32",
-          "points": 47
+          "name": "#23 Heart of Racing Team",
+          "points": 50
         },
         {
           "pos": 10,
-          "name": "Lexus #78",
-          "points": 39
+          "name": "#32 Team WRT",
+          "points": 47
         },
         {
           "pos": 11,
-          "name": "McLaren #10",
-          "points": 38
+          "name": "#78 Akkodis ASP Team",
+          "points": 39
         },
         {
           "pos": 12,
-          "name": "Lexus #87",
+          "name": "#87 Akkodis ASP Team",
           "points": 38
         },
         {
           "pos": 13,
-          "name": "McLaren #58",
-          "points": 22
+          "name": "#61 Iron Lynx",
+          "points": 25
         },
         {
           "pos": 14,
-          "name": "Mercedes #61",
-          "points": 17
+          "name": "#58 Garage 59",
+          "points": 22
         },
         {
           "pos": 15,
-          "name": "Ford #88",
-          "points": 16
+          "name": "#88 Proton Competition",
+          "points": 20
         },
         {
           "pos": 16,
-          "name": "Ferrari #54",
+          "name": "#54 Vista AF Corse",
           "points": 13
         },
         {
           "pos": 17,
-          "name": "Ford #77",
+          "name": "#77 Proton Competition",
           "points": 13
         },
         {
           "pos": 18,
-          "name": "Mercedes #79",
-          "points": 6
+          "name": "#79 Iron Lynx",
+          "points": 8
         }
       ]
     }
@@ -4033,218 +4033,218 @@
   "elms": {
     "lmp2": {
       "label": "LMP2 — Teams",
-      "updatedAt": "2026-09-15",
+      "updatedAt": "2026-10-24",
       "roundsComplete": 5,
       "totalRounds": 5,
       "entries": [
         {
           "pos": 1,
           "name": "#22 United Autosports",
-          "points": 85
+          "points": 111
         },
         {
           "pos": 2,
           "name": "#29 Forestier Racing by Panis",
-          "points": 72
+          "points": 84
         },
         {
           "pos": 3,
-          "name": "#25 Algarve Pro Racing",
-          "points": 54
+          "name": "#18 IDEC Sport",
+          "points": 70
         },
         {
           "pos": 4,
-          "name": "#18 IDEC Sport",
-          "points": 52
+          "name": "#25 Algarve Pro Racing",
+          "points": 62
         },
         {
           "pos": 5,
-          "name": "#34 Inter Europol Competition",
-          "points": 51
+          "name": "#43 Inter Europol Competition",
+          "points": 59
         },
         {
           "pos": 6,
-          "name": "#43 Inter Europol Competition",
-          "points": 44
+          "name": "#34 Inter Europol Competition",
+          "points": 55
         },
         {
           "pos": 7,
+          "name": "#10 Vector Sport",
+          "points": 44
+        },
+        {
+          "pos": 8,
+          "name": "#37 CLX Motorsport",
+          "points": 36
+        },
+        {
+          "pos": 9,
           "name": "#28 IDEC Sport",
           "points": 35
         },
         {
-          "pos": 8,
-          "name": "#10 Vector Sport",
-          "points": 34
-        },
-        {
-          "pos": 9,
-          "name": "#24 Nielsen Racing",
-          "points": 33
-        },
-        {
           "pos": 10,
-          "name": "#37 CLX Motorsport",
-          "points": 30
+          "name": "#24 Nielsen Racing",
+          "points": 35
         },
         {
           "pos": 11,
           "name": "#9 Proton Competition",
-          "points": 20
+          "points": 21
         }
       ]
     },
     "lmp2proam": {
       "label": "LMP2 Pro/Am — Teams",
-      "updatedAt": "2026-09-15",
+      "updatedAt": "2026-10-24",
       "roundsComplete": 5,
       "totalRounds": 5,
       "entries": [
         {
           "pos": 1,
-          "name": "#83 AF Corse",
-          "points": 67
+          "name": "#20 Algarve Pro Racing",
+          "points": 86
         },
         {
           "pos": 2,
           "name": "#14 TDS Racing",
-          "points": 62
+          "points": 77
         },
         {
           "pos": 3,
-          "name": "#20 Algarve Pro Racing",
-          "points": 61
+          "name": "#83 AF Corse",
+          "points": 67
         },
         {
           "pos": 4,
           "name": "#30 Duqueine Team",
-          "points": 61
+          "points": 67
         },
         {
           "pos": 5,
           "name": "#7 Vector Sport",
-          "points": 53
+          "points": 65
         },
         {
           "pos": 6,
           "name": "#19 Rossa Racing by Virage",
-          "points": 51
+          "points": 59
         },
         {
           "pos": 7,
+          "name": "#21 United Autosports",
+          "points": 46
+        },
+        {
+          "pos": 8,
           "name": "#99 AO by TF",
           "points": 45
         },
         {
-          "pos": 8,
-          "name": "#21 United Autosports",
-          "points": 44
-        },
-        {
           "pos": 9,
-          "name": "#27 Nielsen Racing",
-          "points": 30
+          "name": "#47 CLX Motorsport",
+          "points": 38
         },
         {
           "pos": 10,
-          "name": "#47 CLX Motorsport",
-          "points": 20
+          "name": "#27 Nielsen Racing",
+          "points": 34
         },
         {
           "pos": 11,
           "name": "#3 DKR Engineering",
-          "points": 11
+          "points": 22
         },
         {
           "pos": 12,
           "name": "#88 Proton Competition",
-          "points": 5
+          "points": 6
         }
       ]
     },
     "lmp3": {
       "label": "LMP3 — Teams",
-      "updatedAt": "2026-09-15",
+      "updatedAt": "2026-10-24",
       "roundsComplete": 5,
       "totalRounds": 5,
       "entries": [
         {
           "pos": 1,
           "name": "#17 CLX Motorsport",
-          "points": 84
+          "points": 110
         },
         {
           "pos": 2,
-          "name": "#85 R-ace GP",
-          "points": 75
+          "name": "#5 Rinaldi Racing",
+          "points": 77
         },
         {
           "pos": 3,
-          "name": "#5 Rinaldi Racing",
-          "points": 59
+          "name": "#85 R-ace GP",
+          "points": 76
         },
         {
           "pos": 4,
-          "name": "#13 Inter Europol Competition",
-          "points": 56
+          "name": "#11 Eurointernational",
+          "points": 63
         },
         {
           "pos": 5,
-          "name": "#11 Eurointernational",
-          "points": 51
+          "name": "#13 Inter Europol Competition",
+          "points": 58
         },
         {
           "pos": 6,
           "name": "#4 DKR Engineering",
-          "points": 42
+          "points": 57
         },
         {
           "pos": 7,
           "name": "#8 Team Virage",
-          "points": 40
+          "points": 46
         },
         {
           "pos": 8,
           "name": "#35 Ultimate",
-          "points": 38
+          "points": 42
         },
         {
           "pos": 9,
           "name": "#31 Racing Spirit of Léman",
-          "points": 32
+          "points": 40
         },
         {
           "pos": 10,
           "name": "#68 M Racing",
-          "points": 28
+          "points": 38
         }
       ]
     },
     "lmgt3": {
       "label": "LMGT3 — Teams",
-      "updatedAt": "2026-09-15",
+      "updatedAt": "2026-10-24",
       "roundsComplete": 5,
       "totalRounds": 5,
       "entries": [
         {
           "pos": 1,
-          "name": "#62 Team Qatar by Iron Lynx",
-          "points": 73
+          "name": "#33 TF Sport",
+          "points": 88
         },
         {
           "pos": 2,
-          "name": "#33 TF Sport",
-          "points": 70
+          "name": "#75 Proton Competition",
+          "points": 86
         },
         {
           "pos": 3,
-          "name": "#77 Proton Competition",
-          "points": 62
+          "name": "#62 Team Qatar by Iron Lynx",
+          "points": 78
         },
         {
           "pos": 4,
-          "name": "#75 Proton Competition",
-          "points": 61
+          "name": "#77 Proton Competition",
+          "points": 72
         },
         {
           "pos": 5,
@@ -4254,7 +4254,7 @@
         {
           "pos": 6,
           "name": "#86 GR Racing",
-          "points": 50
+          "points": 52
         },
         {
           "pos": 7,
@@ -4263,33 +4263,33 @@
         },
         {
           "pos": 8,
-          "name": "#51 AF Corse",
-          "points": 22
+          "name": "#54 High Class Racing",
+          "points": 37
         },
         {
           "pos": 9,
-          "name": "#54 High Class Racing",
-          "points": 22
+          "name": "#51 AF Corse",
+          "points": 30
         },
         {
           "pos": 10,
           "name": "#23 United Autosports",
-          "points": 21
+          "points": 22
         },
         {
           "pos": 11,
+          "name": "#50 Richard Mille AF Corse",
+          "points": 20
+        },
+        {
+          "pos": 12,
           "name": "#63 Iron Lynx",
           "points": 18
         },
         {
-          "pos": 12,
-          "name": "#50 Richard Mille AF Corse",
-          "points": 14
-        },
-        {
           "pos": 13,
           "name": "#59 Racing Spirit of Léman",
-          "points": 5
+          "points": 17
         },
         {
           "pos": 14,
@@ -5661,124 +5661,124 @@
   "sf": {
     "drivers": {
       "label": "Drivers Championship",
-      "updatedAt": "2026-08-10",
-      "roundsComplete": 7,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 10,
       "totalRounds": 12,
       "note": "Half-points awarded for qualifying top 3. Drivers listed without a championship position scored 0.",
       "entries": [
         {
           "pos": 1,
           "name": "Kakunoshin Ohta",
-          "points": 103
+          "points": 122
         },
         {
           "pos": 2,
           "name": "Ayumu Iwasa",
-          "points": 59.5
+          "points": 89.5
         },
         {
           "pos": 3,
-          "name": "Nirei Fukuzumi",
-          "points": 58
+          "name": "Igor Omura Fraga",
+          "points": 77
         },
         {
           "pos": 4,
-          "name": "Igor Omura Fraga",
-          "points": 50
+          "name": "Nirei Fukuzumi",
+          "points": 63
         },
         {
           "pos": 5,
-          "name": "Tadasuke Makino",
-          "points": 41
+          "name": "Zak O'Sullivan",
+          "points": 54
         },
         {
           "pos": 6,
-          "name": "Sho Tsuboi",
-          "points": 37
+          "name": "Tadasuke Makino",
+          "points": 46
         },
         {
           "pos": 7,
-          "name": "Sacha Fenestraz",
-          "points": 34.5
+          "name": "Sho Tsuboi",
+          "points": 43
         },
         {
           "pos": 8,
           "name": "Toshiki Oyu",
-          "points": 31
+          "points": 43
         },
         {
           "pos": 9,
-          "name": "Tomoki Nojiri",
-          "points": 27.5
+          "name": "Sacha Fenestraz",
+          "points": 40.5
         },
         {
           "pos": 10,
-          "name": "Sena Sakaguchi",
-          "points": 27
+          "name": "Tomoki Nojiri",
+          "points": 34.5
         },
         {
           "pos": 11,
-          "name": "Zak O'Sullivan",
+          "name": "Nobuharu Matsushita",
           "points": 27
         },
         {
           "pos": 12,
+          "name": "Sena Sakaguchi",
+          "points": 27
+        },
+        {
+          "pos": 13,
           "name": "Luke Browning",
           "points": 20
         },
         {
-          "pos": 13,
-          "name": "Nobuharu Matsushita",
-          "points": 16
+          "pos": 14,
+          "name": "Ren Sato",
+          "points": 11.5
         },
         {
-          "pos": 14,
+          "pos": 15,
           "name": "Syun Koide",
           "points": 11
         },
         {
-          "pos": 15,
-          "name": "Ren Sato",
-          "points": 10.5
-        },
-        {
           "pos": 16,
           "name": "Charlie Wurz",
-          "points": 6
+          "points": 9
         },
         {
           "pos": 17,
-          "name": "Kenta Yamashita",
-          "points": 5
+          "name": "Rikuto Kobayashi",
+          "points": 6
         },
         {
           "pos": 18,
           "name": "Yuto Nomura",
-          "points": 5
+          "points": 6
         },
         {
           "pos": 19,
-          "name": "Roman Staněk",
-          "points": 3.5
+          "name": "Kenta Yamashita",
+          "points": 5
         },
         {
           "pos": 20,
-          "name": "Rikuto Kobayashi",
-          "points": 3
+          "name": "Kamui Kobayashi",
+          "points": 5
         },
         {
           "pos": 21,
-          "name": "Kamui Kobayashi",
-          "points": 3
+          "name": "Roman Staněk",
+          "points": 4.5
         },
         {
           "pos": 22,
-          "name": "Ukyo Sasahara",
-          "points": 0
+          "name": "Giuliano Alesi",
+          "points": 2
         },
         {
           "pos": 23,
-          "name": "Giuliano Alesi",
+          "name": "Ukyo Sasahara",
           "points": 0
         },
         {
@@ -5789,6 +5789,11 @@
         {
           "pos": 25,
           "name": "Juju",
+          "points": 0
+        },
+        {
+          "pos": 26,
+          "name": "Kazuhisa Urabe",
           "points": 0
         }
       ]
@@ -6153,507 +6158,592 @@
   "igtc": {
     "drivers": {
       "label": "Drivers Championship",
-      "updatedAt": "2026-09-15",
-      "roundsComplete": 4,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 5,
       "totalRounds": 5,
       "entries": [
         {
           "pos": 1,
+          "name": "Maxime Martin",
+          "points": 72
+        },
+        {
+          "pos": 2,
           "name": "Maro Engel",
           "points": 68
         },
         {
-          "pos": 2,
+          "pos": 3,
           "name": "Luca Stolz",
           "points": 61
         },
         {
-          "pos": 3,
-          "name": "Maxime Martin",
-          "points": 60
+          "pos": 4,
+          "name": "Laurin Heinrich",
+          "points": 56
         },
         {
-          "pos": 4,
+          "pos": 5,
+          "name": "Ayhancan Guven",
+          "points": 52
+        },
+        {
+          "pos": 6,
           "name": "Bastian Buus",
           "points": 47
         },
         {
-          "pos": 5,
+          "pos": 7,
           "name": "Ricardo Feller",
           "points": 46
         },
         {
-          "pos": 6,
-          "name": "Laurin Heinrich",
-          "points": 46
-        },
-        {
-          "pos": 7,
-          "name": "Alessio Picariello",
-          "points": 41
-        },
-        {
           "pos": 8,
+          "name": "Alessio Picariello",
+          "points": 42
+        },
+        {
+          "pos": 9,
           "name": "Dorian Boccolacci",
           "points": 39
         },
         {
-          "pos": 9,
+          "pos": 10,
           "name": "Max Hesse",
           "points": 38
         },
         {
-          "pos": 10,
+          "pos": 11,
+          "name": "Mikaël Grenier",
+          "points": 37
+        },
+        {
+          "pos": 12,
           "name": "Daniel Harper",
           "points": 32
         },
         {
-          "pos": 11,
+          "pos": 13,
+          "name": "Nicklas Nielsen",
+          "points": 30
+        },
+        {
+          "pos": 14,
           "name": "Christopher Mies",
           "points": 28
         },
         {
-          "pos": 12,
+          "pos": 15,
           "name": "Dennis Olsen",
           "points": 28
         },
         {
-          "pos": 13,
-          "name": "Frédéric Vervisch",
+          "pos": 16,
+          "name": "Frederic Vervisch",
           "points": 28
         },
         {
-          "pos": 14,
-          "name": "Ayhancan Güven",
-          "points": 27
-        },
-        {
-          "pos": 15,
-          "name": "Fabien Schiller",
-          "points": 25
-        },
-        {
-          "pos": 16,
-          "name": "Mikaël Grenier",
-          "points": 25
-        },
-        {
           "pos": 17,
-          "name": "Thomas Preining",
+          "name": "Fabian Schiller",
           "points": 25
         },
         {
           "pos": 18,
-          "name": "Julien Andlauer",
+          "name": "Thomas Preining",
           "points": 25
         },
         {
           "pos": 19,
+          "name": "Julian Andlauer",
+          "points": 25
+        },
+        {
+          "pos": 20,
+          "name": "Kyle Washington",
+          "points": 25
+        },
+        {
+          "pos": 21,
+          "name": "Ricardo Pera",
+          "points": 25
+        },
+        {
+          "pos": 22,
+          "name": "Anders Fjordbach",
+          "points": 24
+        },
+        {
+          "pos": 23,
+          "name": "Kerong Li",
+          "points": 24
+        },
+        {
+          "pos": 24,
           "name": "Valentino Rossi",
           "points": 23
         },
         {
-          "pos": 20,
+          "pos": 25,
           "name": "Matt Campbell",
           "points": 22
         },
         {
-          "pos": 21,
-          "name": "Anders Fjordbach",
-          "points": 22
-        },
-        {
-          "pos": 22,
-          "name": "Kerong Li",
-          "points": 22
-        },
-        {
-          "pos": 23,
+          "pos": 26,
           "name": "Augusto Farfus",
           "points": 19
         },
         {
-          "pos": 24,
+          "pos": 27,
           "name": "Raffaele Marciello",
           "points": 19
         },
         {
-          "pos": 25,
+          "pos": 28,
           "name": "Dries Vanthoor",
           "points": 18
         },
         {
-          "pos": 26,
-          "name": "Sheldon van der Linde",
-          "points": 18
-        },
-        {
-          "pos": 27,
+          "pos": 29,
           "name": "Lucas Auer",
           "points": 18
         },
         {
-          "pos": 28,
+          "pos": 30,
+          "name": "Sheldon van der Linde",
+          "points": 18
+        },
+        {
+          "pos": 31,
+          "name": "Justin Rothberg",
+          "points": 18
+        },
+        {
+          "pos": 32,
+          "name": "Connor De Phillippi",
+          "points": 18
+        },
+        {
+          "pos": 33,
+          "name": "Robby Foley",
+          "points": 18
+        },
+        {
+          "pos": 34,
           "name": "Joel Sturm",
           "points": 16
         },
         {
-          "pos": 29,
+          "pos": 35,
           "name": "Alessio Rovera",
           "points": 15
         },
         {
-          "pos": 30,
-          "name": "Nicklas Nielsen",
-          "points": 15
-        },
-        {
-          "pos": 31,
-          "name": "Tommaso Mosca",
-          "points": 15
-        },
-        {
-          "pos": 32,
+          "pos": 36,
           "name": "Laurens Vanthoor",
           "points": 15
         },
         {
-          "pos": 33,
+          "pos": 37,
+          "name": "Tommaso Mosca",
+          "points": 15
+        },
+        {
+          "pos": 38,
           "name": "Alessandro Ghiretti",
           "points": 15
         },
         {
-          "pos": 34,
+          "pos": 39,
+          "name": "Matías Pérez Companc",
+          "points": 15
+        },
+        {
+          "pos": 40,
+          "name": "Frederik Schandorff",
+          "points": 15
+        },
+        {
+          "pos": 41,
+          "name": "Daan Arrow",
+          "points": 14
+        },
+        {
+          "pos": 42,
           "name": "Cunfan Ruan",
           "points": 12
         },
         {
-          "pos": 35,
-          "name": "Maxime Oosten",
-          "points": 12
-        },
-        {
-          "pos": 36,
+          "pos": 43,
           "name": "Frédéric Makowiecki",
           "points": 12
         },
         {
-          "pos": 37,
+          "pos": 44,
+          "name": "Maxime Oosten",
+          "points": 12
+        },
+        {
+          "pos": 45,
           "name": "Michael Christensen",
           "points": 12
         },
         {
-          "pos": 38,
+          "pos": 46,
           "name": "Alexander Sims",
           "points": 12
         },
         {
-          "pos": 39,
+          "pos": 47,
           "name": "Scott McLaughlin",
           "points": 12
         },
         {
-          "pos": 40,
+          "pos": 48,
           "name": "Nicky Catsburg",
           "points": 12
         },
         {
-          "pos": 41,
+          "pos": 49,
+          "name": "Michai Stephens",
+          "points": 12
+        },
+        {
+          "pos": 50,
           "name": "Arthur Leclerc",
           "points": 10
         },
         {
-          "pos": 42,
-          "name": "Lilou Wadoux",
-          "points": 10
-        },
-        {
-          "pos": 43,
-          "name": "Sean Gelael",
-          "points": 10
-        },
-        {
-          "pos": 44,
+          "pos": 51,
           "name": "Frank Stippler",
           "points": 10
         },
         {
-          "pos": 45,
+          "pos": 52,
+          "name": "Lilou Wadoux",
+          "points": 10
+        },
+        {
+          "pos": 53,
+          "name": "Sean Gelael",
+          "points": 10
+        },
+        {
+          "pos": 54,
           "name": "Kakunoshin Ohta",
           "points": 10
         },
         {
-          "pos": 46,
+          "pos": 55,
+          "name": "Morris Schuring",
+          "points": 10
+        },
+        {
+          "pos": 56,
+          "name": "Dave Musial Jr.",
+          "points": 10
+        },
+        {
+          "pos": 57,
+          "name": "Ryan Yardley",
+          "points": 10
+        },
+        {
+          "pos": 58,
           "name": "Charles Weerts",
           "points": 8
         },
         {
-          "pos": 47,
-          "name": "Marco Wittmann",
-          "points": 8
-        },
-        {
-          "pos": 48,
-          "name": "Philipp Eng",
-          "points": 8
-        },
-        {
-          "pos": 49,
-          "name": "Robin Frijns",
-          "points": 8
-        },
-        {
-          "pos": 50,
+          "pos": 59,
           "name": "Jules Gounon",
           "points": 8
         },
         {
-          "pos": 51,
+          "pos": 60,
           "name": "Kenny Habul",
           "points": 8
         },
         {
-          "pos": 52,
+          "pos": 61,
+          "name": "Marco Wittmann",
+          "points": 8
+        },
+        {
+          "pos": 62,
+          "name": "Philipp Eng",
+          "points": 8
+        },
+        {
+          "pos": 63,
+          "name": "Robin Frijns",
+          "points": 8
+        },
+        {
+          "pos": 64,
           "name": "Takuro Shinohara",
           "points": 8
         },
         {
-          "pos": 53,
+          "pos": 65,
           "name": "Seita Nonaka",
           "points": 8
         },
         {
-          "pos": 54,
+          "pos": 66,
           "name": "Tadasuke Makino",
           "points": 8
         },
         {
-          "pos": 55,
-          "name": "Daan Arrow",
-          "points": 6
+          "pos": 67,
+          "name": "Alfred Renauer",
+          "points": 8
         },
         {
-          "pos": 56,
+          "pos": 68,
+          "name": "Ralf Bohn",
+          "points": 8
+        },
+        {
+          "pos": 69,
+          "name": "Robert Renauer",
+          "points": 8
+        },
+        {
+          "pos": 70,
+          "name": "Danny Dyszelski",
+          "points": 8
+        },
+        {
+          "pos": 71,
+          "name": "Jan Heylen",
+          "points": 8
+        },
+        {
+          "pos": 72,
           "name": "Dylan Pereira",
           "points": 6
         },
         {
-          "pos": 57,
+          "pos": 73,
           "name": "Klaus Bachler",
           "points": 6
         },
         {
-          "pos": 58,
-          "name": "Morris Schuring",
-          "points": 6
-        },
-        {
-          "pos": 59,
+          "pos": 74,
           "name": "Patrick Assenheimer",
           "points": 6
         },
         {
-          "pos": 60,
+          "pos": 75,
           "name": "Tobias Müller",
           "points": 6
         },
         {
-          "pos": 61,
+          "pos": 76,
           "name": "Anthony McIntosh",
           "points": 6
         },
         {
-          "pos": 62,
+          "pos": 77,
           "name": "Parker Thompson",
           "points": 6
         },
         {
-          "pos": 63,
+          "pos": 78,
           "name": "Daniel Serra",
           "points": 4
         },
         {
-          "pos": 64,
+          "pos": 79,
           "name": "Davide Rigon",
           "points": 4
         },
         {
-          "pos": 65,
-          "name": "Jaxon Evans",
-          "points": 4
-        },
-        {
-          "pos": 66,
+          "pos": 80,
           "name": "Jake Dennis",
           "points": 4
         },
         {
-          "pos": 67,
+          "pos": 81,
           "name": "Jake Hill",
           "points": 4
         },
         {
-          "pos": 68,
+          "pos": 82,
+          "name": "Jaxon Evans",
+          "points": 4
+        },
+        {
+          "pos": 83,
           "name": "Kyle Tilley",
           "points": 4
         },
         {
-          "pos": 69,
+          "pos": 84,
           "name": "Max Hofer",
           "points": 4
         },
         {
-          "pos": 70,
+          "pos": 85,
           "name": "Patrick Kolb",
           "points": 4
         },
         {
-          "pos": 71,
+          "pos": 86,
+          "name": "Thomas Merrill",
+          "points": 4
+        },
+        {
+          "pos": 87,
+          "name": "Kevin Estre",
+          "points": 4
+        },
+        {
+          "pos": 88,
           "name": "Alex Brundle",
           "points": 2
         },
         {
-          "pos": 72,
+          "pos": 89,
           "name": "Ben Bünnagel",
           "points": 2
         },
         {
-          "pos": 73,
-          "name": "Martin Rump",
-          "points": 2
-        },
-        {
-          "pos": 74,
-          "name": "Alfred Renauer",
-          "points": 2
-        },
-        {
-          "pos": 75,
-          "name": "Ralf Bohn",
-          "points": 2
-        },
-        {
-          "pos": 76,
-          "name": "Robert Renauer",
-          "points": 2
-        },
-        {
-          "pos": 77,
+          "pos": 90,
           "name": "Ben Tuck",
           "points": 2
         },
         {
-          "pos": 78,
+          "pos": 91,
           "name": "Chris Froggatt",
           "points": 2
         },
         {
-          "pos": 79,
+          "pos": 92,
           "name": "Dennis Marschall",
           "points": 2
         },
         {
-          "pos": 80,
+          "pos": 93,
           "name": "Dustin Blattner",
           "points": 2
         },
         {
-          "pos": 81,
+          "pos": 94,
           "name": "Jonathan Hui",
           "points": 2
         },
         {
-          "pos": 82,
+          "pos": 95,
           "name": "Lorenzo Patrese",
           "points": 2
         },
         {
-          "pos": 83,
+          "pos": 96,
+          "name": "Martin Rump",
+          "points": 2
+        },
+        {
+          "pos": 97,
           "name": "Mathys Jaubert",
           "points": 2
         },
         {
-          "pos": 84,
+          "pos": 98,
           "name": "Ryan Wood",
           "points": 2
         },
         {
-          "pos": 85,
+          "pos": 99,
           "name": "Kei Nakanishi",
           "points": 2
         },
         {
-          "pos": 86,
+          "pos": 100,
           "name": "Shigekazu Wakisaka",
           "points": 2
         },
         {
-          "pos": 87,
+          "pos": 101,
           "name": "Giancarlo Fisichella",
           "points": 2
         },
         {
-          "pos": 88,
+          "pos": 102,
+          "name": "Hongli Ye",
+          "points": 2
+        },
+        {
+          "pos": 103,
           "name": "Jens Klingmann",
           "points": 1
         },
         {
-          "pos": 89,
-          "name": "Tim Tramnitz",
-          "points": 1
-        },
-        {
-          "pos": 90,
-          "name": "Ugo de Wilde",
-          "points": 1
-        },
-        {
-          "pos": 91,
+          "pos": 104,
           "name": "Jongjyum Kim",
           "points": 1
         },
         {
-          "pos": 92,
+          "pos": 105,
           "name": "Marco Seefried",
           "points": 1
         },
         {
-          "pos": 93,
+          "pos": 106,
           "name": "Roelof Bruins",
           "points": 1
         },
         {
-          "pos": 94,
+          "pos": 107,
           "name": "Steven Cho",
+          "points": 1
+        },
+        {
+          "pos": 108,
+          "name": "Tim Tramnitz",
+          "points": 1
+        },
+        {
+          "pos": 109,
+          "name": "Ugo de Wilde",
+          "points": 1
+        },
+        {
+          "pos": 110,
+          "name": "Michael McCann Jr.",
+          "points": 1
+        },
+        {
+          "pos": 111,
+          "name": "Zachary Vanier",
           "points": 1
         }
       ]
     },
     "manufacturers": {
       "label": "Manufacturers Championship",
-      "updatedAt": "2026-09-15",
-      "roundsComplete": 4,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 5,
       "totalRounds": 5,
       "entries": [
         {
           "pos": 1,
           "name": "Porsche",
-          "points": 132
+          "points": 167
         },
         {
           "pos": 2,
           "name": "Mercedes-AMG",
-          "points": 94
+          "points": 112
         },
         {
           "pos": 3,
           "name": "BMW",
-          "points": 74
+          "points": 100
         },
         {
           "pos": 4,
           "name": "Ferrari",
-          "points": 47
+          "points": 66
         },
         {
           "pos": 5,
@@ -6671,29 +6761,29 @@
   "gtwca": {
     "proteams": {
       "label": "Pro — Teams",
-      "updatedAt": "2026-10-08",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 7,
       "entries": [
         {
           "pos": 1,
-          "name": "JMF Motorsports",
-          "points": 114
+          "name": "Turner Motorsport",
+          "points": 154
         },
         {
           "pos": 2,
-          "name": "AF Corse USA",
-          "points": 105
+          "name": "JMF Motorsports",
+          "points": 144
         },
         {
           "pos": 3,
-          "name": "Turner Motorsport",
-          "points": 104
+          "name": "AF Corse USA",
+          "points": 141
         },
         {
           "pos": 4,
           "name": "McCann Racing",
-          "points": 79
+          "points": 103
         },
         {
           "pos": 5,
@@ -6704,73 +6794,73 @@
     },
     "proamteams": {
       "label": "Pro-Am — Teams",
-      "updatedAt": "2026-10-08",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 7,
       "entries": [
         {
           "pos": 1,
           "name": "GMG Racing",
-          "points": 95
+          "points": 145
         },
         {
           "pos": 2,
-          "name": "RS1",
-          "points": 89
+          "name": "Wright Motorsports",
+          "points": 116
         },
         {
           "pos": 3,
-          "name": "Wright Motorsports",
-          "points": 86
+          "name": "RS1",
+          "points": 113
         },
         {
           "pos": 4,
+          "name": "Archangel Motorsports",
+          "points": 88
+        },
+        {
+          "pos": 5,
           "name": "JMF Motorsports",
           "points": 70
         },
         {
-          "pos": 5,
-          "name": "Archangel Motorsports",
-          "points": 52
-        },
-        {
           "pos": 6,
-          "name": "TR3 Racing",
-          "points": 45
+          "name": "Kellymoss",
+          "points": 65
         },
         {
           "pos": 7,
-          "name": "Kellymoss",
-          "points": 45
+          "name": "TR3 Racing",
+          "points": 53
         },
         {
           "pos": 8,
           "name": "Riley Technologies",
-          "points": 33
+          "points": 45
         },
         {
           "pos": 9,
+          "name": "Random Vandals Racing",
+          "points": 43
+        },
+        {
+          "pos": 10,
           "name": "Triarsi Competizione",
           "points": 30
         },
         {
-          "pos": 10,
-          "name": "Random Vandals Racing",
-          "points": 27
-        },
-        {
           "pos": 11,
           "name": "Chicago Performance and Tuning Co.",
-          "points": 14
+          "points": 18
         },
         {
           "pos": 12,
-          "name": "HP-Tech Motorsport",
-          "points": 10
+          "name": "Rebel Rock Racing",
+          "points": 12
         },
         {
           "pos": 13,
-          "name": "Rebel Rock Racing",
+          "name": "HP-Tech Motorsport",
           "points": 10
         },
         {
@@ -6782,72 +6872,72 @@
     },
     "amteams": {
       "label": "Am — Teams",
-      "updatedAt": "2026-10-08",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 7,
       "entries": [
         {
           "pos": 1,
           "name": "AF Corse USA",
-          "points": 143
+          "points": 179
         },
         {
           "pos": 2,
-          "name": "Scuderia Corsa",
-          "points": 25
+          "name": "MAD Joker by Lone Star Racing",
+          "points": 68
         },
         {
           "pos": 3,
-          "name": "MAD Joker by Lone Star Racing",
-          "points": 18
+          "name": "Scuderia Corsa",
+          "points": 55
         }
       ]
     },
     "prodrivers": {
       "label": "Pro — Drivers",
-      "updatedAt": "2026-10-08",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 7,
       "entries": [
         {
           "pos": 1,
-          "name": "Michai Stephens",
-          "points": 114
+          "name": "Justin Rothberg",
+          "points": 154
         },
         {
           "pos": 2,
-          "name": "Mikaël Grenier",
-          "points": 114
+          "name": "Robby Foley",
+          "points": 154
         },
         {
           "pos": 3,
-          "name": "Matías Pérez Companc",
-          "points": 105
+          "name": "Michai Stephens",
+          "points": 144
         },
         {
           "pos": 4,
-          "name": "Justin Rothberg",
-          "points": 104
+          "name": "Mikaël Grenier",
+          "points": 144
         },
         {
           "pos": 5,
-          "name": "Robby Foley",
-          "points": 104
+          "name": "Matías Pérez Companc",
+          "points": 141
         },
         {
           "pos": 6,
           "name": "Frederik Schandorff",
-          "points": 95
+          "points": 131
         },
         {
           "pos": 7,
           "name": "Michael McCann Jr.",
-          "points": 79
+          "points": 103
         },
         {
           "pos": 8,
           "name": "Zachary Vanier",
-          "points": 79
+          "points": 103
         },
         {
           "pos": 9,
@@ -7061,43 +7151,43 @@
     },
     "amdrivers": {
       "label": "Am — Drivers",
-      "updatedAt": "2026-10-08",
-      "roundsComplete": 6,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 7,
       "totalRounds": 7,
       "entries": [
         {
           "pos": 1,
           "name": "Jay Schreibman",
-          "points": 143
+          "points": 193
         },
         {
           "pos": 2,
           "name": "Oswaldo Negri",
-          "points": 100
+          "points": 150
         },
         {
           "pos": 3,
           "name": "Benny Simonsen",
-          "points": 43
+          "points": 93
         },
         {
           "pos": 4,
+          "name": "Mitchell Green",
+          "points": 61
+        },
+        {
+          "pos": 5,
           "name": "Jon Morley",
           "points": 25
         },
         {
-          "pos": 5,
-          "name": "Mitchell Green",
-          "points": 25
-        },
-        {
           "pos": 6,
-          "name": "Jay Logan",
+          "name": "Marc Austin",
           "points": 18
         },
         {
           "pos": 7,
-          "name": "Marc Austin",
+          "name": "Jay Logan",
           "points": 18
         }
       ]
@@ -8164,105 +8254,105 @@
   "wsbk": {
     "riders": {
       "label": "Riders Championship",
-      "updatedAt": "2026-10-12",
-      "roundsComplete": 11,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 12,
       "totalRounds": 13,
       "entries": [
         {
           "pos": 1,
           "name": "Nicolò Bulega",
           "team": "Aruba.it Racing - Ducati",
-          "points": 664
+          "points": 726
         },
         {
           "pos": 2,
           "name": "Iker Lecuona",
           "team": "Aruba.it Racing - Ducati",
-          "points": 518
+          "points": 563
         },
         {
           "pos": 3,
           "name": "Yari Montella",
           "team": "Barni Spark Racing Team",
-          "points": 290
+          "points": 318
         },
         {
           "pos": 4,
-          "name": "Alex Lowes",
-          "team": "Bimota by Kawasaki Racing Team",
-          "points": 237
+          "name": "Sam Lowes",
+          "team": "Marc VDS Racing Team",
+          "points": 268
         },
         {
           "pos": 5,
-          "name": "Sam Lowes",
-          "team": "Marc VDS Racing Team",
-          "points": 225
+          "name": "Alex Lowes",
+          "team": "Bimota by Kawasaki Racing Team",
+          "points": 259
         },
         {
           "pos": 6,
           "name": "Lorenzo Baldassarri",
           "team": "Team Go Eleven",
-          "points": 214
+          "points": 236
         },
         {
           "pos": 7,
           "name": "Axel Bassani",
           "team": "Bimota by Kawasaki Racing Team",
-          "points": 208
+          "points": 222
         },
         {
           "pos": 8,
           "name": "Alberto Surra",
           "team": "Motocorsa Racing",
-          "points": 179
+          "points": 198
         },
         {
           "pos": 9,
-          "name": "Garrett Gerloff",
-          "team": "Kawasaki WorldSBK Team",
-          "points": 160
+          "name": "Álvaro Bautista",
+          "team": "Barni Spark Racing Team",
+          "points": 167
         },
         {
           "pos": 10,
-          "name": "Álvaro Bautista",
-          "team": "Barni Spark Racing Team",
-          "points": 137
+          "name": "Garrett Gerloff",
+          "team": "Kawasaki WorldSBK Team",
+          "points": 165
         },
         {
           "pos": 11,
           "name": "Miguel Oliveira",
           "team": "ROKiT BMW Motorrad WorldSBK Team",
-          "points": 136
+          "points": 142
         },
         {
           "pos": 12,
           "name": "Andrea Locatelli",
           "team": "Pata Maxus Yamaha",
-          "points": 118
+          "points": 121
         },
         {
           "pos": 13,
           "name": "Xavi Vierge",
           "team": "Pata Maxus Yamaha",
-          "points": 108
+          "points": 113
         },
         {
           "pos": 14,
+          "name": "Tommy Bridewell",
+          "team": "Superbike Advocates Racing",
+          "points": 83
+        },
+        {
+          "pos": 15,
           "name": "Tarran Mackenzie",
           "team": "MGM Optical Express Racing",
           "points": 81
         },
         {
-          "pos": 15,
-          "name": "Tommy Bridewell",
-          "team": "Superbike Advocates Racing",
-          "points": 71
-        },
-        {
           "pos": 16,
           "name": "Remy Gardner",
           "team": "GYTR GRT Yamaha",
-          "points": 62
+          "points": 63
         },
         {
           "pos": 17,
@@ -8280,7 +8370,7 @@
           "pos": 19,
           "name": "Jake Dixon",
           "team": "Honda HRC",
-          "points": 35
+          "points": 41
         },
         {
           "pos": 20,
@@ -8292,7 +8382,7 @@
           "pos": 21,
           "name": "Somkiat Chantra",
           "team": "Honda HRC",
-          "points": 21
+          "points": 23
         },
         {
           "pos": 22,
@@ -8302,26 +8392,26 @@
         },
         {
           "pos": 23,
+          "name": "Loris Baz",
+          "team": "MGM Optical Express Racing",
+          "points": 7
+        },
+        {
+          "pos": 24,
           "name": "Jonathan Rea",
           "team": "Honda HRC",
           "points": 6
         },
         {
-          "pos": 24,
+          "pos": 25,
           "name": "Bahattin Sofuoğlu",
           "team": "Motoxracing Yamaha",
           "points": 4
         },
         {
-          "pos": 25,
+          "pos": 26,
           "name": "Mattia Rato",
           "team": "Motoxracing Yamaha",
-          "points": 3
-        },
-        {
-          "pos": 26,
-          "name": "Loris Baz",
-          "team": "MGM Optical Express Racing",
           "points": 3
         },
         {
@@ -8352,39 +8442,39 @@
     },
     "manufacturers": {
       "label": "Manufacturers Championship",
-      "updatedAt": "2026-08-05",
-      "roundsComplete": 10,
+      "updatedAt": "2026-10-24",
+      "roundsComplete": 12,
       "totalRounds": 13,
       "entries": [
         {
           "pos": 1,
           "name": "Ducati",
-          "points": 496
+          "points": 744
         },
         {
           "pos": 2,
           "name": "bimota",
-          "points": 220
+          "points": 316
         },
         {
           "pos": 3,
           "name": "BMW",
-          "points": 136
+          "points": 184
         },
         {
           "pos": 4,
           "name": "Yamaha",
-          "points": 131
+          "points": 183
         },
         {
           "pos": 5,
           "name": "Kawasaki",
-          "points": 110
+          "points": 165
         },
         {
           "pos": 6,
           "name": "Honda",
-          "points": 20
+          "points": 64
         }
       ]
     }
