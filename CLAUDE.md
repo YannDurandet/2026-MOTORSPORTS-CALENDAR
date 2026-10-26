@@ -163,6 +163,12 @@ Search index is built at `/data/search.json` from tracks + series. It is fetched
 ## Affiliate links
 `src/lib/affiliates.ts` holds the Awin merchant IDs and `buildAwinLink()`. All outbound partner links go through it, so the `PUBLIC_AFFILIATE_LINKS_ENABLED` kill switch and the `clickref` convention hold everywhere. Default is off: links render as plain untracked URLs. Read `agent-tasks/affiliate-links-instructions.md` before touching any of this.
 
+## SEO (Bing Webmaster Tools)
+- **Titles ≤ 60 characters.** Pass candidates, most to least descriptive, through `fitTitle()` in `src/lib/seo.ts`. Any new template needs it, embed pages included (`/embed/imsa` was 67 characters before). Bing reports "Title too long" per page.
+- **Every `<img>` has an `alt`.** Content images get a description (flags use the full country name); decorative ones get `alt=""`. Never leave the attribute off.
+- **IndexNow.** The key file `public/e59bb2976b0e6d32bc6852449ff33473.txt` proves ownership and is public by design. Don't rename or delete it: the same key is in `scripts/indexnow.mjs`. `deploy.yml` runs `npm run indexnow` after each deploy and sends only the pages whose built HTML changed (hashes are cached between runs in `.indexnow-hashes.json`, gitignored; a cold cache sends everything).
+- Inbound links ("lacks links from high-quality domains") can't be fixed in code.
+
 ## Share images & icons
 - **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~35 s, ~560 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
 - **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
@@ -205,6 +211,7 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run standings:apply <file>` | Validate + merge a standings patch |
 | `npm run times:prompt` | Generate a research prompt for TBC session times |
 | `npm run times:apply` | Apply researched times back into `calendar.json` |
+| `npm run indexnow` | Submit new/changed pages to IndexNow (Bing and others). Needs a build; CI runs it after each deploy |
 | `npm run test:unsub` | Generate/verify unsubscribe tokens locally |
 
 Race results live **inline in `data/calendar.json`** (`event.results`). `data/results.json` is a dead file nothing reads — never write to it.

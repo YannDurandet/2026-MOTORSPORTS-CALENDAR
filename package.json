@@ -22,6 +22,7 @@
     "standings:apply": "node scripts/standings-sync.mjs apply",
     "times:prompt": "node scripts/gen-time-prompt.mjs",
     "times:apply": "node scripts/apply-times.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "test:unsub": "node scripts/test-unsub-token.mjs"
   },
   "dependencies": {
