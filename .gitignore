@@ -4,6 +4,9 @@ node_modules/
 # build output
 dist/
 
+# IndexNow: hashes of the pages last submitted (scripts/indexnow.mjs)
+.indexnow-hashes.json
+
 # astro
 .astro/
 
