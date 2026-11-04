@@ -10,7 +10,7 @@ Astro static site. All data lives in `data/`. Pages are pre-rendered at build ti
 
 ## Key data files
 - `data/tracks.json` — 136 tracks, one object per venue
-- `data/calendar.json` — race calendar, nested month → week → events
+- `data/calendar.json` — race calendar, nested month → week → events. Months without a `year` belong to `DEFAULT_CALENDAR_YEAR` (`src/lib/season.ts`); later seasons are tagged `"year": 2027`. `npm run check` fails when an event's date doesn't fit its month's year or its week label, or when two events would share an event-page URL
 - `data/seriesContent.json` — series metadata (name, description, history, socials, teams)
 - `data/series.json` — race date/time index used for countdowns (**generated** — never edit by hand; run `npm run gen:series` after editing `calendar.json`)
 
@@ -54,7 +54,7 @@ Present on all 136 tracks. Rendered by `src/components/GettingThereCard.astro` i
 ## Optional event fields in `calendar.json`
 Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
 
-- `start` / `end` — ISO dates of the event's own weekend. The week label spans every series in that week, so without these an event page can show the wrong first day. Set for every F1 round.
+- `start` / `end` — ISO dates of the event's own weekend. The week label spans every series in that week, so without these an event page can show the wrong first day. Set for every F1 round (`npm run check` enforces it, and that it is under a week long and matches `date`).
 - `slug` — pins the event URL when a title changes after the page went live (`"Bahrain GP"` → `"Bahrain GP in Malaysia (Sepang)"` keeps `/events/2026/f1-bahrain-gp`). Never change an existing one.
 - `venue` — `{ name, city, country }` for a confirmed event whose circuit has no track entry or SVG yet (`track: "tbc.svg"`). Without it a `tbc.svg` event gets no page.
 - `classes` — `["GTD PRO", "GTD"]`: classes on the grid, shown as chips in the home-row panel. Only add what an official source confirms for that round.
@@ -116,7 +116,7 @@ Some venues use multiple SVG files for different series (e.g. Daytona, Barcelona
 The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` groups inside the SVG to highlight the active layout.
 
 ## Status docs
-- `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing. Counts must add up to the files in `public/assets/track-maps/`; update it whenever you add an SVG (see step 3 above).
+- `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Counts must add up to the files in `public/assets/track-maps/`; update it whenever you add an SVG (see step 3 above).
 - `2027-calendar-status.md` — which series have 2027 rounds in `calendar.json` and which are still outstanding.
 
 ## Pages

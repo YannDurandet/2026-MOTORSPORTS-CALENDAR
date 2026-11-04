@@ -46,7 +46,7 @@ function collectCalEvents() {
       for (const ev of week.events) {
         if (!ev.series) continue;
         (bySlug[ev.series] ??= []).push(ev);
-        all.push({ ev, week });
+        all.push({ ev, week, month });
       }
     }
   }
@@ -281,8 +281,113 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
     fail.push('[astro.config.mjs] has `redirects`: put them in public/_redirects instead (Astro appends them there and duplicates fail the deploy)');
 }
 
+// ── (g4) season consistency: year, week range, event URLs, F1 weekends ──────
+// Months without a `year` belong to DEFAULT_CALENDAR_YEAR (src/lib/season.ts);
+// later seasons are tagged. An event filed under the wrong month renders in the
+// wrong year and converts its times with the wrong DST offset, and nothing else
+// notices, so the invariants are enforced here.
+const defaultYear = Number(
+  /DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(readFileSync(resolve(root, 'src/lib/season.ts'), 'utf8'))?.[1],
+);
+checked++;
+if (!defaultYear) {
+  fail.push('[season] could not read DEFAULT_CALENDAR_YEAR from src/lib/season.ts');
+} else {
+  const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  const DAY_MS = 864e5;
+  const yearOf = (month) => month.year ?? defaultYear;
+  const dayOf = (iso) => { const [y, m, d] = iso.slice(0, 10).split('-').map(Number); return Date.UTC(y, m - 1, d); };
+
+  // "WEEK 45 • NOV 06-08", "WEEK 09 • FEB 28 - MAR 01" or "WEEK 02 • JAN 10"
+  // → UTC day numbers, rolling into the next year when the week crosses New Year.
+  function weekSpan(label, year) {
+    const m = /•\s*([A-Z]{3})\s+(\d{1,2})(?:\s*[-–]\s*(?:([A-Z]{3})\s+)?(\d{1,2}))?\s*$/.exec(label);
+    if (!m || !MONTHS.includes(m[1])) return null;
+    const startMonth = MONTHS.indexOf(m[1]);
+    const endMonth = m[3] ? MONTHS.indexOf(m[3]) : startMonth;
+    const endDay = Number(m[4] ?? m[2]);
+    const start = Date.UTC(year, startMonth, Number(m[2]));
+    let end = Date.UTC(year, endMonth, endDay);
+    if (end < start) end = Date.UTC(year + 1, endMonth, endDay);
+    return { start, end };
+  }
+  const yearFits = ({ ev, week, month }) => {
+    const year = yearOf(month);
+    const span = weekSpan(week.label, year);
+    const evYear = Number(ev.date.slice(0, 4));
+    return evYear === year || (span !== null && evYear === new Date(span.end).getUTCFullYear());
+  };
+
+  // (g4a) the event's date is in the year of the month it is filed under
+  check('season-year', allEvents, (item) => {
+    if (yearFits(item)) return null;
+    const { ev, month } = item;
+    return `[${ev.series}] "${ev.title}" is dated ${ev.date.slice(0, 10)} but filed under ${month.month} ${yearOf(month)}: move it to a month of its own year (later seasons are tagged "year")`;
+  });
+
+  // (g4b) the week label contains the event's date. `date` is Paris time, so a
+  // late-evening US race lands a day after the weekend: allow one day either side.
+  check('week-range', allEvents, (item) => {
+    const { ev, week, month } = item;
+    const id = `[${ev.series}] "${ev.title}"`;
+    const span = weekSpan(week.label, yearOf(month));
+    if (!span) return `${id} week label "${week.label}" is not like "WEEK 45 • NOV 06-08"`;
+    if (!yearFits(item)) return null;   // already reported by season-year
+    const t = dayOf(ev.date);
+    if (t < span.start - DAY_MS || t > span.end + DAY_MS) {
+      return `${id} is dated ${ev.date.slice(0, 10)} but sits in "${week.label}" (${month.month})`;
+    }
+    return null;
+  });
+
+  // (g4c) every event page gets a unique URL. Mirrors the slug logic in
+  // src/lib/events.ts: a repeated series+title in one year gets a month suffix,
+  // so a clash is the same title twice in the same month, or two pinned slugs.
+  {
+    const slugify = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const MONTH_ABBR = MONTHS.map(m => m.toLowerCase());
+    const hasPage = ({ ev }) => ev.track && !((ev.track === 'tbc.svg' || ev.track === 'tbd.svg') && !ev.venue);
+    const baseOf = ({ ev }) => ev.slug ?? slugify(`${ev.series}-${ev.title}`);
+    const pages = allEvents.filter(hasPage);
+    const counts = new Map();
+    for (const it of pages) {
+      const k = `${yearOf(it.month)}/${baseOf(it)}`;
+      counts.set(k, (counts.get(k) ?? 0) + 1);
+    }
+    const owners = new Map();
+    check('event-urls', pages, (it) => {
+      const { ev } = it;
+      const base = baseOf(it);
+      const mon = MONTH_ABBR[new Date(ev.date).getUTCMonth()] ?? '';
+      const slug = counts.get(`${yearOf(it.month)}/${base}`) > 1 && mon ? `${base}-${mon}` : base;
+      const url = `/events/${yearOf(it.month)}/${slug}`;
+      const other = owners.get(url);
+      owners.set(url, `[${ev.series}] "${ev.title}" (${ev.date.slice(0, 10)})`);
+      return other
+        ? `${url} is used by both ${other} and [${ev.series}] "${ev.title}" (${ev.date.slice(0, 10)}): pin one with "slug"`
+        : null;
+    });
+  }
+
+  // (g4d) every F1 round carries its own weekend (start/end), and it matches the date
+  const isoDayRe = /^\d{4}-\d{2}-\d{2}$/;
+  check('f1-weekends', allEvents.filter(({ ev }) => ev.series === 'f1'), ({ ev, week }) => {
+    const id = `[f1] "${ev.title}" (${week.label})`;
+    if (!ev.start || !ev.end) return `${id} is missing "start"/"end" (set for every F1 round)`;
+    if (!isoDayRe.test(ev.start) || !isoDayRe.test(ev.end)) return `${id} start "${ev.start}" / end "${ev.end}" must be YYYY-MM-DD`;
+    if (ev.start > ev.end) return `${id} start ${ev.start} is after end ${ev.end}`;
+    if (dayOf(ev.end) - dayOf(ev.start) > 6 * DAY_MS) return `${id} weekend ${ev.start} to ${ev.end} is longer than a week`;
+    const t = dayOf(ev.date);
+    if (t < dayOf(ev.start) - DAY_MS || t > dayOf(ev.end) + DAY_MS) {
+      return `${id} is dated ${ev.date.slice(0, 10)} but its weekend is ${ev.start} to ${ev.end}`;
+    }
+    return null;
+  });
+}
+
 // ── (h) standings.json structure ─────────────────────────────────────────────
-const isoDateRe2 = /^\d{4}-\d{2}-\d{2}$/;
+const isoDateRe2= /^\d{4}-\d{2}-\d{2}$/;
 const validSeriesSlugs = new Set([...Object.keys(seriesJson), 'asian-le-mans']);
 
 for (const [slug, tables] of Object.entries(standingsJson)) {

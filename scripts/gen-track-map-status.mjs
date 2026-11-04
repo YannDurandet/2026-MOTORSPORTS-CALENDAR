@@ -15,6 +15,9 @@
  * Add a new annotation by editing track-map-status.md, then re-running this;
  * it will survive.
  *
+ * The SVG inventory alone can't see a round that has no circuit art at all, so
+ * "Still Missing" also lists every calendar.json event drawn on tbc.svg/tbd.svg.
+ *
  * Usage: npm run gen:map-status
  *        npm run gen:map-status -- --check   (verify only, exit 1 if stale)
  */
@@ -26,7 +29,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SVG_DIR    = resolve(__dirname, '../public/assets/track-maps');
 const TRACKS     = resolve(__dirname, '../data/tracks.json');
-const OUT_PATH   = resolve(__dirname, '../track-map-status.md');
+const CALENDAR   = resolve(__dirname, '../data/calendar.json');
+const OUT_PATH  = resolve(__dirname, '../track-map-status.md');
 
 const CHECK_ONLY = process.argv.includes('--check');
 
@@ -45,7 +49,8 @@ const FALLBACK_NAMING = [
 // ── Inputs ───────────────────────────────────────────────────────────────────
 
 const tracks = JSON.parse(readFileSync(TRACKS, 'utf8'));
-const disk = readdirSync(SVG_DIR).filter(f => f.endsWith('.svg')).sort();
+const calendar = JSON.parse(readFileSync(CALENDAR, 'utf8'));
+const disk= readdirSync(SVG_DIR).filter(f => f.endsWith('.svg')).sort();
 
 const prev = existsSync(OUT_PATH) ? readFileSync(OUT_PATH, 'utf8') : '';
 
@@ -86,6 +91,19 @@ const missingBrowser = tracks
   .map(t => t.slug);
 const missingCalendar = Object.keys(calendarOf).filter(f => !disk.includes(f)).sort();
 
+/** Calendar events with a date and venue but no circuit art yet (track: "tbc.svg"). */
+const onPlaceholder = calendar
+  .flatMap(month => month.weeks.flatMap(week => week.events))
+  .filter(ev => ev.series && isPlaceholder(ev.track))
+  .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+
+const RALLY_SERIES = new Set(['wrc', 'erc']);
+const placeholderLine = ev => {
+  const where = ev.venue ? `${ev.venue.name}, ${ev.venue.city}` : 'no venue';
+  const need = RALLY_SERIES.has(ev.series) ? 'a flag SVG' : 'a track map';
+  return `- ${ev.title} (${ev.series}, ${String(ev.date).slice(0, 10)}) — ${where} — on \`${ev.track}\`, needs ${need}`;
+};
+
 // ── Render ───────────────────────────────────────────────────────────────────
 
 const entry = (file, owners) => {
@@ -111,9 +129,10 @@ const md = [
   `| Placeholder infographics | **${placeholders.length}** |`,
   `| Missing \`browserSvg\`s | **${missingBrowser.length}** |`,
   `| Missing calendar refs (not yet drawn) | **${missingCalendar.length}** |`,
+  `| Calendar events on a placeholder map | **${onPlaceholder.length}** |`,
   `| Unreferenced files | **${unreferenced.length}** |`,
   '',
-  `Derived from \`public/assets/track-maps/\` and \`data/tracks.json\`: ` +
+  `Derived from \`public/assets/track-maps/\`, \`data/tracks.json\` and \`data/calendar.json\`: ` +
     `${browserMapped.length} + ${calendarOnly.length} + ${flags.length} + ${placeholders.length} = ${disk.length}.`,
   '',
   naming,
@@ -139,6 +158,9 @@ const md = [
   missingBrowser.length
     ? missingBrowser.map(s => `- ${s} — no \`browserSvg\` set`).join('\n')
     : '- Tracks without a `browserSvg`: **none**',
+  onPlaceholder.length
+    ? onPlaceholder.map(placeholderLine).join('\n')
+    : '- Calendar events on a placeholder map: **none**',
   unreferenced.length
     ? unreferenced.map(f => `- \`${f}\` — on disk but referenced by nothing`).join('\n')
     : '- Unreferenced files: **none**',
@@ -163,6 +185,7 @@ writeFileSync(OUT_PATH, md, 'utf8');
 const warn = [];
 if (missingBrowser.length)  warn.push(`${missingBrowser.length} track(s) with no browserSvg`);
 if (missingCalendar.length) warn.push(`${missingCalendar.length} calendar ref(s) not drawn`);
+if (onPlaceholder.length)   warn.push(`${onPlaceholder.length} calendar event(s) on a placeholder map`);
 if (unreferenced.length)    warn.push(`${unreferenced.length} unreferenced file(s)`);
 
 console.log(
