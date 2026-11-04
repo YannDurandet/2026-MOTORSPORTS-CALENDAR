@@ -5777,7 +5777,30 @@
             "time": "R1: <span class=\"hl\">13:30</span> • SPR: <span class=\"hl\">09:00</span> • R2: <span class=\"hl\">13:30</span>",
             "track": "jerez.svg",
             "date": "2026-10-18T14:00:00+02:00",
-            "shortName": "JEREZ"
+            "shortName": "JEREZ",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-17",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "race_label": "Superpole Race",
+                "date": "2026-10-18",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-18",
+                "winner": "Nicolò Bulega",
+                "team": "Aruba.it Racing - Ducati",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "gtwce",
@@ -5861,7 +5884,15 @@
             "time": "RACE: <span class=\"hl\">19:00</span>",
             "track": "phoenix-oval.svg",
             "date": "2026-10-18T21:00:00+01:00",
-            "shortName": "PHOENIX"
+            "shortName": "PHOENIX",
+            "results": [
+              {
+                "date": "2026-10-18",
+                "winner": "Tyler Reddick",
+                "team": "23XI Racing",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -5877,7 +5908,15 @@
             "date": "2026-10-25T21:00:00+01:00",
             "shortName": "USA (AUSTIN)",
             "start": "2026-10-23",
-            "end": "2026-10-25"
+            "end": "2026-10-25",
+            "results": [
+              {
+                "date": "2026-10-25",
+                "winner": "Kimi Antonelli",
+                "team": "Mercedes",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "f1a",
@@ -5886,7 +5925,30 @@
             "time": "RACES: <span class=\"hl\">16:00</span>",
             "track": "cota-f1.svg",
             "date": "2026-10-25T21:00:00+01:00",
-            "shortName": "USA (AUSTIN)"
+            "shortName": "USA (AUSTIN)",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-23",
+                "winner": "Alisha Palmowski",
+                "team": "Campos Racing",
+                "country": "GB"
+              },
+              {
+                "race_label": "Reverse Grid Race",
+                "date": "2026-10-24",
+                "winner": "Alba Larsen",
+                "team": "MP Motorsport",
+                "country": "DK"
+              },
+              {
+                "race_label": "Feature Race",
+                "date": "2026-10-25",
+                "winner": "Nina Gademan",
+                "team": "MP Motorsport",
+                "country": "NL"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -5895,7 +5957,16 @@
             "time": "RACE: <span class=\"hl\">04:00</span>",
             "track": "phillip-island.svg",
             "date": "2026-10-25T04:00:00+01:00",
-            "shortName": "AUSTRALIA"
+            "shortName": "AUSTRALIA",
+            "results": [
+              {
+                "race_label": "Sprint",
+                "date": "2026-10-24",
+                "winner": "Marc Marquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "supercars",
@@ -5904,7 +5975,23 @@
             "time": "FRI R: <span class=\"hl\">05:00</span> • SAT R: <span class=\"hl\">05:00</span> • SUN R: <span class=\"hl\">05:05</span>",
             "track": "gold-coast.svg",
             "date": "2026-10-25T03:00:00+01:00",
-            "shortName": "GOLD COAST 500"
+            "shortName": "GOLD COAST 500",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-24",
+                "winner": "Chaz Mostert",
+                "team": "Walkinshaw TWG Racing",
+                "country": "AU"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-25",
+                "winner": "Broc Feeney",
+                "team": "Triple Eight Race Engineering",
+                "country": "AU"
+              }
+            ]
           },
           {
             "series": "tcr",
@@ -5913,7 +6000,30 @@
             "time": "R1: <span class=\"hl\">05:15</span> • R2: <span class=\"hl\">09:00</span>",
             "track": "zhuzhou.svg",
             "date": "2026-10-25T08:00:00+01:00",
-            "shortName": "ZHUZHOU"
+            "shortName": "ZHUZHOU",
+            "results": [
+              {
+                "race_label": "Race 1",
+                "date": "2026-10-24",
+                "winner": "Mikel Azcona",
+                "team": "BRC Hyundai N Squadra Corse",
+                "country": "ES"
+              },
+              {
+                "race_label": "Race 2",
+                "date": "2026-10-25",
+                "winner": "Aurélien Comte",
+                "team": "SP Competition",
+                "country": "FR"
+              },
+              {
+                "race_label": "Race 3",
+                "date": "2026-10-25",
+                "winner": "Mikel Azcona",
+                "team": "BRC Hyundai N Squadra Corse",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "erc",
@@ -5922,7 +6032,16 @@
             "time": "FRI > SUN",
             "track": "portugal-wrc.svg",
             "date": "2026-10-25T14:00:00+01:00",
-            "shortName": "FAFE"
+            "shortName": "FAFE",
+            "results": [
+              {
+                "date": "2026-10-25",
+                "winner": "Mārtiņš Sesks",
+                "co_driver": "Renārs Francis",
+                "manufacturer": "Škoda",
+                "country": "LV"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -5931,7 +6050,15 @@
             "time": "RACE: <span class=\"hl\">17:00</span>",
             "track": "talladega.svg",
             "date": "2026-10-25T19:00:00+01:00",
-            "shortName": "TALLADEGA"
+            "shortName": "TALLADEGA",
+            "results": [
+              {
+                "date": "2026-10-25",
+                "winner": "Kyle Larson",
+                "team": "Hendrick Motorsports",
+                "country": "US"
+              }
+            ]
           }
         ]
       },
@@ -5947,7 +6074,15 @@
             "date": "2026-11-01T21:00:00+01:00",
             "shortName": "MEXICO CITY",
             "start": "2026-10-30",
-            "end": "2026-11-01"
+            "end": "2026-11-01",
+            "results": [
+              {
+                "date": "2026-11-01",
+                "winner": "Max Verstappen",
+                "team": "Red Bull Racing",
+                "country": "NL"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -5956,7 +6091,15 @@
             "time": "RACE: <span class=\"hl\">08:00</span>",
             "track": "sepang.svg",
             "date": "2026-11-01T08:00:00+01:00",
-            "shortName": "MALAYSIA"
+            "shortName": "MALAYSIA",
+            "results": [
+              {
+                "date": "2026-11-01",
+                "winner": "Marc Marquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              }
+            ]
           },
           {
             "series": "nascar",
@@ -5965,7 +6108,15 @@
             "time": "RACE: <span class=\"hl\">17:00</span>",
             "track": "martinsville-oval.svg",
             "date": "2026-11-01T19:00:00+01:00",
-            "shortName": "MARTINSVILLE"
+            "shortName": "MARTINSVILLE",
+            "results": [
+              {
+                "date": "2026-11-01",
+                "winner": "William Byron",
+                "team": "Hendrick Motorsports",
+                "country": "US"
+              }
+            ]
           }
         ]
       }
