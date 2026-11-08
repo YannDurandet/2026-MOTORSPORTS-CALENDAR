@@ -104,6 +104,8 @@ const gridImageSrcset = (slug: string) =>
 </BaseLayout>
 
 <script>
+  import { countdownTarget } from '../../lib/offSeason';
+
   (async () => {
     const base = (document.querySelector('meta[name="astro-base"]') as HTMLMetaElement)?.content ?? '';
 
@@ -154,7 +156,7 @@ const gridImageSrcset = (slug: string) =>
         const rEl = raceEls[key];
         if (!tEl || !rEl) continue;
 
-        const next = list.find(r => (r._ts ?? 0) > now);
+        const next = countdownTarget(key, list, now);
 
         if (!next) {
           rEl.textContent = 'SEASON COMPLETE';

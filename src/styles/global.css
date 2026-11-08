@@ -7,6 +7,18 @@
     box-sizing: border-box;
 }
 
+/* Images are never part of a text selection: Ctrl/Cmd+A and drag-selecting
+   text skip <img>, inline SVG (logos, icons, track maps) and <picture>
+   instead of tinting them. Safari still wants the -webkit- prefix. Links and
+   buttons wrapping an image stay clickable; the surrounding text still
+   selects as before. */
+img,
+svg,
+picture {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 /* Cross-document view transitions: page-to-page navigation cross-fades instead
    of a hard cut. Progressive enhancement — browsers without support navigate
    as before. Skipped entirely for reduced-motion. BaseLayout holds first paint
@@ -118,21 +130,33 @@ header {
     min-width: 0;
     padding: 28px 15px 8px;
 }
+/* Below the 768px desktop layout the header column centres its children, so a
+   page with a short intro (e.g. /watch) shrank this block and pushed its left
+   edge, and the nav with it, inward of the other pages. */
+@media (max-width: 767px) {
+    .header--left { width: 100%; }
+}
 
 /* Site Navigation */
 .site-nav {
+    /* Concentric corners: outer radius = link radius + padding + border. */
+    --nav-pad: 4px;
+    --nav-border: 1px;
     display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 2px;
     margin-top: 22px;
-    padding: 4px;
+    padding: var(--nav-pad);
     background: var(--row-bg);
-    border: 1px solid var(--control-line);
-    border-radius: var(--radius-2xl);
+    border: var(--nav-border) solid var(--control-line);
+    border-radius: calc(var(--radius-xl) + var(--nav-pad) + var(--nav-border));
 }
 
 .site-nav-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--nav-ctl-h);
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
     font-weight: 700;
@@ -159,6 +183,22 @@ header {
 .site-nav-link:focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
+}
+
+/* Phones: five links and two icon buttons can't share one row, and wrapping
+   them left a ragged second row. A 6-column grid lays them out as three links,
+   then two links and the two icons, with each row filling the width. */
+@media (max-width: 560px) {
+    .site-nav {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        width: 100%;
+    }
+    .site-nav-link {
+        grid-column: span 2;
+        justify-content: center;
+        padding-inline: 8px;
+    }
 }
 
 h1,
@@ -239,7 +279,8 @@ h2 {
     background: var(--row-bg);
     border: 1px solid var(--control-line);
     border-radius: var(--radius-pill);
-    padding: 4px 10px;
+    min-height: 30px;
+    padding: 5px 10px;
     cursor: pointer;
     max-width: 220px;
     -webkit-appearance: auto;
@@ -264,7 +305,7 @@ h2 {
     font-size: var(--fs-base);
     line-height: 1.65;
     color: var(--text-muted);
-    max-width: 72ch;
+    max-width: var(--w-prose);
     padding-top: 14px;
 }
 
@@ -525,12 +566,15 @@ h2 {
     --edge: var(--asian-le-mans-c, var(--asian-le-mans));
 }
 
+/* The one series tag. Every page shows it at this size, so per-page rules
+   below this only change layout (margin, shrink, underline), never the box. */
 .tag {
     font-family: var(--font-mono);
     font-size: var(--fs-3xs);
     font-weight: 800;
-    padding: 5px 6px;
-    border-radius: var(--radius-xs);
+    letter-spacing: 0.02em;
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
@@ -757,7 +801,7 @@ TABLET & DESKTOP OVERRIDES (Min-width 768px)
 ========================================= */
 @media (min-width: 768px) {
     .container {
-        max-width: 1800px;
+        max-width: var(--w-page);
     }
 
     .banner-container {
@@ -1918,6 +1962,11 @@ a {
    STICKY BOTTOM NAV
 ========================================= */
 .sticky-nav-bar {
+    /* Concentric corners: the gap between the bar's edge and a link is the
+       border plus the padding, so outer radius = link radius + that gap.
+       Padding must be uniform or the curves can't stay parallel. */
+    --nav-pad: 6px;
+    --nav-border: 1px;
     position: fixed;
     bottom: 32px;
     left: 50%;
@@ -1928,8 +1977,8 @@ a {
     background: var(--surface-popover-2);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid var(--overlay-soft);
-    border-radius: var(--radius-md);
+    border: var(--nav-border) solid var(--overlay-soft);
+    border-radius: calc(var(--radius-xl) + var(--nav-pad) + var(--nav-border));
     box-shadow: var(--shadow-popover);
     /* Don't stretch full width */
     width: auto;
@@ -1943,7 +1992,7 @@ a {
     display: flex;
     justify-content: center;
     gap: 0;
-    padding: 6px 8px;
+    padding: var(--nav-pad);
 }
 
 .sticky-nav-link {
@@ -2664,7 +2713,7 @@ a {
     -webkit-overflow-scrolling: touch;
     margin-bottom: 10px;
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-2xl);   /* same as the other bordered panels on series pages */
 }
 
 .series-table {
@@ -2808,6 +2857,8 @@ a {
     margin-right: 4px;
 }
 .season-link {
+    display: inline-flex;
+    align-items: center;
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
     font-weight: 700;
@@ -2816,15 +2867,11 @@ a {
     text-decoration: none;
     border: 1px solid var(--control-line);
     border-radius: var(--radius-pill);
-    padding: 6px 12px;
-    min-height: 24px;
+    min-height: 30px;          /* same chip height as .filter-btn */
+    padding: 5px 12px;
 }
 .season-link:hover { color: var(--text-strong); background: var(--row-bg-open); }
 .season-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
-.season-link--all { border-color: transparent; color: var(--text-muted); }
-
-.lang-link { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; }
-.lang-link:hover { color: var(--text-strong); }
 
 /* =========================================
    WHITE-STROKE ARTWORK
@@ -2839,9 +2886,43 @@ a {
 
 .ev-map img,
 .ev-ghost,
-.pw-event-map img,
 .ev-hero img { filter: var(--map-filter); }
 
 .ev-map img.is-flag,
-.ev-ghost.is-flag,
-.pw-event-map img.is-flag { filter: none; }
+.ev-ghost.is-flag { filter: none; }
+
+/* =========================================
+   WIDTH TIERS
+   Tokens: --w-prose / --w-content / --w-wide / --w-page (tokens.css).
+   Uncapped, a block takes the whole 1800px container: 200+ characters a line
+   and tables that are mostly empty.
+   - .main-section--content goes on <main> for pages that read row by row
+     (series, season, watch). The title and nav sit at the left edge, so the
+     capped column starts there too. `margin-left: 2%` is the gutter that
+     `width: 96%` + `margin: auto` already gave, so nothing moves below the cap.
+   - Running text takes --w-prose, whatever its column.
+========================================= */
+.main-section.main-section--content {
+    max-width: var(--w-content);
+    margin-inline: 2% auto;
+}
+
+.series-history,
+.series-description,
+.series-season-notes,
+.series-table-note,
+.season-summary,
+.season-status,
+.season-changes,
+.faq-answer p,
+.track-content-text,
+.track-bio,
+.gt-tip-text,
+.gt-value,
+.legal-page p,
+.legal-page li {
+    max-width: var(--w-prose);
+}
+
+.faq-section { max-width: var(--w-content); }
+.faq-answer p { margin: 0; }

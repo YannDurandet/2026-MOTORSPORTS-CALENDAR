@@ -28,7 +28,7 @@ import { computeUnsubToken, unsubUrl } from '../../lib/unsub-token';
 
 const WELCOME_TEXT = `Welcome to From The Pit Wall.
 
-Every week: what's racing, where it is, and why the next three days are going to be chaos. All 25 series, no filler.
+Every week: what's racing, where it is, and why the next three days are going to be chaos. All 26 series, no filler.
 
 First briefing lands before the next race weekend.
 
@@ -69,7 +69,7 @@ const WELCOME_HTML = `<!DOCTYPE html>
           <tr>
             <td>
               <p style="margin:0 0 20px;font-family:'Courier New',Courier,monospace;font-size:14px;line-height:1.8;color:#c3c6c8;">Welcome to From The Pit Wall.</p>
-              <p style="margin:0 0 20px;font-family:'Courier New',Courier,monospace;font-size:14px;line-height:1.8;color:#c3c6c8;">Every week: what's racing, where it is, and why the next three days are going to be chaos. All 25 series, no filler.</p>
+              <p style="margin:0 0 20px;font-family:'Courier New',Courier,monospace;font-size:14px;line-height:1.8;color:#c3c6c8;">Every week: what's racing, where it is, and why the next three days are going to be chaos. All 26 series, no filler.</p>
               <p style="margin:0 0 40px;font-family:'Courier New',Courier,monospace;font-size:14px;line-height:1.8;color:#c3c6c8;">First briefing lands before the next race weekend.</p>
             </td>
           </tr>

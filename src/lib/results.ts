@@ -1,13 +1,13 @@
 /**
  * src/lib/results.ts
- * Shared data helpers for /results and /stats pages.
+ * Shared data helpers for the /results page (also country/flag helpers used by event and series pages).
  * Imported in Astro frontmatter only (build-time; no client bundle).
  */
 
 import calendarData from '../../data/calendar.json';
 import tracksData   from '../../data/tracks.json';
 import { findEvent } from './events';
-import { monthYear, seasonOf } from './season';
+import { monthYear } from './season';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -152,59 +152,4 @@ export function getFlatResults(): ResultEntry[] {
   }
   flat.sort((a, b) => b.date.localeCompare(a.date));
   return flat;
-}
-
-/**
- * Rounds completed vs scheduled, per series, for its CURRENT season only.
- *
- * calendar.json holds 2026 and 2027 side by side, so a plain count of every
- * event doubles the total for any series whose 2027 calendar is already in.
- * The current season is the one of the series' latest completed round (a
- * finished season stays at 100% until the next one has raced), or its first
- * season when it has not raced yet. Seasons come from `seasonOf`, which knows
- * that Formula E and the Asian Le Mans Series start before January.
- */
-export function getSeriesEventCounts(): Record<string, { total: number; done: number; season: number }> {
-  const bySeries: Record<string, { season: number; date: string; done: boolean }[]> = {};
-  for (const month of calendarData as any[]) {
-    for (const week of month.weeks) {
-      for (const ev of week.events) {
-        (bySeries[ev.series] ??= []).push({
-          season: seasonOf(ev.series, ev.date),
-          date: ev.date,
-          done: !!ev.results?.length,
-        });
-      }
-    }
-  }
-
-  const out: Record<string, { total: number; done: number; season: number }> = {};
-  for (const [series, events] of Object.entries(bySeries)) {
-    const latestRaced = events.filter(e => e.done).sort((a, b) => b.date.localeCompare(a.date))[0];
-    const season = latestRaced?.season ?? Math.min(...events.map(e => e.season));
-    const inSeason = events.filter(e => e.season === season);
-    out[series] = { season, total: inSeason.length, done: inSeason.filter(e => e.done).length };
-  }
-  return out;
-}
-
-/**
- * For a date-sorted (ascending) slice of results, compute the current
- * win streak for the most recent winner — how many consecutive results
- * have the same winner/team?
- *
- * For endurance series (winners array), uses `team` instead.
- */
-export function computeStreak(entries: ResultEntry[]): { name: string; count: number } | null {
-  if (!entries.length) return null;
-  const sorted = [...entries].sort((a, b) => a.date.localeCompare(b.date));
-  const lastName = (r: ResultEntry) => r.team && r.winners ? r.team : (r.winner ?? r.winners?.[0] ?? '');
-  const last = sorted[sorted.length - 1];
-  const streakName = lastName(last);
-  let count = 0;
-  for (let i = sorted.length - 1; i >= 0; i--) {
-    if (lastName(sorted[i]) === streakName) count++;
-    else break;
-  }
-  return count >= 2 ? { name: streakName, count } : null;
 }

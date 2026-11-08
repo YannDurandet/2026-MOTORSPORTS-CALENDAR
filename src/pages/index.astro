@@ -17,7 +17,7 @@ import { ALL_EVENTS } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
 import { jsonForScript } from '../lib/jsonForScript';
-import { alternatesFor } from '../lib/fr';
+import { FAQS } from '../lib/faq';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesIndexJson = jsonForScript(seriesIndex);
@@ -64,10 +64,9 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
 
 ---
 <BaseLayout
-  title="2026 Motorsport Calendar — F1, MotoGP, WEC & 22 More | DORD"
+  title="2026 Motorsport Calendar — F1, MotoGP, WEC & 23 More | DORD"
   description="The ultimate 2026 motorsport master calendar. Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns and local track times."
   canonicalUrl="https://dord.racing"
-  alternates={alternatesFor('/', '/fr')}
   ogImage="https://dord.racing/assets/og/og-home.webp"
 >
   <Fragment slot="head">
@@ -89,7 +88,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
       "name": "2026 Motorsport Master Calendar",
       "alternateName": "dord.racing",
       "url": "https://dord.racing",
-      "description": "The ultimate 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.",
+      "description": "The ultimate 2026 motorsport master calendar tracking 26 championships across open-wheel, endurance, touring, GT, bike, and rally series.",
       "publisher": {
         "@type": "Organization",
         "name": "DORD Racing",
@@ -104,48 +103,11 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What races are left in the 2026 Formula 1 season?",
-          "acceptedAnswer": { "@type": "Answer", "text": "With the 2026 F1 summer break behind us, the second half of the season runs through to the Abu Dhabi Grand Prix on December 6. Remaining highlights include the Belgian GP, Singapore, Japan, the United States GP at Austin, Mexico City, São Paulo, Las Vegas, the Bahrain GP at Sepang (October 3–4), the inaugural Madrid Grand Prix at the Madring street circuit, and the season finale in Abu Dhabi." }
-        },
-        {
-          "@type": "Question",
-          "name": "What's new in Formula 1 for 2026?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 season introduces the most significant technical overhaul in F1's modern era. All-new power unit regulations bring a new hybrid formula with a 50/50 split between combustion and electrical power, alongside completely redesigned aerodynamics featuring active front and rear wings. New entrants Audi and the GM/Cadillac works team join the grid. A new street circuit in Madrid, the Madring, makes its F1 debut later this year." }
-        },
-        {
-          "@type": "Question",
-          "name": "Why are Saudi Arabia and Bahrain not on the 2026 F1 calendar, and what is the Bahrain GP at Sepang?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The Saudi Arabian Grand Prix was dropped from the 2026 calendar due to ongoing regional instability. Bahrain did not secure a traditional hosting agreement, but arranged an unusual sponsorship deal instead: the Kingdom of Bahrain funds and names a Grand Prix held at the Sepang International Circuit in Malaysia on October 3–4. The race counts toward the World Championship as the Bahrain Grand Prix despite taking place on Malaysian soil." }
-        },
-        {
-          "@type": "Question",
-          "name": "Why did WEC cancel the 8 Hours of Bahrain and what replaced it?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The FIA World Endurance Championship cancelled its traditional season-closing 8 Hours of Bahrain in 2026 amid regional instability in the Middle East. Two European rounds were added to replace it: the 6 Hours of Barcelona on October 18 and the 6 Hours of Monza on November 8 (both start times TBC). The WEC had used Bahrain International Circuit as its season finale since 2012." }
-        },
-        {
-          "@type": "Question",
-          "name": "When do the 2026 NASCAR Cup Series Playoffs begin?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The 2026 NASCAR Cup Series Playoffs open at Darlington Raceway on September 6, kicking off a 10-race elimination bracket. The field of 16 drivers is reduced across three rounds — Darlington, Richmond, and Bristol (Round 1); Talladega, Charlotte Roval, and a TBD venue (Round 2) — before the final four drivers decide the championship at Homestead-Miami Speedway on November 8." }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the Madring and when is the 2026 Madrid Grand Prix?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The Madring is a new purpose-built street circuit in Madrid, Spain, making its Formula 1 debut in September 2026. The circuit winds through the IFEMA Madrid exhibition district and surrounding roads. The Madrid Grand Prix joins the calendar as part of a long-term deal with Formula 1, replacing the Spanish Grand Prix rotation between Barcelona and Madrid." }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between WEC and IMSA?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The FIA World Endurance Championship (WEC) is the global endurance series, peaking with the 24 Hours of Le Mans and racing across Europe, Asia, and the Americas. IMSA (the WeatherTech SportsCar Championship) is the premier North American endurance series, built around tracks like Daytona, Sebring, and Watkins Glen. Both share the same GTP Hypercar class and often feature identical manufacturer programmes." }
-        },
-        {
-          "@type": "Question",
-          "name": "Which series are tracked in this calendar?",
-          "acceptedAnswer": { "@type": "Answer", "text": "We track 25 major global and regional championships: Formula 1, F1 Academy, Formula E, Super Formula, WEC, IMSA, WRC, ERC, IndyCar, NASCAR, MotoGP, WorldSBK, DTM, BTCC, Australian Supercars, ELMS, GT World Challenge Europe, GT World Challenge America, NLS, IGTC, TCR World, 24H European Series, Porsche Mobil 1 Supercup, British GT, and FIA European Rallycross. Indy NXT, F2, and F3 appear as support events within their parent series." }
-        },
-      ]
+      "mainEntity": FAQS.map(({ question, answer }) => ({
+        "@type": "Question",
+        "name": question,
+        "acceptedAnswer": { "@type": "Answer", "text": answer }
+      }))
     })} />
   </Fragment>
 
@@ -171,7 +133,6 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
           {nextSeasonSeries.map(s => (
             <a class="season-link" href={`${base}/series/${s.slug}/${nextYear}`}>{s.label} {nextYear}</a>
           ))}
-          <a class="season-link season-link--all" href={`${base}/events/${nextYear}`}>All {nextYear} events →</a>
         </nav>
       )}
     </div>

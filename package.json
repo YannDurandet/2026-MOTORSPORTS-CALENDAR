@@ -9,7 +9,6 @@
     "check": "node scripts/check-data.mjs && node scripts/gen-track-map-status.mjs --check && node scripts/check-tokens.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "gen:series": "node scripts/gen-series.mjs",
-    "gen:pitwall": "node scripts/gen-pitwall.mjs",
     "gen:icons": "node scripts/gen-icons.mjs",
     "gen:series-images": "node scripts/gen-series-images.mjs",
     "gen:track-pngs": "node scripts/export-track-pngs.mjs",
@@ -26,10 +25,10 @@
     "test:unsub": "node scripts/test-unsub-token.mjs"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^14.3.1",
+    "@astrojs/cloudflare": "^14.4.6",
     "@astrojs/sitemap": "^3.7.4",
     "@libsql/client": "^0.17.4",
-    "astro": "^7.3.2",
+    "astro": "^7.4.7",
     "resend": "^6.17.1",
     "wrangler": "^4.107.0"
   },

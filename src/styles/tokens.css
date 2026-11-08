@@ -95,6 +95,20 @@
     --radius-pill:  20px;
     --radius-round: 50%;
 
+    /* ── Layout widths ────────────────────────────────────────────────────
+       Four tiers. Pick by what the block is, not by how wide the screen is.
+       prose and content hug the page's left edge, where the title and nav
+       sit (see .main-section--content in global.css); wide grids stay
+       centred. */
+    --w-prose:   64ch;    /* running text: about 80-85 characters a line in Inter */
+    --w-content: 960px;   /* tables, lists, FAQ, forms: anything read row by row */
+    --w-wide:    1400px;  /* card grids: tracks, events */
+    --w-page:    1800px;  /* the page container; the home calendar uses all of it */
+
+    /* ── Controls ─────────────────────────────────────────────────────────
+       Height the nav links and the icon buttons in Nav.astro share. */
+    --nav-ctl-h: 32px;
+
     /* ── Surfaces (backgrounds), darkest → lightest ───────────────────── */
     --surface-sunken:   #0b0f12;   /* below the page: search modal */
     --surface-sunken-2: #080c10;
@@ -264,7 +278,6 @@
     --accent-deep:   #2a5a8a;
     --accent-pale:   #a0c8e8;
     --accent-muted:  #6a9ab0;
-    --accent-orange: #e8822a;      /* RSS, streaks */
 
     --link:       #5a8fa8;
     --link-hover: #aaaadd;
@@ -601,7 +614,6 @@
     --accent-deep:   #24527f;
     --accent-pale:   #1d5a8c;
     --accent-muted:  #3e6d85;
-    --accent-orange: #a14a06;
 
     --link:       #1d6182;
     --link-hover: #3c3c9c;

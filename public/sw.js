@@ -4,13 +4,15 @@
  * Cache strategies:
  *   • Fonts, static assets (images, CSS, JS chunks)  → Cache-First (long TTL)
  *   • API / dynamic data (/data/series.json etc.)    → Network-First, fallback to cache
+ *   • /api/country                                    → never intercepted: it is per-visitor and `no-store`,
+ *                                                       so it must not be stored or replayed offline
  *   • HTML pages                                      → Network-First (always fresh, avoids stale CSS hash mismatches)
  *   • Everything else                                 → Network-First, no cache fallback
  *
  * Install: registers in BaseLayout.astro (skipped on localhost unless ?sw=1 is set).
  */
 
-const VERSION  = 'v6';
+const VERSION  = 'v7';
 const CACHE    = `dord-${VERSION}`;
 
 // Assets to precache on install (shell only — pages served SW-free initially)
@@ -63,6 +65,11 @@ self.addEventListener('fetch', event => {
     event.respondWith(cacheFirst(request));
     return;
   }
+
+  // The visitor's country is private and `Cache-Control: no-store`. Leave the
+  // request to the browser: caching it here would replay an old answer when
+  // offline instead of failing, and the privacy page promises it isn't stored.
+  if (path === '/api/country') return;
 
   // Dynamic data feeds → Network-First with cache fallback
   if (

@@ -17,6 +17,7 @@ export default defineConfig({
         const p = new URL(page).pathname;
         if (p.startsWith('/embed/')) return false;          // <meta robots=noindex>
         if (/^\/(ig|x|yd)\/?$/.test(p)) return false;       // 301s to / with UTM tags
+        if (p === '/newsletter/thank-you') return false;    // <meta robots=noindex>
         return true;
       },
     }),

@@ -24,7 +24,7 @@ const hasNextSeason = EVENT_YEARS.includes(nextSeason);
       <!-- Brand -->
       <div class="footer--brand">
         <a href={`${base}/`} class="footer--logo" aria-label="DORD — The Department of Racing Drivers, home"><Fragment set:html={logo} /></a>
-        <p class="footer--tagline">An independent 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, bike, and rally series.</p>
+        <p class="footer--tagline">An independent 2026 motorsport master calendar tracking 26 championships across open-wheel, endurance, touring, GT, bike, and rally series.</p>
         <div class="footer--social-group">
           <div class="footer--social-label">Follow DORD</div>
           <div class="footer--socials">
@@ -45,22 +45,17 @@ const hasNextSeason = EVENT_YEARS.includes(nextSeason);
         <a href={`${base}/series`}    class="footer--nav-link">Series</a>
         <a href={`${base}/tracks`}    class="footer--nav-link">Track Browser</a>
         <a href={`${base}/results`}   class="footer--nav-link">Results</a>
-        <a href={`${base}/stats`}     class="footer--nav-link">Season Stats</a>
-        <a href={`${base}/pit-wall`}  class="footer--nav-link">Pit Wall Archive</a>
         <a href={`${base}/newsletter`} class="footer--nav-link">Newsletter</a>
-        <a href={`${base}/fr`} class="footer--nav-link" hreflang="fr" lang="fr">Français</a>
       </div>
 
-      <!-- Seasons -->
-      <div class="footer--col">
-        <div class="footer--col-label">Seasons</div>
-        <a href={`${base}/events/${season}`} class="footer--nav-link">All {season} events</a>
-        {hasNextSeason && <>
-          <a href={`${base}/events/${nextSeason}`} class="footer--nav-link">All {nextSeason} events</a>
+      <!-- Seasons: only once a later season has data, so the heading never stands alone -->
+      {hasNextSeason && (
+        <div class="footer--col">
+          <div class="footer--col-label">Seasons</div>
           <a href={`${base}/series/f1/${nextSeason}`} class="footer--nav-link">F1 {nextSeason} calendar</a>
           <a href={`${base}/series/motogp/${nextSeason}`} class="footer--nav-link">MotoGP {nextSeason} calendar</a>
-        </>}
-      </div>
+        </div>
+      )}
 
       <!-- Legal -->
       <div class="footer--col">

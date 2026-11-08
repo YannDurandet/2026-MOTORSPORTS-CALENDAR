@@ -309,7 +309,9 @@ a.ev-map:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2
 
 /* Badge · detail · time as three grid columns, so every badge in the list takes
    the width of the widest one and the details line up (MX5 CUP / MUSTANG).
-   Each lane is display:contents: still the font/colour parent, no box of its own. */
+   Each lane is display:contents: still the font/colour parent, no box of its own.
+   Every cell names its column: a lane without a time chip leaves column 3 empty,
+   and without this the next lane's badge auto-places into it (F3 beside F2). */
 .ev-support {
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr) max-content;
@@ -322,7 +324,8 @@ a.ev-map:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2
     font-size: var(--fs-sm);
     color: var(--text-meta);
 }
-.support-lane .badge { justify-content: center; }
+.support-lane .badge { grid-column: 1; justify-content: center; }
+.support-lane .support-detail { grid-column: 2; }
 .support-lane .time-chip { grid-column: 3; }
 
 .ev-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }

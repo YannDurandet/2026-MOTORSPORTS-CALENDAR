@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import CountryDialog from '../components/CountryDialog.astro';
 
 import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
@@ -103,7 +104,7 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
     </div>
   </header>
 
-  <main id="main-content" class="main-section watch-main">
+  <main id="main-content" class="main-section main-section--content watch-main">
 
     <!-- Event data embedded at build time; client script reads it -->
     <script
@@ -127,6 +128,12 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
 
     <div id="watch-loading" class="watch-loading">Loading schedule…</div>
 
+    <!-- Which country's broadcasters are showing, and how to change it (filled by JS) -->
+    <div id="watch-country-bar" class="watch-country-bar" hidden>
+      <p id="watch-country-text" class="watch-country-text" aria-live="polite"></p>
+      <button type="button" id="watch-country-change" class="watch-country-change"></button>
+    </div>
+
     <div id="watch-content" hidden>
       <!-- Day sections rendered by JS -->
     </div>
@@ -138,6 +145,8 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
 
     <Footer />
   </main>
+
+  <CountryDialog />
 </BaseLayout>
 
 <script type="module">
@@ -145,6 +154,10 @@ import {
   SOURCE_TIMEZONE, USER_TIMEZONE, TZ_IS_OVERRIDE,
   NEEDS_TZ_CONVERSION, convertTimeStr
 } from '../scripts/tz.js';
+import {
+  CHANGE_EVENT, getChoice, pickBroadcasters, regionLabel,
+  openCountryDialog, initCountryDialog
+} from '../scripts/country.js';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const rawEl = document.getElementById('watch-events-data');
@@ -254,17 +267,11 @@ function isMultiDay(timeHtml) {
 }
 
 // ── Broadcaster pills ─────────────────────────────────────────────────────────
-function getCountryCode() {
-  const locale = Intl.DateTimeFormat().resolvedOptions().locale || navigator.language || 'en-US';
-  const parts = locale.split('-');
-  return (parts.length > 1 ? parts[parts.length - 1] : parts[0]).toUpperCase();
-}
-const COUNTRY = getCountryCode();
-
+// Which country's list to show is the visitor's choice (popup, remembered on
+// this device), not a guess from the browser language. See scripts/country.js.
 function renderPills(howToWatch) {
-  if (!howToWatch) return '';
-  const broadcasters = howToWatch[COUNTRY] || howToWatch['global'];
-  if (!broadcasters?.length) return '';
+  const { list: broadcasters, scope } = pickBroadcasters(howToWatch);
+  if (!broadcasters.length) return '';
   const pills = broadcasters.map(b => {
     const badge = b.type === 'free'
       ? '<span class="htw-badge htw-badge--free">FREE</span>'
@@ -273,7 +280,12 @@ function renderPills(howToWatch) {
       : '';
     return `<a href="${b.url}" target="_blank" rel="noopener noreferrer" class="htw-pill" aria-label="${b.name} — watch ${b.type ?? ''}">${b.name}${badge}</a>`;
   }).join('');
-  return `<div class="htw-pills watch-pills">${pills}</div>`;
+  // A country we list no broadcaster for (or a series that has none there)
+  // shows the series' own worldwide option; say so rather than imply it is local.
+  const note = scope === 'worldwide' && getChoice().code !== 'global'
+    ? '<span class="htw-note watch-fallback">Worldwide option</span>'
+    : '';
+  return `<div class="htw-pills watch-pills">${pills}${note}</div>`;
 }
 
 // ── Row HTML builder ──────────────────────────────────────────────────────────
@@ -361,6 +373,49 @@ if (isEmpty) {
     subtitleEl.textContent = `${fStr} – ${sStr}${tzNote}`;
   }
 }
+
+// ── Country: status bar + popup ───────────────────────────────────────────────
+// Broadcasters follow the visitor's chosen country (scripts/country.js). First
+// visit with a schedule on screen: ask. Esc / clicking outside is "not now" and
+// saves nothing, so we ask again next time; only an explicit answer is stored.
+const barEl     = document.getElementById('watch-country-bar');
+const barTextEl = document.getElementById('watch-country-text');
+const barBtn    = document.getElementById('watch-country-change');
+
+function renderCountryBar() {
+  if (!barEl || !barTextEl || !barBtn || isEmpty) return;
+  const { code, state } = getChoice();
+  if (state !== 'chosen') {
+    barTextEl.textContent = "Showing the USA's options by default. They may not be available in your region.";
+    barBtn.textContent = 'Set your country';
+  } else if (code === 'global') {
+    barTextEl.textContent = 'Showing worldwide streaming options.';
+    barBtn.textContent = 'Change country';
+  } else if (!Object.values(HTW).some(h => h[code]?.length)) {
+    barTextEl.textContent = `We don't list local broadcasters for ${regionLabel(code)} yet. Showing worldwide options.`;
+    barBtn.textContent = 'Change country';
+  } else {
+    barTextEl.textContent = `Showing broadcasters for ${regionLabel(code)}.`;
+    barBtn.textContent = 'Change country';
+  }
+  barEl.hidden = false;
+}
+
+// Swap only the broadcaster pills; the schedule above them stays put.
+function refreshPills() {
+  for (const row of document.querySelectorAll('.watch-row')) {
+    row.querySelector('.watch-pills')?.remove();
+    const html = renderPills(HTW[row.dataset.series] ?? null);
+    if (html) row.querySelector('.watch-row-body')?.insertAdjacentHTML('beforeend', html);
+  }
+  renderCountryBar();
+}
+
+barBtn?.addEventListener('click', openCountryDialog);
+window.addEventListener(CHANGE_EVENT, refreshPills);
+initCountryDialog();
+renderCountryBar();
+if (!isEmpty && getChoice().state === 'undecided') openCountryDialog();
 </script>
 
 <style is:global>
@@ -381,6 +436,48 @@ if (isEmpty) {
   /* Reserve the schedule's space while it loads, so the footer is below the
      fold and never shifts if the fetch fallback (or a slow device) renders late. */
   min-height: 80svh;
+}
+
+.watch-country-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 0 0 24px;
+  padding: 10px 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.watch-country-bar[hidden] { display: none; }
+
+.watch-country-text {
+  flex: 1 1 260px;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.watch-country-change {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.watch-country-change:hover { color: var(--text-strong); }
+
+.watch-country-change:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
 .watch-empty {
@@ -434,13 +531,7 @@ if (isEmpty) {
 
 .watch-tag {
   flex-shrink: 0;
-  font-size: var(--fs-2xs-3);
-  padding: 3px 7px;
-  border-radius: var(--radius-xs);
   text-decoration: none;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  letter-spacing: 0.04em;
 }
 
 .watch-row-body {

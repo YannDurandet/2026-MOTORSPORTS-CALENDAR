@@ -118,6 +118,7 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 ## Status docs
 - `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Counts must add up to the files in `public/assets/track-maps/`; update it whenever you add an SVG (see step 3 above).
 - `2027-calendar-status.md` — which series have 2027 rounds in `calendar.json` and which are still outstanding.
+- `watch-broadcasters-status.md` — where-to-watch coverage per series and country, the official source for each, and the known gaps. Rights change every season: update it whenever you touch `howToWatch`.
 
 ## Pages
 | Route | File | Notes |
@@ -126,7 +127,6 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 | `/series` | `src/pages/series/index.astro` | Series grid |
 | `/series/[slug]` | `src/pages/series/[slug].astro` | Series detail (current season) |
 | `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | Future season calendar, e.g. `/series/f1/2027` |
-| `/events/[year]` | `src/pages/events/[year]/index.astro` | Season index |
 | `/events/[year]/[slug]` | `src/pages/events/[year]/[slug].astro` | Event page |
 | `/tracks` | `src/pages/tracks/index.astro` | Track browser (continent + type filter) |
 | `/tracks/[slug]` | `src/pages/tracks/[slug].astro` | Track detail |
@@ -142,6 +142,7 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 - Series tokens keep the `--{slug}` / `--{slug}-c` pattern because templates build them from slugs. Per-series `-tag` (tag background adjusted for AA — flat for some, gradient for f1a/fe/wrc/supercars/gtwce/nls) and `-tint` (active filter chip, derived with `color-mix` from `-c`/brand — never hand-type one) live alongside. They mirror the **Series** collection and `Series/{slug}` paint styles in the Figma file.
 - Fonts: `--font-mono` (JetBrains Mono) for UI, labels, times; `--font-body` (Inter) for prose; `--font-title` (Orbitron) **only** for page titles (`h1`, series hero, newsletter hero) and big section headers (calendar months, FAQ, newsletter banner). Files are self-hosted in `public/assets/fonts/` and precached in `public/sw.js` — bump `VERSION` there when fonts change.
 - Floors: `--text-meta` is the dimmest readable text (passes AA on `--bg`, `--card-bg`, `--surface-raised`); `--text-dim*`/`--text-faint*` alias it. `--fs-3xs*`/`--fs-2xs*` alias `--fs-xs` (0.7rem).
+- Widths: four tiers in `tokens.css`, `--w-prose` (64ch, running text, ~80–85 characters a line), `--w-content` (960px, tables/lists/FAQ), `--w-wide` (1400px, card grids) and `--w-page` (1800px, the container; only the home calendar uses all of it). Don't write a literal `max-width` for a content block. Put `main-section--content` on `<main>` for row-by-row pages (series, season, watch); it left-aligns the capped column with the page title (centre it by changing `margin-inline: 2% auto` to `auto` in `global.css`). Running text gets `--w-prose` via the list at the end of `global.css`: add new paragraph classes there.
 - Out of scope: email HTML (`api/subscribe.ts`, `workers/newsletter.ts`, since mail clients lack CSS variables), `api/unsubscribe.ts`, the embed iframe (own local tokens + light theme), `<meta name="theme-color">` (a literal, kept in step by the theme script), the OG share cards (always dark).
 
 ### Light / dark theme
@@ -157,8 +158,20 @@ Dark is the base and the default; light is an override block, so adding light mo
 ## Home calendar (Week Card / Event Row)
 `src/components/EventRow.astro` + `src/styles/calendar.css` implement the Figma **Event Row** and **Week Card** components. Styles are scoped to `.cal-v2` (the calendar container) so shared `.card` / `.event` / `.tag` rules on other pages are unaffected. `main.js` depends on these hooks — keep them: `.card`, `.c-head` (text must end with the week's date range, it is parsed), `.event[data-series]` (filters), `.meta-time > .hl` (timezone conversion, including the time chip), `.ev-toggle` / `.ev-panel` (expand), `.focus-btn` (week focus switch), `data-ts` (live state).
 
+## Series card countdown (`/series`)
+Each card counts down to the series' next race, or reads OFF SEASON. The rule is `countdownTarget()` in `src/lib/offSeason.ts`: `series.json` already holds next year's rounds, so a finished series would otherwise count down to a March opener. A season that hasn't started yet and belongs to a later calendar year (Paris time) stays OFF SEASON until its opener is under 30 days away; once 1 January passes, or once any round of that season has run, it counts down. Seasons come from `seasonOf()`, so a series that starts before January (Formula E, Asian Le Mans) needs an entry in `CROSS_WINTER_SERIES` in `src/lib/season.ts`. A series with no 2027 rounds in `calendar.json` reads OFF SEASON after its last 2026 round, whatever the date.
+
 ## Global search
 Search index is built at `/data/search.json` from tracks + series. It is fetched lazily on first open. Trigger: click the 🔍 button in nav, or press `/`.
+
+## Where to watch / visitor country
+The broadcaster list on `/watch` and in each series' "How to Watch" block follows the **visitor's chosen country**, never the browser language (en-US used to put US broadcasters in front of English-speaking Europeans).
+
+- `data/seriesContent.json` → `howToWatch` per series, keyed by ISO country code plus `global`. Only add a country an official source names (see `watch-broadcasters-status.md`).
+- `src/scripts/country.js` — choice stored in `localStorage['dord-country']` (a code, `'global'`, or `'default'` for "no thanks"). No value or `'default'` shows the **US** list; a country with no entry shows the series' `global` option. It fires `dord:country-change` so pages re-render.
+- `src/components/CountryDialog.astro` — the popup (a native `<dialog>`), with the dropdown built from whichever country codes appear in the data. It opens on `/watch` on a first visit; series pages show a "Change country" button instead. Esc / clicking outside is "not now" and saves nothing.
+- `src/pages/api/country.ts` — returns the country Cloudflare derives from the IP (`request.cf.country`), `private, no-store`. No GPS, nothing logged or stored.
+- The wording of the popup is a promise to visitors and is mirrored in section 3 of `src/pages/legal/privacy.astro`. Change both together.
 
 ## Affiliate links
 `src/lib/affiliates.ts` holds the Awin merchant IDs and `buildAwinLink()`. All outbound partner links go through it, so the `PUBLIC_AFFILIATE_LINKS_ENABLED` kill switch and the `clickref` convention hold everywhere. Default is off: links render as plain untracked URLs. Read `agent-tasks/affiliate-links-instructions.md` before touching any of this.
@@ -172,9 +185,6 @@ Search index is built at `/data/search.json` from tracks + series. It is fetched
 ## Share images & icons
 - **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~35 s, ~560 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
 - **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
-
-## French section (`/fr`)
-`src/pages/fr/`: `/fr` (landing), `/fr/calendrier-{f1|motogp}-{2026|2027}`, `/fr/programme-tv-f1`. Helpers, GP names and the EN ↔ FR page map live in `src/lib/fr.ts`; French season notes are the `*_fr` fields in `data/seasons.json`. `BaseLayout` takes `lang` and `alternates` (hreflang; the English URL doubles as x-default). Pair a new French page with its English one in `FR_SEASON_PAGES` so both sides get hreflang and the "Version française" link. Nav and footer stay English.
 
 ## Redirects
 `public/_redirects` holds every redirect: `/events`, legacy URLs, and 301s for trailing-slash URLs (Cloudflare's asset handler would otherwise send a 307). Don't add redirects to `astro.config.mjs`: Astro appends them to the same file, and Cloudflare rejects the deploy if a path appears twice.
@@ -200,7 +210,6 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run check` | Data integrity + design-token checks — run before every commit |
 | `npm run check:tokens` | Just the token check: no colour/font/size/radius literals in site CSS |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
-| `npm run gen:pitwall` | Regenerate `data/pitwall.json` archive snapshot |
 | `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
 | `npm run results` | Interactive results injector for `calendar.json` |

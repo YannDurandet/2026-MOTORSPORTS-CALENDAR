@@ -4,11 +4,27 @@
 # and answer with a 301 instead. Most specific first; first match wins.
 # Cloudflare rejects the whole deploy if a path appears twice, so keep every
 # redirect in this file (none in astro.config.mjs).
-# /events has no page of its own — send it to the current season index.
-/events /events/2026 301
-/events/ /events/2026 301
+# /events has no page of its own — send it to the calendar.
+/events / 301
+/events/ / 301
 # /embed/all used to link here; Google has it on file.
 /series/all / 301
+# Pages removed in November 2026 were indexed (sitemap + IndexNow), so send
+# them to their nearest live page instead of letting them 404. Specific
+# /fr pages first, then the catch-all.
+/fr/calendrier-f1-2026 /series/f1 301
+/fr/calendrier-f1-2027 /series/f1/2027 301
+/fr/calendrier-motogp-2026 /series/motogp 301
+/fr/calendrier-motogp-2027 /series/motogp/2027 301
+/fr/programme-tv-f1 /watch 301
+/fr / 301
+/fr/* / 301
+/pit-wall /newsletter 301
+/pit-wall/* /newsletter 301
+/stats /results 301
+/stats/ /results 301
+/events/:year / 301
+/events/:year/ / 301
 /:a/:b/:c/ /:a/:b/:c 301
 /:a/:b/ /:a/:b 301
 /:a/ /:a 301

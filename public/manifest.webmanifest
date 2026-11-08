@@ -1,7 +1,7 @@
 {
   "name": "2026 Motorsport Calendar",
   "short_name": "dord.racing",
-  "description": "The ultimate 2026 motorsport master calendar. Track F1, WEC, MotoGP, IndyCar and 25 championships with live countdowns.",
+  "description": "The ultimate 2026 motorsport master calendar. Track F1, WEC, MotoGP, IndyCar and 26 championships with live countdowns.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#070b12",

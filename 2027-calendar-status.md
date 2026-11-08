@@ -1,6 +1,6 @@
 # 2027 Calendar Integration Status
 
-_Last updated: 2026-10-24_
+_Last updated: 2026-11-07_
 
 ## ✅ Incorporated
 
@@ -11,7 +11,7 @@ _Last updated: 2026-10-24_
 | `btcc` | British Touring Car Championship | 10 events (R1–30) |
 | `dtm` | Deutsche Tourenwagen Masters | 8 weekends / 16 races (times TBC) |
 | `elms` | European Le Mans Series | 6 |
-| `f1` | Formula 1 | 24 (times TBC; Turkish GP has no track map yet) |
+| `f1` | Formula 1 | 24 (times TBC; Turkish GP has no track map yet). F2 on 14 weekends and F3 on 10, as support rows (FIA graphic; race times TBC) |
 | `fe` | Formula E | 21 (Season 13, Dec 2026 – Jul 2027) |
 | `gtwca` | GT World Challenge America | 7, provisional (Texas 8 Hour at COTA replaces the Indianapolis 8 Hour; times TBC) |
 | `gtwce` | GT World Challenge Europe | 10 |

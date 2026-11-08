@@ -21,7 +21,6 @@ import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
 import { seriesShort } from '../../../lib/seriesShort';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
-import { alternatesFor, frPathFor } from '../../../lib/fr';
 
 export function getStaticPaths() {
   const pairs = new Set(
@@ -49,7 +48,6 @@ const span = `${eventRange(first)} – ${eventRange(last)}`;
 const sprints = rounds.filter(r => r.hasSprint).length;
 
 const canonical = `https://dord.racing/series/${slug}/${year}`;
-const frPath = frPathFor(`/series/${slug}/${year}`);
 const pageTitle = fitTitle([
   `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
   `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
@@ -84,7 +82,6 @@ const itemList = {
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={canonical}
-  alternates={frPath ? alternatesFor(`/series/${slug}/${year}`, frPath) : []}
   ogImage={ogPath(`series/${slug}/${year}`)}
 >
   <Fragment slot="head">
@@ -97,12 +94,12 @@ const itemList = {
     <div class="header--left">
       <h1>{short} {year}<br><span class="h1-sub">Calendar</span></h1>
       <p class="header--page-desc">{series.name} · {rounds.length} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
-      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST){frPath && <> · <a href={`${base}${frPath}`} hreflang="fr" lang="fr" class="lang-link">Version française</a></>}</div>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="series" />
     </div>
   </header>
 
-  <main id="main-content" class="main-section season-page">
+  <main id="main-content" class="main-section main-section--content">
     <a href={`${base}/series/${slug}`} class="back-link">← {short} {DEFAULT_CALENDAR_YEAR} calendar &amp; results</a>
 
     {notes && (
@@ -136,7 +133,6 @@ const itemList = {
     </section>
 
     <nav class="season-more" aria-label="More calendars">
-      <a href={`${base}/events/${year}`}>All {year} events across every series →</a>
       <a href={`${base}/newsletter`}>Get calendar changes by email every Monday →</a>
     </nav>
 
@@ -145,7 +141,6 @@ const itemList = {
 </BaseLayout>
 
 <style>
-  .season-page { max-width: 980px; }
   .season-summary {
     font-family: var(--font-body);
     font-size: var(--fs-lg);

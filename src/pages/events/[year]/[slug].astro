@@ -30,6 +30,7 @@ import { venueFor } from '../../../lib/venues';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
 import { seriesShort } from '../../../lib/seriesShort';
+import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
 
 export function getStaticPaths() {
   return ALL_EVENTS.map(ev => ({
@@ -170,6 +171,8 @@ const where = venue ? (isRally ? `${venue.city}, ${venueCountry}` : `${venue.nam
 const monthTag = /-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)$/.test(ev.slug)
   ? ` (${ev.slug.slice(-3).replace(/^./, c => c.toUpperCase())})` : '';
 const short = seriesShort(ev.series, seriesName);
+// The series calendar for this event's season: /series/{slug}, or /series/{slug}/{year} for a later one.
+const seriesPath = `/series/${ev.series}${ev.year === DEFAULT_CALENDAR_YEAR ? '' : `/${ev.year}`}`;
 const name = `${ev.title}${monthTag} ${ev.year}`;
 // Shared rounds (GTWCA + IGTC at Indianapolis) and generic titles ("Rd 4: Spa")
 // exist in more than one series; name the series in the H1 there.
@@ -233,7 +236,7 @@ const breadcrumb = {
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
-    { "@type": "ListItem", "position": 2, "name": `${ev.year} Events`, "item": `https://dord.racing/events/${ev.year}` },
+    { "@type": "ListItem", "position": 2, "name": `${short} ${ev.year}`, "item": `https://dord.racing${seriesPath}` },
     { "@type": "ListItem", "position": 3, "name": `${ev.title} ${ev.year}`, "item": canonical },
   ],
 };
@@ -264,7 +267,7 @@ const breadcrumb = {
 
   <main id="main-content" class="event-page">
 
-    <a href={`${base}/events/${ev.year}`} class="back-link">← {ev.year} Events</a>
+    <a href={`${base}${seriesPath}`} class="back-link">← {short} {ev.year}</a>
 
     <div class="event-split">
       <div class="event-col-left">
@@ -503,7 +506,7 @@ const breadcrumb = {
 <style>
   .event-page {
     padding: 0 24px 80px;
-    max-width: 1400px;
+    max-width: var(--w-wide);
     margin: 0 auto;
   }
 
@@ -585,7 +588,7 @@ const breadcrumb = {
   }
   .ev-link { color: var(--text-soft); text-decoration: none; }
   .ev-link:hover { text-decoration: underline; }
-  .ev-specs .tag { text-decoration: none; font-size: var(--fs-2xs); padding: 3px 7px; }
+  .ev-specs .tag { text-decoration: none; }
 
   /* ── Blocks ───────────────────────────────────────────────────────────── */
   .ev-block {
@@ -616,6 +619,7 @@ const breadcrumb = {
   /* ── Overview ─────────────────────────────────────────────────────────── */
   .ev-overview p {
     margin: 0;
+    max-width: var(--w-prose);
     font-family: var(--font-body);
     font-size: var(--fs-base);
     line-height: 1.7;
@@ -774,7 +778,6 @@ const breadcrumb = {
   /* ── Support races ────────────────────────────────────────────────────── */
   .ev-support { display: flex; flex-direction: column; gap: 8px; }
   .ev-support-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .ev-support-row .tag { font-size: var(--fs-3xs); padding: 2px 6px; }
   .ev-support-detail {
     font-family: var(--font-mono);
     font-size: var(--fs-xs-2);
@@ -797,7 +800,7 @@ const breadcrumb = {
     color: var(--text-meta);
     min-width: 76px;
   }
-  .ev-related-row .tag { font-size: var(--fs-3xs); text-decoration: none; padding: 2px 6px; }
+  .ev-related-row .tag { text-decoration: none; }
   .ev-related-title { font-size: var(--fs-md); color: var(--text-muted); }
 
   /* ── Prev / next round ────────────────────────────────────────────────── */

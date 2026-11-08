@@ -7,19 +7,16 @@ interface Props {
   description: string;
   ogImage?: string;
   canonicalUrl?: string;
-  /** Page language. Defaults to English. */
-  lang?: string;
-  /** Translations of this page, e.g. [{ hreflang: 'fr', href: 'https://dord.racing/fr/…' }].
-   *  Include the page itself; the English URL doubles as x-default. */
-  alternates?: { hreflang: string; href: string }[];
+  /** Keep the page out of search results (post-action pages such as the newsletter thank-you).
+   *  Also add its path to the sitemap filter in astro.config.mjs. */
+  noindex?: boolean;
   /** id of the above-the-fold element the first paint waits for (view transitions).
    *  Defaults to the site nav. Pages without <Nav> must name another small element near
    *  the top (NOT `main-content` when it wraps the whole page: paint would wait for the footer). */
   expect?: string;
 }
 
-const { title, description, ogImage, canonicalUrl, lang = 'en', alternates = [], expect = 'site-nav' } = Astro.props;
-const xDefault = alternates.find(a => a.hreflang === 'en');
+const { title, description, ogImage, canonicalUrl, noindex = false, expect = 'site-nav' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const defaultOgImage = `https://dord.racing/assets/lauda_and_mouton--large.webp`;
 const resolvedOgImage = ogImage || defaultOgImage;
@@ -51,7 +48,7 @@ const speculationRules = {
 };
 ---
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,14 +72,13 @@ const speculationRules = {
        and the root font-size is never overridden, so the layout reflows instead of breaking. -->
   <meta name="text-scale" content="scale">
   <meta name="description" content={description}>
+  {noindex && <meta name="robots" content="noindex">}
   <!-- Cross-document view transitions (see global.css): hold the first paint until the nav is
        parsed so the cross-fade lands on a styled page, not a blank one. The nav sits at the top of
        every page; #main-content wraps the whole page and would delay paint on big pages. -->
   <link rel="expect" href={`#${expect}`} blocking="render">
   <script type="speculationrules" set:html={JSON.stringify(speculationRules)} />
   <link rel="canonical" href={resolvedCanonical} />
-  {alternates.map(a => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
-  {xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
   <link rel="icon" href={`${base}/assets/favicon-32.png`} type="image/png" sizes="32x32">
   <link rel="icon" href={`${base}/assets/favicon-48.png`} type="image/png" sizes="48x48">
   <link rel="manifest" href="/manifest.webmanifest">
@@ -92,7 +88,6 @@ const speculationRules = {
   <link rel="preload" href={`${base}/assets/fonts/jetbrains-mono-latin.woff2`} as="font" type="font/woff2" crossorigin>
   <link rel="preload" href={`${base}/assets/fonts/inter-latin-var.woff2`} as="font" type="font/woff2" crossorigin>
   <meta property="og:type" content="website">
-  {lang !== 'en' && <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : lang}>}
   <meta property="og:site_name" content="2026 Motorsport Master Calendar">
   <meta property="og:url" content={resolvedCanonical}>
   <meta property="og:title" content={title}>
@@ -304,6 +299,10 @@ const speculationRules = {
 
     .search-modal-icon { color: var(--text-faint); flex-shrink: 0; }
 
+    /* The input draws no outline of its own, so keyboard focus shows on the row
+       instead: a 2px accent line under it (inset, so it needs no extra space). */
+    .search-input-row:focus-within { box-shadow: inset 0 -2px 0 var(--focus-ring); }
+
     .search-input {
       flex: 1;
       background: none;
@@ -322,6 +321,7 @@ const speculationRules = {
       font-size: var(--fs-3xs-5);
       color: var(--text-faint-2);
       border: 1px solid var(--line-subtle-4);
+      border-radius: var(--radius-sm);
       padding: 3px 7px;
       letter-spacing: 0.06em;
       flex-shrink: 0;

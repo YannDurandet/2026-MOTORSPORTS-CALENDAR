@@ -93,11 +93,6 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
               {shortMonthLabel(m)}
             </a>
           ))}
-          <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border);">
-            <a href={`${base}/stats`} class="res-jump-link" style="color: var(--accent-bright); border-left: none; padding-left: 0;">
-              Season Stats →
-            </a>
-          </div>
         </nav>
       </aside>
 
@@ -163,9 +158,13 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 <style>
   /* ── Two-column layout ── */
   .res-layout {
+    --res-side: 220px;
+    --res-gap: 40px;
     display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 0 40px;
+    grid-template-columns: var(--res-side) 1fr;
+    gap: 0 var(--res-gap);
+    /* sidebar + the list at content width, left-aligned with the page title */
+    max-width: calc(var(--res-side) + var(--res-gap) + var(--w-content));
     align-items: start;
     margin-bottom: 48px;
   }
@@ -207,8 +206,8 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    min-height: 28px;
-    padding: 4px 10px;
+    min-height: 30px;          /* same chip height as .filter-btn and .cf-btn */
+    padding: 5px 12px;
     border: 1px solid var(--control-line);
     border-radius: var(--radius-pill);
     background: none;
@@ -380,12 +379,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 
   .res-series-name.tag {
     margin: 0;
-    min-height: 22px;
-    padding: 2px 6px;
-    font-size: var(--fs-xs);
-    border-radius: var(--radius-sm);
     text-decoration: none;
-    white-space: nowrap;
   }
 
   .res-race-label {

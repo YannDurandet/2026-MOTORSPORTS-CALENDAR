@@ -1,6 +1,6 @@
 # dord.racing — 2026 Motorsport Master Calendar
 
-> An independent, comprehensive 2026 motorsport master calendar tracking 25 championships across open-wheel, endurance, touring, GT, motorcycle, and rally series. Built by Yann Durandet.
+> An independent, comprehensive 2026 motorsport master calendar tracking 26 championships across open-wheel, endurance, touring, GT, motorcycle, and rally series. Built by Yann Durandet.
 
 ## What this site covers
 
@@ -16,21 +16,22 @@ Key features:
 ## Pages
 
 - [Homepage / full calendar](https://dord.racing)
-- [Series guide (all 25 championships)](https://dord.racing/series)
+- [Series guide (all 26 championships)](https://dord.racing/series)
 - [Track browser (130+ circuits)](https://dord.racing/tracks)
 - [Race results](https://dord.racing/results)
 
-## The 25 Series
+## The 26 Series
 
 | Slug | Series | Category | Description |
 |---|---|---|---|
-| f1 | Formula 1 | Open Wheel | The pinnacle of single-seater motor racing, contested across 22 Grands Prix on five continents. |
+| f1 | Formula 1 | Open Wheel | The pinnacle of single-seater motor racing, contested across 23 Grands Prix on five continents. |
 | f1a | F1 Academy | Open Wheel | An all-female, Formula 4-level championship founded by Formula One Management, racing at selected F1 weekends. |
 | fe | Formula E | Open Wheel | The premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe. |
 | sf | Super Formula | Open Wheel | Japan's premier single-seater series and one of the fastest formula championships in the world outside of F1. |
 | wec | FIA World Endurance Championship | Endurance | The world's premier long-distance racing series, headlined by the 24 Hours of Le Mans. |
 | imsa | IMSA WeatherTech SportsCar Championship | Endurance | North America's premier sports car racing series, tracing its lineage to the 1971 IMSA GT Championship. |
 | elms | European Le Mans Series | Endurance | The official regional feeder championship to the FIA WEC in Europe, the most direct route to Le Mans. |
+| asian-le-mans | Asian Le Mans Series | Endurance | An FIA-sanctioned endurance championship run across Asia-Pacific circuits in the winter months, feeding into the WEC ecosystem. |
 | nls | Nürburgring Langstrecken-Serie | Endurance | Long-distance endurance racing on the legendary 20.8 km Nürburgring Nordschleife, the Green Hell. |
 | igtc | Intercontinental GT Challenge | Endurance | The world's only global GT3 series, linking five prestige endurance events across four continents. |
 | h24eu | 24H European Series | Endurance | Grassroots 12-hour and 24-hour endurance races at Grand Prix circuits across Europe, open to all. |

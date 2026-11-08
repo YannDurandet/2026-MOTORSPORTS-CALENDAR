@@ -8,13 +8,8 @@
     "tagline": "The pinnacle of single-seater motor racing, contested across 22 Grands Prix on five continents.",
     "description": "The FIA Formula One World Championship is the pinnacle of single-seater motor racing, contested across 22 Grands Prix on five continents. Eleven teams, each running two cars, compete simultaneously for the Drivers' and Constructors' championships under a set of regulations that changes with every generation.",
     "history": "Formula 1 was formally constituted in 1950 with the inaugural World Drivers' Championship, won by Giuseppe Farina at the wheel of an Alfa Romeo. Through the following decades it evolved from front-engined roadsters to the ground-effect, turbo, and hybrid eras that define the sport today. The commercial era brought global television audiences in the hundreds of millions and Grands Prix on every inhabited continent. 2026 marks a watershed moment: an entirely new power unit formula — still over 1,000 bhp but with roughly equal contributions from internal combustion and an electric motor — paired with new active aerodynamics. Two new constructors, Audi (via the former Sauber entry) and Cadillac, expand the grid to eleven teams for the first time since 2016.",
-    "seasonNotes": "Lando Norris is the reigning Drivers' Champion; McLaren hold the Constructors' title. After 16 of 23 rounds, Kimi Antonelli (Mercedes) leads the championship by 84 points from teammate George Russell.",
-    "teamsHeaders": [
-      "#",
-      "Team",
-      "Driver 1",
-      "Driver 2"
-    ],
+    "seasonNotes": "Kimi Antonelli (Mercedes) clinched the 2026 Drivers' title at the Mexico City GP with four rounds to go. Lando Norris won the 2025 Drivers' title and McLaren the 2025 Constructors' title.",
+    "teamsHeaders": ["#", "Team", "Driver 1", "Driver 2"],
     "teamsRows": [
       [
         "1",
@@ -92,14 +87,10 @@
     "howToWatch": {
       "US": [
         {
-          "name": "ESPN",
-          "type": "pay",
-          "url": "https://www.espn.com"
-        },
-        {
-          "name": "F1 TV Pro",
+          "name": "Apple TV",
           "type": "streaming",
-          "url": "https://f1tv.formula1.com"
+          "url": "https://apple.co/f1",
+          "note": "Exclusive US home. F1 TV Premium included"
         }
       ],
       "GB": [
@@ -127,12 +118,16 @@
         {
           "name": "Sky Deutschland",
           "type": "pay",
-          "url": "https://www.sky.de"
+          "url": "https://www.sky.de/mehr-sport/formel-1-rennkalender-209382"
+        },
+        {
+          "name": "RTL",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
         }
       ],
       "IT": [
         {
-          "name": "Sky Sport F1",
+          "name": "Sky Italia",
           "type": "pay",
           "url": "https://sport.sky.it"
         }
@@ -160,20 +155,25 @@
           "type": "pay",
           "url": "https://www.rds.ca",
           "note": "French"
+        },
+        {
+          "name": "Noovo",
+          "url": "https://www.noovo.ca/grille-horaire",
+          "note": "French"
         }
       ],
       "NL": [
         {
           "name": "Viaplay",
           "type": "streaming",
-          "url": "https://viaplay.com/nl"
+          "url": "https://viaplay.com/nl-nl/"
         }
       ],
       "ES": [
         {
           "name": "DAZN",
           "type": "streaming",
-          "url": "https://www.dazn.com/es-ES"
+          "url": "https://www.dazn.com/en-ES/schedule"
         }
       ],
       "BR": [
@@ -183,9 +183,266 @@
           "url": "https://www.band.uol.com.br"
         }
       ],
+      "AT": [
+        {
+          "name": "Servus TV",
+          "type": "free",
+          "url": "https://www.servustv.com"
+        },
+        {
+          "name": "ORF",
+          "type": "free",
+          "url": "https://tv.orf.at"
+        },
+        {
+          "name": "Sky",
+          "type": "pay",
+          "url": "https://www.sky.at"
+        }
+      ],
+      "BE": [
+        {
+          "name": "RTBF",
+          "type": "free",
+          "url": "https://www.rtbf.be/tv/guide-tv"
+        },
+        {
+          "name": "Play Sports",
+          "type": "pay",
+          "url": "https://www.playsports.be/tv-gids/list/"
+        }
+      ],
+      "BG": [
+        {
+          "name": "TV Nova",
+          "type": "free",
+          "url": "https://diemaxtra.nova.bg"
+        }
+      ],
+      "CH": [
+        {
+          "name": "SRF",
+          "type": "free",
+          "url": "https://www.srf.ch/programm/tv/",
+          "note": "German"
+        },
+        {
+          "name": "RTS",
+          "type": "free",
+          "url": "https://www.rts.ch/programme-tv/",
+          "note": "French"
+        },
+        {
+          "name": "RSI",
+          "type": "free",
+          "url": "https://www.rsi.ch/palinsesto/",
+          "note": "Italian"
+        },
+        {
+          "name": "Sky",
+          "type": "pay",
+          "url": "https://www.sky.ch"
+        }
+      ],
+      "CY": [
+        {
+          "name": "OmegaTV",
+          "type": "pay",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "Nova",
+          "type": "free",
+          "url": "https://tv.nova.cz/program"
+        }
+      ],
+      "DK": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.dk"
+        },
+        {
+          "name": "TV3",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "EE": [
+        {
+          "name": "Go3",
+          "type": "streaming",
+          "url": "https://go3.tv"
+        },
+        {
+          "name": "TV3",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "FI": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.fi"
+        }
+      ],
+      "GR": [
+        {
+          "name": "ANT1",
+          "type": "free",
+          "url": "https://www.antenna.gr"
+        },
+        {
+          "name": "ANT1+",
+          "type": "streaming",
+          "url": "https://www.antennaplus.gr"
+        }
+      ],
+      "HR": [
+        {
+          "name": "RTL",
+          "type": "free",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "HU": [
+        {
+          "name": "M4 Sport",
+          "type": "free",
+          "url": "https://m4sport.hu"
+        }
+      ],
+      "IE": [
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://www.skysports.com/f1/schedule-results",
+          "note": "Live"
+        },
+        {
+          "name": "Channel 4",
+          "type": "free",
+          "url": "https://www.channel4.com/tv-guide",
+          "note": "Highlights"
+        }
+      ],
+      "IS": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.is"
+        }
+      ],
+      "JP": [
+        {
+          "name": "Fuji TV",
+          "url": "https://otn.fujitv.co.jp/schedule/next/index.html"
+        }
+      ],
+      "LT": [
+        {
+          "name": "Go3",
+          "type": "streaming",
+          "url": "https://go3.lt"
+        },
+        {
+          "name": "TV3",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "LU": [
+        {
+          "name": "RTL Télé Lëtzebuerg",
+          "type": "free",
+          "url": "https://www.rtl.lu/tele?channel=2"
+        }
+      ],
+      "LV": [
+        {
+          "name": "Go3",
+          "type": "streaming",
+          "url": "https://go3.lt"
+        },
+        {
+          "name": "TV3",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "MT": [
+        {
+          "name": "PBS Malta",
+          "type": "free",
+          "url": "https://tvmi.mt/live/4"
+        }
+      ],
+      "NO": [
+        {
+          "name": "V Sport 1",
+          "type": "pay",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        },
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.no"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "Sky Sport NZ",
+          "type": "pay",
+          "url": "https://www.sky.co.nz/sport"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Eleven Sports",
+          "type": "pay",
+          "url": "https://www.elevensports.pl/program-tv"
+        }
+      ],
+      "PT": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/pt-PT/schedule"
+        }
+      ],
+      "RO": [
+        {
+          "name": "Antena",
+          "url": "https://www.formula1.com/en/information/f1-broadcast-information.45y3LNsT1D6VoK0ZmX8ciJ"
+        }
+      ],
+      "SE": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.se"
+        }
+      ],
+      "SI": [
+        {
+          "name": "Kanal A",
+          "url": "https://24ur.com/spored"
+        },
+        {
+          "name": "VOYO",
+          "type": "streaming",
+          "url": "https://voyo.si"
+        }
+      ],
+      "SK": [
+        {
+          "name": "Nova",
+          "type": "free",
+          "url": "https://tv.nova.cz/program"
+        }
+      ],
       "global": [
         {
-          "name": "F1 TV Pro",
+          "name": "F1 TV Premium",
           "type": "streaming",
           "url": "https://f1tv.formula1.com",
           "note": "Available in most countries"
@@ -202,12 +459,7 @@
     "tagline": "An all-female, Formula 4-level championship founded by Formula One Management, racing at selected F1 weekends.",
     "description": "F1 Academy is an all-female, Formula 4-level single-seater championship founded by Formula One Management in 2023. Racing at selected Formula 1 weekends, it provides professional infrastructure and global visibility to the next generation of female racing drivers.",
     "history": "Launched in 2023 with backing from all ten F1 teams — each sponsoring two cars — F1 Academy filled a gap left by the W Series, which folded in 2022. The series uses a spec Tatuus T-421 chassis with a 1.4-litre turbocharged engine. Its debut season attracted 15 drivers and was won by Marta García. A two-season participation limit keeps the field refreshed, and a Discover Your Drive kart programme now feeds talent directly onto the grid. The 2026 season is the fourth edition, featuring six teams and 18 drivers across 7 event weekends co-located with F1.",
-    "teamsHeaders": [
-      "Team",
-      "Driver 1",
-      "Driver 2",
-      "Driver 3"
-    ],
+    "teamsHeaders": ["Team", "Driver 1", "Driver 2", "Driver 3"],
     "teamsRows": [
       [
         "Prema Racing (defending champions)",
@@ -252,6 +504,210 @@
       "ig": "https://instagram.com/f1academy",
       "x": "https://x.com/f1academy",
       "yt": "https://youtube.com/@f1academy"
+    },
+    "howToWatch": {
+      "AT": [
+        {
+          "name": "ORF",
+          "type": "free",
+          "url": "https://tv.orf.at"
+        },
+        {
+          "name": "Sky Deutschland",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Fox Sports",
+          "type": "pay",
+          "url": "https://www.foxsports.com.au"
+        }
+      ],
+      "BG": [
+        {
+          "name": "Nova",
+          "url": "https://www.f1academy.com/About/3EF4AtFK4B3m7tegHgEx4a/where-to-watch-us"
+        }
+      ],
+      "CA": [
+        {
+          "name": "Bell Media",
+          "url": "https://www.f1academy.com/About/3EF4AtFK4B3m7tegHgEx4a/where-to-watch-us"
+        }
+      ],
+      "CH": [
+        {
+          "name": "Sky Deutschland",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        },
+        {
+          "name": "Canal+",
+          "type": "pay",
+          "url": "https://www.canalplus.com",
+          "note": "French"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "TV Nova",
+          "url": "https://www.f1academy.com/About/3EF4AtFK4B3m7tegHgEx4a/where-to-watch-us"
+        }
+      ],
+      "DE": [
+        {
+          "name": "Sky Deutschland",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        }
+      ],
+      "DK": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.dk"
+        }
+      ],
+      "ES": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/es-ES"
+        }
+      ],
+      "FI": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.fi"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Canal+",
+          "type": "pay",
+          "url": "https://www.canalplus.com"
+        }
+      ],
+      "GB": [
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://www.skysports.com/f1"
+        }
+      ],
+      "GR": [
+        {
+          "name": "Antenna",
+          "url": "https://www.antenna.gr"
+        }
+      ],
+      "IE": [
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://www.skysports.com/f1"
+        }
+      ],
+      "IS": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.is"
+        }
+      ],
+      "IT": [
+        {
+          "name": "Sky Italia",
+          "type": "pay",
+          "url": "https://sport.sky.it",
+          "note": "Highlights"
+        }
+      ],
+      "LU": [
+        {
+          "name": "Sky Deutschland",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/nl-nl/"
+        }
+      ],
+      "NO": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.no"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "Sky Sport NZ",
+          "type": "pay",
+          "url": "https://www.sky.co.nz/sport"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Eleven Sports",
+          "type": "pay",
+          "url": "https://www.elevensports.pl/program-tv"
+        }
+      ],
+      "PT": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/pt-PT"
+        }
+      ],
+      "RO": [
+        {
+          "name": "Antena",
+          "url": "https://www.f1academy.com/About/3EF4AtFK4B3m7tegHgEx4a/where-to-watch-us"
+        }
+      ],
+      "SE": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.se"
+        }
+      ],
+      "SK": [
+        {
+          "name": "TV Nova",
+          "url": "https://www.f1academy.com/About/3EF4AtFK4B3m7tegHgEx4a/where-to-watch-us"
+        }
+      ],
+      "US": [
+        {
+          "name": "Apple TV",
+          "type": "streaming",
+          "url": "https://apple.co/f1",
+          "note": "Via F1 TV"
+        }
+      ],
+      "global": [
+        {
+          "name": "F1 Academy YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@F1Academy",
+          "note": "Qualifying and races live"
+        },
+        {
+          "name": "F1 TV",
+          "type": "streaming",
+          "url": "https://f1tv.formula1.com"
+        }
+      ]
     }
   },
   {
@@ -263,11 +719,7 @@
     "tagline": "The premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe.",
     "description": "The ABB FIA Formula E World Championship is the premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe. It serves as both a technological proving ground for EV powertrain development and a uniquely urban motorsport spectacle.",
     "history": "Formula E was conceived in 2011 by the FIA and launched its first season in September 2014 in Beijing, with the novel quirk that drivers swapped cars mid-race due to battery limitations. As technology improved, in-race car swaps were phased out by Season 5 (2018–19). Gen2, Gen3, and Gen3 Evo regulations successively lifted performance and efficiency; the Gen4 era begins in 2027. The 2025–26 season (Season 12) is notable for the entry of Citroën as a manufacturer, the longest calendar in series history (18 races across 12 weekends), and the championship defending by Oliver Rowland (Nissan). Former champions Pascal Wehrlein (Porsche), Jean-Éric Vergne (Citroën), António Félix da Costa (Jaguar), and Lucas Di Grassi (Lola Yamaha ABT) are all in the field.",
-    "teamsHeaders": [
-      "Team",
-      "Driver 1",
-      "Driver 2"
-    ],
+    "teamsHeaders": ["Team", "Driver 1", "Driver 2"],
     "teamsRows": [
       [
         "Nissan Formula E",
@@ -329,16 +781,16 @@
     "howToWatch": {
       "US": [
         {
-          "name": "CBS Sports",
-          "type": "pay",
-          "url": "https://www.cbssports.com",
-          "note": "Live"
+          "name": "Disney+",
+          "type": "streaming",
+          "url": "https://www.disneyplus.com",
+          "note": "From Season 13"
         },
         {
-          "name": "The Roku Channel",
-          "type": "free",
-          "url": "https://therokuchannel.roku.com",
-          "note": "Free, live"
+          "name": "ESPN+",
+          "type": "streaming",
+          "url": "https://www.espn.com",
+          "note": "From Season 13"
         }
       ],
       "GB": [
@@ -349,10 +801,21 @@
           "note": "Live"
         },
         {
+          "name": "ITVX",
+          "type": "free",
+          "url": "https://www.itv.com/hub",
+          "note": "All qualifying live"
+        },
+        {
           "name": "TNT Sports",
           "type": "pay",
           "url": "https://www.tntsports.co.uk",
           "note": "Live"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
         }
       ],
       "DE": [
@@ -360,21 +823,32 @@
           "name": "DF1",
           "type": "free",
           "url": "https://www.df1.de",
-          "note": "Live"
+          "note": "2025/26 season"
+        },
+        {
+          "name": "BILD",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
         }
       ],
       "FR": [
         {
-          "name": "Eurosport",
-          "type": "pay",
-          "url": "https://www.eurosport.fr"
+          "name": "L'Équipe",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
         }
       ],
       "CA": [
         {
+          "name": "TVA",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "French, 2025/26 season"
+        },
+        {
           "name": "TSN",
           "type": "pay",
-          "url": "https://www.tsn.ca"
+          "url": "https://www.tsn.ca",
+          "note": "2025/26 season"
         }
       ],
       "AU": [
@@ -384,11 +858,374 @@
           "url": "https://www.stan.com.au/sport"
         }
       ],
+      "AT": [
+        {
+          "name": "Krone",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "BILD",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "BE": [
+        {
+          "name": "Telenet",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "BG": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "CH": [
+        {
+          "name": "Blue TV",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "BILD",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "CY": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "DK": [
+        {
+          "name": "6'eren",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "EE": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "ES": [
+        {
+          "name": "RTVE",
+          "type": "free",
+          "url": "https://www.rtve.es",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "MARCA",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "DMAX",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "FI": [
+        {
+          "name": "Kutonen",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "GR": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "HR": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "HU": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "IE": [
+        {
+          "name": "ITV",
+          "type": "free",
+          "url": "https://www.itv.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "Virgin Media Ireland",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "IS": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "IT": [
+        {
+          "name": "Mediaset",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "JP": [
+        {
+          "name": "J SPORTS",
+          "type": "pay",
+          "url": "https://www.jsports.co.jp",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "BS Fuji",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "Fuji TV",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "LT": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "LU": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "LV": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "MT": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Ziggo Sport",
+          "type": "pay",
+          "url": "https://www.ziggosport.nl",
+          "note": "2025/26 season"
+        }
+      ],
+      "NO": [
+        {
+          "name": "Max",
+          "type": "streaming",
+          "url": "https://www.max.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "Sky Sport NZ",
+          "type": "pay",
+          "url": "https://www.sky.co.nz/sport",
+          "note": "2025/26 season"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Metro",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "PT": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/pt-PT",
+          "note": "2025/26 season"
+        }
+      ],
+      "RO": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "SE": [
+        {
+          "name": "Kanal 9",
+          "url": "https://www.fiaformulae.com/en/ways-to-watch/broadcasters",
+          "note": "2025/26 season"
+        }
+      ],
+      "SI": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
+      "SK": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.com",
+          "note": "2025/26 season"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "2025/26 season"
+        }
+      ],
       "global": [
+        {
+          "name": "Disney+",
+          "type": "streaming",
+          "url": "https://www.disneyplus.com",
+          "note": "Global streaming home from Season 13 (Dec 2026), in participating countries"
+        },
         {
           "name": "Formula E YouTube",
           "type": "free",
-          "url": "https://www.youtube.com/@FormulaE",
+          "url": "https://www.youtube.com/@FIAFormulaE",
           "note": "Some races free"
         }
       ]
@@ -408,6 +1245,29 @@
       "ig": "https://instagram.com/superformula_official",
       "x": "https://x.com/SUPER_FORMULA",
       "yt": "https://youtube.com/@superformula_official"
+    },
+    "howToWatch": {
+      "JP": [
+        {
+          "name": "ABEMA",
+          "type": "free",
+          "url": "https://abema.tv",
+          "note": "Selected rounds live and free"
+        },
+        {
+          "name": "J SPORTS",
+          "type": "pay",
+          "url": "https://www.jsports.co.jp"
+        }
+      ],
+      "global": [
+        {
+          "name": "Super Formula Official",
+          "type": "free",
+          "url": "https://superformula.net/sf3/",
+          "note": "Highlights and replays"
+        }
+      ]
     }
   },
   {
@@ -419,12 +1279,7 @@
     "tagline": "The world's premier long-distance racing series, headlined by the 24 Hours of Le Mans.",
     "description": "The FIA World Endurance Championship is the world's premier long-distance racing series, headlined by the 24 Hours of Le Mans. Races last between 6 and 24 hours, demanding extraordinary teamwork, strategy, and engineering across the Hypercar and LMGT3 classes.",
     "history": "The current World Endurance Championship was established in 1981 and revived in its modern form in 2012 following the demise of the American Le Mans Series. After the original LMP1 Hybrid era defined by Audi, Porsche, and Toyota, a major reset introduced the more accessible Hypercar regulations from 2021. These proved transformative: by 2026, 14 manufacturers contest the Hypercar class — the largest manufacturer count in the history of the championship. Ferrari are the reigning champions, having dethroned Toyota in 2023. For 2026, Genesis joins the field while Porsche refocuses to IMSA and Formula E, maintaining a dynamic manufacturer landscape.",
-    "teamsHeaders": [
-      "Car #",
-      "Team",
-      "Manufacturer",
-      "Drivers"
-    ],
+    "teamsHeaders": ["Car #", "Team", "Manufacturer", "Drivers"],
     "teamsRows": [
       [
         "7",
@@ -533,15 +1388,16 @@
     "howToWatch": {
       "US": [
         {
-          "name": "MotorTrend TV",
-          "type": "pay",
-          "url": "https://www.motortrend.com/tv",
-          "note": "Live"
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com",
+          "note": "All eight races live"
         },
         {
-          "name": "Max",
-          "type": "streaming",
-          "url": "https://www.max.com"
+          "name": "truTV",
+          "type": "pay",
+          "url": "https://www.trutv.com",
+          "note": "Le Mans, São Paulo and Austin in full"
         }
       ],
       "GB": [
@@ -552,28 +1408,33 @@
           "note": "Live"
         },
         {
-          "name": "Eurosport",
-          "type": "pay",
-          "url": "https://www.eurosport.com"
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
         }
       ],
       "FR": [
         {
-          "name": "Eurosport",
-          "type": "pay",
-          "url": "https://www.eurosport.fr"
+          "name": "La Chaîne L'Équipe",
+          "type": "free",
+          "url": "https://www.lequipe.fr/tv/"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
         }
       ],
       "DE": [
         {
-          "name": "RTL Nitro",
-          "type": "free",
-          "url": "https://www.rtlnitro.de"
-        },
-        {
           "name": "Eurosport",
           "type": "pay",
           "url": "https://www.eurosport.de"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
         }
       ],
       "IT": [
@@ -581,21 +1442,51 @@
           "name": "Eurosport",
           "type": "pay",
           "url": "https://www.eurosport.it"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
         }
       ],
-      "CA": [
+      "AU": [
         {
-          "name": "Discovery Velocity",
+          "name": "Stan Sport",
+          "type": "streaming",
+          "url": "https://www.stan.com.au/sport"
+        },
+        {
+          "name": "beIN Sports",
           "type": "pay",
-          "url": "https://www.discoveryplus.com/ca"
+          "url": "https://www.beinsports.com"
+        }
+      ],
+      "IE": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
+        }
+      ],
+      "JP": [
+        {
+          "name": "J SPORTS",
+          "type": "pay",
+          "url": "https://www.jsports.co.jp"
         }
       ],
       "global": [
         {
           "name": "FIAWEC+",
           "type": "streaming",
-          "url": "https://fiawec.com",
-          "note": "Official, all races"
+          "url": "https://plus.fiawec.com",
+          "note": "Official, all sessions"
         }
       ]
     }
@@ -632,17 +1523,276 @@
       ],
       "global": [
         {
-          "name": "IMSA TrackPass",
-          "type": "streaming",
-          "url": "https://www.imsa.com/trackpass",
-          "note": "Official"
+          "name": "IMSA on YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@imsaofficial/live",
+          "note": "Official live stream"
         }
       ]
     }
   },
   {
     "slug": "wrc",
-    "howToWatch": { "global": [{ "name": "Rally.TV", "type": "streaming", "url": "https://rally.tv", "note": "Every stage live" }] },
+    "howToWatch": {
+      "AT": [
+        {
+          "name": "Servus TV",
+          "url": "https://www.servustv.com"
+        },
+        {
+          "name": "Sky",
+          "type": "pay",
+          "url": "https://www.sky.at"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Stan",
+          "type": "streaming",
+          "url": "https://www.stan.com.au"
+        }
+      ],
+      "BE": [
+        {
+          "name": "RTBF",
+          "url": "https://www.rtbf.be"
+        }
+      ],
+      "BG": [
+        {
+          "name": "Max Sport",
+          "url": "https://www.a1.bg"
+        }
+      ],
+      "CA": [
+        {
+          "name": "REV TV",
+          "url": "https://www.revtv.ca"
+        },
+        {
+          "name": "RACER",
+          "url": "https://www.racer.com"
+        }
+      ],
+      "CH": [
+        {
+          "name": "Canal+",
+          "type": "pay",
+          "url": "https://www.mycanal.fr/sport",
+          "note": "French"
+        },
+        {
+          "name": "Sky",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        }
+      ],
+      "CY": [
+        {
+          "name": "Cyta Vision",
+          "url": "https://www.cyta.com.cy"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "oneplay Sport",
+          "url": "https://www.oneplaysport.cz"
+        }
+      ],
+      "DE": [
+        {
+          "name": "Sky",
+          "type": "pay",
+          "url": "https://www.sky.de"
+        }
+      ],
+      "EE": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "ES": [
+        {
+          "name": "TV3 (Catalunya)",
+          "type": "free",
+          "url": "https://www.ccma.cat/tv3",
+          "note": "Catalonia only"
+        }
+      ],
+      "FI": [
+        {
+          "name": "MTV Katsomo",
+          "url": "https://www.mtv.fi"
+        }
+      ],
+      "FR": [
+        {
+          "name": "Canal+ Sport",
+          "type": "pay",
+          "url": "https://www.mycanal.fr/sport"
+        }
+      ],
+      "GB": [
+        {
+          "name": "ITV",
+          "type": "free",
+          "url": "https://www.itv.com",
+          "note": "Highlights"
+        },
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live; BBC from 2027"
+        }
+      ],
+      "GR": [
+        {
+          "name": "COSMOTE TV",
+          "url": "https://www.cosmote.gr"
+        }
+      ],
+      "HR": [
+        {
+          "name": "Sportklub",
+          "url": "https://sportklub.n1info.hr"
+        }
+      ],
+      "IE": [
+        {
+          "name": "ITV",
+          "type": "free",
+          "url": "https://www.itv.com"
+        },
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk"
+        }
+      ],
+      "IT": [
+        {
+          "name": "RAI",
+          "type": "free",
+          "url": "https://www.rai.it"
+        },
+        {
+          "name": "Sky Italia",
+          "type": "pay",
+          "url": "https://www.sky.it"
+        }
+      ],
+      "JP": [
+        {
+          "name": "J Sports",
+          "type": "pay",
+          "url": "https://www.jsports.co.jp"
+        },
+        {
+          "name": "Abema",
+          "type": "streaming",
+          "url": "https://abema.tv"
+        },
+        {
+          "name": "NHK",
+          "type": "free",
+          "url": "https://www.nhk.or.jp"
+        },
+        {
+          "name": "TV Asahi",
+          "type": "free",
+          "url": "https://www.tv-asahicontents.com"
+        }
+      ],
+      "LT": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "LV": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "MT": [
+        {
+          "name": "TSN (Melita)",
+          "url": "https://www.melita.com"
+        }
+      ],
+      "NO": [
+        {
+          "name": "VG",
+          "url": "https://tv.vg.no"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "TVNZ",
+          "type": "free",
+          "url": "https://www.tvnz.co.nz"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Motowizja",
+          "url": "https://motowizja.pl"
+        }
+      ],
+      "PT": [
+        {
+          "name": "Sport TV",
+          "type": "pay",
+          "url": "https://www.sporttv.pt"
+        }
+      ],
+      "SE": [
+        {
+          "name": "TV4",
+          "url": "https://www.tv4.se"
+        }
+      ],
+      "SI": [
+        {
+          "name": "Sportklub",
+          "url": "https://sportklub.n1info.hr"
+        }
+      ],
+      "SK": [
+        {
+          "name": "oneplay Sport",
+          "url": "https://www.oneplaysport.cz"
+        }
+      ],
+      "US": [
+        {
+          "name": "RACER",
+          "url": "https://www.racer.com"
+        },
+        {
+          "name": "RACER+",
+          "type": "streaming",
+          "url": "https://racerplus.com"
+        }
+      ],
+      "global": [
+        {
+          "name": "Rally.TV",
+          "type": "streaming",
+          "url": "https://rally.tv",
+          "note": "Every stage live"
+        },
+        {
+          "name": "Rally.TV on DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/rallyTV",
+          "note": "Not in Estonia, Finland, France, Latvia, Lithuania, Poland, Sweden"
+        }
+      ]
+    },
     "name": "FIA World Rally Championship",
     "category": "Rally",
     "region": "Worldwide",
@@ -650,12 +1800,7 @@
     "tagline": "The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents.",
     "description": "The FIA World Rally Championship is the world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents. Competitors navigate closed public roads against the clock in specially built Rally1 cars, supported by co-drivers reading pace notes.",
     "history": "The WRC was established in 1973 and has since produced legendary battles across Finland's forest stages, Kenya's rocky safari terrain, Monte Carlo's Alpine hairpins, and the Welsh valleys. The series has been won by icons including Walter Röhrl, Stig Blomqvist, Carlos Sainz, Tommi Mäkinen, Sébastien Loeb (9 titles), and Sébastien Ogier (9 titles). Hybrid Rally1 regulations introduced in 2022 brought a major technical reset, with Hyundai, Toyota, and M-Sport Ford as the three competing manufacturers. The 2026 season is the 54th edition and the final year of Rally1 regs before a further overhaul in 2027. Toyota hold a dominant lead in the Manufacturers' Championship with 14 rounds across Europe, Africa, South America, and Asia.",
-    "teamsHeaders": [
-      "Team",
-      "Driver",
-      "Co-driver",
-      "Entry"
-    ],
+    "teamsHeaders": ["Team", "Driver", "Co-driver", "Entry"],
     "teamsRows": [
       [
         "Toyota Gazoo Racing WRT",
@@ -787,9 +1932,9 @@
       ],
       "NZ": [
         {
-          "name": "Sky Sports NZ",
+          "name": "Sky Sport NZ",
           "type": "pay",
-          "url": "https://www.skysports.co.nz"
+          "url": "https://www.sky.co.nz/sport"
         }
       ],
       "BR": [
@@ -827,12 +1972,122 @@
           "url": "https://www.sporttv.pt"
         }
       ],
+      "AT": [
+        {
+          "name": "MotorVision+",
+          "type": "streaming",
+          "url": "https://motorvision.tv"
+        },
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://sport.sky.de"
+        }
+      ],
+      "BE": [
+        {
+          "name": "VOO Sport World",
+          "type": "pay",
+          "url": "https://www.voo.be/en/tv/voosport-world/"
+        }
+      ],
+      "CH": [
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://sport.sky.de"
+        },
+        {
+          "name": "MotorVision+",
+          "type": "streaming",
+          "url": "https://motorvision.tv"
+        }
+      ],
+      "DE": [
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://sport.sky.de"
+        },
+        {
+          "name": "MotorVision+",
+          "type": "streaming",
+          "url": "https://motorvision.tv"
+        }
+      ],
+      "DK": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.dk"
+        }
+      ],
+      "ES": [
+        {
+          "name": "Movistar+",
+          "type": "pay",
+          "url": "https://www.movistarplus.es"
+        },
+        {
+          "name": "#Vamos",
+          "type": "pay",
+          "url": "https://www.movistarplus.es/vamos"
+        }
+      ],
+      "FI": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.fi"
+        }
+      ],
+      "HU": [
+        {
+          "name": "Arena 4",
+          "url": "https://arena4.network4.hu/"
+        }
+      ],
+      "IT": [
+        {
+          "name": "Sky Sports Italy",
+          "type": "pay",
+          "url": "https://sport.sky.it"
+        }
+      ],
+      "NO": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.no"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Motowizja",
+          "url": "https://motowizja.pl",
+          "note": "INDY NXT only"
+        }
+      ],
+      "SE": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.se"
+        }
+      ],
+      "SK": [
+        {
+          "name": "RTVS",
+          "type": "free",
+          "url": "https://www.indycar.com/how-to-follow/international"
+        }
+      ],
       "global": [
         {
-          "name": "IndyCar+",
+          "name": "INDYCAR LIVE",
           "type": "streaming",
-          "url": "https://www.indycar.com/indycarplus",
-          "note": "Official streaming"
+          "url": "https://www.indycarlive.com",
+          "note": "Official, every session where no local partner"
         }
       ]
     }
@@ -856,7 +2111,6 @@
       "US": [
         {
           "name": "FOX / FS1",
-          "type": "free",
           "url": "https://www.fox.com",
           "note": "First half"
         },
@@ -874,7 +2128,6 @@
         },
         {
           "name": "NBC / USA Network",
-          "type": "free",
           "url": "https://www.nbc.com",
           "note": "Second half"
         },
@@ -883,6 +2136,153 @@
           "type": "streaming",
           "url": "https://www.peacocktv.com",
           "note": "Selected races"
+        }
+      ],
+      "AT": [
+        {
+          "name": "SportDigital",
+          "url": "https://www.sportdigital.de"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Fox Sports Australia",
+          "type": "pay",
+          "url": "https://www.foxsports.com.au"
+        }
+      ],
+      "BG": [
+        {
+          "name": "A1",
+          "url": "https://www.a1.bg"
+        }
+      ],
+      "CA": [
+        {
+          "name": "TSN",
+          "type": "pay",
+          "url": "https://www.tsn.ca"
+        }
+      ],
+      "CH": [
+        {
+          "name": "SportDigital",
+          "url": "https://www.sportdigital.de"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "Arena Sport",
+          "url": "https://www.nascar.com/international/how-to-watch"
+        }
+      ],
+      "DE": [
+        {
+          "name": "SportDigital",
+          "url": "https://www.sportdigital.de"
+        }
+      ],
+      "DK": [
+        {
+          "name": "SolidSport",
+          "url": "https://www.nascar.com/international/how-to-watch"
+        }
+      ],
+      "ES": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/es-ES"
+        }
+      ],
+      "FI": [
+        {
+          "name": "SolidSport",
+          "url": "https://www.nascar.com/international/how-to-watch"
+        }
+      ],
+      "FR": [
+        {
+          "name": "AB Moteurs / Automoto",
+          "url": "https://www.nascar.com/international/how-to-watch"
+        }
+      ],
+      "GB": [
+        {
+          "name": "Premier Sports",
+          "type": "pay",
+          "url": "https://www.premiersports.com"
+        }
+      ],
+      "GR": [
+        {
+          "name": "Antenna Greece",
+          "url": "https://www.antenna.gr"
+        }
+      ],
+      "HU": [
+        {
+          "name": "Network4",
+          "url": "https://www.network4.hu"
+        }
+      ],
+      "IE": [
+        {
+          "name": "Premier Sports",
+          "type": "pay",
+          "url": "https://www.premiersports.com"
+        }
+      ],
+      "IS": [
+        {
+          "name": "SolidSport",
+          "url": "https://www.nascar.com/international/how-to-watch"
+        }
+      ],
+      "IT": [
+        {
+          "name": "NASCAR.com",
+          "type": "streaming",
+          "url": "https://www.nascar.com"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Ziggo Sport",
+          "type": "pay",
+          "url": "https://www.ziggosport.nl"
+        }
+      ],
+      "NO": [
+        {
+          "name": "SolidSport",
+          "url": "https://www.nascar.com/international/how-to-watch"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "Sky Sport NZ",
+          "type": "pay",
+          "url": "https://www.sky.co.nz/sport"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Motowizja",
+          "url": "https://motowizja.pl"
+        }
+      ],
+      "PT": [
+        {
+          "name": "Sport TV",
+          "type": "pay",
+          "url": "https://www.sporttv.pt"
+        }
+      ],
+      "SE": [
+        {
+          "name": "SolidSport",
+          "url": "https://www.nascar.com/international/how-to-watch"
         }
       ],
       "global": [
@@ -904,12 +2304,7 @@
     "tagline": "The premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines exceeding 350 km/h.",
     "description": "The FIM MotoGP World Championship is the premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines capable of speeds exceeding 350 km/h. Five manufacturers — Ducati, Aprilia, Honda, KTM, and Yamaha — field factory and satellite teams across 21 rounds on circuits worldwide.",
     "history": "The FIM Road Racing World Championship was established in 1949, making it one of the longest-running motorsport series in existence. The 500cc two-stroke era produced legends like Giacomo Agostini (15 titles), Valentino Rossi (9 titles), and Mick Doohan before the switch to four-stroke MotoGP machinery in 2002. The 2026 season is the final one under 1000cc / Michelin regulations before switching to 850cc engines and Pirelli tyres in 2027. Ducati's dominance has been a defining storyline of the recent era; in 2026, Marc Marquez (nine world titles) joins Francesco Bagnaia at the factory Ducati team. A new 'Harley-Davidson Bagger World Cup' support class debuts at selected European and North American rounds.",
-    "teamsHeaders": [
-      "Team",
-      "Manufacturer",
-      "Rider 1",
-      "Rider 2"
-    ],
+    "teamsHeaders": ["Team", "Manufacturer", "Rider 1", "Rider 2"],
     "teamsRows": [
       [
         "Ducati Lenovo Team",
@@ -978,7 +2373,7 @@
         "Diogo Moreira"
       ]
     ],
-    "teamsNote": "Marco Bezzecchi leads the 2026 championship after early rounds. Grid uses 1000cc / Michelin regs for the final time — 850cc + Pirelli from 2027.",
+    "teamsNote": "Grid uses 1000cc / Michelin regs for the final time — 850cc + Pirelli from 2027.",
     "socials": {
       "web": "https://www.motogp.com",
       "ig": "https://instagram.com/motogp",
@@ -988,10 +2383,9 @@
     "howToWatch": {
       "US": [
         {
-          "name": "Peacock",
-          "type": "streaming",
-          "url": "https://www.peacocktv.com",
-          "note": "Live"
+          "name": "Fox Sports",
+          "type": "pay",
+          "url": "https://www.foxsports.com"
         }
       ],
       "GB": [
@@ -1000,6 +2394,16 @@
           "type": "pay",
           "url": "https://www.tntsports.co.uk",
           "note": "Live"
+        },
+        {
+          "name": "HBO Max",
+          "type": "streaming",
+          "url": "https://www.hbomax.com"
+        },
+        {
+          "name": "Quest",
+          "type": "free",
+          "url": "https://www.discoveryplus.com/gb"
         }
       ],
       "FR": [
@@ -1012,15 +2416,13 @@
       ],
       "DE": [
         {
-          "name": "ServusTV",
-          "type": "free",
-          "url": "https://www.servustv.com",
-          "note": "Live"
+          "name": "Sky Deutschland",
+          "type": "pay",
+          "url": "https://www.sky.de"
         },
         {
-          "name": "DAZN",
-          "type": "streaming",
-          "url": "https://www.dazn.com"
+          "name": "DF1",
+          "url": "https://www.df1.de"
         }
       ],
       "IT": [
@@ -1029,13 +2431,18 @@
           "type": "pay",
           "url": "https://sport.sky.it",
           "note": "Live"
+        },
+        {
+          "name": "TV8",
+          "type": "free",
+          "url": "https://www.tv8.it"
         }
       ],
       "AU": [
         {
-          "name": "Fox Sports",
-          "type": "pay",
-          "url": "https://www.foxsports.com.au"
+          "name": "10",
+          "type": "free",
+          "url": "https://10.com.au"
         },
         {
           "name": "Kayo",
@@ -1055,13 +2462,181 @@
           "name": "Sport TV",
           "type": "pay",
           "url": "https://www.sporttv.pt"
+        },
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/pt-PT"
+        }
+      ],
+      "AT": [
+        {
+          "name": "ServusTV",
+          "type": "free",
+          "url": "https://www.servustv.com"
+        }
+      ],
+      "BE": [
+        {
+          "name": "RTBF Auvio",
+          "type": "free",
+          "url": "https://auvio.rtbf.be"
+        }
+      ],
+      "BG": [
+        {
+          "name": "Max Sport",
+          "url": "https://maxsport.live"
+        }
+      ],
+      "CA": [
+        {
+          "name": "Sportsnet",
+          "type": "pay",
+          "url": "https://watch.sportsnet.ca"
+        }
+      ],
+      "CH": [
+        {
+          "name": "SRF",
+          "type": "free",
+          "url": "https://www.srf.ch",
+          "note": "German"
+        },
+        {
+          "name": "RTS",
+          "type": "free",
+          "url": "https://www.rts.ch",
+          "note": "French"
+        },
+        {
+          "name": "RSI",
+          "type": "free",
+          "url": "https://www.rsi.ch",
+          "note": "Italian"
+        }
+      ],
+      "CY": [
+        {
+          "name": "Cyta",
+          "type": "pay",
+          "url": "https://www.cyta.com.cy"
+        }
+      ],
+      "CZ": [
+        {
+          "name": "Nova",
+          "url": "https://tv.nova.cz"
+        }
+      ],
+      "EE": [
+        {
+          "name": "Go3",
+          "type": "streaming",
+          "url": "https://go3.ee"
+        }
+      ],
+      "FI": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.fi"
+        }
+      ],
+      "GR": [
+        {
+          "name": "Magenta TV",
+          "url": "https://www.magentatv.gr"
+        }
+      ],
+      "HU": [
+        {
+          "name": "Arena4Plus",
+          "url": "https://arena4plus.network4.hu"
+        }
+      ],
+      "IE": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        }
+      ],
+      "JP": [
+        {
+          "name": "NTV",
+          "type": "free",
+          "url": "https://www.ntv.co.jp"
+        },
+        {
+          "name": "BS4",
+          "url": "https://www.bs4.jp"
+        },
+        {
+          "name": "Hulu Japan",
+          "type": "streaming",
+          "url": "https://www.hulu.jp"
+        }
+      ],
+      "LT": [
+        {
+          "name": "Go3",
+          "type": "streaming",
+          "url": "https://go3.lt"
+        }
+      ],
+      "LV": [
+        {
+          "name": "Go3",
+          "type": "streaming",
+          "url": "https://go3.lv"
+        }
+      ],
+      "MT": [
+        {
+          "name": "GO Sports Premium",
+          "type": "pay",
+          "url": "https://www.go.com.mt"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Polsat Box Go",
+          "type": "streaming",
+          "url": "https://polsatboxgo.pl"
+        }
+      ],
+      "RO": [
+        {
+          "name": "Digi Sport",
+          "type": "pay",
+          "url": "https://www.digisport.ro"
+        }
+      ],
+      "SI": [
+        {
+          "name": "VOYO",
+          "type": "streaming",
+          "url": "https://voyo.si"
+        },
+        {
+          "name": "Pro Plus",
+          "url": "https://pro-plus.si"
+        }
+      ],
+      "SK": [
+        {
+          "name": "OnePlay",
+          "type": "streaming",
+          "url": "https://www.oneplay.cz"
         }
       ],
       "global": [
         {
           "name": "MotoGP VideoPass",
           "type": "streaming",
-          "url": "https://www.motogp.com/en/VideoPass",
+          "url": "https://www.motogp.com/en/videopass",
           "note": "All races, official"
         }
       ]
@@ -1099,18 +2674,14 @@
       ],
       "DE": [
         {
-          "name": "ServusTV",
-          "type": "free",
-          "url": "https://www.servustv.com",
-          "note": "Live"
+          "name": "Servus TV",
+          "url": "https://www.servustv.com"
         }
       ],
       "AT": [
         {
-          "name": "ServusTV",
-          "type": "free",
-          "url": "https://www.servustv.com",
-          "note": "Live"
+          "name": "Servus TV",
+          "url": "https://www.servustv.com"
         }
       ],
       "FR": [
@@ -1124,63 +2695,216 @@
         {
           "name": "TV8",
           "type": "free",
-          "url": "https://www.tv8.it",
-          "note": "Live"
+          "url": "https://www.tv8.it"
         },
         {
           "name": "Sky Sport",
           "type": "pay",
-          "url": "https://sport.sky.it",
-          "note": "Live"
+          "url": "https://sport.sky.it"
         }
       ],
       "NL": [
         {
           "name": "Viaplay",
           "type": "streaming",
-          "url": "https://viaplay.com/nl"
+          "url": "https://viaplay.com/nl-nl/"
         }
       ],
       "SE": [
         {
           "name": "Viaplay",
           "type": "streaming",
-          "url": "https://viaplay.com/se"
+          "url": "https://viaplay.se"
         }
       ],
       "DK": [
         {
           "name": "Viaplay",
           "type": "streaming",
-          "url": "https://viaplay.com/dk"
+          "url": "https://viaplay.dk"
         }
       ],
       "NO": [
         {
           "name": "Viaplay",
           "type": "streaming",
-          "url": "https://viaplay.com/no"
+          "url": "https://viaplay.no"
         }
       ],
       "FI": [
         {
           "name": "Viaplay",
           "type": "streaming",
-          "url": "https://viaplay.com/fi"
+          "url": "https://viaplay.fi"
         }
       ],
       "CZ": [
         {
           "name": "Nova Sport",
-          "type": "pay",
-          "url": "https://novasport.cz"
+          "url": "https://www.worldsbk.com/en/news/2026/02/19/where-to-watch-worldsbk-throughout-the-2026-season/989565"
         }
       ],
       "SK": [
         {
           "name": "Nova Sport",
+          "url": "https://www.worldsbk.com/en/news/2026/02/19/where-to-watch-worldsbk-throughout-the-2026-season/989565"
+        }
+      ],
+      "AU": [
+        {
+          "name": "Fox Sports",
           "type": "pay",
-          "url": "https://novasport.sk"
+          "url": "https://www.foxsports.com.au",
+          "note": "Live"
+        },
+        {
+          "name": "SBS",
+          "type": "free",
+          "url": "https://www.sbs.com.au/ondemand",
+          "note": "Highlights"
+        }
+      ],
+      "BE": [
+        {
+          "name": "RTBF Auvio",
+          "url": "https://auvio.rtbf.be"
+        }
+      ],
+      "CA": [
+        {
+          "name": "REVTV",
+          "url": "https://www.revtv.ca"
+        }
+      ],
+      "CH": [
+        {
+          "name": "Servus TV",
+          "url": "https://www.servustv.com"
+        }
+      ],
+      "EE": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "ES": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/es-ES"
+        }
+      ],
+      "GR": [
+        {
+          "name": "ANT1",
+          "url": "https://www.antenna.gr"
+        }
+      ],
+      "HR": [
+        {
+          "name": "VOYO",
+          "type": "streaming",
+          "url": "https://www.worldsbk.com/en/news/2026/02/19/where-to-watch-worldsbk-throughout-the-2026-season/989565"
+        }
+      ],
+      "HU": [
+        {
+          "name": "Arena4",
+          "url": "https://arena4.network4.hu/"
+        }
+      ],
+      "IE": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk",
+          "note": "Live"
+        }
+      ],
+      "JP": [
+        {
+          "name": "J Sports",
+          "type": "pay",
+          "url": "https://www.jsports.co.jp"
+        }
+      ],
+      "LT": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "LU": [
+        {
+          "name": "RTL",
+          "url": "https://www.rtl.lu"
+        }
+      ],
+      "LV": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "MT": [
+        {
+          "name": "Sky Sport",
+          "type": "pay",
+          "url": "https://sport.sky.it"
+        }
+      ],
+      "NZ": [
+        {
+          "name": "TVZN",
+          "url": "https://www.worldsbk.com/en/news/2026/02/19/where-to-watch-worldsbk-throughout-the-2026-season/989565"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Eurosport",
+          "type": "pay",
+          "url": "https://www.eurosport.pl"
+        }
+      ],
+      "PT": [
+        {
+          "name": "Sport TV",
+          "type": "pay",
+          "url": "https://www.sporttv.pt"
+        },
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/pt-PT"
+        }
+      ],
+      "RO": [
+        {
+          "name": "DIGI Sport",
+          "type": "pay",
+          "url": "https://www.digisport.ro"
+        }
+      ],
+      "SI": [
+        {
+          "name": "Pop TV",
+          "url": "https://www.worldsbk.com/en/news/2026/02/19/where-to-watch-worldsbk-throughout-the-2026-season/989565"
+        },
+        {
+          "name": "Kanal A",
+          "url": "https://www.worldsbk.com/en/news/2026/02/19/where-to-watch-worldsbk-throughout-the-2026-season/989565"
+        },
+        {
+          "name": "VOYO",
+          "type": "streaming",
+          "url": "https://voyo.si"
+        }
+      ],
+      "US": [
+        {
+          "name": "RACER Network",
+          "url": "https://www.racer.com"
         }
       ],
       "global": [
@@ -1188,7 +2912,7 @@
           "name": "WorldSBK VideoPass",
           "type": "streaming",
           "url": "https://www.worldsbk.com/en/videopass",
-          "note": "Official"
+          "note": "Every session live, official"
         }
       ]
     }
@@ -1355,12 +3079,119 @@
           "url": "https://www.skysports.co.nz"
         }
       ],
+      "AT": [
+        {
+          "name": "SportDigital",
+          "url": "https://www.sportdigital.de"
+        }
+      ],
+      "BG": [
+        {
+          "name": "NOVA",
+          "url": "https://nova.bg"
+        }
+      ],
+      "CA": [
+        {
+          "name": "RACER",
+          "url": "https://www.racer.com"
+        }
+      ],
+      "CH": [
+        {
+          "name": "SportDigital",
+          "url": "https://www.sportdigital.de"
+        }
+      ],
+      "CY": [
+        {
+          "name": "ANT1",
+          "url": "https://www.antenna.gr"
+        }
+      ],
+      "DE": [
+        {
+          "name": "SportDigital",
+          "url": "https://www.sportdigital.de"
+        }
+      ],
+      "EE": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "ES": [
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com/es-ES"
+        }
+      ],
+      "GB": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk"
+        }
+      ],
+      "GR": [
+        {
+          "name": "ANT1",
+          "url": "https://www.antenna.gr"
+        }
+      ],
+      "IE": [
+        {
+          "name": "TNT Sports",
+          "type": "pay",
+          "url": "https://www.tntsports.co.uk"
+        }
+      ],
+      "LT": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "LV": [
+        {
+          "name": "TV3",
+          "url": "https://go3.tv"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Ziggo Sport Totaal",
+          "type": "pay",
+          "url": "https://www.ziggosport.nl"
+        }
+      ],
+      "PL": [
+        {
+          "name": "Motowizja HD",
+          "url": "https://motowizja.pl"
+        }
+      ],
+      "PT": [
+        {
+          "name": "Sport TV",
+          "type": "pay",
+          "url": "https://www.sporttv.pt"
+        }
+      ],
+      "US": [
+        {
+          "name": "RACER",
+          "url": "https://www.racer.com"
+        }
+      ],
       "global": [
         {
           "name": "SuperView",
           "type": "streaming",
-          "url": "https://www.superview.com.au",
-          "note": "Official international"
+          "url": "https://www.supercars.com/watch-supercars-international",
+          "note": "Official, outside Australia and New Zealand"
         }
       ]
     }
@@ -1379,6 +3210,16 @@
       "ig": "https://instagram.com/elms_official",
       "x": "https://x.com/EuropeanLMS",
       "yt": "https://youtube.com/@EuropeanLMS"
+    },
+    "howToWatch": {
+      "global": [
+        {
+          "name": "FIAWEC+",
+          "type": "streaming",
+          "url": "https://plus.fiawec.com",
+          "note": "Official home of ELMS coverage"
+        }
+      ]
     }
   },
   {
@@ -1397,18 +3238,26 @@
       "yt": "https://youtube.com/@GTWorld"
     },
     "howToWatch": {
+      "GB": [
+        {
+          "name": "Sky Sports",
+          "type": "pay",
+          "url": "https://www.skysports.com"
+        }
+      ],
+      "NL": [
+        {
+          "name": "Ziggo Sport",
+          "type": "pay",
+          "url": "https://www.ziggosport.nl"
+        }
+      ],
       "global": [
         {
           "name": "GTWorld YouTube",
           "type": "free",
           "url": "https://www.youtube.com/@GTWorld",
-          "note": "Free, live worldwide"
-        },
-        {
-          "name": "Eurosport",
-          "type": "pay",
-          "url": "https://www.eurosport.com",
-          "note": "Some EU markets"
+          "note": "Every race live, free, no regional restrictions"
         }
       ]
     }
@@ -1427,6 +3276,24 @@
       "ig": "https://instagram.com/gtworldchallengeamerica",
       "x": "https://x.com/gtworldcham",
       "yt": "https://youtube.com/@GTWorld"
+    },
+    "howToWatch": {
+      "US": [
+        {
+          "name": "FS1",
+          "type": "pay",
+          "url": "https://www.foxsports.com",
+          "note": "Highlights show"
+        }
+      ],
+      "global": [
+        {
+          "name": "GT World YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@GTWorld",
+          "note": "Races live and free"
+        }
+      ]
     }
   },
   {
@@ -1453,17 +3320,25 @@
           "note": "Free, some rounds"
         }
       ],
+      "NL": [
+        {
+          "name": "Viaplay",
+          "type": "streaming",
+          "url": "https://viaplay.com/nl-nl/",
+          "note": "Main races live"
+        }
+      ],
       "global": [
         {
           "name": "Nürburgring YouTube",
           "type": "free",
-          "url": "https://www.youtube.com/@Nuerburgring",
+          "url": "https://www.youtube.com/user/DerNuerburgring",
           "note": "Free, selected rounds"
         },
         {
           "name": "nuerburgring.de",
           "type": "free",
-          "url": "https://www.nuerburgring.de/live"
+          "url": "https://www.nuerburgring.de/"
         }
       ]
     }
@@ -1482,6 +3357,16 @@
       "ig": "https://instagram.com/intercontgtc",
       "x": "https://x.com/IntercontGTC",
       "yt": "https://youtube.com/@GTWorld"
+    },
+    "howToWatch": {
+      "global": [
+        {
+          "name": "GT World YouTube",
+          "type": "free",
+          "url": "https://www.youtube.com/@GTWorld",
+          "note": "Races live and free"
+        }
+      ]
     }
   },
   {
@@ -1498,11 +3383,42 @@
       "ig": "https://instagram.com/tcr_series",
       "x": "https://x.com/TCR_Series",
       "yt": "https://youtube.com/@TCRTV"
+    },
+    "howToWatch": {
+      "global": [
+        {
+          "name": "TCR TV (YouTube)",
+          "type": "free",
+          "url": "https://www.fiatcrworldtour.com/news/item/where-to-watch-the-2026-kumho-fia-tcr-world-tour",
+          "note": "Not in China, Hungary, South Korea, Latin America"
+        },
+        {
+          "name": "DAZN",
+          "type": "streaming",
+          "url": "https://www.dazn.com",
+          "note": "Free; not in China, Hungary, South Korea"
+        }
+      ]
     }
   },
   {
     "slug": "erc",
-    "howToWatch": { "global": [{ "name": "Rally.TV", "type": "streaming", "url": "https://rally.tv", "note": "Every stage live" }] },
+    "howToWatch": {
+      "PL": [
+        {
+          "name": "Motowizja",
+          "url": "https://motowizja.pl"
+        }
+      ],
+      "global": [
+        {
+          "name": "Rally.TV",
+          "type": "streaming",
+          "url": "https://rally.tv",
+          "note": "Every stage live"
+        }
+      ]
+    },
     "name": "European Rally Championship",
     "category": "Rally",
     "region": "Europe",
@@ -1563,6 +3479,24 @@
       "ig": "https://instagram.com/british_gt",
       "x": "https://x.com/BritishGT",
       "yt": "https://youtube.com/@BritishGT"
+    },
+    "howToWatch": {
+      "GB": [
+        {
+          "name": "Sky Sports F1",
+          "type": "pay",
+          "url": "https://www.skysports.com/f1",
+          "note": "Live"
+        }
+      ],
+      "global": [
+        {
+          "name": "GT World",
+          "type": "free",
+          "url": "https://www.youtube.com/@GTWorld",
+          "note": "Races live"
+        }
+      ]
     }
   },
   {
@@ -1590,15 +3524,10 @@
       ],
       "global": [
         {
-          "name": "Rallycross World",
-          "type": "streaming",
-          "url": "https://www.rallycrossworld.com"
-        },
-        {
-          "name": "Eurosport",
-          "type": "pay",
-          "url": "https://www.eurosport.com",
-          "note": "Some EU markets"
+          "name": "FIA Rallycross live stream",
+          "type": "free",
+          "url": "https://www.fia-rallycross.com",
+          "note": "Every session live and free on YouTube and Facebook"
         }
       ]
     }

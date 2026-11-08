@@ -1,0 +1,237 @@
+---
+/**
+ * "Where are you watching from?" popup.
+ *
+ * Markup and styles only; behaviour lives in src/scripts/country.js
+ * (initCountryDialog / openCountryDialog). Include it once on any page that
+ * shows broadcasters, then open it with openCountryDialog().
+ *
+ * The copy is a promise made to visitors and is mirrored in the privacy
+ * policy (section 3). Change both together.
+ */
+import { watchCountries } from '../lib/watchCountries';
+
+const countries = watchCountries();
+---
+
+<dialog
+  id="country-dialog"
+  class="country-dialog"
+  aria-labelledby="country-dialog-title"
+  aria-describedby="country-dialog-desc"
+>
+  <div class="country-box">
+    <h2 id="country-dialog-title" class="country-title">Where are you watching from?</h2>
+
+    <div id="country-dialog-desc">
+      <p class="country-text">
+        Who shows the races depends on your country. Tell us where you are and we'll show the
+        broadcasters and streams that work for you. We use it for nothing else.
+      </p>
+      <p class="country-text country-text--note">
+        "Use my location" works out your country from your connection (your IP address), not GPS.
+        Your answer is saved on this device only.
+      </p>
+      <p class="country-text country-text--warn">
+        If you'd rather not, we'll show the options for the USA by default. They may not be
+        available in your region.
+      </p>
+    </div>
+
+    <div class="country-actions">
+      <button type="button" id="country-detect" class="country-btn country-btn--primary" autofocus>
+        Use my location
+      </button>
+      <button type="button" id="country-decline" class="country-btn">
+        No thanks, show US options
+      </button>
+    </div>
+
+    <div class="country-manual">
+      <label for="country-select" class="country-label">Or choose your country</label>
+      <div class="country-manual-row">
+        <select id="country-select" class="country-select">
+          <option value="" selected disabled>Select a country…</option>
+          {countries.map(c => <option value={c.code}>{c.name}</option>)}
+          <option value="global">Another country (worldwide options)</option>
+        </select>
+        <button type="button" id="country-apply" class="country-btn">Show</button>
+      </div>
+    </div>
+
+    <p id="country-status" class="country-status" role="status" aria-live="polite"></p>
+  </div>
+</dialog>
+
+<style is:global>
+.country-dialog {
+  padding: 0;
+  border: 1px solid var(--overlay-soft-5);
+  border-radius: var(--radius-xl);
+  background: var(--card-bg-5);
+  color: var(--text-muted);
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100svh - 32px);
+  box-shadow: var(--shadow-modal-2);
+}
+
+.country-dialog::backdrop {
+  background: var(--scrim-modal-2);
+  backdrop-filter: blur(4px);
+}
+
+.country-box {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.country-title {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-lg-2);
+  font-weight: 900;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.country-text {
+  margin: 0 0 10px;
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.country-text:last-child { margin-bottom: 0; }
+
+.country-text--note {
+  font-size: var(--fs-sm);
+  color: var(--text-meta);
+}
+
+.country-text--warn {
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+}
+
+.country-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.country-btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 9px 16px;
+  border: 1px solid var(--line-4);
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.country-btn:hover {
+  color: var(--text-strong);
+  border-color: var(--accent);
+  background: var(--card-bg-3);
+}
+
+.country-btn--primary {
+  background: var(--surface-accent-2);
+  border-color: var(--accent-deep);
+  color: var(--accent-pale);
+}
+
+.country-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.country-btn:focus-visible,
+.country-select:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* "Change country" link-button, used next to broadcaster lists (series pages). */
+.country-link {
+  margin: 4px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.country-link[hidden] { display: none; }
+.country-link:hover { color: var(--text-strong); }
+
+.country-link:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.country-manual {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-subtle);
+}
+
+.country-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-meta);
+  letter-spacing: 0.04em;
+}
+
+.country-manual-row {
+  display: flex;
+  gap: 10px;
+}
+
+.country-select {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  padding: 9px 10px;
+  border: 1px solid var(--control-line);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  color: var(--text-soft);
+}
+
+.country-status {
+  margin: 0;
+  min-height: 1.4em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+@media (max-width: 560px) {
+  .country-box { padding: 20px 16px; }
+  .country-actions { flex-direction: column; }
+  .country-btn { width: 100%; }
+  .country-manual-row { flex-direction: column; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .country-btn { transition: none; }
+}
+</style>

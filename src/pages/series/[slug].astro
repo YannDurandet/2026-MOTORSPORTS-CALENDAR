@@ -5,6 +5,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
 import RoundsList from '../../components/RoundsList.astro';
+import CountryDialog from '../../components/CountryDialog.astro';
 
 import seriesContent from '../../../data/seriesContent.json';
 import standingsData from '../../../data/standings.json';
@@ -13,7 +14,6 @@ import { eventsForSeries } from '../../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
 import { seriesShort } from '../../lib/seriesShort';
 import { ogPath } from '../../lib/ogPaths';
-import { alternatesFor, frPathFor } from '../../lib/fr';
 
 export function getStaticPaths() {
   return (seriesContent as any[]).map((s: any) => ({ params: { slug: s.slug } }));
@@ -80,13 +80,11 @@ const customDescriptions: Record<string, string> = {
 };
 const pageTitle = `${short} ${year} Calendar, Results${hasStandings ? ' & Standings' : ''} | DORD`;
 const pageDescription = customDescriptions[slug!] ?? series.tagline;
-const frPath = frPathFor(`/series/${slug}`);
 ---
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
   canonicalUrl={`https://dord.racing/series/${slug}`}
-  alternates={frPath ? alternatesFor(`/series/${slug}`, frPath) : []}
   ogImage={ogPath(`series/${slug}`)}
 >
   <Fragment slot="head">
@@ -98,12 +96,12 @@ const frPath = frPathFor(`/series/${slug}`);
   <header>
     <div class="header--left">
       <h1>{series.name}<br><span class="h1-sub">{year} Calendar &amp; Results</span></h1>
-      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST){frPath && <> · <a href={`${base}${frPath}`} hreflang="fr" lang="fr" class="lang-link">Version française</a></>}</div>
+      <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="series" />
     </div>
   </header>
 
-  <main id="main-content" class="main-section">
+  <main id="main-content" class="main-section main-section--content">
     <a href={`${base}/`} class="back-link">← Full Master Calendar</a>
 
     <div class={`series-hero series-hero--${slug}`}>
@@ -155,7 +153,10 @@ const frPath = frPathFor(`/series/${slug}`);
           data-htw={JSON.stringify((series as any).howToWatch)}
           aria-live="polite"
         ></div>
+        <!-- Outside #htw-root so re-rendering the pills never drops keyboard focus -->
+        <button type="button" id="htw-change" class="country-link" hidden></button>
         <p class="htw-disclaimer">Broadcast rights vary by region. Check local listings.</p>
+        <CountryDialog />
       </section>
     )}
 
@@ -346,6 +347,11 @@ const frPath = frPathFor(`/series/${slug}`);
 </BaseLayout>
 
 <script>
+import {
+  CHANGE_EVENT, getChoice, pickBroadcasters, regionLabel,
+  openCountryDialog, initCountryDialog,
+} from '../../scripts/country.js';
+
 // ── How to Watch ───────────────────────────────────────────────
 (function () {
   const root = document.getElementById('htw-root');
@@ -357,33 +363,50 @@ const frPath = frPathFor(`/series/${slug}`);
   let data: Record<string, { name: string; type: string; url: string; note?: string }[]>;
   try { data = JSON.parse(raw); } catch { return; }
 
-  const locale = (Intl.DateTimeFormat().resolvedOptions() as any).locale
-    || navigator.language || 'en-US';
-  const parts = locale.split('-');
-  const country = parts.length > 1 ? parts[parts.length - 1].toUpperCase() : parts[0].toUpperCase();
+  const section = document.getElementById('htw-section');
+  const changeBtn = document.getElementById('htw-change');
 
-  const broadcasters = data[country] || data['global'];
-  if (!broadcasters || broadcasters.length === 0) {
-    const section = document.getElementById('htw-section');
-    if (section) section.hidden = true;
-    return;
+  // Which country's list to show is the visitor's choice (the popup on /watch or
+  // the button below), not a guess from the browser language.
+  // See src/scripts/country.js.
+  function render() {
+    const choice = getChoice();
+    const { list, scope, code } = pickBroadcasters(data, choice);
+    if (section) section.hidden = list.length === 0;
+    if (!list.length) return;
+
+    const chosen = choice.state === 'chosen';
+    let label: string;
+    if (scope === 'country') {
+      label = `Watch in <span class="htw-country">${regionLabel(code)}</span>${chosen ? '' : ' (default)'}`;
+    } else if (chosen && code !== 'global') {
+      label = `No local listing for <span class="htw-country">${regionLabel(code)}</span>. Worldwide option`;
+    } else {
+      label = 'Watch globally';
+    }
+
+    const pills = list.map((b: { name: string; type?: string; url: string; note?: string }) => {
+      const badgeHtml = b.type === 'free'
+        ? '<span class="htw-badge htw-badge--free">FREE</span>'
+        : b.type === 'streaming'
+        ? '<span class="htw-badge htw-badge--stream">STREAM</span>'
+        : '';
+      const noteHtml = b.note ? `<span class="htw-note">${b.note}</span>` : '';
+      return `<a href="${b.url}" target="_blank" rel="noopener noreferrer" class="htw-pill">${b.name}${badgeHtml}${noteHtml}</a>`;
+    }).join('');
+
+    root!.innerHTML = `<p class="htw-label">${label}</p><div class="htw-pills">${pills}</div>`;
+
+    if (changeBtn) {
+      changeBtn.textContent = chosen ? 'Change country' : 'Not in the US? Set your country';
+      changeBtn.hidden = false;
+    }
   }
 
-  const label = data[country]
-    ? `Watch in <span class="htw-country">${country}</span>`
-    : 'Watch globally';
-
-  const pills = broadcasters.map(b => {
-    const badgeHtml = b.type === 'free'
-      ? '<span class="htw-badge htw-badge--free">FREE</span>'
-      : b.type === 'streaming'
-      ? '<span class="htw-badge htw-badge--stream">STREAM</span>'
-      : '';
-    const noteHtml = b.note ? `<span class="htw-note">${b.note}</span>` : '';
-    return `<a href="${b.url}" target="_blank" rel="noopener noreferrer" class="htw-pill">${b.name}${badgeHtml}${noteHtml}</a>`;
-  }).join('');
-
-  root.innerHTML = `<p class="htw-label">${label}</p><div class="htw-pills">${pills}</div>`;
+  changeBtn?.addEventListener('click', openCountryDialog);
+  window.addEventListener(CHANGE_EVENT, render);
+  initCountryDialog();
+  render();
 })();
 
 // ── Embed Modal ────────────────────────────────────────────────

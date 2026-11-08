@@ -36,7 +36,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     align-items: center;
     justify-content: center;
     min-width: 34px;
-    min-height: 32px;
+    min-height: var(--nav-ctl-h);
     background: none;
     border: 0;
     border-radius: var(--radius-xl);
@@ -65,7 +65,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     align-items: center;
     justify-content: center;
     min-width: 34px;
-    min-height: 32px;
+    min-height: var(--nav-ctl-h);
     background: none;
     border: 0;
     border-radius: var(--radius-xl);
@@ -82,5 +82,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   .search-trigger:focus-visible {
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
+  }
+  /* On phones the nav is a grid whose gap already spaces the icons. */
+  @media (max-width: 560px) {
+    .search-trigger { margin-left: 0; }
   }
 </style>

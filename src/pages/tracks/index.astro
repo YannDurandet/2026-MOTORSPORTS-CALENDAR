@@ -344,7 +344,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   /* ─── Page layout ──────────────────────────────────────────────────────── */
   .tracks-page {
     padding: 0 24px 80px;
-    max-width: 1400px;
+    max-width: var(--w-wide);
     margin: 0 auto;
   }
 
@@ -604,11 +604,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
   /* Reuse the site's existing .tag and .t-{series} classes */
   .track-ev-row .tag {
-    font-size: var(--fs-3xs);
-    padding: 2px 5px;
     text-decoration: none;
     flex-shrink: 0;
-    letter-spacing: 0.04em;
   }
 
   .track-ev-title {

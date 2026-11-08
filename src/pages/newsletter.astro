@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 <BaseLayout
   title="From The Pit Wall — Weekly Motorsport Briefing"
-  description="A weekly briefing from The Department of Racing Drivers. What's racing, where it is, and why the next three days are going to be chaos. 25 series, no filler."
+  description="A weekly briefing from The Department of Racing Drivers. What's racing, where it is, and why the next three days are going to be chaos. 26 series, no filler."
   canonicalUrl="https://dord.racing/newsletter"
   expect="nl-title"
 >
@@ -27,7 +27,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         </h1>
         <p class="nl-body">
           What's on, where it is, and why the next three days are going to be chaos.<br>
-          25 series. Every weekend. No filler.
+          26 series. Every weekend. No filler.
         </p>
 
         <!-- Form -->
@@ -69,14 +69,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <style>
   /* ── Page shell ─────────────────────────────────────────────────── */
   .nl-page {
+    position: relative;        /* anchors .nl-back */
     display: flex;
     flex-direction: column;
     min-height: 100svh;
   }
 
   /* ── Back link ──────────────────────────────────────────────────── */
+  /* Absolute, not fixed: a fixed link has no background, so it printed over
+     the footer text whenever the page scrolled. It now scrolls away with the hero. */
   .nl-back {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 24px;
     z-index: 10;
