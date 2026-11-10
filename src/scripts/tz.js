@@ -10,7 +10,10 @@ export const SOURCE_TIMEZONE = "Europe/Paris";
 export const DETECTED_TIMEZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
 function resolveUserTimezone() {
-    const stored = localStorage.getItem('tzOverride');
+    // Storage can throw (blocked site data, some private modes): then there is
+    // simply no override. Unguarded, the throw stopped every script importing this.
+    let stored = null;
+    try { stored = localStorage.getItem('tzOverride'); } catch { /* no storage */ }
     if (!stored) return DETECTED_TIMEZONE;
     try { new Intl.DateTimeFormat('en', { timeZone: stored }); return stored; } catch { return DETECTED_TIMEZONE; }
 }

@@ -105,22 +105,17 @@ const gridImageSrcset = (slug: string) =>
 
 <script>
   import { countdownTarget } from '../../lib/offSeason';
+  import { USER_TIMEZONE, TZ_IS_OVERRIDE } from '../../scripts/tz.js';
 
   (async () => {
     const base = (document.querySelector('meta[name="astro-base"]') as HTMLMetaElement)?.content ?? '';
 
-    // Update timezone notice — read the same localStorage key as main.js
+    // Update timezone notice: same override and detection as the calendar (src/scripts/tz.js)
     const tzEl = document.querySelector<HTMLElement>('.meta');
     if (tzEl) {
-      const detected = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      let userTz = detected;
-      const stored = localStorage.getItem('tzOverride');
-      if (stored) {
-        try { new Intl.DateTimeFormat('en', { timeZone: stored }); userTz = stored; } catch { /* ignore */ }
-      }
-      const isOverride = userTz !== detected;
+      const userTz = USER_TIMEZONE;
       const friendlyTz = userTz.replace(/_/g, ' ').toUpperCase();
-      if (isOverride) {
+      if (TZ_IS_OVERRIDE) {
         tzEl.textContent = `TIMES SHOWN IN: ${friendlyTz} (MANUAL)`;
         tzEl.title = 'Change timezone on the calendar page';
       } else if (userTz !== 'Europe/Paris') {

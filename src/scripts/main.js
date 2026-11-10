@@ -533,11 +533,10 @@ function setupTzPicker() {
 
     select.addEventListener('change', () => {
         const val = select.value;
-        if (val) {
-            localStorage.setItem('tzOverride', val);
-        } else {
-            localStorage.removeItem('tzOverride');
-        }
+        try {
+            if (val) localStorage.setItem('tzOverride', val);
+            else localStorage.removeItem('tzOverride');
+        } catch { /* storage blocked: the choice can't be kept, the page still reloads */ }
         // Reload so the one-shot convertPreRenderedTimes() runs fresh with new timezone
         location.reload();
     });
