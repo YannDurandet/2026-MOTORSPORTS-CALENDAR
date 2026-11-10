@@ -85,8 +85,8 @@ def build_issue_body(races, week_start, week_end):
             f"({format_date_display(display_dt)} CET)"
         )
 
-    # Results live inline in data/calendar.json (event.results). data/results.json
-    # is a dead file nothing reads; results:brief knows the field shape per series.
+    # Results live inline in data/calendar.json (event.results);
+    # results:brief knows the field shape per series.
     lines += [
         "",
         "### How to add the results",

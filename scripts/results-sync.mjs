@@ -14,8 +14,7 @@
  *                                      data/calendar.json
  *   npm run results:apply <file> --dry-run
  *
- * Results live INLINE in data/calendar.json (event.results). data/results.json
- * is a dead file that nothing reads — do not target it.
+ * Results live INLINE in data/calendar.json (event.results).
  */
 
 import { readFileSync, writeFileSync } from 'fs';

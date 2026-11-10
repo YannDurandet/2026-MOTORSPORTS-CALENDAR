@@ -222,7 +222,7 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run indexnow` | Submit new/changed pages to IndexNow (Bing and others). Needs a build; CI runs it after each deploy |
 | `npm run test:unsub` | Generate/verify unsubscribe tokens locally |
 
-Race results live **inline in `data/calendar.json`** (`event.results`). `data/results.json` is a dead file nothing reads — never write to it.
+Race results live **inline in `data/calendar.json`** (`event.results`). There is no separate results file.
 
 `scripts/archive/` holds completed one-off migrations. Kept for history; don't run them.
 
