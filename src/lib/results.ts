@@ -6,7 +6,7 @@
 
 import calendarData from '../../data/calendar.json';
 import tracksData   from '../../data/tracks.json';
-import { findEvent } from './events';
+import { findEvent, trackSlugForSvg } from './events';
 import { monthYear } from './season';
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -74,17 +74,6 @@ export function countryName(code: string): string {
 
 // ── Track lookup maps ─────────────────────────────────────────────────────────
 
-/** calendarSvg filename → track slug */
-export const svgToSlug = (() => {
-  const map = new Map<string, string>();
-  for (const track of tracksData as any[]) {
-    for (const svg of (track.calendarSvgs ?? [])) map.set(svg, track.slug);
-    for (const layout of (track.layouts ?? []))
-      for (const svg of (layout.calendarSvgs ?? [])) map.set(svg, track.slug);
-  }
-  return map;
-})();
-
 /** track slug → ISO 2-letter country code */
 export const venueCountry: Record<string, string> = (() => {
   const out: Record<string, string> = {};
@@ -151,7 +140,7 @@ export function getFlatResults(): ResultEntry[] {
     for (const week of month.weeks) {
       for (const ev of week.events) {
         if (!ev.results?.length) continue;
-        const venue = svgToSlug.get(ev.track ?? '') ?? '';
+        const venue = trackSlugForSvg(ev.track) ?? '';
         const path = findEvent(monthYear(month), ev.series, ev.title, week.label)?.path;
         for (const r of ev.results) {
           flat.push({ series: ev.series, event: ev.title, venue, path, ...r });

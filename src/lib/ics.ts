@@ -7,7 +7,7 @@
 import calendarData from '../../data/calendar.json';
 import seriesContent from '../../data/seriesContent.json';
 import tracksData from '../../data/tracks.json';
-import { findEvent, slugify } from './events';
+import { findEvent, slugify, trackSlugForSvg } from './events';
 import { monthYear } from './season';
 import { isTimeTbc } from './tbc';
 
@@ -52,13 +52,8 @@ function nextDay(ymd: string): string {
 }
 
 export function generateIcs(targetSlugs: string[], calName?: string): string {
-  // Build track lookup
-  const svgToTrack = new Map<string, any>();
-  for (const track of tracksData as any[]) {
-    for (const svg of (track.calendarSvgs ?? [])) svgToTrack.set(svg, track);
-    for (const layout of (track.layouts ?? []))
-      for (const svg of (layout.calendarSvgs ?? [])) svgToTrack.set(svg, track);
-  }
+  // SVG → track goes through events.ts, so the feed names the same venue as the event page.
+  const trackBySlug = new Map((tracksData as any[]).map(t => [t.slug, t]));
 
   const allSeriesMeta = seriesContent as any[];
 
@@ -104,7 +99,8 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
           dtend = `DTEND:${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}T${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}00Z`;
         }
 
-        const track = svgToTrack.get(ev.track ?? '');
+        const trackSlug = trackSlugForSvg(ev.track);
+        const track = trackSlug ? trackBySlug.get(trackSlug) : undefined;
         const meta = allSeriesMeta.find((s: any) => s.slug === slug);
         const seriesName = meta?.name ?? slug.toUpperCase();
 
