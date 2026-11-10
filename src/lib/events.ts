@@ -19,6 +19,9 @@
 import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
 import { DEFAULT_CALENDAR_YEAR } from './season';
+import { MONTH_ABBR, hasEventPage, pageSlugs } from './eventSlugs.js';
+
+export { slugify } from './eventSlugs.js';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -70,20 +73,6 @@ export type CalendarEvent = {
   venue?: { name: string; city: string; country: string };
 };
 
-// ── Slugs ────────────────────────────────────────────────────────────────────
-
-const MONTH_ABBR = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
-
-export function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')   // strip accents: Goiânia → goiania
-    .replace(/&/g, ' and ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
 // ── Track lookup ─────────────────────────────────────────────────────────────
 
 const trackSlugBySvg: Record<string, string> = {};
@@ -102,61 +91,42 @@ export function trackSlugForSvg(svg: string | null | undefined): string | null {
 
 // ── Build ────────────────────────────────────────────────────────────────────
 
-type Raw = Omit<CalendarEvent, 'slug' | 'path'> & { baseSlug: string };
-
-const raw: Raw[] = [];
+// Which events get a page and their slugs: src/lib/eventSlugs.js, shared with
+// npm run check so the URL check validates what the build produces.
+const pages: { year: number; weekLabel: string; ev: any }[] = [];
 
 for (const month of calendarData as any[]) {
   const year: number = month.year ?? DEFAULT_CALENDAR_YEAR;
   for (const week of month.weeks ?? []) {
     for (const ev of week.events ?? []) {
-      // tbc/tbd are placeholder infographics for unannounced venues — no page,
-      // unless the event names its venue inline (circuit known, map not drawn yet).
-      if (!ev.track) continue;
-      if ((ev.track === 'tbc.svg' || ev.track === 'tbd.svg') && !ev.venue) continue;
-      raw.push({
-        year,
-        // `slug` pins the URL when a title changes after the page was indexed
-        // (e.g. "Bahrain GP" → "Bahrain GP in Malaysia (Sepang)").
-        baseSlug: ev.slug ?? slugify(`${ev.series}-${ev.title}`),
-        series: ev.series,
-        tag: ev.tag,
-        title: ev.title,
-        shortName: ev.shortName,
-        weekLabel: week.label,
-        time: ev.time,
-        date: ev.date,
-        trackSvg: ev.track,
-        trackSlug: trackSlugBySvg[ev.track] ?? null,
-        results: ev.results,
-        support: ev.sub,
-        legs: ev.races,
-        hasSprint: ev.sprint === true,
-        start: ev.start,
-        end: ev.end,
-        venue: ev.venue,
-      });
+      if (hasEventPage(ev)) pages.push({ year, weekLabel: week.label, ev });
     }
   }
 }
 
-// Two 2026 events share a series+title (Jeddah E-Prix, Goodyear 400) because
-// the series visits twice in one season. Disambiguate with the month — derived
-// from the event itself, so the slug can't move if the calendar is reordered.
-const baseCounts = new Map<string, number>();
-for (const r of raw) {
-  const key = `${r.year}/${r.baseSlug}`;
-  baseCounts.set(key, (baseCounts.get(key) ?? 0) + 1);
-}
+const slugs = pageSlugs(pages);
 
-export const ALL_EVENTS: CalendarEvent[] = raw.map(r => {
-  const key = `${r.year}/${r.baseSlug}`;
-  const needsMonth = (baseCounts.get(key) ?? 0) > 1;
-  const month = MONTH_ABBR[new Date(r.date).getUTCMonth()] ?? '';
-  const slug = needsMonth && month ? `${r.baseSlug}-${month}` : r.baseSlug;
-  const { baseSlug, ...rest } = r;
-  return { ...rest, slug, path: `/events/${r.year}/${slug}` };
-});
+export const ALL_EVENTS: CalendarEvent[] = pages.map(({ year, weekLabel, ev }, i) => ({
+  year,
+  series: ev.series,
+  tag: ev.tag,
+  title: ev.title,
+  shortName: ev.shortName,
+  weekLabel,
+  time: ev.time,
+  date: ev.date,
+  trackSvg: ev.track,
+  trackSlug: trackSlugBySvg[ev.track] ?? null,
+  results: ev.results,
+  support: ev.sub,
+  legs: ev.races,
+  hasSprint: ev.sprint === true,
+  start: ev.start,
+  end: ev.end,
+  venue: ev.venue,
+  slug: slugs[i],
+  path: `/events/${year}/${slugs[i]}`,
+}));
 
 // ── Accessors ────────────────────────────────────────────────────────────────
 

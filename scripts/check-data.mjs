@@ -9,6 +9,7 @@ import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import { buildSeries } from './gen-series.mjs';
+import { hasEventPage, pageSlugs } from '../src/lib/eventSlugs.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -355,28 +356,18 @@ if (!defaultYear) {
     return null;
   });
 
-  // (g4c) every event page gets a unique URL. Mirrors the slug logic in
-  // src/lib/events.ts: a repeated series+title in one year gets a month suffix,
-  // so a clash is the same title twice in the same month, or two pinned slugs.
+  // (g4c) every event page gets a unique URL. The slugs come from
+  // src/lib/eventSlugs.js, the module the site builds them with: a repeated
+  // series+title in one year gets a month suffix, so a clash is the same title
+  // twice in the same month, or two pinned slugs.
   {
-    const slugify = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    const MONTH_ABBR = MONTHS.map(m => m.toLowerCase());
-    const hasPage = ({ ev }) => ev.track && !((ev.track === 'tbc.svg' || ev.track === 'tbd.svg') && !ev.venue);
-    const baseOf = ({ ev }) => ev.slug ?? slugify(`${ev.series}-${ev.title}`);
-    const pages = allEvents.filter(hasPage);
-    const counts = new Map();
-    for (const it of pages) {
-      const k = `${yearOf(it.month)}/${baseOf(it)}`;
-      counts.set(k, (counts.get(k) ?? 0) + 1);
-    }
+    const pages = allEvents.filter(({ ev }) => hasEventPage(ev));
+    const slugs = pageSlugs(pages.map(it => ({ year: yearOf(it.month), ev: it.ev })));
+    const slugOf = new Map(pages.map((it, i) => [it, slugs[i]]));
     const owners = new Map();
     check('event-urls', pages, (it) => {
       const { ev } = it;
-      const base = baseOf(it);
-      const mon = MONTH_ABBR[new Date(ev.date).getUTCMonth()] ?? '';
-      const slug = counts.get(`${yearOf(it.month)}/${base}`) > 1 && mon ? `${base}-${mon}` : base;
-      const url = `/events/${yearOf(it.month)}/${slug}`;
+      const url = `/events/${yearOf(it.month)}/${slugOf.get(it)}`;
       const other = owners.get(url);
       owners.set(url, `[${ev.series}] "${ev.title}" (${ev.date.slice(0, 10)})`);
       return other
