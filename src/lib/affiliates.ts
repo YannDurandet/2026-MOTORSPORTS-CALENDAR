@@ -2,9 +2,13 @@
  * Affiliate link helpers — Awin network.
  *
  * All programmes are currently in "Pending Approval" on Awin.
- * Set PUBLIC_AFFILIATE_LINKS_ENABLED=true in Cloudflare Pages environment
- * variables (Settings → Environment Variables → Production) and trigger a
- * new deploy — no code change required.
+ *
+ * The switch is read when the site is BUILT, not when a page is served: pages
+ * are prerendered, and import.meta.env.PUBLIC_* is replaced at build time. The
+ * build runs in GitHub Actions, so set PUBLIC_AFFILIATE_LINKS_ENABLED=true as a
+ * repository variable (GitHub → Settings → Secrets and variables → Actions →
+ * Variables) and redeploy; .github/workflows/deploy.yml passes it to
+ * `npm run build`. A value set in the Cloudflare dashboard is never read.
  *
  * When disabled (default), buildAwinLink() returns the plain destination URL
  * so the "Plan Your Trip" section remains useful to visitors while approval

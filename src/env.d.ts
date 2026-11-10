@@ -1,7 +1,7 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  /** Set to "true" in Cloudflare Pages env vars once Awin programmes are approved. */
+  /** "true" turns on Awin tracking. Read at build time: set it as a GitHub Actions variable (deploy.yml), not in Cloudflare. */
   readonly PUBLIC_AFFILIATE_LINKS_ENABLED?: string;
 }
 

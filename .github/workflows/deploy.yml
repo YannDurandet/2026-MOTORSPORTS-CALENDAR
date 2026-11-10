@@ -24,7 +24,11 @@ jobs:
 
       - run: npm run check
 
+      # The affiliate switch is compiled in at build time (src/lib/affiliates.ts),
+      # so it comes from a GitHub repository variable. Unset means off.
       - run: npm run build
+        env:
+          PUBLIC_AFFILIATE_LINKS_ENABLED: ${{ vars.PUBLIC_AFFILIATE_LINKS_ENABLED }}
 
       - name: Deploy to Cloudflare Workers
         run: npx wrangler deploy

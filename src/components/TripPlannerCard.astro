@@ -5,8 +5,9 @@
  * Renders three outbound links (GetYourGuide tours, Viator experiences, Trivago hotels)
  * deep-linked to the circuit's city. When AFFILIATE_ENABLED=false (the default while
  * Awin programmes are pending approval) links fall back to plain destination URLs.
- * Flip PUBLIC_AFFILIATE_LINKS_ENABLED=true in Cloudflare Pages env vars to activate
- * tracking across all 136 track pages in one redeploy.
+ * Tracking turns on for every track and event page at the next deploy once
+ * PUBLIC_AFFILIATE_LINKS_ENABLED=true is set as a GitHub Actions variable
+ * (see src/lib/affiliates.ts: it is read at build time).
  */
 import { buildAwinLink, MERCHANTS, PARTNER_REL } from '../lib/affiliates';
 
