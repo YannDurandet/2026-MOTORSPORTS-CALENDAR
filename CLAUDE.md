@@ -95,12 +95,9 @@ For each new SVG, find the matching track by slug and add/update `browserSvg`:
 ### 2. Verify `calendarSvgs` references in `data/tracks.json`
 Check that every SVG filename referenced in `calendarSvgs` (or `layouts[].calendarSvgs`) for that track matches the actual file on disk. Filenames are case-sensitive.
 
-### 3. Update `track-map-status.md`
-Keep the status doc current:
-- Move the slug from **Still Missing** to **Circuit SVGs** (or the appropriate section).
-- Update the counts in the **Summary** table.
-- If the SVG is a `calendarSvg`-only variant (e.g. `sonoma-nascar.svg`) with no standalone browser entry, add it to the **calendarSvg-only** section instead.
-- Update the `_Last updated` date.
+### 3. Regenerate `track-map-status.md`
+Run `npm run gen:map-status`. The file is generated from the SVGs on disk, `tracks.json` and `calendar.json`: it sorts each file into its section (calendarSvg-only variants included), recounts the **Summary** and sets the date. Don't edit counts or lists by hand: `npm run check` regenerates the file and fails when the committed copy differs.
+- To annotate a file (the "— Indy Circuit" style suffix), edit its entry in `track-map-status.md`, then run the command again: annotations and the **Naming Convention** section are carried over.
 
 ### 4. Sanity-check SVG renders
 The browser grid (`tracks/index.astro`) and track detail page (`tracks/[slug].astro`) both inline SVGs via `import.meta.glob` at build time. If `browserSvg` points to a file that doesn't exist on disk, the card silently falls back to the placeholder — no build error. So always confirm the filename in `tracks.json` exactly matches what's on disk.
@@ -116,7 +113,7 @@ Some venues use multiple SVG files for different series (e.g. Daytona, Barcelona
 The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` groups inside the SVG to highlight the active layout.
 
 ## Status docs
-- `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Counts must add up to the files in `public/assets/track-maps/`; update it whenever you add an SVG (see step 3 above).
+- `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Generated: run `npm run gen:map-status` whenever you add an SVG (step 3 above); `npm run check` fails when it is stale.
 - `2027-calendar-status.md` — which series have 2027 rounds in `calendar.json` and which are still outstanding.
 - `watch-broadcasters-status.md` — where-to-watch coverage per series and country, the official source for each, and the known gaps. Rights change every season: update it whenever you touch `howToWatch`.
 
@@ -207,8 +204,9 @@ Everything in `scripts/` is reachable through `npm run`:
 
 | Command | Does |
 |---|---|
-| `npm run check` | Data integrity + design-token checks — run before every commit |
+| `npm run check` | Data integrity, `track-map-status.md` up to date, design-token checks — run before every commit |
 | `npm run check:tokens` | Just the token check: no colour/font/size/radius literals in site CSS |
+| `npm run gen:map-status` | Regenerate `track-map-status.md` from the SVGs on disk, `tracks.json` and `calendar.json` |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
 | `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
