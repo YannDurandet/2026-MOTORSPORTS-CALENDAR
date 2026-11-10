@@ -8,6 +8,7 @@
     "preview": "astro preview",
     "check": "node scripts/check-data.mjs && node scripts/gen-track-map-status.mjs --check && node scripts/check-tokens.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
+    "typecheck": "astro check",
     "gen:series": "node scripts/gen-series.mjs",
     "gen:icons": "node scripts/gen-icons.mjs",
     "gen:series-images": "node scripts/gen-series-images.mjs",
@@ -32,9 +33,11 @@
     "wrangler": "^4.107.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
     "@fontsource/inter": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
     "satori": "^0.35.0",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "typescript": "^6.0.3"
   }
 }
