@@ -2,9 +2,8 @@
 // TIMEZONE CONVERSION \u2014 imported from shared tz.js
 // =============================================
 import {
-    SOURCE_TIMEZONE, DETECTED_TIMEZONE, USER_TIMEZONE, TZ_IS_OVERRIDE,
-    NEEDS_TZ_CONVERSION, MONTH_MAP, DAY_MAP,
-    parseWeekDate, convertHHMM, convertTimeStr
+    DETECTED_TIMEZONE, USER_TIMEZONE, TZ_IS_OVERRIDE,
+    NEEDS_TZ_CONVERSION, convertTimeStr
 } from './tz.js';
 import { MONTH_NAMES, weekEnd, isPastMonth, isPastWeek, isPreviewYear } from './calendarDates.js';
 

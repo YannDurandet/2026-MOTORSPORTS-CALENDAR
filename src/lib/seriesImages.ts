@@ -41,9 +41,3 @@ export const seriesImages: Record<string, string> = {
   'eurx':          'erx-series-bg.webp',
   'asian-le-mans': 'alms-series-bg.webp',
 };
-
-/** Absolute URL for OG/social cards. */
-export function seriesOgImage(slug: string): string | undefined {
-  const file = seriesImages[slug];
-  return file ? `https://dord.racing/assets/series-grid-images/${file}` : undefined;
-}

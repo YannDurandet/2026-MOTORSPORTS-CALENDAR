@@ -181,8 +181,6 @@ export function findEvent(year: number, series: string, title: string, weekLabel
     (weekLabel === undefined || e.weekLabel === weekLabel));
 }
 
-export const EVENT_YEARS: number[] = [...new Set(ALL_EVENTS.map(e => e.year))].sort();
-
 /** Strips the session-time markup for use in meta descriptions and JSON-LD. */
 export function plainTime(time: string): string {
   return time.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
