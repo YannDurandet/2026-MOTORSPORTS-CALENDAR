@@ -61,18 +61,33 @@ export function convertHHMM(hhmm, refDate) {
     return converted;
 }
 
-export function convertTimeStr(timeHtml, weekLabel, year = 2026) {
+/** The Paris calendar day of an ISO timestamp, as a local Date at midnight. */
+export function parisDay(iso) {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+        timeZone: SOURCE_TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+    }).formatToParts(new Date(iso)).map(x => [x.type, x.value]));
+    return new Date(Number(p.year), Number(p.month) - 1, Number(p.day));
+}
+
+/**
+ * Convert every Paris HH:MM in a time string to the visitor's zone.
+ * `eventIso` (the event's `date`) gives the day of a time with no weekday in
+ * front of it ("RACE: 18:00"): the event's own day, which can be a Saturday
+ * in a week card that ends on Sunday. Without it the week's last day is used.
+ */
+export function convertTimeStr(timeHtml, weekLabel, year = 2026, eventIso) {
     if (!NEEDS_TZ_CONVERSION) return timeHtml;
     const endDate = parseWeekDate(weekLabel, year);
     if (!endDate) return timeHtml;
+    const ownDay = eventIso ? parisDay(eventIso) : endDate;
     const endDow = endDate.getDay();
     return timeHtml.replace(/<span class="hl">(\d{2}:\d{2})<\/span>/g, (_, hhmm, offset) => {
         // Sessions can fall on different days of a DST-transition weekend
         // (e.g. OCT 24-25 2026: Saturday is CEST, Sunday is CET). When a day
         // token precedes the time ("FRI R: 05:00", "R1 SAT: 17:00"), pin the
         // session to that actual date so the correct UTC offset applies.
-        // Without a token, fall back to the week's last day as before.
-        let refDate = endDate;
+        // Without a token, the event's own day (or the week's last day).
+        let refDate = ownDay;
         const days = timeHtml.slice(0, offset).match(/\b(MON|TUE|WED|THU|FRI|SAT|SUN)\b/g);
         if (days) {
             const delta = (endDow - DAY_MAP[days[days.length - 1]] + 7) % 7;

@@ -686,7 +686,9 @@ function convertPreRenderedTimes() {
         const weekLabel = headEl.textContent;
         const year = yearOf(card);
         card.querySelectorAll('.meta-time').forEach(metaTime => {
-            metaTime.innerHTML = convertTimeStr(metaTime.innerHTML, weekLabel, year);
+            // The row's own date pins a time that has no weekday in front of it.
+            const iso = metaTime.closest('.ev-row')?.dataset.ts;
+            metaTime.innerHTML = convertTimeStr(metaTime.innerHTML, weekLabel, year, iso);
         });
     });
 }

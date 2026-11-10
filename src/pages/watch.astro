@@ -252,7 +252,7 @@ function renderPills(howToWatch) {
 // ── Row HTML builder ──────────────────────────────────────────────────────────
 function renderEventRow(ev) {
   const base = document.querySelector('meta[name="astro-base"]')?.content ?? '';
-  const timeConverted = convertTimeStr(ev.timeHtml, ev.weekLabel, ev.year);
+  const timeConverted = convertTimeStr(ev.timeHtml, ev.weekLabel, ev.year, ev.date);
   const trackLink = ev.trackSlug
     ? `<a href="${base}/tracks/${ev.trackSlug}" class="watch-track">${ev.trackName}</a>`
     : (ev.trackName ? `<span class="watch-track">${ev.trackName}</span>` : '');
