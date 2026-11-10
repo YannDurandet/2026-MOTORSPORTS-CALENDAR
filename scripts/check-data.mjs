@@ -40,14 +40,24 @@ const mainJsText    = readFileSync(resolve(root, 'src/scripts/main.js'), 'utf8')
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
+// Every event needs these as non-empty strings. An event missing one is
+// reported by name and left out of the later checks, which would otherwise
+// stop on a TypeError (ev.date.slice, ev.title.toUpperCase…).
+const REQUIRED_FIELDS = ['series', 'title', 'time', 'track', 'date'];
+
 // Collect calendar events in document order, grouped by series
 function collectCalEvents() {
   const bySlug = {};
   const all = [];
   for (const month of calendar) {
-    for (const week of month.weeks) {
-      for (const ev of week.events) {
-        if (!ev.series) continue;
+    for (const week of month.weeks ?? []) {
+      for (const ev of week.events ?? []) {
+        checked++;
+        const missing = REQUIRED_FIELDS.filter(k => typeof ev[k] !== 'string' || !ev[k].trim());
+        if (missing.length) {
+          fail.push(`[required-fields] ${ev.series ?? '(no series)'} "${ev.title ?? '(no title)'}" in "${week.label}" (${month.month}${month.year ? ' ' + month.year : ''}) has no ${missing.join(', ')}`);
+          continue;
+        }
         (bySlug[ev.series] ??= []).push(ev);
         all.push({ ev, week, month });
       }

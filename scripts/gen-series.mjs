@@ -39,6 +39,10 @@ export function buildSeries(calendar) {
           errors.push(`Missing date: series="${ev.series}" title="${ev.title}" week="${week.label}"`);
           continue;
         }
+        if (typeof (ev.shortName ?? ev.title) !== 'string') {
+          errors.push(`Missing title: series="${ev.series}" date="${ev.date}" week="${week.label}"`);
+          continue;
+        }
 
         (series[ev.series] ??= []).push({
           name: ev.shortName ?? ev.title.toUpperCase(),
