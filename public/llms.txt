@@ -81,7 +81,7 @@ Results: official series result releases
 
 - Site: [dord.racing](https://dord.racing)
 - Builder: Yann Durandet — [durandet.studio](https://durandet.studio)
-- Contact: durandet.yann.pro@gmail.com
+- Contact: the contact link in section 12 of [the privacy policy](https://dord.racing/legal/privacy)
 - X / Twitter: [@dord_racing](https://x.com/dord_racing)
 - Instagram: [@dord.racing](https://www.instagram.com/dord.racing/)
 - Tech stack: Astro (SSG), static JSON data files, vanilla JS
