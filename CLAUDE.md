@@ -192,7 +192,7 @@ Two separate Cloudflare Workers, hence two configs — this is intentional, not 
 | File | Deploys | Notes |
 |---|---|---|
 | `wrangler.toml` | the Astro site | via `@astrojs/cloudflare` |
-| `workers/wrangler.toml` | `dord-newsletter` | `cd workers && wrangler deploy`; cron `0 8 * * MON` |
+| `workers/wrangler.toml` | `dord-newsletter` | `cd workers && npx wrangler deploy --config wrangler.toml`; cron `0 8 * * MON`. The `--config` is needed once the site has been built in the same checkout: the build writes `.wrangler/deploy/config.json` at the root, and Wrangler won't choose between the two |
 
 `db/schema.sql` is the Turso subscriber schema. Run once, by hand:
 `npx turso db shell dord-subscribers < db/schema.sql`
