@@ -11,6 +11,15 @@
     border: 1px solid var(--wk-line);
     border-radius: var(--radius-2xl);
     overflow: hidden;
+    /* Off-screen week cards skip layout and paint until they near the
+       viewport (the home page renders ~100 of them). The card already clips
+       with overflow: hidden, so paint containment changes nothing visible.
+       Placeholder height only (median card ~370px; `auto` keeps a card's real
+       height once it has rendered); a placeholder width would become each
+       grid column's min-content floor. Same pattern as /tracks. */
+    content-visibility: auto;
+    contain-intrinsic-width: none;
+    contain-intrinsic-height: auto 370px;
 }
 .cal-v2 .wk-card:hover { box-shadow: none; }
 /* Past weeks: drained of colour rather than faded, so text keeps AA contrast. */
