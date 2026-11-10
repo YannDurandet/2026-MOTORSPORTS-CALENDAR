@@ -66,7 +66,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const venue = (tracksRaw as Venue[]).find(v => v.slug === slug)!;
 
 // ── Gather events from calendar ───────────────────────────────────────────────
-type ResultEntry = { race_label: string; winner: string; team: string; country: string; };
+// Single-driver series store `winner`; multi-driver series store `winners` (a crew).
+type ResultEntry = { race_label?: string; winner?: string; winners?: string[]; team?: string; manufacturer?: string; country?: string; };
 type CalEvent = {
   series: string; tag: string; title: string;
   week: string; layoutId: string | null;
@@ -360,7 +361,7 @@ const eventListSchema = (() => {
                 {ev.entries.map((r: ResultEntry) => (
                   <div class="result-entry">
                     <span class="res-label">{r.race_label}</span>
-                    <span class="res-winner">{r.winner}</span>
+                    <span class="res-winner">{r.winners?.length ? r.winners.join(' · ') : r.winner}</span>
                     <span class="res-team">{r.team}</span>
                     <span class="res-flag">{countryFlag(r.country)}</span>
                   </div>
