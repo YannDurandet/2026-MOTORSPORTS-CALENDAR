@@ -34,6 +34,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="nl-form-wrap">
           <form class="nl-form" id="nl-form" novalidate>
             <div class="nl-row">
+              <label for="nl-email" class="sr-only">Email address</label>
               <input
                 type="email"
                 id="nl-email"
@@ -42,15 +43,16 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                 placeholder="your@email.com"
                 autocomplete="email"
                 required
+                aria-describedby="nl-error"
               />
               <button type="submit" class="nl-btn" id="nl-btn">
                 <span id="nl-btn-label">SUBSCRIBE</span>
                 <span id="nl-btn-loading" hidden aria-hidden="true">···</span>
               </button>
             </div>
-            <p class="nl-error" id="nl-error" hidden></p>
+            <p class="nl-error" id="nl-error" role="alert" hidden></p>
           </form>
-          <p class="nl-success" id="nl-success" hidden>
+          <p class="nl-success" id="nl-success" role="status" tabindex="-1" hidden>
             You're in. First briefing lands before the weekend.
           </p>
           <p class="nl-fine">Free. Weekly. Unsubscribe any time.</p>
@@ -270,16 +272,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
   function showError(msg: string) {
     if (!errorMsg) return;
-    errorMsg.textContent = msg;
     errorMsg.hidden = false;
+    errorMsg.textContent = msg;
   }
 
   function showSuccess(msg: string) {
     if (form)       form.hidden       = true;
     if (fineMsg)    fineMsg.hidden    = true;
     if (successMsg) {
-      successMsg.textContent = msg;
       successMsg.hidden = false;
+      successMsg.textContent = msg;
+      successMsg.focus();
     }
   }
 
