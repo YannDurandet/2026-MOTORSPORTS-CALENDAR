@@ -15,12 +15,14 @@ const root = resolve(__dirname, '..');
 const fail  = [];   // accumulated failure messages
 let checked = 0;    // count of individual items verified
 
+// `test` gets (item, index): the standings check needs the index to compare
+// each row with the one before it.
 function check(label, items, test) {
-  for (const item of items) {
+  items.forEach((item, i) => {
     checked++;
-    const msg = test(item);
+    const msg = test(item, i);
     if (msg) fail.push(`[${label}] ${msg}`);
-  }
+  });
 }
 
 // ── Load data ────────────────────────────────────────────────────────────────
