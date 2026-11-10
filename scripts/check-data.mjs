@@ -82,6 +82,12 @@ while ((m = metaKeyRe.exec(metaBlock)) !== null) {
   metaKeys.add(m[1] ?? m[2]);
 }
 
+// seriesLabels keys (main.js): a slug missing there gets a filter button
+// that reads "undefined".
+let labelBlock = mainJsText.slice(mainJsText.indexOf('const seriesLabels = {'));
+labelBlock = labelBlock.slice(0, labelBlock.indexOf('};') + 2);
+const labelKeys = new Set([...labelBlock.matchAll(/(?:'([^']+)'|(\w[\w-]*))\s*:\s*'/g)].map(m => m[1] ?? m[2]));
+
 // CSS helpers
 function hasCssVar(slug) {
   return new RegExp(`--${slug}[^a-zA-Z0-9_-]`).test(cssText);
@@ -169,6 +175,7 @@ check('series-registration', allSeriesInCal, slug => {
   if (!seriesJson[slug])     msgs.push('missing from series.json');
   if (!contentSlugs.has(slug)) msgs.push('missing from seriesContent.json');
   if (!metaKeys.has(slug))   msgs.push('missing from seriesMetadata in main.js');
+  if (!labelKeys.has(slug))  msgs.push('missing from seriesLabels in main.js');
   if (!hasCssVar(slug))      msgs.push(`no --${slug} CSS variable`);
   if (!hasCssTagRule(slug))  msgs.push(`no .t-${slug} CSS rule`);
   return msgs.length ? `"${slug}": ${msgs.join(', ')}` : null;

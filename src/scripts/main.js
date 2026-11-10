@@ -51,7 +51,8 @@ const seriesMetadata = {
 // =============================================
 // FILTER CONSTANTS
 // =============================================
-const allSeries = ['f1', 'f1a', 'fe', 'sf', 'wec', 'imsa', 'wrc', 'indycar', 'nascar', 'motogp', 'wsbk', 'dtm', 'btcc', 'supercars', 'elms', 'gtwce', 'gtwca', 'nls', 'igtc', 'tcr', 'erc', 'h24eu', 'psc', 'bgt', 'eurx', 'asian-le-mans'];
+// One list to keep: the filter buttons follow seriesMetadata's order.
+const allSeries = Object.keys(seriesMetadata);
 const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
 const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
 
