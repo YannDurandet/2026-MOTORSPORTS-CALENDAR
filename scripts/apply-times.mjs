@@ -125,7 +125,8 @@ for (const update of updates) {
   }
 }
 
-writeFileSync(CALENDAR_PATH, JSON.stringify(calendar, null, 2));
+// Same layout as the file on disk (and results-sync.mjs): 2-space indent, final newline.
+writeFileSync(CALENDAR_PATH, JSON.stringify(calendar, null, 2) + '\n');
 
 console.log(`\nDone.`);
 console.log(`  Applied:     ${applied}`);
