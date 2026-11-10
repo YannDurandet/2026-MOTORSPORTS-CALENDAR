@@ -9,6 +9,7 @@ import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
 import seriesIndex from '../../data/series.json';
 import { jsonForScript } from '../lib/jsonForScript';
+import { trackSlugForSvg } from '../lib/events';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 // Race dates, embedded so the schedule renders without a post-paint fetch.
@@ -18,9 +19,6 @@ const seriesIndexJson = jsonForScript(seriesIndex);
 const trackBySlug = new Map<string, any>();
 for (const t of tracksData as any[]) trackBySlug.set(t.slug, t);
 
-function svgToSlug(svg: string): string {
-  return svg.replace(/\.svg$/, '').replace(/-(f1|motogp|fe|wsbk|oval|road)$/, '');
-}
 
 // Build howToWatch lookup
 const htwBySlug = new Map<string, any>();
@@ -48,8 +46,8 @@ for (const month of calendarData as any[]) {
   const year: number = month.year ?? 2026;
   for (const week of month.weeks) {
     for (const ev of week.events) {
-      const slug = svgToSlug(ev.track ?? '');
-      const track = trackBySlug.get(slug) ?? null;
+      const slug = trackSlugForSvg(ev.track);
+      const track = slug ? trackBySlug.get(slug) ?? null : null;
       watchEvents.push({
         series: ev.series,
         tag: ev.tag,

@@ -10,10 +10,9 @@ import Footer from '../components/Footer.astro';
 
 // Import data at build time
 import calendarData from '../../data/calendar.json';
-import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
 import seriesIndex from '../../data/series.json';
-import { ALL_EVENTS } from '../lib/events';
+import { ALL_EVENTS, trackSlugForSvg } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
 import { jsonForScript } from '../lib/jsonForScript';
@@ -21,7 +20,6 @@ import { FAQS } from '../lib/faq';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const seriesIndexJson = jsonForScript(seriesIndex);
-const trackSlugs = new Set((tracksData as any[]).map((t: any) => t.slug));
 
 // Find the calendar index of the current month so we can inject the newsletter
 // banner directly after it. Position is set at build time; the site is rebuilt
@@ -31,10 +29,6 @@ const _monthNames = ['january','february','march','april','may','june','july','a
 const newsletterAfterIdx = (calendarData as any[]).findIndex((m: any) =>
   m.month.toLowerCase().includes(_monthNames[_today.getMonth()]) && monthYear(m) === _today.getFullYear()
 );
-
-function stripTrackSuffix(svgName: string): string {
-  return svgName.replace(/\.svg$/, '').replace(/-(f1|motogp|fe|wsbk|oval|road)$/, '');
-}
 
 // Next season's published calendars, as plain links: the in-page 2027 preview
 // is a JS toggle, so without these nothing crawlable points at 2027.
@@ -55,8 +49,10 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
   weeks: month.weeks.map((week: any) => ({
     ...week,
     events: week.events.map((ev: any) => {
-      const slug = stripTrackSuffix(ev.track ?? '');
-      const trackHref = trackSlugs.has(slug) ? `${base}/tracks/${slug}` : null;
+      // The circuit page comes from tracks.json, as on event pages; the SVG's
+      // file name is not a reliable guide (madrid-f1.svg is not Jarama).
+      const slug = trackSlugForSvg(ev.track);
+      const trackHref = slug ? `${base}/tracks/${slug}` : null;
       return { ...ev, trackHref };
     }),
   })),

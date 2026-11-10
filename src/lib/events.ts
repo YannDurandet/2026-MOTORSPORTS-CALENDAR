@@ -95,6 +95,11 @@ for (const t of tracksData as any[]) {
   if (t.browserSvg) trackSlugBySvg[t.browserSvg] ??= t.slug;
 }
 
+/** The track page an SVG file belongs to, per tracks.json; null for rally flags and placeholders. */
+export function trackSlugForSvg(svg: string | null | undefined): string | null {
+  return svg ? trackSlugBySvg[svg] ?? null : null;
+}
+
 // ── Build ────────────────────────────────────────────────────────────────────
 
 type Raw = Omit<CalendarEvent, 'slug' | 'path'> & { baseSlug: string };
