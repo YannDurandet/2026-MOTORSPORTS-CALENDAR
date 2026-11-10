@@ -38,7 +38,7 @@ for (const month of cal) {
       if (new Date(ev.date) > cutoff) continue;  // hasn't run yet
       raced++;
       if (!ev.results || ev.results.length === 0) {
-        // `npm run results` is driven by week number, so surface it here.
+        // Week numbers help find the event in calendar.json and on the home page.
         const weekNum = week.label?.match(/WEEK\s+(\d+)/)?.[1] ?? '??';
         gaps.push(
           `wk ${String(weekNum).padStart(2)}  [${year}] ` +
@@ -56,5 +56,4 @@ if (!gaps.length) {
 
 console.log(`${gaps.length} of ${raced} raced events missing results:\n`);
 gaps.forEach(g => console.log('  ' + g));
-const weeks = [...new Set(gaps.map(g => g.slice(3, 5).trim()))];
-console.log(`\nFill them in with:  npm run results   (weeks: ${weeks.join(', ')})`);
+console.log('\nFill them in with:  npm run -s results:brief > brief.json   (fill the blanks)   then  npm run results:apply brief.json');

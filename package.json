@@ -13,7 +13,6 @@
     "gen:series-images": "node scripts/gen-series-images.mjs",
     "gen:track-pngs": "node scripts/export-track-pngs.mjs",
     "gen:map-status": "node scripts/gen-track-map-status.mjs",
-    "results": "node scripts/results.mjs",
     "results:gaps": "node scripts/find-gaps.mjs",
     "results:brief": "node scripts/results-sync.mjs brief",
     "results:apply": "node scripts/results-sync.mjs apply",

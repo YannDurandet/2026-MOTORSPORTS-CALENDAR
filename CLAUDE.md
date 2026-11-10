@@ -212,7 +212,6 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
 | `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
-| `npm run results` | Interactive results injector for `calendar.json` |
 | `npm run results:gaps` | List past events still missing results |
 | `npm run results:brief` | Emit a JSON skeleton for every raced event with no result |
 | `npm run results:apply <file>` | Validate + merge a filled skeleton into `calendar.json` |
