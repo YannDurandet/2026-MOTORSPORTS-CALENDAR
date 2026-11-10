@@ -59,8 +59,17 @@ export const isoToName: Record<string, string> = {
   'FI': 'Finland', 'PY': 'Paraguay', 'CL': 'Chile', 'PL': 'Poland',
 };
 
+const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+
+/** "GB" → "United Kingdom". Codes missing from the table above get the
+ *  runtime's English name ("CH" → "Switzerland") rather than the bare code. */
 export function countryName(code: string): string {
-  return isoToName[code] ?? code;
+  if (isoToName[code]) return isoToName[code];
+  try {
+    return regionNames.of(code) ?? code;
+  } catch {
+    return code;   // not a valid region code
+  }
 }
 
 // ── Track lookup maps ─────────────────────────────────────────────────────────
