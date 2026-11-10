@@ -34,8 +34,8 @@ const inputFile = process.argv[2];
 if (inputFile) {
   inputRaw = readFileSync(inputFile, 'utf-8');
 } else {
-  // stdin — works with pipe
-  inputRaw = readFileSync('/dev/stdin', 'utf-8');
+  // stdin (pipe). File descriptor 0 works on Windows too; /dev/stdin doesn't exist there.
+  inputRaw = readFileSync(0, 'utf-8');
 }
 
 let updates;
