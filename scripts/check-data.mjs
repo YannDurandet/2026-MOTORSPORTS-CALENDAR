@@ -8,6 +8,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
+import { buildSeries } from './gen-series.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, '..');
@@ -82,14 +83,9 @@ function hasCssTagRule(slug) {
 
 // ── (a) series.json regeneration deep-compare ────────────────────────────────
 {
-  // Regenerate in-memory using same logic as gen-series.mjs
-  const generated = {};
-  for (const { ev } of allEvents) {
-    (generated[ev.series] ??= []).push({
-      name: ev.shortName ?? ev.title.toUpperCase(),
-      date: ev.date,
-    });
-  }
+  // Regenerate in memory with the generator itself, so the two can't drift.
+  const { series: generated, errors: genErrors } = buildSeries(calendar);
+  for (const e of genErrors) { checked++; fail.push(`[series.json] ${e}`); }
 
   const committedKeys = Object.keys(seriesJson);
   const generatedKeys = Object.keys(generated);
