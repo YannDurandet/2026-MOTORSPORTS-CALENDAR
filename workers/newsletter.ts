@@ -45,7 +45,7 @@ function unsubUrl(email: string, token: string): string {
 }
 
 // =============================================================================
-// TYPES  (mirrored from send-newsletter.ts)
+// TYPES
 // =============================================================================
 
 interface WeekendEvent {
@@ -72,8 +72,6 @@ interface TrackEntry {
   calendarSvgs?: string[]; browserSvg?: string;
   layouts?: Array<{ id: string; label: string; calendarSvgs: string[] }>;
 }
-
-interface SeriesRace { name: string; date: string; _ts?: number }
 
 // =============================================================================
 // SERIES METADATA
@@ -191,10 +189,9 @@ async function getJson<T>(url: string): Promise<T> {
 
 async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
   // Fetch data from the live site's API endpoints (replaces fs.readFileSync)
-  const [calendar, tracks, seriesJson] = await Promise.all([
+  const [calendar, tracks] = await Promise.all([
     getJson<Array<{ month: string; year?: number; weeks: Array<{ label: string; events: CalendarEvent[] }> }>>('https://dord.racing/data/calendar.json'),
     getJson<TrackEntry[]>('https://dord.racing/data/tracks.json'),
-    getJson<Record<string, SeriesRace[]>>('https://dord.racing/data/series.json'),
   ]);
 
   const svgToTrack = buildSvgTrackMap(tracks);
@@ -229,7 +226,7 @@ async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
 }
 
 // =============================================================================
-// PART 2 — TEMPLATE  (identical to send-newsletter.ts)
+// PART 2 — TEMPLATE
 // =============================================================================
 
 function generateSubject(events: WeekendEvent[], weekNumber: number): string {
