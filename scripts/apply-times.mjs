@@ -6,8 +6,11 @@
  * and patches calendar.json, replacing "TBC" with the actual race time.
  *
  * Usage:
- *   node scripts/apply-times.mjs times.json       # from a file
- *   cat times.json | node scripts/apply-times.mjs # from stdin (pipe)
+ *   node scripts/apply-times.mjs times.json            # from a file
+ *   cat times.json | node scripts/apply-times.mjs      # from stdin (pipe)
+ *   node scripts/apply-times.mjs times.json --dry-run  # show the changes, write nothing
+ *
+ * calendar.json is written only when at least one time was applied.
  *
  * The input JSON must be an array of objects with:
  *   { "series": "f1", "title": "British Grand Prix", "weekLabel": "WEEK 28 • JUL 5", "timeCET": "15:00" }
@@ -30,7 +33,9 @@ const CALENDAR_PATH = join(__dir, '../data/calendar.json');
 
 // Read input: file arg or stdin
 let inputRaw;
-const inputFile = process.argv[2];
+const args = process.argv.slice(2);
+const dryRun = args.includes('--dry-run');
+const inputFile = args.find(a => !a.startsWith('--'));
 if (inputFile) {
   inputRaw = readFileSync(inputFile, 'utf-8');
 } else {
@@ -81,8 +86,8 @@ for (const update of updates) {
     continue;
   }
 
-  // Validate HH:MM format
-  if (!/^\d{2}:\d{2}$/.test(timeCET)) {
+  // Validate HH:MM (00:00 to 23:59), the pattern check-data.mjs uses
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(timeCET)) {
     console.warn(`⚠  Skipping "${title}" — timeCET "${timeCET}" is not HH:MM format.`);
     continue;
   }
@@ -125,10 +130,15 @@ for (const update of updates) {
   }
 }
 
-// Same layout as the file on disk (and results-sync.mjs): 2-space indent, final newline.
-writeFileSync(CALENDAR_PATH, JSON.stringify(calendar, null, 2) + '\n');
-
-console.log(`\nDone.`);
+if (dryRun) {
+  console.log(`\n(dry run) nothing written.`);
+} else if (applied > 0) {
+  // Same layout as the file on disk (and results-sync.mjs): 2-space indent, final newline.
+  writeFileSync(CALENDAR_PATH, JSON.stringify(calendar, null, 2) + '\n');
+  console.log(`\nDone. Now run: npm run gen:series && npm run check`);
+} else {
+  console.log(`\nNothing applied: calendar.json not written.`);
+}
 console.log(`  Applied:     ${applied}`);
 if (alreadySet > 0) console.log(`  Skipped (already set): ${alreadySet}`);
 if (notFound > 0)  console.log(`  Not found:   ${notFound}`);
