@@ -63,7 +63,7 @@ const gridImageSrcset = (slug: string) =>
   <main id="main-content" class="main-section">
     {grouped.map((group, groupIndex) => (
       <>
-        <div class="series-index-category">{group.category}</div>
+        <div class="series-index-category" role="heading" aria-level="2">{group.category}</div>
         <div class="series-index-grid">
           {group.series.map((s: any, i: number) => (
             <a href={`${base}/series/${s.slug}`} class={`series-index-card series-index-card--${s.slug}`}>

@@ -237,7 +237,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 
           <!-- Info -->
           <div class="track-info">
-            <div class="track-name">{venue.name}</div>
+            <div class="track-name" role="heading" aria-level="2">{venue.name}</div>
             <div class="track-location">{venue.city} · {venue.country}</div>
 
             {venue.events.length > 0 ? (

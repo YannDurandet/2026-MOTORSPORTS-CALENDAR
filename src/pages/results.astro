@@ -101,7 +101,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
         {months.map(month => (
           <section class="res-month" id={month} data-month={month}>
             <div class="res-month-header">
-              <span class="res-month-label">{monthLabel(month)}</span>
+              <span class="res-month-label" role="heading" aria-level="2">{monthLabel(month)}</span>
               <span class="res-month-count">{byMonth[month].reduce((n, g) => n + g.rows.length, 0)} results</span>
             </div>
             <div class="res-table">

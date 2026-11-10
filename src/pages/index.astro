@@ -137,7 +137,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
 
   <main id="main-content" class="main-section">
     <div id="this-weekend" class="this-weekend-section" hidden>
-      <div class="this-weekend-header">THIS WEEKEND</div>
+      <div class="this-weekend-header" role="heading" aria-level="2">THIS WEEKEND</div>
       <div id="this-weekend-grid" class="this-weekend-grid"></div>
     </div>
 
@@ -174,7 +174,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
       <div class="embed-modal-backdrop" id="ical-modal-backdrop"></div>
       <div class="embed-modal-box">
         <div class="embed-modal-header">
-          <h4 class="embed-modal-title" id="ical-modal-title">Subscribe to your calendar</h4>
+          <h4 class="embed-modal-title" id="ical-modal-title" aria-level="2">Subscribe to your calendar</h4>
           <button class="embed-modal-close" id="ical-modal-close" aria-label="Close calendar subscribe modal">&times;</button>
         </div>
         <p class="embed-modal-desc">Subscribe in your calendar app — events update automatically.</p>
@@ -216,7 +216,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <div id="calendar-container" class="cal-v2">
       {enrichedCalendar.map((month: any, idx: number) => (
         <>
-          <div class="month-header" data-year={monthYear(month)}>{month.month}{month.year ? ` ${month.year}` : ''}</div>
+          <div class="month-header" role="heading" aria-level="2" data-year={monthYear(month)}>{month.month}{month.year ? ` ${month.year}` : ''}</div>
           <div class="cal-grid" data-year={monthYear(month)}>
             {month.weeks.map((week: any) => {
               const weekYear = monthYear(month);
