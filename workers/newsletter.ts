@@ -10,6 +10,7 @@
 
 import { createClient } from '@libsql/client';
 import { Resend } from 'resend';
+import { sendInBatches, type Outgoing } from './sendBatches';
 
 // =============================================================================
 // ENVIRONMENT
@@ -182,12 +183,18 @@ function buildSvgTrackMap(tracks: TrackEntry[]): Map<string, TrackEntry> {
   return map;
 }
 
+async function getJson<T>(url: string): Promise<T> {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`${url} answered HTTP ${res.status}`);
+  return res.json() as Promise<T>;
+}
+
 async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
   // Fetch data from the live site's API endpoints (replaces fs.readFileSync)
   const [calendar, tracks, seriesJson] = await Promise.all([
-    fetch('https://dord.racing/data/calendar.json').then(r => r.json()) as Promise<Array<{ month: string; year?: number; weeks: Array<{ label: string; events: CalendarEvent[] }> }>>,
-    fetch('https://dord.racing/data/tracks.json').then(r => r.json())   as Promise<TrackEntry[]>,
-    fetch('https://dord.racing/data/series.json').then(r => r.json())   as Promise<Record<string, SeriesRace[]>>,
+    getJson<Array<{ month: string; year?: number; weeks: Array<{ label: string; events: CalendarEvent[] }> }>>('https://dord.racing/data/calendar.json'),
+    getJson<TrackEntry[]>('https://dord.racing/data/tracks.json'),
+    getJson<Record<string, SeriesRace[]>>('https://dord.racing/data/series.json'),
   ]);
 
   const svgToTrack = buildSvgTrackMap(tracks);
@@ -507,57 +514,75 @@ async function sendNewsletter(env: Env): Promise<void> {
     return;
   }
 
-  console.log(`Sending week ${weekNumber} newsletter to ${emails.length} subscribers…`);
+  // Sent log: one row per (issue, address), so a second run of the same issue
+  // only fills the gaps. The worker creates the table itself (also documented
+  // in db/schema.sql); if it can't, it sends without the log, as before.
+  const issue = fri.toISOString().slice(0, 10);
+  let logReady = true;
+  try {
+    await db.execute(`CREATE TABLE IF NOT EXISTS newsletter_sends (
+      week    TEXT     NOT NULL,
+      email   TEXT     NOT NULL,
+      sent_at DATETIME NOT NULL DEFAULT (datetime('now')),
+      PRIMARY KEY (week, email)
+    )`);
+  } catch (err: any) {
+    logReady = false;
+    console.error(`Sent log unavailable (${err?.message ?? err}): sending without it`);
+  }
+
+  console.log(`Sending week ${weekNumber} newsletter (issue ${issue}) to ${emails.length} subscribers…`);
 
   const resend    = new Resend(env.RESEND_API_KEY);
   const fromEmail = env.RESEND_FROM_EMAIL || 'DORD Racing <weekly@dord.racing>';
-  const BATCH     = 10;
-  let sent = 0, failed = 0;
 
-  for (let i = 0; i < emails.length; i += BATCH) {
-    const batch = emails.slice(i, i + BATCH);
-    const results = await Promise.allSettled(
-      batch.map(async to => {
-        // Per-recipient unsubscribe URL (HMAC token tied to email address)
-        const token    = env.UNSUB_SECRET ? await computeUnsubToken(to, env.UNSUB_SECRET) : '';
-        const unsubLink = token ? unsubUrl(to, token) : `mailto:weekly@dord.racing?subject=unsubscribe`;
+  const build = async (to: string): Promise<Outgoing> => {
+    // Per-recipient unsubscribe URL (HMAC token tied to email address)
+    const token     = env.UNSUB_SECRET ? await computeUnsubToken(to, env.UNSUB_SECRET) : '';
+    const unsubLink = token ? unsubUrl(to, token) : `mailto:weekly@dord.racing?subject=unsubscribe`;
+    return {
+      from:    fromEmail,
+      to,
+      subject,
+      // Personalise footer links in both HTML and plain text
+      html:    html.replace(`href="mailto:weekly@dord.racing?subject=unsubscribe"`, `href="${unsubLink}"`),
+      text:    plainText.replace('To unsubscribe, reply with "unsubscribe" in the subject line.', `Unsubscribe: ${unsubLink}`),
+      headers: token ? {
+        'List-Unsubscribe':      `<mailto:weekly@dord.racing?subject=unsubscribe>, <${unsubLink}>`,
+        'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+      } : {},
+    };
+  };
 
-        // Personalise footer links in both HTML and plain text
-        const recipHtml = html.replace(
-          `href="mailto:weekly@dord.racing?subject=unsubscribe"`,
-          `href="${unsubLink}"`,
-        );
-        const recipText = plainText.replace(
-          'To unsubscribe, reply with "unsubscribe" in the subject line.',
-          `Unsubscribe: ${unsubLink}`,
-        );
-
-        return resend.emails.send({
-          from:    fromEmail,
-          to,
-          subject,
-          html:    recipHtml,
-          text:    recipText,
-          headers: token ? {
-            'List-Unsubscribe':      `<mailto:weekly@dord.racing?subject=unsubscribe>, <${unsubLink}>`,
-            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-          } : {},
-        });
-      })
-    );
-    for (const [idx, result] of results.entries()) {
-      if (result.status === 'fulfilled' && !result.value.error) {
-        sent++;
-      } else {
-        failed++;
-        const err = result.status === 'rejected' ? result.reason : result.value.error;
-        console.error(`Failed for ${batch[idx]}: ${err?.message ?? err}`);
+  const summary = await sendInBatches(emails, build, {
+    alreadySent: async () => {
+      if (!logReady) return new Set<string>();
+      const r = await db.execute({ sql: 'SELECT email FROM newsletter_sends WHERE week = ?', args: [issue] });
+      return new Set(r.rows.map((x: any) => x.email as string));
+    },
+    sendBatch: async (batch, idempotencyKey) => {
+      try {
+        const { error } = await resend.batch.send(batch, { idempotencyKey });
+        if (!error) return { ok: true };
+        const code = error.statusCode;
+        return { ok: false, retryable: code === null || code === 429 || code >= 500, error: `${error.name}: ${error.message}` };
+      } catch (err: any) {
+        return { ok: false, retryable: true, error: err?.message ?? String(err) };
       }
-    }
-    if (i + BATCH < emails.length) await new Promise(r => setTimeout(r, 250));
-  }
+    },
+    recordSent: async (sent) => {
+      if (!logReady) return;
+      await db.batch(sent.map(email => ({
+        sql:  'INSERT OR IGNORE INTO newsletter_sends (week, email) VALUES (?, ?)',
+        args: [issue, email],
+      })), 'write');
+    },
+    sleep: ms => new Promise(resolve => setTimeout(resolve, ms)),
+    log:   msg => console.error(msg),
+  }, { issue });
 
-  console.log(`Done. Sent: ${sent}${failed > 0 ? ` / Failed: ${failed}` : ''}`);
+  console.log(`Done. Sent: ${summary.sent}${summary.skipped ? ` / Already sent earlier: ${summary.skipped}` : ''}${summary.failed ? ` / Failed: ${summary.failed}` : ''}`);
+  if (summary.failed) throw new Error(`${summary.failed} message(s) were not sent; run the send again to retry them`);
 }
 
 // =============================================================================
@@ -584,6 +609,6 @@ export default {
 
   // Cron handler — fires every Monday 08:00 UTC
   async scheduled(_event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
-    ctx.waitUntil(sendNewsletter(env));
+    ctx.waitUntil(sendNewsletter(env).catch(err => console.error('Newsletter send failed:', err?.message ?? err)));
   },
 };
