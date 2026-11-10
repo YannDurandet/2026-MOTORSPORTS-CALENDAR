@@ -19,6 +19,10 @@ Key features:
 - [Series guide (all 26 championships)](https://dord.racing/series)
 - [Track browser (130+ circuits)](https://dord.racing/tracks)
 - [Race results](https://dord.racing/results)
+- [Watch this weekend (sessions and broadcasters by country)](https://dord.racing/watch)
+- Event pages, one per race weekend: https://dord.racing/events/{year}/{series}-{event}, e.g. [Monaco GP 2026](https://dord.racing/events/2026/f1-monaco-gp)
+- 2027 season calendars, one per series that has published one: https://dord.racing/series/{slug}/2027, e.g. [F1 2027](https://dord.racing/series/f1/2027)
+- [Newsletter (weekly motorsport briefing)](https://dord.racing/newsletter)
 
 ## The 26 Series
 

@@ -1,12 +1,12 @@
 # 2027 Calendar Integration Status
 
-_Last updated: 2026-11-07_
+_Last updated: 2026-11-11_
 
 ## ✅ Incorporated
 
 | Slug | Series | Rounds |
 |------|--------|--------|
-| `asian-le-mans` | Asian Le Mans Series | 4 |
+| `asian-le-mans` | Asian Le Mans Series | 3 events / 6 races, 2026/27 season (Paul Ricard Nov 2026, Jerez Jan 2027, Portimão Feb 2027) |
 | `bgt` | British GT Championship | 6 weekends / 8 races, provisional (revised July 2026); round numbers follow the race order, race days within a weekend are not published |
 | `btcc` | British Touring Car Championship | 10 events (R1–30) |
 | `dtm` | Deutsche Tourenwagen Masters | 8 weekends / 16 races (times TBC) |

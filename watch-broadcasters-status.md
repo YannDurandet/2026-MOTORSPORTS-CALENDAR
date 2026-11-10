@@ -35,7 +35,7 @@ Target: EU27 + UK, NO, CH, IS + US, CA, AU, NZ, JP (36 countries). Cells = count
 
 ## Known gaps and things to re-check
 
-- **No listing at all:** `h24eu` (24H Series), `psc` (Porsche Supercup, rides on F1 weekends), `asian-le-mans` (2026/27 calendar not announced yet).
+- **No listing at all:** `h24eu` (24H Series), `psc` (Porsche Supercup, rides on F1 weekends), `asian-le-mans` (its 2026/27 calendar is out: Paul Ricard, Jerez, Portimão).
 - **Formula E:** the FIA page covers **Season 12 (2025/26)**. Season 13 starts 18 Dec 2026 and the page says its partners "will be updated when confirmed". Local entries are marked `2025/26 season`. Disney+ is the announced global streaming home from Season 13. UK (ITV, TNT) is confirmed to 2027. Refresh when the S13 list appears.
 - **WEC:** the official page is regional, not per country. Per-country entries come from the WEC Engine fan site, which says it was checked against the official list. Italy also had Rai Sport / Rai 2 for the Monza finale only. truTV (US) comes from TNT's announcement; the official regional list omits it.
 - **MotoGP:** the official page shows a country with no channel for DK, SE, NO, NL, LU, NZ (not listed → global). HR points at a Serbian site, so it's left out. Italy: Sky Sport until 2027 inclusive. Spain: DAZN to 2030, Portugal to 2031.
