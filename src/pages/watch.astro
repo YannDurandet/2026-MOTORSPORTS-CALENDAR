@@ -7,13 +7,10 @@ import CountryDialog from '../components/CountryDialog.astro';
 import calendarData from '../../data/calendar.json';
 import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
-import seriesIndex from '../../data/series.json';
 import { jsonForScript } from '../lib/jsonForScript';
 import { trackSlugForSvg } from '../lib/events';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-// Race dates, embedded so the schedule renders without a post-paint fetch.
-const seriesIndexJson = jsonForScript(seriesIndex);
 
 // Build track slug → name lookup
 const trackBySlug = new Map<string, any>();
@@ -27,11 +24,14 @@ for (const s of seriesContent as any[]) {
 }
 
 // Embed current + next week's calendar events (two weeks max)
-// Series.json dates are the source of truth for timing; we only need the
-// calendar's label, tag, title, time HTML, and track to render the rows.
-// We embed all months' weeks as a flat list; the client picks the active window.
+// Each event carries its own date (the same ISO timestamp series.json is
+// generated from), so the client needs no second data set to time it.
+// Only events from a week before the build onwards are embedded: the page
+// shows the current or next weekend, and builds run at least weekly.
 interface WatchEvent {
   series: string;
+  /** ISO timestamp of the main race, Paris offset. */
+  date: string;
   tag: string;
   title: string;
   timeHtml: string;
@@ -41,15 +41,18 @@ interface WatchEvent {
   trackSlug: string | null;
 }
 
+const EMBED_FROM = Date.now() - 7 * 864e5;
 const watchEvents: WatchEvent[] = [];
 for (const month of calendarData as any[]) {
   const year: number = month.year ?? 2026;
   for (const week of month.weeks) {
     for (const ev of week.events) {
+      if (!ev.date || Date.parse(ev.date) < EMBED_FROM) continue;
       const slug = trackSlugForSvg(ev.track);
       const track = slug ? trackBySlug.get(slug) ?? null : null;
       watchEvents.push({
         series: ev.series,
+        date: ev.date,
         tag: ev.tag,
         title: ev.title,
         timeHtml: ev.time ?? '',
@@ -65,12 +68,6 @@ for (const month of calendarData as any[]) {
 // howToWatch is a property of the SERIES, not the event. Inlining it on every
 // event repeated the same 14 objects 246 times and made this page a 261 KB
 // download. Emit each once and let the client look it up by series slug.
-//
-// DO NOT filter watchEvents down to upcoming races to shrink it further. The
-// client pairs each event with its timestamp by POSITIONAL INDEX into
-// series.json (see `seriesCounters` in the script below), so every event for a
-// series must be present, in calendar order. Dropping past events shifts every
-// index and silently shows the wrong time for every remaining race.
 const howToWatchBySeries: Record<string, any> = Object.fromEntries(
   [...new Set(watchEvents.map(e => e.series))]
     .filter(slug => htwBySlug.has(slug))
@@ -116,13 +113,6 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
       id="watch-htw-data"
       set:html={jsonForScript(howToWatchBySeries)}
     ></script>
-    <!-- Race dates (generated data/series.json), so the schedule renders in the
-         same task as the script instead of after a network round trip -->
-    <script
-      type="application/json"
-      id="watch-series-data"
-      set:html={seriesIndexJson}
-    ></script>
 
     <div id="watch-loading" class="watch-loading">Loading schedule…</div>
 
@@ -166,29 +156,6 @@ const ALL_EVENTS = JSON.parse(rawEl.textContent);
 const htwEl = document.getElementById('watch-htw-data');
 const HTW = htwEl ? JSON.parse(htwEl.textContent) : {};
 
-// Race dates keyed by series slug. watch.astro embeds them as #watch-series-data
-// so the schedule is built in this same task, before first paint. Fetching
-// /data/series.json first rendered the page empty, then inserted the schedule
-// after paint and pushed the footer down (CLS ≈ 0.46). The fetch below is only
-// a fallback for a missing or unparseable block.
-let seriesData = {};
-function setSeriesData(data) {
-  seriesData = data;
-  for (const list of Object.values(seriesData)) {
-    for (const race of list) race._ts = new Date(race.date).getTime();
-  }
-}
-
-try {
-  setSeriesData(JSON.parse(document.getElementById('watch-series-data').textContent));
-} catch {
-  try {
-    const base = document.querySelector('meta[name="astro-base"]')?.content ?? '';
-    const res = await fetch(`${base}/data/series.json`);
-    setSeriesData(await res.json());
-  } catch { /* render anyway without exact dates */ }
-}
-
 // ── Date helpers (Paris-day semantics) ───────────────────────────────────────
 function getParisDateStr(ts) {
   return new Intl.DateTimeFormat('en-CA', {
@@ -217,14 +184,10 @@ function getWeekend(offsetWeeks = 0) {
 
 function inferParisDay(ts) { return getParisDateStr(ts); }
 
-// ── Match calendar events to series.json timestamps ───────────────────────────
-const seriesCounters = {};
+// ── Timestamps (each embedded event carries its own date) ─────────────────────
 const eventWithTs = ALL_EVENTS.map(ev => {
-  const slug = ev.series;
-  seriesCounters[slug] = (seriesCounters[slug] ?? 0);
-  const idx = seriesCounters[slug]++;
-  const entry = (seriesData[slug] ?? [])[idx];
-  return { ...ev, ts: entry?._ts ?? null };
+  const ts = Date.parse(ev.date);
+  return { ...ev, ts: Number.isNaN(ts) ? null : ts };
 });
 
 // ── Find active weekend ───────────────────────────────────────────────────────
