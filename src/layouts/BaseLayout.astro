@@ -479,6 +479,12 @@ const speculationRules = {
       margin: 0;
     }
 
+    .cookie-banner-link {
+      color: var(--text-soft);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     .cookie-banner-actions {
       display: flex;
       gap: 8px;
@@ -772,7 +778,7 @@ const speculationRules = {
 
   <!-- Cookie consent banner -->
   <div id="cookie-banner" class="cookie-banner" hidden>
-    <p class="cookie-banner-text">We use analytics cookies to understand how visitors find us. No advertising, no third parties.</p>
+    <p class="cookie-banner-text">We use Google Analytics cookies, only if you accept, to understand how visitors find us. No advertising. <a href={`${base}/legal/privacy`} class="cookie-banner-link">Privacy policy</a></p>
     <div class="cookie-banner-actions">
       <button id="cookie-accept" class="cookie-btn cookie-btn--accept">Accept</button>
       <button id="cookie-decline" class="cookie-btn cookie-btn--decline">Decline</button>
@@ -806,6 +812,21 @@ const speculationRules = {
         window.gtag = gtag;
         gtag('js', new Date());
         gtag('config', GA4_ID);
+      }
+
+      // Declining after accepting: stop GA4 on this page and delete its cookies
+      // (set on this host and on the parent domain).
+      function clearAnalytics() {
+        window['ga-disable-' + GA4_ID] = true;
+        var host = location.hostname.replace(/^www\./, '');
+        document.cookie.split('; ').forEach(function (c) {
+          var name = c.split('=')[0];
+          if (name !== '_ga' && name !== '_gid' && name.indexOf('_ga_') !== 0) return;
+          var gone = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+          document.cookie = gone;
+          document.cookie = gone + '; domain=' + host;
+          document.cookie = gone + '; domain=.' + host;
+        });
       }
 
       function hideBanner() {
@@ -848,9 +869,17 @@ const speculationRules = {
         if (declineBtn) {
           declineBtn.addEventListener('click', function () {
             setCookie('cookie_consent', 'denied', 365);
+            clearAnalytics();
             hideBanner();
           });
         }
+        // "Cookie settings" in the footer: show the banner again to change the choice.
+        document.querySelectorAll('.js-cookie-settings').forEach(function (b) {
+          b.addEventListener('click', function () {
+            showBanner();
+            if (acceptBtn) acceptBtn.focus();
+          });
+        });
       });
     })();
   </script>
