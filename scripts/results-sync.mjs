@@ -24,7 +24,6 @@ import path from 'path';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CAL = path.join(__dirname, '../data/calendar.json');
-const SEASON = 2026;
 const GRACE_HOURS = Number(process.env.RESULTS_GRACE_HOURS ?? 12);
 
 // Field shape per series, derived from the 12 variants already in calendar.json.
@@ -47,8 +46,8 @@ const load = () => JSON.parse(readFileSync(CAL, 'utf8'));
 function pending(cal) {
   const cutoff = new Date(Date.now() - GRACE_HOURS * 3600_000);
   const out = [];
+  // Every season: the date cut-off already limits this to events that have run.
   for (const month of cal) {
-    if ((month.year ?? SEASON) !== SEASON) continue;
     for (const week of month.weeks ?? []) {
       for (const ev of week.events ?? []) {
         if (!ev.date || new Date(ev.date) > cutoff) continue;
@@ -101,18 +100,20 @@ function apply(file, dryRun) {
     if (!series || !title) { errors.push(`entry missing series/title: ${JSON.stringify(item).slice(0,80)}`); continue; }
     if (!Array.isArray(results) || !results.length) { errors.push(`${series}/${title}: no results array`); continue; }
 
-    // locate the event
+    // locate the event: any season, but only events that have already run, so
+    // next season's round with the same title can't be matched by mistake
+    const now = new Date();
     const hits = [];
     for (const month of cal) {
-      if ((month.year ?? SEASON) !== SEASON) continue;
       for (const w of month.weeks ?? []) {
         if (week && w.label !== week) continue;
         for (const ev of w.events ?? []) {
+          if (!ev.date || new Date(ev.date) > now) continue;
           if (ev.series === series && ev.title === title) hits.push({ ev, label: w.label });
         }
       }
     }
-    if (!hits.length)  { errors.push(`${series}/${title}: no matching event in ${SEASON}`); continue; }
+    if (!hits.length)  { errors.push(`${series}/${title}: no event with this title has run yet`); continue; }
     if (hits.length > 1) { errors.push(`${series}/${title}: ambiguous (${hits.length} matches) — add "week"`); continue; }
 
     const { ev } = hits[0];

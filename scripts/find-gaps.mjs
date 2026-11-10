@@ -17,8 +17,11 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const cal = JSON.parse(readFileSync(path.join(__dirname, '../data/calendar.json'), 'utf8'));
 
-/** Months with no `year` field belong to the current season. */
-const DEFAULT_YEAR = 2026;
+// Months without a `year` belong to DEFAULT_CALENDAR_YEAR in src/lib/season.ts
+// (read the same way as scripts/check-data.mjs does).
+const DEFAULT_YEAR = Number(
+  /DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(readFileSync(path.join(__dirname, '../src/lib/season.ts'), 'utf8'))?.[1],
+);
 
 // Grace period: results are rarely published the instant a race ends.
 const GRACE_HOURS = Number(process.env.RESULTS_GRACE_HOURS ?? 12);

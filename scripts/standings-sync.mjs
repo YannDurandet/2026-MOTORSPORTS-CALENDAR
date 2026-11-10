@@ -26,29 +26,40 @@ import path from 'path';
 const __dirname  = path.dirname(fileURLToPath(import.meta.url));
 const STANDINGS  = path.join(__dirname, '../data/standings.json');
 const CALENDAR   = path.join(__dirname, '../data/calendar.json');
-const SEASON     = 2026;
+
+// Months without a `year` belong to DEFAULT_CALENDAR_YEAR in src/lib/season.ts
+// (read the same way as scripts/check-data.mjs does).
+const DEFAULT_YEAR = Number(
+  /DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(readFileSync(path.join(__dirname, '../src/lib/season.ts'), 'utf8'))?.[1],
+);
 
 const load = f => JSON.parse(readFileSync(f, 'utf8'));
 const today = () => new Date().toISOString().slice(0, 10);
 
-/** Last raced round per series, from the calendar. */
+/**
+ * Last raced round per series, from the calendar, in any season. `count` is
+ * how many rounds of that series have run in the calendar year of the last one.
+ */
 function lastRaced() {
   const cal = load(CALENDAR);
   const now = new Date();
-  const out = {};
+  const raced = [];
   for (const month of cal) {
-    if ((month.year ?? SEASON) !== SEASON) continue;
+    const year = month.year ?? DEFAULT_YEAR;
     for (const w of month.weeks ?? []) {
       for (const ev of w.events ?? []) {
         if (!ev.date) continue;
         const d = new Date(ev.date);
-        if (d > now) continue;
-        const cur = out[ev.series];
-        if (!cur || d > cur.date) out[ev.series] = { date: d, title: ev.title };
-        out[ev.series].count = (cur?.count ?? 0) + 1;
+        if (d <= now) raced.push({ series: ev.series, date: d, title: ev.title, year });
       }
     }
   }
+  const out = {};
+  for (const r of raced) {
+    if (!out[r.series] || r.date > out[r.series].date) out[r.series] = { date: r.date, title: r.title, year: r.year };
+  }
+  for (const r of Object.values(out)) r.count = 0;
+  for (const r of raced) if (out[r.series].year === r.year) out[r.series].count++;
   return out;
 }
 
