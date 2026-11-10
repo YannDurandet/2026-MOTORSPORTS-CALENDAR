@@ -13,7 +13,12 @@
  *   { "series": "f1", "title": "British Grand Prix", "weekLabel": "WEEK 28 • JUL 5", "timeCET": "15:00" }
  *
  * Matching is: series + title + weekLabel (all three must match exactly).
- * "TBC" in the time HTML is replaced with the given timeCET value.
+ * "TBC" in the time string (bare, as calendar.json writes it, or wrapped in
+ * <span class="hl">) becomes <span class="hl">HH:MM</span>, and `date` moves to
+ * that time on the same Paris day, with the Paris offset for that day. The
+ * clock in a TBC event's `date` is a placeholder, and countdowns, series.json
+ * and the calendar feeds read `date` (AUDIT F-090). Run `npm run gen:series`
+ * afterwards.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -47,6 +52,22 @@ if (!Array.isArray(updates)) {
 }
 
 const calendar = JSON.parse(readFileSync(CALENDAR_PATH, 'utf-8'));
+
+const parisParts = (ms) => Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
+  timeZone: 'Europe/Paris', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+}).formatToParts(new Date(ms)).map(p => [p.type, p.value]));
+
+/** "2027-02-14T04:30:00+01:00": HH:MM on the Paris day of `iso`, with the right Paris offset. */
+function parisIso(iso, hhmm) {
+  const p = parisParts(Date.parse(iso));
+  const day = `${p.year}-${p.month}-${p.day}`;
+  for (const offset of ['+01:00', '+02:00']) {
+    const candidate = `${day}T${hhmm}:00${offset}`;
+    const back = parisParts(Date.parse(candidate));
+    if (`${back.year}-${back.month}-${back.day}` === day && `${back.hour}:${back.minute}` === hhmm) return candidate;
+  }
+  return null; // a time skipped by the spring clock change
+}
 
 let applied = 0;
 let notFound = 0;
@@ -82,10 +103,14 @@ for (const update of updates) {
           break;
         }
 
-        ev.time = ev.time.replace(
-          /<span class="hl">TBC<\/span>/,
-          `<span class="hl">${timeCET}</span>`
-        );
+        const newDate = parisIso(ev.date, timeCET);
+        const newTime = ev.time.replace(/<span class="hl">TBC<\/span>|\bTBC\b/, `<span class="hl">${timeCET}</span>`);
+        if (!newDate || newTime === ev.time) {
+          console.warn(`⚠  ${series.toUpperCase()} ${title}: could not apply ${timeCET} (time "${before}")`);
+          break;
+        }
+        ev.time = newTime;
+        ev.date = newDate;
 
         const after = ev.time.replace(/<[^>]+>/g, '');
         console.log(`✓  ${series.toUpperCase()} ${title}: "${before.replace(/<[^>]+>/g, '')}" → "${after}"`);

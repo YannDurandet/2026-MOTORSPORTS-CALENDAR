@@ -9,6 +9,7 @@ import seriesContent from '../../data/seriesContent.json';
 import tracksData from '../../data/tracks.json';
 import { findEvent, slugify } from './events';
 import { monthYear } from './season';
+import { isTimeTbc } from './tbc';
 
 export function escapeIcal(str: string): string {
   return str
@@ -41,6 +42,15 @@ export function toIcalDate(isoStr: string): string {
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}00Z`;
 }
 
+/** "2027-02-14" — the calendar day of an instant in Paris, the site's base time zone. */
+function parisDay(iso: string): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(iso));
+}
+function nextDay(ymd: string): string {
+  const [y, m, d] = ymd.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d + 1)).toISOString().slice(0, 10);
+}
+
 export function generateIcs(targetSlugs: string[], calName?: string): string {
   // Build track lookup
   const svgToTrack = new Map<string, any>();
@@ -55,8 +65,10 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
   interface IcsEvent {
     uid: string;
     summary: string;
+    /** Full DTSTART / DTEND properties: a UTC time, or VALUE=DATE for an all-day entry. */
     dtstart: string;
     dtend: string;
+    sortKey: string;
     location: string;
     url: string;
     description: string;
@@ -76,11 +88,21 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
         const round = (roundCounters[key] ?? 0) + 1;
         roundCounters[key] = round;
 
-        const dtstart = toIcalDate(ev.date);
-        const startMs = new Date(ev.date).getTime();
-        const endDate = new Date(startMs + 3 * 60 * 60 * 1000);
+        // Start time not published: the clock in `date` is a placeholder, so
+        // the event is an all-day entry on its Paris day instead of a
+        // three-hour slot at an invented time (AUDIT F-090).
+        const tbc = isTimeTbc(ev.time);
         const pad = (n: number) => String(n).padStart(2, '0');
-        const dtend = `${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}T${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}00Z`;
+        let dtstart: string, dtend: string;
+        if (tbc) {
+          const day = parisDay(ev.date);
+          dtstart = `DTSTART;VALUE=DATE:${day.replace(/-/g, '')}`;
+          dtend = `DTEND;VALUE=DATE:${nextDay(day).replace(/-/g, '')}`;
+        } else {
+          const endDate = new Date(new Date(ev.date).getTime() + 3 * 60 * 60 * 1000);
+          dtstart = `DTSTART:${toIcalDate(ev.date)}`;
+          dtend = `DTEND:${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}T${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}00Z`;
+        }
 
         const track = svgToTrack.get(ev.track ?? '');
         const meta = allSeriesMeta.find((s: any) => s.slug === slug);
@@ -96,16 +118,16 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
           ? `dord-${page.slug}-${year}@dord.racing`
           : `dord-${slugify(`${slug}-${ev.title}`)}-${year}-${ev.date.slice(5, 10)}@dord.racing`;
         const summary = `${ev.title} ${year}`;
-        const timeNote = /TBC/.test(ev.time ?? '') ? ' Start time TBC.' : '';
+        const timeNote = tbc ? ' Start time TBC.' : '';
         const description = `${seriesName} · Round ${round} of the ${year} season. ${location ? 'Venue: ' + location + '.' : ''}${timeNote}`;
 
-        events.push({ uid, summary, dtstart, dtend, location, url, description });
+        events.push({ uid, summary, dtstart, dtend, sortKey: new Date(ev.date).toISOString(), location, url, description });
       }
     }
   }
 
   // Sort by dtstart
-  events.sort((a, b) => a.dtstart.localeCompare(b.dtstart));
+  events.sort((a, b) => a.sortKey.localeCompare(b.sortKey));
 
   const resolvedCalName = calName ?? (
     targetSlugs.length === 1
@@ -129,8 +151,8 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
       'BEGIN:VEVENT',
       foldLine(`UID:${ev.uid}`),
       foldLine(`DTSTAMP:${now}`),
-      foldLine(`DTSTART:${ev.dtstart}`),
-      foldLine(`DTEND:${ev.dtend}`),
+      foldLine(ev.dtstart),
+      foldLine(ev.dtend),
       foldLine(`SUMMARY:${escapeIcal(ev.summary)}`),
       ...(ev.location ? [foldLine(`LOCATION:${escapeIcal(ev.location)}`)] : []),
       foldLine(`URL:${ev.url}`),
