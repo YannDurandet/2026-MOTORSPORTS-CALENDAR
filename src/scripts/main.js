@@ -149,7 +149,10 @@ function findRacesInWindow(startTs, endTs) {
         if (!isSeriesVisible(key)) continue;
         for (const r of list) {
             if (r._ts >= startTs && r._ts <= endTs) {
-                races.push({ seriesKey: key, name: r.name, date: r.date, _ts: r._ts, finished: r._ts < now });
+                // A race whose time is TBC (placeholder clock in `date`) counts as
+                // finished only once its day is over.
+                const finished = r.tbc ? r._ts + 864e5 < now : r._ts < now;
+                races.push({ seriesKey: key, name: r.name, date: r.date, _ts: r._ts, tbc: r.tbc === true, finished });
             }
         }
     }
@@ -186,8 +189,14 @@ function renderThisWeekend() {
         html += `<div class="tw-card ev-${r.seriesKey}">`;
         html += `<span class="tag t-${r.seriesKey}">${seriesLabels[r.seriesKey] || r.seriesKey.toUpperCase()}</span>`;
         html += `<div class="tw-name">${r.name}</div>`;
-        html += `<div class="tw-time">${formatRaceTime(r.date)}</div>`;
-        html += `<div class="tw-countdown" data-ts="${r._ts}">--</div>`;
+        if (r.tbc) {
+            // No published start time: show the day, and no countdown to a placeholder clock.
+            html += `<div class="tw-time">${formatRaceTime(r.date).split(' ')[0]} TBC</div>`;
+            html += '<div class="tw-countdown">TIME TBC</div>';
+        } else {
+            html += `<div class="tw-time">${formatRaceTime(r.date)}</div>`;
+            html += `<div class="tw-countdown" data-ts="${r._ts}">--</div>`;
+        }
         html += '</div>';
     }
     grid.innerHTML = html;
@@ -752,7 +761,8 @@ function initEventRows() {
     for (const row of rows) {
         const ts = Date.parse(row.dataset.ts);
         if (Number.isNaN(ts) || inPreview(row)) continue;
-        if (!row.classList.contains('is-finished') && now >= ts && now <= ts + LIVE_WINDOW_MS) {
+        // No LIVE flag for a TBC race: its clock time is a placeholder.
+        if (!row.classList.contains('is-finished') && !row.dataset.tbc && now >= ts && now <= ts + LIVE_WINDOW_MS) {
             row.classList.add('is-live');
             const flag = row.querySelector('.live-flag');
             if (flag) flag.hidden = false;

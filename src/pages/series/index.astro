@@ -128,7 +128,7 @@ const gridImageSrcset = (slug: string) =>
       }
     }
 
-    let data: Record<string, Array<{ name: string; date: string; _ts?: number }>> = {};
+    let data: Record<string, Array<{ name: string; date: string; tbc?: boolean; _ts?: number }>> = {};
     try {
       const res = await fetch(`${base}/data/series.json`);
       data = await res.json();
@@ -167,6 +167,15 @@ const gridImageSrcset = (slug: string) =>
 
         tEl.classList.remove('sc-off');
         rEl.textContent = next.name;
+
+        // Start time not published: the clock in `date` is a placeholder, so
+        // show the day rather than count down to it (AUDIT F-090).
+        if (next.tbc) {
+          tEl.textContent = new Date(next.date).toLocaleDateString('en-GB', {
+            weekday: 'short', day: 'numeric', month: 'short', timeZone: 'Europe/Paris',
+          }).toUpperCase() + ' · TIME TBC';
+          continue;
+        }
 
         const diff = (next._ts ?? 0) - now;
         const d = Math.floor(diff / 864e5);

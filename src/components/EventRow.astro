@@ -76,6 +76,7 @@ const finished = !!results?.length;
   class:list={['event', 'ev-row', `ev-${series}`, { 'is-finished': finished, 'is-tbc': isTbc }]}
   data-series={series}
   data-ts={date}
+  data-tbc={/\bTBC\b/.test(plain) ? 'true' : undefined}
 >
   <div class="ev-head">
     <button

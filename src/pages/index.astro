@@ -16,10 +16,12 @@ import { ALL_EVENTS, trackSlugForSvg } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
 import { jsonForScript } from '../lib/jsonForScript';
+import { withTbcFlags } from '../lib/tbc';
 import { FAQS } from '../lib/faq';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const seriesIndexJson = jsonForScript(seriesIndex);
+// Races whose start time isn't published carry `tbc: true` (see src/lib/tbc.ts).
+const seriesIndexJson = jsonForScript(withTbcFlags(seriesIndex));
 
 // Find the calendar index of the current month so we can inject the newsletter
 // banner directly after it. Position is set at build time; the site is rebuilt
