@@ -5,10 +5,12 @@
  * Converts every circuit SVG in public/assets/track-maps/ to a small PNG
  * suitable for email (white stroke, transparent background, 80×80px).
  *
- * WRC flag SVGs (*-wrc.svg) are skipped — they use linear gradients that
- * ImageMagick cannot render, and they are never referenced in email templates.
+ * WRC flag SVGs (*-wrc.svg) are skipped: the email template never shows them.
  *
- * Prerequisites: ImageMagick (convert) must be in PATH.
+ * Renders with sharp (already a devDependency), so it needs no system tool and
+ * runs the same on macOS and Windows. It used to shell out to ImageMagick's
+ * `convert`, which ImageMagick 7 no longer ships and which on Windows is a
+ * system disk utility.
  *
  * Usage:
  *   node scripts/export-track-pngs.mjs          # skip already-exported
@@ -17,22 +19,20 @@
 
 import fs   from 'fs';
 import path from 'path';
-import { execSync }      from 'child_process';
 import { fileURLToPath } from 'url';
+import sharp             from 'sharp';
 
 const __dirname  = path.dirname(fileURLToPath(import.meta.url));
 const ROOT       = path.join(__dirname, '..');
 const INPUT_DIR  = path.join(ROOT, 'public/assets/track-maps');
 const OUTPUT_DIR = path.join(ROOT, 'public/assets/tracks/email');
 const FORCE      = process.argv.includes('--force');
-const TMP_DIR    = '/tmp/track-pngs-build';
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-fs.mkdirSync(TMP_DIR,    { recursive: true });
 
 // --------------------------------------------------------------------------
-// Strip the decorative dot-pattern background rect and its <defs> block.
-// These use fill="url(#patternXXX)" which confuses ImageMagick. The actual
+// Strip the decorative dot-pattern background rect and its <defs> block
+// (fill="url(#patternXXX)"): an email icon is the outline only. The actual
 // track outline uses stroke="white" and renders fine without the defs.
 // --------------------------------------------------------------------------
 function cleanSvg(raw) {
@@ -42,8 +42,7 @@ function cleanSvg(raw) {
     .replace(/<defs>[\s\S]*?<\/defs>/g, '');
 }
 
-// Skip WRC national-flag SVGs — they use linear gradients ImageMagick can't handle
-// and are excluded from the email template by isCircuitSvg() anyway.
+// Skip WRC national-flag SVGs: the email template excludes them (isCircuitSvg()).
 const svgFiles = fs.readdirSync(INPUT_DIR)
   .filter(f => f.endsWith('.svg') && !f.endsWith('-wrc.svg'))
   .sort();
@@ -61,29 +60,25 @@ for (const filename of svgFiles) {
     continue;
   }
 
-  const inPath  = path.join(INPUT_DIR, filename);
-  const tmpPath = path.join(TMP_DIR, filename);
+  const inPath = path.join(INPUT_DIR, filename);
 
   try {
-    const raw     = fs.readFileSync(inPath, 'utf8');
-    const cleaned = cleanSvg(raw);
-    fs.writeFileSync(tmpPath, cleaned, 'utf8');
-
-    execSync(
-      `convert -background none -alpha set -density 150 "${tmpPath}" -resize 80x80 -type TrueColorAlpha "${outPath}"`,
-      { timeout: 15_000, stdio: 'pipe' }
-    );
+    const cleaned = cleanSvg(fs.readFileSync(inPath, 'utf8'));
+    // Same output as the old ImageMagick call: rendered at 150 dpi, fitted
+    // inside 80×80, transparent background.
+    await sharp(Buffer.from(cleaned), { density: 150 })
+      .resize(80, 80, { fit: 'inside' })
+      .png()
+      .toFile(outPath);
 
     ok++;
     process.stdout.write(`  ✓  ${outFilename}\n`);
   } catch (err) {
     failed++;
-    const msg = (err.stderr ?? err.message ?? '').toString().slice(0, 120);
+    const msg = String(err?.message ?? err).slice(0, 120);
     console.error(`  ✗  ${filename}: ${msg}`);
   }
 }
-
-try { fs.rmSync(TMP_DIR, { recursive: true }); } catch {}
 
 console.log(`
 Done.
