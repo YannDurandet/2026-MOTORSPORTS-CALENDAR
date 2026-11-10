@@ -14,7 +14,7 @@ import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
 import seriesIndex from '../../data/series.json';
 import { ALL_EVENTS } from '../lib/events';
-import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
+import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
 import { jsonForScript } from '../lib/jsonForScript';
 import { FAQS } from '../lib/faq';
@@ -26,10 +26,10 @@ const trackSlugs = new Set((tracksData as any[]).map((t: any) => t.slug));
 // Find the calendar index of the current month so we can inject the newsletter
 // banner directly after it. Position is set at build time; the site is rebuilt
 // weekly for results anyway, so this stays current.
-const _todayMonth = new Date().getMonth(); // 0-indexed
+const _today = new Date();
 const _monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
 const newsletterAfterIdx = (calendarData as any[]).findIndex((m: any) =>
-  m.month.toLowerCase().includes(_monthNames[_todayMonth])
+  m.month.toLowerCase().includes(_monthNames[_today.getMonth()]) && monthYear(m) === _today.getFullYear()
 );
 
 function stripTrackSuffix(svgName: string): string {
@@ -220,13 +220,14 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <div id="calendar-container" class="cal-v2">
       {enrichedCalendar.map((month: any, idx: number) => (
         <>
-          <div class="month-header" data-year={month.year ?? 2026}>{month.month}{month.year ? ` ${month.year}` : ''}</div>
-          <div class="cal-grid" data-year={month.year ?? 2026}>
+          <div class="month-header" data-year={monthYear(month)}>{month.month}{month.year ? ` ${month.year}` : ''}</div>
+          <div class="cal-grid" data-year={monthYear(month)}>
             {month.weeks.map((week: any) => {
-              const weekYear = month.year ?? 2026;
+              const weekYear = monthYear(month);
               const weekNum = week.label.match(/WEEK (\d+)/)?.[1];
+              // Ids are link targets (search, newsletter, shared links): later seasons are prefixed.
               const cardId = weekNum
-                ? (weekYear === 2027 ? `2027-week-${weekNum}` : `week-${weekNum}`)
+                ? (weekYear === DEFAULT_CALENDAR_YEAR ? `week-${weekNum}` : `${weekYear}-week-${weekNum}`)
                 : undefined;
               return (
               <div class="card wk-card" id={cardId}>

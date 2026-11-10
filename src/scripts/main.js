@@ -6,6 +6,16 @@ import {
     NEEDS_TZ_CONVERSION, MONTH_MAP, DAY_MAP,
     parseWeekDate, convertHHMM, convertTimeStr
 } from './tz.js';
+import { MONTH_NAMES, weekEnd, isPastMonth, isPastWeek, isPreviewYear } from './calendarDates.js';
+
+// The season a calendar element belongs to (month headers and grids carry data-year).
+function yearOf(el) {
+    return Number(el.closest('[data-year]')?.dataset.year) || new Date().getFullYear();
+}
+// Later seasons sit behind the preview toggle until their year starts.
+function inPreview(el) {
+    return isPreviewYear(yearOf(el), new Date());
+}
 
 // =============================================
 // SERIES METADATA (categories & regions)
@@ -364,8 +374,8 @@ function revealHashTarget() {
     const pastContainer = el.closest('#past-events-container');
     if (pastContainer) pastContainer.open = true;
 
-    // If card is inside a 2027 preview section, expand it first
-    if (el.closest('[data-year="2027"]')) {
+    // If card is inside a later season's preview, expand it first
+    if (inPreview(el)) {
         const btn = document.querySelector('.preview-2027-btn');
         if (btn && btn.getAttribute('aria-expanded') === 'false') btn.click();
     }
@@ -395,7 +405,7 @@ function scrollToCurrentWeek() {
     for (const card of cards) {
         if (card.classList.contains('past')) continue;
         if (card.style.display === 'none') continue;       // hidden by filters
-        if (card.closest('[data-year="2027"]')) continue;  // collapsed 2027 preview
+        if (inPreview(card)) continue;                     // collapsed preview season
         const monthHeader = card.closest('.cal-grid')?.previousElementSibling;
         if (monthHeader && monthHeader.classList.contains('month-header')) {
             monthHeader.scrollIntoView({ behavior, block: 'start' });
@@ -411,12 +421,6 @@ function scrollToCurrentWeek() {
 // =============================================
 function dimPastEvents() {
     const now = new Date();
-    const currentMonth = now.getMonth();
-    const currentDate = now.getDate();
-
-    const monthNames = ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
-        "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"];
-    const shortMonths = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 
     const pastContainer = document.getElementById('past-events-container');
     const pastSummary = document.getElementById('past-events-summary');
@@ -427,9 +431,11 @@ function dimPastEvents() {
     const monthHeaders = Array.from(calContainer.querySelectorAll('.month-header'));
 
     for (const header of monthHeaders) {
-        if (header.dataset.year === '2027') continue; // handled by 2027 toggle
-        const monthIdx = monthNames.indexOf(header.textContent);
-        if (monthIdx >= 0 && monthIdx < currentMonth) {
+        const year = yearOf(header);
+        if (isPreviewYear(year, now)) continue; // handled by the preview toggle
+        // "NOVEMBER", or "JANUARY 2027" for a tagged month
+        const monthIdx = MONTH_NAMES.indexOf(header.textContent.trim().split(/\s+/)[0]);
+        if (monthIdx >= 0 && isPastMonth(year, monthIdx, now)) {
             const grid = header.nextElementSibling;
             pastContainer.appendChild(header);
             if (grid && grid.classList.contains('cal-grid')) pastContainer.appendChild(grid);
@@ -439,18 +445,10 @@ function dimPastEvents() {
 
     const cards = calContainer.querySelectorAll('.card');
     for (const card of cards) {
-        if (card.closest('[data-year="2027"]')) continue; // handled by 2027 toggle
+        if (inPreview(card)) continue; // handled by the preview toggle
         const headText = card.querySelector('.c-head')?.textContent || '';
-        // "WEEK 32 • AUG 3-9" / "WEEK 31 • JUL 27 - AUG 2" → month + day the week ends on.
-        // Anchored to the end of the label so "WEEK 32" is never mistaken for a day.
-        const m = headText.match(/([A-Z]{3})\s+(\d{1,2})(?:\s*-\s*(?:([A-Z]{3})\s+)?(\d{1,2}))?\s*$/);
-        if (!m) continue;
-        const cardMonth = shortMonths.indexOf(m[3] || m[1]);
-        const lastDate = parseInt(m[4] || m[2]);
-        if (cardMonth < 0) continue;
-        if (cardMonth < currentMonth || (cardMonth === currentMonth && lastDate + 1 < currentDate)) {
-            card.classList.add('past');
-        }
+        const end = weekEnd(headText, yearOf(card));
+        if (end && isPastWeek(end, now)) card.classList.add('past');
     }
 
     if (pastMonthCount > 0 && pastSummary) {
@@ -606,36 +604,44 @@ function setupIcalModal() {
 }
 
 // =============================================
-// 2027 PREVIEW TOGGLE
+// NEXT-SEASON PREVIEW TOGGLE
 // =============================================
-function setup2027Toggle() {
+// Months of a later calendar year than today's stay collapsed behind a button.
+// From 1 January that season is the current one and shows normally. The
+// `preview-2027-*` class names and id are kept: global.css styles them.
+function setupPreviewToggle() {
     const calContainer = document.getElementById('calendar-container');
     if (!calContainer) return;
 
-    const els2027 = Array.from(calContainer.querySelectorAll('[data-year="2027"]'));
-    if (!els2027.length) return;
+    const now = new Date();
+    const previewEls = Array.from(calContainer.querySelectorAll('[data-year]'))
+        .filter(el => isPreviewYear(Number(el.dataset.year), now));
+    if (!previewEls.length) return;
+    const year = previewEls[0].dataset.year;
 
     // Use style.display instead of the `hidden` attribute — CSS `display: grid`
     // on .cal-grid can override the UA `[hidden] { display: none }` rule.
-    els2027.forEach(el => { el.style.display = 'none'; });
+    previewEls.forEach(el => { el.style.display = 'none'; });
 
-    // Build toggle wrapper and insert it immediately before the first 2027 element
+    // Build toggle wrapper and insert it immediately before the first preview element
     // (guarantees it lands between December and January regardless of grid layout).
+    const showLabel = `Preview ${year} season →`;
+    const hideLabel = `Hide ${year} preview ←`;
     const wrapper = document.createElement('div');
     wrapper.className = 'preview-2027-wrap';
     wrapper.innerHTML = `
       <button class="preview-2027-btn" aria-expanded="false" aria-controls="preview-2027-content">
-        Preview 2027 season →
+        ${showLabel}
       </button>
-      <div class="preview-2027-note">Some 2027 calendars may be incomplete</div>
+      <div class="preview-2027-note">Some ${year} calendars may be incomplete</div>
     `;
-    els2027[0].before(wrapper);
+    previewEls[0].before(wrapper);
 
-    // Year separator sits between the button and the first 2027 month header
+    // Year separator sits between the button and the first preview month header
     const separator = document.createElement('div');
     separator.className = 'year-separator';
     separator.id = 'preview-2027-content';
-    separator.textContent = '— 2027 —';
+    separator.textContent = `— ${year} —`;
     separator.style.display = 'none';
     wrapper.after(separator);
 
@@ -646,8 +652,8 @@ function setup2027Toggle() {
         btn.setAttribute('aria-expanded', String(next));
         const display = next ? '' : 'none';
         separator.style.display = display;
-        els2027.forEach(el => { el.style.display = display; });
-        btn.textContent = next ? 'Hide 2027 preview ←' : 'Preview 2027 season →';
+        previewEls.forEach(el => { el.style.display = display; });
+        btn.textContent = next ? hideLabel : showLabel;
     });
 }
 
@@ -670,7 +676,7 @@ function convertPreRenderedTimes() {
         const headEl = card.querySelector('.c-head');
         if (!headEl) return;
         const weekLabel = headEl.textContent;
-        const year = parseInt(card.closest('[data-year]')?.dataset.year) || 2026;
+        const year = yearOf(card);
         card.querySelectorAll('.meta-time').forEach(metaTime => {
             metaTime.innerHTML = convertTimeStr(metaTime.innerHTML, weekLabel, year);
         });
@@ -745,7 +751,7 @@ function initEventRows() {
     let next = null, nextTs = Infinity;
     for (const row of rows) {
         const ts = Date.parse(row.dataset.ts);
-        if (Number.isNaN(ts) || row.closest('[data-year="2027"]')) continue;
+        if (Number.isNaN(ts) || inPreview(row)) continue;
         if (!row.classList.contains('is-finished') && now >= ts && now <= ts + LIVE_WINDOW_MS) {
             row.classList.add('is-live');
             const flag = row.querySelector('.live-flag');
@@ -811,7 +817,7 @@ function setSeriesData(data) {
     initFilters();
     applyFilters(); // also renders the This Weekend section
     dimPastEvents();
-    setup2027Toggle();
+    setupPreviewToggle();
     initEventRows();
     setupIcalModal();
 
