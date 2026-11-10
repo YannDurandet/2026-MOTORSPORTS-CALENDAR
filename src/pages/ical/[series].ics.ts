@@ -17,11 +17,10 @@ export const GET: APIRoute = ({ params }) => {
 
   const icsContent = generateIcs(targetSlugs);
 
+  // Prerendered to a static file: the live site serves it with Cloudflare's own
+  // headers and drops these (caching rules go in public/_headers). The dynamic
+  // /api/ical feed is the one that sends Content-Disposition and Cache-Control.
   return new Response(icsContent, {
-    headers: {
-      'Content-Type': 'text/calendar; charset=utf-8',
-      'Content-Disposition': `attachment; filename="${slug}.ics"`,
-      'Cache-Control': 'public, max-age=3600',
-    },
+    headers: { 'Content-Type': 'text/calendar; charset=utf-8' },
   });
 };
