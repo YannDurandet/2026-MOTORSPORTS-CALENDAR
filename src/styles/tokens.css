@@ -75,7 +75,6 @@
     --fs-xl:      1rem;
     --fs-xl-2:    1.05rem;
     --fs-xl-3:    1.1rem;
-    --fs-2xl:     1.5rem;
     --fs-2xl-2:   1.4rem;
     --fs-2xl-3:   1.6rem;
     --fs-3xl:     2rem;
@@ -121,17 +120,13 @@
     --card-bg:   #0e141e;          /* = Figma bg/card */          /* cards, panels */
     --card-bg-2: var(--card-bg);
     --card-bg-3: var(--card-bg);
-    --card-bg-4: var(--card-bg);
     --card-bg-5: var(--card-bg);
-    --card-bg-6: var(--card-bg);
     --card-bg-7: var(--card-bg);
     --card-bg-8: #0b1118;
     --card-bg-9: rgba(13, 24, 34, 0.9);
 
     --surface-raised:   #131b27;   /* = Figma bg/surface */   /* chips, bars, hovered rows */
-    --surface-raised-2: #1a2a3a;
 
-    --surface-accent:   #1e3a52;   /* active / selected */
     --surface-accent-2: #1a3a5a;
     --surface-accent-3: #1e4a72;
     --surface-accent-4: #2a4050;
@@ -150,13 +145,10 @@
     --overlay-soft:     rgba(255, 255, 255, 0.08);
     --overlay-soft-2:   rgba(255, 255, 255, 0.06);
     --overlay-soft-3:   rgba(255, 255, 255, 0.07);
-    --overlay-soft-4:   rgba(255, 255, 255, 0.09);
     --overlay-soft-5:   rgba(255, 255, 255, 0.1);
     --overlay-medium:   rgba(255, 255, 255, 0.12);
     --overlay-medium-2: rgba(255, 255, 255, 0.14);
     --overlay-strong:   rgba(255, 255, 255, 0.2);
-    --overlay-strong-2: rgba(255, 255, 255, 0.24);
-    --overlay-strong-3: rgba(255, 255, 255, 0.28);
     --overlay-strong-4: rgba(255, 255, 255, 0.32);
 
     /* ── Scrims: dark layers over imagery and behind modals ───────────── */
@@ -187,14 +179,12 @@
     --border: #1a2231;             /* = Figma stroke/card */             /* default card border */
 
     --line-subtle:   #1a2231;
-    --line-subtle-2: var(--line-subtle);
     --line-subtle-3: var(--line-subtle);
     --line-subtle-4: var(--line-subtle);
     --line-subtle-5: var(--line-subtle);
 
     --line:   #232f41;             /* = Figma stroke/control */
     --line-2: #2e3f50;
-    --line-3: #2a3f50;
     --line-4: #2e4a5e;
     --line-5: #2a3540;
     --line-6: #3a5068;
@@ -202,7 +192,6 @@
 
     --line-neutral:   #555566;     /* grey (not blue-grey) chip borders */
     --line-neutral-2: #666677;
-    --line-neutral-3: #555555;
     --line-neutral-4: #444455;
     --line-neutral-5: #333333;
     --line-neutral-6: #333344;
@@ -212,25 +201,19 @@
 
     /* ── Text, brightest → dimmest ────────────────────────────────────── */
     --text-strong:   #fff;         /* headings, active labels */
-    --text-strong-2: #f0f2f5;
     --text-strong-3: #e8f0f5;
 
     --text-main: #dce4ee;          /* = Figma text/heading */          /* body default */
 
     --text-soft:    #c9d3de;       /* readable copy inside cards */
     --text-soft-2:  #d0dce6;
-    --text-soft-3:  #c8d8e0;
     --text-soft-4:  #c8d8e4;
     --text-soft-5:  #ccccdd;
-    --text-soft-6:  #cccccc;
-    --text-soft-7:  #bbcccc;
     --text-soft-8:  #b0c0cc;
-    --text-soft-9:  #bbbbbb;
     --text-soft-10: #b0bcc6;
     --text-soft-11: #a0b4c4;
     --text-soft-12: #a0b4c0;
     --text-soft-13: rgba(180, 200, 218, 0.9);
-    --text-soft-fade: #838f9a;     /* end stop of the gradient page title */
 
     --text-muted:    #93a1b4;      /* = Figma text/chip-muted */      /* secondary copy */
     --text-muted-2:  #aaaaaa;
@@ -238,17 +221,13 @@
     --text-muted-4:  #88aabb;
     --text-muted-5:  #99aabb;
     --text-muted-6:  #9aaab6;
-    --text-muted-7:  #8a9aa8;
-    --text-muted-8:  #8899aa;
     --text-muted-9:  #8a9499;
-    --text-muted-10: #888899;
     --text-muted-11: #888888;
 
     /* Lowest-emphasis readable text. Passes AA (>= 4.6:1) on --bg, --card-bg
      * and --surface-raised. Everything dimmer used to fail, so the old meta
      * variants and the dim / faint tiers now all resolve here.            */
     --text-meta:   #7f93a4;        /* labels, timestamps, meta */
-    --text-meta-2: var(--text-meta);
     --text-meta-3: var(--text-meta);
     --text-meta-4: var(--text-meta);
     --text-meta-5: var(--text-meta);
@@ -274,7 +253,6 @@
     /* ── Accent & interactive ─────────────────────────────────────────── */
     --accent:        #4a7090;      /* DORD blue: links, active borders */
     --accent-bright: #6abfff;
-    --accent-mid:    #3a8fd4;
     --accent-deep:   #2a5a8a;
     --accent-pale:   #a0c8e8;
     --accent-muted:  #6a9ab0;
@@ -291,10 +269,7 @@
     --success:          #5a9a7a;
     --success-2:        #4a7a5a;
     --success-bright:   #4ade80;
-    --success-bright-2: #81c784;
-    --success-line:     #4caf50;
     --success-line-2:   #2a6a2a;
-    --success-bg:       #1a2e1a;
     --success-bg-2:     #1a4a1a;
 
     --error: #b05a5a;
@@ -510,9 +485,7 @@
     --card-bg-9: rgba(255, 255, 255, 0.9);
 
     --surface-raised:   #e9eef5;
-    --surface-raised-2: #dfe6ef;
 
-    --surface-accent:   #d6e6f5;
     --surface-accent-2: #cfe1f4;
     --surface-accent-3: #c2d9f0;
     --surface-accent-4: #d3e0ea;
@@ -531,13 +504,10 @@
     --overlay-soft:     rgba(12, 28, 52, 0.1);
     --overlay-soft-2:   rgba(12, 28, 52, 0.08);
     --overlay-soft-3:   rgba(12, 28, 52, 0.09);
-    --overlay-soft-4:   rgba(12, 28, 52, 0.11);
     --overlay-soft-5:   rgba(12, 28, 52, 0.12);
     --overlay-medium:   rgba(12, 28, 52, 0.14);
     --overlay-medium-2: rgba(12, 28, 52, 0.16);
     --overlay-strong:   rgba(12, 28, 52, 0.22);
-    --overlay-strong-2: rgba(12, 28, 52, 0.26);
-    --overlay-strong-3: rgba(12, 28, 52, 0.3);
     --overlay-strong-4: rgba(12, 28, 52, 0.34);
 
     /* ── Scrims behind modals (image scrims stay dark, see header) ────── */
@@ -553,7 +523,6 @@
 
     --line:   #d3dae5;
     --line-2: #c3ccd9;
-    --line-3: #c7d0dc;
     --line-4: #b6c3d2;
     --line-5: #cbd2dc;
     --line-6: #a9b8c9;
@@ -561,7 +530,6 @@
 
     --line-neutral:   #b8bcc8;
     --line-neutral-2: #aab0be;
-    --line-neutral-3: #bdbdbd;
     --line-neutral-4: #c7c9d4;
     --line-neutral-5: #d0d0d0;
     --line-neutral-6: #d0d2dc;
@@ -571,25 +539,19 @@
 
     /* ── Text ─────────────────────────────────────────────────────────── */
     --text-strong:   #0a111a;
-    --text-strong-2: #111924;
     --text-strong-3: #131d29;
 
     --text-main: #1b2634;
 
     --text-soft:    #2b3849;
     --text-soft-2:  #2d3b4c;
-    --text-soft-3:  #2c3b47;
     --text-soft-4:  #2c3b49;
     --text-soft-5:  #36374a;
-    --text-soft-6:  #333333;
-    --text-soft-7:  #334444;
     --text-soft-8:  #3a4a5a;
-    --text-soft-9:  #3d3d3d;
     --text-soft-10: #3b4755;
     --text-soft-11: #405367;
     --text-soft-12: #3e505d;
     --text-soft-13: rgba(38, 54, 74, 0.92);
-    --text-soft-fade: #566475;
 
     --text-muted:    #4b596c;
     --text-muted-2:  #595959;
@@ -597,10 +559,7 @@
     --text-muted-4:  #476071;
     --text-muted-5:  #4f5f70;
     --text-muted-6:  #51606c;
-    --text-muted-7:  #4d5c69;
-    --text-muted-8:  #4c5c6c;
     --text-muted-9:  #4f585d;
-    --text-muted-10: #545468;
     --text-muted-11: #565656;
 
     --text-meta: #566679;          /* dimmest readable tier; AA on --bg, --card-bg, --surface-raised */
@@ -610,7 +569,6 @@
     /* ── Accent & interactive ─────────────────────────────────────────── */
     --accent:        #3b6587;
     --accent-bright: #0a62a6;
-    --accent-mid:    #1865a2;
     --accent-deep:   #24527f;
     --accent-pale:   #1d5a8c;
     --accent-muted:  #3e6d85;
@@ -627,10 +585,7 @@
     --success:          #2a6c4a;
     --success-2:        #2c6a42;
     --success-bright:   #106d2f;
-    --success-bright-2: #276d2a;
-    --success-line:     #3c9a40;
     --success-line-2:   #a5d6a7;
-    --success-bg:       #e6f5e8;
     --success-bg-2:     #d3ecd6;
 
     --error: #b03a3a;
