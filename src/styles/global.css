@@ -218,15 +218,6 @@ h2 {
     line-height: 1.1;
 }
 
-.header--dept {
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    color: var(--text-meta);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-}
-
 /* Page titles have long single words ("MOTORSPORT") that can't wrap. Cap
    the size to the screen width so they fit even when a webview enlarges
    text; vw is unaffected by text zoom. */
@@ -399,17 +390,6 @@ h2 {
     /* Space between text and map */
     min-height: 60px;
     /* Ensures the row is at least as tall as the box */
-}
-
-/* 2. Wrapper for the text (Tag, Title, Time) */
-.ev-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    /* Takes up all available width */
-    min-width: 0;
-    /* CRITICAL: Prevents long text from pushing the map out */
 }
 
 /* Clickable event rows */
@@ -763,7 +743,6 @@ h2 {
    paired per badge for AA, same rule as the .t-{slug} series tags. */
 .b-f2   { background: var(--f2);       color: var(--on-series-dark); }
 .b-f3   { background: var(--f3);       color: var(--on-series-dark); }
-.b-f1a  { background: var(--f1a-tag);  color: var(--on-series-dark); }
 .b-wrc2 { background: var(--wrc-tag);  color: var(--on-series); }
 .b-nxt  { background: var(--nxt);      color: var(--on-series); }
 
