@@ -69,35 +69,36 @@ function stale() {
   const raced = lastRaced();
   const rows = [];
 
+  // Every table is compared with the series' last race: a series can have one
+  // table up to date and another a round or more behind (GTWCA pro-am drivers,
+  // DTM manufacturers).
   for (const [series, tables] of Object.entries(st)) {
-    const first = Object.values(tables)[0];
-    if (!first) continue;
     const r = raced[series];
     if (!r) continue;
-    const updated = new Date(first.updatedAt + 'T23:59:59Z');
-    if (r.date <= updated) continue;
+    const behind = Object.entries(tables)
+      .filter(([, t]) => r.date > new Date(t.updatedAt + 'T23:59:59Z'))
+      .map(([name, t]) => ({ name, updatedAt: t.updatedAt, rounds: t.roundsComplete }));
+    if (!behind.length) continue;
     rows.push({
       series,
-      updatedAt: first.updatedAt,
       lastRace: r.date.toISOString().slice(0, 10),
       lastTitle: r.title,
-      tables: Object.keys(tables).length,
-      roundsComplete: first.roundsComplete,
       racedRounds: r.count,
+      total: Object.keys(tables).length,
+      behind,
     });
   }
 
-  if (!rows.length) { console.log('✓ standings:stale — all 16 series are up to date'); return; }
+  if (!rows.length) { console.log(`✓ standings:stale — all ${Object.keys(st).length} series are up to date`); return; }
 
   rows.sort((a, b) => a.lastRace.localeCompare(b.lastRace));
   console.log(`${rows.length} series stale:\n`);
   for (const r of rows) {
-    const behind = r.racedRounds - r.roundsComplete;
-    console.log(
-      `  ${r.series.padEnd(9)} updated ${r.updatedAt}  ` +
-      `last race ${r.lastRace} (${r.lastTitle})  ` +
-      `${r.tables} table(s)` + (behind > 0 ? `  ~${behind} round(s) behind` : '')
-    );
+    console.log(`  ${r.series.padEnd(9)} last race ${r.lastRace} (${r.lastTitle})  ${r.behind.length} of ${r.total} table(s) behind:`);
+    for (const b of r.behind) {
+      const gap = r.racedRounds - b.rounds;
+      console.log(`             ${b.name.padEnd(16)} updated ${b.updatedAt}, round ${b.rounds}` + (gap > 0 ? `  (~${gap} round(s) behind)` : ''));
+    }
   }
   console.log('\nResearch the new tables, then:  npm run standings:apply <file.json>');
 }
