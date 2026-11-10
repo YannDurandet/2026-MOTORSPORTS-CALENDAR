@@ -42,6 +42,15 @@ function fieldsFor(series) {
 
 const load = () => JSON.parse(readFileSync(CAL, 'utf8'));
 
+// A result belongs within three days of its event's weekend (start/end when
+// set, else the race date). Catches a result typed onto the wrong event, such
+// as a July race's winner on the February event at the same track.
+const utcDay = (iso) => { const [y, m, d] = String(iso).slice(0, 10).split('-').map(Number); return Date.UTC(y, m - 1, d); };
+function nearEvent(resultDate, ev) {
+  const t = utcDay(resultDate), DAY = 864e5;
+  return t >= utcDay(ev.start ?? ev.date) - 3 * DAY && t <= utcDay(ev.end ?? ev.date) + 3 * DAY;
+}
+
 /** Every event that has run but has no result yet. */
 function pending(cal) {
   const cutoff = new Date(Date.now() - GRACE_HOURS * 3600_000);
@@ -129,6 +138,7 @@ function apply(file, dryRun) {
                            : typeof who === 'string' && who.trim();
       if (!filled) { errors.push(`${where}: ${multi ? '"winners" must be a non-empty array' : '"winner" is required'}`); continue; }
       if (!r.date || !/^\d{4}-\d{2}-\d{2}$/.test(r.date)) { errors.push(`${where}: "date" must be YYYY-MM-DD`); continue; }
+      if (!nearEvent(r.date, ev)) { errors.push(`${where}: "date" ${r.date} is more than 3 days from the event (${ev.date.slice(0, 10)}): wrong event?`); continue; }
       if (r.country && !/^[A-Z]{2}$/.test(r.country)) { errors.push(`${where}: "country" must be a 2-letter uppercase code`); continue; }
       if (RALLY.has(series) && !r.co_driver) { errors.push(`${where}: rally results need "co_driver"`); continue; }
 
