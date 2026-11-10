@@ -379,11 +379,10 @@ if (!defaultYear) {
   }
 
   // (g4d) every F1 round carries its own weekend (start/end), and it matches the date
-  const isoDayRe = /^\d{4}-\d{2}-\d{2}$/;
   check('f1-weekends', allEvents.filter(({ ev }) => ev.series === 'f1'), ({ ev, week }) => {
     const id = `[f1] "${ev.title}" (${week.label})`;
     if (!ev.start || !ev.end) return `${id} is missing "start"/"end" (set for every F1 round)`;
-    if (!isoDayRe.test(ev.start) || !isoDayRe.test(ev.end)) return `${id} start "${ev.start}" / end "${ev.end}" must be YYYY-MM-DD`;
+    if (!isoDateRe.test(ev.start) || !isoDateRe.test(ev.end)) return `${id} start "${ev.start}" / end "${ev.end}" must be YYYY-MM-DD`;
     if (ev.start > ev.end) return `${id} start ${ev.start} is after end ${ev.end}`;
     if (dayOf(ev.end) - dayOf(ev.start) > 6 * DAY_MS) return `${id} weekend ${ev.start} to ${ev.end} is longer than a week`;
     const t = dayOf(ev.date);
@@ -395,7 +394,6 @@ if (!defaultYear) {
 }
 
 // ── (h) standings.json structure ─────────────────────────────────────────────
-const isoDateRe2= /^\d{4}-\d{2}-\d{2}$/;
 const validSeriesSlugs = new Set([...Object.keys(seriesJson), 'asian-le-mans']);
 
 for (const [slug, tables] of Object.entries(standingsJson)) {
@@ -411,7 +409,7 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
     if (!table.label) fail.push(`${prefix}: missing "label"`);
 
     checked++;
-    if (!table.updatedAt || !isoDateRe2.test(table.updatedAt)) {
+    if (!table.updatedAt || !isoDateRe.test(table.updatedAt)) {
       fail.push(`${prefix}: "updatedAt" must be YYYY-MM-DD (got "${table.updatedAt}")`);
     }
 
