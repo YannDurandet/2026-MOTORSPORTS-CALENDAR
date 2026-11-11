@@ -2918,3 +2918,16 @@ a {
 
 .faq-section { max-width: var(--w-content); }
 .faq-answer p { margin: 0; }
+
+/* Reduced motion, for every transition and animation on the site at once
+   (WCAG 2.3.3; the per-selector lists above missed 48 of 66). Durations go to
+   almost zero rather than none, so end states still apply; no script waits
+   for transitionend or animationend. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -597,7 +597,11 @@ const speculationRules = {
     const btt = document.getElementById('back-to-top');
     if (btt) {
       window.addEventListener('scroll', () => { btt.hidden = window.scrollY < 500; }, { passive: true });
-      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      // Smooth only when the visitor hasn't asked for reduced motion (as main.js does).
+      btt.addEventListener('click', () => window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      }));
     }
 
     // ── Global search ────────────────────────────────────────────────────────────
