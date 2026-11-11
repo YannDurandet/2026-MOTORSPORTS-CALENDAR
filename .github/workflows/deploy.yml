@@ -3,6 +3,11 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches: [main]
+  # Daily rebuild (05:00 UTC, 06:00/07:00 Paris): the "next round" on series
+  # pages, the share cards and the newsletter banner's month are computed at
+  # build time, so without a push they would stay as they were after a race.
+  schedule:
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 jobs:
