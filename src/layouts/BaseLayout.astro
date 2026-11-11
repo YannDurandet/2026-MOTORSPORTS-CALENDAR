@@ -154,7 +154,7 @@ const speculationRules = {
 
   <!-- Sticky bottom nav — appears when header nav scrolls off screen -->
   <div id="sticky-nav-bar" class="sticky-nav-bar" aria-hidden="true" inert>
-    <nav class="sticky-nav-inner">
+    <nav class="sticky-nav-inner" aria-label="Quick navigation">
       <a href={`${base}/`}       class="sticky-nav-link" data-page="calendar" aria-label="Calendar">
         <img src={`${base}/assets/calendar-icon.svg`} alt="" width="22" height="22">
         <span class="sticky-nav-label">Calendar</span>
@@ -568,8 +568,15 @@ const speculationRules = {
         : path.includes('/results') ? 'results'
         : path.includes('/watch') ? 'watch'
         : 'calendar';
+      const norm = (p: string) => p.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
+      const here = norm(path);
       stickyBar.querySelectorAll<HTMLAnchorElement>('.sticky-nav-link').forEach(link => {
-        link.classList.toggle('active', link.dataset.page === activePage);
+        const isActive = link.dataset.page === activePage;
+        link.classList.toggle('active', isActive);
+        // Same rule as Nav.astro: "page" on the section's own page, "true" inside it.
+        const own = norm(new URL(link.href).pathname) === here;
+        if (isActive) link.setAttribute('aria-current', own ? 'page' : 'true');
+        else link.removeAttribute('aria-current');
       });
 
       const observer = new IntersectionObserver(

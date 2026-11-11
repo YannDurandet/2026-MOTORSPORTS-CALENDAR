@@ -4,13 +4,20 @@ interface Props {
 }
 const { activePage } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+// The active link is also announced, not shown by colour alone: "page" on the
+// section's own page, "true" on a page inside it (an event, a series).
+// Paths compare without ".html", "/index" or a trailing slash (the build sees "/series.html").
+const norm = (p: string) => p.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
+const here = norm(Astro.url.pathname);
+const current = (page: Props['activePage'], href: string) =>
+  activePage !== page ? undefined : norm(href) === here ? 'page' : 'true';
 ---
-<nav class="site-nav" id="site-nav">
-  <a href={`${base}/`} class:list={["site-nav-link", { active: activePage === 'calendar' }]}>Calendar</a>
-  <a href={`${base}/series`} class:list={["site-nav-link", { active: activePage === 'series' }]}>Series</a>
-  <a href={`${base}/tracks`} class:list={["site-nav-link", { active: activePage === 'tracks' }]}>Tracks</a>
-  <a href={`${base}/results`} class:list={["site-nav-link", { active: activePage === 'results' }]}>Results</a>
-  <a href={`${base}/watch`} class:list={["site-nav-link", { active: activePage === 'watch' }]}>Watch</a>
+<nav class="site-nav" id="site-nav" aria-label="Main">
+  <a href={`${base}/`} class:list={["site-nav-link", { active: activePage === 'calendar' }]} aria-current={current('calendar', `${base}/`)}>Calendar</a>
+  <a href={`${base}/series`} class:list={["site-nav-link", { active: activePage === 'series' }]} aria-current={current('series', `${base}/series`)}>Series</a>
+  <a href={`${base}/tracks`} class:list={["site-nav-link", { active: activePage === 'tracks' }]} aria-current={current('tracks', `${base}/tracks`)}>Tracks</a>
+  <a href={`${base}/results`} class:list={["site-nav-link", { active: activePage === 'results' }]} aria-current={current('results', `${base}/results`)}>Results</a>
+  <a href={`${base}/watch`} class:list={["site-nav-link", { active: activePage === 'watch' }]} aria-current={current('watch', `${base}/watch`)}>Watch</a>
   <button class="search-trigger" id="search-trigger" aria-label="Search (/)">
     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true">
       <circle cx="8.5" cy="8.5" r="5.5"/>
