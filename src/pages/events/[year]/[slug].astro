@@ -21,7 +21,7 @@ import TripPlannerCard from '../../../components/TripPlannerCard.astro';
 import tracksData from '../../../../data/tracks.json';
 import seriesContentData from '../../../../data/seriesContent.json';
 import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
-import { accommodationQuery, PARTNER_REL } from '../../../lib/affiliates';
+import { accommodationQuery, AFFILIATE_ENABLED, PARTNER_REL } from '../../../lib/affiliates';
 import { parseSessions, mainRaceTime } from '../../../lib/sessions';
 import { venueTimeZone, formatIn, zoneAbbr } from '../../../lib/timezones';
 import { ticketLinks } from '../../../lib/tickets';
@@ -461,7 +461,7 @@ const breadcrumb = {
                 </li>
               ))}
             </ul>
-            {tickets.some(tk => tk.partner) && (
+            {AFFILIATE_ENABLED && tickets.some(tk => tk.partner) && (
               <p class="affiliate-notice">Motorsport Tickets is an affiliate link: we may earn a commission at no cost to you.</p>
             )}
           </section>

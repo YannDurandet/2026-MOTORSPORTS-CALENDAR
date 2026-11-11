@@ -9,7 +9,7 @@
  * PUBLIC_AFFILIATE_LINKS_ENABLED=true is set as a GitHub Actions variable
  * (see src/lib/affiliates.ts: it is read at build time).
  */
-import { buildAwinLink, MERCHANTS, PARTNER_REL } from '../lib/affiliates';
+import { AFFILIATE_ENABLED, buildAwinLink, MERCHANTS, PARTNER_REL } from '../lib/affiliates';
 
 interface Props {
   /** City name pulled from tracks.json (e.g. "Melbourne", "Silverstone") */
@@ -105,7 +105,8 @@ const rel = PARTNER_REL;
     </a>
 
   </div>
-  <p class="affiliate-notice">Affiliate links: we may earn a commission at no cost to you.</p>
+  {/* Only while tracking is live: with the switch off these are plain links. */}
+  {AFFILIATE_ENABLED && <p class="affiliate-notice">Affiliate links: we may earn a commission at no cost to you.</p>}
 </div>
 
 <style>
