@@ -10,6 +10,7 @@ import seriesContent from '../../data/seriesContent.json';
 import { jsonForScript } from '../lib/jsonForScript';
 import { trackSlugForSvg } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
+import { activeWeekend, weekendSections } from '../scripts/watchWeekend.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -66,6 +67,16 @@ for (const month of calendarData as any[]) {
   }
 }
 
+// The weekend as it stands at build time, rendered into the page so a crawler
+// or a visitor without JavaScript gets the schedule (Paris times, no
+// broadcasters: those follow the visitor's country). The script replaces it on
+// load with the weekend as it stands then. Daily builds keep it current.
+const buildWeekend = activeWeekend(watchEvents.map(e => ({ ...e, ts: Date.parse(e.date) })), new Date());
+const buildSections = buildWeekend.isEmpty ? [] : weekendSections(buildWeekend.events);
+const shortDay = (d: string) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-GB', { timeZone: 'UTC', day: 'numeric', month: 'short' });
+const buildSubtitle = buildWeekend.isEmpty ? 'Loading…'
+  : `${shortDay(buildWeekend.friStr!)} – ${shortDay(buildWeekend.sunStr!)} · PARIS TIME (CET/CEST)`;
+
 // howToWatch is a property of the SERIES, not the event. Inlining it on every
 // event repeated the same 14 objects 246 times and made this page a 261 KB
 // download. Emit each once and let the client look it up by series slug.
@@ -96,7 +107,7 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
   <header>
     <div class="header--left">
       <h1>Watch This<br>Weekend</h1>
-      <p class="watch-subtitle meta" id="watch-subtitle">Loading…</p>
+      <p class="watch-subtitle meta" id="watch-subtitle">{buildSubtitle}</p>
       <Nav activePage="watch" />
     </div>
   </header>
@@ -116,7 +127,7 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
       set:html={jsonForScript(howToWatchBySeries)}
     ></script>
 
-    <div id="watch-loading" class="watch-loading">Loading schedule…</div>
+    <div id="watch-loading" class="watch-loading" hidden={!buildWeekend.isEmpty}>Loading schedule…</div>
 
     <!-- Which country's broadcasters are showing, and how to change it (filled by JS) -->
     <div id="watch-country-bar" class="watch-country-bar" hidden>
@@ -124,8 +135,27 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
       <button type="button" id="watch-country-change" class="watch-country-change"></button>
     </div>
 
-    <div id="watch-content" hidden>
-      <!-- Day sections rendered by JS -->
+    <!-- Day sections: the build-time weekend below, replaced by the script on load -->
+    <div id="watch-content" hidden={buildWeekend.isEmpty}>
+      {buildSections.map(sec => (
+        <section class="watch-day-section">
+          <h2 class="watch-day-heading">{sec.heading}</h2>
+          <div class="watch-rows">
+            {sec.events.map(ev => (
+              <div class="watch-row" data-series={ev.series}>
+                <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series} watch-tag`}>{ev.tag}</a>
+                <div class="watch-row-body">
+                  <span class="watch-title">{ev.title}</span>
+                  {ev.trackSlug
+                    ? <a href={`${base}/tracks/${ev.trackSlug}`} class="watch-track">{ev.trackName}</a>
+                    : ev.trackName && <span class="watch-track">{ev.trackName}</span>}
+                  <span class="watch-times" set:html={ev.timeHtml} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
 
     <div id="watch-empty" class="watch-empty" hidden>
@@ -148,6 +178,7 @@ import {
   CHANGE_EVENT, getChoice, pickBroadcasters, regionLabel,
   openCountryDialog, initCountryDialog
 } from '../scripts/country.js';
+import { activeWeekend, weekendSections } from '../scripts/watchWeekend.js';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const rawEl = document.getElementById('watch-events-data');
@@ -158,75 +189,20 @@ const ALL_EVENTS = JSON.parse(rawEl.textContent);
 const htwEl = document.getElementById('watch-htw-data');
 const HTW = htwEl ? JSON.parse(htwEl.textContent) : {};
 
-// ── Date helpers (Paris-day semantics) ───────────────────────────────────────
-function getParisDateStr(ts) {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: SOURCE_TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit'
-  }).format(new Date(ts)); // "YYYY-MM-DD"
-}
-
-const DAY_NUM = { sunday: 0, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 5, saturday: 6 };
-
-function getWeekend(offsetWeeks = 0) {
-  const now = new Date();
-  const parisDateStr = getParisDateStr(now.getTime());
-  const parisDate = new Date(parisDateStr + 'T12:00:00Z');
-  const fullDow = new Intl.DateTimeFormat('en-US', {
-    timeZone: SOURCE_TIMEZONE, weekday: 'long'
-  }).format(now).toLowerCase();
-  const dayNum = DAY_NUM[fullDow] ?? 0;
-  // How many days back to reach the most-recent Friday
-  const daysSinceFri = (dayNum - 5 + 7) % 7;
-  const fri = new Date(parisDate);
-  fri.setUTCDate(parisDate.getUTCDate() - daysSinceFri + offsetWeeks * 7);
-  const sun = new Date(fri);
-  sun.setUTCDate(fri.getUTCDate() + 2);
-  return { friStr: getParisDateStr(fri.getTime()), sunStr: getParisDateStr(sun.getTime()), daysSinceFri };
-}
-
-function inferParisDay(ts) { return getParisDateStr(ts); }
-
 // ── Timestamps (each embedded event carries its own date) ─────────────────────
 const eventWithTs = ALL_EVENTS.map(ev => {
   const ts = Date.parse(ev.date);
   return { ...ev, ts: Number.isNaN(ts) ? null : ts };
 });
 
-// ── Find active weekend ───────────────────────────────────────────────────────
-// Mon–Thu: we're between weekends → look at the UPCOMING Fri–Sun (offset 1).
-// Fri–Sun: we're in the current weekend → start at offset 0.
-function getActiveWeekendEvents() {
-  const { daysSinceFri } = getWeekend(0);
-  // daysSinceFri: Fri=0, Sat=1, Sun=2, Mon=3, Tue=4, Wed=5, Thu=6
-  const startOffset = daysSinceFri > 2 ? 1 : 0;
-
-  for (let w = startOffset; w <= startOffset + 1; w++) {
-    const { friStr, sunStr } = getWeekend(w);
-    const matching = eventWithTs.filter(ev => {
-      if (ev.ts === null) return false;
-      const d = inferParisDay(ev.ts);
-      return d >= friStr && d <= sunStr;
-    });
-    if (matching.length > 0) return { events: matching, friStr, sunStr, isEmpty: false };
-  }
-  return { events: [], friStr: null, sunStr: null, isEmpty: true };
-}
+// ── Find active weekend (src/scripts/watchWeekend.js, shared with the build) ──
+const getActiveWeekendEvents = () => activeWeekend(eventWithTs, new Date());
 
 // ── Next upcoming event (for empty state) ─────────────────────────────────────
 function getNextEvent() {
   const now = Date.now();
   return eventWithTs.filter(ev => ev.ts !== null && ev.ts > now)
     .sort((a, b) => a.ts - b.ts)[0] ?? null;
-}
-
-// ── Multi-day detection ───────────────────────────────────────────────────────
-// Events that span multiple days (rallies, endurance) go in the "All Weekend"
-// section only. Point-in-time events go in their specific day section only.
-function isMultiDay(timeHtml) {
-  const plain = timeHtml.replace(/<[^>]+>/g, '');
-  if (plain.includes(' > ')) return true;
-  const days = [...(plain.matchAll(/\b(MON|TUE|WED|THU|FRI|SAT|SUN)\b/gi) ?? [])];
-  return new Set(days.map(m => m[0].toUpperCase())).size >= 2;
 }
 
 // ── Broadcaster pills ─────────────────────────────────────────────────────────
@@ -280,6 +256,7 @@ const { events, friStr, sunStr, isEmpty } = getActiveWeekendEvents();
 if (loadingEl) loadingEl.hidden = true;
 
 if (isEmpty) {
+  contentEl.hidden = true;   // the build-time schedule, if the weekend has moved on
   emptyEl.hidden = false;
   const next = getNextEvent();
   const msgEl  = document.getElementById('watch-empty-msg');
@@ -294,25 +271,6 @@ if (isEmpty) {
 } else {
   contentEl.hidden = false;
 
-  const multiDayEvs = events.filter(ev => isMultiDay(ev.timeHtml));
-  const singleDayEvs = events.filter(ev => !isMultiDay(ev.timeHtml));
-
-  // Group single-day events by their actual race day in Paris time
-  const byDay = {};
-  const DAY_ORDER = [];
-  for (const ev of singleDayEvs) {
-    const d = inferParisDay(ev.ts);
-    if (!byDay[d]) { byDay[d] = []; DAY_ORDER.push(d); }
-    byDay[d].push(ev);
-  }
-  DAY_ORDER.sort();
-
-  function dayLabel(dateStr) {
-    return new Date(dateStr + 'T12:00:00Z').toLocaleDateString('en-GB', {
-      weekday: 'long', day: 'numeric', month: 'long'
-    });
-  }
-
   function section(heading, evList) {
     return `<section class="watch-day-section">
       <h2 class="watch-day-heading">${heading}</h2>
@@ -320,10 +278,7 @@ if (isEmpty) {
     </section>`;
   }
 
-  let html = '';
-  if (multiDayEvs.length) html += section('All Weekend', multiDayEvs);
-  for (const day of DAY_ORDER) html += section(dayLabel(day), byDay[day]);
-
+  const html = weekendSections(events).map(s => section(s.heading, s.events)).join('');
   contentEl.innerHTML = html;
 
   // Update subtitle
