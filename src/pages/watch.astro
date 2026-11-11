@@ -141,7 +141,7 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
         <section class="watch-day-section">
           <h2 class="watch-day-heading">{sec.heading}</h2>
           <div class="watch-rows">
-            {sec.events.map(ev => (
+            {sec.events.map((ev: WatchEvent) => (
               <div class="watch-row" data-series={ev.series}>
                 <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series} watch-tag`}>{ev.tag}</a>
                 <div class="watch-row-body">
