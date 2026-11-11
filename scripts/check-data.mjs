@@ -8,6 +8,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { resolve, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
+import { execFileSync } from 'child_process';
 import { buildSeries } from './gen-series.mjs';
 import { hasEventPage, pageSlugs } from '../src/lib/eventSlugs.js';
 
@@ -374,6 +375,38 @@ if (!defaultYear) {
         ? `${url} is used by both ${other} and [${ev.series}] "${ev.title}" (${ev.date.slice(0, 10)}): pin one with "slug"`
         : null;
     });
+  }
+
+  // (g4c1) no event URL disappears. Slugs follow titles unless `slug` pins
+  // them, and a second event with the same series and title adds a month
+  // suffix, so an edit can silently move an indexed page. Compare with the
+  // last commit: every URL it produced must still exist, or have a line in
+  // public/_redirects. Skipped (with a note) where git or HEAD isn't available.
+  {
+    const urlsOf = (cal, defYear) => {
+      const yearOfM = (month) => month.year ?? defYear;
+      const pages = cal.flatMap(month => (month.weeks ?? []).flatMap(week =>
+        (week.events ?? []).filter(hasEventPage).map(ev => ({ year: yearOfM(month), ev }))));
+      return new Set(pageSlugs(pages).map((slug, i) => `/events/${pages[i].year}/${slug}`));
+    };
+    let headCal = null, headYear = defaultYear;
+    try {
+      const git = (p) => execFileSync('git', ['show', `HEAD:${p}`], { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+      headCal = JSON.parse(git('data/calendar.json'));
+      headYear = Number(/DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(git('src/lib/season.ts'))?.[1]) || defaultYear;
+    } catch {
+      console.log('  (event-urls-kept skipped: no git history to compare with)');
+    }
+    if (headCal) {
+      const now = urlsOf(calendar, defaultYear);
+      const redirected = new Set(readFileSync(resolve(root, 'public/_redirects'), 'utf8')
+        .split('\n').map(l => l.trim().split(/\s+/)[0]).filter(p => p && !p.startsWith('#')));
+      const lost = [...urlsOf(headCal, headYear)].filter(u => !now.has(u) && !redirected.has(u));
+      checked++;
+      for (const u of lost) {
+        fail.push(`[event-urls-kept] ${u} existed in the last commit and is gone: pin the old URL with "slug", or add a 301 for it to public/_redirects`);
+      }
+    }
   }
 
   // (g4c2) home-page week-card ids stay unique. A week split across two months
