@@ -80,7 +80,6 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
   }
 
   const events: IcsEvent[] = [];
-  const roundCounters: Record<string, number> = {};
 
   for (const month of calendarData as any[]) {
     const year = monthYear(month);
@@ -88,10 +87,6 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
       for (const ev of week.events) {
         const slug = ev.series;
         if (!targetSlugs.includes(slug) || !ev.date) continue;
-
-        const key = `${slug}-${year}`;
-        const round = (roundCounters[key] ?? 0) + 1;
-        roundCounters[key] = round;
 
         // Start time not published: the clock in `date` is a placeholder, so
         // the event is an all-day entry on its Paris day instead of a
@@ -125,7 +120,9 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
           : `dord-${slugify(`${slug}-${ev.title}`)}-${year}-${ev.date.slice(5, 10)}@dord.racing`;
         const summary = `${ev.title} ${year}`;
         const timeNote = tbc ? ' Start time TBC.' : '';
-        const description = `${seriesName} · Round ${round} of the ${year} season. ${location ? 'Venue: ' + location + '.' : ''}${timeNote}`;
+        // No "Round N of the season": counted per calendar year it was wrong for
+        // series that open in December, and a double-header is one entry but two rounds.
+        const description = `${seriesName}.${location ? ' Venue: ' + location + '.' : ''}${timeNote}`;
 
         events.push({ uid, summary, dtstart, dtend, sortKey: new Date(ev.date).toISOString(), location, url, description });
       }

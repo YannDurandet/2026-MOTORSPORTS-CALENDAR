@@ -30,7 +30,7 @@ import { venueFor } from '../../../lib/venues';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
 import { seriesShort } from '../../../lib/seriesShort';
-import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
+import { DEFAULT_CALENDAR_YEAR, seasonOf } from '../../../lib/season';
 import { jsonForScript } from '../../../lib/jsonForScript';
 
 export function getStaticPaths() {
@@ -72,7 +72,10 @@ const isPast = !!ev.results?.length;
 const alsoAtTrack = ev.trackSlug
   ? eventsForTrack(ev.trackSlug, ev.year).filter(e => e.slug !== ev.slug)
   : [];
-const seriesRound = eventsForSeries(ev.series, ev.year);
+// The event's season, not its calendar year: Formula E and the Asian Le Mans
+// Series open in December, and their opener belongs with the rounds after New Year.
+const season = seasonOf(ev.series, ev.date);
+const seriesRound = eventsForSeries(ev.series).filter(e => seasonOf(e.series, e.date) === season);
 const roundIndex = seriesRound.findIndex(e => e.slug === ev.slug);
 const prevRound = roundIndex > 0 ? seriesRound[roundIndex - 1] : null;
 const nextRound = roundIndex >= 0 && roundIndex < seriesRound.length - 1 ? seriesRound[roundIndex + 1] : null;
@@ -110,7 +113,8 @@ const typeWord: Record<string, string> = { permanent: 'permanent road', street: 
 const firstResult = ev.results?.length === 1 ? ev.results[0] : null;
 const overview: string[] = [];
 overview.push(
-  `The ${ev.title} is round ${roundIndex + 1} of ${seriesRound.length} in the ${ev.year} ${seriesName} season` +
+  // "event", not "round": a double-header weekend is one calendar event but two rounds.
+  `The ${ev.title} is event ${roundIndex + 1} of ${seriesRound.length} on the ${season} ${seriesName} calendar` +
   (venue ? (isRally ? `, based in ${venue.city}, ${venueCountry}` : `, at ${venue.name} in ${venue.city}, ${venueCountry}`) : '') +
   (ev.start && ev.end ? `, from ${longDay(ev.start)} to ${longDay(ev.end)}.` : ` (${eventRange(ev)}).`)
 );
