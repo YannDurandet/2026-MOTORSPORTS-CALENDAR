@@ -91,7 +91,7 @@ for (const month of calendarData as any[]) {
       }
       const path = findEvent(month.year ?? 2026, ev.series, ev.title, week.label)?.path ?? null;
       if (ev.results?.length) {
-        const isDupe = pastResults.some(e => e.series === ev.series && e.title === ev.title);
+        const isDupe = pastResults.some(e => e.series === ev.series && e.title === ev.title && e.week === week.label);
         if (!isDupe) pastResults.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId, path, entries: ev.results });
       } else {
         const isDupe = upcomingEvents.some(e => e.series === ev.series && e.title === ev.title && e.week === week.label);
