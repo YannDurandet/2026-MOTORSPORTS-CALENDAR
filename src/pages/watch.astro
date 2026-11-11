@@ -82,7 +82,7 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
   ogImage="https://dord.racing/assets/og/og-watch.webp"
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [

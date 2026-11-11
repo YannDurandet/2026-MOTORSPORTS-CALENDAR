@@ -14,6 +14,7 @@ import { eventsForSeries } from '../../lib/events';
 import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
 import { seriesShort } from '../../lib/seriesShort';
 import { ogPath } from '../../lib/ogPaths';
+import { jsonForScript } from '../../lib/jsonForScript';
 
 export function getStaticPaths() {
   return (seriesContent as any[]).map((s: any) => ({ params: { slug: s.slug } }));
@@ -88,9 +89,9 @@ const pageDescription = customDescriptions[slug!] ?? series.tagline;
   ogImage={ogPath(`series/${slug}`)}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(sportsOrgSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-    {roundsSchema && <script type="application/ld+json" set:html={JSON.stringify(roundsSchema)} />}
+    <script type="application/ld+json" set:html={jsonForScript(sportsOrgSchema)} />
+    <script type="application/ld+json" set:html={jsonForScript(breadcrumbSchema)} />
+    {roundsSchema && <script type="application/ld+json" set:html={jsonForScript(roundsSchema)} />}
   </Fragment>
   <Banner />
   <header>

@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 
 import seriesContent from '../../../data/seriesContent.json';
 import { seriesImages } from '../../lib/seriesImages';
+import { jsonForScript } from '../../lib/jsonForScript';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -41,7 +42,7 @@ const gridImageSrcset = (slug: string) =>
   ogImage="https://dord.racing/assets/og/og-series.webp"
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [

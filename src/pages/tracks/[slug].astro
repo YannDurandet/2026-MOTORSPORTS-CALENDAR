@@ -32,6 +32,7 @@ import { showOnTrackPages } from '../../lib/season';
 import { findEvent } from '../../lib/events';
 import { fitTitle } from '../../lib/seo';
 import { ogPath } from '../../lib/ogPaths';
+import { jsonForScript } from '../../lib/jsonForScript';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Logistics = {
@@ -186,7 +187,7 @@ const eventListSchema = (() => {
   ogImage={ogPath(`tracks/${slug}`)}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "SportsActivityLocation",
       "name": venue.name,
@@ -198,7 +199,7 @@ const eventListSchema = (() => {
       "url": `https://dord.racing/tracks/${slug}`,
       ...((venue as any).website ? { "sameAs": (venue as any).website } : {}),
     })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -208,7 +209,7 @@ const eventListSchema = (() => {
       ],
     })} />
     {eventListSchema && (
-      <script type="application/ld+json" set:html={JSON.stringify(eventListSchema)} />
+      <script type="application/ld+json" set:html={jsonForScript(eventListSchema)} />
     )}
   </Fragment>
   <header>

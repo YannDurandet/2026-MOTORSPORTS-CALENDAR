@@ -21,6 +21,7 @@ import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
 import { seriesShort } from '../../../lib/seriesShort';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
+import { jsonForScript } from '../../../lib/jsonForScript';
 
 export function getStaticPaths() {
   const pairs = new Set(
@@ -85,8 +86,8 @@ const itemList = {
   ogImage={ogPath(`series/${slug}/${year}`)}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
-    <script type="application/ld+json" set:html={JSON.stringify(itemList)} />
+    <script type="application/ld+json" set:html={jsonForScript(breadcrumb)} />
+    <script type="application/ld+json" set:html={jsonForScript(itemList)} />
   </Fragment>
 
   <Banner />

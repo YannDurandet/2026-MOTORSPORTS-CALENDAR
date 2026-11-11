@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { jsonForScript } from '../lib/jsonForScript';
 
 import {
   type ResultEntry,
@@ -59,7 +60,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
   ogImage="https://dord.racing/assets/og/og-results.webp"
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [

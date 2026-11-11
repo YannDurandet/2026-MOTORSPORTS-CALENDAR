@@ -68,7 +68,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
   ogImage="https://dord.racing/assets/og/og-home.webp"
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "DORD Racing",
@@ -80,7 +80,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
         "https://www.instagram.com/dord.racing/"
       ]
     })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "2026 Motorsport Master Calendar",
@@ -98,7 +98,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
         "url": "https://durandet.studio"
       }
     })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": FAQS.map(({ question, answer }) => ({

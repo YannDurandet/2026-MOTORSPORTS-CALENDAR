@@ -21,6 +21,7 @@ const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
 import { showOnTrackPages } from '../../lib/season';
+import { jsonForScript } from '../../lib/jsonForScript';
 
 // --- Build event lookup: calendarSvgFilename → [{series, tag, title, week}] ---
 type CalEvent = { series: string; tag: string; title: string; week: string };
@@ -142,7 +143,7 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   ogImage="https://dord.racing/assets/og/og-tracks.webp"
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify({
+    <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [

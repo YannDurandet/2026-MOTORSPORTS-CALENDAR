@@ -31,6 +31,7 @@ import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
 import { seriesShort } from '../../../lib/seriesShort';
 import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
+import { jsonForScript } from '../../../lib/jsonForScript';
 
 export function getStaticPaths() {
   return ALL_EVENTS.map(ev => ({
@@ -249,8 +250,8 @@ const breadcrumb = {
   ogImage={ogPath(`events/${ev.year}/${ev.slug}`)}
 >
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} />
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+    <script type="application/ld+json" set:html={jsonForScript(eventSchema)} />
+    <script type="application/ld+json" set:html={jsonForScript(breadcrumb)} />
   </Fragment>
 
   <Banner />
