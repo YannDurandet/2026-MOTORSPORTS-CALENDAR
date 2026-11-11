@@ -8,15 +8,27 @@
 # /_astro/* (content-hashed) gets its immutable header from the Astro adapter,
 # which prepends it at build time. Don't add it here.
 #
-# Rules must NOT overlap. When several rules match one URL, Cloudflare merges
-# their values (comma-joined) instead of letting the most specific one win, so
-# a broad /assets/* plus /assets/fonts/* would send two Cache-Control values.
+# Rules setting the SAME header must NOT overlap. When several rules match one
+# URL, Cloudflare merges their values (comma-joined) instead of letting the most
+# specific one win, so a broad /assets/* plus /assets/fonts/* would send two
+# Cache-Control values. (The /* security rule below sets other headers only.)
 # Hence one rule per directory. A splat (*) also matches "/", so top-level
 # files use the :file placeholder, which matches a single path segment only.
 # A new /assets/<dir>/ needs its own rule here.
 #
 # Deliberately unmatched, so they keep revalidating: HTML pages, /data/*,
 # /api/*, /og/* (generated share cards) and /sw.js.
+
+# Security headers on every static response (AUDIT F-055). X-Frame-Options
+# keeps other sites from framing the pages; the embed pages exist to be framed,
+# so /embed/* detaches it ("!" removes a header set by another rule).
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+
+/embed/*
+  ! X-Frame-Options
 
 # Fonts must be RENAMED when they change (never replaced in place under the
 # same name): immutable means browsers won't re-check them for a year, and the
