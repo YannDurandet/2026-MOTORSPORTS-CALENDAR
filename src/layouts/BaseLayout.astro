@@ -572,7 +572,9 @@ const speculationRules = {
         : 'calendar';
       const norm = (p: string) => p.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
       const here = norm(path);
-      stickyBar.querySelectorAll<HTMLAnchorElement>('.sticky-nav-link').forEach(link => {
+      // Links only: the bar's search button shares the class but has no href,
+      // and new URL() on it threw and stopped this whole script (F-037 follow-up).
+      stickyBar.querySelectorAll<HTMLAnchorElement>('a.sticky-nav-link').forEach(link => {
         const isActive = link.dataset.page === activePage;
         link.classList.toggle('active', isActive);
         // Same rule as Nav.astro: "page" on the section's own page, "true" inside it.
