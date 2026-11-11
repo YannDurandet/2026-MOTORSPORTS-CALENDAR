@@ -117,6 +117,7 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 ## Status docs
 - `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Generated: run `npm run gen:map-status` whenever you add an SVG (step 3 above); `npm run check` fails when it is stale.
 - `2027-calendar-status.md` — which series have 2027 rounds in `calendar.json` and which are still outstanding.
+- `code-audit-status.md` — what is still open from the November 2026 code audit: rollout checks, decisions for Yann, the data-job list and small code items. Tick items as they're done; delete the file when nothing is left.
 - `watch-broadcasters-status.md` — where-to-watch coverage per series and country, the official source for each, and the known gaps. Rights change every season: update it whenever you touch `howToWatch`.
 
 ## Pages
