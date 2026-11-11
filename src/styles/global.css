@@ -2421,7 +2421,10 @@ a {
 }
 
 .sc-time {
-    font-family: var(--font-display);
+    /* Times use the mono font (CLAUDE.md); its fixed-width digits also keep
+       the countdown from shifting as it ticks. --font-display never existed,
+       so this used to fall back to the inherited body font. */
+    font-family: var(--font-mono);
     font-size: var(--fs-lg);
     font-weight: 900;
     letter-spacing: 0.04em;
