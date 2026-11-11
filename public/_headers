@@ -50,3 +50,8 @@
 
 /assets/tracks/*
   Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# The cleaned track maps the /tracks grid loads (src/pages/track-svg/), same
+# rule as the source files under /assets/track-maps/.
+/track-svg/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
