@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
 import TripPlannerCard from '../../components/TripPlannerCard.astro';
 import GettingThereCard from '../../components/GettingThereCard.astro';
 import { accommodationQuery } from '../../lib/affiliates';
@@ -438,6 +439,8 @@ const eventListSchema = (() => {
     <a href={`${base}/tracks`} class="back-link back-link--bottom">← All Circuits</a>
 
   </main>
+
+  <Footer />
 </BaseLayout>
 
 <script>
