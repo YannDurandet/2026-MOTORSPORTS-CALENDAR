@@ -19,20 +19,30 @@ export function escapeIcal(str: string): string {
     .replace(/\n/g, '\\n');
 }
 
+const utf8 = new TextEncoder();
+
 export function foldLine(line: string): string {
-  // RFC 5545: lines longer than 75 octets should be folded
-  const bytes = new TextEncoder().encode(line);
-  if (bytes.length <= 75) return line;
+  // RFC 5545 §3.1: no physical line longer than 75 octets. Counted in encoded
+  // bytes, not characters ("·" and accented letters take two), and broken only
+  // between characters, so a multi-byte letter is never split.
+  if (utf8.encode(line).length <= 75) return line;
   const result: string[] = [];
-  let pos = 0;
-  let first = true;
-  while (pos < line.length) {
-    const chunk = first ? line.slice(pos, pos + 75) : line.slice(pos, pos + 74);
-    result.push((first ? '' : ' ') + chunk);
-    pos += first ? 75 : 74;
-    first = false;
+  let current = '';
+  let size = 0;
+  let limit = 75;                       // continuation lines start with a space
+  for (const ch of line) {              // code points: surrogate pairs stay whole
+    const n = utf8.encode(ch).length;
+    if (size + n > limit) {
+      result.push(current);
+      current = '';
+      size = 0;
+      limit = 74;
+    }
+    current += ch;
+    size += n;
   }
-  return result.join('\r\n');
+  result.push(current);
+  return result.map((l, i) => (i === 0 ? l : ' ' + l)).join('\r\n');
 }
 
 export function toIcalDate(isoStr: string): string {
