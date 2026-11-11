@@ -10,6 +10,7 @@
 
 import { createClient } from '@libsql/client';
 import { Resend } from 'resend';
+import { DEFAULT_CALENDAR_YEAR } from '../src/lib/season';
 import { sendInBatches, type Outgoing } from './sendBatches';
 
 // =============================================================================
@@ -54,6 +55,8 @@ interface WeekendEvent {
   circuit:    string;
   country:    string;
   weekNumber: number;
+  /** The home-page card id for this week, e.g. "week-03" or "2027-week-03". */
+  weekAnchor: string;
   weekLabel:  string;
   day:        'fri' | 'sat' | 'sun' | 'multi' | null;
   trackSvg:   string;
@@ -144,6 +147,14 @@ function weekNumberOf(label: string): number | null {
   return m ? parseInt(m[1], 10) : null;
 }
 
+/** The id of the week's card on the home page: the label's digits as written
+ *  ("03", not 3), prefixed with the year for a later season. Same rule as
+ *  src/pages/index.astro and the search index. */
+function weekAnchorOf(label: string, year: number): string {
+  const digits = label.match(/WEEK\s+(\d+)/)?.[1] ?? '';
+  return year === DEFAULT_CALENDAR_YEAR ? `week-${digits}` : `${year}-week-${digits}`;
+}
+
 // An event belongs to the target weekend when its main race (ev.date, an exact
 // ISO timestamp with offset) falls between Friday 00:00 and Monday 06:00.
 // Selecting by week label instead dated every label in the current year, so
@@ -214,6 +225,7 @@ async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
           circuit:    trackEntry?.name    ?? ev.title,
           country:    trackEntry?.country ?? '',
           weekNumber: weekNum,
+          weekAnchor: weekAnchorOf(week.label, month.year ?? DEFAULT_CALENDAR_YEAR),
           weekLabel:  week.label,
           day:        eventDay(ev),
           trackSvg:   ev.track  ?? '',
@@ -438,7 +450,7 @@ function generateEmailHTML(events: WeekendEvent[], weekNumber: number, dateRange
           <table width="100%" cellpadding="0" cellspacing="0" border="0">
             <tr>
               <td><a href="https://dord.racing" style="${FONT}font-size:12px;font-weight:600;color:#3a5060;text-decoration:none;">dord.racing</a></td>
-              <td align="center"><a href="https://dord.racing/#week-${weekNumber}" style="${FONT}font-size:11px;color:#3a5060;text-decoration:none;">Open in the calendar →</a></td>
+              <td align="center"><a href="https://dord.racing/#${events[0]?.weekAnchor ?? ''}" style="${FONT}font-size:11px;color:#3a5060;text-decoration:none;">Open in the calendar →</a></td>
               <td align="right"><a href="mailto:weekly@dord.racing?subject=unsubscribe" style="${FONT}font-size:11px;color:#2a3a44;text-decoration:none;">Unsubscribe</a></td>
             </tr>
             <tr>
@@ -474,7 +486,7 @@ function generatePlainText(events: WeekendEvent[], weekNumber: number, dateRange
     );
   }
   lines.push('', '────────────────────────────────────', '');
-  lines.push(`Full calendar: https://dord.racing/#week-${weekNumber}`);
+  lines.push(`Full calendar: https://dord.racing/#${events[0]?.weekAnchor ?? ''}`);
   lines.push('View results: https://dord.racing/results');
   lines.push('');
   lines.push('dord.racing');
