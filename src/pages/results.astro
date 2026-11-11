@@ -40,6 +40,15 @@ for (const r of flat) {
 }
 
 const months = Object.keys(byMonth).sort().reverse();
+
+// "JAN — NOV 2026" from the months that have results (oldest to newest), so it
+// moves with the data; "DEC 2026 — FEB 2027" once results span two years.
+const [newest, oldest] = [months[0], months[months.length - 1]];
+const mon = (key: string) => shortMonthLabel(key).slice(0, 3).toUpperCase();
+const rangeLabel = !oldest ? ''
+  : oldest.slice(0, 4) === newest.slice(0, 4)
+    ? `${mon(oldest)} — ${mon(newest)} ${newest.slice(0, 4)}`
+    : `${mon(oldest)} ${oldest.slice(0, 4)} — ${mon(newest)} ${newest.slice(0, 4)}`;
 const allSeries = [...new Set(flat.map(r => r.series))].sort();
 ---
 
@@ -64,7 +73,7 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
     <div class="header--left">
       <h1>2026 Race<br>Results</h1>
       <p class="header--page-desc">Winners across every championship, updated weekly</p>
-      <div class="meta">JAN — SEP 2026</div>
+      <div class="meta">{rangeLabel}</div>
       <Nav activePage="results" />
     </div>
   </header>
