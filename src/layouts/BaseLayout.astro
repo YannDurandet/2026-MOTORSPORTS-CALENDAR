@@ -200,6 +200,8 @@ const speculationRules = {
         <kbd class="search-kbd" aria-label="Press Escape to close">ESC</kbd>
       </div>
       <div id="search-results" class="search-results"></div>
+      <!-- Results arrive by innerHTML; this line tells screen readers how many. -->
+      <p id="search-status" class="sr-only" role="status"></p>
     </div>
   </div>
 
@@ -637,6 +639,7 @@ const speculationRules = {
       document.body.style.overflow = '';
       if (input) input.value = '';
       if (results) results.innerHTML = '';
+      setSearchStatus('');
       focusIdx = -1;
       searchTriggerEl?.focus();
       searchTriggerEl = null;
@@ -653,10 +656,15 @@ const speculationRules = {
       return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    function setSearchStatus(text: string) {
+      const el = document.getElementById('search-status');
+      if (el) el.textContent = text;
+    }
+
     function renderResults(query: string) {
       if (!results || !searchIndex) return;
       const q = query.trim().toLowerCase();
-      if (!q) { results.innerHTML = ''; focusIdx = -1; return; }
+      if (!q) { results.innerHTML = ''; setSearchStatus(''); focusIdx = -1; return; }
 
       const haystackOf = (item: any): string => {
         if (item.t === 'track')  return `${item.name} ${item.city} ${item.country}`.toLowerCase();
@@ -674,6 +682,7 @@ const speculationRules = {
 
       if (!series.length && !tracks.length && !events.length) {
         results.innerHTML = `<div class="search-empty">No results for "${escapeHtml(query)}"</div>`;
+        setSearchStatus('No results');
         focusIdx = -1;
         return;
       }
@@ -732,6 +741,8 @@ const speculationRules = {
       </div>`;
 
       results.innerHTML = html;
+      const shown = series.length + tracks.length + events.length;
+      setSearchStatus(`${shown} result${shown === 1 ? '' : 's'}`);
       focusIdx = -1;
     }
 
@@ -792,7 +803,7 @@ const speculationRules = {
   </script>
 
   <!-- Cookie consent banner -->
-  <div id="cookie-banner" class="cookie-banner" hidden>
+  <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent" hidden>
     <p class="cookie-banner-text">We use Google Analytics cookies, only if you accept, to understand how visitors find us. No advertising. <a href={`${base}/legal/privacy`} class="cookie-banner-link">Privacy policy</a></p>
     <div class="cookie-banner-actions">
       <button id="cookie-accept" class="cookie-btn cookie-btn--accept">Accept</button>
