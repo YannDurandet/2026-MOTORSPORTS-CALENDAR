@@ -2,6 +2,7 @@
 // The grid used to inline every SVG into tracks.html (~640 KB of markup);
 // these prerendered files let the browser lazy-load and cache each map.
 import type { APIRoute } from 'astro';
+import { dropFixedSize, stripTrackBackground } from '../../lib/trackSvg';
 
 const _svgRaw = import.meta.glob('/public/assets/track-maps/*.svg', {
   query: '?raw',
@@ -17,11 +18,7 @@ for (const [k, v] of Object.entries(_svgRaw)) {
 // Same cleaning the grid applied when inlining, plus the stroke bump the CSS
 // used to force (`stroke-width: 1 !important`) — CSS can't reach inside <img>.
 function cleanSvg(raw: string): string {
-  return raw
-    .replace(/<defs>[\s\S]*?<\/defs>/g, '')
-    .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
-    .replace(/(\s)width="\d+"/, '')
-    .replace(/(\s)height="\d+"/, '')
+  return dropFixedSize(stripTrackBackground(raw))
     .replace(/stroke-width="[\d.]+"/g, 'stroke-width="1"');
 }
 

@@ -11,6 +11,7 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import satori from 'satori';
 import sharp from 'sharp';
+import { stripTrackBackground } from './trackSvg';
 
 const ROOT = process.cwd();
 const read = (p: string) => readFileSync(resolve(ROOT, p));
@@ -72,9 +73,7 @@ export function trackMapDataUri(file?: string | null): string | null {
   if (trackSvgCache.has(file)) return trackSvgCache.get(file)!;
   let uri: string | null = null;
   try {
-    const raw = read(`public/assets/track-maps/${file}`).toString()
-      .replace(/<defs>[\s\S]*?<\/defs>/g, '')
-      .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
+    const raw = stripTrackBackground(read(`public/assets/track-maps/${file}`).toString())
       .replace(/(\s)width="\d+"/, '$1width="600"')
       .replace(/(\s)height="\d+"/, '$1height="600"');
     uri = `data:image/svg+xml;base64,${Buffer.from(raw).toString('base64')}`;

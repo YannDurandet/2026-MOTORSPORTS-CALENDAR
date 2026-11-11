@@ -20,6 +20,7 @@ import { parseSessions, mainRaceTime } from '../lib/sessions';
 import { formatIn } from '../lib/timezones';
 import { seriesShort } from '../lib/seriesShort';
 import { renderCard, seriesPaint, trackMapDataUri, type Card } from '../lib/og';
+import { winnerName } from '../lib/format';
 
 const NOW = Date.now();
 const series = seriesContent as any[];
@@ -28,7 +29,7 @@ const nameOf = (slug: string) => series.find(s => s.slug === slug)?.name ?? slug
 const tagOf = (slug: string) => ALL_EVENTS.find(e => e.series === slug)?.tag ?? seriesShort(slug).toUpperCase();
 const badge = (slug: string, label = tagOf(slug)) => ({ label, paint: seriesPaint(slug) });
 const upcoming = (evs: CalendarEvent[]) => evs.filter(e => !e.results?.length && new Date(e.date).getTime() > NOW - 6 * 3600e3);
-const winnerOf = (e: CalendarEvent) => { const r = e.results?.[0]; return r ? (r.winners?.join(' / ') ?? r.winner ?? null) : null; };
+const winnerOf = (e: CalendarEvent) => winnerName(e.results?.[0], ' / ') || null;
 
 function eventCard(ev: CalendarEvent): Card {
   const v = venueFor(ev);

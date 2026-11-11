@@ -19,12 +19,6 @@ function readSvg(filename: string | undefined | null): string | null {
   return svgByFilename[filename] ?? null;
 }
 
-const LAYOUT_DISPLAY: Record<string, string> = {
-  motogp: 'MotoGP', f1: 'F1', fe: 'FE', wsbk: 'WSBK', nascar: 'NASCAR',
-  gp: 'GP', national: 'National', indy: 'Indy', oval: 'Oval', road: 'Road',
-  full: 'Full', international: 'International', foster: 'Foster', island: 'Island',
-};
-const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
@@ -35,6 +29,8 @@ import { fitTitle } from '../../lib/seo';
 import { ogPath } from '../../lib/ogPaths';
 import { jsonForScript } from '../../lib/jsonForScript';
 import { isoCountry } from '../../lib/results';
+import { countryFlag, layoutLabel, weekStartLabel } from '../../lib/format';
+import { dropFixedSize, stripTrackBackground } from '../../lib/trackSvg';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Logistics = {
@@ -107,21 +103,13 @@ for (const month of calendarData as any[]) {
 const allEvents = [...pastResults, ...upcomingEvents];
 const activeSeries = [...new Set(allEvents.map(e => e.series))];
 
-function countryFlag(code?: string): string {
-  if (!code || code.length !== 2) return '';
-  return [...code.toUpperCase()].map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
-}
 
 // ── SVG ───────────────────────────────────────────────────────────────────────
 // The inline map is the page's main image: it gets a name, like the <img>
 // versions of the same files ("{name} track layout").
 const escAttr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 function cleanSvg(raw: string, label: string): string {
-  return raw
-    .replace(/<defs>[\s\S]*?<\/defs>/g, '')
-    .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
-    .replace(/(\s)width="\d+"/, '')
-    .replace(/(\s)height="\d+"/, '')
+  return dropFixedSize(stripTrackBackground(raw))
     .replace(/<svg\b/, `<svg role="img" aria-label="${escAttr(label)}"`);
 }
 
@@ -137,10 +125,6 @@ const layoutSvgPanels: LayoutWithSvg[] = (venue.layouts ?? []).map(l => {
 });
 const hasLayoutPanels = layoutSvgPanels.length > 1 && layoutSvgPanels.some(l => l.svgContent);
 
-function shortDate(label: string): string {
-  const m = label.match(/•\s*([A-Z]{3})\s+(\d{1,2})/);
-  return m ? `${m[1]} ${m[2]}` : label.replace('•', '').trim();
-}
 
 const continentLabel: Record<string, string> = {
   'europe': 'Europe', 'north-america': 'North America', 'asia': 'Asia',
@@ -358,7 +342,7 @@ const eventListSchema = (() => {
           {pastResults.map(ev => (
             <div class="result-block" data-layout-id={ev.layoutId ?? undefined}>
               <div class="result-header">
-                <span class="ev-date">{shortDate(ev.week)}</span>
+                <span class="ev-date">{weekStartLabel(ev.week)}</span>
                 <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
                 {ev.path
                   ? <a href={`${base}${ev.path}`} class="ev-title ev-title--link">{ev.title}</a>
@@ -388,7 +372,7 @@ const eventListSchema = (() => {
           <div class="events-list">
             {upcomingEvents.map(ev => (
               <div class="ev-row" data-layout-id={ev.layoutId ?? undefined}>
-                <span class="ev-date">{shortDate(ev.week)}</span>
+                <span class="ev-date">{weekStartLabel(ev.week)}</span>
                 <a href={`${base}/series/${ev.series}`} class={`tag t-${ev.series}`}>{ev.tag}</a>
                 {ev.path
                   ? <a href={`${base}${ev.path}`} class="ev-title ev-title--link">{ev.title}</a>

@@ -26,6 +26,7 @@ import { parseSessions, mainRaceTime } from '../../../lib/sessions';
 import { venueTimeZone, formatIn, zoneAbbr } from '../../../lib/timezones';
 import { ticketLinks } from '../../../lib/tickets';
 import { countryName, isoCountry } from '../../../lib/results';
+import { countryFlag, winnerName } from '../../../lib/format';
 import { venueFor } from '../../../lib/venues';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
@@ -156,15 +157,6 @@ const tickets = isPast ? [] : ticketLinks({
   circuitUrl: track?.website,
 });
 
-function countryFlag(code?: string): string {
-  if (!code || code.length !== 2) return '';
-  return [...code.toUpperCase()].map(c => String.fromCodePoint(0x1F1E6 + c.charCodeAt(0) - 65)).join('');
-}
-
-function winnerOf(r: RaceResult): string {
-  if (r.winners?.length) return r.winners.join(' · ');
-  return r.winner ?? '';
-}
 function entrantOf(r: RaceResult): string {
   return r.team ?? r.manufacturer ?? '';
 }
@@ -372,9 +364,9 @@ const breadcrumb = {
                 <div class="ev-result">
                   {r.race_label && <div class="res-label">{r.race_label}</div>}
                   {r.note && <div class="res-note">{r.note}</div>}
-                  {winnerOf(r) && (
+                  {winnerName(r) && (
                     <div class="res-line">
-                      <span class="res-winner">{winnerOf(r)}</span>
+                      <span class="res-winner">{winnerName(r)}</span>
                       {r.country && <span class="res-flag" aria-hidden="true">{countryFlag(r.country)}</span>}
                     </div>
                   )}

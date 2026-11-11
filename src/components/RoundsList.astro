@@ -6,6 +6,7 @@
  */
 import { eventRange, plainTime, type CalendarEvent } from '../lib/events';
 import { venueFor } from '../lib/venues';
+import { winnerName } from '../lib/format';
 
 interface Props {
   events: CalendarEvent[];
@@ -15,11 +16,7 @@ interface Props {
 const { events, label } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-function winnerOf(ev: CalendarEvent): string | null {
-  const r = ev.results?.[0];
-  if (!r) return null;
-  return r.winners?.length ? r.winners.join(' · ') : (r.winner ?? null);
-}
+const winnerOf = (ev: CalendarEvent): string | null => winnerName(ev.results?.[0]) || null;
 
 /** "QUALI: 11:00 • RACE: 09:00" → "RACE 09:00"; "RACE: TBC" → "TIME TBC". */
 function raceTime(ev: CalendarEvent): string {

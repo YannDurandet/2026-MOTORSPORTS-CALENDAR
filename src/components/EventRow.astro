@@ -12,6 +12,7 @@
  *   data-ts                  live-state detection
  */
 import { findEvent } from '../lib/events';
+import { winnerName } from '../lib/format';
 
 interface SubRace { badge: string; label: string; detail: string; round?: string; day?: string; time?: string }
 interface Race { label: string; time: string }
@@ -69,7 +70,6 @@ const sessionDays = (sessions ?? []).reduce<{ day: string; items: Session[] }[]>
 }, []);
 const hasSessions = sessionDays.length > 0;
 
-const winnerOf = (r: Result) => r.winners?.length ? r.winners.join(' · ') : (r.winner ?? '');
 const finished = !!results?.length;
 ---
 <div
@@ -137,7 +137,7 @@ const finished = !!results?.length;
         {finished && results!.map(r => (
           <div class="ev-result">
             <span class="session-day">{r.race_label ?? 'WINNER'}</span>
-            <span class="ev-winner">{winnerOf(r)}</span>
+            <span class="ev-winner">{winnerName(r)}</span>
             {(r.team ?? r.manufacturer) && <span class="ev-team">{r.team ?? r.manufacturer}</span>}
           </div>
         ))}
