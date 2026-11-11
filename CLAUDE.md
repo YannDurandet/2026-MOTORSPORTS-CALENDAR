@@ -140,7 +140,7 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 | `/ical/[series].ics` | `src/pages/ical/[series].ics.ts` | Calendar feeds, one per series plus `all` |
 | `/track-svg/[file].svg` | `src/pages/track-svg/[file].svg.ts` | Cleaned maps the `/tracks` grid loads as `<img>` |
 | `/api/*` | `src/pages/api/*.ts` | On-demand: `subscribe`, `confirm`, `unsubscribe`, `country`, `ical` (personal feed) |
-| `/ig`, `/x`, `/yd` | `src/pages/{ig,x,yd}.astro` | Short links that redirect with UTM tags |
+| `/ig`, `/x`, `/yd` | `public/_redirects` | Short links that redirect to `/` with UTM tags |
 
 ## Design tokens
 `src/styles/tokens.css` holds every colour, font family, font size, radius, shadow and series colour. It is imported once, before `global.css`, in `BaseLayout.astro`. Rules:
@@ -196,7 +196,7 @@ The broadcaster list on `/watch` and in each series' "How to Watch" block follow
 - **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
 
 ## Redirects
-`public/_redirects` holds the redirects: `/events`, legacy URLs, and 301s for trailing-slash URLs (Cloudflare's asset handler would otherwise send a 307). The exception is the three short links `/ig`, `/x` and `/yd`, which are page files in `src/pages/`. Don't add redirects to `astro.config.mjs`: Astro appends them to the same file, and Cloudflare rejects the deploy if a path appears twice.
+`public/_redirects` holds every redirect: `/events`, legacy URLs, the `/ig` `/x` `/yd` short links, and 301s for trailing-slash URLs (Cloudflare's asset handler would otherwise send a 307). Don't add redirects to `astro.config.mjs`: Astro appends them to the same file, and Cloudflare rejects the deploy if a path appears twice.
 
 ## Deployment
 Two separate Cloudflare Workers, hence two configs — this is intentional, not a duplicate:

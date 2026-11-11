@@ -9,14 +9,27 @@
 /events/ / 301
 # /embed/all used to link here; Google has it on file.
 /series/all / 301
+# Short links for social profiles: the UTM tags say where a visit came from.
+# (They used to be on-demand pages, src/pages/ig|x|yd.astro, which started the
+# Worker for every hit.)
+/ig /?utm_source=instagram&utm_medium=social 301
+/x /?utm_source=twitter&utm_medium=social 301
+/yd /?utm_source=yanndurandet&utm_medium=referral 301
 # Pages removed in November 2026 were indexed (sitemap + IndexNow), so send
 # them to their nearest live page instead of letting them 404. Specific
-# /fr pages first, then the catch-all.
+# /fr pages first, each with and without the trailing slash (a slashed one
+# would otherwise hit /fr/* before the slash rules at the end), then the
+# catch-all.
 /fr/calendrier-f1-2026 /series/f1 301
 /fr/calendrier-f1-2027 /series/f1/2027 301
 /fr/calendrier-motogp-2026 /series/motogp 301
 /fr/calendrier-motogp-2027 /series/motogp/2027 301
 /fr/programme-tv-f1 /watch 301
+/fr/calendrier-f1-2026/ /series/f1 301
+/fr/calendrier-f1-2027/ /series/f1/2027 301
+/fr/calendrier-motogp-2026/ /series/motogp 301
+/fr/calendrier-motogp-2027/ /series/motogp/2027 301
+/fr/programme-tv-f1/ /watch 301
 /fr / 301
 /fr/* / 301
 /pit-wall /newsletter 301
