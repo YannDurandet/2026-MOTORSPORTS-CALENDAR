@@ -110,23 +110,27 @@ function countryFlag(code?: string): string {
 }
 
 // ── SVG ───────────────────────────────────────────────────────────────────────
-function cleanSvg(raw: string): string {
+// The inline map is the page's main image: it gets a name, like the <img>
+// versions of the same files ("{name} track layout").
+const escAttr = (v: string) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+function cleanSvg(raw: string, label: string): string {
   return raw
     .replace(/<defs>[\s\S]*?<\/defs>/g, '')
     .replace(/<rect[^>]*fill-opacity[^>]*\/?>/g, '')
     .replace(/(\s)width="\d+"/, '')
-    .replace(/(\s)height="\d+"/, '');
+    .replace(/(\s)height="\d+"/, '')
+    .replace(/<svg\b/, `<svg role="img" aria-label="${escAttr(label)}"`);
 }
 
 const rawSvg = readSvg(venue.browserSvg);
 const hasSvg  = rawSvg !== null;
-const svgContent = rawSvg ? cleanSvg(rawSvg) : null;
+const svgContent = rawSvg ? cleanSvg(rawSvg, `${venue.name} track layout`) : null;
 
 // For multi-layout tracks: inline each layout's SVG so we can panel-swap on hover
 type LayoutWithSvg = Layout & { svgContent: string | null; };
 const layoutSvgPanels: LayoutWithSvg[] = (venue.layouts ?? []).map(l => {
   const raw = readSvg(l.calendarSvgs[0]);
-  return { ...l, svgContent: raw ? cleanSvg(raw) : null };
+  return { ...l, svgContent: raw ? cleanSvg(raw, `${venue.name} track layout, ${l.label}`) : null };
 });
 const hasLayoutPanels = layoutSvgPanels.length > 1 && layoutSvgPanels.some(l => l.svgContent);
 
