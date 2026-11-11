@@ -10,7 +10,7 @@
 //   [x] RESEND_API_KEY added to deployment env vars
 //   [x] RESEND_FROM_EMAIL added to deployment env vars
 //
-// ENV VARS (Cloudflare Pages → Settings → Environment Variables):
+// SECRETS (Cloudflare Workers → the site Worker → Settings → Variables and Secrets):
 //   TURSO_DATABASE_URL   libsql://your-db-name.turso.io
 //   TURSO_AUTH_TOKEN     your-turso-auth-token
 //   RESEND_API_KEY       re_xxxxxxxxxxxxxxxxxxxx

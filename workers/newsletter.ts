@@ -5,7 +5,8 @@
 // Can also be triggered manually via POST with X-Cron-Secret header.
 //
 // Required secrets (set via `wrangler secret put` or CF dashboard):
-//   RESEND_API_KEY, RESEND_FROM_EMAIL, TURSO_DATABASE_URL, TURSO_AUTH_TOKEN, CRON_SECRET
+//   RESEND_API_KEY, RESEND_FROM_EMAIL, TURSO_DATABASE_URL, TURSO_AUTH_TOKEN, CRON_SECRET,
+//   UNSUB_SECRET (without it, unsubscribe links fall back to a mailto: link)
 // =============================================================================
 
 import { createClient } from '@libsql/client';

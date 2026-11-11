@@ -15,6 +15,8 @@ interface Env {
   RESEND_API_KEY: string;
   RESEND_FROM_EMAIL: string;
   CRON_SECRET: string;
+  /** HMAC key for unsubscribe and sign-up confirmation tokens (src/lib/unsub-token.ts). */
+  UNSUB_SECRET: string;
 }
 
 type Runtime = import('@astrojs/cloudflare').Runtime<Env>;

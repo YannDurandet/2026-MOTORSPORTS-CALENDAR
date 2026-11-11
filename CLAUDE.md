@@ -59,6 +59,8 @@ Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
 - `venue` — `{ name, city, country }` for a confirmed event whose circuit has no track entry or SVG yet (`track: "tbc.svg"`). Without it a `tbc.svg` event gets no page.
 - `classes` — `["GTD PRO", "GTD"]`: classes on the grid, shown as chips in the home-row panel. Only add what an official source confirms for that round.
 - `sessions` — `[{ day: "SAT", label: "Qualifying", time: "21:35", duration?: "2h40" }]`: the weekend in **Paris time**, in weekday order, one home-row line per day. Optional. `time` is what the row displays (the time chip); `date` is the instant everything else uses: countdowns, live flags, `series.json`, calendar feeds and the newsletter (share images show a time only when the two agree). Change `time` and `date` together, and keep the single `RACE` session equal to `time` (`npm run check` enforces this, and that its weekday matches `date`). A session after midnight Paris belongs to the next `day`.
+- `sprint: true` — the weekend has a sprint race: the row shows a SPRINT tag.
+- `races` — `[{ label: "R1", time: "SAT: <span class=\"hl\">17:00</span>" }]`: one line per race in the expanded row, for a weekend whose races aren't described by `sessions` (ignored when `sessions` is set).
 - `sub[].round` / `sub[].day` / `sub[].time` — extend a support-series row (`"Rd 5"`, `"SUN"`, `"10:00"`) so it gets its own time chip. `time` needs a `day`. A `badge` key with no `.b-{key}` rule in `global.css` renders without a background.
 
 `data/seasons.json` holds per-series, per-year notes (summary, what changed, status) rendered on `/series/{slug}/{year}`.
@@ -128,7 +130,17 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 | `/tracks` | `src/pages/tracks/index.astro` | Track browser (continent + type filter) |
 | `/tracks/[slug]` | `src/pages/tracks/[slug].astro` | Track detail |
 | `/data/series.json` | `src/pages/data/series.json.ts` | Race dates for countdowns |
-| `/data/search.json` | `src/pages/data/search.json.ts` | Search index (tracks + series) |
+| `/data/search.json` | `src/pages/data/search.json.ts` | Search index (tracks, series and events) |
+| `/data/calendar.json`, `/data/tracks.json` | `src/pages/data/*.json.ts` | The data files as served; the newsletter worker reads them |
+| `/watch` | `src/pages/watch.astro` | This weekend's sessions and broadcasters (visitor's country) |
+| `/results` | `src/pages/results.astro` | Winners by month |
+| `/newsletter`, `/newsletter/thank-you` | `src/pages/newsletter.astro`, `src/pages/newsletter/thank-you.astro` | Sign-up |
+| `/legal/privacy`, `/legal/tos` | `src/pages/legal/*.astro` | Privacy policy, terms |
+| `/embed/[series]` | `src/pages/embed/[series].astro` | Calendar widget other sites frame (own styles, `?theme=light`, `?limit=`) |
+| `/ical/[series].ics` | `src/pages/ical/[series].ics.ts` | Calendar feeds, one per series plus `all` |
+| `/track-svg/[file].svg` | `src/pages/track-svg/[file].svg.ts` | Cleaned maps the `/tracks` grid loads as `<img>` |
+| `/api/*` | `src/pages/api/*.ts` | On-demand: `subscribe`, `confirm`, `unsubscribe`, `country`, `ical` (personal feed) |
+| `/ig`, `/x`, `/yd` | `src/pages/{ig,x,yd}.astro` | Short links that redirect with UTM tags |
 
 ## Design tokens
 `src/styles/tokens.css` holds every colour, font family, font size, radius, shadow and series colour. It is imported once, before `global.css`, in `BaseLayout.astro`. Rules:
@@ -159,7 +171,7 @@ Dark is the base and the default; light is an override block, so adding light mo
 Each card counts down to the series' next race, or reads OFF SEASON. The rule is `countdownTarget()` in `src/lib/offSeason.ts`: `series.json` already holds next year's rounds, so a finished series would otherwise count down to a March opener. A season that hasn't started yet and belongs to a later calendar year (Paris time) stays OFF SEASON until its opener is under 30 days away; once 1 January passes, or once any round of that season has run, it counts down. Seasons come from `seasonOf()`, so a series that starts before January (Formula E, Asian Le Mans) needs an entry in `CROSS_WINTER_SERIES` in `src/lib/season.ts`. A series with no 2027 rounds in `calendar.json` reads OFF SEASON after its last 2026 round, whatever the date.
 
 ## Global search
-Search index is built at `/data/search.json` from tracks + series. It is fetched lazily on first open. Trigger: click the 🔍 button in nav, or press `/`.
+Search index is built at `/data/search.json` from tracks, series and every event. It is fetched lazily on first open. Trigger: click the 🔍 button in nav, or press `/`.
 
 ## Where to watch / visitor country
 The broadcaster list on `/watch` and in each series' "How to Watch" block follows the **visitor's chosen country**, never the browser language (en-US used to put US broadcasters in front of English-speaking Europeans).
@@ -180,11 +192,11 @@ The broadcaster list on `/watch` and in each series' "How to Watch" block follow
 - Inbound links ("lacks links from high-quality domains") can't be fixed in code.
 
 ## Share images & icons
-- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~35 s, ~560 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
+- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~25–40 s, ~690 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
 - **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
 
 ## Redirects
-`public/_redirects` holds every redirect: `/events`, legacy URLs, and 301s for trailing-slash URLs (Cloudflare's asset handler would otherwise send a 307). Don't add redirects to `astro.config.mjs`: Astro appends them to the same file, and Cloudflare rejects the deploy if a path appears twice.
+`public/_redirects` holds the redirects: `/events`, legacy URLs, and 301s for trailing-slash URLs (Cloudflare's asset handler would otherwise send a 307). The exception is the three short links `/ig`, `/x` and `/yd`, which are page files in `src/pages/`. Don't add redirects to `astro.config.mjs`: Astro appends them to the same file, and Cloudflare rejects the deploy if a path appears twice.
 
 ## Deployment
 Two separate Cloudflare Workers, hence two configs — this is intentional, not a duplicate:
@@ -209,6 +221,7 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run gen:map-status` | Regenerate `track-map-status.md` from the SVGs on disk, `tracks.json` and `calendar.json` |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
 | `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
+| `npm run gen:series-images` | Build the 640px-wide `*-640w.webp` variants of the `/series` grid images |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
 | `npm run results:gaps` | List past events still missing results |
 | `npm run results:brief` | Emit a JSON skeleton for every raced event with no result |
@@ -219,6 +232,7 @@ Everything in `scripts/` is reachable through `npm run`:
 | `npm run times:apply` | Apply researched times back into `calendar.json` |
 | `npm run indexnow` | Submit new/changed pages to IndexNow (Bing and others). Needs a build; CI runs it after each deploy |
 | `npm run test:unsub` | Generate/verify unsubscribe tokens locally |
+| `npm run typecheck` | TypeScript check (`astro check`); not part of `npm run check` yet |
 
 Race results live **inline in `data/calendar.json`** (`event.results`). There is no separate results file.
 
