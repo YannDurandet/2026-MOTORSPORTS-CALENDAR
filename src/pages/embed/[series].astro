@@ -106,7 +106,10 @@ const pageTitle = isAll
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{pageTitle}</title>
   <meta name="robots" content="noindex" />
-  <style>
+  <!-- is:global: the event rows are created by innerHTML, so they never get the
+       data-astro-cid attribute that scoped rules require. The embed is a document
+       of its own, so global rules can't leak anywhere (AUDIT F-095). -->
+  <style is:global>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
