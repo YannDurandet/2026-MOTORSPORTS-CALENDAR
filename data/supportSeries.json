@@ -1,0 +1,237 @@
+{
+  "_readme": "Catalog of support series: which series run on which parent series' weekends. Seed for the support-series and session research. NOT read by the site yet. Statuses: confirmed (complete round list from a cited source), partial (some rounds verified, list incomplete), provisional (published but may change), pending (organizer has not published), unverified (candidate only, no source). Never mark confirmed without an https source. calendarSlug = the series already exists as its own top-level series in calendar.json.",
+  "lastUpdated": "2026-11-09",
+  "statuses": ["confirmed", "partial", "provisional", "pending", "unverified"],
+  "relations": ["integrated", "partial", "standalone-shared", "standalone"],
+  "parentsToResearch": ["supercars", "dtm", "btcc", "gtwce", "fe", "elms", "erc", "eurx", "sf", "tcr", "nls", "bgt", "h24eu", "igtc", "gtwca", "asian-le-mans"],
+  "entries": [
+    {
+      "parents": ["imsa"],
+      "slug": "impc",
+      "name": "IMSA Michelin Pilot Challenge",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": {
+          "status": "confirmed",
+          "rounds": "10 rounds, same venues as 2025. Mid-Ohio is the only standalone round (4h); Daytona is the other 4h race.",
+          "source": "https://frontstretch.com/2025/03/13/imsa-releases-2026-schedules/"
+        },
+        "2027": {
+          "status": "confirmed",
+          "rounds": "10 races; 8 run as companion to the WeatherTech Championship. Daytona and Mid-Ohio are the 4h races. Lime Rock (headline, Sep 23-25) replaces Laguna Seca. Season finale Road Atlanta Oct 6-9.",
+          "source": "https://www.imsa.com/news/2026/03/19/2027-schedules-revealed-for-imsa-weathertech-sportscar-championship-imsa-michelin-pilot-challenge/"
+        }
+      },
+      "note": "Toyota GR Supra GT4 EVO2 cars race in this series (GSX class): there is no separate Supra series (fact from https://www.imsa.com/news/2026/01/18/michelin-pilot-challenge-roar-before-the-rolex-24-weekend-notebook/). Per-round weekend mapping still to extract from the schedule graphic."
+    },
+    {
+      "parents": ["imsa", "indycar"],
+      "slug": "mx5-cup",
+      "name": "Whelen Mazda MX-5 Cup presented by Michelin",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": {
+          "status": "partial",
+          "rounds": "7 doubleheader events. Verified: Daytona Jan 21-23; St. Petersburg (with IndyCar) Feb 21-Mar 1 window; Mid-Ohio Jun 5-7; Indianapolis Road Course Sep 18-20; Road Atlanta Oct 1-3 (finale). Other two events not captured.",
+          "source": "https://speedsport.com/sports-cars/imsa/2026-mazda-mx-5-cup-schedule-set/"
+        },
+        "2027": {
+          "status": "unverified",
+          "rounds": null,
+          "source": null
+        }
+      },
+      "note": "The St. Petersburg date range looks wide in the source; verify the actual race days against mx-5cup.com. Check mx-5cup.com for the 2027 schedule."
+    },
+    {
+      "parents": ["imsa", "wec"],
+      "slug": "mustang-challenge-na",
+      "name": "Mustang Challenge North America",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": {
+          "status": "partial",
+          "rounds": "Six US events supporting IMSA and WEC races. Round list not captured.",
+          "source": "https://racer.com/2025/08/01/mustang-challenge-north-america-sets-2026-schedule"
+        },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Confirmed running on the IMSA Mid-Ohio and VIR weekends in 2026 (https://imsa.com/tv, VIR provisional schedule PDF)."
+    },
+    {
+      "parents": ["imsa"],
+      "slug": "vp-racing-sportscar-challenge",
+      "name": "IMSA VP Racing SportsCar Challenge",
+      "relation": "integrated",
+      "calendarSlug": null,
+      "years": {
+        "2026": {
+          "status": "partial",
+          "rounds": "Runs on WeatherTech weekends. Verified: Daytona (season opener), Mid-Ohio, VIR. Full round list not captured.",
+          "source": "https://imsa.com/news/2026/january/13/imsa-vp-racing-sportscar-challenge-set-to-start-2026-season-in-daytona"
+        },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Classes in 2026 material: GSX and GTDX (and others). The VIR provisional schedule PDF (virnow.com) lists per-class practice and qualifying times: this kind of venue PDF is the best source for support-series sessions."
+    },
+    {
+      "parents": ["imsa"],
+      "slug": "ferrari-challenge-na",
+      "name": "Ferrari Challenge North America",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Listed in IMSA's event-info menu (https://www.imsa.com/competitors/test-information/). Which IMSA weekends it runs at is not confirmed."
+    },
+    {
+      "parents": ["imsa"],
+      "slug": "lamborghini-super-trofeo-na",
+      "name": "Lamborghini Super Trofeo North America",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Listed in IMSA's event-info menu (https://www.imsa.com/competitors/test-information/). Which IMSA weekends it runs at is not confirmed."
+    },
+    {
+      "parents": ["imsa"],
+      "slug": "porsche-carrera-cup-na",
+      "name": "Porsche Carrera Cup North America",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Listed in IMSA's event-info menu (https://www.imsa.com/competitors/test-information/). Which IMSA weekends it runs at is not confirmed."
+    },
+    {
+      "parents": ["imsa"],
+      "slug": "toyota-gr-cup-na",
+      "name": "Toyota GR Cup North America",
+      "relation": "standalone-shared",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Toyota's spec series, filed under SRO by Sportscar365. Not the same as Supra GT4 cars in the Pilot Challenge. Verify whether it supports any IMSA, WEC or IndyCar weekend."
+    },
+    {
+      "parents": ["f1"],
+      "slug": "f2",
+      "name": "FIA Formula 2",
+      "relation": "integrated",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "provisional", "rounds": "Already shown as sub rows on F1 events in calendar.json (26 rows across 2026 and 2027 in the file reviewed).", "source": null },
+        "2027": { "status": "provisional", "rounds": "14 weekends per 2027-calendar-status.md in the repo (from the FIA graphic). Race times TBC.", "source": null }
+      },
+      "note": "Existing sub badge: f2. Needs session times (practice, qualifying, sprint, feature race), not just a race time."
+    },
+    {
+      "parents": ["f1"],
+      "slug": "f3",
+      "name": "FIA Formula 3",
+      "relation": "integrated",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "provisional", "rounds": "Already shown as sub rows on F1 events in calendar.json (19 rows across 2026 and 2027 in the file reviewed).", "source": null },
+        "2027": { "status": "provisional", "rounds": "10 weekends per 2027-calendar-status.md in the repo (from the FIA graphic). Race times TBC.", "source": null }
+      },
+      "note": "Existing sub badge: f3."
+    },
+    {
+      "parents": ["f1"],
+      "slug": "f1a",
+      "name": "F1 Academy",
+      "relation": "partial",
+      "calendarSlug": "f1a",
+      "years": {
+        "2026": { "status": "provisional", "rounds": "Already its own series in calendar.json (6 events in the file reviewed).", "source": null },
+        "2027": { "status": "pending", "rounds": null, "source": null }
+      },
+      "note": "No 2027 calendar yet per the repo's 2027-calendar-status.md (checked 2026-10-24). Do not duplicate as sub rows if it stays a top-level series."
+    },
+    {
+      "parents": ["f1"],
+      "slug": "psc",
+      "name": "Porsche Mobil 1 Supercup",
+      "relation": "partial",
+      "calendarSlug": "psc",
+      "years": {
+        "2026": { "status": "provisional", "rounds": "Already its own series in calendar.json (7 events in the file reviewed).", "source": null },
+        "2027": { "status": "pending", "rounds": null, "source": null }
+      },
+      "note": "No 2027 calendar yet per the repo's 2027-calendar-status.md (checked 2026-10-24)."
+    },
+    {
+      "parents": ["indycar"],
+      "slug": "nxt",
+      "name": "Indy NXT",
+      "relation": "partial",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "provisional", "rounds": "Already shown as sub rows on IndyCar events (12 rows in the file reviewed).", "source": null },
+        "2027": { "status": "pending", "rounds": null, "source": null }
+      },
+      "note": "No NXT support rows for 2027 yet per 2027-calendar-status.md. Existing sub badge: nxt."
+    },
+    {
+      "parents": ["nascar"],
+      "slug": "nascar-national-series",
+      "name": "NASCAR O'Reilly Auto Parts Series and Craftsman Truck Series (names to verify)",
+      "relation": "standalone-shared",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Decide first whether these are support rows or their own series pages: they are full national series that share only some Cup weekends. Split into two entries once the official names and per-round pairing are confirmed."
+    },
+    {
+      "parents": ["motogp"],
+      "slug": "moto2-moto3",
+      "name": "Moto2 and Moto3 (and any other junior class running in 2027)",
+      "relation": "integrated",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Split into separate entries once confirmed. Check the official MotoGP schedule for every class on each weekend in 2027."
+    },
+    {
+      "parents": ["wsbk"],
+      "slug": "wsbk-support",
+      "name": "WorldSSP and other support classes (to verify)",
+      "relation": "integrated",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "unverified", "rounds": null, "source": null },
+        "2027": { "status": "unverified", "rounds": null, "source": null }
+      },
+      "note": "Check which support classes run at each 2027 round on the official WorldSBK site."
+    },
+    {
+      "parents": ["wrc"],
+      "slug": "wrc2",
+      "name": "WRC2",
+      "relation": "integrated",
+      "calendarSlug": null,
+      "years": {
+        "2026": { "status": "provisional", "rounds": "Already shown as a sub row on WRC events (29 rows across 2026 and 2027 in the file reviewed).", "source": null },
+        "2027": { "status": "provisional", "rounds": "Sub rows exist for 2027 WRC events.", "source": null }
+      },
+      "note": "Existing sub badge: wrc2. Junior WRC and WRC3 presence in 2027 is unverified."
+    }
+  ]
+}

@@ -6137,7 +6137,15 @@
             "date": "2026-11-08T18:00:00+01:00",
             "shortName": "BRAZIL",
             "start": "2026-11-06",
-            "end": "2026-11-08"
+            "end": "2026-11-08",
+            "results": [
+              {
+                "date": "2026-11-08",
+                "winner": "Lando Norris",
+                "team": "McLaren",
+                "country": "GB"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -6146,7 +6154,23 @@
             "time": "RACE: TBC",
             "track": "lusail.svg",
             "date": "2026-11-08T17:00:00+01:00",
-            "shortName": "QATAR (LUSAIL)"
+            "shortName": "QATAR (LUSAIL)",
+            "results": [
+              {
+                "race_label": "Sprint",
+                "date": "2026-11-07",
+                "winner": "Marc Marquez",
+                "team": "Ducati Lenovo Team",
+                "country": "ES"
+              },
+              {
+                "race_label": "Race",
+                "date": "2026-11-08",
+                "winner": "Marco Bezzecchi",
+                "team": "Aprilia Racing",
+                "country": "IT"
+              }
+            ]
           },
           {
             "series": "wec",
@@ -6159,7 +6183,19 @@
             ],
             "track": "monza.svg",
             "date": "2026-11-08T13:00:00+01:00",
-            "shortName": "MONZA 6H"
+            "shortName": "MONZA 6H",
+            "results": [
+              {
+                "date": "2026-11-08",
+                "winners": [
+                  "Jack Aitken",
+                  "Sébastien Bourdais",
+                  "Earl Bamber"
+                ],
+                "team": "Cadillac Hertz Team JOTA",
+                "country": "US"
+              }
+            ]
           },
           {
             "series": "nascar",

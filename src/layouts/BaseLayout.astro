@@ -481,9 +481,8 @@ const speculationRules = {
       line-height: 1.6;
       margin: 0;
     }
-
-    .cookie-banner-link {
-      color: var(--text-soft);
+    .cookie-banner-text a {
+      color: var(--link);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
@@ -804,7 +803,7 @@ const speculationRules = {
 
   <!-- Cookie consent banner -->
   <div id="cookie-banner" class="cookie-banner" role="region" aria-label="Cookie consent" hidden>
-    <p class="cookie-banner-text">We use Google Analytics cookies, only if you accept, to understand how visitors find us. No advertising. <a href={`${base}/legal/privacy`} class="cookie-banner-link">Privacy policy</a></p>
+    <p class="cookie-banner-text">With your consent, we use analytics cookies to see how visitors find us, and our affiliate partner's cookies to credit bookings made through our links. Details in our <a href={`${base}/legal/privacy#affiliates`}>privacy policy</a>.</p>
     <div class="cookie-banner-actions">
       <button id="cookie-accept" class="cookie-btn cookie-btn--accept">Accept</button>
       <button id="cookie-decline" class="cookie-btn cookie-btn--decline">Decline</button>
@@ -840,8 +839,23 @@ const speculationRules = {
         gtag('config', GA4_ID);
       }
 
+      // Travelpayouts affiliate script (project 598959). Loads only with consent, like GA4.
+      // Disclosed in section 6 of src/pages/legal/privacy.astro: change both together.
+      // Not on /embed/* (its own <head>, shown on other people's sites).
+      function loadAffiliate() {
+        if (window.__tpLoaded) return;
+        window.__tpLoaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.setAttribute('data-cmp-ab', '2');
+        s.src = 'https://tp-em.com/NTk4OTU5.js?t=598959';
+        document.head.appendChild(s);
+      }
+
       // Declining after accepting: stop GA4 on this page and delete its cookies
-      // (set on this host and on the parent domain).
+      // (set on this host and on the parent domain). A Travelpayouts script that
+      // already ran can't be unloaded, and its cookies belong to its own domain;
+      // it simply isn't loaded again from the next page on.
       function clearAnalytics() {
         window['ga-disable-' + GA4_ID] = true;
         var host = location.hostname.replace(/^www\./, '');
@@ -869,6 +883,7 @@ const speculationRules = {
       var consent = getCookie('cookie_consent');
       if (consent === 'granted') {
         loadGA4();
+        loadAffiliate();
         // banner stays hidden (default)
       } else if (consent === 'denied') {
         // banner stays hidden, GA4 never loads
@@ -889,6 +904,7 @@ const speculationRules = {
           acceptBtn.addEventListener('click', function () {
             setCookie('cookie_consent', 'granted', 365);
             loadGA4();
+            loadAffiliate();
             hideBanner();
           });
         }
