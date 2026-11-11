@@ -9,6 +9,7 @@ import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
 import { jsonForScript } from '../lib/jsonForScript';
 import { trackSlugForSvg } from '../lib/events';
+import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -44,7 +45,7 @@ interface WatchEvent {
 const EMBED_FROM = Date.now() - 7 * 864e5;
 const watchEvents: WatchEvent[] = [];
 for (const month of calendarData as any[]) {
-  const year: number = month.year ?? 2026;
+  const year: number = monthYear(month);
   for (const week of month.weeks) {
     for (const ev of week.events) {
       if (!ev.date || Date.parse(ev.date) < EMBED_FROM) continue;
@@ -76,7 +77,7 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
 ---
 
 <BaseLayout
-  title="Watch This Weekend — 2026 Motorsport Schedule | DORD Racing"
+  title={`Watch This Weekend — ${DEFAULT_CALENDAR_YEAR} Motorsport Schedule | DORD Racing`}
   description="Every motorsport session on TV this weekend. Times in your local timezone, broadcaster info for your country."
   canonicalUrl="https://dord.racing/watch"
   ogImage="https://dord.racing/assets/og/og-watch.webp"

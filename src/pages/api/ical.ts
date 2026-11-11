@@ -10,6 +10,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import seriesContent from '../../../data/seriesContent.json';
+import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
 import { generateIcs } from '../../lib/ics';
 
 const allValidSlugs: string[] = (seriesContent as any[]).map((s: any) => s.slug).sort();
@@ -42,7 +43,7 @@ export const GET: APIRoute = ({ request }) => {
   const isAll = requested.length === allValidSlugs.length;
 
   const calName = isAll
-    ? 'Motorsport 2026 Calendar — DORD Racing'
+    ? `Motorsport ${DEFAULT_CALENDAR_YEAR} Calendar — DORD Racing`
     : 'My Motorsport Calendar — DORD Racing';
 
   const icsContent = generateIcs(requested, calName);

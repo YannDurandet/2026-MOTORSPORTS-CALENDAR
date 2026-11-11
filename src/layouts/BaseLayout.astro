@@ -1,6 +1,7 @@
 ---
 import '../styles/tokens.css';
 import '../styles/global.css';
+import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
 
 interface Props {
   title: string;
@@ -88,7 +89,7 @@ const speculationRules = {
   <link rel="preload" href={`${base}/assets/fonts/jetbrains-mono-latin.woff2`} as="font" type="font/woff2" crossorigin>
   <link rel="preload" href={`${base}/assets/fonts/inter-latin-var.woff2`} as="font" type="font/woff2" crossorigin>
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="2026 Motorsport Master Calendar">
+  <meta property="og:site_name" content={`${DEFAULT_CALENDAR_YEAR} Motorsport Master Calendar`}>
   <meta property="og:url" content={resolvedCanonical}>
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
@@ -525,6 +526,7 @@ const speculationRules = {
   </style>
 
   <script>
+    import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
     // ── Theme ───────────────────────────────────────────────────────────────────
     // Three states, stored under one key: no value = follow the OS, 'light' or 'dark' = pinned.
     // The toggle flips what is on screen and only stores the result when it differs from the OS,
@@ -710,7 +712,7 @@ const speculationRules = {
           html += `<a class="search-result-item" href="${base}/#${escapeHtml(ev.anchor)}">
             <div class="search-result-body">
               <span class="search-result-name">${escapeHtml(ev.name)}</span>
-              <span class="search-result-sub">${escapeHtml(ev.tag)}${ev.year === 2027 ? ' · 2027' : ''}</span>
+              <span class="search-result-sub">${escapeHtml(ev.tag)}${ev.year && ev.year !== DEFAULT_CALENDAR_YEAR ? ` · ${ev.year}` : ''}</span>
             </div>
             ${arrow}
           </a>`;

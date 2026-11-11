@@ -28,7 +28,7 @@ const layoutLabel = (id: string) => LAYOUT_DISPLAY[id] ?? id.toUpperCase();
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
 import seriesContentData from '../../../data/seriesContent.json';
-import { showOnTrackPages } from '../../lib/season';
+import { DEFAULT_CALENDAR_YEAR, monthYear, showOnTrackPages } from '../../lib/season';
 import { findEvent } from '../../lib/events';
 import { fitTitle } from '../../lib/seo';
 import { ogPath } from '../../lib/ogPaths';
@@ -91,7 +91,7 @@ for (const month of calendarData as any[]) {
         const match = venue.layouts.find((l: Layout) => l.calendarSvgs.includes(ev.track));
         layoutId = match ? match.id : null;
       }
-      const path = findEvent(month.year ?? 2026, ev.series, ev.title, week.label)?.path ?? null;
+      const path = findEvent(monthYear(month), ev.series, ev.title, week.label)?.path ?? null;
       if (ev.results?.length) {
         const isDupe = pastResults.some(e => e.series === ev.series && e.title === ev.title && e.week === week.label);
         if (!isDupe) pastResults.push({ series: ev.series, tag: ev.tag, title: ev.title, week: week.label, layoutId, path, entries: ev.results });
@@ -153,13 +153,13 @@ const seriesNameMap: Record<string, string> = Object.fromEntries(
 
 const champCount = activeSeries.length;
 const pageTitle = fitTitle([
-  `${venue.name} — 2026 Race Schedule & Guide | DORD`,
-  `${venue.name} — 2026 Race Schedule | DORD`,
-  `${venue.name} 2026 Races | DORD`,
+  `${venue.name} — ${DEFAULT_CALENDAR_YEAR} Race Schedule & Guide | DORD`,
+  `${venue.name} — ${DEFAULT_CALENDAR_YEAR} Race Schedule | DORD`,
+  `${venue.name} ${DEFAULT_CALENDAR_YEAR} Races | DORD`,
   `${venue.name} | DORD`,
 ]);
 const pageDescription = champCount > 0
-  ? `All 2026 races at ${venue.name} — dates, series, and session times across ${champCount} championship${champCount !== 1 ? 's' : ''}. Updated weekly.`
+  ? `All ${DEFAULT_CALENDAR_YEAR} races at ${venue.name} — dates, series, and session times across ${champCount} championship${champCount !== 1 ? 's' : ''}. Updated weekly.`
   : `${venue.name} circuit guide — track map, specifications, and lap record. ${venue.city}, ${venue.country}.`;
 
 // Each event page carries the full SportsEvent markup; the track page lists
@@ -169,12 +169,12 @@ const eventListSchema = (() => {
   return items.length ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": `2026 events at ${venue.name}`,
+    "name": `${DEFAULT_CALENDAR_YEAR} events at ${venue.name}`,
     "numberOfItems": items.length,
     "itemListElement": items.map((ev: any, i: number) => ({
       "@type": "ListItem",
       "position": i + 1,
-      "name": `${seriesNameMap[ev.series] ?? ev.series} — ${ev.title} 2026`,
+      "name": `${seriesNameMap[ev.series] ?? ev.series} — ${ev.title} ${DEFAULT_CALENDAR_YEAR}`,
       "url": `https://dord.racing${ev.path}`,
     })),
   } : null;
@@ -215,7 +215,7 @@ const eventListSchema = (() => {
   </Fragment>
   <header>
     <div class="header--left">
-      <h1>{venue.name} — 2026 Race Calendar</h1>
+      <h1>{venue.name} — {DEFAULT_CALENDAR_YEAR} Race Calendar</h1>
       <div class="meta">{venue.city} · {venue.country} · {continentLabel[venue.continent] ?? venue.continent}</div>
       <Nav activePage="tracks" />
     </div>
@@ -382,7 +382,7 @@ const eventListSchema = (() => {
     <!-- Upcoming events -->
     {(upcomingEvents.length > 0 || pastResults.length === 0) && (
       <div class="track-events-section">
-        <div class="section-label">{pastResults.length > 0 ? 'UPCOMING' : '2026 EVENTS'}</div>
+        <div class="section-label">{pastResults.length > 0 ? 'UPCOMING' : `${DEFAULT_CALENDAR_YEAR} EVENTS`}</div>
         {upcomingEvents.length > 0 ? (
           <div class="events-list">
             {upcomingEvents.map(ev => (
@@ -396,7 +396,7 @@ const eventListSchema = (() => {
             ))}
           </div>
         ) : (
-          <p class="no-events">No events at this venue in 2026.</p>
+          <p class="no-events">No events at this venue in {DEFAULT_CALENDAR_YEAR}.</p>
         )}
       </div>
     )}

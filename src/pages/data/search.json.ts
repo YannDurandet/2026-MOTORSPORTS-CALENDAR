@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import tracksRaw from '../../../data/tracks.json';
 import seriesContent from '../../../data/seriesContent.json';
 import calendarRaw from '../../../data/calendar.json';
+import { DEFAULT_CALENDAR_YEAR, monthYear } from '../../lib/season';
 
 export const GET: APIRoute = () => {
   const tracks = (tracksRaw as any[]).map(t => ({
@@ -22,11 +23,12 @@ export const GET: APIRoute = () => {
   // Build event index from calendar data
   const events: object[] = [];
   for (const month of calendarRaw as any[]) {
-    const year: number = month.year ?? 2026;
+    const year: number = monthYear(month);
     for (const week of month.weeks ?? []) {
       const weekNum = week.label?.match(/WEEK (\d+)/)?.[1];
       if (!weekNum) continue;
-      const anchor = year === 2027 ? `2027-week-${weekNum}` : `week-${weekNum}`;
+      // Same anchors as index.astro: later seasons are prefixed with their year.
+      const anchor = year === DEFAULT_CALENDAR_YEAR ? `week-${weekNum}` : `${year}-week-${weekNum}`;
       for (const ev of week.events ?? []) {
         events.push({
           t: 'event',

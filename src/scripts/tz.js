@@ -25,7 +25,7 @@ export const NEEDS_TZ_CONVERSION = SOURCE_TIMEZONE !== USER_TIMEZONE;
 export const MONTH_MAP = { JAN: 0, FEB: 1, MAR: 2, APR: 3, MAY: 4, JUN: 5, JUL: 6, AUG: 7, SEP: 8, OCT: 9, NOV: 10, DEC: 11 };
 export const DAY_MAP = { SUN: 0, MON: 1, TUE: 2, WED: 3, THU: 4, FRI: 5, SAT: 6 };
 
-export function parseWeekDate(weekLabel, year = 2026) {
+export function parseWeekDate(weekLabel, year) {
     // "WEEK 43 • OCT 22-25" / "WEEK 31 • JUL 27 - AUG 2" → Date of the week's last day
     const m = weekLabel.match(/([A-Z]{3})\s+(\d{1,2})(?:\s*-\s*(?:([A-Z]{3})\s+)?(\d{1,2}))?\s*$/);
     if (!m) return null;
@@ -75,7 +75,7 @@ export function parisDay(iso) {
  * front of it ("RACE: 18:00"): the event's own day, which can be a Saturday
  * in a week card that ends on Sunday. Without it the week's last day is used.
  */
-export function convertTimeStr(timeHtml, weekLabel, year = 2026, eventIso) {
+export function convertTimeStr(timeHtml, weekLabel, year, eventIso) {
     if (!NEEDS_TZ_CONVERSION) return timeHtml;
     const endDate = parseWeekDate(weekLabel, year);
     if (!endDate) return timeHtml;
