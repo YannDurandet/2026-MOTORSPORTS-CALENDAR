@@ -316,9 +316,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         setLoading(false);
         showError(data?.error ?? 'Something went sideways. Try again.');
       }
-    } catch (err: any) {
+    } catch {
+      // Network failure or a non-JSON reply: the raw exception text
+      // ("Failed to fetch", "Unexpected token '<'") means nothing to a reader.
       setLoading(false);
-      showError(err?.message ?? 'Something went sideways. Try again.');
+      showError('Something went sideways. Try again.');
     }
   });
 </script>
