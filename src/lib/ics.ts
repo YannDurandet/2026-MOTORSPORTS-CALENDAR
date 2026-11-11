@@ -61,6 +61,24 @@ function nextDay(ymd: string): string {
   return new Date(Date.UTC(y, m - 1, d + 1)).toISOString().slice(0, 10);
 }
 
+/**
+ * How long the feed entry lasts, in hours. Three unless the data says
+ * otherwise: the RACE session's `duration` ("4h", "2h40"), else a length in
+ * the title ("24 Hours of Le Mans", "Mugello 12H", "NLS ... (4h)"; a bracketed
+ * one first) or the time string ("3h RACE: 12:00"). Capped at 24.
+ */
+export function raceLengthHours(ev: { title?: string; time?: string; sessions?: { label?: string; duration?: string }[] }): number {
+  const race = ev.sessions?.find(x => /^race$/i.test(x.label ?? '') && x.duration);
+  const d = race?.duration?.match(/^(\d{1,2})h(?:(\d{2}))?$/i);
+  if (d) return Number(d[1]) + (d[2] ? Number(d[2]) / 60 : 0);
+  const plain = `${ev.title ?? ''} ${(ev.time ?? '').replace(/<[^>]*>/g, ' ')}`;
+  // A length in brackets wins: "ADAC 24h Qualifiers (2×4h)" is two 4-hour races.
+  const m = plain.match(/\((?:\d+\s*[×x]\s*)?(\d{1,2})h(?:\s*[×x]\s*\d+)?\)/i)
+    ?? plain.match(/\b(\d{1,2})\s*(?:h|hours?)\b/i);
+  const h = m ? Number(m[1]) : 0;
+  return h >= 1 && h <= 24 ? h : 3;
+}
+
 export function generateIcs(targetSlugs: string[], calName?: string): string {
   // SVG → track goes through events.ts, so the feed names the same venue as the event page.
   const trackBySlug = new Map((tracksData as any[]).map(t => [t.slug, t]));
@@ -99,7 +117,7 @@ export function generateIcs(targetSlugs: string[], calName?: string): string {
           dtstart = `DTSTART;VALUE=DATE:${day.replace(/-/g, '')}`;
           dtend = `DTEND;VALUE=DATE:${nextDay(day).replace(/-/g, '')}`;
         } else {
-          const endDate = new Date(new Date(ev.date).getTime() + 3 * 60 * 60 * 1000);
+          const endDate = new Date(new Date(ev.date).getTime() + raceLengthHours(ev) * 60 * 60 * 1000);
           dtstart = `DTSTART:${toIcalDate(ev.date)}`;
           dtend = `DTEND:${endDate.getUTCFullYear()}${pad(endDate.getUTCMonth() + 1)}${pad(endDate.getUTCDate())}T${pad(endDate.getUTCHours())}${pad(endDate.getUTCMinutes())}00Z`;
         }
