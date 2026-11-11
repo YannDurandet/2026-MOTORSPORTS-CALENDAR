@@ -35,6 +35,8 @@ const newsletterAfterIdx = (calendarData as any[]).findIndex((m: any) =>
 // Next season's published calendars, as plain links: the in-page 2027 preview
 // is a JS toggle, so without these nothing crawlable points at 2027.
 const nextYear = DEFAULT_CALENDAR_YEAR + 1;
+// Week-card ids already given out: a week split across two months has two cards.
+const usedCardIds = new Set<string>();
 const SEASON_ORDER = ['f1', 'motogp', 'wec', 'fe', 'imsa', 'indycar', 'wrc', 'wsbk'];
 const nextSeasonSeries = [...new Set(ALL_EVENTS.filter(e => e.year === nextYear).map(e => e.series))]
   .sort((a, b) => {
@@ -224,9 +226,13 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
               const weekYear = monthYear(month);
               const weekNum = week.label.match(/WEEK (\d+)/)?.[1];
               // Ids are link targets (search, newsletter, shared links): later seasons are prefixed.
-              const cardId = weekNum
+              const baseId = weekNum
                 ? (weekYear === DEFAULT_CALENDAR_YEAR ? `week-${weekNum}` : `${weekYear}-week-${weekNum}`)
                 : undefined;
+              // The first card keeps "week-09" (what search and the newsletter link to);
+              // the second card of a split week gets "week-09-b". check-data allows no third.
+              const cardId = baseId && usedCardIds.has(baseId) ? `${baseId}-b` : baseId;
+              if (cardId) usedCardIds.add(cardId);
               return (
               <div class="card wk-card" id={cardId}>
                 <div class="wk-head">

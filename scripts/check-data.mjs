@@ -376,6 +376,22 @@ if (!defaultYear) {
     });
   }
 
+  // (g4c2) home-page week-card ids stay unique. A week split across two months
+  // ("WEEK 09 • FEB 27 - MAR 01", "WEEK 09 • MAR 01") has two cards: index.astro
+  // gives the second "-b", so a third card for the same week would repeat an id.
+  {
+    const cards = new Map();
+    const weeks = calendar.flatMap(month => (month.weeks ?? []).map(week => ({ month, week })));
+    check('week-ids', weeks, ({ month, week }) => {
+      const n = /WEEK (\d+)/.exec(week.label)?.[1];
+      if (!n) return null;
+      const key = `${yearOf(month)}/${n}`;
+      const seen = (cards.get(key) ?? 0) + 1;
+      cards.set(key, seen);
+      return seen > 2 ? `week ${n} of ${yearOf(month)} has ${seen} cards (third: "${week.label}"), so a card id would repeat` : null;
+    });
+  }
+
   // (g4d) every F1 round carries its own weekend (start/end), and it matches the date
   check('f1-weekends', allEvents.filter(({ ev }) => ev.series === 'f1'), ({ ev, week }) => {
     const id = `[f1] "${ev.title}" (${week.label})`;
