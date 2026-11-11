@@ -13,6 +13,8 @@ import { createClient } from '@libsql/client';
 import { Resend } from 'resend';
 import { DEFAULT_CALENDAR_YEAR } from '../src/lib/season';
 import { sendInBatches, type Outgoing } from './sendBatches';
+// The same token code the site's /api/unsubscribe verifies with (wrangler bundles it).
+import { computeUnsubToken, unsubUrl } from '../src/lib/unsub-token';
 
 // =============================================================================
 // ENVIRONMENT
@@ -25,25 +27,6 @@ interface Env {
   TURSO_AUTH_TOKEN: string;
   CRON_SECRET: string;
   UNSUB_SECRET: string;        // HMAC key for per-recipient unsubscribe tokens
-}
-
-// =============================================================================
-// UNSUBSCRIBE TOKEN  (mirrors src/lib/unsub-token.ts — inlined for Worker bundle)
-// =============================================================================
-
-async function computeUnsubToken(email: string, secret: string): Promise<string> {
-  const enc = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    'raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'],
-  );
-  const sig   = await crypto.subtle.sign('HMAC', key, enc.encode(email.toLowerCase().trim()));
-  const bytes = new Uint8Array(sig);
-  return btoa(String.fromCharCode(...bytes))
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-}
-
-function unsubUrl(email: string, token: string): string {
-  return `https://dord.racing/api/unsubscribe?email=${encodeURIComponent(email)}&token=${encodeURIComponent(token)}`;
 }
 
 // =============================================================================

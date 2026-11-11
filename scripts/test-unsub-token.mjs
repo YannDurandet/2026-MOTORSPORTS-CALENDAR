@@ -22,22 +22,22 @@ if (!cmd || !email) {
   process.exit(1);
 }
 
-async function computeToken(email, secret) {
-  const enc = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    'raw', enc.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'],
-  );
-  const sig   = await crypto.subtle.sign('HMAC', key, enc.encode(email.toLowerCase().trim()));
-  const bytes = new Uint8Array(sig);
-  return Buffer.from(bytes).toString('base64')
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+// The site's own token code, so this test can't pass while the site disagrees.
+// Node runs the .ts file directly from 22.18 on.
+let computeUnsubToken, unsubUrl;
+try {
+  ({ computeUnsubToken, unsubUrl } = await import('../src/lib/unsub-token.ts'));
+} catch (err) {
+  console.error('Could not load src/lib/unsub-token.ts (' + err.message + ').');
+  console.error('This script needs Node 22.18 or later, which runs TypeScript files directly.');
+  process.exit(1);
 }
 
 const normalised = email.toLowerCase().trim();
-const computed   = await computeToken(normalised, secret);
+const computed   = await computeUnsubToken(normalised, secret);
 
 if (cmd === 'gen') {
-  const url = `https://dord.racing/api/unsubscribe?email=${encodeURIComponent(normalised)}&token=${encodeURIComponent(computed)}`;
+  const url = unsubUrl(normalised, computed);
   console.log('Email: ', normalised);
   console.log('Token: ', computed);
   console.log('URL:   ', url);

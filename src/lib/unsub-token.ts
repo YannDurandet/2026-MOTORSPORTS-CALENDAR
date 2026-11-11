@@ -3,9 +3,9 @@
  * HMAC-SHA256 token helpers for the newsletter's unsubscribe and confirm links.
  * Uses the Web Crypto API — works in Cloudflare Workers edge runtime.
  *
- * Both use UNSUB_SECRET. The unsubscribe token signs the bare address (its
- * format is shared with workers/newsletter.ts and scripts/test-unsub-token.mjs,
- * so it must not change); the confirm token signs "confirm:<address>", so one
+ * Both use UNSUB_SECRET. The unsubscribe token signs the bare address (the
+ * newsletter worker and scripts/test-unsub-token.mjs import this file, and links
+ * already in inboxes depend on the format, so it must not change); the confirm token signs "confirm:<address>", so one
  * can never be used as the other.
  */
 
