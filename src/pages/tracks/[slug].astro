@@ -33,6 +33,7 @@ import { findEvent } from '../../lib/events';
 import { fitTitle } from '../../lib/seo';
 import { ogPath } from '../../lib/ogPaths';
 import { jsonForScript } from '../../lib/jsonForScript';
+import { isoCountry } from '../../lib/results';
 
 type Layout = { id: string; label: string; calendarSvgs: string[] };
 type Logistics = {
@@ -194,7 +195,7 @@ const eventListSchema = (() => {
       "address": {
         "@type": "PostalAddress",
         "addressLocality": venue.city,
-        "addressCountry": venue.country,
+        "addressCountry": isoCountry(venue.country),
       },
       "url": `https://dord.racing/tracks/${slug}`,
       ...((venue as any).website ? { "sameAs": (venue as any).website } : {}),

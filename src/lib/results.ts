@@ -44,6 +44,7 @@ export function normalizeCountry(name: string): string {
   return map[name] ?? '';
 }
 
+
 export const isoToName: Record<string, string> = {
   'AU': 'Australia', 'AT': 'Austria', 'AZ': 'Azerbaijan', 'BH': 'Bahrain',
   'BE': 'Belgium', 'BR': 'Brazil', 'CA': 'Canada', 'CN': 'China',
@@ -70,6 +71,25 @@ export function countryName(code: string): string {
   } catch {
     return code;   // not a valid region code
   }
+}
+
+/** English region name → ISO code, for names the table above lacks
+ *  ("Argentina", "Türkiye" in calendar.json venues). */
+const isoByName = (() => {
+  const m = new Map<string, string>();
+  for (let a = 65; a <= 90; a++) for (let b = 65; b <= 90; b++) {
+    const code = String.fromCharCode(a, b);
+    try { const n = regionNames.of(code); if (n && n !== code) m.set(n, code); } catch { /* not a region */ }
+  }
+  return m;
+})();
+
+/** schema.org addressCountry wants the two-letter ISO code. tracks.json names
+ *  ("USA", "UK", "Germany") map through normalizeCountry(), other names
+ *  through the runtime's region names, and codes ("SE") pass through. */
+export function isoCountry<T extends string | undefined>(country: T): T | string {
+  if (!country) return country;
+  return normalizeCountry(country) || isoByName.get(country) || country;
 }
 
 // ── Track lookup maps ─────────────────────────────────────────────────────────

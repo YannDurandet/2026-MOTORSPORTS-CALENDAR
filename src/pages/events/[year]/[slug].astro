@@ -25,7 +25,7 @@ import { accommodationQuery, PARTNER_REL } from '../../../lib/affiliates';
 import { parseSessions, mainRaceTime } from '../../../lib/sessions';
 import { venueTimeZone, formatIn, zoneAbbr } from '../../../lib/timezones';
 import { ticketLinks } from '../../../lib/tickets';
-import { countryName } from '../../../lib/results';
+import { countryName, isoCountry } from '../../../lib/results';
 import { venueFor } from '../../../lib/venues';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
@@ -219,7 +219,7 @@ const eventSchema = {
     "address": {
       "@type": "PostalAddress",
       "addressLocality": venue.city,
-      "addressCountry": venue.country,
+      "addressCountry": isoCountry(venue.country),
     },
     ...(venue.website ? { "url": venue.website } : {}),
   } : {
