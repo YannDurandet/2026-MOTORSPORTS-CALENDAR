@@ -148,6 +148,7 @@ const pageTitle = isAll
     }
 
     .embed-series-name {
+      margin: 0;
       font-size: 0.72rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -256,13 +257,16 @@ const pageTitle = isAll
 </head>
 <body>
   <header class="embed-header">
-    <span class="embed-series-name">{isAll ? 'All Series' : (seriesMeta?.name ?? seriesSlug)}</span>
+    <h1 class="embed-series-name">{isAll ? 'All Series' : (seriesMeta?.name ?? seriesSlug)}</h1>
     <a href="https://dord.racing" target="_blank" rel="noopener noreferrer" class="embed-logo">dord.racing</a>
   </header>
 
-  <div class="embed-events" id="embed-events">
-    <p class="embed-empty">Loading…</p>
-  </div>
+  <!-- In an iframe the widget is its own document: it needs its own main region. -->
+  <main id="main-content" class="embed-events">
+    <div id="embed-events">
+      <p class="embed-empty">Loading…</p>
+    </div>
+  </main>
 
   <footer class="embed-footer">
     <a href={isAll ? 'https://dord.racing/' : `https://dord.racing/series/${seriesSlug}`} target="_blank" rel="noopener noreferrer">
