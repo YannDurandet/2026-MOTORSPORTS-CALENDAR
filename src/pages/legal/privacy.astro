@@ -6,7 +6,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="Privacy Policy — dord.racing"
-  description="Privacy policy for dord.racing: newsletter email, your chosen country, analytics cookies (GA4, with consent) and affiliate links (Travelpayouts)."
+  description="Privacy policy for dord.racing: newsletter email, your chosen country, visit counting without cookies (Cloudflare Web Analytics) and affiliate links (Travelpayouts)."
   canonicalUrl="https://dord.racing/legal/privacy"
 >
   <header>
@@ -22,7 +22,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <div class="legal-body">
 
-      <p class="legal-date">Last updated: November 13, 2026 — added Cloudflare Web Analytics, a visit counter that sets no cookies and stores nothing on your device (sections 7 and 8)</p>
+      <p class="legal-date">Last updated: November 13, 2026 — Google Analytics removed; visits are now counted with Cloudflare Web Analytics, which sets no cookies and stores nothing on your device (sections 5, 7 and 8)</p>
 
       <h2>1. Who we are</h2>
       <p>dord.racing is operated by Yann Durandet, based in France. For privacy-related questions, contact us at <a class="js-mailto" data-u="durandet.yann.pro" data-d="gmail.com" data-show></a>. As the site is operated from France, it is subject to the EU General Data Protection Regulation (GDPR).</p>
@@ -47,14 +47,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <p>This data is kept in a database hosted by Turso, and the emails (one when you sign up, then one each week) are delivered by Resend, an email delivery service. Resend processes your address to send the emails and may record delivery status such as delivered or bounced. Some of these providers are based outside the EU and may process data outside the European Economic Area; see <a href="https://turso.tech/privacy-policy" target="_blank" rel="noopener">Turso's</a> and <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener">Resend's</a> privacy policies. We use your address only to send you the newsletter, and we do not sell or share it with anyone else.</p>
       <p>Every email has an unsubscribe link, or you can reply with "unsubscribe" in the subject line. Unsubscribing stops the emails and keeps your address on file, flagged as unsubscribed, so that we do not email you again. To have it deleted, write to us at the address in section 12.</p>
 
-      <h2>5. Analytics cookies (Google Analytics 4)</h2>
-      <p>With your consent, we use Google Analytics 4 (GA4) to understand how visitors find and use the site — for example, which series pages are most popular and how visitors arrive (search, social, direct). GA4 sets first-party cookies on your device. The data collected is aggregated and used only to improve the site; we do not use it to identify individuals.</p>
-      <p>GA4 is only loaded after you click <strong>Accept</strong> in the cookie consent banner shown on your first visit. If you click Decline, no analytics script is loaded and no analytics cookies are set. The same choice covers the Travelpayouts affiliate script (section 6). Your preference is stored in a <code>cookie_consent</code> cookie (1-year expiry) so the banner does not reappear on subsequent visits. You can change your choice at any time with <strong>Cookie settings</strong> at the bottom of the page; choosing Decline deletes the analytics cookies.</p>
-      <p>When GA4 is active, data is processed by Google LLC in accordance with <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. You can also opt out at any time using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+      <h2>5. Analytics and the cookie banner</h2>
+      <p>We count visits with Cloudflare Web Analytics, described in section 8. It sets no cookies and stores nothing on your device, so it does not depend on the cookie banner.</p>
+      <p>Until November 2026 this site also used Google Analytics 4, loaded only with consent. It has been removed: no Google Analytics script is loaded any more, and any <code>_ga</code> cookies it set on your device are deleted the next time you open a page here.</p>
+      <p>The cookie consent banner shown on your first visit now covers one thing: the Travelpayouts affiliate script (section 6). Your choice is stored in a <code>cookie_consent</code> cookie (1-year expiry) so the banner does not reappear on subsequent visits. You can change your choice at any time with <strong>Cookie settings</strong> at the bottom of the page.</p>
 
       <h2 id="affiliates">6. Affiliate links and third-party cookies</h2>
       <p>With your consent, dord.racing loads a script from <strong>Travelpayouts</strong>, the affiliate network we work with, served from <code>tp-em.com</code>. It lets Travelpayouts recognise links on our pages that lead to its travel partners and turn them into affiliate links, and record clicks on those links so that bookings can be credited to us.</p>
-      <p>Like Google Analytics (section 5), the script is only loaded after you click <strong>Accept</strong> in the cookie consent banner. If you click Decline, it is never loaded and Travelpayouts receives nothing from your visit to dord.racing. The same <code>cookie_consent</code> cookie records your choice, and you can withdraw consent the same way, with <strong>Cookie settings</strong> at the bottom of any page: the script is then no longer loaded from the next page on.</p>
+      <p>The script is only loaded after you click <strong>Accept</strong> in the cookie consent banner. If you click Decline, it is never loaded and Travelpayouts receives nothing from your visit to dord.racing. The same <code>cookie_consent</code> cookie records your choice, and you can withdraw consent the same way, with <strong>Cookie settings</strong> at the bottom of any page: the script is then no longer loaded from the next page on.</p>
       <p>When the script loads, your browser connects to Travelpayouts' servers, which receive the technical data any web request carries: your IP address, browser type, and the address of the page you are viewing. The script may set or read cookies or similar identifiers on your device to attribute clicks and bookings. We do not send Travelpayouts your email address or any other personal data, and we do not receive personal data back from it, only aggregated click and booking reports. This processing is governed by <a href="https://www.travelpayouts.com/en/privacy" target="_blank" rel="noopener">Travelpayouts' privacy policy</a>, and Travelpayouts may process data outside the European Economic Area. The site works the same whether you accept or decline.</p>
       <p>Some links on this site are affiliate links. When you click an affiliate link, you are redirected to a third-party platform (such as a hotel, tour, or travel booking partner). These platforms may set their own cookies on your device in order to track referrals and attribute bookings to us.</p>
       <p>These cookies are set by third parties, not by dord.racing. We have no control over them. The data collected by affiliate platforms is governed by their own privacy policies. We encourage you to review those policies before making a purchase.</p>
@@ -62,7 +62,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
       <h2>7. Legal basis for processing (GDPR)</h2>
       <p>Your newsletter subscription (section 4) rests on your consent (GDPR Art. 6(1)(a)), which you give by submitting your address and can withdraw at any time by unsubscribing.</p>
-      <p>Analytics cookies (GA4) are loaded only on the basis of your explicit consent (GDPR Art. 6(1)(a)). The Travelpayouts script (section 6) is likewise loaded only on the basis of your explicit consent (GDPR Art. 6(1)(a)). Affiliate tracking cookies set by third-party platforms when you click a link fall under the legitimate interests of those platforms (GDPR Art. 6(1)(f)); their data processing is governed by their own policies.</p>
+      <p>The Travelpayouts script (section 6) is loaded only on the basis of your explicit consent (GDPR Art. 6(1)(a)). Affiliate tracking cookies set by third-party platforms when you click a link fall under the legitimate interests of those platforms (GDPR Art. 6(1)(f)); their data processing is governed by their own policies.</p>
       <p>Cloudflare Web Analytics (section 8) rests on our legitimate interest in knowing how many people use the site and which pages they read (GDPR Art. 6(1)(f)). It uses no cookies and no identifiers.</p>
       <p>Country detection (section 3) runs only when you click <strong>Use my location</strong>, so it rests on your own request and consent (GDPR Art. 6(1)(a)). The country you pick is a preference you set and is kept only on your device.</p>
 
