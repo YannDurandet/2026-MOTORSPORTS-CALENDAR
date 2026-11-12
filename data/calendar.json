@@ -136,6 +136,7 @@
             "title": "Jeddah E-Prix",
             "time": "R1 & R2: <span class=\"hl\">17:05</span>",
             "track": "jeddah-fe.svg",
+            "slug": "fe-jeddah-e-prix-feb",
             "results": [
               {
                 "date": "2026-02-14",
@@ -6376,20 +6377,6 @@
             "shortName": "WORLD CUP: JAKARTA"
           }
         ]
-      },
-      {
-        "label": "WEEK 51 • DEC 18-19",
-        "events": [
-          {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Jeddah E-Prix",
-            "time": "R1 & R2: <span class=\"hl\">18:00</span>",
-            "track": "jeddah-fe.svg",
-            "date": "2026-12-18T20:00:00+03:00",
-            "shortName": "JEDDAH"
-          }
-        ]
       }
     ]
   },
@@ -6916,6 +6903,15 @@
             "shortName": "VALENCIA",
             "start": "2027-04-02",
             "end": "2027-04-04"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Sanya E-Prix",
+            "time": "RACE: <span class=\"hl\">09:00</span>",
+            "track": "sanya.svg",
+            "date": "2027-04-03T15:00:00+08:00",
+            "shortName": "SANYA"
           }
         ]
       },
@@ -7080,15 +7076,6 @@
             "end": "2027-04-18"
           },
           {
-            "series": "fe",
-            "tag": "FORMULA E",
-            "title": "Sanya E-Prix",
-            "time": "RACE: <span class=\"hl\">09:00</span>",
-            "track": "sanya.svg",
-            "date": "2027-04-17T15:00:00+08:00",
-            "shortName": "SANYA"
-          },
-          {
             "series": "imsa",
             "tag": "IMSA",
             "title": "Grand Prix of Long Beach",
@@ -7114,6 +7101,17 @@
             "track": "motegi.svg",
             "date": "2027-04-18T07:30:00+02:00",
             "shortName": "MOTEGI"
+          },
+          {
+            "series": "fe",
+            "tag": "FORMULA E",
+            "title": "Jeddah E-Prix",
+            "time": "R1 & R2: <span class=\"hl\">19:00</span>",
+            "track": "jeddah-fe.svg",
+            "date": "2027-04-16T20:00:00+03:00",
+            "shortName": "JEDDAH",
+            "start": "2027-04-16",
+            "end": "2027-04-17"
           }
         ]
       },

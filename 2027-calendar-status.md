@@ -12,7 +12,7 @@ _Last updated: 2026-11-11_
 | `dtm` | Deutsche Tourenwagen Masters | 8 weekends / 16 races (times TBC) |
 | `elms` | European Le Mans Series | 6 |
 | `f1` | Formula 1 | 24 (times TBC; Turkish GP has no track map yet). F2 on 14 weekends and F3 on 10, as support rows (FIA graphic; race times TBC) |
-| `fe` | Formula E | 21 (Season 13, Dec 2026 – Jul 2027) |
+| `fe` | Formula E | 21 (Season 13, Jan – Jul 2027; Sanya moved to 3 April and Jeddah to 16–17 April, update of November 2026) |
 | `gtwca` | GT World Challenge America | 7, provisional (Texas 8 Hour at COTA replaces the Indianapolis 8 Hour; times TBC) |
 | `gtwce` | GT World Challenge Europe | 10 |
 | `h24eu` | 24H Series European Series | 5, provisional (Red Bull Ring replaces the Nürburgring; times TBC) |

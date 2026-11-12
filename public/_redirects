@@ -36,6 +36,8 @@
 /pit-wall/* /newsletter 301
 /stats /results 301
 /stats/ /results 301
+# Formula E moved the December 2026 Jeddah E-Prix to April 2027.
+/events/2026/fe-jeddah-e-prix-dec /events/2027/fe-jeddah-e-prix 301
 /events/:year / 301
 /events/:year/ / 301
 /:a/:b/:c/ /:a/:b/:c 301

@@ -70,7 +70,7 @@ export const FAQS: Faq[] = [
   {
     question: "What is Formula E, and who won the 2025–26 title?",
     answer:
-      "Formula E is the FIA's fully electric single-seater world championship, racing on temporary street circuits in major cities, with identical battery hardware for every team so the competition comes down to chassis and software. Pascal Wehrlein (Porsche) won his second drivers' title at the London finale in August, on 169 points to Jake Dennis's 164 and Mitch Evans's 160. Jaguar TCS Racing took the teams' title and Porsche the manufacturers' title. Season 13 opens with the Jeddah E-Prix on December 18 and runs through the Tokyo E-Prix on July 24, 2027.",
+      "Formula E is the FIA's fully electric single-seater world championship, racing on temporary street circuits in major cities, with identical battery hardware for every team so the competition comes down to chassis and software. Pascal Wehrlein (Porsche) won his second drivers' title at the London finale in August, on 169 points to Jake Dennis's 164 and Mitch Evans's 160. Jaguar TCS Racing took the teams' title and Porsche the manufacturers' title. Season 13 opens with the Mexico City E-Prix on January 16, 2027 and runs through the Tokyo E-Prix on July 24, 2027.",
   },
   {
     question: "Where can I find the 2027 calendar?",
