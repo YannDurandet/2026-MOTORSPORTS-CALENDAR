@@ -49,7 +49,7 @@ Present on all 136 tracks. Rendered by `src/components/GettingThereCard.astro` i
 - `nearest_airport` — always `"IATA - Full Name"`. The three-letter code is parsed on display; keep the ` - ` separator.
 - `accommodation_hub` — where fans should actually book, which is often **not** the venue city (Haarlem for Zandvoort, Milton Keynes for Silverstone). This field feeds the hotel affiliate link via `accommodationQuery()`, so lead with the place name and put the reasoning after an em dash.
 - `travel_tip` — one actionable, non-obvious tip. Not marketing copy.
-- `affiliate_hooks` — exactly 3 search keywords. Rendered as non-clickable chips; see `agent-tasks/affiliate-links-instructions.md` before making them links.
+- `affiliate_hooks` — exactly 3 search keywords. Rendered as non-clickable chips.
 
 ## Optional event fields in `calendar.json`
 Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
@@ -184,7 +184,7 @@ The broadcaster list on `/watch` and in each series' "How to Watch" block follow
 - The wording of the popup is a promise to visitors and is mirrored in section 3 of `src/pages/legal/privacy.astro`. Change both together.
 
 ## Affiliate links
-`src/lib/affiliates.ts` holds the Awin merchant IDs and `buildAwinLink()`. All outbound partner links go through it, so the `PUBLIC_AFFILIATE_LINKS_ENABLED` kill switch and the `clickref` convention hold everywhere. Default is off: links render as plain untracked URLs. Read `agent-tasks/affiliate-links-instructions.md` before touching any of this.
+`src/lib/affiliates.ts` holds the Awin merchant IDs and `buildAwinLink()`. All outbound partner links go through it, so the `PUBLIC_AFFILIATE_LINKS_ENABLED` kill switch and the `clickref` convention hold everywhere. Default is off: links render as plain untracked URLs.
 
 ## SEO (Bing Webmaster Tools)
 - **Titles ≤ 60 characters.** Pass candidates, most to least descriptive, through `fitTitle()` in `src/lib/seo.ts`. Any new template needs it, embed pages included (`/embed/imsa` was 67 characters before). Bing reports "Title too long" per page.

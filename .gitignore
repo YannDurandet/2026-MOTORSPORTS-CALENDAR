@@ -34,3 +34,6 @@ Thumbs.db
 
 #internal
 agent-tasks/
+
+# Search Console exports (analysis input, not part of the site)
+dord.racing-Performance-on-Search-*/

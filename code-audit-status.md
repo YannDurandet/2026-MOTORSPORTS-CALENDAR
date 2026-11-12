@@ -1,6 +1,6 @@
 # Code Audit Status
 
-_Last updated: 2026-11-11_
+_Last updated: 2026-11-13_
 
 What is still open after the November 2026 code audit. The audit found 95
 issues (F-001 … F-095); 84 are fixed, in the same merge as this file. The full
@@ -16,9 +16,10 @@ Tick items here as they are done, and delete the file once every box is ticked.
       `cd workers`, then `npx wrangler deploy --config wrangler.toml`.
 - [ ] **Sign up once with your own address** on the live site. Since F-045 a
       sign-up gets a confirmation email first (it needs `UNSUB_SECRET`, now set).
-- [ ] **Open one embedded calendar** on a page that frames it (or a test page).
+- [x] **Open one embedded calendar** on a page that frames it (or a test page).
       F-055 added `X-Frame-Options` everywhere except `/embed/*`; it was only
-      tested locally with `wrangler dev`.
+      tested locally with `wrangler dev`. Checked on the live site: `/embed/f1`
+      sends no `X-Frame-Options`, `/` and `/series/wsbk/2027` send `SAMEORIGIN`.
 - [ ] **Watch the first daily build** (Actions → Deploy, 05:00 UTC). F-069 added
       the schedule; GitHub only runs it from `main`.
 - [ ] **In the next newsletter, click your own unsubscribe link** and check the
@@ -27,19 +28,14 @@ Tick items here as they are done, and delete the file once every box is ticked.
 
 ## 2. Decisions only Yann can make
 
-- [ ] **One newsletter form (second half of F-068).** `newsletter.astro` and
-      `NewsletterBanner.astro` carry the same form and submit script. Merging them
-      into one `NewsletterForm.astro` changes both pages' scripts and needs a real
-      sign-up test, so it was left.
-- [ ] **Affiliate instructions (F-085, item 7).** CLAUDE.md and `.env.example` point
-      to `agent-tasks/affiliate-links-instructions.md`, which git doesn't carry.
-      Commit that file somewhere tracked (e.g. `docs/`), or drop the references.
-- [ ] **Deleted design tokens (F-072).** 25 unused tokens were removed from
-      `tokens.css` without checking the Figma file. If one mirrors a Figma variable
-      you want to keep, restore its line.
-- [ ] **Countdown font (F-070).** The `/series` countdowns now use the mono font
-      CLAUDE.md gives to times. To get the old Inter look back, delete the
-      `font-family` line in `.sc-time` (`global.css`).
+- [x] **One newsletter form (second half of F-068).** Decided: merge. The work
+      is listed in section 4 and happens when the sign-up goes onto event and
+      season pages.
+- [x] **Affiliate instructions (F-085, item 7).** Decided: references dropped
+      from CLAUDE.md and `.env.example` (the file no longer exists and described
+      Awin, which refused every programme).
+- [x] **Deleted design tokens (F-072).** Decided: they stay deleted.
+- [x] **Countdown font (F-070).** Decided: the `/series` countdowns keep the mono font.
 
 ## 3. Data job (`data/*.json`)
 
@@ -72,6 +68,9 @@ lists them.
 
 ## 4. Small code items not started
 
+- [ ] **One newsletter form (F-068):** `newsletter.astro` and `NewsletterBanner.astro`
+      carry the same form and submit script. Build one `NewsletterForm.astro`, use it
+      on both and on event and season pages, then test a real sign-up on each.
 - [ ] **Search:** a query typed before the search index has loaded shows nothing
       until the next keystroke (`renderResults()` in `BaseLayout.astro` returns early).
 - [ ] **Type check:** `npm run typecheck` reports 6 errors: five missing Cloudflare
