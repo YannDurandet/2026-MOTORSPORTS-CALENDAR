@@ -11,17 +11,18 @@ Tick items here as they are done, and delete the file once every box is ticked.
 
 ## 1. Finish the rollout (one time, after the merge)
 
-- [ ] **Redeploy the newsletter worker.** F-074, F-075, F-076 and F-077 change
+- [x] **Redeploy the newsletter worker.** F-074, F-075, F-076 and F-077 change
       `workers/`, which the site deploy doesn't ship. From the repo root:
       `cd workers`, then `npx wrangler deploy --config wrangler.toml`.
-- [ ] **Sign up once with your own address** on the live site. Since F-045 a
+- [x] **Sign up once with your own address** on the live site. Since F-045 a
       sign-up gets a confirmation email first (it needs `UNSUB_SECRET`, now set).
 - [x] **Open one embedded calendar** on a page that frames it (or a test page).
       F-055 added `X-Frame-Options` everywhere except `/embed/*`; it was only
       tested locally with `wrangler dev`. Checked on the live site: `/embed/f1`
       sends no `X-Frame-Options`, `/` and `/series/wsbk/2027` send `SAMEORIGIN`.
-- [ ] **Watch the first daily build** (Actions → Deploy, 05:00 UTC). F-069 added
-      the schedule; GitHub only runs it from `main`.
+- [x] **Watch the first daily build** (Actions → Deploy, 05:00 UTC). F-069 added
+      the schedule; GitHub only runs it from `main`. Run #97 was the first
+      scheduled run and passed; GitHub started it at 13:32 UTC, not 05:00.
 - [ ] **In the next newsletter, click your own unsubscribe link** and check the
       page says you're unsubscribed (F-077 moved the worker to the site's token code;
       it was checked to produce identical tokens).
