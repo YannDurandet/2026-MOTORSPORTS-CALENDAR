@@ -299,10 +299,11 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
 }
 
 // ── (g4) season consistency: year, week range, event URLs, F1 weekends ──────
-// Months without a `year` belong to DEFAULT_CALENDAR_YEAR (src/lib/season.ts);
-// later seasons are tagged. An event filed under the wrong month renders in the
-// wrong year and converts its times with the wrong DST offset, and nothing else
-// notices, so the invariants are enforced here.
+// Every month carries its `year` (checked first: a month without one would
+// silently follow DEFAULT_CALENDAR_YEAR in src/lib/season.ts and jump to the
+// next season when the site rolls over). An event filed under the wrong month
+// renders in the wrong year and converts its times with the wrong DST offset,
+// and nothing else notices, so the invariants are enforced here.
 const defaultYear = Number(
   /DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(readFileSync(resolve(root, 'src/lib/season.ts'), 'utf8'))?.[1],
 );
@@ -313,6 +314,9 @@ if (!defaultYear) {
   const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   const DAY_MS = 864e5;
   const yearOf = (month) => month.year ?? defaultYear;
+  check('month-year', calendar, (month) =>
+    Number.isInteger(month.year) ? null
+      : `${month.month} has no "year": add one (e.g. "year": ${defaultYear}) right after "month" in data/calendar.json`);
   const dayOf = (iso) => { const [y, m, d] = iso.slice(0, 10).split('-').map(Number); return Date.UTC(y, m - 1, d); };
 
   // "WEEK 45 • NOV 06-08", "WEEK 09 • FEB 28 - MAR 01" or "WEEK 02 • JAN 10"

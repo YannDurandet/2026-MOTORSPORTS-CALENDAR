@@ -79,7 +79,7 @@ const pastResults: CalResult[] = [];
 const upcomingEvents: CalEvent[] = [];
 
 for (const month of calendarData as any[]) {
-  if (!showOnTrackPages(month)) continue;   // 2027 lives on the main calendar only
+  if (!showOnTrackPages(month)) continue;   // later seasons live on the main calendar only
   for (const week of month.weeks) {
     for (const ev of week.events) {
       if (!ev.track || !venue.calendarSvgs.includes(ev.track)) continue;

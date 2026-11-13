@@ -2,11 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import { DEFAULT_CALENDAR_YEAR as season } from '../../lib/season';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout
   title="Terms of Use — dord.racing"
-  description="Terms of use for dord.racing, an independent 2026 motorsport calendar."
+  description={`Terms of use for dord.racing, an independent ${season} motorsport calendar.`}
   canonicalUrl="https://dord.racing/legal/tos"
 >
   <header>

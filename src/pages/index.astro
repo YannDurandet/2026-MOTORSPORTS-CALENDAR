@@ -13,11 +13,11 @@ import calendarData from '../../data/calendar.json';
 import seriesContent from '../../data/seriesContent.json';
 import seriesIndex from '../../data/series.json';
 import { ALL_EVENTS, trackSlugForSvg } from '../lib/events';
-import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
+import { DEFAULT_CALENDAR_YEAR, monthYear, weekAnchor } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
 import { jsonForScript } from '../lib/jsonForScript';
 import { withTbcFlags } from '../lib/tbc';
-import { FAQS } from '../lib/faq';
+import { CURRENT_FAQS } from '../lib/faq';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 // Races whose start time isn't published carry `tbc: true` (see src/lib/tbc.ts).
@@ -34,7 +34,8 @@ const newsletterAfterIdx = (calendarData as any[]).findIndex((m: any) =>
 
 // Next season's published calendars, as plain links: the in-page 2027 preview
 // is a JS toggle, so without these nothing crawlable points at 2027.
-const nextYear = DEFAULT_CALENDAR_YEAR + 1;
+const season = DEFAULT_CALENDAR_YEAR;
+const nextYear = season + 1;
 // Week-card ids already given out: a week split across two months has two cards.
 const usedCardIds = new Set<string>();
 const SEASON_ORDER = ['f1', 'motogp', 'wec', 'fe', 'imsa', 'indycar', 'wrc', 'wsbk'];
@@ -64,8 +65,8 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
 
 ---
 <BaseLayout
-  title="2026 Motorsport Calendar — F1, MotoGP, WEC & 23 More | DORD"
-  description="The ultimate 2026 motorsport master calendar. Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns and local track times."
+  title={`${season} Motorsport Calendar — F1, MotoGP, WEC & 23 More | DORD`}
+  description={`The ultimate ${season} motorsport master calendar. Track F1, WEC, IMSA, MotoGP, IndyCar, and more with live countdowns and local track times.`}
   canonicalUrl="https://dord.racing"
   ogImage="https://dord.racing/assets/og/og-home.webp"
 >
@@ -85,10 +86,10 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "2026 Motorsport Master Calendar",
+      "name": `${season} Motorsport Master Calendar`,
       "alternateName": "dord.racing",
       "url": "https://dord.racing",
-      "description": "The ultimate 2026 motorsport master calendar tracking 26 championships across open-wheel, endurance, touring, GT, bike, and rally series.",
+      "description": `The ultimate ${season} motorsport master calendar tracking 26 championships across open-wheel, endurance, touring, GT, bike, and rally series.`,
       "publisher": {
         "@type": "Organization",
         "name": "DORD Racing",
@@ -100,21 +101,21 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
         "url": "https://durandet.studio"
       }
     })} />
-    <script type="application/ld+json" set:html={jsonForScript({
+    {CURRENT_FAQS.length > 0 && <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": FAQS.map(({ question, answer }) => ({
+      "mainEntity": CURRENT_FAQS.map(({ question, answer }) => ({
         "@type": "Question",
         "name": question,
         "acceptedAnswer": { "@type": "Answer", "text": answer }
       }))
-    })} />
+    })} />}
   </Fragment>
 
   <Banner />
   <header>
     <div class="header--left">
-      <h1>2026 Motorsport<br>Master Calendar</h1>
+      <h1>{season} Motorsport<br>Master Calendar</h1>
       <div class="meta-tz-row">
         <div class="meta" id="tz-notice">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
         <label for="tz-select" class="tz-label">TZ</label>
@@ -122,7 +123,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
           <!-- Populated by main.js -->
         </select>
       </div>
-      <div class="website-description">The ultimate 2026 motorsport master calendar. Track every race weekend
+      <div class="website-description">The ultimate {season} motorsport master calendar. Track every race weekend
         across global and regional series, including Formula 1, WEC, IMSA, IndyCar, MotoGP, and WRC.<br> Use
         the filters to customize your schedule by open-wheel, endurance, or touring cars. All countdowns and
         schedules are localized to Paris CET/CEST time.</div>
@@ -221,15 +222,13 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
     <div id="calendar-container" class="cal-v2">
       {enrichedCalendar.map((month: any, idx: number) => (
         <>
-          <div class="month-header" role="heading" aria-level="2" data-year={monthYear(month)}>{month.month}{month.year ? ` ${month.year}` : ''}</div>
+          <div class="month-header" role="heading" aria-level="2" data-year={monthYear(month)}>{month.month}{monthYear(month) !== season ? ` ${monthYear(month)}` : ''}</div>
           <div class="cal-grid" data-year={monthYear(month)}>
             {month.weeks.map((week: any) => {
               const weekYear = monthYear(month);
               const weekNum = week.label.match(/WEEK (\d+)/)?.[1];
               // Ids are link targets (search, newsletter, shared links): later seasons are prefixed.
-              const baseId = weekNum
-                ? (weekYear === DEFAULT_CALENDAR_YEAR ? `week-${weekNum}` : `${weekYear}-week-${weekNum}`)
-                : undefined;
+              const baseId = weekNum ? weekAnchor(weekYear, weekNum) : undefined;
               // The first card keeps "week-09" (what search and the newsletter link to);
               // the second card of a split week gets "week-09-b". check-data allows no third.
               const cardId = baseId && usedCardIds.has(baseId) ? `${baseId}-b` : baseId;

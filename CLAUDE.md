@@ -10,9 +10,18 @@ Astro static site. All data lives in `data/`. Pages are pre-rendered at build ti
 
 ## Key data files
 - `data/tracks.json` — 136 tracks, one object per venue
-- `data/calendar.json` — race calendar, nested month → week → events. Months without a `year` belong to `DEFAULT_CALENDAR_YEAR` (`src/lib/season.ts`); later seasons are tagged `"year": 2027`. `npm run check` fails when an event's date doesn't fit its month's year or its week label, or when two events would share an event-page URL
+- `data/calendar.json` — race calendar, nested month → week → events. Every month carries an explicit `"year"`. `npm run check` fails when a month has none, when an event's date doesn't fit its month's year or its week label, or when two events would share an event-page URL
 - `data/seriesContent.json` — series metadata (name, description, history, socials, teams)
 - `data/series.json` — race date/time index used for countdowns (**generated** — never edit by hand; run `npm run gen:series` after editing `calendar.json`)
+
+## The season year
+The season the site presents as current is `DEFAULT_CALENDAR_YEAR` in `src/lib/season.ts`, and that is the only place it is written.
+
+- **In templates, import the constant.** Never type the season year (or the next one) into a title, heading, description or link: `npm run check` fails on it (`scripts/check-season.mjs`). For the next season use `DEFAULT_CALENDAR_YEAR + 1`.
+- **Prose about one season** lives in two files that say which season they cover: `src/lib/faq.ts` (`FAQ_SEASON`; the home FAQ and its JSON-LD are hidden while it is not the current season) and `src/lib/seasonCopy.ts` (series meta descriptions keyed by season; a season with no block gets a sentence built from the calendar).
+- **`public/manifest.webmanifest` and `public/llms.txt` are generated** by `npm run gen:season` (`scripts/gen-season-files.mjs`), from the constant and `data/seriesContent.json`. Change their wording in the script, not in the files; `npm run check` fails when a committed copy is stale. Run the command after editing a series name, category or tagline.
+- **Week-card ids** (`week-12`, `2027-week-12`) come from `weekAnchor()` in `src/lib/season.ts`: the home page, the search index and the newsletter worker all call it.
+- **Rolling over:** change the constant, run `npm run gen:season`, run `npm run check` and read its reminders. The URL questions a rollover raises (what `/series/{slug}` and `/series/{slug}/{year}` show) are not solved by the constant: see the roadmap.
 
 ## Track object shape
 ```json
@@ -218,10 +227,12 @@ Everything in `scripts/` is reachable through `npm run`:
 
 | Command | Does |
 |---|---|
-| `npm run check` | Data integrity, `track-map-status.md` up to date, design-token checks — run before every commit |
+| `npm run check` | Data integrity, `track-map-status.md` up to date, design-token checks, generated season files up to date, no season year typed into a template — run before every commit |
 | `npm run check:tokens` | Just the token check: no colour/font/size/radius literals in site CSS |
 | `npm run gen:map-status` | Regenerate `track-map-status.md` from the SVGs on disk, `tracks.json` and `calendar.json` |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
+| `npm run gen:season` | Regenerate `public/manifest.webmanifest` and `public/llms.txt` from the season constant and the series data |
+| `npm run check:season` | Just the season check: no season year typed into `src/` or `workers/` |
 | `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
 | `npm run gen:series-images` | Build the 640px-wide `*-640w.webp` variants of the `/series` grid images |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |

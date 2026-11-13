@@ -1,10 +1,11 @@
 ---
-import { FAQS } from '../lib/faq';
+import { CURRENT_FAQS } from '../lib/faq';
 ---
+{CURRENT_FAQS.length > 0 && (
 <div class="faq-section">
   <div class="faq-header-title" role="heading" aria-level="2">FAQ</div>
   <div class="faq-grid">
-    {FAQS.map(faq => (
+    {CURRENT_FAQS.map(faq => (
       <details class="faq-card" name="faq">
         <summary class="faq-question">{faq.question}</summary>
         <div class="faq-answer"><p>{faq.answer}</p></div>
@@ -12,3 +13,4 @@ import { FAQS } from '../lib/faq';
     ))}
   </div>
 </div>
+)}

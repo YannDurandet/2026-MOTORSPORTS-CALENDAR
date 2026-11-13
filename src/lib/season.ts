@@ -1,8 +1,10 @@
 /**
  * Which calendar seasons appear where.
  *
- * `data/calendar.json` is an array of month objects. 2026 months carry no
- * `year` field; 2027 months are tagged `"year": 2027`.
+ * `data/calendar.json` is an array of month objects, each with an explicit
+ * `"year"` (`npm run check` enforces it, and that every event's date falls in
+ * it). `monthYear()` still falls back to DEFAULT_CALENDAR_YEAR for a month
+ * object that has none.
  *
  * Track pages (the browser grid and each `/tracks/[slug]`) group events by
  * venue rather than by date, so a 2027 round shows up as a second, undated-
@@ -11,20 +13,43 @@
  * the current season. The main calendar, search index and ICS feeds still
  * carry both years.
  *
- * To show 2027 on track pages, add it to TRACK_PAGE_YEARS. To roll the site
- * over to 2027 as the default season, change DEFAULT_CALENDAR_YEAR to match
- * whatever year the untagged months represent.
+ * ROLLING THE SITE OVER TO THE NEXT SEASON
+ * Change DEFAULT_CALENDAR_YEAR, then run `npm run gen:season` and
+ * `npm run check`. Everything that names the season follows the constant:
+ * page titles, headings, descriptions, structured data, share cards, feeds,
+ * the footer, TRACK_PAGE_YEARS, and (through gen:season) the web manifest and
+ * llms.txt. Never write the season year as a literal in a template:
+ * `npm run check` fails on it (scripts/check-season.mjs).
+ *
+ * What does NOT follow by itself is prose written about one season. It lives
+ * in two files that say which season they cover, and falls back safely until
+ * it is rewritten: src/lib/faq.ts (hidden while FAQ_SEASON is not the current
+ * season) and src/lib/seasonCopy.ts (series descriptions, generated from the
+ * calendar for a season with no hand-written text).
+ *
+ * To show another season on track pages as well, add it to TRACK_PAGE_YEARS.
  */
 
-/** The year that month objects without an explicit `year` field belong to. */
+/** The season the site presents as current; the fallback for a month with no `year`. */
 export const DEFAULT_CALENDAR_YEAR = 2026;
 
 /** Seasons rendered on track pages. */
-export const TRACK_PAGE_YEARS: ReadonlySet<number> = new Set([2026]);
+export const TRACK_PAGE_YEARS: ReadonlySet<number> = new Set([DEFAULT_CALENDAR_YEAR]);
 
 /** Resolve a calendar month's year, defaulting untagged months. */
 export function monthYear(month: { year?: number }): number {
   return month.year ?? DEFAULT_CALENDAR_YEAR;
+}
+
+/**
+ * The id (and URL hash) of a week's card on the home calendar. The current
+ * season keeps the short `week-12` form, so existing deep links hold; any other
+ * season is prefixed with its year, `2027-week-12`, so the two never collide.
+ * `weekNum` is the label's digits as written ("03", not 3). Used by the home
+ * page, the search index and the newsletter worker: keep it the only copy.
+ */
+export function weekAnchor(year: number, weekNum: string | number): string {
+  return year === DEFAULT_CALENDAR_YEAR ? `week-${weekNum}` : `${year}-week-${weekNum}`;
 }
 
 /** True when this month's events should appear on track pages. */

@@ -4,6 +4,7 @@ import Banner from '../components/Banner.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { jsonForScript } from '../lib/jsonForScript';
+import { DEFAULT_CALENDAR_YEAR as season } from '../lib/season';
 
 import {
   type ResultEntry,
@@ -54,8 +55,8 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
 ---
 
 <BaseLayout
-  title="2026 Race Results — Motorsport Master Calendar"
-  description="Race winners across every 2026 motorsport championship — F1, WEC, WRC, MotoGP, IndyCar and more."
+  title={`${season} Race Results — Motorsport Master Calendar`}
+  description={`Race winners across every ${season} motorsport championship — F1, WEC, WRC, MotoGP, IndyCar and more.`}
   canonicalUrl="https://dord.racing/results"
   ogImage="https://dord.racing/assets/og/og-results.webp"
 >
@@ -65,14 +66,14 @@ const allSeries = [...new Set(flat.map(r => r.series))].sort();
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
-        { "@type": "ListItem", "position": 2, "name": "2026 Race Results", "item": "https://dord.racing/results" }
+        { "@type": "ListItem", "position": 2, "name": `${season} Race Results`, "item": "https://dord.racing/results" }
       ]
     })} />
   </Fragment>
   <Banner />
   <header>
     <div class="header--left">
-      <h1>2026 Race<br>Results</h1>
+      <h1>{season} Race<br>Results</h1>
       <p class="header--page-desc">Winners across every championship, updated weekly</p>
       <div class="meta">{rangeLabel}</div>
       <Nav activePage="results" />

@@ -15,11 +15,22 @@
  *     moves (round added, moved or cancelled), update it here too.
  * Answers are plain text: `FAQ.astro` escapes them and the JSON-LD reuses
  * them, so name pages in words rather than writing links.
+ *
+ * The answers are prose about one season, named by FAQ_SEASON. When the site
+ * rolls over (DEFAULT_CALENDAR_YEAR in lib/season.ts) the page and its JSON-LD
+ * read CURRENT_FAQS, which is empty until this list is rewritten for the new
+ * season and FAQ_SEASON is bumped: no FAQ is better than last year's answers
+ * under this year's title. `npm run check` prints a reminder while it is hidden.
  */
+import { DEFAULT_CALENDAR_YEAR } from './season';
+
 export interface Faq {
   question: string;
   answer: string;
 }
+
+/** The season the answers below were written for. */
+export const FAQ_SEASON = 2026;
 
 export const FAQS: Faq[] = [
   {
@@ -93,3 +104,6 @@ export const FAQS: Faq[] = [
       "Use the category and region buttons at the top of the calendar to show only the series you care about — open wheel, endurance, bikes, touring cars, rally, or GT. You can also toggle individual championships on and off in the advanced filter panel. Your filter preferences are saved in your browser and persist between visits.",
   },
 ];
+
+/** What the site shows: the list above while it matches the current season, otherwise nothing. */
+export const CURRENT_FAQS: Faq[] = FAQ_SEASON === DEFAULT_CALENDAR_YEAR ? FAQS : [];

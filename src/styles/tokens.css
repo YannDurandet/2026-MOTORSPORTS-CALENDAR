@@ -21,7 +21,8 @@
  *   - src/pages/api/unsubscribe.ts: standalone HTML, does not load this file.
  *   - src/pages/embed/[series].astro: third-party iframe with its own local
  *     tokens and a light theme. Does not load this file.
- *   - <meta name="theme-color"> and manifest.webmanifest: must be literals.
+ *   - <meta name="theme-color"> and manifest.webmanifest: must be literals (the
+ *     manifest is written by scripts/gen-season-files.mjs: change them there).
  *   - Spacing: the current CSS has no underlying grid (5, 7, 11, 13, 15px…).
  *     A 1:1 token rename would just move the mess, so spacing is left for the
  *     redesign to set from the Figma spacing scale.

@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 import tracksRaw from '../../../data/tracks.json';
 import seriesContent from '../../../data/seriesContent.json';
 import calendarRaw from '../../../data/calendar.json';
-import { DEFAULT_CALENDAR_YEAR, monthYear } from '../../lib/season';
+import { monthYear, weekAnchor } from '../../lib/season';
 
 export const GET: APIRoute = () => {
   const tracks = (tracksRaw as any[]).map(t => ({
@@ -27,8 +27,8 @@ export const GET: APIRoute = () => {
     for (const week of month.weeks ?? []) {
       const weekNum = week.label?.match(/WEEK (\d+)/)?.[1];
       if (!weekNum) continue;
-      // Same anchors as index.astro: later seasons are prefixed with their year.
-      const anchor = year === DEFAULT_CALENDAR_YEAR ? `week-${weekNum}` : `${year}-week-${weekNum}`;
+      // Same anchors as index.astro: weekAnchor() in lib/season.ts.
+      const anchor = weekAnchor(year, weekNum);
       for (const ev of week.events ?? []) {
         events.push({
           t: 'event',

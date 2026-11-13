@@ -20,6 +20,8 @@ Key features:
 - [Track browser (130+ circuits)](https://dord.racing/tracks)
 - [Race results](https://dord.racing/results)
 - [Watch this weekend (sessions and broadcasters by country)](https://dord.racing/watch)
+- [Every 2026 event, month by month, across all series](https://dord.racing/events/2026)
+- [Every 2027 event, month by month, across all series](https://dord.racing/events/2027)
 - Event pages, one per race weekend: https://dord.racing/events/{year}/{series}-{event}, e.g. [Monaco GP 2026](https://dord.racing/events/2026/f1-monaco-gp)
 - 2027 season calendars, one per series that has published one: https://dord.racing/series/{slug}/2027, e.g. [F1 2027](https://dord.racing/series/f1/2027)
 - [Newsletter (weekly motorsport briefing)](https://dord.racing/newsletter)
@@ -32,24 +34,24 @@ Key features:
 | f1a | F1 Academy | Open Wheel | An all-female, Formula 4-level championship founded by Formula One Management, racing at selected F1 weekends. |
 | fe | Formula E | Open Wheel | The premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe. |
 | sf | Super Formula | Open Wheel | Japan's premier single-seater series and one of the fastest formula championships in the world outside of F1. |
+| indycar | IndyCar Series | Open Wheel | The premier open-wheel racing championship in North America, home to the iconic Indianapolis 500. |
+| motogp | MotoGP World Championship | Bike | The premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines exceeding 350 km/h. |
+| wsbk | Superbike World Championship | Bike | The world's premier production-based motorcycle racing series, with three races per round from five manufacturers. |
 | wec | FIA World Endurance Championship | Endurance | The world's premier long-distance racing series, headlined by the 24 Hours of Le Mans. |
 | imsa | IMSA WeatherTech SportsCar Championship | Endurance | North America's premier sports car racing series, tracing its lineage to the 1971 IMSA GT Championship. |
 | elms | European Le Mans Series | Endurance | The official regional feeder championship to the FIA WEC in Europe, the most direct route to Le Mans. |
-| asian-le-mans | Asian Le Mans Series | Endurance | An FIA-sanctioned endurance championship run across Asia-Pacific circuits in the winter months, feeding into the WEC ecosystem. |
 | nls | Nürburgring Langstrecken-Serie | Endurance | Long-distance endurance racing on the legendary 20.8 km Nürburgring Nordschleife, the Green Hell. |
-| igtc | Intercontinental GT Challenge | Endurance | The world's only global GT3 series, linking five prestige endurance events across four continents. |
 | h24eu | 24H European Series | Endurance | Grassroots 12-hour and 24-hour endurance races at Grand Prix circuits across Europe, open to all. |
+| asian-le-mans | Asian Le Mans Series | Endurance | The FIA-sanctioned winter endurance championship bridging Europe and Asia, featuring LMP2, LMP3, and GT3 machinery. |
+| dtm | Deutsche Tourenwagen Masters | GT / Sports Car | Germany's prestige GT racing series, contested entirely with GT3-specification cars across iconic European circuits. |
 | gtwce | GT World Challenge Europe | GT / Sports Car | Europe's premier GT3 series, combining Sprint and Endurance Cups with the prestigious 24 Hours of Spa. |
 | gtwca | GT World Challenge America | GT / Sports Car | The leading GT3 series in North America, part of SRO's global GT World Challenge network. |
-| dtm | Deutsche Tourenwagen Masters | GT / Sports Car | Germany's prestige GT racing series, contested entirely with GT3-specification cars across iconic European circuits. |
-| bgt | British GT Championship | GT / Sports Car | The UK's premier GT championship, spanning GT3 and GT4 classes across eight iconic British and European circuits. |
+| igtc | Intercontinental GT Challenge | GT / Sports Car | The world's only global GT3 series, linking five prestige endurance events across four continents. |
 | psc | Porsche Mobil 1 Supercup | GT / Sports Car | The world's premier single-make Porsche racing series, supporting Formula 1 at eight European Grands Prix. |
-| motogp | MotoGP World Championship | Bike | The premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines exceeding 350 km/h. |
-| wsbk | Superbike World Championship | Bike | The world's premier production-based motorcycle racing series, with three races per round from five manufacturers. |
+| bgt | British GT Championship | GT / Sports Car | The UK's premier GT championship, spanning GT3 and GT4 classes across eight iconic British and European circuits. |
 | wrc | FIA World Rally Championship | Rally | The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents. |
 | erc | European Rally Championship | Rally | The oldest active motorsport championship in the world, in its 74th season in 2026. |
-| eurx | FIA European Rallycross Championship | Rally | The world's top-tier rallycross championship — the 51st season of Euro RX. |
-| indycar | IndyCar Series | Open Wheel | The premier open-wheel racing championship in North America, home to the iconic Indianapolis 500. |
+| eurx | FIA European Rallycross Championship | Rally | The world's top-tier rallycross championship — the 51st season of Euro RX, elevated to global status following the cancellation of World RX. |
 | nascar | NASCAR Cup Series | Touring | The highest level of American stock car racing, run across superspeedways, short tracks, and road courses. |
 | btcc | British Touring Car Championship | Touring | The UK's premier motorsport series, famous for close, contact-heavy racing across three-race weekends. |
 | supercars | Supercars Championship | Touring | Australia's premier motorsport series, featuring high-powered V8 touring cars and the iconic Bathurst 1000. |

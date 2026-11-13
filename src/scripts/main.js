@@ -385,7 +385,7 @@ function revealHashTarget() {
 
     // If card is inside a later season's preview, expand it first
     if (inPreview(el)) {
-        const btn = document.querySelector('.preview-2027-btn');
+        const btn = document.querySelector('.preview-next-btn');
         if (btn && btn.getAttribute('aria-expanded') === 'false') btn.click();
     }
 
@@ -616,7 +616,7 @@ function setupIcalModal() {
 // =============================================
 // Months of a later calendar year than today's stay collapsed behind a button.
 // From 1 January that season is the current one and shows normally. The
-// `preview-2027-*` class names and id are kept: global.css styles them.
+// `preview-next-*` class names and id are kept: global.css styles them.
 function setupPreviewToggle() {
     const calContainer = document.getElementById('calendar-container');
     if (!calContainer) return;
@@ -636,24 +636,24 @@ function setupPreviewToggle() {
     const showLabel = `Preview ${year} season →`;
     const hideLabel = `Hide ${year} preview ←`;
     const wrapper = document.createElement('div');
-    wrapper.className = 'preview-2027-wrap';
+    wrapper.className = 'preview-next-wrap';
     wrapper.innerHTML = `
-      <button class="preview-2027-btn" aria-expanded="false" aria-controls="preview-2027-content">
+      <button class="preview-next-btn" aria-expanded="false" aria-controls="preview-next-content">
         ${showLabel}
       </button>
-      <div class="preview-2027-note">Some ${year} calendars may be incomplete</div>
+      <div class="preview-next-note">Some ${year} calendars may be incomplete</div>
     `;
     previewEls[0].before(wrapper);
 
     // Year separator sits between the button and the first preview month header
     const separator = document.createElement('div');
     separator.className = 'year-separator';
-    separator.id = 'preview-2027-content';
+    separator.id = 'preview-next-content';
     separator.textContent = `— ${year} —`;
     separator.style.display = 'none';
     wrapper.after(separator);
 
-    const btn = wrapper.querySelector('.preview-2027-btn');
+    const btn = wrapper.querySelector('.preview-next-btn');
     btn.addEventListener('click', () => {
         const isOpen = btn.getAttribute('aria-expanded') === 'true';
         const next = !isOpen;

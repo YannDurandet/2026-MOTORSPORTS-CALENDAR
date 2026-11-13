@@ -11,7 +11,7 @@
 
 import { createClient } from '@libsql/client';
 import { Resend } from 'resend';
-import { DEFAULT_CALENDAR_YEAR } from '../src/lib/season';
+import { monthYear, weekAnchor } from '../src/lib/season';
 import { sendInBatches, type Outgoing } from './sendBatches';
 // The same token code the site's /api/unsubscribe verifies with (wrangler bundles it).
 import { computeUnsubToken, unsubUrl } from '../src/lib/unsub-token';
@@ -132,11 +132,9 @@ function weekNumberOf(label: string): number | null {
 }
 
 /** The id of the week's card on the home page: the label's digits as written
- *  ("03", not 3), prefixed with the year for a later season. Same rule as
- *  src/pages/index.astro and the search index. */
+ *  ("03", not 3), through the one rule the site uses (weekAnchor in lib/season.ts). */
 function weekAnchorOf(label: string, year: number): string {
-  const digits = label.match(/WEEK\s+(\d+)/)?.[1] ?? '';
-  return year === DEFAULT_CALENDAR_YEAR ? `week-${digits}` : `${year}-week-${digits}`;
+  return weekAnchor(year, label.match(/WEEK\s+(\d+)/)?.[1] ?? '');
 }
 
 // An event belongs to the target weekend when its main race (ev.date, an exact
@@ -209,7 +207,7 @@ async function getUpcomingWeekendEvents(): Promise<WeekendEvent[]> {
           circuit:    trackEntry?.name    ?? ev.title,
           country:    trackEntry?.country ?? '',
           weekNumber: weekNum,
-          weekAnchor: weekAnchorOf(week.label, month.year ?? DEFAULT_CALENDAR_YEAR),
+          weekAnchor: weekAnchorOf(week.label, monthYear(month)),
           weekLabel:  week.label,
           day:        eventDay(ev),
           trackSvg:   ev.track  ?? '',

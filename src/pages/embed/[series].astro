@@ -5,6 +5,7 @@ import seriesRaces from '../../../data/series.json';
 import tracksData from '../../../data/tracks.json';
 import { fitTitle } from '../../lib/seo';
 import { seriesShort } from '../../lib/seriesShort';
+import { DEFAULT_CALENDAR_YEAR as season } from '../../lib/season';
 
 export function getStaticPaths() {
   const seriesSlugs = (seriesContent as any[]).map((s: any) => s.slug);
@@ -94,8 +95,8 @@ const defaultLimit = isAll ? 10 : 8;
 const pageTitle = isAll
   ? 'Motorsport Calendar — DORD Racing'
   : fitTitle([
-      `${seriesMeta?.name ?? seriesSlug} 2026 Calendar — DORD Racing`,
-      `${seriesShort(seriesSlug!, seriesMeta?.name)} 2026 Calendar — DORD Racing`,
+      `${seriesMeta?.name ?? seriesSlug} ${season} Calendar — DORD Racing`,
+      `${seriesShort(seriesSlug!, seriesMeta?.name)} ${season} Calendar — DORD Racing`,
     ]);
 ---
 

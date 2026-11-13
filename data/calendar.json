@@ -1,6 +1,7 @@
 [
   {
     "month": "JANUARY",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 02 • JAN 10",
@@ -101,6 +102,7 @@
   },
   {
     "month": "FEBRUARY",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 07 • FEB 12-15",
@@ -309,6 +311,7 @@
   },
   {
     "month": "MARCH",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 09 • MAR 01",
@@ -866,6 +869,7 @@
   },
   {
     "month": "APRIL",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 14 • APR 04-05",
@@ -1408,6 +1412,7 @@
   },
   {
     "month": "MAY",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 18 • MAY 01-03",
@@ -2308,6 +2313,7 @@
   },
   {
     "month": "JUNE",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 23 • JUN 05-07",
@@ -3010,6 +3016,7 @@
   },
   {
     "month": "JULY",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 27 • JUL 03-05",
@@ -3883,6 +3890,7 @@
   },
   {
     "month": "AUGUST",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 32 • AUG 07-09",
@@ -4466,6 +4474,7 @@
   },
   {
     "month": "SEPTEMBER",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 36 • SEP 04-06",
@@ -5199,6 +5208,7 @@
   },
   {
     "month": "OCTOBER",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 40 • OCT 01-04",
@@ -6125,6 +6135,7 @@
   },
   {
     "month": "NOVEMBER",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 45 • NOV 06-08",
@@ -6336,6 +6347,7 @@
   },
   {
     "month": "DECEMBER",
+    "year": 2026,
     "weeks": [
       {
         "label": "WEEK 49 • DEC 03-06",

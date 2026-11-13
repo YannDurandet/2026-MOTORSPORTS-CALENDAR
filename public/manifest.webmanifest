@@ -9,7 +9,10 @@
   "lang": "en",
   "dir": "ltr",
   "orientation": "any",
-  "categories": ["sports", "lifestyle"],
+  "categories": [
+    "sports",
+    "lifestyle"
+  ],
   "icons": [
     {
       "src": "/assets/icon-192.png",
@@ -36,21 +39,39 @@
       "short_name": "Calendar",
       "description": "Full 2026 race calendar",
       "url": "/",
-      "icons": [{ "src": "/assets/calendar-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+      "icons": [
+        {
+          "src": "/assets/calendar-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
     },
     {
       "name": "Watch Now",
       "short_name": "Watch",
       "description": "What's on this weekend",
       "url": "/watch",
-      "icons": [{ "src": "/assets/series-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+      "icons": [
+        {
+          "src": "/assets/series-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
     },
     {
       "name": "Results",
       "short_name": "Results",
       "description": "2026 race results",
       "url": "/results",
-      "icons": [{ "src": "/assets/results-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+      "icons": [
+        {
+          "src": "/assets/results-icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
     }
   ]
 }

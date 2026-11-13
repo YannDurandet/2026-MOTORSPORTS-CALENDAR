@@ -14,7 +14,7 @@ const svgFiles = new Set(
 
 import tracksRaw from '../../../data/tracks.json';
 import calendarData from '../../../data/calendar.json';
-import { showOnTrackPages } from '../../lib/season';
+import { DEFAULT_CALENDAR_YEAR as season, showOnTrackPages } from '../../lib/season';
 import { jsonForScript } from '../../lib/jsonForScript';
 import { layoutLabel, weekStartLabel } from '../../lib/format';
 
@@ -23,7 +23,7 @@ type CalEvent = { series: string; tag: string; title: string; week: string };
 const eventsBySvg: Record<string, CalEvent[]> = {};
 
 for (const month of calendarData as any[]) {
-  if (!showOnTrackPages(month)) continue;   // 2027 lives on the main calendar only
+  if (!showOnTrackPages(month)) continue;   // later seasons live on the main calendar only
   for (const week of month.weeks) {
     for (const ev of week.events) {
       if (ev.track && ev.track !== 'tbc.svg' && ev.track !== 'tbd.svg') {
@@ -128,8 +128,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
 ---
 
 <BaseLayout
-  title="Track Browser · 2026 Motorsport Calendar"
-  description="Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts."
+  title={`Track Browser · ${season} Motorsport Calendar`}
+  description={`Browse every circuit on the ${season} motorsport calendar. Filter by continent, see which series race where, and explore track layouts.`}
   canonicalUrl="https://dord.racing/tracks"
   ogImage="https://dord.racing/assets/og/og-tracks.webp"
 >
@@ -146,8 +146,8 @@ const availableTypes = TYPE_ORDER.filter(t => typeCounts[t] > 0);
   <Banner />
   <header>
     <div class="header--left">
-      <h1>2026 Track Browser</h1>
-      <p class="header--page-desc">Browse every circuit on the 2026 motorsport calendar. Filter by continent, see which series race where, and explore track layouts.</p>
+      <h1>{season} Track Browser</h1>
+      <p class="header--page-desc">Browse every circuit on the {season} motorsport calendar. Filter by continent, see which series race where, and explore track layouts.</p>
       <div class="meta">
         {totalVenues} CIRCUITS · {venues.filter(v => v.hasSvg).length} MAPPED · EXCLUDES RALLY STAGES
       </div>

@@ -7,6 +7,7 @@ import Footer from '../../components/Footer.astro';
 import seriesContent from '../../../data/seriesContent.json';
 import { seriesImages } from '../../lib/seriesImages';
 import { jsonForScript } from '../../lib/jsonForScript';
+import { DEFAULT_CALENDAR_YEAR as season } from '../../lib/season';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -36,8 +37,8 @@ const gridImageSrcset = (slug: string) =>
 
 ---
 <BaseLayout
-  title="2026 Motorsport Series Guide — F1, MotoGP, WEC & More | DORD"
-  description="Complete guide to every 2026 motorsport championship — schedules, teams, and history for F1, WEC, MotoGP, IndyCar, NASCAR and 20 more series."
+  title={`${season} Motorsport Series Guide — F1, MotoGP, WEC & More | DORD`}
+  description={`Complete guide to every ${season} motorsport championship — schedules, teams, and history for F1, WEC, MotoGP, IndyCar, NASCAR and 20 more series.`}
   canonicalUrl="https://dord.racing/series"
   ogImage="https://dord.racing/assets/og/og-series.webp"
 >
@@ -54,8 +55,8 @@ const gridImageSrcset = (slug: string) =>
   <Banner />
   <header>
     <div class="header--left">
-      <h1>2026 Racing<br>Series Guide</h1>
-      <p class="header--page-desc">Every championship on the 2026 calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife.</p>
+      <h1>{season} Racing<br>Series Guide</h1>
+      <p class="header--page-desc">Every championship on the {season} calendar, from the pinnacle of open-wheel racing to the legendary Nordschleife.</p>
       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="series" />
     </div>
@@ -76,7 +77,7 @@ const gridImageSrcset = (slug: string) =>
                       sizes={gridImageSizes}
                       width="880"
                       height="532"
-                      alt={`${s.name} 2026 race schedule`}
+                      alt={`${s.name} ${season} race schedule`}
                       loading={groupIndex === 0 && i < eagerImageCount ? 'eager' : 'lazy'}
                       decoding="async"
                     />
