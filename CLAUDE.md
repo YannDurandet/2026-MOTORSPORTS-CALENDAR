@@ -11,7 +11,7 @@ Astro static site. All data lives in `data/`. Pages are pre-rendered at build ti
 ## Key data files
 - `data/tracks.json` — 136 tracks, one object per venue
 - `data/calendar.json` — race calendar, nested month → week → events. Every month carries an explicit `"year"`. `npm run check` fails when a month has none, when an event's date doesn't fit its month's year or its week label, or when two events would share an event-page URL
-- `data/seriesContent.json` — series metadata (name, description, history, socials, teams)
+- `data/seriesContent.json` — series metadata (name, description, history, socials, teams). A series with a teams table (`teamsHeaders` / `teamsRows`) also says which season the table is for in `teamsSeason`: bump it when you replace the entry list (`npm run check` requires it)
 - `data/series.json` — race date/time index used for countdowns (**generated** — never edit by hand; run `npm run gen:series` after editing `calendar.json`)
 
 ## The season year
@@ -21,7 +21,18 @@ The season the site presents as current is `DEFAULT_CALENDAR_YEAR` in `src/lib/s
 - **Prose about one season** lives in two files that say which season they cover: `src/lib/faq.ts` (`FAQ_SEASON`; the home FAQ and its JSON-LD are hidden while it is not the current season) and `src/lib/seasonCopy.ts` (series meta descriptions keyed by season; a season with no block gets a sentence built from the calendar).
 - **`public/manifest.webmanifest` and `public/llms.txt` are generated** by `npm run gen:season` (`scripts/gen-season-files.mjs`), from the constant and `data/seriesContent.json`. Change their wording in the script, not in the files; `npm run check` fails when a committed copy is stale. Run the command after editing a series name, category or tagline.
 - **Week-card ids** (`week-12`, `2027-week-12`) come from `weekAnchor()` in `src/lib/season.ts`: the home page, the search index and the newsletter worker all call it.
-- **Rolling over:** change the constant, run `npm run gen:season`, run `npm run check` and read its reminders. The URL questions a rollover raises (what `/series/{slug}` and `/series/{slug}/{year}` show) are not solved by the constant: see the roadmap.
+- **Rolling over:** change the constant, run `npm run gen:season`, run `npm run check` and read its reminders. The constant governs site-wide wording (home, series guide, track browser, results, embeds) and which season track pages list. Series pages do not depend on it: see the next section.
+
+## Series pages and seasons
+The rules live in `src/lib/seriesSeasons.ts`. Read its header before touching either series template.
+
+- **`/series/{slug}/{season}` is permanent.** Every season of a series that has rounds in `calendar.json` gets one, past seasons included (winners and, when the tables are that season's, final standings). Never remove or redirect one.
+- **`/series/{slug}` (the hub) follows the series, not the site.** On every build it shows the earliest season that is not over yet, or the latest season we have. A season counts as over `SEASON_GRACE_DAYS` (14) after its last round, so the hub keeps the final results up for two weeks and then moves to the next calendar by itself. A series with no next calendar stays on its last season.
+- **Canonical.** The season page of the season the hub is showing names the hub as its canonical URL; every other season page is its own canonical.
+- **Linking.** Build links to a season with `seriesSeasonPath(slug, season)`: it returns the hub for the season the hub shows and the season page otherwise. Don't write `/series/${slug}/${year}` by hand outside the two series templates.
+- **Seasons are not calendar years.** They come from `seasonOf()`: Formula E and Asian Le Mans rounds from October on belong to the season named for the following year. Use `seasonRounds(slug, season)`, not `eventsForSeries(slug, year)`, for anything shown per season.
+- **Standings** (`src/components/SeriesStandings.astro`, used by both templates) belong to one season per series, worked out from the tables' `updatedAt`. On a hub that has moved on they are headed "Final {season} Championship Standings" and sit below the calendar.
+- **Call the clock inside a render.** `currentSeason()` reads `Date.now()` when called. Don't cache its result at module top level: the prerenderer's clock only runs while a page renders.
 
 ## Track object shape
 ```json
@@ -72,7 +83,7 @@ Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
 - `races` — `[{ label: "R1", time: "SAT: <span class=\"hl\">17:00</span>" }]`: one line per race in the expanded row, for a weekend whose races aren't described by `sessions` (ignored when `sessions` is set).
 - `sub[].round` / `sub[].day` / `sub[].time` — extend a support-series row (`"Rd 5"`, `"SUN"`, `"10:00"`) so it gets its own time chip. `time` needs a `day`. A `badge` key with no `.b-{key}` rule in `global.css` renders without a background.
 
-`data/seasons.json` holds per-series, per-year notes (summary, what changed, status) rendered on `/series/{slug}/{year}`.
+`data/seasons.json` holds per-series, per-season notes (summary, what changed, status) rendered on `/series/{slug}/{year}`. Optional: a season page without notes shows its rounds only.
 
 ## SVG naming convention
 | Pattern | Use |
@@ -134,8 +145,8 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 |---|---|---|
 | `/` | `src/pages/index.astro` | Main calendar |
 | `/series` | `src/pages/series/index.astro` | Series grid |
-| `/series/[slug]` | `src/pages/series/[slug].astro` | Series detail (current season) |
-| `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | Future season calendar, e.g. `/series/f1/2027` |
+| `/series/[slug]` | `src/pages/series/[slug].astro` | Series hub: teams, standings, how to watch, and the calendar of the season that series is in (chosen per series, see "Series pages and seasons") |
+| `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | One season of a series, permanent: `/series/f1/2027`, `/series/imsa/2026`. One page per season that has rounds |
 | `/events/[year]` | `src/pages/events/[year]/index.astro` | Every event of a season, by month. A search landing page (Bing's most-clicked): keep its URL, title and H1 |
 | `/events/[year]/[slug]` | `src/pages/events/[year]/[slug].astro` | Event page |
 | `/tracks` | `src/pages/tracks/index.astro` | Track browser (continent + type filter) |
@@ -203,7 +214,7 @@ The broadcaster list on `/watch` and in each series' "How to Watch" block follow
 - Inbound links ("lacks links from high-quality domains") can't be fixed in code.
 
 ## Share images & icons
-- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~25–40 s, ~690 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
+- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, series season and track to `dist/client/og/…png` in an `astro:build:done` hook (~25–40 s, ~690 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
 - **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
 
 ## Redirects

@@ -493,6 +493,14 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
   }
 }
 
+// ── teams table names its season ─────────────────────────────────────────────
+// A series hub can show a later season than the hand-typed entry list (the hub
+// moves on after the finale, src/lib/seriesSeasons.ts), so the table's heading
+// reads the season from the data, not from the page.
+check('teamsSeason', seriesContent.filter(s => s.teamsHeaders), (s) =>
+  Number.isInteger(s.teamsSeason) ? null
+    : `${s.slug} has a teams table but no integer "teamsSeason" (the season the entry list is for)`);
+
 // ── Report ───────────────────────────────────────────────────────────────────
 
 if (fail.length) {

@@ -157,8 +157,11 @@ const nextIdx = events.findIndex(e => !e.results?.length && new Date(e.date).get
   .is-done .rd-title { color: var(--text-muted); }
 
   @media (max-width: 640px) {
+    /* The date keeps its own width and the right-hand side takes what is left
+       and wraps. The other way round, a long winner line (three co-drivers at
+       an endurance race) squeezed the date column to nothing and printed over it. */
     .round {
-      grid-template-columns: 2em minmax(0, 1fr) auto;
+      grid-template-columns: 2em auto minmax(0, 1fr);
       padding: 12px;
     }
     .rd-date { grid-column: 2; }

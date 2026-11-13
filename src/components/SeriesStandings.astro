@@ -1,0 +1,329 @@
+---
+/**
+ * Championship standings of a series, with the drivers / teams switcher.
+ * Used by the series hub (/series/[slug]) and by the season page of the season
+ * the tables belong to (/series/[slug]/[year]).
+ *
+ * data/standings.json holds one season per series. Which one is worked out by
+ * standingsSeason() from the tables' `updatedAt`. When the page around it shows
+ * a later season (the hub has moved on to next year's calendar), the heading
+ * says "Final": the tables are then last season's closing order.
+ *
+ * Renders nothing for a series without standings.
+ */
+import standingsData from '../../data/standings.json';
+import { flagSrc, countryName } from '../lib/results';
+import { standingsSeason } from '../lib/seriesSeasons';
+
+interface Props {
+  slug: string;
+  /** The season of the page this sits on. */
+  shownSeason: number;
+}
+const { slug, shownSeason } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tables = Object.values(((standingsData as any)[slug] ?? {}) as Record<string, any>) as any[];
+const season = standingsSeason(slug);
+const heading = season === null || season === shownSeason
+  ? `${shownSeason} Championship Standings`
+  : `Final ${season} Championship Standings`;
+---
+{tables.length > 0 && (
+  <section class="series-section" id="standings">
+    <h2 class="series-section-title">{heading}</h2>
+    <div class="standings-tabs-wrap">
+      {tables.map((table: any, ti: number) => (
+        <div class={`standings-table ${ti === 0 ? 'standings-table--active' : ''}`} data-standings-tab={ti}>
+          {tables.length > 1 && (
+            <div class="standings-tab-label">{table.label}</div>
+          )}
+          {table.note && (
+            <p class="standings-note">{table.note}</p>
+          )}
+          <div class="standings-rows" role="table" aria-label={table.label}>
+            <div class="standings-head" role="row">
+              <div role="columnheader" class="st-pos">Pos</div>
+              <div role="columnheader" class="st-name">Name</div>
+              <div role="columnheader" class="st-pts">Pts</div>
+            </div>
+            {(table.entries as any[]).map((entry: any, i: number) => (
+              <div class={`standings-row ${i === 0 ? 'standings-row--lead' : ''}`} role="row">
+                <div class="st-pos" role="cell">{entry.pos}</div>
+                <div class="st-name" role="cell">
+                  <div class="st-name-inner">
+                    {entry.country && (
+                      <img
+                        class="st-flag"
+                        src={flagSrc(entry.country, base)}
+                        alt={countryName(entry.country)}
+                        width="18"
+                        height="13"
+                        loading="lazy"
+                      />
+                    )}
+                    <div>
+                      <div class="st-driver">{entry.name}</div>
+                      {entry.team && <div class="st-team">{entry.team}</div>}
+                      {entry.note && <div class="st-team">{entry.note}</div>}
+                    </div>
+                  </div>
+                </div>
+                <div class="st-pts" role="cell">
+                  <span class="st-pts-val">{entry.points}</span>
+                  {i > 0 && (
+                    <span class="st-pts-gap">–{(table.entries as any[])[0].points - entry.points}</span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="standings-meta">
+            <span>After round {table.roundsComplete} of {table.totalRounds}</span>
+            <span>Updated {table.updatedAt}</span>
+          </div>
+        </div>
+      ))}
+      {tables.length > 1 && (
+        <div class="standings-switcher">
+          {tables.map((table: any, ti: number) => (
+            <button
+              class={`standings-switch-btn ${ti === 0 ? 'active' : ''}`}
+              data-tab={ti}
+              aria-pressed={ti === 0 ? 'true' : 'false'}
+            >
+              {table.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+    <script is:inline>
+      (function(){
+        const wrap = document.querySelector('.standings-tabs-wrap');
+        if(!wrap) return;
+        const tables = wrap.querySelectorAll('[data-standings-tab]');
+        const btns   = wrap.querySelectorAll('.standings-switch-btn');
+        btns.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            const idx = +btn.dataset.tab;
+            tables.forEach(function(t,i){ t.classList.toggle('standings-table--active', i===idx); });
+            btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); b.setAttribute('aria-pressed', i===idx ? 'true':'false'); });
+          });
+        });
+      })();
+    </script>
+  </section>
+)}
+
+<style>
+/* ── Standings ── */
+.standings-tabs-wrap {
+  position: relative;
+}
+
+.standings-table {
+  display: none;
+}
+.standings-table--active {
+  display: block;
+}
+
+.standings-tab-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-meta);
+  margin-bottom: 10px;
+}
+
+.standings-note {
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+  margin: 0 0 10px;
+}
+
+.standings-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.standings-head {
+  display: grid;
+  grid-template-columns: 36px 1fr 80px;
+  gap: 0 12px;
+  padding: 4px 14px 8px;
+}
+
+.standings-head > div {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.standings-head .st-pts { text-align: right; }
+
+.standings-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 80px;
+  gap: 0 12px;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: var(--radius-xl);
+}
+
+.standings-row--lead {
+  border-color: var(--line-subtle-5);
+  background: var(--card-bg-2);
+}
+
+.standings-row:hover {
+  background: var(--card-bg-2);
+  border-color: var(--line-subtle-5);
+}
+
+.st-pos {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+/* --accent is a border colour (3.5:1 on the card in dark); the bright tier
+   keeps the blue and passes AA as text in both themes (9.2:1 dark, 6.3:1 light). */
+.standings-row--lead .st-pos {
+  color: var(--accent-bright);
+}
+
+.st-name {
+  min-width: 0;
+}
+
+.st-name-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.st-flag {
+  width: 18px;
+  height: 13px;
+  object-fit: cover;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+}
+
+.st-driver {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.standings-row--lead .st-driver {
+  color: var(--text-strong-3);
+}
+
+.st-team {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.st-pts {
+  text-align: right;
+  min-width: 0;
+}
+
+.st-pts-val {
+  font-family: var(--font-mono);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  color: var(--text-soft);
+  display: block;
+}
+
+.standings-row--lead .st-pts-val {
+  color: var(--text-strong-3);
+}
+
+.st-pts-gap {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
+  display: block;
+  margin-top: 1px;
+}
+
+.standings-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+/* Tab switcher (constructors vs drivers) */
+.standings-switcher {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.standings-switch-btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-meta);
+  cursor: pointer;
+  transition: color 0.13s, border-color 0.13s;
+}
+
+.standings-switch-btn.active {
+  color: var(--text-soft);
+  border-color: var(--line);
+  background: var(--overlay-faint);
+}
+
+.standings-switch-btn:hover {
+  color: var(--text-muted-4);
+  border-color: var(--line);
+}
+
+.standings-switch-btn:focus-visible {
+  outline: 2px solid var(--focus-ring-2);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .st-team { display: none; }
+  .standings-head,
+  .standings-row {
+    grid-template-columns: 30px 1fr 64px;
+  }
+}
+</style>

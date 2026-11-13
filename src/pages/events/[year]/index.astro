@@ -15,7 +15,8 @@ import Footer from '../../../components/Footer.astro';
 import tracksData from '../../../../data/tracks.json';
 import seriesContent from '../../../../data/seriesContent.json';
 import { EVENT_YEARS, eventsForYear, eventRange } from '../../../lib/events';
-import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
+import { DEFAULT_CALENDAR_YEAR, seasonOf } from '../../../lib/season';
+import { seriesSeasonPath } from '../../../lib/seriesSeasons';
 import { seriesShort } from '../../../lib/seriesShort';
 import { fitTitle } from '../../../lib/seo';
 import { jsonForScript } from '../../../lib/jsonForScript';
@@ -46,13 +47,18 @@ const byMonth = MONTHS
 const seriesCount = new Set(events.map(e => e.series)).size;
 const isPartial = year > DEFAULT_CALENDAR_YEAR;
 
-// Per-series calendars for this season: /series/{slug} for the current one,
-// /series/{slug}/{year} for a future one.
-const seriesLinks = [...new Set(events.map(e => e.series))].map(slug => ({
-  href: `${base}/series/${slug}${year === DEFAULT_CALENDAR_YEAR ? '' : `/${year}`}`,
-  label: `${seriesShort(slug, (seriesContent as any[]).find(s => s.slug === slug)?.name)} ${year}`,
-  count: events.filter(e => e.series === slug).length,
-})).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+// Per-series calendars of the seasons these events belong to. A season is not
+// always the calendar year (an autumn Formula E or Asian Le Mans round opens
+// the following season), so the links are built per series and season.
+const seriesLinks = [...new Set(events.map(e => `${e.series}|${seasonOf(e.series, e.date)}`))].map(key => {
+  const [slug, s] = key.split('|');
+  const season = Number(s);
+  return {
+    href: `${base}${seriesSeasonPath(slug, season)}`,
+    label: `${seriesShort(slug, (seriesContent as any[]).find(c => c.slug === slug)?.name)} ${season}`,
+    count: events.filter(e => e.series === slug && seasonOf(e.series, e.date) === season).length,
+  };
+}).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const pageTitle = fitTitle([
   `${year} Motorsport Race Calendar: Every Event & Circuit | DORD`,

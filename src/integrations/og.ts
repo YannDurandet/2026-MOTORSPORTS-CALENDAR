@@ -13,7 +13,8 @@ import { fileURLToPath } from 'url';
 import tracksData from '../../data/tracks.json';
 import seriesContent from '../../data/seriesContent.json';
 import standings from '../../data/standings.json';
-import { ALL_EVENTS, eventsForSeries, eventsForTrack, eventRange, type CalendarEvent } from '../lib/events';
+import { ALL_EVENTS, eventsForTrack, eventRange, type CalendarEvent } from '../lib/events';
+import { allSeriesSeasons, currentSeason, seasonRounds, standingsSeason } from '../lib/seriesSeasons';
 import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
 import { venueFor } from '../lib/venues';
 import { parseSessions, mainRaceTime } from '../lib/sessions';
@@ -51,15 +52,18 @@ function eventCard(ev: CalendarEvent): Card {
 }
 
 function seriesCard(slug: string): Card {
-  const evs = eventsForSeries(slug, DEFAULT_CALENDAR_YEAR);
+  // The card shows what the hub shows: the series' own current season (lib/seriesSeasons.ts).
+  const season = currentSeason(slug);
+  const evs = seasonRounds(slug, season);
   const next = upcoming(evs);
   const rows = (next.length ? next : evs.slice(-6)).slice(0, 6);
-  const lead = Object.values((standings as any)[slug] ?? {})[0] as any;
+  // The leader only while the standings are this season's.
+  const lead = standingsSeason(slug) === season ? Object.values((standings as any)[slug] ?? {})[0] as any : null;
   const top = lead?.entries?.[0];
   return {
     badges: [badge(slug)],
     title: nameOf(slug),
-    meta: `${DEFAULT_CALENDAR_YEAR} CALENDAR · ${evs.length} ROUNDS`,
+    meta: `${season} CALENDAR · ${evs.length} ROUNDS`,
     list: rows.map(e => ({ left: eventRange(e), right: e.title })),
     chip: top ? `P1 ${top.name} · ${top.points} PTS` : undefined,
     footer: 'Calendar · Results · Standings',
@@ -67,7 +71,7 @@ function seriesCard(slug: string): Card {
 }
 
 function seasonCard(slug: string, year: number): Card {
-  const evs = eventsForSeries(slug, year);
+  const evs = seasonRounds(slug, year);
   const sprints = evs.filter(e => e.hasSprint).length;
   return {
     badges: [badge(slug)],
@@ -100,8 +104,8 @@ function allCards(): { path: string; card: () => Card }[] {
   const out: { path: string; card: () => Card }[] = [];
   for (const ev of ALL_EVENTS) out.push({ path: `events/${ev.year}/${ev.slug}`, card: () => eventCard(ev) });
   for (const s of series) out.push({ path: `series/${s.slug}`, card: () => seriesCard(s.slug) });
-  const seasons = new Set(ALL_EVENTS.filter(e => e.year > DEFAULT_CALENDAR_YEAR).map(e => `${e.series}|${e.year}`));
-  for (const p of seasons) { const [s, y] = p.split('|'); out.push({ path: `series/${s}/${y}`, card: () => seasonCard(s, +y) }); }
+  // One card per season page: every season of every series that has rounds.
+  for (const { series: s, season: y } of allSeriesSeasons()) out.push({ path: `series/${s}/${y}`, card: () => seasonCard(s, y) });
   for (const t of tracks) out.push({ path: `tracks/${t.slug}`, card: () => trackCard(t) });
   return out;
 }

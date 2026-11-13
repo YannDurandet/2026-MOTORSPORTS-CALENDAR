@@ -1,0 +1,1403 @@
+diff --git a/CLAUDE.md b/CLAUDE.md
+index 54bcd3a..eaefa71 100644
+--- a/CLAUDE.md
++++ b/CLAUDE.md
+@@ -11,7 +11,7 @@ Astro static site. All data lives in `data/`. Pages are pre-rendered at build ti
+ ## Key data files
+ - `data/tracks.json` — 136 tracks, one object per venue
+ - `data/calendar.json` — race calendar, nested month → week → events. Every month carries an explicit `"year"`. `npm run check` fails when a month has none, when an event's date doesn't fit its month's year or its week label, or when two events would share an event-page URL
+-- `data/seriesContent.json` — series metadata (name, description, history, socials, teams)
++- `data/seriesContent.json` — series metadata (name, description, history, socials, teams). A series with a teams table (`teamsHeaders` / `teamsRows`) also says which season the table is for in `teamsSeason`: bump it when you replace the entry list (`npm run check` requires it)
+ - `data/series.json` — race date/time index used for countdowns (**generated** — never edit by hand; run `npm run gen:series` after editing `calendar.json`)
+ 
+ ## The season year
+@@ -21,7 +21,18 @@ The season the site presents as current is `DEFAULT_CALENDAR_YEAR` in `src/lib/s
+ - **Prose about one season** lives in two files that say which season they cover: `src/lib/faq.ts` (`FAQ_SEASON`; the home FAQ and its JSON-LD are hidden while it is not the current season) and `src/lib/seasonCopy.ts` (series meta descriptions keyed by season; a season with no block gets a sentence built from the calendar).
+ - **`public/manifest.webmanifest` and `public/llms.txt` are generated** by `npm run gen:season` (`scripts/gen-season-files.mjs`), from the constant and `data/seriesContent.json`. Change their wording in the script, not in the files; `npm run check` fails when a committed copy is stale. Run the command after editing a series name, category or tagline.
+ - **Week-card ids** (`week-12`, `2027-week-12`) come from `weekAnchor()` in `src/lib/season.ts`: the home page, the search index and the newsletter worker all call it.
+-- **Rolling over:** change the constant, run `npm run gen:season`, run `npm run check` and read its reminders. The URL questions a rollover raises (what `/series/{slug}` and `/series/{slug}/{year}` show) are not solved by the constant: see the roadmap.
++- **Rolling over:** change the constant, run `npm run gen:season`, run `npm run check` and read its reminders. The constant governs site-wide wording (home, series guide, track browser, results, embeds) and which season track pages list. Series pages do not depend on it: see the next section.
++
++## Series pages and seasons
++The rules live in `src/lib/seriesSeasons.ts`. Read its header before touching either series template.
++
++- **`/series/{slug}/{season}` is permanent.** Every season of a series that has rounds in `calendar.json` gets one, past seasons included (winners and, when the tables are that season's, final standings). Never remove or redirect one.
++- **`/series/{slug}` (the hub) follows the series, not the site.** On every build it shows the earliest season that is not over yet, or the latest season we have. A season counts as over `SEASON_GRACE_DAYS` (14) after its last round, so the hub keeps the final results up for two weeks and then moves to the next calendar by itself. A series with no next calendar stays on its last season.
++- **Canonical.** The season page of the season the hub is showing names the hub as its canonical URL; every other season page is its own canonical.
++- **Linking.** Build links to a season with `seriesSeasonPath(slug, season)`: it returns the hub for the season the hub shows and the season page otherwise. Don't write `/series/${slug}/${year}` by hand outside the two series templates.
++- **Seasons are not calendar years.** They come from `seasonOf()`: Formula E and Asian Le Mans rounds from October on belong to the season named for the following year. Use `seasonRounds(slug, season)`, not `eventsForSeries(slug, year)`, for anything shown per season.
++- **Standings** (`src/components/SeriesStandings.astro`, used by both templates) belong to one season per series, worked out from the tables' `updatedAt`. On a hub that has moved on they are headed "Final {season} Championship Standings" and sit below the calendar.
++- **Call the clock inside a render.** `currentSeason()` reads `Date.now()` when called. Don't cache its result at module top level: the prerenderer's clock only runs while a page renders.
+ 
+ ## Track object shape
+ ```json
+@@ -72,7 +83,7 @@ Beyond `series`/`tag`/`title`/`time`/`track`/`date`/`shortName`:
+ - `races` — `[{ label: "R1", time: "SAT: <span class=\"hl\">17:00</span>" }]`: one line per race in the expanded row, for a weekend whose races aren't described by `sessions` (ignored when `sessions` is set).
+ - `sub[].round` / `sub[].day` / `sub[].time` — extend a support-series row (`"Rd 5"`, `"SUN"`, `"10:00"`) so it gets its own time chip. `time` needs a `day`. A `badge` key with no `.b-{key}` rule in `global.css` renders without a background.
+ 
+-`data/seasons.json` holds per-series, per-year notes (summary, what changed, status) rendered on `/series/{slug}/{year}`.
++`data/seasons.json` holds per-series, per-season notes (summary, what changed, status) rendered on `/series/{slug}/{year}`. Optional: a season page without notes shows its rounds only.
+ 
+ ## SVG naming convention
+ | Pattern | Use |
+@@ -134,8 +145,8 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
+ |---|---|---|
+ | `/` | `src/pages/index.astro` | Main calendar |
+ | `/series` | `src/pages/series/index.astro` | Series grid |
+-| `/series/[slug]` | `src/pages/series/[slug].astro` | Series detail (current season) |
+-| `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | Future season calendar, e.g. `/series/f1/2027` |
++| `/series/[slug]` | `src/pages/series/[slug].astro` | Series hub: teams, standings, how to watch, and the calendar of the season that series is in (chosen per series, see "Series pages and seasons") |
++| `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | One season of a series, permanent: `/series/f1/2027`, `/series/imsa/2026`. One page per season that has rounds |
+ | `/events/[year]` | `src/pages/events/[year]/index.astro` | Every event of a season, by month. A search landing page (Bing's most-clicked): keep its URL, title and H1 |
+ | `/events/[year]/[slug]` | `src/pages/events/[year]/[slug].astro` | Event page |
+ | `/tracks` | `src/pages/tracks/index.astro` | Track browser (continent + type filter) |
+@@ -203,7 +214,7 @@ The broadcaster list on `/watch` and in each series' "How to Watch" block follow
+ - Inbound links ("lacks links from high-quality domains") can't be fixed in code.
+ 
+ ## Share images & icons
+-- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, future season and track to `dist/client/og/…png` in an `astro:build:done` hook (~25–40 s, ~690 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
++- **Share cards** (`og:image` / X cards): `src/integrations/og.ts` writes one 1200×630 PNG per event, series, series season and track to `dist/client/og/…png` in an `astro:build:done` hook (~25–40 s, ~690 images). It runs in Node because the Cloudflare adapter prerenders pages inside workerd, where `sharp` and `fs` don't work — don't move it into a page route. Layout and colours: `src/lib/og.ts` (satori → sharp; series colours are read from the `.t-{slug}` / `.ev-{slug}` rules and `tokens.css`). Pages reference them with `ogPath()` from `src/lib/ogPaths.ts`.
+ - **Icons**: `npm run gen:icons` rebuilds favicons, apple-touch and PWA icons from `src/assets/dord-mark.png`.
+ 
+ ## Redirects
+diff --git a/data/seriesContent.json b/data/seriesContent.json
+index f0e30ab..ede9bdd 100644
+--- a/data/seriesContent.json
++++ b/data/seriesContent.json
+@@ -9,6 +9,7 @@
+     "description": "The FIA Formula One World Championship is the pinnacle of single-seater motor racing, contested across 23 Grands Prix on five continents. Eleven teams, each running two cars, compete simultaneously for the Drivers' and Constructors' championships under a set of regulations that changes with every generation.",
+     "history": "Formula 1 was formally constituted in 1950 with the inaugural World Drivers' Championship, won by Giuseppe Farina at the wheel of an Alfa Romeo. Through the following decades it evolved from front-engined roadsters to the ground-effect, turbo, and hybrid eras that define the sport today. The commercial era brought global television audiences in the hundreds of millions and Grands Prix on every inhabited continent. 2026 marks a watershed moment: an entirely new power unit formula — still over 1,000 bhp but with roughly equal contributions from internal combustion and an electric motor — paired with new active aerodynamics. Two new constructors, Audi (via the former Sauber entry) and Cadillac, expand the grid to eleven teams for the first time since 2016.",
+     "seasonNotes": "Kimi Antonelli (Mercedes) clinched the 2026 Drivers' title at the Mexico City GP with four rounds to go. Lando Norris won the 2025 Drivers' title and McLaren the 2025 Constructors' title.",
++    "teamsSeason": 2026,
+     "teamsHeaders": ["#", "Team", "Driver 1", "Driver 2"],
+     "teamsRows": [
+       [
+@@ -459,6 +460,7 @@
+     "tagline": "An all-female, Formula 4-level championship founded by Formula One Management, racing at selected F1 weekends.",
+     "description": "F1 Academy is an all-female, Formula 4-level single-seater championship founded by Formula One Management in 2023. Racing at selected Formula 1 weekends, it provides professional infrastructure and global visibility to the next generation of female racing drivers.",
+     "history": "Launched in 2023 with backing from all ten F1 teams — each sponsoring two cars — F1 Academy filled a gap left by the W Series, which folded in 2022. The series uses a spec Tatuus T-421 chassis with a 1.4-litre turbocharged engine. Its debut season attracted 15 drivers and was won by Marta García. A two-season participation limit keeps the field refreshed, and a Discover Your Drive kart programme now feeds talent directly onto the grid. The 2026 season is the fourth edition, featuring six teams and 18 drivers across 7 event weekends co-located with F1.",
++    "teamsSeason": 2026,
+     "teamsHeaders": ["Team", "Driver 1", "Driver 2", "Driver 3"],
+     "teamsRows": [
+       [
+@@ -719,6 +721,7 @@
+     "tagline": "The premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe.",
+     "description": "The ABB FIA Formula E World Championship is the premier single-seater electric racing series, racing on temporary street circuits in city centres around the globe. It serves as both a technological proving ground for EV powertrain development and a uniquely urban motorsport spectacle.",
+     "history": "Formula E was conceived in 2011 by the FIA and launched its first season in September 2014 in Beijing, with the novel quirk that drivers swapped cars mid-race due to battery limitations. As technology improved, in-race car swaps were phased out by Season 5 (2018–19). Gen2, Gen3, and Gen3 Evo regulations successively lifted performance and efficiency; the Gen4 era begins in 2027. The 2025–26 season (Season 12) is notable for the entry of Citroën as a manufacturer, the longest calendar in series history (18 races across 12 weekends), and the championship defending by Oliver Rowland (Nissan). Former champions Pascal Wehrlein (Porsche), Jean-Éric Vergne (Citroën), António Félix da Costa (Jaguar), and Lucas Di Grassi (Lola Yamaha ABT) are all in the field.",
++    "teamsSeason": 2026,
+     "teamsHeaders": ["Team", "Driver 1", "Driver 2"],
+     "teamsRows": [
+       [
+@@ -1279,6 +1282,7 @@
+     "tagline": "The world's premier long-distance racing series, headlined by the 24 Hours of Le Mans.",
+     "description": "The FIA World Endurance Championship is the world's premier long-distance racing series, headlined by the 24 Hours of Le Mans. Races last between 6 and 24 hours, demanding extraordinary teamwork, strategy, and engineering across the Hypercar and LMGT3 classes.",
+     "history": "The current World Endurance Championship was established in 1981 and revived in its modern form in 2012 following the demise of the American Le Mans Series. After the original LMP1 Hybrid era defined by Audi, Porsche, and Toyota, a major reset introduced the more accessible Hypercar regulations from 2021. These proved transformative: by 2026, 14 manufacturers contest the Hypercar class — the largest manufacturer count in the history of the championship. Ferrari are the reigning champions, having dethroned Toyota in 2023. For 2026, Genesis joins the field while Porsche refocuses to IMSA and Formula E, maintaining a dynamic manufacturer landscape.",
++    "teamsSeason": 2026,
+     "teamsHeaders": ["Car #", "Team", "Manufacturer", "Drivers"],
+     "teamsRows": [
+       [
+@@ -1800,6 +1804,7 @@
+     "tagline": "The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents.",
+     "description": "The FIA World Rally Championship is the world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents. Competitors navigate closed public roads against the clock in specially built Rally1 cars, supported by co-drivers reading pace notes.",
+     "history": "The WRC was established in 1973 and has since produced legendary battles across Finland's forest stages, Kenya's rocky safari terrain, Monte Carlo's Alpine hairpins, and the Welsh valleys. The series has been won by icons including Walter Röhrl, Stig Blomqvist, Carlos Sainz, Tommi Mäkinen, Sébastien Loeb (9 titles), and Sébastien Ogier (9 titles). Hybrid Rally1 regulations introduced in 2022 brought a major technical reset, with Hyundai, Toyota, and M-Sport Ford as the three competing manufacturers. The 2026 season is the 54th edition and the final year of Rally1 regs before a further overhaul in 2027. Toyota hold a dominant lead in the Manufacturers' Championship with 14 rounds across Europe, Africa, South America, and Asia.",
++    "teamsSeason": 2026,
+     "teamsHeaders": ["Team", "Driver", "Co-driver", "Entry"],
+     "teamsRows": [
+       [
+@@ -2304,6 +2309,7 @@
+     "tagline": "The premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines exceeding 350 km/h.",
+     "description": "The FIM MotoGP World Championship is the premier class of Grand Prix motorcycle racing, contested on 1000cc prototype machines capable of speeds exceeding 350 km/h. Five manufacturers — Ducati, Aprilia, Honda, KTM, and Yamaha — field factory and satellite teams across 21 rounds on circuits worldwide.",
+     "history": "The FIM Road Racing World Championship was established in 1949, making it one of the longest-running motorsport series in existence. The 500cc two-stroke era produced legends like Giacomo Agostini (15 titles), Valentino Rossi (9 titles), and Mick Doohan before the switch to four-stroke MotoGP machinery in 2002. The 2026 season is the final one under 1000cc / Michelin regulations before switching to 850cc engines and Pirelli tyres in 2027. Ducati's dominance has been a defining storyline of the recent era; in 2026, Marc Marquez (nine world titles) joins Francesco Bagnaia at the factory Ducati team. A new 'Harley-Davidson Bagger World Cup' support class debuts at selected European and North American rounds.",
++    "teamsSeason": 2026,
+     "teamsHeaders": ["Team", "Manufacturer", "Rider 1", "Rider 2"],
+     "teamsRows": [
+       [
+@@ -3542,6 +3548,7 @@
+     "description": "The Asian Le Mans Series is an FIA-sanctioned endurance championship historically run across Asia-Pacific circuits in the winter months, designed to give drivers and teams additional seat time in prototype and GT machinery. The series runs alongside — and feeds into — the FIA World Endurance Championship ecosystem, with class winners historically earning entry into the Le Mans 24 Hours.",
+     "history": "Founded in 2005, the Asian Le Mans Series initially ran alongside the American Le Mans Series branding before becoming a standalone championship under FIA governance. The series has evolved through several formats, at times running as a sprint championship and at others as a traditional endurance format. The 2026–27 edition marks a significant geographical pivot: all three rounds are hosted at European circuits for the first time, reflecting the series' flexibility and its role as a winter testing ground for WEC and ELMS participants.",
+     "seasonNotes": "The 2026–27 Asian Le Mans Series runs three double-header rounds in Europe: Paul Ricard (November 2026), Jerez (January 2027), and Portimão (February 2027). Classes: LMP2, LMP3, GT3.",
++    "teamsSeason": 2027,
+     "teamsHeaders": ["Class", "Car", "Drivers"],
+     "teamsRows": [],
+     "socials": {
+diff --git a/scripts/check-data.mjs b/scripts/check-data.mjs
+index 0287d9f..2d3b7ed 100644
+--- a/scripts/check-data.mjs
++++ b/scripts/check-data.mjs
+@@ -493,6 +493,14 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
+   }
+ }
+ 
++// ── teams table names its season ─────────────────────────────────────────────
++// A series hub can show a later season than the hand-typed entry list (the hub
++// moves on after the finale, src/lib/seriesSeasons.ts), so the table's heading
++// reads the season from the data, not from the page.
++check('teamsSeason', seriesContent.filter(s => s.teamsHeaders), (s) =>
++  Number.isInteger(s.teamsSeason) ? null
++    : `${s.slug} has a teams table but no integer "teamsSeason" (the season the entry list is for)`);
++
+ // ── Report ───────────────────────────────────────────────────────────────────
+ 
+ if (fail.length) {
+diff --git a/src/components/RoundsList.astro b/src/components/RoundsList.astro
+index fa2ab88..8ef5d75 100644
+--- a/src/components/RoundsList.astro
++++ b/src/components/RoundsList.astro
+@@ -157,8 +157,11 @@ const nextIdx = events.findIndex(e => !e.results?.length && new Date(e.date).get
+   .is-done .rd-title { color: var(--text-muted); }
+ 
+   @media (max-width: 640px) {
++    /* The date keeps its own width and the right-hand side takes what is left
++       and wraps. The other way round, a long winner line (three co-drivers at
++       an endurance race) squeezed the date column to nothing and printed over it. */
+     .round {
+-      grid-template-columns: 2em minmax(0, 1fr) auto;
++      grid-template-columns: 2em auto minmax(0, 1fr);
+       padding: 12px;
+     }
+     .rd-date { grid-column: 2; }
+diff --git a/src/components/SeriesStandings.astro b/src/components/SeriesStandings.astro
+new file mode 100644
+index 0000000..0d6663b
+--- /dev/null
++++ b/src/components/SeriesStandings.astro
+@@ -0,0 +1,329 @@
++---
++/**
++ * Championship standings of a series, with the drivers / teams switcher.
++ * Used by the series hub (/series/[slug]) and by the season page of the season
++ * the tables belong to (/series/[slug]/[year]).
++ *
++ * data/standings.json holds one season per series. Which one is worked out by
++ * standingsSeason() from the tables' `updatedAt`. When the page around it shows
++ * a later season (the hub has moved on to next year's calendar), the heading
++ * says "Final": the tables are then last season's closing order.
++ *
++ * Renders nothing for a series without standings.
++ */
++import standingsData from '../../data/standings.json';
++import { flagSrc, countryName } from '../lib/results';
++import { standingsSeason } from '../lib/seriesSeasons';
++
++interface Props {
++  slug: string;
++  /** The season of the page this sits on. */
++  shownSeason: number;
++}
++const { slug, shownSeason } = Astro.props;
++const base = import.meta.env.BASE_URL.replace(/\/$/, '');
++
++const tables = Object.values(((standingsData as any)[slug] ?? {}) as Record<string, any>) as any[];
++const season = standingsSeason(slug);
++const heading = season === null || season === shownSeason
++  ? `${shownSeason} Championship Standings`
++  : `Final ${season} Championship Standings`;
++---
++{tables.length > 0 && (
++  <section class="series-section" id="standings">
++    <h2 class="series-section-title">{heading}</h2>
++    <div class="standings-tabs-wrap">
++      {tables.map((table: any, ti: number) => (
++        <div class={`standings-table ${ti === 0 ? 'standings-table--active' : ''}`} data-standings-tab={ti}>
++          {tables.length > 1 && (
++            <div class="standings-tab-label">{table.label}</div>
++          )}
++          {table.note && (
++            <p class="standings-note">{table.note}</p>
++          )}
++          <div class="standings-rows" role="table" aria-label={table.label}>
++            <div class="standings-head" role="row">
++              <div role="columnheader" class="st-pos">Pos</div>
++              <div role="columnheader" class="st-name">Name</div>
++              <div role="columnheader" class="st-pts">Pts</div>
++            </div>
++            {(table.entries as any[]).map((entry: any, i: number) => (
++              <div class={`standings-row ${i === 0 ? 'standings-row--lead' : ''}`} role="row">
++                <div class="st-pos" role="cell">{entry.pos}</div>
++                <div class="st-name" role="cell">
++                  <div class="st-name-inner">
++                    {entry.country && (
++                      <img
++                        class="st-flag"
++                        src={flagSrc(entry.country, base)}
++                        alt={countryName(entry.country)}
++                        width="18"
++                        height="13"
++                        loading="lazy"
++                      />
++                    )}
++                    <div>
++                      <div class="st-driver">{entry.name}</div>
++                      {entry.team && <div class="st-team">{entry.team}</div>}
++                      {entry.note && <div class="st-team">{entry.note}</div>}
++                    </div>
++                  </div>
++                </div>
++                <div class="st-pts" role="cell">
++                  <span class="st-pts-val">{entry.points}</span>
++                  {i > 0 && (
++                    <span class="st-pts-gap">–{(table.entries as any[])[0].points - entry.points}</span>
++                  )}
++                </div>
++              </div>
++            ))}
++          </div>
++          <div class="standings-meta">
++            <span>After round {table.roundsComplete} of {table.totalRounds}</span>
++            <span>Updated {table.updatedAt}</span>
++          </div>
++        </div>
++      ))}
++      {tables.length > 1 && (
++        <div class="standings-switcher">
++          {tables.map((table: any, ti: number) => (
++            <button
++              class={`standings-switch-btn ${ti === 0 ? 'active' : ''}`}
++              data-tab={ti}
++              aria-pressed={ti === 0 ? 'true' : 'false'}
++            >
++              {table.label}
++            </button>
++          ))}
++        </div>
++      )}
++    </div>
++    <script is:inline>
++      (function(){
++        const wrap = document.querySelector('.standings-tabs-wrap');
++        if(!wrap) return;
++        const tables = wrap.querySelectorAll('[data-standings-tab]');
++        const btns   = wrap.querySelectorAll('.standings-switch-btn');
++        btns.forEach(function(btn) {
++          btn.addEventListener('click', function() {
++            const idx = +btn.dataset.tab;
++            tables.forEach(function(t,i){ t.classList.toggle('standings-table--active', i===idx); });
++            btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); b.setAttribute('aria-pressed', i===idx ? 'true':'false'); });
++          });
++        });
++      })();
++    </script>
++  </section>
++)}
++
++<style>
++/* ── Standings ── */
++.standings-tabs-wrap {
++  position: relative;
++}
++
++.standings-table {
++  display: none;
++}
++.standings-table--active {
++  display: block;
++}
++
++.standings-tab-label {
++  font-family: var(--font-mono);
++  font-size: var(--fs-xs);
++  letter-spacing: 0.12em;
++  text-transform: uppercase;
++  color: var(--text-meta);
++  margin-bottom: 10px;
++}
++
++.standings-note {
++  font-size: var(--fs-sm);
++  color: var(--text-faint);
++  margin: 0 0 10px;
++}
++
++.standings-rows {
++  display: flex;
++  flex-direction: column;
++  gap: 2px;
++}
++
++.standings-head {
++  display: grid;
++  grid-template-columns: 36px 1fr 80px;
++  gap: 0 12px;
++  padding: 4px 14px 8px;
++}
++
++.standings-head > div {
++  font-family: var(--font-mono);
++  font-size: var(--fs-2xs);
++  color: var(--text-faint);
++  letter-spacing: 0.1em;
++  text-transform: uppercase;
++}
++
++.standings-head .st-pts { text-align: right; }
++
++.standings-row {
++  display: grid;
++  grid-template-columns: 36px 1fr 80px;
++  gap: 0 12px;
++  align-items: center;
++  background: var(--card-bg);
++  border: 1px solid var(--border);
++  padding: 10px 14px;
++  border-radius: var(--radius-xl);
++}
++
++.standings-row--lead {
++  border-color: var(--line-subtle-5);
++  background: var(--card-bg-2);
++}
++
++.standings-row:hover {
++  background: var(--card-bg-2);
++  border-color: var(--line-subtle-5);
++}
++
++.st-pos {
++  font-family: var(--font-mono);
++  font-size: var(--fs-sm);
++  font-weight: 700;
++  color: var(--text-faint);
++  text-align: center;
++}
++
++/* --accent is a border colour (3.5:1 on the card in dark); the bright tier
++   keeps the blue and passes AA as text in both themes (9.2:1 dark, 6.3:1 light). */
++.standings-row--lead .st-pos {
++  color: var(--accent-bright);
++}
++
++.st-name {
++  min-width: 0;
++}
++
++.st-name-inner {
++  display: flex;
++  align-items: center;
++  gap: 8px;
++  min-width: 0;
++}
++
++.st-flag {
++  width: 18px;
++  height: 13px;
++  object-fit: cover;
++  border-radius: var(--radius-xs);
++  flex-shrink: 0;
++}
++
++.st-driver {
++  font-size: var(--fs-base);
++  font-weight: 600;
++  color: var(--text-soft);
++  white-space: nowrap;
++  overflow: hidden;
++  text-overflow: ellipsis;
++}
++
++.standings-row--lead .st-driver {
++  color: var(--text-strong-3);
++}
++
++.st-team {
++  font-family: var(--font-mono);
++  font-size: var(--fs-2xs);
++  color: var(--text-faint);
++  letter-spacing: 0.04em;
++  margin-top: 2px;
++  white-space: nowrap;
++  overflow: hidden;
++  text-overflow: ellipsis;
++}
++
++.st-pts {
++  text-align: right;
++  min-width: 0;
++}
++
++.st-pts-val {
++  font-family: var(--font-mono);
++  font-size: var(--fs-base);
++  font-weight: 700;
++  color: var(--text-soft);
++  display: block;
++}
++
++.standings-row--lead .st-pts-val {
++  color: var(--text-strong-3);
++}
++
++.st-pts-gap {
++  font-family: var(--font-mono);
++  font-size: var(--fs-2xs);
++  color: var(--text-faint);
++  display: block;
++  margin-top: 1px;
++}
++
++.standings-meta {
++  display: flex;
++  justify-content: space-between;
++  margin-top: 10px;
++  padding-top: 8px;
++  border-top: 1px solid var(--border);
++  font-family: var(--font-mono);
++  font-size: var(--fs-2xs);
++  color: var(--text-faint);
++  letter-spacing: 0.04em;
++}
++
++/* Tab switcher (constructors vs drivers) */
++.standings-switcher {
++  display: flex;
++  gap: 6px;
++  margin-top: 14px;
++  flex-wrap: wrap;
++}
++
++.standings-switch-btn {
++  font-family: var(--font-mono);
++  font-size: var(--fs-xs);
++  letter-spacing: 0.08em;
++  text-transform: uppercase;
++  padding: 5px 12px;
++  border: 1px solid var(--border);
++  background: none;
++  color: var(--text-meta);
++  cursor: pointer;
++  transition: color 0.13s, border-color 0.13s;
++}
++
++.standings-switch-btn.active {
++  color: var(--text-soft);
++  border-color: var(--line);
++  background: var(--overlay-faint);
++}
++
++.standings-switch-btn:hover {
++  color: var(--text-muted-4);
++  border-color: var(--line);
++}
++
++.standings-switch-btn:focus-visible {
++  outline: 2px solid var(--focus-ring-2);
++  outline-offset: 2px;
++}
++
++@media (max-width: 600px) {
++  .st-team { display: none; }
++  .standings-head,
++  .standings-row {
++    grid-template-columns: 30px 1fr 64px;
++  }
++}
++</style>
+diff --git a/src/integrations/og.ts b/src/integrations/og.ts
+index 49f1cb4..1bfa3b0 100644
+--- a/src/integrations/og.ts
++++ b/src/integrations/og.ts
+@@ -13,7 +13,8 @@ import { fileURLToPath } from 'url';
+ import tracksData from '../../data/tracks.json';
+ import seriesContent from '../../data/seriesContent.json';
+ import standings from '../../data/standings.json';
+-import { ALL_EVENTS, eventsForSeries, eventsForTrack, eventRange, type CalendarEvent } from '../lib/events';
++import { ALL_EVENTS, eventsForTrack, eventRange, type CalendarEvent } from '../lib/events';
++import { allSeriesSeasons, currentSeason, seasonRounds, standingsSeason } from '../lib/seriesSeasons';
+ import { DEFAULT_CALENDAR_YEAR } from '../lib/season';
+ import { venueFor } from '../lib/venues';
+ import { parseSessions, mainRaceTime } from '../lib/sessions';
+@@ -51,15 +52,18 @@ function eventCard(ev: CalendarEvent): Card {
+ }
+ 
+ function seriesCard(slug: string): Card {
+-  const evs = eventsForSeries(slug, DEFAULT_CALENDAR_YEAR);
++  // The card shows what the hub shows: the series' own current season (lib/seriesSeasons.ts).
++  const season = currentSeason(slug);
++  const evs = seasonRounds(slug, season);
+   const next = upcoming(evs);
+   const rows = (next.length ? next : evs.slice(-6)).slice(0, 6);
+-  const lead = Object.values((standings as any)[slug] ?? {})[0] as any;
++  // The leader only while the standings are this season's.
++  const lead = standingsSeason(slug) === season ? Object.values((standings as any)[slug] ?? {})[0] as any : null;
+   const top = lead?.entries?.[0];
+   return {
+     badges: [badge(slug)],
+     title: nameOf(slug),
+-    meta: `${DEFAULT_CALENDAR_YEAR} CALENDAR · ${evs.length} ROUNDS`,
++    meta: `${season} CALENDAR · ${evs.length} ROUNDS`,
+     list: rows.map(e => ({ left: eventRange(e), right: e.title })),
+     chip: top ? `P1 ${top.name} · ${top.points} PTS` : undefined,
+     footer: 'Calendar · Results · Standings',
+@@ -67,7 +71,7 @@ function seriesCard(slug: string): Card {
+ }
+ 
+ function seasonCard(slug: string, year: number): Card {
+-  const evs = eventsForSeries(slug, year);
++  const evs = seasonRounds(slug, year);
+   const sprints = evs.filter(e => e.hasSprint).length;
+   return {
+     badges: [badge(slug)],
+@@ -100,8 +104,8 @@ function allCards(): { path: string; card: () => Card }[] {
+   const out: { path: string; card: () => Card }[] = [];
+   for (const ev of ALL_EVENTS) out.push({ path: `events/${ev.year}/${ev.slug}`, card: () => eventCard(ev) });
+   for (const s of series) out.push({ path: `series/${s.slug}`, card: () => seriesCard(s.slug) });
+-  const seasons = new Set(ALL_EVENTS.filter(e => e.year > DEFAULT_CALENDAR_YEAR).map(e => `${e.series}|${e.year}`));
+-  for (const p of seasons) { const [s, y] = p.split('|'); out.push({ path: `series/${s}/${y}`, card: () => seasonCard(s, +y) }); }
++  // One card per season page: every season of every series that has rounds.
++  for (const { series: s, season: y } of allSeriesSeasons()) out.push({ path: `series/${s}/${y}`, card: () => seasonCard(s, y) });
+   for (const t of tracks) out.push({ path: `tracks/${t.slug}`, card: () => trackCard(t) });
+   return out;
+ }
+diff --git a/src/lib/seriesSeasons.ts b/src/lib/seriesSeasons.ts
+new file mode 100644
+index 0000000..5988c1c
+--- /dev/null
++++ b/src/lib/seriesSeasons.ts
+@@ -0,0 +1,98 @@
++/**
++ * Seasons of a series, and which one its pages show.
++ *
++ * Every season of a series that has rounds in the calendar gets a permanent
++ * page, `/series/{slug}/{season}`. It is never removed and never redirected,
++ * so a URL people have found ("wsbk 2027 calendar") keeps working through
++ * every rollover.
++ *
++ * `/series/{slug}` (the hub: teams, standings, how to watch, calendar) shows
++ * ONE of those seasons, picked per series from the calendar each time the site
++ * is built (it is rebuilt daily):
++ *
++ *   the earliest season that is not over yet,
++ *   or the latest season we have when all of them are over.
++ *
++ * A season stays "not over" for SEASON_GRACE_DAYS after its last round, so the
++ * hub still shows the final results and standings while people look for them,
++ * then moves on to the next season by itself. A series that has not published
++ * its next calendar simply stays on its last season. Nothing here depends on
++ * DEFAULT_CALENDAR_YEAR: that constant only governs site-wide wording.
++ *
++ * The season page of the season the hub is showing has the same calendar as
++ * the hub, so it names the hub as its canonical URL (see seriesSeasonPath and
++ * /series/[slug]/[year].astro). Link to a season with seriesSeasonPath(), which
++ * returns the hub for that season and the season page for any other.
++ *
++ * Seasons come from seasonOf() (lib/season.ts), not from the calendar year: a
++ * series that starts before January (Formula E, Asian Le Mans) has its autumn
++ * rounds in the season named for the following year.
++ */
++import standingsData from '../../data/standings.json';
++import { ALL_EVENTS, type CalendarEvent } from './events';
++import { DEFAULT_CALENDAR_YEAR, seasonOf } from './season';
++
++/** Days after a season's last round during which the series hub still shows it. */
++export const SEASON_GRACE_DAYS = 14;
++
++const DAY_MS = 864e5;
++
++/** series → season → rounds in date order */
++const index = new Map<string, Map<number, CalendarEvent[]>>();
++for (const ev of [...ALL_EVENTS].sort((a, b) => a.date.localeCompare(b.date))) {
++  const season = seasonOf(ev.series, ev.date);
++  let seasons = index.get(ev.series);
++  if (!seasons) index.set(ev.series, (seasons = new Map()));
++  const rounds = seasons.get(season);
++  if (rounds) rounds.push(ev);
++  else seasons.set(season, [ev]);
++}
++
++/** Every season of a series that has at least one round, oldest first. */
++export function seriesSeasons(series: string): number[] {
++  return [...(index.get(series)?.keys() ?? [])].sort((a, b) => a - b);
++}
++
++/** The rounds of one season of a series, in date order (empty when it has none). */
++export function seasonRounds(series: string, season: number): CalendarEvent[] {
++  return index.get(series)?.get(season) ?? [];
++}
++
++/** Every (series, season) pair that has rounds: the pages /series/{slug}/{season}. */
++export function allSeriesSeasons(): { series: string; season: number }[] {
++  return [...index.keys()].flatMap(series => seriesSeasons(series).map(season => ({ series, season })));
++}
++
++/** True once the season's last round is more than SEASON_GRACE_DAYS in the past. */
++export function seasonIsOver(series: string, season: number, now: number = Date.now()): boolean {
++  const rounds = seasonRounds(series, season);
++  if (!rounds.length) return true;
++  return new Date(rounds[rounds.length - 1].date).getTime() + SEASON_GRACE_DAYS * DAY_MS <= now;
++}
++
++/**
++ * The season the series hub shows. `now` defaults to the moment of the call:
++ * call this while a page is being rendered, not at module top level (the
++ * prerenderer's clock only runs inside a render).
++ */
++export function currentSeason(series: string, now: number = Date.now()): number {
++  const seasons = seriesSeasons(series);
++  if (!seasons.length) return DEFAULT_CALENDAR_YEAR;
++  return seasons.find(s => !seasonIsOver(series, s, now)) ?? seasons[seasons.length - 1];
++}
++
++/** Site path of a season of a series: the hub for the season it shows, the season page otherwise. */
++export function seriesSeasonPath(series: string, season: number, now: number = Date.now()): string {
++  return season === currentSeason(series, now) ? `/series/${series}` : `/series/${series}/${season}`;
++}
++
++/**
++ * The season the standings tables in data/standings.json belong to, from their
++ * `updatedAt` date; null when the series has no standings. The file holds one
++ * season per series and carries no season field of its own.
++ */
++export function standingsSeason(series: string): number | null {
++  const tables = Object.values(((standingsData as any)[series] ?? {}) as Record<string, any>);
++  const dates = tables.map(t => t?.updatedAt).filter((d): d is string => typeof d === 'string').sort();
++  return dates.length ? seasonOf(series, dates[dates.length - 1]) : null;
++}
+diff --git a/src/pages/events/[year]/[slug].astro b/src/pages/events/[year]/[slug].astro
+index 114f77c..c25a610 100644
+--- a/src/pages/events/[year]/[slug].astro
++++ b/src/pages/events/[year]/[slug].astro
+@@ -31,7 +31,8 @@ import { venueFor } from '../../../lib/venues';
+ import { ogPath } from '../../../lib/ogPaths';
+ import { fitTitle } from '../../../lib/seo';
+ import { seriesShort } from '../../../lib/seriesShort';
+-import { DEFAULT_CALENDAR_YEAR, seasonOf } from '../../../lib/season';
++import { seasonOf } from '../../../lib/season';
++import { seriesSeasonPath } from '../../../lib/seriesSeasons';
+ import { jsonForScript } from '../../../lib/jsonForScript';
+ 
+ export function getStaticPaths() {
+@@ -168,8 +169,9 @@ const where = venue ? (isRally ? `${venue.city}, ${venueCountry}` : `${venue.nam
+ const monthTag = /-(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)$/.test(ev.slug)
+   ? ` (${ev.slug.slice(-3).replace(/^./, c => c.toUpperCase())})` : '';
+ const short = seriesShort(ev.series, seriesName);
+-// The series calendar for this event's season: /series/{slug}, or /series/{slug}/{year} for a later one.
+-const seriesPath = `/series/${ev.series}${ev.year === DEFAULT_CALENDAR_YEAR ? '' : `/${ev.year}`}`;
++// The series calendar for this event's season: the series hub while it shows that
++// season, the season's own page otherwise (lib/seriesSeasons.ts).
++const seriesPath = seriesSeasonPath(ev.series, season);
+ const name = `${ev.title}${monthTag} ${ev.year}`;
+ // Shared rounds (GTWCA + IGTC at Indianapolis) and generic titles ("Rd 4: Spa")
+ // exist in more than one series; name the series in the H1 there.
+@@ -233,7 +235,7 @@ const breadcrumb = {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+-    { "@type": "ListItem", "position": 2, "name": `${short} ${ev.year}`, "item": `https://dord.racing${seriesPath}` },
++    { "@type": "ListItem", "position": 2, "name": `${short} ${season}`, "item": `https://dord.racing${seriesPath}` },
+     { "@type": "ListItem", "position": 3, "name": `${ev.title} ${ev.year}`, "item": canonical },
+   ],
+ };
+@@ -264,7 +266,7 @@ const breadcrumb = {
+ 
+   <main id="main-content" class="event-page">
+ 
+-    <a href={`${base}${seriesPath}`} class="back-link">← {short} {ev.year}</a>
++    <a href={`${base}${seriesPath}`} class="back-link">← {short} {season}</a>
+ 
+     <div class="event-split">
+       <div class="event-col-left">
+diff --git a/src/pages/events/[year]/index.astro b/src/pages/events/[year]/index.astro
+index 7766f9b..514c1ae 100644
+--- a/src/pages/events/[year]/index.astro
++++ b/src/pages/events/[year]/index.astro
+@@ -15,7 +15,8 @@ import Footer from '../../../components/Footer.astro';
+ import tracksData from '../../../../data/tracks.json';
+ import seriesContent from '../../../../data/seriesContent.json';
+ import { EVENT_YEARS, eventsForYear, eventRange } from '../../../lib/events';
+-import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
++import { DEFAULT_CALENDAR_YEAR, seasonOf } from '../../../lib/season';
++import { seriesSeasonPath } from '../../../lib/seriesSeasons';
+ import { seriesShort } from '../../../lib/seriesShort';
+ import { fitTitle } from '../../../lib/seo';
+ import { jsonForScript } from '../../../lib/jsonForScript';
+@@ -46,13 +47,18 @@ const byMonth = MONTHS
+ const seriesCount = new Set(events.map(e => e.series)).size;
+ const isPartial = year > DEFAULT_CALENDAR_YEAR;
+ 
+-// Per-series calendars for this season: /series/{slug} for the current one,
+-// /series/{slug}/{year} for a future one.
+-const seriesLinks = [...new Set(events.map(e => e.series))].map(slug => ({
+-  href: `${base}/series/${slug}${year === DEFAULT_CALENDAR_YEAR ? '' : `/${year}`}`,
+-  label: `${seriesShort(slug, (seriesContent as any[]).find(s => s.slug === slug)?.name)} ${year}`,
+-  count: events.filter(e => e.series === slug).length,
+-})).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
++// Per-series calendars of the seasons these events belong to. A season is not
++// always the calendar year (an autumn Formula E or Asian Le Mans round opens
++// the following season), so the links are built per series and season.
++const seriesLinks = [...new Set(events.map(e => `${e.series}|${seasonOf(e.series, e.date)}`))].map(key => {
++  const [slug, s] = key.split('|');
++  const season = Number(s);
++  return {
++    href: `${base}${seriesSeasonPath(slug, season)}`,
++    label: `${seriesShort(slug, (seriesContent as any[]).find(c => c.slug === slug)?.name)} ${season}`,
++    count: events.filter(e => e.series === slug && seasonOf(e.series, e.date) === season).length,
++  };
++}).sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+ 
+ const pageTitle = fitTitle([
+   `${year} Motorsport Race Calendar: Every Event & Circuit | DORD`,
+diff --git a/src/pages/index.astro b/src/pages/index.astro
+index bdc3202..e0fc87d 100644
+--- a/src/pages/index.astro
++++ b/src/pages/index.astro
+@@ -15,6 +15,7 @@ import seriesIndex from '../../data/series.json';
+ import { ALL_EVENTS, trackSlugForSvg } from '../lib/events';
+ import { DEFAULT_CALENDAR_YEAR, monthYear, weekAnchor } from '../lib/season';
+ import { seriesShort } from '../lib/seriesShort';
++import { seriesSeasonPath, seriesSeasons } from '../lib/seriesSeasons';
+ import { jsonForScript } from '../lib/jsonForScript';
+ import { withTbcFlags } from '../lib/tbc';
+ import { CURRENT_FAQS } from '../lib/faq';
+@@ -39,13 +40,15 @@ const nextYear = season + 1;
+ // Week-card ids already given out: a week split across two months has two cards.
+ const usedCardIds = new Set<string>();
+ const SEASON_ORDER = ['f1', 'motogp', 'wec', 'fe', 'imsa', 'indycar', 'wrc', 'wsbk'];
+-const nextSeasonSeries = [...new Set(ALL_EVENTS.filter(e => e.year === nextYear).map(e => e.series))]
++const nextSeasonSeries = [...new Set(ALL_EVENTS.map(e => e.series))]
++  .filter(slug => seriesSeasons(slug).includes(nextYear))
+   .sort((a, b) => {
+     const ia = SEASON_ORDER.indexOf(a), ib = SEASON_ORDER.indexOf(b);
+     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
+   })
+   .map(slug => ({
+     slug,
++    href: seriesSeasonPath(slug, nextYear),
+     label: seriesShort(slug, (seriesContent as any[]).find(s => s.slug === slug)?.name),
+   }));
+ 
+@@ -132,7 +135,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
+         <nav class="season-links" aria-label={`${nextYear} calendars`}>
+           <span class="season-links-label">{nextYear} calendars</span>
+           {nextSeasonSeries.map(s => (
+-            <a class="season-link" href={`${base}/series/${s.slug}/${nextYear}`}>{s.label} {nextYear}</a>
++            <a class="season-link" href={`${base}${s.href}`}>{s.label} {nextYear}</a>
+           ))}
+           <a class="season-link" href={`${base}/events/${nextYear}`}>All {nextYear} events →</a>
+         </nav>
+diff --git a/src/pages/series/[slug].astro b/src/pages/series/[slug].astro
+index e7e1f56..b3df668 100644
+--- a/src/pages/series/[slug].astro
++++ b/src/pages/series/[slug].astro
+@@ -5,15 +5,14 @@ import Nav from '../../components/Nav.astro';
+ import Footer from '../../components/Footer.astro';
+ 
+ import RoundsList from '../../components/RoundsList.astro';
++import SeriesStandings from '../../components/SeriesStandings.astro';
+ import CountryDialog from '../../components/CountryDialog.astro';
+ 
+ import seriesContent from '../../../data/seriesContent.json';
+-import standingsData from '../../../data/standings.json';
+-import { flagSrc, countryName } from '../../lib/results';
+-import { eventsForSeries } from '../../lib/events';
+-import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
++import { currentSeason, seasonRounds, seriesSeasons, standingsSeason } from '../../lib/seriesSeasons';
+ import { seriesShort } from '../../lib/seriesShort';
+ import { seriesSeasonDescription } from '../../lib/seasonCopy';
++import { fitTitle } from '../../lib/seo';
+ import { ogPath } from '../../lib/ogPaths';
+ import { jsonForScript } from '../../lib/jsonForScript';
+ 
+@@ -24,12 +23,20 @@ export function getStaticPaths() {
+ const { slug } = Astro.params;
+ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+ const series = (seriesContent as any[]).find((s: any) => s.slug === slug)!;
+-const year = DEFAULT_CALENDAR_YEAR;
+ const short = seriesShort(slug!, series.name);
+ 
+-const rounds = eventsForSeries(slug!, year);
+-const nextYearRounds = eventsForSeries(slug!, year + 1);
+-const hasStandings = !!(standingsData as any)[slug!];
++// This hub shows one season of the series, chosen from the calendar on every
++// build: the earliest that is not over yet (see lib/seriesSeasons.ts). Every
++// season, this one included, also has its own page at /series/{slug}/{season}.
++const year = currentSeason(slug!);
++const rounds = seasonRounds(slug!, year);
++const otherSeasons = seriesSeasons(slug!)
++  .filter(s => s !== year)
++  .map(s => ({ season: s, count: seasonRounds(slug!, s).length, past: s < year }));
++// "& Standings" in the title only while the tables are this season's.
++const hasStandings = standingsSeason(slug!) === year;
++// The teams table is typed by hand for one season (seriesContent.json → teamsSeason).
++const teamsSeason: number = (series as any).teamsSeason ?? year;
+ 
+ const sportsOrgSchema = {
+   "@context": "https://schema.org",
+@@ -70,7 +77,17 @@ const roundsSchema = rounds.length ? {
+   })),
+ } : null;
+ 
+-const pageTitle = `${short} ${year} Calendar, Results${hasStandings ? ' & Standings' : ''} | DORD`;
++// Before the season's first result the page is a calendar, and is titled like
++// the season page it stands in for (that title is what "{series} {year}
++// calendar" searches found). Once rounds have been run it names the results.
++const raced = rounds.filter(r => r.results?.length).length;
++const pageTitle = raced > 0 || rounds.length === 0
++  ? `${short} ${year} Calendar, Results${hasStandings ? ' & Standings' : ''} | DORD`
++  : fitTitle([
++      `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
++      `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
++      `${short} ${year} Calendar | DORD`,
++    ]);
+ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, series.tagline);
+ ---
+ <BaseLayout
+@@ -87,7 +104,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
+   <Banner />
+   <header>
+     <div class="header--left">
+-      <h1>{series.name}<br><span class="h1-sub">{year} Calendar &amp; Results</span></h1>
++      <h1>{series.name}<br><span class="h1-sub">{year} Calendar{raced > 0 || rounds.length === 0 ? <> &amp; Results</> : ''}</span></h1>
+       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+       <Nav activePage="series" />
+     </div>
+@@ -154,7 +171,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
+ 
+     {series.tier === 1 && series.teamsHeaders && (
+       <section class="series-section">
+-        <h2 class="series-section-title">Teams &amp; Drivers — {year}</h2>
++        <h2 class="series-section-title">Teams &amp; Drivers — {teamsSeason}</h2>
+         {series.seasonNotes && <p class="series-season-notes">{series.seasonNotes}</p>}
+         <div class="series-table-wrap" tabindex="0" role="region" aria-label="Teams and drivers table">
+           <table class="series-table">
+@@ -176,95 +193,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
+       </section>
+     )}
+ 
+-    {(standingsData as any)[slug] && (() => {
+-      const tables = Object.values((standingsData as any)[slug]) as any[];
+-      return (
+-        <section class="series-section" id="standings">
+-          <h2 class="series-section-title">{year} Championship Standings</h2>
+-          <div class="standings-tabs-wrap">
+-            {tables.map((table: any, ti: number) => (
+-              <div class={`standings-table ${ti === 0 ? 'standings-table--active' : ''}`} data-standings-tab={ti}>
+-                {tables.length > 1 && (
+-                  <div class="standings-tab-label">{table.label}</div>
+-                )}
+-                {table.note && (
+-                  <p class="standings-note">{table.note}</p>
+-                )}
+-                <div class="standings-rows" role="table" aria-label={table.label}>
+-                  <div class="standings-head" role="row">
+-                    <div role="columnheader" class="st-pos">Pos</div>
+-                    <div role="columnheader" class="st-name">Name</div>
+-                    <div role="columnheader" class="st-pts">Pts</div>
+-                  </div>
+-                  {(table.entries as any[]).map((entry: any, i: number) => (
+-                    <div class={`standings-row ${i === 0 ? 'standings-row--lead' : ''}`} role="row">
+-                      <div class="st-pos" role="cell">{entry.pos}</div>
+-                      <div class="st-name" role="cell">
+-                        <div class="st-name-inner">
+-                          {entry.country && (
+-                            <img
+-                              class="st-flag"
+-                              src={flagSrc(entry.country, base)}
+-                              alt={countryName(entry.country)}
+-                              width="18"
+-                              height="13"
+-                              loading="lazy"
+-                            />
+-                          )}
+-                          <div>
+-                            <div class="st-driver">{entry.name}</div>
+-                            {entry.team && <div class="st-team">{entry.team}</div>}
+-                            {entry.note && <div class="st-team">{entry.note}</div>}
+-                          </div>
+-                        </div>
+-                      </div>
+-                      <div class="st-pts" role="cell">
+-                        <span class="st-pts-val">{entry.points}</span>
+-                        {i > 0 && (
+-                          <span class="st-pts-gap">–{(table.entries as any[])[0].points - entry.points}</span>
+-                        )}
+-                      </div>
+-                    </div>
+-                  ))}
+-                </div>
+-                <div class="standings-meta">
+-                  <span>After round {table.roundsComplete} of {table.totalRounds}</span>
+-                  <span>Updated {table.updatedAt}</span>
+-                </div>
+-              </div>
+-            ))}
+-            {tables.length > 1 && (
+-              <div class="standings-switcher">
+-                {tables.map((table: any, ti: number) => (
+-                  <button
+-                    class={`standings-switch-btn ${ti === 0 ? 'active' : ''}`}
+-                    data-tab={ti}
+-                    aria-pressed={ti === 0 ? 'true' : 'false'}
+-                  >
+-                    {table.label}
+-                  </button>
+-                ))}
+-              </div>
+-            )}
+-          </div>
+-          <script is:inline>
+-            (function(){
+-              const wrap = document.querySelector('.standings-tabs-wrap');
+-              if(!wrap) return;
+-              const tables = wrap.querySelectorAll('[data-standings-tab]');
+-              const btns   = wrap.querySelectorAll('.standings-switch-btn');
+-              btns.forEach(function(btn) {
+-                btn.addEventListener('click', function() {
+-                  const idx = +btn.dataset.tab;
+-                  tables.forEach(function(t,i){ t.classList.toggle('standings-table--active', i===idx); });
+-                  btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); b.setAttribute('aria-pressed', i===idx ? 'true':'false'); });
+-                });
+-              });
+-            })();
+-          </script>
+-        </section>
+-      );
+-    })()}
++    {hasStandings && <SeriesStandings slug={slug!} shownSeason={year} />}
+ 
+     <section class="series-section" id="calendar">
+       <h2 class="series-section-title">{year} Calendar</h2>
+@@ -274,13 +203,26 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
+             <p class="series-cal-note">{rounds.length} rounds · times are Paris (CET/CEST) · select a round for session times, how to watch and travel.</p>
+             <RoundsList events={rounds} label={`${series.name} ${year} rounds`} />
+           </>}
+-      {nextYearRounds.length > 0 && (
+-        <a class="season-next-link" href={`${base}/series/${slug}/${year + 1}`}>
+-          {short} {year + 1} calendar — {nextYearRounds.length} rounds announced →
++      {otherSeasons.filter(o => !o.past).map(o => (
++        <a class="season-next-link" href={`${base}/series/${slug}/${o.season}`}>
++          {short} {o.season} calendar — {o.count} rounds announced →
+         </a>
+-      )}
++      ))}
+     </section>
+ 
++    {/* Last season's closing standings, once the hub has moved on to the next calendar. */}
++    {!hasStandings && <SeriesStandings slug={slug!} shownSeason={year} />}
++
++    {otherSeasons.some(o => o.past) && (
++      <nav class="series-section season-archive" aria-label={`Earlier ${short} seasons`}>
++        {otherSeasons.filter(o => o.past).map(o => (
++          <a class="season-next-link" href={`${base}/series/${slug}/${o.season}`}>
++            {short} {o.season} season — calendar and results of all {o.count} rounds →
++          </a>
++        ))}
++      </nav>
++    )}
++
+     <section class="series-section">
+       <h2 class="series-section-title">Subscribe &amp; Embed</h2>
+       <div class="subscribe-actions">
+@@ -443,215 +385,3 @@ import {
+   });
+ })();
+ </script>
+-
+-<style>
+-/* ── Standings ── */
+-.standings-tabs-wrap {
+-  position: relative;
+-}
+-
+-.standings-table {
+-  display: none;
+-}
+-.standings-table--active {
+-  display: block;
+-}
+-
+-.standings-tab-label {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-xs);
+-  letter-spacing: 0.12em;
+-  text-transform: uppercase;
+-  color: var(--text-meta);
+-  margin-bottom: 10px;
+-}
+-
+-.standings-note {
+-  font-size: var(--fs-sm);
+-  color: var(--text-faint);
+-  margin: 0 0 10px;
+-}
+-
+-.standings-rows {
+-  display: flex;
+-  flex-direction: column;
+-  gap: 2px;
+-}
+-
+-.standings-head {
+-  display: grid;
+-  grid-template-columns: 36px 1fr 80px;
+-  gap: 0 12px;
+-  padding: 4px 14px 8px;
+-}
+-
+-.standings-head > div {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-2xs);
+-  color: var(--text-faint);
+-  letter-spacing: 0.1em;
+-  text-transform: uppercase;
+-}
+-
+-.standings-head .st-pts { text-align: right; }
+-
+-.standings-row {
+-  display: grid;
+-  grid-template-columns: 36px 1fr 80px;
+-  gap: 0 12px;
+-  align-items: center;
+-  background: var(--card-bg);
+-  border: 1px solid var(--border);
+-  padding: 10px 14px;
+-  border-radius: var(--radius-xl);
+-}
+-
+-.standings-row--lead {
+-  border-color: var(--line-subtle-5);
+-  background: var(--card-bg-2);
+-}
+-
+-.standings-row:hover {
+-  background: var(--card-bg-2);
+-  border-color: var(--line-subtle-5);
+-}
+-
+-.st-pos {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-sm);
+-  font-weight: 700;
+-  color: var(--text-faint);
+-  text-align: center;
+-}
+-
+-/* --accent is a border colour (3.5:1 on the card in dark); the bright tier
+-   keeps the blue and passes AA as text in both themes (9.2:1 dark, 6.3:1 light). */
+-.standings-row--lead .st-pos {
+-  color: var(--accent-bright);
+-}
+-
+-.st-name {
+-  min-width: 0;
+-}
+-
+-.st-name-inner {
+-  display: flex;
+-  align-items: center;
+-  gap: 8px;
+-  min-width: 0;
+-}
+-
+-.st-flag {
+-  width: 18px;
+-  height: 13px;
+-  object-fit: cover;
+-  border-radius: var(--radius-xs);
+-  flex-shrink: 0;
+-}
+-
+-.st-driver {
+-  font-size: var(--fs-base);
+-  font-weight: 600;
+-  color: var(--text-soft);
+-  white-space: nowrap;
+-  overflow: hidden;
+-  text-overflow: ellipsis;
+-}
+-
+-.standings-row--lead .st-driver {
+-  color: var(--text-strong-3);
+-}
+-
+-.st-team {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-2xs);
+-  color: var(--text-faint);
+-  letter-spacing: 0.04em;
+-  margin-top: 2px;
+-  white-space: nowrap;
+-  overflow: hidden;
+-  text-overflow: ellipsis;
+-}
+-
+-.st-pts {
+-  text-align: right;
+-  min-width: 0;
+-}
+-
+-.st-pts-val {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-base);
+-  font-weight: 700;
+-  color: var(--text-soft);
+-  display: block;
+-}
+-
+-.standings-row--lead .st-pts-val {
+-  color: var(--text-strong-3);
+-}
+-
+-.st-pts-gap {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-2xs);
+-  color: var(--text-faint);
+-  display: block;
+-  margin-top: 1px;
+-}
+-
+-.standings-meta {
+-  display: flex;
+-  justify-content: space-between;
+-  margin-top: 10px;
+-  padding-top: 8px;
+-  border-top: 1px solid var(--border);
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-2xs);
+-  color: var(--text-faint);
+-  letter-spacing: 0.04em;
+-}
+-
+-/* Tab switcher (constructors vs drivers) */
+-.standings-switcher {
+-  display: flex;
+-  gap: 6px;
+-  margin-top: 14px;
+-  flex-wrap: wrap;
+-}
+-
+-.standings-switch-btn {
+-  font-family: var(--font-mono);
+-  font-size: var(--fs-xs);
+-  letter-spacing: 0.08em;
+-  text-transform: uppercase;
+-  padding: 5px 12px;
+-  border: 1px solid var(--border);
+-  background: none;
+-  color: var(--text-meta);
+-  cursor: pointer;
+-  transition: color 0.13s, border-color 0.13s;
+-}
+-
+-.standings-switch-btn.active {
+-  color: var(--text-soft);
+-  border-color: var(--line);
+-  background: var(--overlay-faint);
+-}
+-
+-.standings-switch-btn:hover {
+-  color: var(--text-muted-4);
+-  border-color: var(--line);
+-}
+-
+-.standings-switch-btn:focus-visible {
+-  outline: 2px solid var(--focus-ring-2);
+-  outline-offset: 2px;
+-}
+-
+-@media (max-width: 600px) {
+-  .st-team { display: none; }
+-  .standings-head,
+-  .standings-row {
+-    grid-template-columns: 30px 1fr 64px;
+-  }
+-}
+-</style>
+diff --git a/src/pages/series/[slug]/[year].astro b/src/pages/series/[slug]/[year].astro
+index d70f63c..54d8573 100644
+--- a/src/pages/series/[slug]/[year].astro
++++ b/src/pages/series/[slug]/[year].astro
+@@ -1,36 +1,36 @@
+ ---
+ /**
+- * /series/{slug}/{year} — a future season's calendar, e.g. /series/f1/2027.
++ * /series/{slug}/{year} — one season of a series, e.g. /series/f1/2027.
+  *
+- * /series/{slug} covers the current season (results, standings, teams). Once a
+- * series publishes next year's dates, people search for that calendar on its
+- * own ("f1 calendar 2027"), so it gets its own page with the rounds, what
+- * changed, and links to every event page. Generated for each series that has
+- * rounds in a year after DEFAULT_CALENDAR_YEAR.
++ * Every season that has rounds in the calendar gets this page: next year's
++ * calendar as soon as a series publishes it ("f1 calendar 2027" is searched
++ * on its own), the season under way, and finished seasons with their winners
++ * and final standings. A season page is permanent: it is never removed or
++ * redirected, whichever season the site treats as current.
++ *
++ * /series/{slug} (the hub) shows one of these seasons in full. For that
++ * season this page repeats the hub's calendar, so it names the hub as its
++ * canonical URL. Which season that is, is decided per series in
++ * lib/seriesSeasons.ts.
+  */
+ import BaseLayout from '../../../layouts/BaseLayout.astro';
+ import Banner from '../../../components/Banner.astro';
+ import Nav from '../../../components/Nav.astro';
+ import Footer from '../../../components/Footer.astro';
+ import RoundsList from '../../../components/RoundsList.astro';
++import SeriesStandings from '../../../components/SeriesStandings.astro';
+ 
+ import seriesContent from '../../../../data/seriesContent.json';
+ import seasons from '../../../../data/seasons.json';
+-import { ALL_EVENTS, eventsForSeries, eventRange } from '../../../lib/events';
+-import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
++import { EVENT_YEARS, eventRange } from '../../../lib/events';
++import { allSeriesSeasons, currentSeason, seasonRounds, seriesSeasons, standingsSeason } from '../../../lib/seriesSeasons';
+ import { seriesShort } from '../../../lib/seriesShort';
+ import { ogPath } from '../../../lib/ogPaths';
+ import { fitTitle } from '../../../lib/seo';
+ import { jsonForScript } from '../../../lib/jsonForScript';
+ 
+ export function getStaticPaths() {
+-  const pairs = new Set(
+-    ALL_EVENTS.filter(e => e.year > DEFAULT_CALENDAR_YEAR).map(e => `${e.series}|${e.year}`)
+-  );
+-  return [...pairs].map(p => {
+-    const [slug, year] = p.split('|');
+-    return { params: { slug, year } };
+-  });
++  return allSeriesSeasons().map(({ series, season }) => ({ params: { slug: series, year: String(season) } }));
+ }
+ 
+ const slug = Astro.params.slug!;
+@@ -39,38 +39,58 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+ 
+ const series = (seriesContent as any[]).find(s => s.slug === slug)!;
+ const short = seriesShort(slug, series.name);
+-const rounds = eventsForSeries(slug, year);
++const rounds = seasonRounds(slug, year);
+ const notes = (seasons as any)[slug]?.[String(year)] as
+   { summary: string; changes: string[]; status: string } | undefined;
+ 
++const now = Date.now();
++const hubSeason = currentSeason(slug, now);
++const isHubSeason = year === hubSeason;
++const raced = rounds.filter(r => r.results?.length).length;
++const toRun = rounds.filter(r => new Date(r.date).getTime() > now).length;
++const finished = toRun === 0;
++const showStandings = standingsSeason(slug) === year;
++const otherSeasons = seriesSeasons(slug).filter(s => s !== year);
++
+ const first = rounds[0];
+ const last = rounds[rounds.length - 1];
+ const span = `${eventRange(first)} – ${eventRange(last)}`;
+ const sprints = rounds.filter(r => r.hasSprint).length;
+ 
+-const canonical = `https://dord.racing/series/${slug}/${year}`;
+-const pageTitle = fitTitle([
+-  `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
+-  `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
++const ownUrl = `https://dord.racing/series/${slug}/${year}`;
++const hubUrl = `https://dord.racing/series/${slug}`;
++// The hub shows this same season in full: it is the page to index.
++const canonical = isHubSeason ? hubUrl : ownUrl;
++
++const n = rounds.length;
++const pageTitle = fitTitle(finished ? [
++  `${short} ${year} Results & Calendar — All ${n} Rounds | DORD`,
++  `${short} ${year} Results & Calendar | DORD`,
++  `${short} ${year} Results | DORD`,
++] : [
++  `${short} ${year} Calendar — ${n} Rounds, Dates & Venues | DORD`,
++  `${short} ${year} Calendar — ${n} Rounds & Dates | DORD`,
+   `${short} ${year} Calendar | DORD`,
+ ]);
+-const pageDescription = notes?.summary
+-  ?? `The ${series.name} ${year} calendar: all ${rounds.length} rounds with dates, circuits and links to every event, ${eventRange(first)} to ${eventRange(last)}.`;
++const pageDescription = notes?.summary ?? (finished
++  ? `The ${series.name} ${year} season: all ${n} rounds with dates, circuits and winners, ${eventRange(first)} to ${eventRange(last)}.`
++  : `The ${series.name} ${year} calendar: all ${n} rounds with dates, circuits and links to every event, ${eventRange(first)} to ${eventRange(last)}.`);
++const h1Sub = raced > 0 ? 'Calendar & Results' : 'Calendar';
+ 
+ const breadcrumb = {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
+-    { "@type": "ListItem", "position": 2, "name": series.name, "item": `https://dord.racing/series/${slug}` },
+-    { "@type": "ListItem", "position": 3, "name": `${year} Calendar`, "item": canonical },
++    { "@type": "ListItem", "position": 2, "name": series.name, "item": hubUrl },
++    { "@type": "ListItem", "position": 3, "name": `${year} ${raced > 0 ? 'Season' : 'Calendar'}`, "item": ownUrl },
+   ],
+ };
+ const itemList = {
+   "@context": "https://schema.org",
+   "@type": "ItemList",
+   "name": `${series.name} ${year} calendar`,
+-  "numberOfItems": rounds.length,
++  "numberOfItems": n,
+   "itemListElement": rounds.map((ev, i) => ({
+     "@type": "ListItem",
+     "position": i + 1,
+@@ -93,15 +113,19 @@ const itemList = {
+   <Banner />
+   <header>
+     <div class="header--left">
+-      <h1>{short} {year}<br><span class="h1-sub">Calendar</span></h1>
+-      <p class="header--page-desc">{series.name} · {rounds.length} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
++      <h1>{short} {year}<br><span class="h1-sub">{h1Sub}</span></h1>
++      <p class="header--page-desc">{series.name} · {n} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
+       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
+       <Nav activePage="series" />
+     </div>
+   </header>
+ 
+   <main id="main-content" class="main-section main-section--content">
+-    <a href={`${base}/series/${slug}`} class="back-link">← {short} {DEFAULT_CALENDAR_YEAR} calendar &amp; results</a>
++    <a href={`${base}/series/${slug}`} class="back-link">
++      {isHubSeason
++        ? <>← {series.name}: teams, standings and how to watch</>
++        : <>← {short} {hubSeason} calendar &amp; results</>}
++    </a>
+ 
+     {notes && (
+       <section class="series-section season-notes">
+@@ -116,25 +140,36 @@ const itemList = {
+ 
+     <section class="series-section" id="calendar">
+       <h2 class="series-section-title">{year} Rounds</h2>
+-      <p class="series-cal-note">Select a round for its event page. Times are Paris (CET/CEST) once published.</p>
++      <p class="series-cal-note">
++        {finished
++          ? <>All {n} rounds of the season. Select a round for its event page.</>
++          : <>Select a round for its event page. Times are Paris (CET/CEST) once published.</>}
++      </p>
+       <RoundsList events={rounds} label={`${series.name} ${year} rounds`} />
+     </section>
+ 
+-    <section class="series-section">
+-      <h2 class="series-section-title">Add it to your calendar</h2>
+-      <p class="season-status">
+-        The {short} feed covers every season we list, so {year} rounds appear in your calendar app as
+-        soon as they are added here, and session times update automatically.
+-      </p>
+-      <div class="subscribe-actions">
+-        <a href={`webcal://dord.racing/ical/${slug}.ics`} class="subscribe-btn subscribe-btn--ical">Subscribe (iCal)</a>
+-        <a href={`https://calendar.google.com/calendar/render?cid=webcal://dord.racing/ical/${slug}.ics`}
+-           target="_blank" rel="noopener noreferrer" class="subscribe-btn subscribe-btn--gcal">+ Google Calendar</a>
+-      </div>
+-    </section>
++    {showStandings && <SeriesStandings slug={slug} shownSeason={year} />}
++
++    {!finished && (
++      <section class="series-section">
++        <h2 class="series-section-title">Add it to your calendar</h2>
++        <p class="season-status">
++          The {short} feed covers every season we list, so {year} rounds appear in your calendar app as
++          soon as they are added here, and session times update automatically.
++        </p>
++        <div class="subscribe-actions">
++          <a href={`webcal://dord.racing/ical/${slug}.ics`} class="subscribe-btn subscribe-btn--ical">Subscribe (iCal)</a>
++          <a href={`https://calendar.google.com/calendar/render?cid=webcal://dord.racing/ical/${slug}.ics`}
++             target="_blank" rel="noopener noreferrer" class="subscribe-btn subscribe-btn--gcal">+ Google Calendar</a>
++        </div>
++      </section>
++    )}
+ 
+     <nav class="season-more" aria-label="More calendars">
+-      <a href={`${base}/events/${year}`}>All {year} events across every series →</a>
++      {otherSeasons.map(s => (
++        <a href={`${base}${s === hubSeason ? `/series/${slug}` : `/series/${slug}/${s}`}`}>{short} {s} {s < year ? 'season' : 'calendar'} →</a>
++      ))}
++      {EVENT_YEARS.includes(year) && <a href={`${base}/events/${year}`}>All {year} events across every series →</a>}
+       <a href={`${base}/newsletter`}>Get calendar changes by email every Monday →</a>
+     </nav>
+ 

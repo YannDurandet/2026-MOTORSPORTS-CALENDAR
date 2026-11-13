@@ -15,6 +15,7 @@ import seriesIndex from '../../data/series.json';
 import { ALL_EVENTS, trackSlugForSvg } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR, monthYear, weekAnchor } from '../lib/season';
 import { seriesShort } from '../lib/seriesShort';
+import { seriesSeasonPath, seriesSeasons } from '../lib/seriesSeasons';
 import { jsonForScript } from '../lib/jsonForScript';
 import { withTbcFlags } from '../lib/tbc';
 import { CURRENT_FAQS } from '../lib/faq';
@@ -39,13 +40,15 @@ const nextYear = season + 1;
 // Week-card ids already given out: a week split across two months has two cards.
 const usedCardIds = new Set<string>();
 const SEASON_ORDER = ['f1', 'motogp', 'wec', 'fe', 'imsa', 'indycar', 'wrc', 'wsbk'];
-const nextSeasonSeries = [...new Set(ALL_EVENTS.filter(e => e.year === nextYear).map(e => e.series))]
+const nextSeasonSeries = [...new Set(ALL_EVENTS.map(e => e.series))]
+  .filter(slug => seriesSeasons(slug).includes(nextYear))
   .sort((a, b) => {
     const ia = SEASON_ORDER.indexOf(a), ib = SEASON_ORDER.indexOf(b);
     return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || a.localeCompare(b);
   })
   .map(slug => ({
     slug,
+    href: seriesSeasonPath(slug, nextYear),
     label: seriesShort(slug, (seriesContent as any[]).find(s => s.slug === slug)?.name),
   }));
 
@@ -132,7 +135,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
         <nav class="season-links" aria-label={`${nextYear} calendars`}>
           <span class="season-links-label">{nextYear} calendars</span>
           {nextSeasonSeries.map(s => (
-            <a class="season-link" href={`${base}/series/${s.slug}/${nextYear}`}>{s.label} {nextYear}</a>
+            <a class="season-link" href={`${base}${s.href}`}>{s.label} {nextYear}</a>
           ))}
           <a class="season-link" href={`${base}/events/${nextYear}`}>All {nextYear} events →</a>
         </nav>

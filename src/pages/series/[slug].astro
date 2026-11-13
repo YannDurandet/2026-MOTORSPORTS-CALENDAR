@@ -5,15 +5,14 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
 import RoundsList from '../../components/RoundsList.astro';
+import SeriesStandings from '../../components/SeriesStandings.astro';
 import CountryDialog from '../../components/CountryDialog.astro';
 
 import seriesContent from '../../../data/seriesContent.json';
-import standingsData from '../../../data/standings.json';
-import { flagSrc, countryName } from '../../lib/results';
-import { eventsForSeries } from '../../lib/events';
-import { DEFAULT_CALENDAR_YEAR } from '../../lib/season';
+import { currentSeason, seasonRounds, seriesSeasons, standingsSeason } from '../../lib/seriesSeasons';
 import { seriesShort } from '../../lib/seriesShort';
 import { seriesSeasonDescription } from '../../lib/seasonCopy';
+import { fitTitle } from '../../lib/seo';
 import { ogPath } from '../../lib/ogPaths';
 import { jsonForScript } from '../../lib/jsonForScript';
 
@@ -24,12 +23,20 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const series = (seriesContent as any[]).find((s: any) => s.slug === slug)!;
-const year = DEFAULT_CALENDAR_YEAR;
 const short = seriesShort(slug!, series.name);
 
-const rounds = eventsForSeries(slug!, year);
-const nextYearRounds = eventsForSeries(slug!, year + 1);
-const hasStandings = !!(standingsData as any)[slug!];
+// This hub shows one season of the series, chosen from the calendar on every
+// build: the earliest that is not over yet (see lib/seriesSeasons.ts). Every
+// season, this one included, also has its own page at /series/{slug}/{season}.
+const year = currentSeason(slug!);
+const rounds = seasonRounds(slug!, year);
+const otherSeasons = seriesSeasons(slug!)
+  .filter(s => s !== year)
+  .map(s => ({ season: s, count: seasonRounds(slug!, s).length, past: s < year }));
+// "& Standings" in the title only while the tables are this season's.
+const hasStandings = standingsSeason(slug!) === year;
+// The teams table is typed by hand for one season (seriesContent.json → teamsSeason).
+const teamsSeason: number = (series as any).teamsSeason ?? year;
 
 const sportsOrgSchema = {
   "@context": "https://schema.org",
@@ -70,7 +77,17 @@ const roundsSchema = rounds.length ? {
   })),
 } : null;
 
-const pageTitle = `${short} ${year} Calendar, Results${hasStandings ? ' & Standings' : ''} | DORD`;
+// Before the season's first result the page is a calendar, and is titled like
+// the season page it stands in for (that title is what "{series} {year}
+// calendar" searches found). Once rounds have been run it names the results.
+const raced = rounds.filter(r => r.results?.length).length;
+const pageTitle = raced > 0 || rounds.length === 0
+  ? `${short} ${year} Calendar, Results${hasStandings ? ' & Standings' : ''} | DORD`
+  : fitTitle([
+      `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
+      `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
+      `${short} ${year} Calendar | DORD`,
+    ]);
 const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, series.tagline);
 ---
 <BaseLayout
@@ -87,7 +104,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
   <Banner />
   <header>
     <div class="header--left">
-      <h1>{series.name}<br><span class="h1-sub">{year} Calendar &amp; Results</span></h1>
+      <h1>{series.name}<br><span class="h1-sub">{year} Calendar{raced > 0 || rounds.length === 0 ? <> &amp; Results</> : ''}</span></h1>
       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="series" />
     </div>
@@ -154,7 +171,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
 
     {series.tier === 1 && series.teamsHeaders && (
       <section class="series-section">
-        <h2 class="series-section-title">Teams &amp; Drivers — {year}</h2>
+        <h2 class="series-section-title">Teams &amp; Drivers — {teamsSeason}</h2>
         {series.seasonNotes && <p class="series-season-notes">{series.seasonNotes}</p>}
         <div class="series-table-wrap" tabindex="0" role="region" aria-label="Teams and drivers table">
           <table class="series-table">
@@ -176,95 +193,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
       </section>
     )}
 
-    {(standingsData as any)[slug] && (() => {
-      const tables = Object.values((standingsData as any)[slug]) as any[];
-      return (
-        <section class="series-section" id="standings">
-          <h2 class="series-section-title">{year} Championship Standings</h2>
-          <div class="standings-tabs-wrap">
-            {tables.map((table: any, ti: number) => (
-              <div class={`standings-table ${ti === 0 ? 'standings-table--active' : ''}`} data-standings-tab={ti}>
-                {tables.length > 1 && (
-                  <div class="standings-tab-label">{table.label}</div>
-                )}
-                {table.note && (
-                  <p class="standings-note">{table.note}</p>
-                )}
-                <div class="standings-rows" role="table" aria-label={table.label}>
-                  <div class="standings-head" role="row">
-                    <div role="columnheader" class="st-pos">Pos</div>
-                    <div role="columnheader" class="st-name">Name</div>
-                    <div role="columnheader" class="st-pts">Pts</div>
-                  </div>
-                  {(table.entries as any[]).map((entry: any, i: number) => (
-                    <div class={`standings-row ${i === 0 ? 'standings-row--lead' : ''}`} role="row">
-                      <div class="st-pos" role="cell">{entry.pos}</div>
-                      <div class="st-name" role="cell">
-                        <div class="st-name-inner">
-                          {entry.country && (
-                            <img
-                              class="st-flag"
-                              src={flagSrc(entry.country, base)}
-                              alt={countryName(entry.country)}
-                              width="18"
-                              height="13"
-                              loading="lazy"
-                            />
-                          )}
-                          <div>
-                            <div class="st-driver">{entry.name}</div>
-                            {entry.team && <div class="st-team">{entry.team}</div>}
-                            {entry.note && <div class="st-team">{entry.note}</div>}
-                          </div>
-                        </div>
-                      </div>
-                      <div class="st-pts" role="cell">
-                        <span class="st-pts-val">{entry.points}</span>
-                        {i > 0 && (
-                          <span class="st-pts-gap">–{(table.entries as any[])[0].points - entry.points}</span>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div class="standings-meta">
-                  <span>After round {table.roundsComplete} of {table.totalRounds}</span>
-                  <span>Updated {table.updatedAt}</span>
-                </div>
-              </div>
-            ))}
-            {tables.length > 1 && (
-              <div class="standings-switcher">
-                {tables.map((table: any, ti: number) => (
-                  <button
-                    class={`standings-switch-btn ${ti === 0 ? 'active' : ''}`}
-                    data-tab={ti}
-                    aria-pressed={ti === 0 ? 'true' : 'false'}
-                  >
-                    {table.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-          <script is:inline>
-            (function(){
-              const wrap = document.querySelector('.standings-tabs-wrap');
-              if(!wrap) return;
-              const tables = wrap.querySelectorAll('[data-standings-tab]');
-              const btns   = wrap.querySelectorAll('.standings-switch-btn');
-              btns.forEach(function(btn) {
-                btn.addEventListener('click', function() {
-                  const idx = +btn.dataset.tab;
-                  tables.forEach(function(t,i){ t.classList.toggle('standings-table--active', i===idx); });
-                  btns.forEach(function(b,i){ b.classList.toggle('active', i===idx); b.setAttribute('aria-pressed', i===idx ? 'true':'false'); });
-                });
-              });
-            })();
-          </script>
-        </section>
-      );
-    })()}
+    {hasStandings && <SeriesStandings slug={slug!} shownSeason={year} />}
 
     <section class="series-section" id="calendar">
       <h2 class="series-section-title">{year} Calendar</h2>
@@ -274,12 +203,25 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
             <p class="series-cal-note">{rounds.length} rounds · times are Paris (CET/CEST) · select a round for session times, how to watch and travel.</p>
             <RoundsList events={rounds} label={`${series.name} ${year} rounds`} />
           </>}
-      {nextYearRounds.length > 0 && (
-        <a class="season-next-link" href={`${base}/series/${slug}/${year + 1}`}>
-          {short} {year + 1} calendar — {nextYearRounds.length} rounds announced →
+      {otherSeasons.filter(o => !o.past).map(o => (
+        <a class="season-next-link" href={`${base}/series/${slug}/${o.season}`}>
+          {short} {o.season} calendar — {o.count} rounds announced →
         </a>
-      )}
+      ))}
     </section>
+
+    {/* Last season's closing standings, once the hub has moved on to the next calendar. */}
+    {!hasStandings && <SeriesStandings slug={slug!} shownSeason={year} />}
+
+    {otherSeasons.some(o => o.past) && (
+      <nav class="series-section season-archive" aria-label={`Earlier ${short} seasons`}>
+        {otherSeasons.filter(o => o.past).map(o => (
+          <a class="season-next-link" href={`${base}/series/${slug}/${o.season}`}>
+            {short} {o.season} season — calendar and results of all {o.count} rounds →
+          </a>
+        ))}
+      </nav>
+    )}
 
     <section class="series-section">
       <h2 class="series-section-title">Subscribe &amp; Embed</h2>
@@ -443,215 +385,3 @@ import {
   });
 })();
 </script>
-
-<style>
-/* ── Standings ── */
-.standings-tabs-wrap {
-  position: relative;
-}
-
-.standings-table {
-  display: none;
-}
-.standings-table--active {
-  display: block;
-}
-
-.standings-tab-label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-meta);
-  margin-bottom: 10px;
-}
-
-.standings-note {
-  font-size: var(--fs-sm);
-  color: var(--text-faint);
-  margin: 0 0 10px;
-}
-
-.standings-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.standings-head {
-  display: grid;
-  grid-template-columns: 36px 1fr 80px;
-  gap: 0 12px;
-  padding: 4px 14px 8px;
-}
-
-.standings-head > div {
-  font-family: var(--font-mono);
-  font-size: var(--fs-2xs);
-  color: var(--text-faint);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.standings-head .st-pts { text-align: right; }
-
-.standings-row {
-  display: grid;
-  grid-template-columns: 36px 1fr 80px;
-  gap: 0 12px;
-  align-items: center;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  padding: 10px 14px;
-  border-radius: var(--radius-xl);
-}
-
-.standings-row--lead {
-  border-color: var(--line-subtle-5);
-  background: var(--card-bg-2);
-}
-
-.standings-row:hover {
-  background: var(--card-bg-2);
-  border-color: var(--line-subtle-5);
-}
-
-.st-pos {
-  font-family: var(--font-mono);
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--text-faint);
-  text-align: center;
-}
-
-/* --accent is a border colour (3.5:1 on the card in dark); the bright tier
-   keeps the blue and passes AA as text in both themes (9.2:1 dark, 6.3:1 light). */
-.standings-row--lead .st-pos {
-  color: var(--accent-bright);
-}
-
-.st-name {
-  min-width: 0;
-}
-
-.st-name-inner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
-}
-
-.st-flag {
-  width: 18px;
-  height: 13px;
-  object-fit: cover;
-  border-radius: var(--radius-xs);
-  flex-shrink: 0;
-}
-
-.st-driver {
-  font-size: var(--fs-base);
-  font-weight: 600;
-  color: var(--text-soft);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.standings-row--lead .st-driver {
-  color: var(--text-strong-3);
-}
-
-.st-team {
-  font-family: var(--font-mono);
-  font-size: var(--fs-2xs);
-  color: var(--text-faint);
-  letter-spacing: 0.04em;
-  margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.st-pts {
-  text-align: right;
-  min-width: 0;
-}
-
-.st-pts-val {
-  font-family: var(--font-mono);
-  font-size: var(--fs-base);
-  font-weight: 700;
-  color: var(--text-soft);
-  display: block;
-}
-
-.standings-row--lead .st-pts-val {
-  color: var(--text-strong-3);
-}
-
-.st-pts-gap {
-  font-family: var(--font-mono);
-  font-size: var(--fs-2xs);
-  color: var(--text-faint);
-  display: block;
-  margin-top: 1px;
-}
-
-.standings-meta {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid var(--border);
-  font-family: var(--font-mono);
-  font-size: var(--fs-2xs);
-  color: var(--text-faint);
-  letter-spacing: 0.04em;
-}
-
-/* Tab switcher (constructors vs drivers) */
-.standings-switcher {
-  display: flex;
-  gap: 6px;
-  margin-top: 14px;
-  flex-wrap: wrap;
-}
-
-.standings-switch-btn {
-  font-family: var(--font-mono);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border: 1px solid var(--border);
-  background: none;
-  color: var(--text-meta);
-  cursor: pointer;
-  transition: color 0.13s, border-color 0.13s;
-}
-
-.standings-switch-btn.active {
-  color: var(--text-soft);
-  border-color: var(--line);
-  background: var(--overlay-faint);
-}
-
-.standings-switch-btn:hover {
-  color: var(--text-muted-4);
-  border-color: var(--line);
-}
-
-.standings-switch-btn:focus-visible {
-  outline: 2px solid var(--focus-ring-2);
-  outline-offset: 2px;
-}
-
-@media (max-width: 600px) {
-  .st-team { display: none; }
-  .standings-head,
-  .standings-row {
-    grid-template-columns: 30px 1fr 64px;
-  }
-}
-</style>

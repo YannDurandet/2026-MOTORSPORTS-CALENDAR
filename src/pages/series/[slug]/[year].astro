@@ -1,36 +1,36 @@
 ---
 /**
- * /series/{slug}/{year} — a future season's calendar, e.g. /series/f1/2027.
+ * /series/{slug}/{year} — one season of a series, e.g. /series/f1/2027.
  *
- * /series/{slug} covers the current season (results, standings, teams). Once a
- * series publishes next year's dates, people search for that calendar on its
- * own ("f1 calendar 2027"), so it gets its own page with the rounds, what
- * changed, and links to every event page. Generated for each series that has
- * rounds in a year after DEFAULT_CALENDAR_YEAR.
+ * Every season that has rounds in the calendar gets this page: next year's
+ * calendar as soon as a series publishes it ("f1 calendar 2027" is searched
+ * on its own), the season under way, and finished seasons with their winners
+ * and final standings. A season page is permanent: it is never removed or
+ * redirected, whichever season the site treats as current.
+ *
+ * /series/{slug} (the hub) shows one of these seasons in full. For that
+ * season this page repeats the hub's calendar, so it names the hub as its
+ * canonical URL. Which season that is, is decided per series in
+ * lib/seriesSeasons.ts.
  */
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Banner from '../../../components/Banner.astro';
 import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import RoundsList from '../../../components/RoundsList.astro';
+import SeriesStandings from '../../../components/SeriesStandings.astro';
 
 import seriesContent from '../../../../data/seriesContent.json';
 import seasons from '../../../../data/seasons.json';
-import { ALL_EVENTS, eventsForSeries, eventRange } from '../../../lib/events';
-import { DEFAULT_CALENDAR_YEAR } from '../../../lib/season';
+import { EVENT_YEARS, eventRange } from '../../../lib/events';
+import { allSeriesSeasons, currentSeason, seasonRounds, seriesSeasons, standingsSeason } from '../../../lib/seriesSeasons';
 import { seriesShort } from '../../../lib/seriesShort';
 import { ogPath } from '../../../lib/ogPaths';
 import { fitTitle } from '../../../lib/seo';
 import { jsonForScript } from '../../../lib/jsonForScript';
 
 export function getStaticPaths() {
-  const pairs = new Set(
-    ALL_EVENTS.filter(e => e.year > DEFAULT_CALENDAR_YEAR).map(e => `${e.series}|${e.year}`)
-  );
-  return [...pairs].map(p => {
-    const [slug, year] = p.split('|');
-    return { params: { slug, year } };
-  });
+  return allSeriesSeasons().map(({ series, season }) => ({ params: { slug: series, year: String(season) } }));
 }
 
 const slug = Astro.params.slug!;
@@ -39,38 +39,58 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const series = (seriesContent as any[]).find(s => s.slug === slug)!;
 const short = seriesShort(slug, series.name);
-const rounds = eventsForSeries(slug, year);
+const rounds = seasonRounds(slug, year);
 const notes = (seasons as any)[slug]?.[String(year)] as
   { summary: string; changes: string[]; status: string } | undefined;
+
+const now = Date.now();
+const hubSeason = currentSeason(slug, now);
+const isHubSeason = year === hubSeason;
+const raced = rounds.filter(r => r.results?.length).length;
+const toRun = rounds.filter(r => new Date(r.date).getTime() > now).length;
+const finished = toRun === 0;
+const showStandings = standingsSeason(slug) === year;
+const otherSeasons = seriesSeasons(slug).filter(s => s !== year);
 
 const first = rounds[0];
 const last = rounds[rounds.length - 1];
 const span = `${eventRange(first)} – ${eventRange(last)}`;
 const sprints = rounds.filter(r => r.hasSprint).length;
 
-const canonical = `https://dord.racing/series/${slug}/${year}`;
-const pageTitle = fitTitle([
-  `${short} ${year} Calendar — ${rounds.length} Rounds, Dates & Venues | DORD`,
-  `${short} ${year} Calendar — ${rounds.length} Rounds & Dates | DORD`,
+const ownUrl = `https://dord.racing/series/${slug}/${year}`;
+const hubUrl = `https://dord.racing/series/${slug}`;
+// The hub shows this same season in full: it is the page to index.
+const canonical = isHubSeason ? hubUrl : ownUrl;
+
+const n = rounds.length;
+const pageTitle = fitTitle(finished ? [
+  `${short} ${year} Results & Calendar — All ${n} Rounds | DORD`,
+  `${short} ${year} Results & Calendar | DORD`,
+  `${short} ${year} Results | DORD`,
+] : [
+  `${short} ${year} Calendar — ${n} Rounds, Dates & Venues | DORD`,
+  `${short} ${year} Calendar — ${n} Rounds & Dates | DORD`,
   `${short} ${year} Calendar | DORD`,
 ]);
-const pageDescription = notes?.summary
-  ?? `The ${series.name} ${year} calendar: all ${rounds.length} rounds with dates, circuits and links to every event, ${eventRange(first)} to ${eventRange(last)}.`;
+const pageDescription = notes?.summary ?? (finished
+  ? `The ${series.name} ${year} season: all ${n} rounds with dates, circuits and winners, ${eventRange(first)} to ${eventRange(last)}.`
+  : `The ${series.name} ${year} calendar: all ${n} rounds with dates, circuits and links to every event, ${eventRange(first)} to ${eventRange(last)}.`);
+const h1Sub = raced > 0 ? 'Calendar & Results' : 'Calendar';
 
 const breadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dord.racing" },
-    { "@type": "ListItem", "position": 2, "name": series.name, "item": `https://dord.racing/series/${slug}` },
-    { "@type": "ListItem", "position": 3, "name": `${year} Calendar`, "item": canonical },
+    { "@type": "ListItem", "position": 2, "name": series.name, "item": hubUrl },
+    { "@type": "ListItem", "position": 3, "name": `${year} ${raced > 0 ? 'Season' : 'Calendar'}`, "item": ownUrl },
   ],
 };
 const itemList = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "name": `${series.name} ${year} calendar`,
-  "numberOfItems": rounds.length,
+  "numberOfItems": n,
   "itemListElement": rounds.map((ev, i) => ({
     "@type": "ListItem",
     "position": i + 1,
@@ -93,15 +113,19 @@ const itemList = {
   <Banner />
   <header>
     <div class="header--left">
-      <h1>{short} {year}<br><span class="h1-sub">Calendar</span></h1>
-      <p class="header--page-desc">{series.name} · {rounds.length} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
+      <h1>{short} {year}<br><span class="h1-sub">{h1Sub}</span></h1>
+      <p class="header--page-desc">{series.name} · {n} rounds · {span}{sprints ? ` · ${sprints} sprints` : ''}</p>
       <div class="meta">SYSTEM TIMEZONE: PARIS (CET/CEST)</div>
       <Nav activePage="series" />
     </div>
   </header>
 
   <main id="main-content" class="main-section main-section--content">
-    <a href={`${base}/series/${slug}`} class="back-link">← {short} {DEFAULT_CALENDAR_YEAR} calendar &amp; results</a>
+    <a href={`${base}/series/${slug}`} class="back-link">
+      {isHubSeason
+        ? <>← {series.name}: teams, standings and how to watch</>
+        : <>← {short} {hubSeason} calendar &amp; results</>}
+    </a>
 
     {notes && (
       <section class="series-section season-notes">
@@ -116,25 +140,36 @@ const itemList = {
 
     <section class="series-section" id="calendar">
       <h2 class="series-section-title">{year} Rounds</h2>
-      <p class="series-cal-note">Select a round for its event page. Times are Paris (CET/CEST) once published.</p>
+      <p class="series-cal-note">
+        {finished
+          ? <>All {n} rounds of the season. Select a round for its event page.</>
+          : <>Select a round for its event page. Times are Paris (CET/CEST) once published.</>}
+      </p>
       <RoundsList events={rounds} label={`${series.name} ${year} rounds`} />
     </section>
 
-    <section class="series-section">
-      <h2 class="series-section-title">Add it to your calendar</h2>
-      <p class="season-status">
-        The {short} feed covers every season we list, so {year} rounds appear in your calendar app as
-        soon as they are added here, and session times update automatically.
-      </p>
-      <div class="subscribe-actions">
-        <a href={`webcal://dord.racing/ical/${slug}.ics`} class="subscribe-btn subscribe-btn--ical">Subscribe (iCal)</a>
-        <a href={`https://calendar.google.com/calendar/render?cid=webcal://dord.racing/ical/${slug}.ics`}
-           target="_blank" rel="noopener noreferrer" class="subscribe-btn subscribe-btn--gcal">+ Google Calendar</a>
-      </div>
-    </section>
+    {showStandings && <SeriesStandings slug={slug} shownSeason={year} />}
+
+    {!finished && (
+      <section class="series-section">
+        <h2 class="series-section-title">Add it to your calendar</h2>
+        <p class="season-status">
+          The {short} feed covers every season we list, so {year} rounds appear in your calendar app as
+          soon as they are added here, and session times update automatically.
+        </p>
+        <div class="subscribe-actions">
+          <a href={`webcal://dord.racing/ical/${slug}.ics`} class="subscribe-btn subscribe-btn--ical">Subscribe (iCal)</a>
+          <a href={`https://calendar.google.com/calendar/render?cid=webcal://dord.racing/ical/${slug}.ics`}
+             target="_blank" rel="noopener noreferrer" class="subscribe-btn subscribe-btn--gcal">+ Google Calendar</a>
+        </div>
+      </section>
+    )}
 
     <nav class="season-more" aria-label="More calendars">
-      <a href={`${base}/events/${year}`}>All {year} events across every series →</a>
+      {otherSeasons.map(s => (
+        <a href={`${base}${s === hubSeason ? `/series/${slug}` : `/series/${slug}/${s}`}`}>{short} {s} {s < year ? 'season' : 'calendar'} →</a>
+      ))}
+      {EVENT_YEARS.includes(year) && <a href={`${base}/events/${year}`}>All {year} events across every series →</a>}
       <a href={`${base}/newsletter`}>Get calendar changes by email every Monday →</a>
     </nav>
 
