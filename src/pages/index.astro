@@ -133,6 +133,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
           {nextSeasonSeries.map(s => (
             <a class="season-link" href={`${base}/series/${s.slug}/${nextYear}`}>{s.label} {nextYear}</a>
           ))}
+          <a class="season-link" href={`${base}/events/${nextYear}`}>All {nextYear} events →</a>
         </nav>
       )}
     </div>

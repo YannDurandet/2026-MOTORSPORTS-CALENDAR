@@ -130,6 +130,14 @@ export const ALL_EVENTS: CalendarEvent[] = pages.map(({ year, weekLabel, ev }, i
 
 // ── Accessors ────────────────────────────────────────────────────────────────
 
+/** Every season that has at least one event page, oldest first: the /events/{year} pages. */
+export const EVENT_YEARS: number[] = [...new Set(ALL_EVENTS.map(e => e.year))].sort();
+
+export function eventsForYear(year: number): CalendarEvent[] {
+  return ALL_EVENTS.filter(e => e.year === year)
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
 export function eventsForTrack(trackSlug: string, year?: number): CalendarEvent[] {
   return ALL_EVENTS
     .filter(e => e.trackSlug === trackSlug && (year === undefined || e.year === year))

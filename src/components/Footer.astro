@@ -1,5 +1,6 @@
 ---
 import logoRaw from '../assets/dord-logo.svg?raw';
+import { EVENT_YEARS } from '../lib/events';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const logo = logoRaw
   .replace('<svg ', '<svg class="footer--logo-svg" aria-hidden="true" focusable="false" ')
@@ -39,6 +40,7 @@ const year = new Date().getFullYear();
         <a href={`${base}/`}          class="footer--nav-link">Calendar</a>
         <a href={`${base}/series`}    class="footer--nav-link">Series</a>
         <a href={`${base}/tracks`}    class="footer--nav-link">Track Browser</a>
+        {EVENT_YEARS.map(y => <a href={`${base}/events/${y}`} class="footer--nav-link">All {y} events</a>)}
         <a href={`${base}/results`}   class="footer--nav-link">Results</a>
         <a href={`${base}/newsletter`} class="footer--nav-link">Newsletter</a>
       </div>

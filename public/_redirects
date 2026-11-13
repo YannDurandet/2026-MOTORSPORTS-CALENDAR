@@ -4,7 +4,8 @@
 # and answer with a 301 instead. Most specific first; first match wins.
 # Cloudflare rejects the whole deploy if a path appears twice, so keep every
 # redirect in this file (none in astro.config.mjs).
-# /events has no page of its own — send it to the calendar.
+# /events has no page of its own — send it to the calendar. /events/{year} is a
+# real page (src/pages/events/[year]/index.astro): never redirect it.
 /events / 301
 /events/ / 301
 # /embed/all used to link here; Google has it on file.
@@ -38,8 +39,6 @@
 /stats/ /results 301
 # Formula E moved the December 2026 Jeddah E-Prix to April 2027.
 /events/2026/fe-jeddah-e-prix-dec /events/2027/fe-jeddah-e-prix 301
-/events/:year / 301
-/events/:year/ / 301
 /:a/:b/:c/ /:a/:b/:c 301
 /:a/:b/ /:a/:b 301
 /:a/ /:a 301

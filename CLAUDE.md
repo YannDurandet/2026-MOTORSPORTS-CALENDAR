@@ -127,6 +127,7 @@ The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` gro
 | `/series` | `src/pages/series/index.astro` | Series grid |
 | `/series/[slug]` | `src/pages/series/[slug].astro` | Series detail (current season) |
 | `/series/[slug]/[year]` | `src/pages/series/[slug]/[year].astro` | Future season calendar, e.g. `/series/f1/2027` |
+| `/events/[year]` | `src/pages/events/[year]/index.astro` | Every event of a season, by month. A search landing page (Bing's most-clicked): keep its URL, title and H1 |
 | `/events/[year]/[slug]` | `src/pages/events/[year]/[slug].astro` | Event page |
 | `/tracks` | `src/pages/tracks/index.astro` | Track browser (continent + type filter) |
 | `/tracks/[slug]` | `src/pages/tracks/[slug].astro` | Track detail |
