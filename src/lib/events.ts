@@ -38,7 +38,8 @@ export type RaceResult = {
   note?: string;
 };
 
-export type SupportRace = { badge: string; label: string; detail: string };
+/** `round`, `day` and `time` (Paris) are set once the support race's timetable is published. */
+export type SupportRace = { badge: string; label: string; detail: string; round?: string; day?: string; time?: string };
 export type RaceLeg = { label: string; time: string };
 
 export type CalendarEvent = {

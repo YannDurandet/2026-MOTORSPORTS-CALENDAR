@@ -410,7 +410,8 @@ const breadcrumb = {
               {ev.support.map(s => (
                 <div class="ev-support-row">
                   <span class={`badge b-${s.badge}`}>{s.label}</span>
-                  <span class="ev-support-detail">{s.detail}</span>
+                  <span class="ev-support-detail">{[s.round, s.detail].filter(Boolean).join(' · ')}</span>
+                  {s.day && s.time && <span class="ev-support-detail ev-support-time">{s.day} {s.time} Paris</span>}
                 </div>
               ))}
             </div>
@@ -775,6 +776,7 @@ const breadcrumb = {
     font-size: var(--fs-xs-2);
     color: var(--text-muted);
   }
+  .ev-support-time { color: var(--text-strong); font-weight: 700; }
 
   /* ── Related ──────────────────────────────────────────────────────────── */
   .ev-related { display: flex; flex-direction: column; gap: 8px; }

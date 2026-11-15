@@ -1,0 +1,888 @@
+diff --git a/agent-tasks/out/end-of-season-run-notes.md b/agent-tasks/out/end-of-season-run-notes.md
+new file mode 100644
+index 0000000..0ea5055
+--- /dev/null
++++ b/agent-tasks/out/end-of-season-run-notes.md
+@@ -0,0 +1,35 @@
++# End-of-season run: events still to run in 2026
++
++Notes for `agent-tasks/sessions-queue.md` (Phase A). Tick the items marked done there.
++Every time below was converted with `node scripts/tz.mjs`; every patch passed the dry run and was applied with `--write`.
++
++## Done (official source, patch in this folder)
++
++| Queue item | Result | Source |
++|---|---|---|
++| f1 · Las Vegas GP | 5 sessions. `time` and `date` were already right. | formula1.com Las Vegas GP timetable |
++| f1a · Rd 7: Las Vegas (Finale) | 4 sessions. `time`/`date` corrected by hand: the 00:00 was a placeholder. Races are SAT 03:15 and SUN 01:20 Paris; `date` is now the second race. | formula1.com Las Vegas GP timetable |
++| sf · Suzuka II | 4 sessions. `time`/`date` corrected by hand: it is a double-header, Round 11 SAT 06:25 and Round 12 SUN 05:50 Paris (was one race at 05:00, dated 06:00). | suzukacircuit.jp timetable, "as of November 7" |
++| f1 · Qatar GP | 5 sessions, F2 feature race SUN 13:00. `time` and `date` were already right. | formula1.com Qatar GP timetable |
++| f1 · Abu Dhabi GP | 5 sessions, F2 feature race SUN 10:15, all `provisional` (the page says "subject to change"). `time` and `date` were already right. | formula1.com Abu Dhabi GP timetable |
++| supercars · bp Adelaide Grand Final | **Wrong weekend in the calendar.** The event is 26–29 November, not 3–6 December. Moved from week 49 to week 48, three races (FRI 06:50, SAT 05:50, SUN 05:45 Paris), `start`/`end` added, 10 sessions. | supercars.com event page and track-schedule article (times "correct as of October 21") |
++
++F2 `detail` at Qatar and Abu Dhabi was edited by hand to name the sprint (SAT 17:15 and SAT 13:15 Paris) next to the feature-race chip.
++
++## Checked, nothing to change
++
++| Queue item | Finding |
++|---|---|
++| motogp · Portuguese Grand Prix | Race is 13:00 local on 22 November, which is 14:00 Paris: the calendar is right. No sessions added: motogp.com shows no timetable in a form that can be read, and the only timetables found are on news sites (not an allowed source). |
++| motogp · Valencian Community GP (Finale) | Race 14:00 Paris on 29 November per two news-site calendars: the calendar matches. Same block as above for sessions. Other MotoGP classes are still not `sub` rows. |
++
++## Blocked (no allowed source)
++
++| Queue item | Finding |
++|---|---|
++| tcr · Macau (Season Finale) | The calendar says R1 05:15, R2 09:00, dated 08:00, and is very likely wrong. A Hong Kong newspaper (stheadline.com, 10 November) prints the full Macau GP programme: TCR Race 1 Saturday 21 November 13:20 and Race 2 Sunday 22 November 11:00 Macau time, which is SAT 06:20 and SUN 04:00 Paris. The official programme (macau.grandprix.gov.mo) and the TCR timetable PDF could not be read, so nothing was changed. Needs Yann's call or a look at the official programme. |
++| eurx · World Cup: Jakarta | 5–6 December is confirmed. No timetable published. Note: every source describes it as a standalone, non-championship event, so it is not a round of the European championship. |
++
++## Not done
++
++- supercars · Penrite Oil Sandown 500 and asian-le-mans · Rounds 1–2: Paul Ricard had already run or were running when this was done.
+diff --git a/agent-tasks/out/f1-abu-dhabi-gp.json b/agent-tasks/out/f1-abu-dhabi-gp.json
+new file mode 100644
+index 0000000..7c185ef
+--- /dev/null
++++ b/agent-tasks/out/f1-abu-dhabi-gp.json
+@@ -0,0 +1,54 @@
++[
++  {
++    "series": "f1",
++    "title": "Abu Dhabi GP",
++    "weekLabel": "WEEK 49 • DEC 03-06",
++    "sessions": [
++      {
++        "day": "FRI",
++        "label": "FP1",
++        "time": "10:30",
++        "status": "provisional",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++      },
++      {
++        "day": "FRI",
++        "label": "FP2",
++        "time": "14:00",
++        "status": "provisional",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++      },
++      {
++        "day": "SAT",
++        "label": "FP3",
++        "time": "11:30",
++        "status": "provisional",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++      },
++      {
++        "day": "SAT",
++        "label": "Qualifying",
++        "time": "15:00",
++        "status": "provisional",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++      },
++      {
++        "day": "SUN",
++        "label": "RACE",
++        "time": "14:00",
++        "duration": "2h",
++        "status": "provisional",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++      }
++    ],
++    "sub": [
++      {
++        "badge": "f2",
++        "day": "SUN",
++        "time": "10:15",
++        "status": "provisional",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++      }
++    ]
++  }
++]
+diff --git a/agent-tasks/out/f1-las-vegas-gp.json b/agent-tasks/out/f1-las-vegas-gp.json
+new file mode 100644
+index 0000000..b0721de
+--- /dev/null
++++ b/agent-tasks/out/f1-las-vegas-gp.json
+@@ -0,0 +1,45 @@
++[
++  {
++    "series": "f1",
++    "title": "Las Vegas GP",
++    "weekLabel": "WEEK 47 • NOV 19-22",
++    "sessions": [
++      {
++        "day": "FRI",
++        "label": "FP1",
++        "time": "01:30",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "FRI",
++        "label": "FP2",
++        "time": "05:00",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "SAT",
++        "label": "FP3",
++        "time": "01:30",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "SAT",
++        "label": "Qualifying",
++        "time": "05:00",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "SUN",
++        "label": "RACE",
++        "time": "05:00",
++        "duration": "2h",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      }
++    ]
++  }
++]
+diff --git a/agent-tasks/out/f1-qatar-gp.json b/agent-tasks/out/f1-qatar-gp.json
+new file mode 100644
+index 0000000..11a4c29
+--- /dev/null
++++ b/agent-tasks/out/f1-qatar-gp.json
+@@ -0,0 +1,54 @@
++[
++  {
++    "series": "f1",
++    "title": "Qatar GP",
++    "weekLabel": "WEEK 48 • NOV 27-29",
++    "sessions": [
++      {
++        "day": "FRI",
++        "label": "FP1",
++        "time": "14:30",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++      },
++      {
++        "day": "FRI",
++        "label": "FP2",
++        "time": "18:00",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++      },
++      {
++        "day": "SAT",
++        "label": "FP3",
++        "time": "15:30",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++      },
++      {
++        "day": "SAT",
++        "label": "Qualifying",
++        "time": "19:00",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++      },
++      {
++        "day": "SUN",
++        "label": "RACE",
++        "time": "17:00",
++        "duration": "2h",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++      }
++    ],
++    "sub": [
++      {
++        "badge": "f2",
++        "day": "SUN",
++        "time": "13:00",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++      }
++    ]
++  }
++]
+diff --git a/agent-tasks/out/f1a-rd-7-las-vegas-finale.json b/agent-tasks/out/f1a-rd-7-las-vegas-finale.json
+new file mode 100644
+index 0000000..1b680b1
+--- /dev/null
++++ b/agent-tasks/out/f1a-rd-7-las-vegas-finale.json
+@@ -0,0 +1,37 @@
++[
++  {
++    "series": "f1a",
++    "title": "Rd 7: Las Vegas (Finale)",
++    "weekLabel": "WEEK 47 • NOV 19-22",
++    "sessions": [
++      {
++        "day": "FRI",
++        "label": "Practice",
++        "time": "03:00",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "FRI",
++        "label": "Qualifying",
++        "time": "06:30",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "SAT",
++        "label": "Race 1",
++        "time": "03:15",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      },
++      {
++        "day": "SUN",
++        "label": "Race 2",
++        "time": "01:20",
++        "status": "confirmed",
++        "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++      }
++    ]
++  }
++]
+diff --git a/agent-tasks/out/fix-end-of-season-dates.mjs b/agent-tasks/out/fix-end-of-season-dates.mjs
+new file mode 100644
+index 0000000..e39006c
+--- /dev/null
++++ b/agent-tasks/out/fix-end-of-season-dates.mjs
+@@ -0,0 +1,55 @@
++// One-off correction of three end-of-season events in data/calendar.json.
++// Run from the repo root: node fix-dates.mjs   (then: npm run gen:series)
++import { readFileSync, writeFileSync } from 'node:fs';
++const CAL = 'data/calendar.json';
++const raw = readFileSync(CAL, 'utf8');
++const cal = JSON.parse(raw);
++if (JSON.stringify(cal, null, 2) + '\n' !== raw) throw new Error('calendar.json is not in canonical formatting: stop');
++const hl = (t) => `<span class="hl">${t}</span>`;
++const find = (year, weekLabel, series, title) => {
++  const hits = [];
++  for (const month of cal) if (month.year === year) for (const week of month.weeks) if (week.label === weekLabel) {
++    week.events.forEach((ev, i) => { if (ev.series === series && ev.title === title) hits.push({ week, i, ev }); });
++  }
++  if (hits.length !== 1) throw new Error(`expected exactly one ${series} "${title}" in ${weekLabel}, found ${hits.length}`);
++  return hits[0];
++};
++const weekOf = (year, label) => {
++  const w = cal.filter(m => m.year === year).flatMap(m => m.weeks).filter(w => w.label === label);
++  if (w.length !== 1) throw new Error(`expected exactly one week "${label}", found ${w.length}`);
++  return w[0];
++};
++
++// 1. Supercars: the bp Adelaide Grand Final is 26–29 November, not 3–6 December.
++//    Source: https://www.supercars.com/events/2026-adelaide (races Fri 16:20, Sat 15:20, Sun 15:15 ACDT).
++{
++  const { week, i, ev } = find(2026, 'WEEK 49 • DEC 03-06', 'supercars', 'bp Adelaide Grand Final');
++  if (ev.date !== '2026-12-06T03:30:00+01:00') throw new Error('Adelaide: unexpected current date ' + ev.date);
++  week.events.splice(i, 1);
++  ev.time = `FRI R: ${hl('06:50')} • SAT R: ${hl('05:50')} • SUN R: ${hl('05:45')}`;
++  ev.date = '2026-11-29T05:45:00+01:00';
++  ev.start = '2026-11-26';
++  ev.end = '2026-11-29';
++  weekOf(2026, 'WEEK 48 • NOV 27-29').events.push(ev);
++}
++
++// 2. F1 Academy Las Vegas: two races, Saturday and Sunday Paris time (was "RACES: 00:00", dated at the F1 race).
++//    Source: formula1.com Las Vegas GP timetable (Fri 18:15 and Sat 16:20 local).
++{
++  const { ev } = find(2026, 'WEEK 47 • NOV 19-22', 'f1a', 'Rd 7: Las Vegas (Finale)');
++  if (ev.date !== '2026-11-22T05:00:00+01:00') throw new Error('F1 Academy: unexpected current date ' + ev.date);
++  ev.time = `SAT R1: ${hl('03:15')} • SUN R2: ${hl('01:20')}`;
++  ev.date = '2026-11-22T01:20:00+01:00';
++}
++
++// 3. Super Formula Suzuka: a double-header, Round 11 on Saturday and Round 12 on Sunday (was one race at 05:00, dated 06:00).
++//    Source: https://www.suzukacircuit.jp/eng/superformula/2/schedule/ (14:25 and 13:50 Japan time).
++{
++  const { ev } = find(2026, 'WEEK 47 • NOV 19-22', 'sf', 'Suzuka II');
++  if (ev.date !== '2026-11-22T06:00:00+01:00') throw new Error('Super Formula: unexpected current date ' + ev.date);
++  ev.time = `SAT R11: ${hl('06:25')} • SUN R12: ${hl('05:50')}`;
++  ev.date = '2026-11-22T05:50:00+01:00';
++}
++
++writeFileSync(CAL, JSON.stringify(cal, null, 2) + '\n');
++console.log('calendar.json: 3 events corrected (Supercars Adelaide moved to week 48, F1 Academy Las Vegas, Super Formula Suzuka II)');
+diff --git a/agent-tasks/out/fix-f2-detail.mjs b/agent-tasks/out/fix-f2-detail.mjs
+new file mode 100644
+index 0000000..76ea3bd
+--- /dev/null
++++ b/agent-tasks/out/fix-f2-detail.mjs
+@@ -0,0 +1,19 @@
++// F2 support rows at the last two F1 rounds: say which race the time chip is for, and name the sprint.
++// Sources: the formula1.com timetables for the Qatar and Abu Dhabi Grands Prix (already on each row as `source`).
++import { readFileSync, writeFileSync } from 'node:fs';
++const CAL = 'data/calendar.json';
++const raw = readFileSync(CAL, 'utf8');
++const cal = JSON.parse(raw);
++if (JSON.stringify(cal, null, 2) + '\n' !== raw) throw new Error('calendar.json is not in canonical formatting: stop');
++const set = (title, from, time, to) => {
++  const hits = cal.filter(m => m.year === 2026).flatMap(m => m.weeks).flatMap(w => w.events)
++    .filter(e => e.series === 'f1' && e.title === title);
++  if (hits.length !== 1) throw new Error(`${title}: found ${hits.length}`);
++  const f2 = (hits[0].sub ?? []).find(s => s.badge === 'f2');
++  if (!f2 || f2.detail !== from || f2.time !== time) throw new Error(`${title}: F2 row is not as expected: ${JSON.stringify(f2)}`);
++  f2.detail = to;
++};
++set('Qatar GP', 'RACES: TBC', '13:00', 'SPRINT: SAT 17:15 · FEATURE RACE');
++set('Abu Dhabi GP', 'FINALE: TBC', '10:15', 'FINALE · SPRINT: SAT 13:15 · FEATURE RACE');
++writeFileSync(CAL, JSON.stringify(cal, null, 2) + '\n');
++console.log('calendar.json: F2 support rows at Qatar and Abu Dhabi now name the sprint and the feature race');
+diff --git a/agent-tasks/out/sf-suzuka-ii.json b/agent-tasks/out/sf-suzuka-ii.json
+new file mode 100644
+index 0000000..20bb31f
+--- /dev/null
++++ b/agent-tasks/out/sf-suzuka-ii.json
+@@ -0,0 +1,37 @@
++[
++  {
++    "series": "sf",
++    "title": "Suzuka II",
++    "weekLabel": "WEEK 47 • NOV 19-22",
++    "sessions": [
++      {
++        "day": "SAT",
++        "label": "Rd 11 Qualifying",
++        "time": "01:50",
++        "status": "confirmed",
++        "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++      },
++      {
++        "day": "SAT",
++        "label": "Rd 11 Race",
++        "time": "06:25",
++        "status": "confirmed",
++        "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++      },
++      {
++        "day": "SUN",
++        "label": "Rd 12 Qualifying",
++        "time": "01:15",
++        "status": "confirmed",
++        "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++      },
++      {
++        "day": "SUN",
++        "label": "Rd 12 Race",
++        "time": "05:50",
++        "status": "confirmed",
++        "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++      }
++    ]
++  }
++]
+diff --git a/agent-tasks/out/supercars-bp-adelaide-grand-final.json b/agent-tasks/out/supercars-bp-adelaide-grand-final.json
+new file mode 100644
+index 0000000..c458455
+--- /dev/null
++++ b/agent-tasks/out/supercars-bp-adelaide-grand-final.json
+@@ -0,0 +1,79 @@
++[
++  {
++    "series": "supercars",
++    "title": "bp Adelaide Grand Final",
++    "weekLabel": "WEEK 48 • NOV 27-29",
++    "sessions": [
++      {
++        "day": "THU",
++        "label": "Practice 1",
++        "time": "05:45",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "FRI",
++        "label": "Practice 2",
++        "time": "00:30",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "FRI",
++        "label": "Qualifying",
++        "time": "03:40",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "FRI",
++        "label": "Race 35",
++        "time": "06:50",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "SAT",
++        "label": "Qualifying",
++        "time": "02:15",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "SAT",
++        "label": "Shootout",
++        "time": "03:05",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "SAT",
++        "label": "Race 36",
++        "time": "05:50",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "SUN",
++        "label": "Qualifying",
++        "time": "02:15",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "SUN",
++        "label": "Shootout",
++        "time": "03:05",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      },
++      {
++        "day": "SUN",
++        "label": "Race 37",
++        "time": "05:45",
++        "status": "confirmed",
++        "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++      }
++    ]
++  }
++]
+diff --git a/data/calendar.json b/data/calendar.json
+index 4378c2c..f4b78f2 100644
+--- a/data/calendar.json
++++ b/data/calendar.json
+@@ -6271,16 +6271,84 @@
+             "date": "2026-11-22T05:00:00+01:00",
+             "shortName": "LAS VEGAS",
+             "start": "2026-11-19",
+-            "end": "2026-11-21"
++            "end": "2026-11-21",
++            "sessions": [
++              {
++                "day": "FRI",
++                "label": "FP1",
++                "time": "01:30",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "FRI",
++                "label": "FP2",
++                "time": "05:00",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "SAT",
++                "label": "FP3",
++                "time": "01:30",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "SAT",
++                "label": "Qualifying",
++                "time": "05:00",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "SUN",
++                "label": "RACE",
++                "time": "05:00",
++                "duration": "2h",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              }
++            ]
+           },
+           {
+             "series": "f1a",
+             "tag": "F1 ACADEMY",
+             "title": "Rd 7: Las Vegas (Finale)",
+-            "time": "RACES: <span class=\"hl\">00:00</span>",
++            "time": "SAT R1: <span class=\"hl\">03:15</span> • SUN R2: <span class=\"hl\">01:20</span>",
+             "track": "las-vegas-strip.svg",
+-            "date": "2026-11-22T05:00:00+01:00",
+-            "shortName": "LAS VEGAS"
++            "date": "2026-11-22T01:20:00+01:00",
++            "shortName": "LAS VEGAS",
++            "sessions": [
++              {
++                "day": "FRI",
++                "label": "Practice",
++                "time": "03:00",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "FRI",
++                "label": "Qualifying",
++                "time": "06:30",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "SAT",
++                "label": "Race 1",
++                "time": "03:15",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              },
++              {
++                "day": "SUN",
++                "label": "Race 2",
++                "time": "01:20",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
++              }
++            ]
+           },
+           {
+             "series": "motogp",
+@@ -6295,10 +6363,40 @@
+             "series": "sf",
+             "tag": "S. FORMULA",
+             "title": "Suzuka II",
+-            "time": "RACE: <span class=\"hl\">05:00</span>",
++            "time": "SAT R11: <span class=\"hl\">06:25</span> • SUN R12: <span class=\"hl\">05:50</span>",
+             "track": "suzuka.svg",
+-            "date": "2026-11-22T06:00:00+01:00",
+-            "shortName": "SUZUKA FINALE"
++            "date": "2026-11-22T05:50:00+01:00",
++            "shortName": "SUZUKA FINALE",
++            "sessions": [
++              {
++                "day": "SAT",
++                "label": "Rd 11 Qualifying",
++                "time": "01:50",
++                "status": "confirmed",
++                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++              },
++              {
++                "day": "SAT",
++                "label": "Rd 11 Race",
++                "time": "06:25",
++                "status": "confirmed",
++                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++              },
++              {
++                "day": "SUN",
++                "label": "Rd 12 Qualifying",
++                "time": "01:15",
++                "status": "confirmed",
++                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++              },
++              {
++                "day": "SUN",
++                "label": "Rd 12 Race",
++                "time": "05:50",
++                "status": "confirmed",
++                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
++              }
++            ]
+           },
+           {
+             "series": "tcr",
+@@ -6324,13 +6422,55 @@
+               {
+                 "badge": "f2",
+                 "label": "F2",
+-                "detail": "RACES: TBC"
++                "detail": "SPRINT: SAT 17:15 · FEATURE RACE",
++                "day": "SUN",
++                "time": "13:00",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
+               }
+             ],
+             "date": "2026-11-29T17:00:00+01:00",
+             "shortName": "QATAR",
+             "start": "2026-11-27",
+-            "end": "2026-11-29"
++            "end": "2026-11-29",
++            "sessions": [
++              {
++                "day": "FRI",
++                "label": "FP1",
++                "time": "14:30",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++              },
++              {
++                "day": "FRI",
++                "label": "FP2",
++                "time": "18:00",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++              },
++              {
++                "day": "SAT",
++                "label": "FP3",
++                "time": "15:30",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++              },
++              {
++                "day": "SAT",
++                "label": "Qualifying",
++                "time": "19:00",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++              },
++              {
++                "day": "SUN",
++                "label": "RACE",
++                "time": "17:00",
++                "duration": "2h",
++                "status": "confirmed",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
++              }
++            ]
+           },
+           {
+             "series": "motogp",
+@@ -6340,6 +6480,89 @@
+             "track": "valencia.svg",
+             "date": "2026-11-29T14:00:00+01:00",
+             "shortName": "VALENCIA"
++          },
++          {
++            "series": "supercars",
++            "tag": "SUPERCARS",
++            "title": "bp Adelaide Grand Final",
++            "time": "FRI R: <span class=\"hl\">06:50</span> • SAT R: <span class=\"hl\">05:50</span> • SUN R: <span class=\"hl\">05:45</span>",
++            "track": "adelaide.svg",
++            "date": "2026-11-29T05:45:00+01:00",
++            "shortName": "ADELAIDE",
++            "start": "2026-11-26",
++            "end": "2026-11-29",
++            "sessions": [
++              {
++                "day": "THU",
++                "label": "Practice 1",
++                "time": "05:45",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "FRI",
++                "label": "Practice 2",
++                "time": "00:30",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "FRI",
++                "label": "Qualifying",
++                "time": "03:40",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "FRI",
++                "label": "Race 35",
++                "time": "06:50",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "SAT",
++                "label": "Qualifying",
++                "time": "02:15",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "SAT",
++                "label": "Shootout",
++                "time": "03:05",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "SAT",
++                "label": "Race 36",
++                "time": "05:50",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "SUN",
++                "label": "Qualifying",
++                "time": "02:15",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "SUN",
++                "label": "Shootout",
++                "time": "03:05",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              },
++              {
++                "day": "SUN",
++                "label": "Race 37",
++                "time": "05:45",
++                "status": "confirmed",
++                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
++              }
++            ]
+           }
+         ]
+       }
+@@ -6362,22 +6585,55 @@
+               {
+                 "badge": "f2",
+                 "label": "F2",
+-                "detail": "FINALE: TBC"
++                "detail": "FINALE · SPRINT: SAT 13:15 · FEATURE RACE",
++                "day": "SUN",
++                "time": "10:15",
++                "status": "provisional",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
+               }
+             ],
+             "date": "2026-12-06T14:00:00+01:00",
+             "shortName": "ABU DHABI",
+             "start": "2026-12-04",
+-            "end": "2026-12-06"
+-          },
+-          {
+-            "series": "supercars",
+-            "tag": "SUPERCARS",
+-            "title": "bp Adelaide Grand Final",
+-            "time": "SAT R: <span class=\"hl\">05:30</span> • SUN R: <span class=\"hl\">05:35</span>",
+-            "track": "adelaide.svg",
+-            "date": "2026-12-06T03:30:00+01:00",
+-            "shortName": "ADELAIDE"
++            "end": "2026-12-06",
++            "sessions": [
++              {
++                "day": "FRI",
++                "label": "FP1",
++                "time": "10:30",
++                "status": "provisional",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++              },
++              {
++                "day": "FRI",
++                "label": "FP2",
++                "time": "14:00",
++                "status": "provisional",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++              },
++              {
++                "day": "SAT",
++                "label": "FP3",
++                "time": "11:30",
++                "status": "provisional",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++              },
++              {
++                "day": "SAT",
++                "label": "Qualifying",
++                "time": "15:00",
++                "status": "provisional",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++              },
++              {
++                "day": "SUN",
++                "label": "RACE",
++                "time": "14:00",
++                "duration": "2h",
++                "status": "provisional",
++                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
++              }
++            ]
+           },
+           {
+             "series": "eurx",
+diff --git a/data/series.json b/data/series.json
+index 3b7a42c..fac3cfd 100644
+--- a/data/series.json
++++ b/data/series.json
+@@ -790,7 +790,7 @@
+     },
+     {
+       "name": "ADELAIDE",
+-      "date": "2026-12-06T03:30:00+01:00"
++      "date": "2026-11-29T05:45:00+01:00"
+     }
+   ],
+   "motogp": [
+@@ -1314,7 +1314,7 @@
+     },
+     {
+       "name": "LAS VEGAS",
+-      "date": "2026-11-22T05:00:00+01:00"
++      "date": "2026-11-22T01:20:00+01:00"
+     }
+   ],
+   "nls": [
+@@ -1498,7 +1498,7 @@
+     },
+     {
+       "name": "SUZUKA FINALE",
+-      "date": "2026-11-22T06:00:00+01:00"
++      "date": "2026-11-22T05:50:00+01:00"
+     },
+     {
+       "name": "SUZUKA",
+diff --git a/src/lib/events.ts b/src/lib/events.ts
+index 34704cf..cbd25e0 100644
+--- a/src/lib/events.ts
++++ b/src/lib/events.ts
+@@ -38,7 +38,8 @@ export type RaceResult = {
+   note?: string;
+ };
+ 
+-export type SupportRace = { badge: string; label: string; detail: string };
++/** `round`, `day` and `time` (Paris) are set once the support race's timetable is published. */
++export type SupportRace = { badge: string; label: string; detail: string; round?: string; day?: string; time?: string };
+ export type RaceLeg = { label: string; time: string };
+ 
+ export type CalendarEvent = {
+diff --git a/src/pages/events/[year]/[slug].astro b/src/pages/events/[year]/[slug].astro
+index c25a610..c709491 100644
+--- a/src/pages/events/[year]/[slug].astro
++++ b/src/pages/events/[year]/[slug].astro
+@@ -410,7 +410,8 @@ const breadcrumb = {
+               {ev.support.map(s => (
+                 <div class="ev-support-row">
+                   <span class={`badge b-${s.badge}`}>{s.label}</span>
+-                  <span class="ev-support-detail">{s.detail}</span>
++                  <span class="ev-support-detail">{[s.round, s.detail].filter(Boolean).join(' · ')}</span>
++                  {s.day && s.time && <span class="ev-support-detail ev-support-time">{s.day} {s.time} Paris</span>}
+                 </div>
+               ))}
+             </div>
+@@ -775,6 +776,7 @@ const breadcrumb = {
+     font-size: var(--fs-xs-2);
+     color: var(--text-muted);
+   }
++  .ev-support-time { color: var(--text-strong); font-weight: 700; }
+ 
+   /* ── Related ──────────────────────────────────────────────────────────── */
+   .ev-related { display: flex; flex-direction: column; gap: 8px; }

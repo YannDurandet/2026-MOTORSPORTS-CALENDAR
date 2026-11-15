@@ -6271,16 +6271,84 @@
             "date": "2026-11-22T05:00:00+01:00",
             "shortName": "LAS VEGAS",
             "start": "2026-11-19",
-            "end": "2026-11-21"
+            "end": "2026-11-21",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "FP1",
+                "time": "01:30",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "FRI",
+                "label": "FP2",
+                "time": "05:00",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "SAT",
+                "label": "FP3",
+                "time": "01:30",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "SAT",
+                "label": "Qualifying",
+                "time": "05:00",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "SUN",
+                "label": "RACE",
+                "time": "05:00",
+                "duration": "2h",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              }
+            ]
           },
           {
             "series": "f1a",
             "tag": "F1 ACADEMY",
             "title": "Rd 7: Las Vegas (Finale)",
-            "time": "RACES: <span class=\"hl\">00:00</span>",
+            "time": "SAT R1: <span class=\"hl\">03:15</span> • SUN R2: <span class=\"hl\">01:20</span>",
             "track": "las-vegas-strip.svg",
-            "date": "2026-11-22T05:00:00+01:00",
-            "shortName": "LAS VEGAS"
+            "date": "2026-11-22T01:20:00+01:00",
+            "shortName": "LAS VEGAS",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "Practice",
+                "time": "03:00",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "FRI",
+                "label": "Qualifying",
+                "time": "06:30",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "SAT",
+                "label": "Race 1",
+                "time": "03:15",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              },
+              {
+                "day": "SUN",
+                "label": "Race 2",
+                "time": "01:20",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-heineken-las-vegas-grand-prix-2026.1qmWzcBwKK5hkTbYbhVC22"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -6295,10 +6363,40 @@
             "series": "sf",
             "tag": "S. FORMULA",
             "title": "Suzuka II",
-            "time": "RACE: <span class=\"hl\">05:00</span>",
+            "time": "SAT R11: <span class=\"hl\">06:25</span> • SUN R12: <span class=\"hl\">05:50</span>",
             "track": "suzuka.svg",
-            "date": "2026-11-22T06:00:00+01:00",
-            "shortName": "SUZUKA FINALE"
+            "date": "2026-11-22T05:50:00+01:00",
+            "shortName": "SUZUKA FINALE",
+            "sessions": [
+              {
+                "day": "SAT",
+                "label": "Rd 11 Qualifying",
+                "time": "01:50",
+                "status": "confirmed",
+                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
+              },
+              {
+                "day": "SAT",
+                "label": "Rd 11 Race",
+                "time": "06:25",
+                "status": "confirmed",
+                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
+              },
+              {
+                "day": "SUN",
+                "label": "Rd 12 Qualifying",
+                "time": "01:15",
+                "status": "confirmed",
+                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
+              },
+              {
+                "day": "SUN",
+                "label": "Rd 12 Race",
+                "time": "05:50",
+                "status": "confirmed",
+                "source": "https://www.suzukacircuit.jp/eng/superformula/2/schedule/"
+              }
+            ]
           },
           {
             "series": "tcr",
@@ -6324,13 +6422,55 @@
               {
                 "badge": "f2",
                 "label": "F2",
-                "detail": "RACES: TBC"
+                "detail": "SPRINT: SAT 17:15 · FEATURE RACE",
+                "day": "SUN",
+                "time": "13:00",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
               }
             ],
             "date": "2026-11-29T17:00:00+01:00",
             "shortName": "QATAR",
             "start": "2026-11-27",
-            "end": "2026-11-29"
+            "end": "2026-11-29",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "FP1",
+                "time": "14:30",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
+              },
+              {
+                "day": "FRI",
+                "label": "FP2",
+                "time": "18:00",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
+              },
+              {
+                "day": "SAT",
+                "label": "FP3",
+                "time": "15:30",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
+              },
+              {
+                "day": "SAT",
+                "label": "Qualifying",
+                "time": "19:00",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
+              },
+              {
+                "day": "SUN",
+                "label": "RACE",
+                "time": "17:00",
+                "duration": "2h",
+                "status": "confirmed",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-qatar-airways-qatar-grand-prix-2026.3XJyoYSnpJEcuZovstTdcG"
+              }
+            ]
           },
           {
             "series": "motogp",
@@ -6340,6 +6480,89 @@
             "track": "valencia.svg",
             "date": "2026-11-29T14:00:00+01:00",
             "shortName": "VALENCIA"
+          },
+          {
+            "series": "supercars",
+            "tag": "SUPERCARS",
+            "title": "bp Adelaide Grand Final",
+            "time": "FRI R: <span class=\"hl\">06:50</span> • SAT R: <span class=\"hl\">05:50</span> • SUN R: <span class=\"hl\">05:45</span>",
+            "track": "adelaide.svg",
+            "date": "2026-11-29T05:45:00+01:00",
+            "shortName": "ADELAIDE",
+            "start": "2026-11-26",
+            "end": "2026-11-29",
+            "sessions": [
+              {
+                "day": "THU",
+                "label": "Practice 1",
+                "time": "05:45",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "FRI",
+                "label": "Practice 2",
+                "time": "00:30",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "FRI",
+                "label": "Qualifying",
+                "time": "03:40",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "FRI",
+                "label": "Race 35",
+                "time": "06:50",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "SAT",
+                "label": "Qualifying",
+                "time": "02:15",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "SAT",
+                "label": "Shootout",
+                "time": "03:05",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "SAT",
+                "label": "Race 36",
+                "time": "05:50",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "SUN",
+                "label": "Qualifying",
+                "time": "02:15",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "SUN",
+                "label": "Shootout",
+                "time": "03:05",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              },
+              {
+                "day": "SUN",
+                "label": "Race 37",
+                "time": "05:45",
+                "status": "confirmed",
+                "source": "https://www.supercars.com/news/supercars-news-2026-adelaide-grand-final-track-schedule-revealed-times-racing-super2-series-finals-supports"
+              }
+            ]
           }
         ]
       }
@@ -6362,22 +6585,55 @@
               {
                 "badge": "f2",
                 "label": "F2",
-                "detail": "FINALE: TBC"
+                "detail": "FINALE · SPRINT: SAT 13:15 · FEATURE RACE",
+                "day": "SUN",
+                "time": "10:15",
+                "status": "provisional",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
               }
             ],
             "date": "2026-12-06T14:00:00+01:00",
             "shortName": "ABU DHABI",
             "start": "2026-12-04",
-            "end": "2026-12-06"
-          },
-          {
-            "series": "supercars",
-            "tag": "SUPERCARS",
-            "title": "bp Adelaide Grand Final",
-            "time": "SAT R: <span class=\"hl\">05:30</span> • SUN R: <span class=\"hl\">05:35</span>",
-            "track": "adelaide.svg",
-            "date": "2026-12-06T03:30:00+01:00",
-            "shortName": "ADELAIDE"
+            "end": "2026-12-06",
+            "sessions": [
+              {
+                "day": "FRI",
+                "label": "FP1",
+                "time": "10:30",
+                "status": "provisional",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
+              },
+              {
+                "day": "FRI",
+                "label": "FP2",
+                "time": "14:00",
+                "status": "provisional",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
+              },
+              {
+                "day": "SAT",
+                "label": "FP3",
+                "time": "11:30",
+                "status": "provisional",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
+              },
+              {
+                "day": "SAT",
+                "label": "Qualifying",
+                "time": "15:00",
+                "status": "provisional",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
+              },
+              {
+                "day": "SUN",
+                "label": "RACE",
+                "time": "14:00",
+                "duration": "2h",
+                "status": "provisional",
+                "source": "https://www.formula1.com/en/latest/article/formula-1-etihad-airways-abu-dhabi-grand-prix-2026.5mmDojxBdiltjPgeIxAKOq"
+              }
+            ]
           },
           {
             "series": "eurx",
