@@ -21,12 +21,11 @@
  * Usage: npm run gen:series-images
  */
 import { readdir, stat } from 'fs/promises';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { resolve } from 'path';
 import sharp from 'sharp';
+import { ROOT } from './lib.mjs';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const dir = resolve(root, 'public/assets/series-grid-images');
+const dir = resolve(ROOT, 'public/assets/series-grid-images');
 
 const WIDTH = 640;
 const QUALITY = 70;

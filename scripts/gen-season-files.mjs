@@ -19,36 +19,23 @@
  *        npm run gen:season -- --check   (verify only, exit 1 if stale)
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { writeFileSync } from 'fs';
+import { resolve } from 'path';
 import { hasEventPage, pageSlugs } from '../src/lib/eventSlugs.js';
+import { ROOT, readText, readJson, walkCalendar, defaultYear, parseArgs } from './lib.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = resolve(__dirname, '..');
-const CHECK_ONLY = process.argv.includes('--check');
+const CHECK_ONLY = parseArgs().has('--check');
 
-const read = (p) => readFileSync(resolve(root, p), 'utf8');
+const season = defaultYear;   // imported from src/lib/season.ts via lib.mjs
 
-const season = Number(/DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(read('src/lib/season.ts'))?.[1]);
-if (!season) {
-  console.error('gen-season-files: could not read DEFAULT_CALENDAR_YEAR from src/lib/season.ts');
-  process.exit(1);
-}
-
-const calendar = JSON.parse(read('data/calendar.json'));
-const seriesContent = JSON.parse(read('data/seriesContent.json'));
-const tracks = JSON.parse(read('data/tracks.json'));
+const calendar = readJson('data/calendar.json');
+const seriesContent = readJson('data/seriesContent.json');
+const tracks = readJson('data/tracks.json');
 
 // ── Event pages, with the slugs the site builds (src/lib/eventSlugs.js) ──────
 const pages = [];
-for (const month of calendar) {
-  const year = month.year ?? season;
-  for (const week of month.weeks ?? []) {
-    for (const ev of week.events ?? []) {
-      if (hasEventPage(ev)) pages.push({ year, ev });
-    }
-  }
+for (const { year, ev } of walkCalendar(calendar)) {
+  if (hasEventPage(ev)) pages.push({ year, ev });
 }
 const slugs = pageSlugs(pages);
 const eventPages = pages.map((p, i) => ({ year: p.year, series: p.ev.series, title: p.ev.title, path: `/events/${p.year}/${slugs[i]}` }));
@@ -204,10 +191,10 @@ const outputs = [
 const stale = [];
 for (const [path, content] of outputs) {
   let current = null;
-  try { current = read(path); } catch { /* not written yet */ }
+  try { current = readText(path); } catch { /* not written yet */ }
   if (current === content) continue;
   if (CHECK_ONLY) stale.push(path);
-  else writeFileSync(resolve(root, path), content);
+  else writeFileSync(resolve(ROOT, path), content);
 }
 
 if (CHECK_ONLY) {

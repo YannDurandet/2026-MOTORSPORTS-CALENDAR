@@ -284,7 +284,7 @@ const pageDescription = seriesSeasonDescription(slug!, year, short, rounds, seri
 import {
   CHANGE_EVENT, getChoice, pickBroadcasters, regionLabel,
   openCountryDialog, initCountryDialog,
-} from '../../scripts/country.js';
+} from '../../client/country.js';
 
 // ── How to Watch ───────────────────────────────────────────────
 (function () {
@@ -302,7 +302,7 @@ import {
 
   // Which country's list to show is the visitor's choice (the popup on /watch or
   // the button below), not a guess from the browser language.
-  // See src/scripts/country.js.
+  // See src/client/country.js.
   function render() {
     const choice = getChoice();
     const { list, scope, code } = pickBroadcasters(data, choice);

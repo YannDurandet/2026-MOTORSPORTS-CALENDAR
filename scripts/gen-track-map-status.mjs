@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * gen-track-map-status.mjs — Regenerates track-map-status.md from disk.
+ * gen-track-map-status.mjs — Regenerates docs/track-map-status.md from disk.
  *
  * The doc is an inventory of public/assets/track-maps/ cross-referenced against
  * data/tracks.json. It was hand-maintained and drifted badly: the summary table
@@ -12,7 +12,9 @@
  * they are human knowledge the filesystem doesn't have:
  *   • the "Naming Convention" section
  *   • per-file annotations — the "— Indy Circuit" style suffixes
- * Add a new annotation by editing track-map-status.md, then re-running this;
+ *   • the "FIA Licensed Circuits — Cross-check" section (last in the file): the
+ *     FIA list matched to tracks.json by hand, including the venues we don't have
+ * Add a new annotation by editing docs/track-map-status.md, then re-running this;
  * it will survive.
  *
  * The SVG inventory alone can't see a round that has no circuit art at all, so
@@ -22,17 +24,14 @@
  *        npm run gen:map-status -- --check   (verify only, exit 1 if stale)
  */
 
-import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { writeFileSync, readdirSync, existsSync } from 'fs';
+import { resolve } from 'path';
+import { ROOT, readText, readJson, walkCalendar, parseArgs } from './lib.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const SVG_DIR    = resolve(__dirname, '../public/assets/track-maps');
-const TRACKS     = resolve(__dirname, '../data/tracks.json');
-const CALENDAR   = resolve(__dirname, '../data/calendar.json');
-const OUT_PATH  = resolve(__dirname, '../track-map-status.md');
+const SVG_DIR    = resolve(ROOT, 'public/assets/track-maps');
+const OUT_PATH   = resolve(ROOT, 'docs/track-map-status.md');
 
-const CHECK_ONLY = process.argv.includes('--check');
+const CHECK_ONLY = parseArgs().has('--check');
 
 const FALLBACK_NAMING = [
   '## Naming Convention',
@@ -48,11 +47,11 @@ const FALLBACK_NAMING = [
 
 // ── Inputs ───────────────────────────────────────────────────────────────────
 
-const tracks = JSON.parse(readFileSync(TRACKS, 'utf8'));
-const calendar = JSON.parse(readFileSync(CALENDAR, 'utf8'));
+const tracks = readJson('data/tracks.json');
+const calendar = readJson('data/calendar.json');
 const disk= readdirSync(SVG_DIR).filter(f => f.endsWith('.svg')).sort();
 
-const prev = existsSync(OUT_PATH) ? readFileSync(OUT_PATH, 'utf8') : '';
+const prev = existsSync(OUT_PATH) ? readText('docs/track-map-status.md') : '';
 
 /** filename → hand-written annotation, harvested from the previous doc. */
 const annotations = {};
@@ -62,6 +61,17 @@ for (const m of prev.matchAll(/^- `([^`]+\.svg)`[^—\n]*(?:—\s*(.+))?$/gm)) {
 }
 
 const naming = prev.match(/## Naming Convention\n(?:- .*\n)+/)?.[0].trimEnd() ?? FALLBACK_NAMING;
+
+/**
+ * The FIA cross-check is written by hand from the FIA's PDF list, so it is carried
+ * over verbatim (it runs to the end of the file). Its part C lists FIA venues that
+ * are not in tracks.json, each with a proposed slug: once one of those slugs shows
+ * up in tracks.json the section is stale, and --check fails until it is updated.
+ */
+const fiaSection = prev.match(/^## FIA Licensed Circuits[\s\S]*$/m)?.[0].trimEnd() ?? null;
+const fiaPartC = fiaSection?.match(/^### C\.[\s\S]*?(?=^### D\.|$(?![\s\S]))/m)?.[0] ?? '';
+const fiaProposed = [...fiaPartC.matchAll(/^\| `([a-z0-9-]+)` \|/gm)].map(m => m[1]);
+const staleProposed = fiaProposed.filter(slug => tracks.some(t => t.slug === slug));
 
 // ── Classify ─────────────────────────────────────────────────────────────────
 
@@ -92,8 +102,8 @@ const missingBrowser = tracks
 const missingCalendar = Object.keys(calendarOf).filter(f => !disk.includes(f)).sort();
 
 /** Calendar events with a date and venue but no circuit art yet (track: "tbc.svg"). */
-const onPlaceholder = calendar
-  .flatMap(month => month.weeks.flatMap(week => week.events))
+const onPlaceholder = [...walkCalendar(calendar)]
+  .map(({ ev }) => ev)
   .filter(ev => ev.series && isPlaceholder(ev.track))
   .sort((a, b) => String(a.date).localeCompare(String(b.date)));
 
@@ -167,29 +177,38 @@ const md = [
   '',
 ].join('\n');
 
+const out = fiaSection ? `${md}\n${fiaSection}\n` : md;
+
 // ── Output ───────────────────────────────────────────────────────────────────
 
 if (CHECK_ONLY) {
-  // Ignore the generated date line so a stale-date-only diff isn't a failure.
-  const strip = s => s.replace(/^_Last updated:.*$/m, '');
-  if (strip(prev) !== strip(md)) {
-    console.error('\n❌  track-map-status.md is out of date — run: npm run gen:map-status\n');
+  if (staleProposed.length) {
+    console.error(
+      `\n❌  docs/track-map-status.md part C still lists venue(s) that are now in tracks.json: ${staleProposed.join(', ')}\n` +
+      `    Move them out of "FIA venues not in tracks.json" (and into part A or B), then re-run.\n`);
     process.exit(1);
   }
-  console.log('✓ track-map-status.md is up to date');
+  // Ignore the generated date line so a stale-date-only diff isn't a failure.
+  const strip = s => s.replace(/^_Last updated:.*$/m, '');
+  if (strip(prev) !== strip(out)) {
+    console.error('\n❌  docs/track-map-status.md is out of date — run: npm run gen:map-status\n');
+    process.exit(1);
+  }
+  console.log('✓ docs/track-map-status.md is up to date');
   process.exit(0);
 }
 
-writeFileSync(OUT_PATH, md, 'utf8');
+writeFileSync(OUT_PATH, out, 'utf8');
 
 const warn = [];
+if (staleProposed.length)   warn.push(`FIA part C lists ${staleProposed.join(', ')}, now in tracks.json`);
 if (missingBrowser.length)  warn.push(`${missingBrowser.length} track(s) with no browserSvg`);
 if (missingCalendar.length) warn.push(`${missingCalendar.length} calendar ref(s) not drawn`);
 if (onPlaceholder.length)   warn.push(`${onPlaceholder.length} calendar event(s) on a placeholder map`);
 if (unreferenced.length)    warn.push(`${unreferenced.length} unreferenced file(s)`);
 
 console.log(
-  `✓ track-map-status.md generated — ${disk.length} files ` +
+  `✓ docs/track-map-status.md generated — ${disk.length} files ` +
   `(${browserMapped.length} browser-mapped, ${calendarOnly.length} calendarSvg-only, ` +
   `${flags.length} flags, ${placeholders.length} placeholders)`
 );

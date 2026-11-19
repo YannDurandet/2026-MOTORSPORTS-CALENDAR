@@ -290,5 +290,5 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
        Inline so main.js renders the strip before first paint; /data/series.json
        remains the fallback. -->
   <script type="application/json" id="series-data" set:html={seriesIndexJson}></script>
-  <script src="../scripts/main.js"></script>
+  <script src="../client/main.js"></script>
 </BaseLayout>

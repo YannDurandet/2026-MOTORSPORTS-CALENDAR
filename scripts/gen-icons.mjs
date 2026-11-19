@@ -14,13 +14,12 @@
  *
  * Usage: npm run gen:icons
  */
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { resolve } from 'path';
 import sharp from 'sharp';
+import { ROOT } from './lib.mjs';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const src = resolve(root, 'src/assets/dord-mark.png');
-const out = (f) => resolve(root, 'public/assets', f);
+const src = resolve(ROOT, 'src/assets/dord-mark.png');
+const out = (f) => resolve(ROOT, 'public/assets', f);
 
 const sizes = [
   ['favicon-32.png', 32], ['favicon-48.png', 48], ['apple-touch-icon.png', 180],

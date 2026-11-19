@@ -63,6 +63,20 @@ The rules live in `src/lib/seriesSeasons.ts`. Read its header before touching ei
 
 `type` values: `"permanent"` | `"street"` | `"oval"` | `"mixed"`
 
+### Layouts: specs live on the layout
+A track with a `layouts` array carries `length`, `turns`, `lapRecord` and `fia` on **each layout** (optionally `direction` / `type` when they differ from the track's). The track page swaps the whole specs panel when the visitor picks a layout, and an event page uses the layout its calendar SVG draws (`layoutOfSvg()` in `src/lib/trackSpecs.ts`, shared by both pages). Rules `npm run check` enforces:
+
+- every layout states `length`, `turns` and `lapRecord` itself; use `null` when no reliable figure exists (the page hides that cell) rather than leaving the key off, so a layout can never show another layout's numbers;
+- exactly one layout draws `browserSvg` (the default: the page opens on it), and the track's own `length` / `turns` / `lapRecord` mirror it, since other pages read those;
+- `lapRecord` is `{ time: "m:ss.mmm", driver, series, year }`. Give the record of the layout as it is today (Brands Hatch's 1986 F1 lap is on the old layout), with the record's own series (`Formula E`, `MotoGP`, `WorldSBK`).
+
+### `fia`
+`{ "grade": "1", "pole": "Left" }` from the FIA's list of licensed circuits (`agent-tasks/reference documents/circuits_fia20260331_0.pdf`, updated 2026-03-31). Optional: a track the FIA doesn't list has none, and nothing is made up for it. Rendered by the FIA Grade and Pole Position cells in the specs grid of `/tracks/[slug]`.
+
+- **A grade belongs to a layout.** A single-layout track carries `fia` on the track; a track with `layouts` carries it on each layout the FIA lists (Silverstone GP is Grade 1, the National loop Grade 2), and the page swaps the cell with the layout buttons. `npm run check` rejects `fia` on a track that has layouts.
+- `grade` is one of `1 2 3 3E 3R 4 6A 6R 6RW FE`. `pole` is `Left` or `Right` and is **omitted** when the FIA gives none (Arlington, The Bend, Lousada).
+- The cross-check of the whole FIA list against `tracks.json` and the SVGs lives in the last section of `docs/track-map-status.md` (see Status docs). Licence expiry dates are deliberately not stored.
+
 ### `logistics`
 Present on all 136 tracks. Rendered by `src/components/GettingThereCard.astro` in the right column of `/tracks/[slug]`. Rules when editing:
 
@@ -117,9 +131,9 @@ For each new SVG, find the matching track by slug and add/update `browserSvg`:
 ### 2. Verify `calendarSvgs` references in `data/tracks.json`
 Check that every SVG filename referenced in `calendarSvgs` (or `layouts[].calendarSvgs`) for that track matches the actual file on disk. Filenames are case-sensitive.
 
-### 3. Regenerate `track-map-status.md`
+### 3. Regenerate `docs/track-map-status.md`
 Run `npm run gen:map-status`. The file is generated from the SVGs on disk, `tracks.json` and `calendar.json`: it sorts each file into its section (calendarSvg-only variants included), recounts the **Summary** and sets the date. Don't edit counts or lists by hand: `npm run check` regenerates the file and fails when the committed copy differs.
-- To annotate a file (the "— Indy Circuit" style suffix), edit its entry in `track-map-status.md`, then run the command again: annotations and the **Naming Convention** section are carried over.
+- To annotate a file (the "— Indy Circuit" style suffix), edit its entry in `docs/track-map-status.md`, then run the command again: annotations and the **Naming Convention** section are carried over.
 
 ### 4. Sanity-check SVG renders
 The browser grid (`tracks/index.astro`) and track detail page (`tracks/[slug].astro`) both inline SVGs via `import.meta.glob` at build time. If `browserSvg` points to a file that doesn't exist on disk, the card silently falls back to the placeholder — no build error. So always confirm the filename in `tracks.json` exactly matches what's on disk.
@@ -135,10 +149,11 @@ Some venues use multiple SVG files for different series (e.g. Daytona, Barcelona
 The hover-dim JS in the browser and detail page reads `<g id="layout-{id}">` groups inside the SVG to highlight the active layout.
 
 ## Status docs
-- `track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Generated: run `npm run gen:map-status` whenever you add an SVG (step 3 above); `npm run check` fails when it is stale.
-- `2027-calendar-status.md` — which series have 2027 rounds in `calendar.json` and which are still outstanding.
-- `code-audit-status.md` — what is still open from the November 2026 code audit: rollout checks, decisions for Yann, the data-job list and small code items. Tick items as they're done; delete the file when nothing is left.
-- `watch-broadcasters-status.md` — where-to-watch coverage per series and country, the official source for each, and the known gaps. Rights change every season: update it whenever you touch `howToWatch`.
+- `docs/track-map-status.md` — SVG inventory: what's on disk, what's browser-mapped, what's still missing (including calendar events drawn on `tbc.svg`, read from `calendar.json`). Generated: run `npm run gen:map-status` whenever you add an SVG (step 3 above); `npm run check` fails when it is stale.
+  Its last section, "FIA Licensed Circuits — Cross-check", is the exception: it is written by hand from the FIA PDF and `gen:map-status` carries it over untouched. It lists the FIA layouts matched to a drawn SVG (A), FIA layouts of tracks we have with no SVG (B), the FIA venues that are **not** in `tracks.json` (C: 65 venues, deliberately not added yet) and tracks with no FIA row (D). When you add a part-C venue to `tracks.json`, move its row into A or B: `npm run check` fails while a part-C slug exists in `tracks.json`. Redo the section when the FIA publishes a new list.
+- `docs/2027-calendar-status.md` — which series have 2027 rounds in `calendar.json` and which are still outstanding.
+- `docs/code-audit-status.md` — what is still open from the November 2026 code audit: rollout checks, decisions for Yann, the data-job list and small code items. Tick items as they're done; delete the file when nothing is left.
+- `docs/watch-broadcasters-status.md` — where-to-watch coverage per series and country, the official source for each, and the known gaps. Rights change every season: update it whenever you touch `howToWatch`.
 
 ## Pages
 | Route | File | Notes |
@@ -198,8 +213,8 @@ Search index is built at `/data/search.json` from tracks, series and every event
 ## Where to watch / visitor country
 The broadcaster list on `/watch` and in each series' "How to Watch" block follows the **visitor's chosen country**, never the browser language (en-US used to put US broadcasters in front of English-speaking Europeans).
 
-- `data/seriesContent.json` → `howToWatch` per series, keyed by ISO country code plus `global`. Only add a country an official source names (see `watch-broadcasters-status.md`).
-- `src/scripts/country.js` — choice stored in `localStorage['dord-country']` (a code, `'global'`, or `'default'` for "no thanks"). No value or `'default'` shows the **US** list; a country with no entry shows the series' `global` option. It fires `dord:country-change` so pages re-render.
+- `data/seriesContent.json` → `howToWatch` per series, keyed by ISO country code plus `global`. Only add a country an official source names (see `docs/watch-broadcasters-status.md`).
+- `src/client/country.js` — choice stored in `localStorage['dord-country']` (a code, `'global'`, or `'default'` for "no thanks"). No value or `'default'` shows the **US** list; a country with no entry shows the series' `global` option. It fires `dord:country-change` so pages re-render.
 - `src/components/CountryDialog.astro` — the popup (a native `<dialog>`), with the dropdown built from whichever country codes appear in the data. It opens on `/watch` on a first visit; series pages show a "Change country" button instead. Esc / clicking outside is "not now" and saves nothing.
 - `src/pages/api/country.ts` — returns the country Cloudflare derives from the IP (`request.cf.country`), `private, no-store`. No GPS, nothing logged or stored.
 - The wording of the popup is a promise to visitors and is mirrored in section 3 of `src/pages/legal/privacy.astro`. Change both together.
@@ -234,29 +249,31 @@ Two separate Cloudflare Workers, hence two configs — this is intentional, not 
 Secrets are Cloudflare/Worker secrets, never committed: `RESEND_API_KEY`, `RESEND_FROM_EMAIL`, `TURSO_DATABASE_URL`, `TURSO_AUTH_TOKEN`, `CRON_SECRET`, `UNSUB_SECRET`.
 
 ## Scripts
-Everything in `scripts/` is reachable through `npm run`:
+Everything in `scripts/` is reachable through `npm run`, except the shared helpers module `scripts/lib.mjs` (imported by the others — read it first) and the `scripts/tz.mjs` calculator (`node scripts/tz.mjs "YYYY-MM-DD HH:MM" <IANA zone>`). See `scripts/README.md` for the map.
 
 | Command | Does |
 |---|---|
-| `npm run check` | Data integrity, `track-map-status.md` up to date, design-token checks, generated season files up to date, no season year typed into a template — run before every commit |
+| `npm run check` | Data integrity, `docs/track-map-status.md` up to date, design-token checks, generated season files up to date, no season year typed into a template — run before every commit |
 | `npm run check:tokens` | Just the token check: no colour/font/size/radius literals in site CSS |
-| `npm run gen:map-status` | Regenerate `track-map-status.md` from the SVGs on disk, `tracks.json` and `calendar.json` |
+| `npm run check:support` | Just the support-series catalog + session status/source check |
+| `npm run gen:map-status` | Regenerate `docs/track-map-status.md` from the SVGs on disk, `tracks.json` and `calendar.json` |
 | `npm run gen:series` | Regenerate `data/series.json` from `calendar.json` |
 | `npm run gen:season` | Regenerate `public/manifest.webmanifest` and `public/llms.txt` from the season constant and the series data |
 | `npm run check:season` | Just the season check: no season year typed into `src/` or `workers/` |
 | `npm run gen:icons` | Rebuild favicons + PWA icons from `src/assets/dord-mark.png` |
 | `npm run gen:series-images` | Build the 640px-wide `*-640w.webp` variants of the `/series` grid images |
 | `npm run gen:track-pngs` | Export track SVGs to PNGs |
-| `npm run results:gaps` | List past events still missing results |
+| `npm run results:gaps` | List past events still missing results (`results-sync.mjs gaps`) |
 | `npm run results:brief` | Emit a JSON skeleton for every raced event with no result |
 | `npm run results:apply <file>` | Validate + merge a filled skeleton into `calendar.json` |
 | `npm run standings:stale` | Which series have raced since standings were last updated |
 | `npm run standings:apply <file>` | Validate + merge a standings patch |
 | `npm run times:prompt` | Generate a research prompt for TBC session times |
 | `npm run times:apply` | Apply researched times back into `calendar.json` |
+| `npm run sessions:apply <file>` | Merge researched session/support times into `calendar.json` (dry run unless `--write`) |
 | `npm run indexnow` | Submit new/changed pages to IndexNow (Bing and others). Needs a build; CI runs it after each deploy |
 | `npm run test:unsub` | Generate/verify unsubscribe tokens locally |
-| `npm run typecheck` | TypeScript check (`astro check`); not part of `npm run check` yet |
+| `npm run typecheck` | TypeScript check (`astro check`); runs at the end of `npm run check`. Cloudflare runtime types come from the committed `worker-configuration.d.ts` (regenerate with `npx wrangler types`) |
 
 Race results live **inline in `data/calendar.json`** (`event.results`). There is no separate results file.
 

@@ -7,6 +7,7 @@
  * error-prone half (writing it into calendar.json in exactly the right shape)
  * is deterministic and validated.
  *
+ *   npm run results:gaps             → list raced events still missing a result
  *   npm run results:brief            → prints a JSON skeleton for every raced
  *                                      event still missing a result, with the
  *                                      correct fields for that series
@@ -17,12 +18,10 @@
  * Results live INLINE in data/calendar.json (event.results).
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import path from 'path';
+import { readFileSync } from 'fs';
+import { readJson, writeJson, walkCalendar, utcDay, ISO_DATE_RE, parseArgs, monthYear } from './lib.mjs';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const CAL = path.join(__dirname, '../data/calendar.json');
+const CAL = 'data/calendar.json';
 const GRACE_HOURS = Number(process.env.RESULTS_GRACE_HOURS ?? 12);
 
 // Field shape per series, derived from the 12 variants already in calendar.json.
@@ -39,12 +38,11 @@ function fieldsFor(series) {
   return f;
 }
 
-const load = () => JSON.parse(readFileSync(CAL, 'utf8'));
+const load = () => readJson(CAL);
 
 // A result belongs within three days of its event's weekend (start/end when
 // set, else the race date). Catches a result typed onto the wrong event, such
 // as a July race's winner on the February event at the same track.
-const utcDay = (iso) => { const [y, m, d] = String(iso).slice(0, 10).split('-').map(Number); return Date.UTC(y, m - 1, d); };
 function nearEvent(resultDate, ev) {
   const t = utcDay(resultDate), DAY = 864e5;
   return t >= utcDay(ev.start ?? ev.date) - 3 * DAY && t <= utcDay(ev.end ?? ev.date) + 3 * DAY;
@@ -55,16 +53,39 @@ function pending(cal) {
   const cutoff = new Date(Date.now() - GRACE_HOURS * 3600_000);
   const out = [];
   // Every season: the date cut-off already limits this to events that have run.
-  for (const month of cal) {
-    for (const week of month.weeks ?? []) {
-      for (const ev of week.events ?? []) {
-        if (!ev.date || new Date(ev.date) > cutoff) continue;
-        if (ev.results?.length) continue;
-        out.push({ ev, week, month });
-      }
-    }
+  for (const it of walkCalendar(cal)) {
+    const { ev } = it;
+    if (!ev.date || new Date(ev.date) > cutoff) continue;
+    if (ev.results?.length) continue;
+    out.push({ ...it, year: monthYear(it.month) });
   }
   return out;
+}
+
+// ── gaps ─────────────────────────────────────────────────────────────────────
+// The human-readable list of what `brief` would fill in (kept as its own
+// command: `npm run results:gaps`).
+function gaps() {
+  const cal = load();
+  const cutoff = new Date(Date.now() - GRACE_HOURS * 3600_000);
+  const items = pending(cal);
+  const raced = [...walkCalendar(cal)].filter(({ ev }) => ev.date && new Date(ev.date) <= cutoff).length;
+
+  if (!items.length) {
+    console.log(`✓ results:gaps — all ${raced} raced events have results`);
+    return;
+  }
+
+  console.log(`${items.length} of ${raced} raced events missing results:\n`);
+  for (const { ev, week, year } of items) {
+    // Week numbers help find the event in calendar.json and on the home page.
+    const weekNum = week.label?.match(/WEEK\s+(\d+)/)?.[1] ?? '??';
+    console.log(
+      `  wk ${String(weekNum).padStart(2)}  [${year}] ` +
+      `[${ev.series.toUpperCase().padEnd(8)}] ${ev.title}`
+    );
+  }
+  console.log('\nFill them in with:  npm run -s results:brief > brief.json   (fill the blanks)   then  npm run results:apply brief.json');
 }
 
 // ── brief ────────────────────────────────────────────────────────────────────
@@ -112,14 +133,10 @@ function apply(file, dryRun) {
     // next season's round with the same title can't be matched by mistake
     const now = new Date();
     const hits = [];
-    for (const month of cal) {
-      for (const w of month.weeks ?? []) {
-        if (week && w.label !== week) continue;
-        for (const ev of w.events ?? []) {
-          if (!ev.date || new Date(ev.date) > now) continue;
-          if (ev.series === series && ev.title === title) hits.push({ ev, label: w.label });
-        }
-      }
+    for (const { week: w, ev } of walkCalendar(cal)) {
+      if (week && w.label !== week) continue;
+      if (!ev.date || new Date(ev.date) > now) continue;
+      if (ev.series === series && ev.title === title) hits.push({ ev, label: w.label });
     }
     if (!hits.length)  { errors.push(`${series}/${title}: no event with this title has run yet`); continue; }
     if (hits.length > 1) { errors.push(`${series}/${title}: ambiguous (${hits.length} matches) — add "week"`); continue; }
@@ -136,7 +153,7 @@ function apply(file, dryRun) {
       const filled = multi ? Array.isArray(who) && who.length && who.every(x => x && x.trim())
                            : typeof who === 'string' && who.trim();
       if (!filled) { errors.push(`${where}: ${multi ? '"winners" must be a non-empty array' : '"winner" is required'}`); continue; }
-      if (!r.date || !/^\d{4}-\d{2}-\d{2}$/.test(r.date)) { errors.push(`${where}: "date" must be YYYY-MM-DD`); continue; }
+      if (!r.date || !ISO_DATE_RE.test(r.date)) { errors.push(`${where}: "date" must be YYYY-MM-DD`); continue; }
       if (!nearEvent(r.date, ev)) { errors.push(`${where}: "date" ${r.date} is more than 3 days from the event (${ev.date.slice(0, 10)}): wrong event?`); continue; }
       if (r.country && !/^[A-Z]{2}$/.test(r.country)) { errors.push(`${where}: "country" must be a 2-letter uppercase code`); continue; }
       if (RALLY.has(series) && !r.co_driver) { errors.push(`${where}: rally results need "co_driver"`); continue; }
@@ -172,22 +189,23 @@ function apply(file, dryRun) {
     return;
   }
 
-  writeFileSync(CAL, JSON.stringify(cal, null, 2) + '\n', 'utf8');
+  writeJson(CAL, cal);
   console.log(`✓ applied ${applied.length} result(s) to data/calendar.json`);
   applied.forEach(a => console.log('  • ' + a.label));
   console.log('\nNow run:  npm run gen:series && npm run check');
 }
 
 // ── cli ──────────────────────────────────────────────────────────────────────
-const [, , cmd, ...rest] = process.argv;
+const { args, has } = parseArgs();
+const [cmd, file] = args;
 try {
-  if (cmd === 'brief') brief();
+  if (cmd === 'gaps') gaps();
+  else if (cmd === 'brief') brief();
   else if (cmd === 'apply') {
-    const file = rest.find(a => !a.startsWith('--'));
     if (!file) throw new Error('usage: results-sync.mjs apply <file.json> [--dry-run]');
-    apply(file, rest.includes('--dry-run'));
+    apply(file, has('--dry-run'));
   } else {
-    console.error('usage: results-sync.mjs brief | apply <file.json> [--dry-run]');
+    console.error('usage: results-sync.mjs gaps | brief | apply <file.json> [--dry-run]');
     process.exit(1);
   }
 } catch (err) {

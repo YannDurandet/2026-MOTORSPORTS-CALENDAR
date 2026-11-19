@@ -24,18 +24,16 @@
  * afterwards.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'node:fs';
+import { readJson, writeJson, findEvents, parisIsoAt, stripHtml, HHMM_RE, parseArgs } from './lib.mjs';
 
-const __dir = dirname(fileURLToPath(import.meta.url));
-const CALENDAR_PATH = join(__dir, '../data/calendar.json');
+const CAL = 'data/calendar.json';
 
 // Read input: file arg or stdin
+const { args, has } = parseArgs();
+const dryRun = has('--dry-run');
+const inputFile = args[0];
 let inputRaw;
-const args = process.argv.slice(2);
-const dryRun = args.includes('--dry-run');
-const inputFile = args.find(a => !a.startsWith('--'));
 if (inputFile) {
   inputRaw = readFileSync(inputFile, 'utf-8');
 } else {
@@ -56,23 +54,7 @@ if (!Array.isArray(updates)) {
   process.exit(1);
 }
 
-const calendar = JSON.parse(readFileSync(CALENDAR_PATH, 'utf-8'));
-
-const parisParts = (ms) => Object.fromEntries(new Intl.DateTimeFormat('en-GB', {
-  timeZone: 'Europe/Paris', hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
-}).formatToParts(new Date(ms)).map(p => [p.type, p.value]));
-
-/** "2027-02-14T04:30:00+01:00": HH:MM on the Paris day of `iso`, with the right Paris offset. */
-function parisIso(iso, hhmm) {
-  const p = parisParts(Date.parse(iso));
-  const day = `${p.year}-${p.month}-${p.day}`;
-  for (const offset of ['+01:00', '+02:00']) {
-    const candidate = `${day}T${hhmm}:00${offset}`;
-    const back = parisParts(Date.parse(candidate));
-    if (`${back.year}-${back.month}-${back.day}` === day && `${back.hour}:${back.minute}` === hhmm) return candidate;
-  }
-  return null; // a time skipped by the spring clock change
-}
+const calendar = readJson(CAL);
 
 let applied = 0;
 let notFound = 0;
@@ -87,54 +69,48 @@ for (const update of updates) {
   }
 
   // Validate HH:MM (00:00 to 23:59), the pattern check-data.mjs uses
-  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(timeCET)) {
+  if (!HHMM_RE.test(timeCET)) {
     console.warn(`⚠  Skipping "${title}" — timeCET "${timeCET}" is not HH:MM format.`);
     continue;
   }
 
-  let found = false;
-  for (const month of calendar) {
-    for (const week of month.weeks) {
-      if (week.label !== weekLabel) continue;
-      for (const ev of week.events) {
-        if (ev.series !== series || ev.title !== title) continue;
+  const hits = findEvents(calendar, { series, title, weekLabel });
 
-        found = true;
-        const before = ev.time;
-
-        if (!before.includes('TBC')) {
-          console.log(`⏭  ${series.toUpperCase()} ${title}: already has a time (${before.replace(/<[^>]+>/g, '')}), skipping`);
-          alreadySet++;
-          break;
-        }
-
-        const newDate = parisIso(ev.date, timeCET);
-        const newTime = ev.time.replace(/<span class="hl">TBC<\/span>|\bTBC\b/, `<span class="hl">${timeCET}</span>`);
-        if (!newDate || newTime === ev.time) {
-          console.warn(`⚠  ${series.toUpperCase()} ${title}: could not apply ${timeCET} (time "${before}")`);
-          break;
-        }
-        ev.time = newTime;
-        ev.date = newDate;
-
-        const after = ev.time.replace(/<[^>]+>/g, '');
-        console.log(`✓  ${series.toUpperCase()} ${title}: "${before.replace(/<[^>]+>/g, '')}" → "${after}"`);
-        applied++;
-      }
-    }
-  }
-
-  if (!found) {
+  if (!hits.length) {
     console.warn(`✗  NOT FOUND: series="${series}" title="${title}" weekLabel="${weekLabel}"`);
     notFound++;
+    continue;
+  }
+
+  for (const { ev } of hits) {
+    const before = ev.time;
+
+    if (!before.includes('TBC')) {
+      console.log(`⏭  ${series.toUpperCase()} ${title}: already has a time (${stripHtml(before)}), skipping`);
+      alreadySet++;
+      continue;
+    }
+
+    const newDate = parisIsoAt(ev.date, timeCET);
+    const newTime = ev.time.replace(/<span class="hl">TBC<\/span>|\bTBC\b/, `<span class="hl">${timeCET}</span>`);
+    if (!newDate || newTime === ev.time) {
+      console.warn(`⚠  ${series.toUpperCase()} ${title}: could not apply ${timeCET} (time "${before}")`);
+      continue;
+    }
+    ev.time = newTime;
+    ev.date = newDate;
+
+    const after = stripHtml(ev.time);
+    console.log(`✓  ${series.toUpperCase()} ${title}: "${stripHtml(before)}" → "${after}"`);
+    applied++;
   }
 }
 
 if (dryRun) {
   console.log(`\n(dry run) nothing written.`);
 } else if (applied > 0) {
-  // Same layout as the file on disk (and results-sync.mjs): 2-space indent, final newline.
-  writeFileSync(CALENDAR_PATH, JSON.stringify(calendar, null, 2) + '\n');
+  // Canonical layout: 2-space indent, final newline.
+  writeJson(CAL, calendar);
   console.log(`\nDone. Now run: npm run gen:series && npm run check`);
 } else {
   console.log(`\nNothing applied: calendar.json not written.`);

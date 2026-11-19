@@ -13,12 +13,9 @@
  *   node scripts/gen-time-prompt.mjs --all        # everything
  */
 
-import { readFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readJson, walkCalendar, stripHtml } from './lib.mjs';
 
-const __dir = dirname(fileURLToPath(import.meta.url));
-const calendar = JSON.parse(readFileSync(join(__dir, '../data/calendar.json'), 'utf-8'));
+const calendar = readJson('data/calendar.json');
 
 const MONTH_NAMES = [
   'JANUARY','FEBRUARY','MARCH','APRIL','MAY','JUNE',
@@ -29,8 +26,6 @@ const rawArg = (process.argv[2] || '').trim();
 const allMode = rawArg === '--all';
 const currentMonthName = MONTH_NAMES[new Date().getMonth()];
 const filterArg = allMode ? '' : (rawArg.toUpperCase() || currentMonthName);
-
-function stripHtml(s) { return s.replace(/<[^>]+>/g, ''); }
 
 function isTBC(ev) { return ev.time.includes('TBC'); }
 
@@ -46,21 +41,17 @@ function matchesFilter(month, week) {
 // Collect stubs: timeCET = "??" for the AI to fill in
 const stubs = [];
 
-for (const month of calendar) {
-  for (const week of month.weeks) {
-    if (!matchesFilter(month, week)) continue;
-    for (const ev of week.events) {
-      if (!isTBC(ev)) continue;
-      stubs.push({
-        month:     month.month,
-        weekLabel: week.label,
-        series:    ev.series,
-        title:     ev.title,
-        timeCET:   '??',
-        _disp:     stripHtml(ev.time),
-      });
-    }
-  }
+for (const { month, week, ev } of walkCalendar(calendar)) {
+  if (!matchesFilter(month, week)) continue;
+  if (!isTBC(ev)) continue;
+  stubs.push({
+    month:     month.month,
+    weekLabel: week.label,
+    series:    ev.series,
+    title:     ev.title,
+    timeCET:   '??',
+    _disp:     stripHtml(ev.time),
+  });
 }
 
 if (stubs.length === 0) {

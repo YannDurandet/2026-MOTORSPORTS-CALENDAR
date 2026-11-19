@@ -21,6 +21,10 @@
       "series": "F1"
     },
     "website": "https://www.grandprix.com.au",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Albert Park Circuit is a 5.278 km street circuit around the Lake Albert Park in the inner Melbourne suburb of Albert Park. It has hosted the Australian Grand Prix — traditionally F1's season opener — since 1996. The circuit uses roads normally open to traffic around the lake's perimeter, closed for race week, with the parkland and lake providing an unusually pleasant setting for a street circuit. The season-opening position has made Albert Park the circuit where new cars, new regulations, and championship ambitions are first tested in anger.",
     "history": "Melbourne secured the Australian GP from Adelaide in 1996, after the Victorian government mounted an aggressive bid. Albert Park immediately became a fixture as the season opener, a role it has played for most of its F1 history. The circuit has been revised multiple times — most significantly in 2022, when the layout was altered to remove chicanes and open up high-speed sections, increasing overtaking opportunities and average speeds significantly. Supercars also uses the circuit for a support race during the F1 weekend, one of the highest-profile non-F1 events on the Australian touring car calendar.",
     "notable_moments": "Damon Hill's 1996 season-opening victory in the first Albert Park F1 race. Jacques Villeneuve's debut podium. The 2002 race where Ralf Schumacher's car launched over Rubens Barrichello's, landing in the barrier above the medical car. Kimi Räikkönen's multiple Melbourne victories. The 2020 race that was cancelled at the last minute — teams already in the paddock — as COVID restrictions fell into place, marking F1's pandemic shutdown.",
@@ -58,6 +62,10 @@
       "year": 2022
     },
     "website": "https://www.motorland.es",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "MotorLand Aragón is a 5.077 km permanent circuit near Alcañiz in the Aragonese interior of Spain. One of the longest circuits on the MotoGP calendar, it was designed by Hermann Tilke and opened in 2009. The circuit is fast and demanding, with a long back straight and a technical final sector. It hosts MotoGP, WorldSBK, and ELMS rounds, and the dry, stable Aragonese climate makes it a reliable testing venue throughout the year.",
     "history": "MotorLand Aragón was part of a broader Aragonese government investment in motorsport infrastructure in the 2000s, designed to bring international championships to the interior of Spain beyond the coastal circuits. The circuit opened in 2009 and joined the MotoGP calendar immediately. WorldSBK added Aragón as a mid-season round, and the circuit's combination of size, climate, and modern facilities has kept it a consistent presence on multiple calendars. ELMS uses the circuit for endurance rounds.",
     "notable_moments": "Marc Marquez's multiple victories at Aragón in MotoGP — a circuit that suited his aggressive style. WorldSBK title battles at the mid-season Aragón round. The circuit's visual setting in the arid Aragonese meseta, surrounded by brown rolling hills and olive groves, entirely unlike Spain's coastal venues.",
@@ -88,6 +96,9 @@
     "length": 4.394,
     "turns": 14,
     "website": "https://www.arlington.org/gparlington/",
+    "fia": {
+      "grade": "2"
+    },
     "overview": "The Streets of Arlington is a temporary street circuit in Arlington, Texas, in the entertainment district surrounding Globe Life Field (Texas Rangers MLB) and AT&T Stadium (Dallas Cowboys NFL). One of IndyCar's newer urban street circuit additions, it brings open-wheel racing to one of America's most iconic sports entertainment districts — a setting where major league baseball, NFL football, and now IndyCar racing coexist within a purpose-built venue campus.",
     "history": "The Streets of Arlington joined the IndyCar calendar as part of the series' push to add new urban events in major American markets. The Arlington entertainment district, developed over decades of stadium construction around the Texas Rangers and Dallas Cowboys venues, provides both the infrastructure and the audience base for a major motorsport event. The circuit represents IndyCar's continued strategy of targeting major American cities with street circuits.",
     "notable_moments": "IndyCar racing in the entertainment district that hosts two of American sports' most iconic franchises. The circuit's development as one of IndyCar's newest American street circuit additions. The integration of open-wheel racing into an entertainment campus designed around the major league sports experience.",
@@ -125,6 +136,10 @@
       "year": 2024
     },
     "website": "https://www.ttcircuit.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "TT Circuit Assen is the oldest continuously used circuit in the world still hosting a world championship event. Known as the Cathedral of Motorsport, it has held a Grand Prix every year since the Dutch TT began on nearby roads in 1925. At 4.542 km, it is a motorcycle circuit first and foremost — designed for two wheels, with flowing corners and multiple lines that reward commitment and aggression. Formula 1 returned here in 2021 after a 36-year absence, bringing the Dutch GP back to enormous crowds energised by Max Verstappen's championship battle.",
     "history": "The Dutch TT began on public roads near Assen in 1925. The circuit was gradually refined and shortened over the decades, with the current permanent facility opening in 1955. A significant revision in 2006 shortened the layout and added new facilities. The circuit's motorcycle DNA has always defined its character — the long-radius corners and flowing transitions were designed to reward two-wheel dynamics. When F1 returned in 2021, the new banking and revised chicanes gave it a modern infrastructure while retaining the circuit's unique flowing quality.",
     "notable_moments": "Valentino Rossi's nine MotoGP victories at Assen — his most at any single circuit, and the place he most associated with the Cathedral nickname. Max Verstappen's dominant home victory in the 2021 Dutch Grand Prix, with the Orange Army packing every grandstand. The annual TT Assen WorldSBK round, a traditional mid-season highlight that produces consistently close racing.",
@@ -193,6 +208,10 @@
       "year": 2021
     },
     "website": "https://www.autopolis.jp",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Autopolis is a 4.674 km permanent circuit in the mountains of Oita Prefecture on the island of Kyushu, Japan. Set at over 800 metres above sea level in forested highland, it is one of the most scenically dramatic circuits in Asia — the surrounding mountains and dense cedar forest give it a character unlike any other Japanese venue. The circuit is flowing and technical, with significant elevation changes and a layout that rewards mechanical grip and driver commitment.",
     "history": "Autopolis opened in 1990 with ambitions to host international championship events, including discussions about a Japanese MotoGP round. The circuit has hosted Super GT and Super Formula rounds as a regular fixture of the Japanese domestic calendar. The Oita Prefecture location, relatively remote from Japan's major urban centres, gives the circuit a dedicated regional following but limits its international accessibility. The mountain setting means weather can shift rapidly — mist, rain, and fog are common even in summer.",
     "notable_moments": "Super GT rounds at Autopolis consistently producing dramatic results given the circuit's technical, elevation-change character. The circuit's elevation and forest setting making it one of the most visually striking venues on the Japanese domestic calendar.",
@@ -230,6 +249,10 @@
       "year": 2004
     },
     "website": "https://www.bahraingp.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Bahrain International Circuit is a 5.412 km permanent circuit in the Sakhir desert, 30km south of Manama. It was the first Formula 1 circuit in the Middle East — hosting the Bahrain Grand Prix since 2004 — and also hosts WEC, WorldSBK, and Formula E. The circuit's desert setting produces sand-contaminated track surfaces, extreme heat, and unique lighting conditions for its night race configuration. A separate outer oval layout (3.543 km) is used for F2 and F3 races.",
     "history": "Bahrain International Circuit was built as part of Bahrain's strategy to position the kingdom as a regional hub for international sport and business, using oil revenues to fund world-class infrastructure. It hosted the first Formula 1 race in the Middle East in April 2004. The circuit has undergone multiple layout revisions, including a controversial switch to an \"endurance\" outer loop in 2010. The Bahrain GP became F1's season opener in several years, making Sakhir the circuit where new cars and regulations first race competitively. Political unrest in 2011 led to the race's cancellation that year.",
     "notable_moments": "The first Middle Eastern Formula 1 race in 2004. The 2020 Bahrain GP, held at night for the first time — and the race weekend where Romain Grosjean's car split in two and caught fire, with Grosjean escaping with relatively minor burns in a survival that shocked the sport. Lewis Hamilton's multiple wins at the Bahrain season opener. WorldSBK rounds producing close multi-class battles in the Sakhir desert. WEC's 8 Hours of Bahrain as the traditional season finale.",
@@ -267,6 +290,10 @@
       "year": 2019
     },
     "website": "https://www.bakucitycircuit.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "The Baku City Circuit is a 6.003 km street circuit through the Azerbaijani capital, running along the Caspian Sea shore and through the narrow streets of Baku's ancient walled city. It is the second-longest circuit on the Formula 1 calendar and hosts one of the most chaotic and unpredictable races of the season. The combination of a 2.2 km main straight — the longest in F1 — where cars reach over 360 km/h, and a medieval old-city section with walls just inches from the car, produces a circuit of extreme contrasts.",
     "history": "The Baku City Circuit was first used for the 2016 European Grand Prix — a rebranding to appeal to the existing European GP name — before becoming the Azerbaijan Grand Prix from 2017. Formula E has also used Baku for an ePrix. The circuit is a product of Azerbaijan's significant investment in international sporting events following the country's oil wealth expansion. The layout threads through the historic inner city, past the Palace of the Shirvanshahs and along the waterfront boulevard, giving it a visual character utterly unlike any other F1 venue.",
     "notable_moments": "The 2017 Azerbaijan GP which produced extraordinary multi-car incidents including Sebastian Vettel's deliberate side-swipe of Lewis Hamilton under the safety car. The 2021 race where a tyre failure for Max Verstappen while leading handed an improbable result. Lance Stroll's maiden pole position in 2017. The circuit's castle section — walls at arm's length, bumpy medieval stone beneath the tarmac.",
@@ -304,6 +331,10 @@
       "year": 2026
     },
     "website": "https://www.balatonparkcircuit.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Balaton Park Circuit is a 4.083 km permanent circuit near Lake Balaton in western Hungary. It is one of Central Europe's newer purpose-built racing facilities, hosting WTCR (World Touring Car Cup) rounds and various national Hungarian championships. Its lakeside location in the Balaton wine region gives it a pleasant setting, and the circuit layout offers a mix of technical and fast sections that suits touring car competition.",
     "history": "Balaton Park Circuit was built as a modern international-grade facility to supplement Hungary's motorsport scene beyond the Hungaroring — which hosts F1 and is primarily focused on that one event. The circuit was developed in the 2010s and became a WTCR venue, bringing world-level touring car competition to the western Balaton region. It represents the broader trend of Central European countries investing in motorsport infrastructure to retain and attract championship events.",
     "notable_moments": "WTCR rounds at the circuit providing competitive touring car action in the Hungarian countryside. The circuit's development as part of Hungary's broader motorsport ambitions beyond the Hungaroring's F1 monopoly on the country's international profile.",
@@ -341,6 +372,10 @@
       "year": 2021
     },
     "website": "https://www.barberracingpark.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Barber Motorsports Park is a 2.38 km permanent road course in the rolling wooded landscape of Birmingham, Alabama. One of the most visually striking circuit environments in America, the circuit is set within meticulously maintained parkland alongside the Barber Vintage Motorsports Museum — the largest motorcycle museum in the world. The circuit is smooth, flowing, and technically demanding, with significant elevation changes and a combination of long sweeping corners and tight technical sections that produce close IndyCar and IMSA racing.",
     "history": "Barber Motorsports Park was built by George Barber, an Alabama businessman, who developed the circuit and museum complex as a personal passion project starting in the 1990s. The circuit opened in 2003 and joined the IndyCar calendar in 2010. Barber's commitment to immaculate maintenance — the circuit grounds are landscaped and manicured to a standard unusual in American motorsport — gives the venue a distinctive quality that drivers and teams frequently single out as exceptional. The adjacent motorcycle museum adds a cultural dimension unique to this circuit.",
     "notable_moments": "IndyCar Birmingham rounds producing close racing on the technical Alabama circuit. The circuit's reputation among IndyCar drivers as one of the best road course venues on the American calendar. The Barber museum — containing over 1,600 motorcycles — making it one of the most unusual venue pairings in motorsport.",
@@ -378,6 +413,10 @@
       "year": 2025
     },
     "website": "https://www.circuitcat.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Circuit de Barcelona-Catalunya is a 4.657 km circuit 30km north of Barcelona, Spain. It has hosted the Spanish Formula 1 Grand Prix every year since 1991 and is the primary pre-season F1 testing venue — meaning teams and drivers know it more thoroughly than almost any other circuit. As a result, races here often reveal the true competitive order of the season, stripped of the setup surprises that affect other venues. MotoGP and WorldSBK also use the circuit, making it one of the most multi-discipline venues in Europe.",
     "history": "Built in 1991 to bring the Spanish Grand Prix back to a purpose-built permanent circuit, the track was designed for international motorsport from the outset. The circuit has undergone several revisions: the addition of a chicane at Turn 10 in 2007 (to improve overtaking), later removed in 2023 and replaced with a flowing corner. The long Turn 3 (Repsol), the Sector 2 flowing section, and the final hairpin have remained the defining challenges across generations of F1 cars. The circuit's role as a testing venue means every new regulation cycle begins its public development here.",
     "notable_moments": "Michael Schumacher's first win for Ferrari in 1996, dominant in the rain. Mika Häkkinen and Michael Schumacher's wheel-to-wheel battle in 2001 at the bus stop chicane. Fernando Alonso's home victories celebrated by the passionate Spanish crowd. The 2016 Spanish GP first-lap collision between Hamilton and Rosberg, handing victory to Max Verstappen on his Formula 1 debut.",
@@ -415,6 +454,10 @@
       "year": 2019
     },
     "website": "https://www.bathurst.nsw.gov.au/Services/Facilities/Mount-Panorama",
+    "fia": {
+      "grade": "3",
+      "pole": "Left"
+    },
     "overview": "Mount Panorama Circuit is a 6.213 km public road circuit on the slopes of Mount Panorama near Bathurst in the central tablelands of New South Wales. It is the most revered motorsport circuit in Australia and one of the great circuits of the world — 23 corners, 174 metres of elevation change, and a character unlike any other. The mountain section from Hell Corner up to the Dipper and Forrest's Elbow demands absolute commitment; the descent through The Cutting into Conrod Straight leads to the fastest section, where Supercars reach over 300 km/h. The Bathurst 1000 is one of the great endurance races in world motorsport.",
     "history": "Mount Panorama's first race meeting was held in 1938, using the circuit as a hillclimb on public roads through a government recreation reserve. The circuit evolved to include a return leg, creating its current configuration — a loop around the mountain using roads that remain public thoroughfares outside race events. The Bathurst 1000 began in 1963 as an endurance race for production cars, growing into Australia's most prestigious motorsport event. The circuit has hosted F1 (the 1985 Australian GP qualifying sessions used it for demonstration purposes), motorcycles, and various Australian championships across its history.",
     "notable_moments": "Peter Brock's nine Bathurst 1000 victories — a record that defined his Australian motorsport legend. The 1977 and 1979 \"Great Race\" battles. The 1992 Bathurst 1000 disqualification controversy involving Dick Johnson Racing. Craig Lowndes' multiple victories across different eras. The 2019 Bathurst 1000 finish decided in the final metres. Mount Panorama's reputation as the circuit that changes careers — winning here elevates a Supercars driver into a different category of respect.",
@@ -451,6 +494,10 @@
       "series": "Formula E",
       "year": 2025
     },
+    "fia": {
+      "grade": "3E",
+      "pole": "Left"
+    },
     "overview": "The Berlin ePrix Circuit is a temporary racing circuit built within and around the former Tempelhof Airport in central Berlin — one of the most historically significant and architecturally remarkable sites in Germany. Formula E races on the airport's vast tarmac apron, using different layouts in different years, taking advantage of the endless flat expanse of concrete that was once one of the world's busiest aviation hubs. The combination of the monumental Nazi-era terminal building and cutting-edge electric racing cars is unlike anything else in motorsport.",
     "history": "Tempelhof Airport — opened in 1923 and massively expanded by the Nazi regime in the late 1930s into the enormous terminal that still stands — closed to commercial aviation in 2008. It was repurposed as a public park and event space. Formula E began using the airport for its Berlin ePrix from the early seasons of the championship. The COVID-19 season of 2019-20 saw Formula E hold a unique extended racing program at Tempelhof — six races over two weeks using different layouts — which tested teams and drivers in a concentrated format unprecedented in top-level motorsport.",
     "notable_moments": "The 2020 Formula E \"Berlin mini-season\" — six races over 14 days during the COVID lockdown era, using three different circuit configurations, becoming one of the most intense championship sequences in any racing series' history. Antonio Felix da Costa's 2020 championship win sealed at Tempelhof. The juxtaposition of silent electric cars and the monumental terminal building that witnessed the Berlin Airlift in 1948-49.",
@@ -483,14 +530,38 @@
         "label": "Indy Circuit",
         "calendarSvgs": [
           "brands-hatch.svg"
-        ]
+        ],
+        "length": 1.944,
+        "turns": 6,
+        "lapRecord": {
+          "time": "0:38.032",
+          "driver": "Scott Mansell",
+          "year": 2004,
+          "series": "EuroBOSS"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Right"
+        }
       },
       {
         "id": "gp",
         "label": "GP Circuit",
         "calendarSvgs": [
           "brands-hatch-gp.svg"
-        ]
+        ],
+        "length": 3.916,
+        "turns": 9,
+        "lapRecord": {
+          "time": "1:12.276",
+          "driver": "Adam Carroll",
+          "year": 2009,
+          "series": "A1GP"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Right"
+        }
       }
     ],
     "bio": "Carved into a natural Kent amphitheatre, Brands Hatch has been the beating heart of British club racing since the 1950s. Its GP loop remains one of the most loved layouts in the country.",
@@ -499,10 +570,10 @@
     "length": 3.916,
     "turns": 9,
     "lapRecord": {
-      "time": "1:09.593",
-      "driver": "Nigel Mansell",
-      "series": "F1",
-      "year": 1986
+      "time": "1:12.276",
+      "driver": "Adam Carroll",
+      "year": 2009,
+      "series": "A1GP"
     },
     "website": "https://www.brandshatch.co.uk",
     "overview": "Brands Hatch is a 4.206 km (Grand Prix) / 2.608 km (Indy) circuit in the North Downs of Kent, England. Its defining feature is geography: the circuit uses a natural bowl in the landscape, descending from the start line to Paddock Hill Bend — one of the most dramatic corners in British motorsport, taken blind over a crest with barriers on the exit. The natural amphitheatre gives spectators an extraordinary view of almost the entire circuit from one point, making it one of the best places to watch motorsport in Europe.",
@@ -573,6 +644,10 @@
       "year": 2017
     },
     "website": "https://www.automotodrombrno.cz",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Automotodrom Brno is a 5.403 km circuit in the South Moravian countryside outside Brno, Czech Republic. It hosted the Czech MotoGP Grand Prix from 1987 until 2019, when it was dropped from the calendar. One of the best motorcycle circuits in Europe by driver consensus — fast, flowing, technically demanding, with excellent spectator sightlines across the natural hillside — its absence from the MotoGP calendar since 2020 has been lamented by riders and fans alike.",
     "history": "The current Brno circuit opened in 1987, replacing a much older road circuit on public routes around the city that had been used since 1930. The new purpose-built facility immediately hosted the Czechoslovak Grand Prix, later becoming the Czech Grand Prix after the country's separation. Brno was a fixture on the MotoGP calendar for over three decades. Its removal in 2020, officially due to COVID-related calendar compression and subsequently not reinstated, reflected the broader commercial pressures that have pushed European circuits off a calendar increasingly skewed toward Asian and Middle Eastern venues.",
     "notable_moments": "Valentino Rossi's multiple victories at Brno. The circuit's reputation among riders as a true test of motorcycle skill — undulating, fast, demanding commitment. The farewell Czech GP in 2019 that was not known to be the last at the time.",
@@ -610,6 +685,10 @@
       "year": 2020
     },
     "website": "https://www.bric.co.th",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Chang International Circuit is a 4.554 km permanent circuit in Buriram Province, northeast Thailand. Built in 2014 and named after the Chang Beer brand, it quickly became Southeast Asia's leading motorsport venue, hosting MotoGP and WorldSBK rounds in a modern, well-appointed facility. Buriram's hot, humid tropical climate and smooth surface produce demanding tyre conditions, while its clean, flowing layout enables close racing across multiple classes.",
     "history": "Chang International Circuit was built as part of the Buriram United sports empire, owned by Thai politician and club football owner Newin Chidchob. The circuit was designed to international FIA and FIM standards from the outset, with the explicit goal of attracting MotoGP and other international series. It achieved this rapidly — MotoGP visited within years of the circuit's opening. The circuit brought top-level international motorsport to an inland Thai province, far from Bangkok, and the Buriram United stadium that adjoins the complex creates a unique dual sporting venue.",
     "notable_moments": "MotoGP Thai Grand Prix rounds producing close racing in the tropical heat. WorldSBK rounds at Buriram contributing to title battles. The circuit's rapid rise from new build to international fixture — a compressed development arc unusual in motorsport venue history.",
@@ -676,6 +755,10 @@
       "driver": "Oscar Pedersen",
       "series": "F4",
       "year": 2024
+    },
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
     },
     "overview": "Chengdu International Motorsport Circuit is a permanent circuit in Chengdu, the capital of Sichuan Province in southwest China. One of China's newer international-grade venues, it has hosted WTCR (World Touring Car Cup) rounds as part of the championship's engagement with the Chinese market. Chengdu — a city of over 20 million people best known as the home of the giant panda — brings significant urban population proximity to a circuit that would otherwise rely on regional motorsport enthusiasm.",
     "history": "Chengdu International Motorsport Circuit was developed as part of China's broader investment in motorsport infrastructure during the 2010s and 2020s, reflecting the country's growing enthusiasm for circuit racing and the commercial opportunity of hosting international championships in major inland cities previously underserved by motorsport. The WTCR's use of the circuit brought world-class touring car racing to the Sichuan basin.",
@@ -777,14 +860,30 @@
         "label": "Full circuit (F1 / F1 Academy / MotoGP / WEC / GTWCA / IGTC)",
         "calendarSvgs": [
           "cota-f1.svg"
-        ]
+        ],
+        "length": 5.513,
+        "turns": 20,
+        "lapRecord": {
+          "time": "1:36.169",
+          "driver": "Charles Leclerc",
+          "year": 2019,
+          "series": "F1"
+        }
       },
       {
         "id": "national",
         "label": "NASCAR road course",
         "calendarSvgs": [
           "cota-national.svg"
-        ]
+        ],
+        "length": 3.862,
+        "turns": 17,
+        "lapRecord": {
+          "time": "1:29.216",
+          "driver": "Wyatt Brichacek",
+          "year": 2026,
+          "series": "LMP3"
+        }
       }
     ],
     "bio": "Hermann Tilke's Texas circuit opened in 2012 and quickly earned respect: its blind uphill Turn 1 and technical middle sector offer genuine challenge, rare for a modern purpose-built venue.",
@@ -941,6 +1040,10 @@
       "series": "Supercars"
     },
     "website": "https://www.hiddenvalley.com.au",
+    "fia": {
+      "grade": "3",
+      "pole": "Left"
+    },
     "overview": "The Darwin street circuit brings Supercars racing to the capital of Australia's Northern Territory — a city of 150,000 people on the Timor Sea, closer to Singapore than Sydney. The circuit runs through the streets of Darwin city, creating a compact, fast street racing environment in tropical conditions. The Top End's wet season heat and humidity make Darwin one of the most physically demanding rounds of the Supercars season, with cockpit temperatures amplifying the ambient tropical climate.",
     "history": "Darwin has hosted Supercars events using a street circuit format, bringing top-level Australian touring car racing to the Top End and giving the Northern Territory a motorsport calendar presence that its population size alone would not typically attract. The Darwin event reflects Supercars' strategy of using street circuits to bring racing into city centres across Australia, creating temporary high-profile events in locations that lack permanent circuit infrastructure.",
     "notable_moments": "Supercars racing in the tropical Top End — unique conditions of heat and humidity compared to the southern Australian venues. The Darwin event's role in taking Supercars racing to communities and audiences outside the traditional motorsport states of Victoria, New South Wales, and Queensland.",
@@ -973,14 +1076,31 @@
         "label": "NASCAR Oval",
         "calendarSvgs": [
           "daytona-oval.svg"
-        ]
+        ],
+        "length": 4.023,
+        "turns": 4,
+        "lapRecord": {
+          "time": "0:43.682",
+          "driver": "Erik Jones",
+          "year": 2020,
+          "series": "NASCAR Cup"
+        }
       },
       {
         "id": "road",
         "label": "IMSA Road Course",
         "calendarSvgs": [
           "daytona-road.svg"
-        ]
+        ],
+        "length": 5.729,
+        "turns": 12,
+        "type": "permanent",
+        "lapRecord": {
+          "time": "1:33.724",
+          "driver": "Alex Palou",
+          "year": 2022,
+          "series": "DPi"
+        }
       }
     ],
     "bio": "Since 1959, Daytona's 2.5-mile tri-oval has been the spiritual home of American motorsport — host to both the Daytona 500 and the Rolex 24 in the same calendar year.",
@@ -988,6 +1108,12 @@
     "direction": "counterclockwise",
     "length": 4.023,
     "turns": 4,
+    "lapRecord": {
+      "time": "0:43.682",
+      "driver": "Erik Jones",
+      "year": 2020,
+      "series": "NASCAR Cup"
+    },
     "website": "https://www.daytonainternationalspeedway.com",
     "overview": "Daytona International Speedway is a 2.5-mile high-banked superspeedway in Daytona Beach, Florida, home of the Daytona 500 — the most prestigious race in NASCAR and the season opener for the Cup Series. The 31° banked turns allow cars to race side by side at over 200 mph in drafting packs, producing the most unpredictable and dramatic racing in NASCAR. The circuit also contains an infield road course used by IMSA for the 24 Hours of Daytona — one of the great endurance races — held each January.",
     "history": "Daytona International Speedway opened in February 1959, replacing the original beach-road course that had been used since 1936. The 2.5-mile tri-oval was immediately the biggest track in NASCAR and the Daytona 500 became the sport's marquee event from its first running. The circuit has been developed continuously over the decades, with the Frontstretch suites, the Superstretch infield, and the most recent DAYTONA Rising renovation in 2015-16. The infield road course was reconfigured in 2012 to create the current IMSA layout.",
@@ -1026,6 +1152,10 @@
       "year": 2023
     },
     "website": "https://www.detroitgp.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "The Streets of Detroit circuit is a temporary street circuit in downtown Detroit, Michigan — the spiritual home of American automobile manufacturing. The circuit brings IndyCar racing through the streets of a city whose entire identity is built around the car, creating a symbolically potent event for American open-wheel motorsport. The Chevrolet Detroit Grand Prix is one of IndyCar's flagship events, enhanced by the city's deep automotive heritage and the presence of both American manufacturers who power the series.",
     "history": "Detroit has hosted IndyCar street racing since the 1980s, originally on Belle Isle — an island in the Detroit River. The move to downtown Detroit streets brought the race into the city centre for the first time. The event's location reflects Detroit's complicated civic narrative — a city that defined American industrial power, faced severe economic decline, and has been in a protracted revival process. IndyCar's downtown presence is part of Detroit's broader effort to reinstate itself as a destination for major events.",
     "notable_moments": "Numerous IndyCar Detroit battles from the Belle Isle era. The move to downtown streets creating new racing challenges in the tight urban environment. The symbolism of racing through the world's motor city — Chevrolet and Honda powering cars through streets where Ford, GM, and Chrysler built the American century.",
@@ -1058,14 +1188,38 @@
         "label": "National Circuit",
         "calendarSvgs": [
           "donington.svg"
-        ]
+        ],
+        "length": 3.185,
+        "turns": 10,
+        "lapRecord": {
+          "time": "0:57.221",
+          "driver": "Marijn van Kalmthout",
+          "year": 2011,
+          "series": "BOSS GP"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Right"
+        }
       },
       {
         "id": "gp",
         "label": "GP Circuit",
         "calendarSvgs": [
           "donington-gp.svg"
-        ]
+        ],
+        "length": 4.02,
+        "turns": 12,
+        "lapRecord": {
+          "time": "1:17.707",
+          "driver": "Kimiya Sato",
+          "year": 2013,
+          "series": "Auto GP"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Right"
+        }
       }
     ],
     "bio": "Donington Park hosted the British Grand Prix twice in the 1930s and returned to Formula 1 briefly in 1993. Its two layouts — the short National and the longer GP circuit — serve different series, with BTCC using both across the same season.",
@@ -1074,10 +1228,10 @@
     "length": 4.02,
     "turns": 12,
     "lapRecord": {
-      "time": "0:55.859",
-      "driver": "Scott Mansell",
-      "series": "EuroBOSS",
-      "year": 2004
+      "time": "1:17.707",
+      "driver": "Kimiya Sato",
+      "year": 2013,
+      "series": "Auto GP"
     },
     "website": "https://www.donington-park.co.uk",
     "overview": "Donington Park is a 4.023 km circuit in Leicestershire, England, with a history stretching back to 1931. Today it hosts WorldSBK and BTCC rounds as its primary international events, but its reputation rests on one extraordinary lap — Ayrton Senna's opening lap at the 1993 European Grand Prix, where he moved from fifth to first in the rain across a single lap, widely considered the greatest single lap in Formula 1 history.",
@@ -1185,6 +1339,10 @@
       "year": 2007
     },
     "website": "https://www.fujispeedway.jp",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Fuji Speedway is a 4.563 km circuit at the base of Mount Fuji in Shizuoka Prefecture, Japan. The view from the main grandstand — Mount Fuji rising above the back straight on a clear day — is one of the most iconic visual tableaux in world motorsport. The circuit is defined by its extraordinarily long home straight (1.475 km) and a sequence of challenging corners through the Panasonic Hairpin, 100R, TGR Corners, and Dunlop Corner. Owned by Toyota, it hosts WEC and Super GT rounds.",
     "history": "Fuji Speedway opened in 1965 and hosted the Japanese Formula 1 Grand Prix in 1976 and 1977 — the first F1 races in Japan. The 1976 race is the most famous: the rain-soaked finale of Niki Lauda and James Hunt's championship battle, where Lauda withdrew after two laps citing dangerous conditions and Hunt finished third to win the title by a single point. The circuit closed and was rebuilt by Toyota, reopening in 2005. F1 returned in 2007 and 2008, before Japan's F1 round returned exclusively to Suzuka. Fuji remains one of Japan's most important racing venues through WEC and Super GT.",
     "notable_moments": "The 1976 Japanese Grand Prix — rain, Lauda's withdrawal, Hunt's title. The 2007 and 2008 F1 Japanese GPs under Toyota ownership. WEC's 6 Hours of Fuji as one of the championship's most scenically dramatic events. Super GT rounds with Mount Fuji as the backdrop — motorsport photography's most reliable beautiful image.",
@@ -1290,6 +1448,10 @@
       "series": "Supercars"
     },
     "website": "https://www.supercars.com/events/2026-gold-coast/community",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "The Gold Coast Street Circuit runs through the streets of Surfers Paradise in Queensland's Gold Coast, with the beachfront towers of Australia's most famous resort strip forming the backdrop. One of Australia's most iconic street circuits, it hosted the IndyCar and Champ Car Gold Coast Indy from 1991 to 2008, bringing American open-wheel racing to the Queensland beachfront, before transitioning to Supercars. The combination of beach culture, high-rise skyline, and racing cars makes the Gold Coast event one of Supercars' most photographed and attended rounds.",
     "history": "The Gold Coast circuit debuted with the IndyCar Gold Coast Indy in 1991, a race that ran for nearly two decades and attracted the biggest names in American open-wheel racing to Surfers Paradise. The format — racing through a beach resort city with crowds watching from hotels and public grandstands — was immediately successful. When IndyCar's Gold Coast presence ended in 2008, Supercars inherited the venue and the Gold Coast 600 became a marquee event on the Australian touring car calendar. The circuit's tight, barrier-lined streets suit the aggressive Supercars format.",
     "notable_moments": "Two decades of IndyCar Gold Coast Indy racing. Scott Dixon's victories on the Gold Coast. The transition to Supercars and the Gold Coast 600 format. The enduring appeal of racing through Surfers Paradise — one of the few circuits in the world where spectators watch from hotel balconies overlooking the racing action.",
@@ -1327,6 +1489,10 @@
       "year": 2004
     },
     "website": "https://www.hockenheimring.de",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Hockenheimring is a 4.574 km circuit near Heidelberg in Baden-Württemberg, Germany. The circuit the world sees today is a fundamentally different venue from the one that made Hockenheim famous — the original 6.8 km layout that cut through the Motodrom forest with two terrifying flat-out blasts through the trees was replaced in 2002 by a shorter Hermann Tilke-designed circuit entirely within the stadium section. Today Hockenheim is the primary home of the DTM, where its stadium-style Motodrom amphitheatre creates excellent race-day atmosphere.",
     "history": "The original Hockenheimring was built in 1932 as a test track through the Motodrom forest. Its character was defined by two long high-speed sections through the trees — where F1 cars reached over 370 km/h — before and after the stadium section. Jim Clark died testing at Hockenheim in April 1968. The circuit hosted the German Grand Prix alternating with the Nürburgring for decades. The 2002 rebuild, forced by safety requirements and land access issues, removed the forest sections entirely and created a more compact modern circuit. F1 last visited in 2019.",
     "notable_moments": "Jim Clark's fatal testing accident in 1968, which accelerated safety standard reviews across motorsport. Keke Rosberg's remarkable victory for Williams in the wet 1984 German GP. The 2008 German GP, where controversy surrounded Ferrari's team orders and Felipe Massa's frustrated second place. The old circuit's extraordinary atmosphere as cars disappeared into the Motodrom forest at over 350 km/h.",
@@ -1395,6 +1561,10 @@
       "year": 2020
     },
     "website": "https://www.hungaroring.hu",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Hungaroring is a 4.381 km circuit 20km northeast of Budapest, Hungary. Built in 1986 as the first Formula 1 race behind the Iron Curtain, it is one of the slowest circuits on the F1 calendar — a twisty, technical layout with limited overtaking opportunities but consistently strategic and dramatic racing. High summer temperatures degrade tyres rapidly, and the abrasive surface rewards mechanical grip over aerodynamic downforce. Pit strategy often decides the race here more than raw speed.",
     "history": "The Hungaroring was constructed in just eight months after Hungary agreed to host a Grand Prix. The 1986 Hungarian GP attracted 200,000 spectators, many from across Eastern Europe seeing top-level motorsport for the first time. The circuit has changed relatively little from its original layout, with minor revisions to Turn 1 and the middle sector in 2003 to open up overtaking possibilities. It remains one of the most consistent venues on the calendar from a layout perspective — the same fundamental challenge since 1986.",
     "notable_moments": "Nelson Piquet's extraordinary overtake on Ayrton Senna during the 1986 race — the first Hungarian GP. Damon Hill winning from fifth in 1997. Jenson Button's miraculous 2006 victory from 14th on the grid — arguably the drive of his career. Lewis Hamilton's record-extending victories here. The 2021 Hungarian GP, where a first-lap pile-up took out multiple championship contenders and reshuffled the entire title fight.",
@@ -1432,6 +1602,10 @@
       "year": 2020
     },
     "website": "https://www.autodromoimola.it",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Autodromo Enzo e Dino Ferrari in Imola carries the darkest moment in modern Formula 1 history. On the first lap of the 1994 San Marino Grand Prix, Ayrton Senna died at Tamburello — a year after Roland Ratzenberger had also been killed during the same weekend. The circuit was fundamentally transformed in the aftermath, and today the Tamburello chicane stands where the flat-out left-hander once swept at 300 km/h. At 4.909 km, Imola is a driver's circuit in the traditional sense: narrow, quick, with barriers close and limited run-off that punishes mistakes without forgiveness.",
     "history": "Imola opened in 1953 and hosted Formula 1 under multiple identities — the Italian GP (1980), the San Marino GP (1981-2006), and the Emilia-Romagna GP (2020-2024) following a COVID-era revival. The circuit sits in the Santerno river valley, surrounded by trees, and retains a character from an older era of circuit design. The 1994 modifications — Tamburello chicane, revised Villeneuve corner, safety barriers throughout — changed the circuit's fundamental character. F1's long absence after 2006 ended with its return in 2020, bringing new generations of fans to a circuit previously only known to them through history books.",
     "notable_moments": "The 1994 San Marino Grand Prix weekend — Roland Ratzenberger's death in qualifying, Ayrton Senna's death on lap 7. Michael Schumacher and Damon Hill's tense 1994 season-long title battle, defined partly by what happened here. The dramatic 2021 Emilia-Romagna GP with multiple red flags and rain. The 2022 cancellation due to catastrophic flooding in Emilia-Romagna.",
@@ -1464,14 +1638,35 @@
         "label": "Road Course",
         "calendarSvgs": [
           "indianapolis.svg"
-        ]
+        ],
+        "length": 3.91,
+        "turns": 14,
+        "type": "permanent",
+        "lapRecord": {
+          "time": "1:09.389",
+          "driver": "Josef Newgarden",
+          "year": 2017,
+          "series": "IndyCar"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Right"
+        }
       },
       {
         "id": "oval",
         "label": "Oval (Indy 500)",
         "calendarSvgs": [
           "indianapolis-oval.svg"
-        ]
+        ],
+        "length": 4.023,
+        "turns": 4,
+        "lapRecord": {
+          "time": "0:38.119",
+          "driver": "Eddie Cheever",
+          "year": 1996,
+          "series": "IndyCar"
+        }
       }
     ],
     "bio": "Opened in 1909 and paved with bricks, the Brickyard has hosted the Indianapolis 500 every year since 1911 except the two World Wars. The most storied oval in the world.",
@@ -1479,6 +1674,12 @@
     "direction": "counterclockwise",
     "length": 4.023,
     "turns": 4,
+    "lapRecord": {
+      "time": "0:38.119",
+      "driver": "Eddie Cheever",
+      "year": 1996,
+      "series": "IndyCar"
+    },
     "website": "https://www.indianapolismotorspeedway.com",
     "overview": "Indianapolis Motor Speedway is the most significant motorsport venue in the United States and arguably in the world. The 2.5-mile rectangular oval — The Brickyard, named for the original brick paving that still lines the start-finish straight — has hosted the Indianapolis 500 since 1911. The Indy 500 is the largest single-day sporting event in the world. The IMS also contains a 4.192 km road course, opened in 2000, that hosts IndyCar, NASCAR, and the Formula 1 United States Grand Prix (2000-2007).",
     "history": "Indianapolis Motor Speedway opened in 1909 and hosted its first 500-mile race in 1911, won by Ray Harroun in the Marmon Wasp. The Indy 500 has been run every year since except during the two World Wars. The circuit was purchased by Tony Hulman in 1945, saving it from post-war decay. Roger Penske purchased IMS in 2020. F1 used the IMS road course from 2000 to 2007, with the infamous 2005 US Grand Prix where tyre concerns caused fourteen cars to withdraw after the formation lap, leaving just six cars to race. The track's original brick paving in the pit lane and start-finish line remains as an historical reference.",
@@ -1510,6 +1711,10 @@
     "direction": "clockwise",
     "length": 3.908,
     "turns": 20,
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Inje Speedium is a 3.908 km permanent circuit in the mountainous Gangwon Province of South Korea, near the town of Inje in the Sorak highlands. Set in a river valley surrounded by the peaks of the Taebaek Mountains, it is the most scenically dramatic of South Korea's motorsport facilities. The circuit is used for Korean national championships and regional Asian motorsport events, providing a challenging technical layout that takes advantage of its mountain terrain.",
     "history": "Inje Speedium was built to bring permanent motorsport infrastructure to the mountainous eastern part of South Korea, a region better known for ski resorts and national parks than motorsport. The circuit developed as Korea's motorsport scene expanded in the 2000s and 2010s, supported by Korea's major automotive manufacturers — Hyundai and Kia — investing in domestic racing culture. The highland setting provides challenging conditions with variable weather throughout the racing season.",
     "notable_moments": "Korean national championship rounds in the mountain setting. The circuit's role in developing South Korean driver talent in a country with a growing motorsport culture supported by major domestic automotive industry investment.",
@@ -1545,6 +1750,10 @@
       "driver": "Valtteri Bottas",
       "series": "F1",
       "year": 2018
+    },
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
     },
     "overview": "Autodromo José Carlos Pace — universally known as Interlagos — is a 4.309 km permanent circuit in the southern suburbs of São Paulo, Brazil. Named after the Brazilian F1 driver who died in a plane crash in 1977, it has hosted the Brazilian Grand Prix almost continuously since 1972 and is one of the most emotionally charged circuits in Formula 1. Anti-clockwise, bumpy, narrow, with a long main straight and a complex final sector, Interlagos rewards car setup and driver aggression simultaneously. The São Paulo crowd is among the most passionate in motorsport.",
     "history": "The Interlagos circuit was built in 1940 in what was then farmland between two artificial lakes (hence the name — \"between lakes\") on the southern edge of São Paulo. It hosted the Brazilian GP from 1973 to 1980, lost the race to the Jacarepaguá circuit in Rio, then regained it permanently in 1990. The circuit was shortened and revised in 1990 — the original 7.873 km layout was replaced with the current 4.309 km version. WEC and Formula E have also used the circuit in recent years, giving Interlagos a permanent endurance and electric racing presence alongside F1.",
@@ -1651,6 +1860,10 @@
       "year": 2021
     },
     "website": "https://jeddahcircuit.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "Jeddah Corniche Circuit is a 6.174 km temporary street circuit along the Red Sea waterfront in Jeddah, Saudi Arabia. It is the fastest street circuit in Formula 1 — average qualifying speeds exceed 250 km/h — and one of the longest circuits on the calendar. High walls, zero run-off, and corners taken at extraordinary speed make it one of the most demanding and incident-prone venues F1 visits. The Red Sea and the Corniche waterfront provide a dramatic backdrop for a circuit that has produced some of F1's most chaotic recent races.",
     "history": "The Jeddah street circuit was introduced in 2021 as part of Saudi Arabia's Vision 2030 programme, which uses international sport — F1, LIV Golf, boxing, football — as a platform for economic diversification and global profile-raising. The circuit debuted at the 2021 Saudi Arabian Grand Prix, the penultimate round of the most dramatic season in modern F1. It was built in just nine months along the Corniche seafront. Formula E has also used Jeddah for an ePrix. The circuit has faced criticism in relation to Saudi Arabia's human rights record, a debate that has followed the Saudi GP since its introduction.",
     "notable_moments": "The 2021 Saudi Arabian GP — red flags, controversial incidents between Max Verstappen and Lewis Hamilton, a safety car restart, and a result that kept the championship fight alive to Abu Dhabi. Missile strikes on a nearby oil facility visible from the circuit during the 2022 race weekend, which led to emergency driver meetings about whether to continue. Sergio Perez's dominant 2023 Saudi Arabian GP victory for Red Bull.",
@@ -1688,6 +1901,10 @@
       "year": 2026
     },
     "website": "https://www.circuitodejerez.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "The Circuito de Jerez is a 4.423 km circuit in the sherry-producing region of Andalusia, southern Spain. It functions as the primary winter testing venue for MotoGP — the Spanish pre-season tests define the narrative of each new year. As a racing circuit it hosts both MotoGP and WorldSBK rounds, with warm consistent Andalusian weather and a smooth grippy surface that suits aggressive riding. Spain's deep passion for MotoGP fills the grandstands with energy, particularly when a Spanish rider is in the fight.",
     "history": "Jerez opened in 1986 and quickly established itself as a significant Spanish motorsport venue. It hosted the Spanish Formula 1 Grand Prix in 1986 and 1987, then again from 1994 to 1997. Its most famous F1 moment came in 1997 — the European Grand Prix where Michael Schumacher deliberately swerved into championship rival Jacques Villeneuve, was disqualified from the season standings, and Villeneuve won both the race and the title. Since then Jerez has been exclusively a two-wheel venue, with MotoGP visiting since 1987 and WorldSBK regularly using it as a mid-season round.",
     "notable_moments": "The 1997 European Grand Prix — Michael Schumacher's collision with Jacques Villeneuve, his disqualification from the championship, Villeneuve's title. Marc Marquez and Valentino Rossi's fierce MotoGP battles at the circuit. The annual pre-season MotoGP test that launches every new season and sets the media agenda for the months ahead. Jorge Lorenzo's multiple dominant victories here in front of his Spanish supporters.",
@@ -1750,6 +1967,10 @@
     "length": 2.04,
     "turns": 8,
     "website": "https://www.knockhill.com",
+    "fia": {
+      "grade": "4",
+      "pole": "Right"
+    },
     "overview": "Knockhill Racing Circuit is a 1.939 km permanent circuit in the Fife hills of Scotland, 5km north of Dunfermline. Scotland's only motorsport venue at international level, it hosts BTCC and British Superbike Championship rounds as the calendar's most northerly stop. The circuit's undulating layout — following the natural contours of the Fife hillside — makes it one of the most technically unusual and visually distinctive venues in British motorsport.",
     "history": "Knockhill opened in 1974 on agricultural land in the Saline Hills. It has hosted British national championships continuously, becoming an established fixture on the BTCC and BSB calendars. The circuit's limited size — a consequence of its hillside geography — means it is genuinely different from the airfield-derived or purpose-built facilities that make up most of the British calendar. The Scottish fanbase, drawn from the central belt and beyond, makes Knockhill race weekends particularly well-attended relative to the circuit's size.",
     "notable_moments": "BTCC rounds producing close racing on the demanding hillside layout. Scottish drivers receiving particularly intense home support. The circuit's distinctive character — genuine hills, no flat sections, tight constraints — producing unusual race outcomes compared to more forgiving venues.",
@@ -1787,6 +2008,10 @@
       "year": 2023
     },
     "website": "https://weathertechraceway.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "WeatherTech Raceway Laguna Seca is a 3.602 km permanent road course in the Salinas Valley hills above Monterey, California. It contains The Corkscrew — Turn 8A/8B — one of the most famous and visually distinctive corners in motorsport: a left-right chicane taken blind over a massive crest, dropping 5.6 metres in elevation across a single corner. The circuit is compact, technical, and utterly distinctive. Laguna Seca hosts IndyCar's Firestone Grand Prix of Monterey and IMSA events, and WorldSBK has used the circuit occasionally.",
     "history": "Laguna Seca opened in 1957 and hosted Can-Am, CART, and major American sports car racing events across its history. The Corkscrew became famous worldwide through its uniqueness and the drama it has generated — a corner where the run-off is essentially non-existent and an error means leaving the circuit entirely. The circuit is located on public county land and has faced closure threats at various points due to noise complaints from the nearby Monterey area — the ongoing commercial and community tension is a defining feature of the circuit's modern operation.",
     "notable_moments": "The 1996 CART race where Alex Zanardi famously stuck his nose into The Corkscrew at the last moment to pass Bryan Herta for the lead — one of the greatest overtaking moves in American motorsport history. Valentino Rossi's wins at Laguna Seca during the MotoGP era when the circuit hosted the US Grand Prix. Multiple IMSA and IndyCar battles through The Corkscrew that have become defining images of American road racing.",
@@ -1849,6 +2074,10 @@
     "turns": 17,
     "website": "https://www.f1lasvegasgp.com",
     "browserSvg": "las-vegas-strip.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "The Las Vegas Grand Prix Circuit is a 6.201 km street circuit running down and around the Las Vegas Strip — the most famous stretch of hotel and casino architecture in the world. Debuting in November 2023, it is the longest street circuit in current F1 use. The circuit passes Caesar's Palace, the Bellagio fountains, MSG Sphere, and numerous landmark resorts, with the main straight running the length of the Strip where F1 cars reach over 340 km/h. The night race format — racing begins at 10pm local time to benefit European morning television — positions Vegas as an entertainment event as much as a sporting one.",
     "history": "Las Vegas returned to the F1 calendar for the first time since the 1982 Caesars Palace Grand Prix — itself a brief and largely unsuccessful experiment. The 2023 revival was a Formula One Management promotion rather than a third-party promoted event, reflecting F1's direct commercial investment in the American market. The infrastructure investment was extraordinary: building a 55,000-seat main grandstand, paving or re-paving significant sections of the Strip, and installing the temporary circuit took months of preparation.",
     "notable_moments": "The inaugural 2023 Las Vegas Grand Prix, preceded by a drain cover incident in the first practice session that damaged multiple cars and caused session cancellation. Max Verstappen's 2023 victory. The extraordinary visual of F1 cars racing past lit casino façades at midnight. The circuit's status as one of F1's most commercially significant events in the American market expansion.",
@@ -1880,6 +2109,10 @@
     "length": 4.341,
     "turns": 14,
     "website": "https://www.eurospeedway.de",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "EuroSpeedway Lausitz — the Lausitzring — is a motorsport complex in Brandenburg, eastern Germany, featuring both an oval (2.222 km) and a road course (4.971 km). Built on former lignite mining land in the Lusatian coal district, it opened in 2000 with ambitions to be one of Europe's premier motorsport facilities. Today it hosts DTM rounds on its road course as a regular fixture of the German touring car calendar.",
     "history": "EuroSpeedway Lausitz was built as part of a post-reunification investment in the formerly industrial eastern German Lausitz region. The facility opened in 2000 with both oval and road course capabilities, designed to attract American oval racing as well as European circuit events. CART visited in 2001, a weekend marred by Alex Zanardi's catastrophic crash on the oval that cost him both legs. The circuit has since focused on DTM and national events. The oval section is rarely used today.",
     "notable_moments": "Alex Zanardi's 2001 CART accident at the oval — the crash from which he recovered to become a Paralympic cycling champion. The circuit's ambitious opening era that brought both European and American racing to eastern Germany. DTM rounds producing competitive touring car action at a circuit that rewards both mechanical grip and straightline speed.",
@@ -1954,6 +2187,10 @@
       "year": 2015
     },
     "website": "https://www.lemans.org",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "The Circuit Bugatti is the 4.185 km permanent circuit at the Le Mans complex, used year-round for racing events separate from the famous 24 Hours. Named after Ettore Bugatti — who proposed a circuit at the site in the 1960s — it incorporates portions of the 24 Hours course (the pit straight and Dunlop sections) with a separate infield loop, making it a genuine permanent circuit in its own right. MotoGP's French Grand Prix has been held here since 2000.",
     "history": "The Circuit Bugatti was developed alongside the 24 Hours infrastructure as a way to use the Le Mans site commercially throughout the year rather than solely for one June weekend. It shares the pit complex and main straight with the 24 Hours circuit, giving MotoGP and other series access to the iconic Le Mans facilities. The MotoGP French GP's move from Paul Ricard to Le Mans brought one of the most atmospheric motorcycle events to a circuit location with unrivalled motorsport heritage. The circuit also hosts the Le Mans 24H motorcycle race for the FIM Endurance World Championship.",
     "notable_moments": "Valentino Rossi's multiple victories at the French MotoGP. Marc Marquez's emotional 2013 win in his debut MotoGP season. The annual FIM EWC 24 Hours Motos at the Bugatti circuit — a full 24-hour motorcycle endurance race. The atmosphere of racing at Le Mans, even on the shorter circuit, with the 24 Hours heritage surrounding every event.",
@@ -1991,6 +2228,10 @@
     },
     "website": "https://www.excel.london",
     "browserSvg": "london.svg",
+    "fia": {
+      "grade": "FE",
+      "pole": "Right"
+    },
     "overview": "The London ExCeL ePrix Circuit is a unique hybrid indoor/outdoor racing circuit at the ExCeL exhibition centre in the Royal Docks of east London. The Formula E layout passes through the interior of the exhibition hall — running through the building under artificial lighting — before emerging onto the outdoor dockside sections along the Royal Victoria Dock. There is no other motorsport venue in the world where racing cars run indoors as part of a world championship event.",
     "history": "Formula E introduced the London ePrix in 2015, using a temporary street circuit around the ExCeL. The indoor section was added in subsequent years, creating the unique hybrid layout. The venue reflects Formula E's strategy of bringing electric racing into urban environments and repurposed industrial spaces — the Royal Docks, once the world's largest enclosed dock system and a hub of the British Empire's trade, now hosting cutting-edge electric motorsport. The event has moved between layouts over the years as Formula E refined the London venue concept.",
     "notable_moments": "Formula E's first London ePrix in 2015 establishing electric racing in the British capital. The unique experience of racing cars entering a darkened exhibition centre — a visual unlike anything else in motorsport. London ePrix title deciders in the Formula E championship's compact, points-intensive format.",
@@ -2028,6 +2269,10 @@
       "year": 2024
     },
     "website": "https://gplb.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "The Streets of Long Beach is a 3.167 km temporary street circuit through the waterfront of Long Beach, California, home of the Acura Grand Prix of Long Beach. One of the most prestigious events in American motorsport and one of North America's great street circuits, it has hosted major racing since 1975 — first F1 (1976-1983), then CART IndyCar, and the modern IndyCar series. The circuit passes through the convention centre, the waterfront hotels, and the dock area of a city built on the Port of Los Angeles's backyard.",
     "history": "Long Beach hosted Formula 1 from 1976 to 1983 as the United States Grand Prix West, a west-coast counterpart to the Watkins Glen US GP. Clay Regazzoni won the first F1 race here in 1976; Gilles Villeneuve and Alan Jones won during the race's short F1 history. After F1 departed, CART IndyCar took over and Long Beach became one of the premier events on the American open-wheel calendar. The tradition has continued unbroken — Long Beach is now one of the oldest continuously running motorsport events in the United States.",
     "notable_moments": "The 1976 inaugural F1 Long Beach GP won by Clay Regazzoni. Gilles Villeneuve's Long Beach victory. The CART IndyCar dominance eras — Al Unser Jr., Michael Andretti, Paul Tracy. Will Power's multiple IndyCar Long Beach wins. The event's extraordinary longevity as a defining American motorsport institution.",
@@ -2065,6 +2310,10 @@
       "year": 2024
     },
     "website": "https://www.lcsc.qa",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Lusail International Circuit is a 5.380 km permanent circuit in Lusail, north of Doha. Qatar's flagship motorsport venue, it hosted MotoGP from 2004 — as the championship's traditional opening night race — long before F1's arrival. Formula 1 debuted at Lusail in 2021 and has returned as a regular fixture from 2023. The circuit's long sweeping corners, smooth surface, and warm dry climate produce high-speed racing with significant tyre management demands.",
     "history": "Lusail was built in 2004 and immediately hosted the Qatar MotoGP — a night race that became the season-opening round for many years, its lit track visible against the Qatari desert a defining image of MotoGP's global calendar. Formula 1's arrival came later: a one-off 2021 race as F1 expanded its Middle Eastern calendar, followed by a long-term Qatar Grand Prix deal from 2023. The circuit sits within the Lusail development north of Doha — the same area as the Lusail Iconic Stadium that hosted the 2022 FIFA World Cup Final.",
     "notable_moments": "MotoGP's Qatar night race as a long-running season-opening tradition — riders' first competitive action under floodlights in the desert. The 2021 Qatar F1 Grand Prix debut, won by Lewis Hamilton. The 2023 Qatar GP sprint format race and Qatar's return as an F1 season fixture. Valentino Rossi's Qatar victories. The tyre failures that affected multiple cars in the 2023 Qatar F1 race, prompting post-race safety investigations.",
@@ -2139,6 +2388,10 @@
       "year": 1979
     },
     "website": "https://www.jarama.org",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Circuit del Jarama is a 3.812 km permanent circuit 28km north of Madrid, set in the Sierra de Guadarrama foothills. A former Formula 1 venue — hosting the Spanish Grand Prix in 1968, 1970, 1972, 1974, 1976, 1978, and 1981 — it is no longer used for top-level international events but continues as a test and national motorsport venue. Its 1970s heyday coincided with the most dramatic period of Formula 1, and the circuit carries that history in its narrow, technical layout.",
     "history": "Jarama opened in 1967 and immediately entered the F1 calendar, hosting a series of Spanish GPs through the 1970s. The circuit is technical and tight — built into the scrubland hills north of Madrid with limited run-off by modern standards. It hosted Gilles Villeneuve's legendary 1981 Spanish GP win, where Villeneuve drove a slower Ferrari for an entire race but defended against four faster cars to win by less than a second — widely regarded as one of the greatest defensive drives in F1 history. Jarama was replaced on the F1 calendar by the new Circuit de Catalunya in 1991.",
     "notable_moments": "Gilles Villeneuve's 1981 Spanish GP victory — defending against a train of faster cars for lap after lap in one of F1's most celebrated drives. The circuit's 1970s grands prix featuring the era's most iconic drivers. James Hunt's 1976 Spanish GP result and subsequent disqualification controversy.",
@@ -2207,6 +2460,10 @@
     },
     "website": "https://www.circuitmagnycours.com",
     "browserSvg": "magny-cours.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "The Circuit de Nevers Magny-Cours is a 4.411 km circuit in Burgundy, central France, developed from a minor national circuit into an F1 venue through a 1980s government investment programme. Remote by European motorsport standards — far from any major city — it hosted the French Grand Prix from 1991 to 2008 before F1's departure. Today it hosts WEC and ELMS rounds, and retains a faithful following in French motorsport despite its geography.",
     "history": "Magny-Cours was upgraded to F1 standard as part of a regional employment initiative under President François Mitterrand in the late 1980s. It hosted the French GP from 1991 to 2008. The circuit was controversial within F1 — remote, difficult to access, lacking the infrastructure of more urban venues — and its loss of the French GP reflected these pressures. Since then the circuit has focused on WEC, ELMS, and national championship rounds, maintaining its facilities without major further investment.",
     "notable_moments": "Michael Schumacher's multiple victories during his Ferrari dominance years. The 2008 French Grand Prix — the last F1 race at the circuit. The Adelaide hairpin, one of the most satisfying long right-handers in European motorsport. The circuit's quiet, almost private atmosphere compared to the spectacle of larger venues.",
@@ -2243,6 +2500,10 @@
       "year": 2024
     },
     "browserSvg": "mandalika.svg",
+    "fia": {
+      "grade": "3",
+      "pole": "Left"
+    },
     "overview": "Pertamina Mandalika Street Circuit is a 4.319 km permanent street circuit on the southern coast of Lombok island, Indonesia. Built within the Mandalika tourism development zone — a government-backed resort project on Lombok's white-sand coast — it hosts MotoGP and WorldSBK rounds in a tropical island setting unprecedented in world motorsport. The circuit runs through the Mandalika resort development with the Indian Ocean visible from parts of the track, combining infrastructure-grade racing facilities with a holiday island landscape.",
     "history": "Mandalika was built as part of Indonesia's ambition to develop Lombok as a premium tourism destination while simultaneously returning Indonesia to the world motorsport calendar. The circuit was fast-tracked for construction and first hosted a WorldSBK round in 2021 and MotoGP in 2022. The surface quality in the first seasons was problematic — a rubber compound used in the track surface degraded rapidly, creating grip inconsistencies — but these issues were progressively addressed. The Pertamina sponsorship naming reflects Indonesia's state oil company's investment in the sport.",
     "notable_moments": "MotoGP's return to Indonesia after over two decades — the country's last premier class motorcycle race had been held at Sentul in 1997. WorldSBK's inaugural Mandalika round in 2021. The circuit's extraordinary setting on a tropical island making it the most visually distinctive venue on either the MotoGP or WorldSBK calendar.",
@@ -2341,14 +2602,38 @@
         "label": "F1 – Full Circuit",
         "calendarSvgs": [
           "mexico.svg"
-        ]
+        ],
+        "length": 4.304,
+        "turns": 17,
+        "lapRecord": {
+          "time": "1:17.774",
+          "driver": "Valtteri Bottas",
+          "year": 2021,
+          "series": "F1"
+        },
+        "fia": {
+          "grade": "1",
+          "pole": "Left"
+        }
       },
       {
         "id": "fe",
         "label": "Formula E – Foro Sol",
         "calendarSvgs": [
           "mexico-fe.svg"
-        ]
+        ],
+        "length": 2.63,
+        "turns": 19,
+        "lapRecord": {
+          "time": "1:12.547",
+          "driver": "Sébastien Buemi",
+          "year": 2025,
+          "series": "Formula E"
+        },
+        "fia": {
+          "grade": "FE",
+          "pole": "Left"
+        }
       }
     ],
     "bio": "The Autodromo Hermanos Rodriguez sits 2,250 metres above sea level in Mexico City, making it the highest circuit on any World Championship calendar. The legendary Peraltada banked final corner and the Foro Sol stadium section are its defining features.",
@@ -2395,14 +2680,37 @@
         "label": "F1 / F1 Academy",
         "calendarSvgs": [
           "miami.svg"
-        ]
+        ],
+        "length": 5.412,
+        "turns": 19,
+        "lapRecord": {
+          "time": "1:29.708",
+          "driver": "Max Verstappen",
+          "year": 2023,
+          "series": "F1"
+        },
+        "fia": {
+          "grade": "1",
+          "pole": "Left"
+        }
       },
       {
         "id": "fe",
         "label": "Formula E",
         "calendarSvgs": [
           "miami-fe.svg"
-        ]
+        ],
+        "length": 2.323,
+        "turns": null,
+        "lapRecord": {
+          "time": "1:02.316",
+          "driver": "Oliver Rowland",
+          "year": 2026,
+          "series": "Formula E"
+        },
+        "fia": {
+          "grade": "FE"
+        }
       }
     ],
     "bio": "The Hard Rock Stadium circuit debuted in 2022 and encircles the NFL venue in Miami Gardens. An artificial marina, long straights, and an enclosed stadium section give it a very American spectacle feel distinct from traditional F1 venues.",
@@ -2485,6 +2793,10 @@
     },
     "website": "https://midohio.com",
     "browserSvg": "midohio.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Mid-Ohio Sports Car Course is a 3.746 km permanent road course in the rolling farmland of north-central Ohio, near Lexington. One of America's classic road courses, Mid-Ohio has a technical, flowing character that rewards smooth, precise driving — the Carousel and the Keyhole are demanding corners that differentiate the skilled from the simply fast. IndyCar's Honda Indy 200 at Mid-Ohio is a regular season fixture, and IMSA also uses the circuit.",
     "history": "Mid-Ohio opened in 1962 and immediately attracted major road racing events. The circuit has been continuously used for over six decades, hosting Can-Am, Trans-Am, CART IndyCar, and the modern IndyCar series. Its proximity to Ohio's population centres and the region's strong motorsport culture have kept it on major American racing calendars. The circuit has changed relatively little from its original concept — a flowing, demanding road course in agricultural Ohio.",
     "notable_moments": "John Andretti's IndyCar victories at Mid-Ohio. Consecutive IndyCar championships decided or shaped by Mid-Ohio results. The Honda relationship with the circuit — Honda's IndyCar engine partner maintains deep connections with an Ohio venue that serves as a showcase.",
@@ -2547,14 +2859,33 @@
         "label": "MotoGP Layout",
         "calendarSvgs": [
           "misano.svg"
-        ]
+        ],
+        "length": 4.226,
+        "turns": 16,
+        "lapRecord": {
+          "time": "1:30.877",
+          "driver": "Francesco Bagnaia",
+          "year": 2024,
+          "series": "MotoGP"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Left"
+        }
       },
       {
         "id": "wsbk",
         "label": "WSBK Layout",
         "calendarSvgs": [
           "misano-wsbk.svg"
-        ]
+        ],
+        "length": 4.226,
+        "turns": 16,
+        "lapRecord": null,
+        "fia": {
+          "grade": "2",
+          "pole": "Left"
+        }
       }
     ],
     "bio": "The Marco Simoncelli World Circuit on the Adriatic Riviera runs clockwise — unusual in MotoGP. It hosts both MotoGP's San Marino round and WSBK, and carries the name of the Italian rider lost there in 2011.",
@@ -2607,6 +2938,10 @@
     },
     "website": "https://www.acm.mc",
     "browserSvg": "monaco.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "The Circuit de Monaco is 3.337 km of public streets through the principality, winding through tunnels, hairpins, and barriers with zero margin for error. It is the slowest circuit on the Formula 1 calendar by average speed, the most prestigious race in the world by reputation, and — by driver consensus — the most technically demanding single lap in motorsport. The barriers are everywhere. A moment's error eliminates you. Nothing tests car control and concentration like Monaco.",
     "history": "Monaco has hosted a Grand Prix since 1929. The route through the principality — the harbour tunnel, the Mirabeau hairpin, the Rascasse, the swimming pool — has remained fundamentally unchanged since the post-war era. F1 first visited in 1950 and Monaco has been a permanent fixture since 1955. The circuit is rebuilt each year on public roads, which are otherwise used by normal traffic the rest of the year. The aquatic centre beneath the harbour section was built in the 1980s, raising the pool section above the water level.",
     "notable_moments": "Ayrton Senna's six Monaco victories — a record that became the measure of greatness. His 1984 race leading in the rain before the red flag ended it with him far ahead. The 1996 race where only three cars finished. Sergio Perez's controversial last-lap overtake on Charles Leclerc in 2022. The timeless image of Nelson Piquet's shunt at the Loews hairpin. Every year, watching millionaire yachts bob in the harbour while drivers millimetres from the armco.",
@@ -2644,6 +2979,10 @@
     },
     "website": "https://www.autodromo.monza.it",
     "browserSvg": "monza.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Monza is the fastest circuit on the Formula 1 calendar and the oldest purpose-built racing circuit still in active use at the top level of the sport. Its 5.793 km layout — long straights, tight chicanes, virtually no medium-speed corners — produces the highest average speeds in F1 and consistently the lowest lap times of the season. Set within the Royal Park of Monza north of Milan, the circuit is surrounded by trees and the ruins of its original concrete banking, which was used until 1969 and still stands today. The Italian crowd — the Tifosi — are among the most passionate in motorsport.",
     "history": "Monza opened in 1922, just 110 days after construction began, making it one of the fastest circuit builds in history. The original layout included a road course and a banked oval; combined layouts using both sections were used until 1969, when the banking was deemed too dangerous after accidents. The modern Grand Prix circuit is road-course only, with chicanes inserted at Variante del Rettifilo, Variante della Roggia, and Variante Ascari following fatal accidents in the 1960s and 1970s. Monza has hosted the Italian Grand Prix every year except 1980 (held at Imola that year) — making it the most consistently used venue in F1 history.",
     "notable_moments": "The 1971 Italian Grand Prix — a five-car slipstream fight to the line, decided by 0.01 seconds as Peter Gethin won from Ronnie Peterson. The 2020 Italian GP, won by Pierre Gasly for AlphaTauri after Lewis Hamilton received a pitlane penalty — one of F1's most unexpected results of the modern era. The annual ritual of the Tifosi storming the track after the race. Sebastian Vettel's multiple victories here driving for Ferrari.",
@@ -2681,6 +3020,10 @@
     },
     "website": "https://www.circuitgillesvilleneuve.ca",
     "browserSvg": "montreal.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Circuit Gilles Villeneuve is a 4.361 km semi-permanent street circuit on the Île Notre-Dame in the Saint Lawrence River, Montreal. Named after Gilles Villeneuve — the beloved Canadian racing driver who died in qualifying at Zolder in 1982 — the circuit is one of F1's most popular events and most dramatic venues. Low-speed chicanes connected by very fast straights produce heavy braking zones and heavy contact between drivers who run at the limit of overtaking possibility all race. The Wall of Champions at the final chicane has collected countless championship contenders over the years.",
     "history": "The Circuit Gilles Villeneuve hosted its first Canadian Grand Prix in 1978. Following Villeneuve's death in 1982, the circuit was renamed in his honour. The circuit is built on infrastructure from Expo 67 and the 1976 Olympic Games, making Île Notre-Dame one of the most significant urban heritage sites in Canada. Formula E has also used the circuit, and the race weekend is one of Montreal's biggest annual events, bringing hundreds of thousands of visitors to the island each June.",
     "notable_moments": "Gilles Villeneuve's victories here in front of his home crowd. The Wall of Champions — Michael Schumacher, Damon Hill, and Jacques Villeneuve all crashing at the final chicane in consecutive years (1999). Jenson Button's extraordinary 2011 Canadian GP — a race red-flagged for two hours of rain, restarted, and decided in the final lap as Button overcame a drive-through penalty to win. Lewis Hamilton's multiple Montreal victories. The circuit's reputation as one of the best races on the F1 calendar.",
@@ -2718,6 +3061,10 @@
     },
     "website": "https://www.canadiantiremotorsportpark.com",
     "browserSvg": "mosport.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Canadian Tire Motorsport Park — historically known as Mosport — is a 3.957 km permanent road course in the countryside east of Toronto, Ontario. One of Canada's great road circuits, it is fast, flowing, and demanding, with significant elevation changes and corners that require full commitment. The circuit has hosted Canadian GP events in F1's history and remains a fixture for IndyCar and IMSA, producing close racing on a layout that genuinely tests cars and drivers.",
     "history": "Mosport opened in 1961 and hosted the Canadian Grand Prix in F1 in 1967, 1969, 1971, 1972, 1973, and 1977 before the race moved to Circuit Gilles Villeneuve in Montreal. The circuit has a rich history in Can-Am, Trans-Am, and international sports car racing from the 1960s and 1970s. Corporate naming rights changed the official name to Canadian Tire Motorsport Park, but the Mosport identity has never left — it remains how most motorsport fans refer to it. IndyCar uses the circuit as one of its Canadian rounds.",
     "notable_moments": "The 1973 Canadian GP won by Peter Revson. Can-Am era battles between McLarens and Lolas in the late 1960s. IndyCar rounds at Mosport in the modern era. The circuit's longevity as one of North America's most respected permanent road course facilities.",
@@ -2755,6 +3102,10 @@
     },
     "website": "https://www.autodrom-most.eu",
     "browserSvg": "most.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Autodrom Most is a 4.212 km permanent circuit in the industrial town of Most in northwest Bohemia, Czech Republic. Built literally on top of a former open-pit lignite coal mine that was filled in and landscaped, the circuit sits on reclaimed industrial land — one of the most unusual foundations of any racing venue in Europe. It joined the DTM calendar in 2021 and has established itself as a consistent fixture in German touring car racing.",
     "history": "The original Autodrom Most opened in 1983 during the communist era, making it one of the more prominent motorsport venues in Eastern European racing. The circuit hosted various national and Central European events through the 1980s and 1990s. It was rebuilt and modernised in the 2000s and 2010s. The DTM's expansion of its calendar to include more Central and Eastern European venues brought Most onto the international calendar in 2021. The circuit sits within the North Bohemian Basin, an area historically dominated by coal extraction, giving it a distinctly industrial backdrop.",
     "notable_moments": "Most's first DTM round in 2021, marking the circuit's arrival on the international stage. The circuit's unique geology — racing on filled mining land — has no equivalent in European motorsport. ELMS endurance rounds at the circuit have produced close multi-class competition.",
@@ -2786,6 +3137,10 @@
     "length": 4.801,
     "turns": 14,
     "website": "https://www.mr-motegi.jp/eng/",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Mobility Resort Motegi (formerly Twin Ring Motegi) is a 4.801 km circuit in Tochigi Prefecture, Japan, owned by Honda. It is the home of the Japanese MotoGP and a regular WEC venue, and forms the centrepiece of Honda's Mobility Resort complex — a sprawling automotive themed park that includes a motorsport museum, driving experiences, and Honda vehicle displays. The circuit has a distinctive teardrop-shaped oval alongside the road course, though the oval is now rarely used for top-level events.",
     "history": "Twin Ring Motegi was built by Honda and opened in 1997, designed to host both oval racing (bringing American IndyCar events to Japan) and road course events. The IndyCar oval race ran here through the late 1990s and early 2000s. MotoGP adopted Motegi as the Japanese GP venue, and it has been the home of that race since 1999. Honda's ownership means every major Honda motorsport milestone — world championship titles, new bike launches — is celebrated here. The circuit was renamed Mobility Resort Motegi in 2022 as part of Honda's broader sustainability and mobility rebranding.",
     "notable_moments": "Multiple MotoGP Japanese GP title deciders at Motegi. The CART IndyCar oval events of the early 2000s bringing American open-wheel racing to a Japanese audience. Honda's championship celebration events at the circuit they own. WEC rounds at Motegi as part of the championship's Asian leg.",
@@ -2823,6 +3178,10 @@
       "year": 2024
     },
     "website": "https://www.mugellocircuit.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "The Mugello Circuit is a 5.245 km circuit owned by Ferrari, set in the Tuscan hills north of Florence. Ferrari uses it as their primary test facility for F1 cars between races — every new Ferrari turns its first laps here. MotoGP's Italian GP has been held at Mugello since 1994. The circuit is fast and flowing, with long corners and dramatic elevation changes, and the back straight — the Rettifilo — is the fastest section of any MotoGP circuit, where bikes regularly exceed 350 km/h.",
     "history": "Motorsport in the Mugello valley dates back to road races in the 1920s using the valley roads. The current permanent circuit was built in 1974 and Ferrari purchased it in 1988. The circuit has been continuously developed since, with modern pits, grandstands, and run-off areas added while retaining the sweeping original layout through the hillsides. Mugello's role as Ferrari's private test circuit means access is tightly controlled outside race weekends — making its race events particularly atmospheric for the Ferrari-devoted Italian crowd.",
     "notable_moments": "Valentino Rossi's legendary MotoGP victories here, his de facto home race with supporters from nearby Tavullia filling the Mugello hillsides. The 2020 Tuscan Grand Prix — Formula 1's first world championship race at Mugello since 1994 — won by Lewis Hamilton with Ferrari's 1000th GP milestone as the backdrop. Marco Simoncelli's final Italian GP podium in 2011, months before his death in Malaysia.",
@@ -2959,6 +3318,10 @@
     },
     "website": "https://www.norisring.de",
     "browserSvg": "norisring.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "The Norisring is a 2.300 km street circuit in the city of Nuremberg, Bavaria, constructed around the Dutzendteich lake and using public roads adjacent to the Nazi-era Zeppelin Field. The shortest circuit on the DTM calendar and one of the shortest used in any major touring car championship, it is defined by two long straights connected by tight hairpins — producing intense slipstream battles and spectacular overtaking around the lakeside parkland. The Norisring is one of DTM's most distinctive and atmospheric events.",
     "history": "The Norisring has hosted motorsport since 1947 and has been a fixture on the DTM calendar for most of the championship's history. The circuit uses roads that are otherwise used by Nuremberg's traffic, closed for race weekend. The venue's proximity to the former Reichsparteitagsgelände — the Nazi congress grounds — gives it an unavoidable historical weight; the Zeppelin Field grandstand is visible from the circuit. The Norisring's compact layout and lakeside setting make it unique among European street circuits.",
     "notable_moments": "DTM battles at the Norisring producing some of the championship's most dramatic moments — the short, tight circuit amplifying contact and tactical decisions. The circuit's historical surroundings in Nuremberg. The slipstream battles down the two long straights that effectively determine race outcomes.",
@@ -2996,6 +3359,10 @@
       "year": 2018
     },
     "website": "https://www.nuerburgring.de",
+    "fia": {
+      "grade": "3",
+      "pole": "Right"
+    },
     "overview": "The Nordschleife is 20.832 km of forested road circuit built in 1927, carved through the Eifel hills of western Germany. Jackie Stewart called it The Green Hell. It has 73 corners, 300 metres of elevation change, and conditions that vary dramatically from one end of the circuit to the other. Nothing else in motorsport compares to it. The NLS (Nürburgring Langstrecken-Serie) runs here year-round, combining 200+ cars across dozens of classes in endurance races that attract professional factory teams and enthusiast club racers sharing the same circuit simultaneously.",
     "history": "The Nordschleife was built between 1925 and 1927 as a public works project providing employment for 3,000 workers during Germany's post-war economic depression. It hosted the German Grand Prix from 1927 until Niki Lauda's near-fatal fire in 1976 — the race he returned to six weeks later at Monza, forever defining his legend. Formula 1 never returned to the Nordschleife after 1976. The circuit has been used continuously since for the NLS, the 24H Nürburgring (which combines the Nordschleife with the GP circuit), touring car racing, and as a manufacturer test track.",
     "notable_moments": "Niki Lauda's 1976 accident and survival. Stefan Bellof's 6:11.13 lap record in 1983 — still the fastest racing lap of the full circuit. The annual 24H Nürburgring, one of the most chaotic and atmospheric endurance races in the world. The NLS culture that puts factory Porsches, BMWs, and Ferraris on track alongside privately-entered Renault Clios and Mazda MX-5s.",
@@ -3064,6 +3431,10 @@
     },
     "website": "https://www.nuerburgring.de",
     "browserSvg": "nurburgring.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Nürburgring GP-Strecke is a modern 5.148 km FIA-grade circuit built in 1984 alongside the legendary Nordschleife. It hosts WEC, ELMS, Formula E, and DTM rounds, and shares pit facilities with the Nordschleife for the combined 24H Nürburgring race. Where the Nordschleife is raw and historic, the GP circuit is smooth, technically precise, and built to the safety standards of the modern era. It sits in the same Eifel landscape — surrounded by forest and hill — and carries the same unpredictable weather.",
     "history": "The GP circuit was built after Formula 1 left the Nordschleife following Niki Lauda's near-fatal accident in 1976. The new circuit opened in 1984 and hosted the European Grand Prix that year. It has been used by F1, DTM, WEC, and Formula E at various points. The Nürburgring site went bankrupt in 2012 after a disastrous expansion that included a theme park and indoor ski slope; the complex was purchased and rebuilt, with the GP circuit continuing as the primary FIA-grade venue while the Nordschleife focuses on the endurance calendar.",
     "notable_moments": "The 1999 European Grand Prix where Eddie Irvine pushed Michael Schumacher for the championship, and Michael came out of retirement as a Ferrari substitute. The 2020 Eifel Grand Prix — F1's first visit since 2013 — run in cold, foggy conditions that saw the medical helicopter grounded and the race delayed. Formula E's multiple ePrix events in the forested Eifel setting.",
@@ -3101,6 +3472,10 @@
     },
     "website": "https://www.motorsport-arena.de",
     "browserSvg": "oschersleben.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Motorsport Arena Oschersleben is a 3.696 km permanent circuit near the city of Oschersleben in Saxony-Anhalt, eastern Germany. A consistent fixture on the DTM calendar, it also hosts national championship events and has previously been used for WTCC rounds. The circuit is flat and technical, with good overtaking opportunities and a modern pit complex, sitting in the agricultural lowlands of central Germany.",
     "history": "Oschersleben opened in 1997 and quickly established itself as a DTM venue. Its position in the former East Germany made it part of the expansion of international motorsport into the eastern German states following reunification. The circuit has hosted DTM rounds consistently, providing a central German location on the touring car calendar that alternates with Hockenheim, Most, and the Norisring. WTCC used Oschersleben as an early fixture when the series established its European calendar.",
     "notable_moments": "DTM championship rounds at Oschersleben contributing to multiple touring car title battles. The circuit's role in establishing Saxony-Anhalt as a motorsport destination in unified Germany.",
@@ -3133,21 +3508,49 @@
         "label": "International Circuit",
         "calendarSvgs": [
           "oulton-park-international.svg"
-        ]
+        ],
+        "length": 4.307,
+        "turns": 17,
+        "lapRecord": {
+          "time": "1:26.026",
+          "driver": "Tom Ingram",
+          "year": 2021,
+          "series": "BTCC"
+        },
+        "fia": {
+          "grade": "3",
+          "pole": "Right"
+        }
       },
       {
         "id": "foster",
         "label": "Foster Circuit",
         "calendarSvgs": [
           "oulton-park-foster.svg"
-        ]
+        ],
+        "length": 2.656,
+        "turns": 11,
+        "lapRecord": {
+          "time": "0:50.079",
+          "driver": "Luca Riccitelli",
+          "year": 1996,
+          "series": "F3000"
+        }
       },
       {
         "id": "island",
         "label": "Island Circuit",
         "calendarSvgs": [
           "oulton-park-island.svg"
-        ]
+        ],
+        "length": 3.616,
+        "turns": 11,
+        "lapRecord": {
+          "time": "1:18.556",
+          "driver": "Tom Blomqvist",
+          "year": 2010,
+          "series": "Formula Renault 2.0"
+        }
       }
     ],
     "bio": "Set in a Cheshire deer park with dramatic elevation changes and flowing corners, Oulton Park is widely considered the most beautiful permanent circuit in the UK. Its technical layout rewards driver skill over raw machinery.",
@@ -3200,6 +3603,10 @@
       "year": 2019
     },
     "website": "https://www.circuitpaulricard.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Circuit Paul Ricard in Le Castellet, Provence is a 5.842 km circuit (Grand Prix configuration) owned by Formula One Management. Its most distinctive feature is the coloured Mistral Club asphalt: different coloured tarmac zones in the run-off areas that function as a braking analysis tool — engineers can see precisely where a car leaves the track based on which colour stripe it reaches. Wide, smooth, forgiving, and sun-baked, Ricard is a test track at heart, and the atmosphere reflects it.",
     "history": "Paul Ricard was built by pastis entrepreneur Paul Ricard on his land in the Var département in 1969-1970, and immediately attracted attention for its unusually wide run-off areas — a radical safety concept at the time. F1 used the circuit from 1971 to 1990. The circuit was purchased by Bernie Ecclestone and Formula One Management in 1999, and a major rebuild followed, installing the distinctive coloured asphalt. F1 returned from 2018 to 2022. Ricard has consistently hosted WEC and ELMS rounds, and functions as the primary pre-season test venue for numerous series due to its consistent climate and driver-friendly layout.",
     "notable_moments": "Didier Pironi's career-ending accident during 1982 German GP practice. Elio de Angelis's fatal testing accident at the circuit in 1986 — an event that accelerated changes to how circuit medical services operated. The multiple WEC rounds that have produced close endurance battles on the long Mistral Straight. The circuit's role as the most-used test venue in European motorsport.",
@@ -3237,6 +3644,10 @@
     },
     "website": "https://wannerooraceway.com.au",
     "browserSvg": "perth.svg",
+    "fia": {
+      "grade": "3",
+      "pole": "Right"
+    },
     "overview": "Wanneroo Raceway — officially Barbagallo Wanneroo Raceway — is a 3.430 km permanent circuit in Neerabup, 30km north of Perth's CBD. The primary motorsport venue for Western Australia, it hosts Supercars rounds and national series events, serving the isolated Perth metropolitan area that lies further from the eastern Australian motorsport centres than any other major Australian city. The warm, dry Perth climate and the circuit's flowing layout combine to produce a distinctive event character.",
     "history": "Wanneroo has hosted motorsport events since the early 1970s, when the original circuit opened on Crown land north of Perth. The circuit has been continuously developed and upgraded across five decades of use, with the Barbagallo naming reflecting a long-running corporate partnership. Supercars has used Wanneroo as its Western Australian round for many years. The Perth event's geographic isolation — Western Australia is closer to Singapore than to Sydney — gives it the character of a standalone event rather than part of a mainland circuit cluster.",
     "notable_moments": "Supercars Perth rounds providing championship-season action to Western Australia's motorsport community. The circuit's role as the only major permanent motorsport venue serving the most geographically isolated major city in the world. Various Australian national championship rounds contributing to West Australian driver development.",
@@ -3269,14 +3680,38 @@
         "label": "MotoGP Layout",
         "calendarSvgs": [
           "phillip-island.svg"
-        ]
+        ],
+        "length": 4.448,
+        "turns": 12,
+        "lapRecord": {
+          "time": "1:27.765",
+          "driver": "Marc Márquez",
+          "year": 2024,
+          "series": "MotoGP"
+        },
+        "fia": {
+          "grade": "3",
+          "pole": "Right"
+        }
       },
       {
         "id": "wsbk",
         "label": "WSBK Layout",
         "calendarSvgs": [
           "phillip-island-wsbk.svg"
-        ]
+        ],
+        "length": 4.448,
+        "turns": 12,
+        "lapRecord": {
+          "time": "1:27.916",
+          "driver": "Nicolò Bulega",
+          "year": 2024,
+          "series": "WorldSBK"
+        },
+        "fia": {
+          "grade": "3",
+          "pole": "Right"
+        }
       }
     ],
     "bio": "A windswept peninsula off the Victorian coast, Phillip Island's fast layout and compressed lap times make for relentless wheel-to-wheel racing in MotoGP and WSBK.",
@@ -3285,10 +3720,10 @@
     "length": 4.448,
     "turns": 12,
     "lapRecord": {
-      "time": "1:28.511",
-      "driver": "Toprak Razgatlioglu",
-      "year": 2023,
-      "series": "WorldSBK"
+      "time": "1:27.765",
+      "driver": "Marc Márquez",
+      "year": 2024,
+      "series": "MotoGP"
     },
     "website": "https://www.phillipislandcircuit.com.au",
     "overview": "Phillip Island Grand Prix Circuit is a 4.448 km permanent circuit on Phillip Island off the coast of Victoria, built on a headland above Bass Strait. One of the world's most spectacular motorcycle racing circuits, it is defined by fast, sweeping corners taken at enormous speed with the Southern Ocean visible beyond the barriers. The Gardner Straight leads into the double-apex turn at MG Corner; Lukey Heights is a crest taken blind at full throttle; the final chicane into the long Honda Hairpin finishes each lap. Wind off the Bass Strait is constant and unpredictable, making it one of the most conditions-sensitive circuits in any series.",
@@ -3390,6 +3825,10 @@
       "year": 2020
     },
     "website": "https://www.autodromodoalgarve.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "The Autodromo Internacional do Algarve is a 4.653 km circuit carved into the hillside above the Algarve coast of southern Portugal. Built in 2008, it is one of the most dramatic circuits in Europe — extreme elevation changes, blind crests, and banking make it immediately distinctive. The first corner is approached over a blind crest where cars effectively disappear from view. The circuit then cascades through a series of downhill sweeps and camber changes before climbing back to the start-finish straight. In wet conditions, it is genuinely treacherous.",
     "history": "Portimão was built as a private commercial venture to attract international motorsport to the Algarve. It initially hosted only national events and test sessions. Its profile changed when Formula 1 visited for the 2020 Portuguese Grand Prix — the first F1 race in Portugal since 1996. MotoGP added a Portuguese GP round in 2021. WEC and ELMS have used the circuit as a European venue. The circuit's dramatic geography has made it a favourite with drivers and television broadcasters, despite its relative newness on the international calendar.",
     "notable_moments": "The 2020 Portuguese Grand Prix that produced complex strategy results and Lewis Hamilton breaking Michael Schumacher's all-time wins record. The inaugural MotoGP Portuguese GP in 2021, which produced a tactical masterclass in tyre management. The circuit's Turn 1 blind crest — one of the most dramatic moments on any European circuit as cars appear to launch over the horizon.",
@@ -3427,6 +3866,10 @@
     },
     "website": "https://portlandraceway.com",
     "browserSvg": "portland.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Portland International Raceway is a 3.211 km permanent road course in Portland, Oregon, built on the site of Vanport, a city destroyed in a 1948 flood. The flat circuit in the Columbia River lowlands is compact, technical, and produces close IndyCar racing — the tight layout limits passing opportunities, making strategy and start position crucial. Portland hosts the Grand Prix of Portland as an IndyCar fixture and IMSA events.",
     "history": "Portland opened in 1960 on reclaimed flood land north of the city. It hosted CART IndyCar races from 1984 to 2003, becoming a Northwest motorsport institution. After nearly 15 years away, IndyCar returned to Portland in 2018 — the result of a community investment campaign to revive the race. IMSA also uses the circuit for road racing events. The circuit's flat, urban character is unlike any other IndyCar venue.",
     "notable_moments": "Al Unser Jr.'s victories at Portland during his CART championship years. The 2018 IndyCar return to Portland after 15 years. Controversial finish incidents at Portland involving Simon Pagenaud and Will Power. The circuit's community-led revival as a model for how American circuits can be restored to major championships.",
@@ -3459,14 +3902,38 @@
         "label": "GP Layout (F1 / DTM)",
         "calendarSvgs": [
           "red-bull-ring.svg"
-        ]
+        ],
+        "length": 4.318,
+        "turns": 10,
+        "lapRecord": {
+          "time": "1:07.924",
+          "driver": "Oscar Piastri",
+          "year": 2025,
+          "series": "F1"
+        },
+        "fia": {
+          "grade": "1",
+          "pole": "Left"
+        }
       },
       {
         "id": "motogp",
         "label": "MotoGP Layout",
         "calendarSvgs": [
           "red-bull-ring-motogp.svg"
-        ]
+        ],
+        "length": 4.348,
+        "turns": 10,
+        "lapRecord": {
+          "time": "1:27.748",
+          "driver": "Jorge Martín",
+          "year": 2024,
+          "series": "MotoGP"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Left"
+        }
       }
     ],
     "bio": "Set in the Styrian Alps at 700 metres elevation, the circuit's short 4.3km lap and dramatic gradient changes produce some of the most compact and intense racing in Europe.",
@@ -3549,6 +4016,10 @@
     },
     "website": "https://www.roadamerica.com",
     "browserSvg": "road-america.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Road America is a 6.515 km permanent road course in the lake district of Wisconsin near Elkhart Lake — one of the longest and most respected circuits in North America. Carved through the Wisconsin woodland, the circuit uses natural elevation changes and wide, open corners to produce a driving experience unlike any other American road course. IndyCar's Elkhart Lake race and IMSA events use the full circuit. Drivers consistently rank Road America among their favourite circuits on any calendar.",
     "history": "Road America opened in 1955, created by Clif Tufte on farmland near Elkhart Lake after road racing on the county roads of the area became impractical. The circuit's character has changed remarkably little since opening — the same ribbon of asphalt through the same trees, with improvements to facilities and safety infrastructure. Road America hosted CART IndyCar for many years and has hosted the modern IndyCar series. The Vintage races at Road America, each August, bring thousands of historic racing cars to the circuit for the largest vintage motorsport event in North America.",
     "notable_moments": "Michael Andretti's multiple CART victories at Road America. The annual Vintage weekend attracting the largest collection of historic racing cars in North America. IndyCar races where the long circuit produces strategy complexity and fuel saving that generates unpredictable results.",
@@ -3586,6 +4057,10 @@
     },
     "website": "https://www.roadatlanta.com",
     "browserSvg": "road-atlanta.svg",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Michelin Raceway Road Atlanta is a 4.088 km permanent road course north of Atlanta in Braselton, Georgia. One of America's most challenging and exciting road circuits, it is defined by blind crests, dramatic elevation changes, and corners that demand full commitment — particularly the 10A/10B Esses and the run through Turn 12. Road Atlanta hosts the Petit Le Mans — the IMSA season finale, a 10-hour endurance race — which is one of the premier endurance events in American motorsport.",
     "history": "Road Atlanta opened in 1970 and immediately established itself as one of America's most technically demanding circuits. It hosted Can-Am, Trans-Am, and IndyCar events in its early years before becoming the home of the Petit Le Mans (named in tribute to the French race) from 1998 onwards. The circuit changed ownership multiple times before its current operation. Michelin's naming rights partnership came in the modern era. The Petit Le Mans has produced some of IMSA's most dramatic finishes.",
     "notable_moments": "The inaugural Petit Le Mans in 1998. Multiple Petit Le Mans finishes decided in the final hour with championship implications. The circuit's fearsome reputation — Martin Donnelly suffered a life-threatening accident here during a Formula 3000 race in 1990. IndyCar races that produced dramatic results on Road Atlanta's unforgiving layout.",
@@ -3623,6 +4098,10 @@
       "year": 2024
     },
     "website": "https://www.sachsenring-circuit.com",
+    "fia": {
+      "grade": "3",
+      "pole": "Left"
+    },
     "overview": "The Sachsenring is a 3.671 km permanent circuit in the Erzgebirge hills of Saxony, Germany. It is the home of the German MotoGP — and Marc Marquez's personal circuit. Of the 13 corners, 10 turn left, rewarding riders who favour left-side tyre loading and a physically aggressive style. The shortest circuit on the MotoGP calendar, it is also one of the most demanding, with the constant left-hand bias loading the body asymmetrically across the entire race distance.",
     "history": "Motorcycle racing in the Sachsenring area dates back to the 1920s on a road circuit through Hohenstein-Ernstthal. The circuit became one of the most prominent venues in East German motorsport during the GDR era, hosting the East German motorcycle GP as part of the old world championship calendar. After German reunification, the circuit was modernised and a permanent facility built; the current layout opened in 1996. MotoGP has used Sachsenring since 1998. The circuit's history extends across nearly a century of German motorsport culture.",
     "notable_moments": "Marc Marquez's extraordinary record at this circuit — 11 consecutive premier class victories at one point, a dominance without parallel at any circuit in modern MotoGP. The circuit's ongoing role as one of the most partisan and atmospherically distinctive stops on the MotoGP calendar.",
@@ -3763,6 +4242,10 @@
       "year": 2019
     },
     "website": "https://www.sebringraceway.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Sebring International Raceway is a 6.019 km permanent circuit on the site of Hendricks Army Airfield in central Florida, home of the 12 Hours of Sebring — one of the great endurance races and one of the oldest in the United States. The circuit uses the original WWII airfield concrete, producing a surface of legendary bumpiness and surface irregularity that destroys cars, tyres, and drivers with equal indifference. Sebring in March is hot, dusty, and relentless — an endurance test in the most literal sense.",
     "history": "Sebring has hosted endurance races since 1950 when Alec Ulmann organised a 6-hour race on the airfield using the original military runway markings. The 12 Hours format began in 1952 and has run continuously since. The circuit incorporates the original military runways, taxiways, and perimeter roads — the joins and repairs over decades have created the notorious Sebring surface that breaks components no other circuit tests. Sebring, Le Mans, and Daytona form the traditional Triple Crown of endurance racing.",
     "notable_moments": "Juan Manuel Fangio's 1956 victory. The 1966 race between Ford and Ferrari. Peter Gregg's domination in the IMSA era. The annual tradition of the Sebring 12 Hours as the traditional season opener for IMSA. The circuit's surface condition — genuinely one of the most demanding in world motorsport — breaking cars that would survive anywhere else without incident.",
@@ -3800,6 +4283,10 @@
     },
     "website": "https://www.sepangcircuit.com",
     "browserSvg": "sepang.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "Sepang International Circuit is a 5.543 km permanent circuit 60km south of Kuala Lumpur, adjacent to Kuala Lumpur International Airport. One of Hermann Tilke's most celebrated designs — built in 1999 — it features sweeping high-speed corners, a very long main straight, dramatic covered grandstands, and a tropical climate that creates intense tyre and brake conditions. Sepang hosted F1's Malaysian Grand Prix from 1999 to 2017 and continues as one of Asia's premier venues for MotoGP, WorldSBK, and WEC.",
     "history": "Sepang was built to host the 1999 Malaysian Grand Prix — the circuit was designed and built from scratch in eleven months, an extraordinary construction timeline. Hermann Tilke's design introduced features that became his signature: wide main straight, multiple overtaking possibilities, and technically demanding sector changes. Sepang immediately became regarded as one of the best of Tilke's circuits. F1 held the Malaysian GP here from 1999 to 2017, when Malaysia withdrew from the F1 calendar citing commercial factors. MotoGP, WorldSBK, and WEC remain.",
     "notable_moments": "Mika Häkkinen and Michael Schumacher's 1999 battle at the inaugural Malaysian GP. Marco Simoncelli's fatal accident during the 2011 MotoGP Malaysian GP — one of the most shocking moments in modern motorcycle racing. The annual MotoGP Malaysian GP serving as a near-final-round title decider in multiple championship seasons. Marc Marquez's multiple victories at Sepang.",
@@ -3832,14 +4319,34 @@
         "label": "F1 / F1 Academy",
         "calendarSvgs": [
           "shanghai.svg"
-        ]
+        ],
+        "length": 5.451,
+        "turns": 16,
+        "lapRecord": {
+          "time": "1:32.238",
+          "driver": "Michael Schumacher",
+          "year": 2004,
+          "series": "F1"
+        }
       },
       {
         "id": "fe",
         "label": "Formula E",
         "calendarSvgs": [
           "shanghai-fe.svg"
-        ]
+        ],
+        "length": 3.051,
+        "turns": 12,
+        "lapRecord": {
+          "time": "1:10.564",
+          "driver": "Nick Cassidy",
+          "year": 2025,
+          "series": "Formula E"
+        },
+        "fia": {
+          "grade": "3E",
+          "pole": "Left"
+        }
       }
     ],
     "bio": "The Shanghai International Circuit opened in 2004 with a distinctive sweep-shaped main grandstand. Its long back straight and tight final hairpin produce consistent overtaking. Formula E uses a shorter inner layout of the same facility.",
@@ -3885,14 +4392,38 @@
         "label": "GP Circuit",
         "calendarSvgs": [
           "silverstone.svg"
-        ]
+        ],
+        "length": 5.891,
+        "turns": 18,
+        "lapRecord": {
+          "time": "1:27.097",
+          "driver": "Max Verstappen",
+          "year": 2020,
+          "series": "F1"
+        },
+        "fia": {
+          "grade": "1",
+          "pole": "Left"
+        }
       },
       {
         "id": "national",
         "label": "National Circuit",
         "calendarSvgs": [
           "silverstone-national.svg"
-        ]
+        ],
+        "length": 2.64,
+        "turns": 6,
+        "lapRecord": {
+          "time": "0:47.404",
+          "driver": "Scott Mansell",
+          "year": 2004,
+          "series": "EuroBOSS"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Left"
+        }
       }
     ],
     "bio": "A wartime airfield turned into the home of British motorsport. It hosted the very first FIA World Championship round in May 1950 and has barely missed a year since.",
@@ -3944,6 +4475,10 @@
     },
     "website": "https://singaporegp.sg",
     "browserSvg": "singapore.svg",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "Marina Bay Street Circuit is a 5.063 km street circuit through the Marina Bay waterfront district of Singapore. It hosts Formula 1's only night race — under 1,500 lighting rigs that illuminate the circuit against the backdrop of the Singapore skyline, the Supertrees of Gardens by the Bay, and the Fullerton Hotel. One of the most visually spectacular settings in F1, it is also one of the most physically demanding events of the season — slow, bumpy, and hot even at night, with 23 corners across a lap that averages nearly two minutes.",
     "history": "The Singapore Grand Prix debuted in 2008 as Formula 1's first night race, a concept that required two years of preparation and the installation of permanent lighting infrastructure around the circuit route. The debut race was immediately controversialised by Renault's orchestration of a deliberate crash by Nelson Piquet Jr. to trigger a safety car that benefited Fernando Alonso — the Crashgate scandal. Singapore has hosted F1 every year since 2008 except 2020 and 2021 (COVID). The Marina Bay circuit winds through the financial district, past Raffles Place and the Esplanade arts complex, through an underpass beneath the grandstands, and along the waterfront.",
     "notable_moments": "The 2008 Crashgate scandal — Nelson Piquet Jr.'s deliberate crash orchestrated by Renault to favour Alonso. Sebastian Vettel's multiple victories here. The 2017 race where Vettel, Verstappen, and Räikkönen all collided at Turn 1 on the opening lap. The circuit's unique atmosphere — hot night air, city lights reflected in the marina, the roar of F1 cars against the Singapore skyline.",
@@ -3981,6 +4516,10 @@
     },
     "website": "https://www.snetterton.co.uk",
     "browserSvg": "snetterton.svg",
+    "fia": {
+      "grade": "3",
+      "pole": "Right"
+    },
     "overview": "Snetterton Circuit is a 3.623 km permanent circuit (300 configuration) in the Norfolk Breckland, built on a former WWII airfield. It hosts BTCC and British Superbike Championship rounds as one of the longer circuits on the British national calendar. The flat Norfolk countryside and prevailing easterly winds off the North Sea make Snetterton one of the more exposed and weather-affected venues in Britain — conditions that can change the racing character significantly.",
     "history": "Snetterton was converted from RAF Snetterton Heath, a WWII bomber airfield, for motorsport use in the 1950s. The circuit expanded and developed over the following decades, with the current 300 layout using the full perimeter of the site. Motorsport Vision invested in the circuit in the 2000s, adding facilities and upgrading the track surface. The Norfolk location — away from the major population centres — gives Snetterton a cult following among dedicated British motorsport fans.",
     "notable_moments": "BTCC rounds at Snetterton contributing to season-long title battles. The circuit's airfield heritage visible in its long, flat straight sections. BSB battles at the longer circuit configuration where power and aerodynamics play a greater role than at tighter British venues.",
@@ -4013,21 +4552,47 @@
         "label": "Full Circuit (GTWCA)",
         "calendarSvgs": [
           "sonoma.svg"
-        ]
+        ],
+        "length": 4.056,
+        "turns": 12,
+        "lapRecord": {
+          "time": "1:22.041",
+          "driver": "Marco Werner",
+          "year": 2005,
+          "series": "LMP1"
+        },
+        "fia": {
+          "grade": "2",
+          "pole": "Left"
+        }
       },
       {
         "id": "nascar",
         "label": "NASCAR Chute Config",
         "calendarSvgs": [
           "sonoma-nascar.svg"
-        ]
+        ],
+        "length": 3.203,
+        "turns": 12,
+        "lapRecord": {
+          "time": "1:13.629",
+          "driver": "Kyle Larson",
+          "year": 2024,
+          "series": "NASCAR Cup"
+        }
       }
     ],
     "bio": "Sonoma Raceway's main 2.52-mile road course through the California wine country is one of North America's most loved permanent circuits. Its carousel, elevation changes, and setting make it a driver and fan favourite. NASCAR runs a shorter layout bypassing the Carousel.",
     "type": "permanent",
     "direction": "clockwise",
-    "length": 3.203,
-    "turns": 10,
+    "length": 4.056,
+    "turns": 12,
+    "lapRecord": {
+      "time": "1:22.041",
+      "driver": "Marco Werner",
+      "year": 2005,
+      "series": "LMP1"
+    },
     "website": "https://www.sonomaraceway.com",
     "overview": "Sonoma Raceway is a 3.840 km permanent road course in the wine country hills north of San Francisco, California. One of two road course events on the NASCAR Cup schedule (alongside Watkins Glen), Sonoma brings an entirely different set of skills to the Cup field — braking, downforce, and left-right coordination rather than oval momentum management. The circuit weaves through the Sonoma hills with a combination of tight hairpins and flowing uphill sections.",
     "history": "Sonoma opened in 1968 as Sears Point Raceway and hosted its first NASCAR Cup event in 1989. The circuit has been a consistent annual fixture for NASCAR, with the Toyota Save Mart 350 (and its various naming iterations) bringing oval specialists to California wine country every summer. IMSA also uses the circuit. The track changed its name to Infineon Raceway under Compuware ownership before the current Sonoma Raceway identity. IndyCar previously held events here before removing the circuit from its calendar.",
@@ -4066,6 +4631,10 @@
       "year": 2024
     },
     "website": "https://www.spa-francorchamps.be",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "Circuit de Spa-Francorchamps consistently tops polls as the greatest racing circuit in the world, a reputation built on its combination of unforgiving elevation changes, high-speed corners, and notoriously unpredictable weather. Carved into the Ardennes forest of Wallonia at 7.004 km, it is the longest circuit on the Formula 1 calendar and the anchor event of the WEC European season. No other circuit offers the same range of challenges in a single lap: flat-out high-speed sweepers, heavy braking zones, blind crests, and weather that can vary dramatically between corners.",
     "history": "The original Spa circuit was a 14.9 km triangular road course using public roads between the towns of Spa, Stavelot and Francorchamps, opened in 1921. It hosted its first Belgian Grand Prix in 1925 and was considered one of the most dangerous circuits in the world for the next five decades. A revised, shorter permanent circuit of 6.949 km opened in 1979, built entirely within the Stavelot commune and incorporating the legendary Eau Rouge/Raidillon complex into a new layout. The circuit underwent further safety revisions through the 1990s and 2000s, with the bus stop chicane reconfigured multiple times. A major redesign in 2022 saw the La Source hairpin widened, the Raidillon approach rebuilt with extended run-off areas, and the final chicane reconstructed. The rebuilt Raidillon — which had witnessed fatal accidents in 2021 — was a turning point in how modern circuits balance spectacle with safety.",
     "notable_moments": "Ayrton Senna and Alain Prost's race-ending collision on the opening lap of the 1990 Belgian Grand Prix. Michael Schumacher's F1 debut in 1991, replacing an injured Jordan driver. The rain-soaked 2021 Belgian Grand Prix, run behind the safety car for two laps due to persistent conditions and controversially declared a half-points result. The 2022 WEC round that produced a multi-class battle decided in the final hour.",
@@ -4103,6 +4672,10 @@
       "year": 2024
     },
     "website": "https://www.gpstpete.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "The St. Petersburg Street Circuit is a 2.953 km temporary street circuit in downtown St. Petersburg, Florida, using public roads through the waterfront district alongside Tampa Bay. The Firestone Grand Prix of St. Petersburg traditionally opens the IndyCar season — making St. Pete the circuit where the year's competitive order is first revealed and where new driver-team combinations face their first real test. The downtown setting, warm February weather, and season-opener significance make St. Pete one of IndyCar's most important annual events.",
     "history": "St. Petersburg has hosted IndyCar since 2003, becoming the established season opener for the series. The circuit's waterfront location, with the Tampa Bay waterfront and the downtown skyline as backdrop, gives it a visual quality that matches its schedule importance. Formula E also used a St. Petersburg circuit for several seasons. The race has produced a long string of dramatic season-opening battles that set championship narratives for the year.",
     "notable_moments": "Multiple IndyCar championship-season-defining opens at St. Pete. Scott Dixon's multiple victories reinforcing his dominance at season openers. The circuit's role as the bellwether for which teams and drivers arrive at the start of each season in strong form. First-race drama that has launched and derailed championship campaigns across multiple eras.",
@@ -4140,6 +4713,10 @@
       "year": 2020
     },
     "website": "https://www.sportsland-sugo.co.jp/en/",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Sportsland SUGO is a 3.704 km permanent circuit in the Sendai hills of Miyagi Prefecture in the Tohoku region of northern Japan. Technical, hilly, and challenging, it is one of the most demanding circuits on the Japanese domestic calendar — tight, twisting, and built into the natural contours of the hillside without compromise. Super GT rounds here consistently produce unpredictable results, as the circuit's character strips away aerodynamic advantages and rewards mechanical grip and driver precision.",
     "history": "Sportsland SUGO opened in 1973 and has hosted Japanese domestic motorsport continuously since. The circuit is located in the Sendai metropolitan area, serving the motorsport community of northeastern Japan — a region more commonly associated with the aftermath of the 2011 Tōhoku earthquake and tsunami that devastated the coastline 60km east of the circuit. The SUGO round of Super GT is considered one of the most technically demanding of the season by drivers, valued for its differentiation from the faster, more aero-dependent circuits like Fuji and Suzuka.",
     "notable_moments": "Super GT battles at SUGO producing season-affecting results through the circuit's tendency to equalise machinery. The circuit's longevity as a Tohoku regional motorsport institution. The contrast between SUGO's tight hillside character and Japan's other major circuits.",
@@ -4214,6 +4791,10 @@
       "series": "Supercars"
     },
     "website": "https://www.sydneymotorsportpark.com.au",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Sydney Motorsport Park is a 3.931 km permanent circuit in Eastern Creek, 40km west of Sydney's CBD. One of Australia's most multi-use motorsport facilities, it hosts Supercars, WorldSBK, and numerous national series events. The circuit's proximity to Sydney's western suburbs provides access to Australia's largest population centre, though the industrial character of the Eastern Creek precinct is a contrast to the scenic settings of Mount Panorama or Phillip Island.",
     "history": "The circuit opened in 1991 as Eastern Creek Raceway, designed for the New South Wales government as a replacement for the aging Amaroo Park circuit. It was built to international standards capable of hosting grand prix motorcycle and touring car events. Renamed Sydney Motorsport Park under a government rebrand, it has consistently hosted Supercars rounds (historically the NRMA Sydney 500 was a finale event) and WorldSBK Australian rounds at various points. The circuit continues as New South Wales' primary motorsport venue.",
     "notable_moments": "Multiple Supercars season finales held at Sydney Motorsport Park. WorldSBK Australian rounds bringing motorcycle championship action to the western Sydney venue. The circuit's role as the primary motorsport development venue for New South Wales drivers and teams.",
@@ -4319,6 +4900,10 @@
       "year": 2024
     },
     "website": "https://www.brucemclarenmotorsportpark.com",
+    "fia": {
+      "grade": "3",
+      "pole": "Right"
+    },
     "overview": "Bruce McLaren Motorsport Park is a 3.198 km permanent circuit on the shores of Lake Taupo in the centre of New Zealand's North Island. Named after Bruce McLaren — the New Zealand racing driver and constructor who founded McLaren and died testing at Goodwood in 1970 — the circuit sits in one of New Zealand's most dramatic landscapes, with the volcanic plateau and lake as its backdrop. It is the primary venue for New Zealand national motorsport championships and hosts occasional international events.",
     "history": "The circuit near Taupo has hosted motorsport for decades, progressively upgraded into a permanent facility of international standard. It was renamed Bruce McLaren Motorsport Park in tribute to New Zealand's greatest motorsport export. The circuit's geographic position — central North Island, away from the major population centres of Auckland, Wellington, and Christchurch — limits its audience draw, but the natural setting and the Bruce McLaren heritage association give it a significance beyond its size. New Zealand has produced a remarkable number of great racing drivers relative to its population — McLaren, Denny Hulme, Chris Amon, Scott Dixon — and Taupo sits within that tradition.",
     "notable_moments": "The circuit's role as New Zealand's primary permanent motorsport venue for national championship development. The naming tribute to Bruce McLaren, reflecting New Zealand's pride in a son who founded one of F1's most storied teams. Events that bring international competitors to the North Island volcanic plateau.",
@@ -4355,6 +4940,9 @@
       "driver": "Shane van Gisbergen",
       "series": "Supercars Gen2",
       "year": 2020
+    },
+    "fia": {
+      "grade": "2"
     },
     "overview": "The Bend Motorsport Park is a 4.950 km permanent circuit at Tailem Bend in South Australia, 70km southeast of Adelaide. Opened in 2018, it is Australia's longest permanent race circuit and its newest major motorsport facility. The circuit features multiple layouts — the full race circuit, a shorter east and west configuration, and a rallycross track — making it one of the most versatile motorsport venues in the southern hemisphere. Its modern facilities, wide pit lane, and extensive run-off areas reflect contemporary circuit design philosophy.",
     "history": "The Bend was developed by Sam Shahin, a South Australian businessman, as a commercial motorsport complex designed to attract international and national events. Built on former agricultural land near Tailem Bend, it opened in 2018 with an inaugural Supercars round. The project represented a significant private investment in South Australian motorsport infrastructure, complementing the existing Adelaide street circuit event. The circuit quickly established itself as a Supercars venue and has hosted GT World Challenge Australia rounds.",
@@ -4430,6 +5018,10 @@
       "year": 2024
     },
     "website": "https://www.fiaformulae.com",
+    "fia": {
+      "grade": "3E",
+      "pole": "Right"
+    },
     "overview": "The Tokyo E-Prix Circuit is a temporary street circuit in the Minato Ward of Tokyo, Japan, used for the Formula E Tokyo ePrix from 2024. The circuit runs through the waterfront area of Shibaura and Daiba, incorporating sections of the Rinkai Road alongside Tokyo Bay. Formula E's arrival in Tokyo — the world's most populous metropolitan area — was one of the championship's most significant venue additions, bringing electric racing to a city that is both a global capital and the headquarters of major manufacturers including Toyota, Honda, and Nissan.",
     "history": "Formula E's Tokyo ePrix was announced as a landmark addition to the championship's calendar, reflecting both Japan's importance to the global automotive industry and the Japanese government's commitment to electric vehicle adoption. The circuit is a temporary construction on public roads around the Tokyo waterfront, deconstructed after race weekend. The race debuted in 2024 and established Tokyo as a key anchor of the Formula E Asian calendar alongside Jakarta and Seoul.",
     "notable_moments": "Formula E's inaugural Tokyo ePrix in 2024 — the first world championship single-seater race in the Japanese capital. The circuit's waterfront setting with Tokyo Bay providing a spectacular backdrop. The arrival of Formula E in the backyard of Honda, Toyota, and Nissan — all with ties to the championship.",
@@ -4467,6 +5059,10 @@
       "series": "Supercars"
     },
     "website": "https://www.townsville.qld.gov.au",
+    "fia": {
+      "grade": "3",
+      "pole": "Right"
+    },
     "overview": "Reid Park Street Circuit is a temporary street circuit in Reid Park, central Townsville, in tropical north Queensland. The NTI Townsville 500 is one of the most popular rounds on the Supercars calendar — the compact circuit, the north Queensland heat, and the passionate local crowd create a distinctive event atmosphere. The circuit is tight and demanding, with barriers close on multiple sections and limited room for error, producing the aggressive contact and tyre-grinding racing typical of Supercars street events.",
     "history": "Townsville has hosted Supercars events using the Reid Park street circuit for many years, establishing north Queensland as a regular stop on the national touring car calendar. The event reflects Supercars' commitment to taking racing to regional Queensland cities beyond Brisbane and the Gold Coast, building motorsport audiences in tropical communities where the summer racing series is a major annual event. Reid Park — normally a public green space — is transformed into a race circuit each year with temporary infrastructure.",
     "notable_moments": "Supercars Townsville 500 races producing dramatic street circuit battles in the north Queensland heat. The event's reputation as one of the most colourful stops on the Supercars calendar — tropical location, committed local crowd, and the aggressive street circuit format combining to create a distinctive race weekend character.",
@@ -4504,6 +5100,10 @@
       "year": 2006
     },
     "website": "https://www.circuitricardotormo.com",
+    "fia": {
+      "grade": "2",
+      "pole": "Right"
+    },
     "overview": "Circuit Ricardo Tormo is a 4.005 km permanent circuit near the city of Valencia in eastern Spain. Named after Ricardo Tormo, a Spanish motorcycle racer who died of leukaemia in 1998, the circuit hosts MotoGP's Valencia Grand Prix — the final round of the season for much of the 2000s and 2010s — as well as Formula E and WorldSBK. Hot, grippy, and technical, it is a circuit that has hosted numerous championship deciders.",
     "history": "Circuit Ricardo Tormo opened in 1999, purpose-built for MotoGP after Valencia's enthusiasm for the sport demanded a dedicated venue. It was immediately added to the MotoGP calendar. The decision to host the MotoGP season finale here for over a decade turned Valencia into one of the most emotionally charged rounds of the year — multiple world championships have been won and lost at this circuit. Formula E added a Valencia ePrix to its calendar. WorldSBK has also used Valencia regularly.",
     "notable_moments": "Valentino Rossi's devastating 2015 collision with Marc Marquez, costing him the championship to Jorge Lorenzo. Multiple MotoGP championship deciders held here when the Valencia round was the season finale. Jorge Lorenzo's emotional victories in front of his home Valencian crowd. The 2006 MotoGP finale where Rossi secured the title. Formula E ePrix events in the warm Valencian climate.",
@@ -4645,6 +5245,10 @@
       "year": 2024
     },
     "website": "https://www.yasmarinacircuit.com",
+    "fia": {
+      "grade": "1",
+      "pole": "Right"
+    },
     "overview": "Yas Marina Circuit is a 5.281 km permanent circuit on Yas Island, Abu Dhabi, built around a marina and dominated by the Yas Viceroy Hotel — a building straddling the circuit on which the hotel's façade lights up in reaction to race results. The host of F1's Abu Dhabi Grand Prix since 2009, it has traditionally been the season finale, making it the venue where Formula 1 world champions have most often been crowned or denied. A significant circuit revision in 2021 opened up overtaking opportunities that the original layout lacked.",
     "history": "Yas Marina Circuit was designed by Hermann Tilke and opened in 2009 as the centrepiece of Abu Dhabi's Yas Island entertainment and tourism development. The circuit immediately hosted the F1 season finale — a position it has held almost continuously. The 2021 revision shortened and opened up the Sector 3 section, replacing a tight chicane sequence with faster corners that allow closer racing. The construction of the circuit alongside a hotel, theme park, and marina reflects the Abu Dhabi government's strategy of using motorsport as anchor infrastructure for a broader leisure development.",
     "notable_moments": "The 2010 season finale where Fernando Alonso finished seventh — enough to win the championship if results had gone differently, but Sebastian Vettel took the title. The 2016 finale where Nico Rosberg secured his only championship against Lewis Hamilton. The 2021 Abu Dhabi Grand Prix — the most controversial race in modern F1 history: a late safety car, a disputed restart procedure that allowed Max Verstappen to overtake Lewis Hamilton on the final lap, and a title outcome that divided the sport. Rosberg's shock retirement announcement the week after his 2016 victory here.",
@@ -4682,6 +5286,10 @@
       "year": 2021
     },
     "website": "https://www.circuitzandvoort.nl",
+    "fia": {
+      "grade": "1",
+      "pole": "Left"
+    },
     "overview": "Circuit Zandvoort is a 4.259 km circuit in the dunes behind the North Sea coast resort of Zandvoort. First built in 1948, it is one of the most atmospheric circuits in European motorsport — narrow, fast, and enclosed by sand dunes that create a unique claustrophobic intensity. The rebuilt circuit that returned to F1 in 2021 added two banked corners, including a 19-degree banking at the final turn, that allow cars to carry extraordinary speed into the pit straight. The Orange Army — Max Verstappen's fanbase — transform race weekends here into something unlike any other event on the calendar.",
     "history": "Zandvoort hosted its first Dutch Grand Prix in 1952 and became a regular F1 fixture through the late 1970s and 1980s. It was dropped from the F1 calendar after 1985. The circuit continued hosting national motorsport through the intervening decades. The revival was driven by Max Verstappen's emergence as a title contender — demand from Dutch fans for an F1 home race forced the schedule discussion. The circuit was extensively rebuilt: a banking added to the Hugenholtz corner, the circuit widened in critical sections, and a new banked final corner constructed. The Dutch GP returned in 2021.",
     "notable_moments": "Niki Lauda winning here in 1985 for McLaren. Gilles Villeneuve's astonishing wet qualifying lap in 1979. Max Verstappen's dominant home victories since 2021. The extraordinary atmosphere created by the Orange Army — coordinated by colour, song, and noise, creating a wall of sound unlike any other F1 race weekend. The dune setting, unique in European motorsport.",
@@ -4719,6 +5327,10 @@
       "year": 2021
     },
     "website": "https://en.lsaisports.com/cdjaz",
+    "fia": {
+      "grade": "2",
+      "pole": "Left"
+    },
     "overview": "Zhuzhou International Circuit is a permanent circuit in Zhuzhou, an industrial city in Hunan Province, central China. Used for WTCR (World Touring Car Cup) rounds as part of the championship's engagement with China's growing motorsport market, Zhuzhou represents the expansion of international touring car competition into China's inland provinces beyond the coastal cities that typically host major international events.",
     "history": "Zhuzhou International Circuit was developed to bring international motorsport to the Xiangjiang River valley region of Hunan, a province known primarily for its role as the birthplace of Mao Zedong and its spicy cuisine rather than motorsport. The WTCR's Chinese rounds — rotating between multiple circuits — reflected the championship's commercial partnership with China's automotive industry and the ambition to develop a domestic motorsport fanbase across the country's interior.",
     "notable_moments": "WTCR rounds at Zhuzhou contributing to the championship's Chinese market engagement. International touring car competition in the Hunan interior, bringing world-class motorsport to a region without prior major circuit racing heritage.",
@@ -4779,6 +5391,10 @@
     "length": 1.22,
     "website": "https://www.nymc.eu",
     "browserSvg": "nyirad.svg",
+    "fia": {
+      "grade": "6RW",
+      "pole": "Left"
+    },
     "overview": "Nyirád Racing Centre is a motorsport facility in the Bakony hills of western Hungary, near the town of Nyirád in Veszprém County. A smaller venue within the Hungarian motorsport network, it supplements the Hungaroring and Balaton Park as one of the country's permanent circuit facilities, hosting national championships and local events in the hill country of Transdanubia.",
     "history": "Nyirád Racing Centre is part of Hungary's broader investment in regional motorsport infrastructure. The Bakony region's elevated, forested landscape provides an appealing environment for a circuit venue distinct from the flat plains where the Hungaroring is located. The facility hosts Hungarian national championships and forms part of the country's motorsport development pathway.",
     "notable_moments": "Hungarian national championship rounds providing racing development opportunities in the Bakony region.",
@@ -4808,6 +5424,10 @@
     "type": "mixed",
     "length": 1.21,
     "website": "https://www.holjes.se",
+    "fia": {
+      "grade": "6R",
+      "pole": "Right"
+    },
     "overview": "Höljes Motorstadion is a 1.013 km rallycross circuit deep in the forests of Värmland, Sweden — a tiny village in the wilderness three hours north of Gothenburg. It is the most atmospheric venue on the World Rallycross Championship calendar, regularly described by drivers as their favourite event of the year. The Höljes RallyX consistently draws crowds of over 40,000 to a village of fewer than 200 inhabitants, with fans camping in the forest for the entire weekend.",
     "history": "Höljes has hosted rallycross events since 1967, making it one of the oldest dedicated rallycross venues in the world. The circuit has hosted the Swedish round of the European and World Rallycross Championship continuously, maintaining its position even as the championship has modernised and the car classes have changed from traditional internal combustion to electric. The local Larsson family, who run the event, have maintained the festival character while upgrading facilities for world championship standards.",
     "notable_moments": "Timmy and Kevin Hansen's victories at their home event, racing in front of tens of thousands of fans in the Värmland forest. Petter Solberg's multiple World RX wins at Höljes. The electric World RX era's first Höljes round, where the sound of the forest changed as electric rallycross cars replaced combustion engines. The festival camping culture that makes Höljes unique in European motorsport.",
@@ -4845,6 +5465,10 @@
     },
     "website": "https://mondellopark.ie",
     "browserSvg": "mondello.svg",
+    "fia": {
+      "grade": "4",
+      "pole": "Left"
+    },
     "overview": "Mondello Park is a 3.441 km permanent circuit near Naas in County Kildare, Ireland — Ireland's only permanent motorsport facility at international grade. It hosts Irish national championships, international Superbike events, and occasional rounds of British national championships. The circuit sits in the flat Kildare countryside, 40km southwest of Dublin, and is Ireland's motorsport heartbeat.",
     "history": "Mondello Park opened in 1968, built on the Mondello estate by Martin Birrane — who later also owned Le Mans circuit in France and saved it from financial difficulty in the 1980s. The circuit has been continuously used since for Irish national championships and international events. The circuit has hosted occasional British touring car and single-seater events when calendar geography supports it.",
     "notable_moments": "Decades of Irish national motorsport history. Martin Birrane's ownership connecting Mondello to Le Mans in an unusual cross-European motorsport link. The circuit's role as the sole development ground for Irish motorsport talent aspiring to European championships.",
@@ -4901,6 +5525,9 @@
     "bio": "The Circuito de Lousada is a compact rallycross and circuit venue in northern Portugal, long associated with the country's strong rallying and rallycross culture.",
     "type": "mixed",
     "browserSvg": "lousada.svg",
+    "fia": {
+      "grade": "6RW"
+    },
     "overview": "Circuito de Lousada is a 1.267 km rallycross circuit near Porto in northern Portugal. One of the traditional European rallycross venues, Lousada combines tarmac and gravel in a compact layout that rewards precise car control and aggressive driving. Its position in the productive agricultural Tâmega Valley and its proximity to Porto have made it a well-supported event on the World Rallycross calendar.",
     "history": "Lousada has been a rallycross circuit since the 1980s and has hosted World RX rounds for many years. The circuit's compact nature means racing is invariably close — there is no room to build large gaps, and every mistake is immediately punished by a competitor going past. Portugal's passion for rallying and rallycross, inherited from decades of WRC presence in the country, gives Lousada a devoted and enthusiastic spectator base.",
     "notable_moments": "World Rallycross Championship rounds at Lousada contributing to title battles. The circuit's role as a Portuguese motorsport institution alongside the rally special stages that run through the same region.",
@@ -4937,6 +5564,10 @@
       "year": 2023
     },
     "browserSvg": "jakarta.svg",
+    "fia": {
+      "grade": "3E",
+      "pole": "Left"
+    },
     "overview": "The Jakarta International E-Prix Circuit is a 2.369 km street circuit on the waterfront of Ancol in North Jakarta, Indonesia. Used for the Formula E Jakarta ePrix since 2022, it was the first world championship motorsport event held in Indonesia since the Indonesian Motorcycle Grand Prix era. The circuit runs along the Jakarta Bay waterfront, with the Java Sea as a backdrop and the sprawling Indonesian capital surrounding it. Jakarta's 30+ million metropolitan population makes the ePrix one of Formula E's highest-profile urban events.",
     "history": "Indonesia's return to the world motorsport calendar came via Formula E's strategy of bringing electric racing to major Asian cities. The Jakarta ePrix was announced as part of Indonesia's government-backed effort to attract international sporting events, coinciding with the country's hosting ambitions around the 2023 ASEAN Games and other major events. The circuit uses the Ancol Dreamland entertainment and waterfront complex, repurposed for race weekend. Extensive marshalling and crowd management logistics are required for an event in one of the world's most densely populated cities.",
     "notable_moments": "Formula E's 2022 Jakarta ePrix — Indonesia's return to world motorsport after decades. The visual spectacle of electric racing cars on the Jakarta waterfront with the Java Sea behind them. The circuit's role in Formula E's strategy of anchoring major championship rounds in Southeast Asian megacities.",
@@ -4974,6 +5605,10 @@
       "year": 2023
     },
     "website": "https://www.supercars.com",
+    "fia": {
+      "grade": "3",
+      "pole": "Right"
+    },
     "overview": "The Adelaide Street Circuit runs through the Park Lands that ring Adelaide's CBD — a 3.219 km temporary circuit constructed on the public roads and park roads of the city's inner green belt. It hosted Formula 1's Australian Grand Prix from 1985 to 1995, becoming one of the most beloved circuits on that era's calendar before F1 moved to Melbourne. Today it is the host of the Supercars Adelaide 500, one of the marquee events of the Australian touring car season. The palm-lined streets, the compressed barriers, and the city-centre atmosphere make Adelaide one of the standout events on any Supercars calendar.",
     "history": "Adelaide first hosted the Australian F1 Grand Prix in 1985, the final round of the season — a role it played until 1995 when Victoria's government successfully bid for the race and moved it to Albert Park. The F1 years produced some of the most dramatic season finales in the sport's history. After F1's departure, the circuit continued hosting Supercars events. The Adelaide 500 was cancelled from 2012 to 2020 before a successful revival brought the event back to the calendar with renewed enthusiasm.",
     "notable_moments": "The 1986 Australian GP finale — Nigel Mansell's tyre blowout at 300 km/h that handed the championship to Alain Prost. The 1994 Australian GP, Schumacher and Hill's collision that decided the most controversial championship of the modern era. The 2010 Supercars Adelaide 500 finale. The circuit's revival as a Supercars event after its years away — testament to Adelaide's identity as a motorsport city.",

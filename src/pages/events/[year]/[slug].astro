@@ -20,7 +20,7 @@ import TripPlannerCard from '../../../components/TripPlannerCard.astro';
 
 import tracksData from '../../../../data/tracks.json';
 import seriesContentData from '../../../../data/seriesContent.json';
-import { ALL_EVENTS, eventsForTrack, eventsForSeries, plainTime, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
+import { ALL_EVENTS, eventsForTrack, eventsForSeries, eventRange, type CalendarEvent, type RaceResult } from '../../../lib/events';
 import { accommodationQuery, AFFILIATE_ENABLED, PARTNER_REL } from '../../../lib/affiliates';
 import { parseSessions, mainRaceTime } from '../../../lib/sessions';
 import { venueTimeZone, formatIn, zoneAbbr } from '../../../lib/timezones';
@@ -34,6 +34,7 @@ import { seriesShort } from '../../../lib/seriesShort';
 import { seasonOf } from '../../../lib/season';
 import { seriesSeasonPath } from '../../../lib/seriesSeasons';
 import { jsonForScript } from '../../../lib/jsonForScript';
+import { layoutOfSvg, specsFor } from '../../../lib/trackSpecs';
 
 export function getStaticPaths() {
   return ALL_EVENTS.map(ev => ({
@@ -51,6 +52,12 @@ const canonical = `https://dord.racing/events/${ev.year}/${ev.slug}`;
 const track = ev.trackSlug
   ? (tracksData as any[]).find(t => t.slug === ev.trackSlug)
   : null;
+// A venue with several layouts: the event is run on the one its calendar SVG draws,
+// so its length, turns and lap record are that layout's (Formula E at Mexico City is
+// 2.63 km, not the 4.304 km of the F1 circuit).
+const trackLayout = track ? layoutOfSvg(track, ev.trackSvg) : null;
+const trackSpecs = track ? specsFor(track, trackLayout) : null;
+const heroSvg = track ? (trackLayout ? ev.trackSvg : track.browserSvg) : null;
 
 const venue = venueFor(ev);
 // Rallies have a base town and stages, not a circuit; their venues carry ISO
@@ -134,11 +141,11 @@ if (isPast && firstResult) {
   overview.push(`Session times have not been published yet; they appear here as soon as ${seriesName} confirms them.`);
 }
 if (ev.hasSprint) overview.push('It is a Sprint weekend, with a shorter Sprint race on the Saturday alongside qualifying.');
-if (track?.length) {
-  const lr = track.lapRecord;
+if (track && trackSpecs?.length) {
+  const lr = trackSpecs.lapRecord;
   overview.push(
-    `${track.name} is a ${track.length} km ${typeWord[track.type] ?? ''} circuit` +
-    (track.turns ? ` with ${track.turns} turns` : '') +
+    `${track.name} is a ${trackSpecs.length} km ${typeWord[trackSpecs.type ?? ''] ?? ''} circuit` +
+    (trackSpecs.turns ? ` with ${trackSpecs.turns} turns` : '') +
     (lr?.time ? `; the lap record is ${lr.time}, set by ${lr.driver}${lr.series ? ` (${lr.series}` : ''}${lr.year ? `, ${lr.year})` : lr.series ? ')' : ''}.` : '.')
   );
 }
@@ -271,10 +278,10 @@ const breadcrumb = {
     <div class="event-split">
       <div class="event-col-left">
 
-        {track?.browserSvg && (
+        {track && heroSvg && (
           <a href={`${base}/tracks/${track.slug}`} class="ev-hero" aria-label={`${track.name} circuit page`}>
             <img
-              src={`${base}/track-svg/${track.browserSvg}`}
+              src={`${base}/track-svg/${heroSvg}`}
               alt={`${track.name} track layout`}
               width="880" height="528" loading="eager" decoding="async"
             />
@@ -298,7 +305,7 @@ const breadcrumb = {
               <div class="spec-value">
                 <a href={`${base}/tracks/${track.slug}`} class="ev-link">{track.name}</a>
               </div>
-              <div class="spec-sub">{track.city} · {track.country}{track.length ? ` · ${track.length} km` : ''}</div>
+              <div class="spec-sub">{track.city} · {track.country}{trackSpecs?.length ? ` · ${trackSpecs.length} km` : ''}</div>
             </div>
           ) : venue && (
             <div class="ev-spec">

@@ -31,8 +31,9 @@ import { jsonForScript } from '../../lib/jsonForScript';
 import { isoCountry } from '../../lib/results';
 import { countryFlag, layoutLabel, weekStartLabel } from '../../lib/format';
 import { dropFixedSize, stripTrackBackground } from '../../lib/trackSvg';
+import { defaultLayout, specsFor, type SpecLayout, type LapRecord, type Fia } from '../../lib/trackSpecs';
 
-type Layout = { id: string; label: string; calendarSvgs: string[] };
+type Layout = SpecLayout & { label: string };
 type Logistics = {
   nearest_airport: string;
   transport: string;
@@ -49,6 +50,14 @@ type Venue = {
   browserSvg: string;
   calendarSvgs: string[];
   layouts?: Layout[];
+  /** Specs of a single-layout track. A track with `layouts` carries them on each layout (see lib/trackSpecs). */
+  length?: number | null;
+  turns?: number | null;
+  direction?: string;
+  type?: string;
+  lapRecord?: LapRecord | null;
+  fia?: Fia;
+  website?: string;
   bio?: string;
   overview?: string;
   history?: string;
@@ -114,7 +123,6 @@ function cleanSvg(raw: string, label: string): string {
 }
 
 const rawSvg = readSvg(venue.browserSvg);
-const hasSvg  = rawSvg !== null;
 const svgContent = rawSvg ? cleanSvg(rawSvg, `${venue.name} track layout`) : null;
 
 // For multi-layout tracks: inline each layout's SVG so we can panel-swap on hover
@@ -124,6 +132,21 @@ const layoutSvgPanels: LayoutWithSvg[] = (venue.layouts ?? []).map(l => {
   return { ...l, svgContent: raw ? cleanSvg(raw, `${venue.name} track layout, ${l.label}`) : null };
 });
 const hasLayoutPanels = layoutSvgPanels.length > 1 && layoutSvgPanels.some(l => l.svgContent);
+
+// ── Specs per layout ─────────────────────────────────────────────────────────
+// Length, turns, lap record and FIA grade belong to a layout (Mexico City's
+// Formula E loop is 2.63 km, its F1 circuit 4.304 km), so a multi-layout page
+// renders one specs panel per layout and the layout buttons swap them. The page
+// opens on the layout that draws the track's browserSvg. A single-layout track
+// has one panel.
+const openLayoutId = hasLayoutPanels ? (defaultLayout(venue)?.id ?? layoutSvgPanels[0].id) : null;
+const specPanels = (hasLayoutPanels ? layoutSvgPanels : [null]).map(l => ({
+  layoutId: l ? l.id : null,
+  open: l ? l.id === openLayoutId : true,
+  specs: specsFor(venue, l),
+}));
+const hasSpecs = specPanels.some(p => p.specs.length || p.specs.turns || p.specs.direction || p.specs.type
+  || p.specs.lapRecord || p.specs.fia) || !!venue.website;
 
 
 const continentLabel: Record<string, string> = {
@@ -217,8 +240,8 @@ const eventListSchema = (() => {
     <div class="track-hero theme-dark" style={`background-image: url('${base}/assets/track-bgs/${'bg' in venue && (venue as any).bg ? (venue as any).bg : 'default.webp'}')`}>
       <div class="track-hero-svg">
         {hasLayoutPanels ? (
-          layoutSvgPanels.map((l, i) => (
-            <div class="layout-panel" data-layout-id={l.id} style={i === 0 ? '' : 'display:none'}>
+          layoutSvgPanels.map(l => (
+            <div class="layout-panel" data-layout-id={l.id} style={l.id === openLayoutId ? '' : 'display:none'}>
               {l.svgContent
                 ? <Fragment set:html={l.svgContent} />
                 : <div class="hero-placeholder">{l.label}</div>
@@ -233,11 +256,12 @@ const eventListSchema = (() => {
       </div>
       {hasLayoutPanels && (
         <div class="layout-btns">
-          {layoutSvgPanels.map((l, i) => (
+          {layoutSvgPanels.map(l => (
             <button
-              class={`layout-btn${i === 0 ? ' active' : ''}`}
+              type="button"
+              class={`layout-btn${l.id === openLayoutId ? ' active' : ''}`}
               data-layout-target={l.id}
-              aria-pressed={i === 0 ? 'true' : 'false'}
+              aria-pressed={l.id === openLayoutId ? 'true' : 'false'}
             >
               {layoutLabel(l.id)}
             </button>
@@ -266,49 +290,122 @@ const eventListSchema = (() => {
       )}
     </div>
 
-    <!-- Circuit specs -->
-    {((venue as any).length || (venue as any).turns || (venue as any).type || (venue as any).lapRecord || (venue as any).website) && (
-      <div class="track-specs-row">
-        {(venue as any).length && (
-          <div class="spec-item">
-            <div class="spec-label">Length</div>
-            <div class="spec-value">{(venue as any).length} km</div>
-          </div>
-        )}
-        {(venue as any).turns && (
-          <div class="spec-item">
-            <div class="spec-label">Turns</div>
-            <div class="spec-value">{(venue as any).turns}</div>
-          </div>
-        )}
-        {(venue as any).direction && (
-          <div class="spec-item">
-            <div class="spec-label">Direction</div>
-            <div class="spec-value">{(venue as any).direction}</div>
-          </div>
-        )}
-        {(venue as any).type && (
-          <div class="spec-item">
-            <div class="spec-label">Type</div>
-            <div class="spec-value">{(venue as any).type}</div>
-          </div>
-        )}
-        {(venue as any).lapRecord && (
-          <div class="spec-item spec-item--lap">
-            <div class="spec-label">Lap Record</div>
-            <div class="spec-value">{(venue as any).lapRecord.time}</div>
-            <div class="spec-sub">{(venue as any).lapRecord.driver} · {(venue as any).lapRecord.series} · {(venue as any).lapRecord.year}</div>
-          </div>
-        )}
-        {(venue as any).website && (
-          <div class="spec-item spec-item--link">
-            <a href={(venue as any).website} target="_blank" rel="noopener noreferrer" class="spec-website">
-              <img src={`${base}/assets/website-icon.svg`} alt="" width="14" height="14" />
-              Official Site
-            </a>
-          </div>
-        )}
-      </div>
+    <!-- Circuit specs: two islands per layout, vertical dividers only -->
+    {hasSpecs && (
+      <section class="track-specs" aria-labelledby="specs-title">
+        <div class="specs-head">
+          <h2 class="specs-title" id="specs-title">Layout</h2>
+          {hasLayoutPanels && (
+            <div class="specs-switch" role="group" aria-label="Choose a layout">
+              {layoutSvgPanels.map(l => (
+                <button
+                  type="button"
+                  class={`specs-chip${l.id === openLayoutId ? ' active' : ''}`}
+                  data-layout-target={l.id}
+                  aria-pressed={l.id === openLayoutId ? 'true' : 'false'}
+                >
+                  {layoutLabel(l.id)}
+                </button>
+              ))}
+            </div>
+          )}
+          {specPanels.map(p => {
+            const series = hasLayoutPanels
+              ? [...new Set(allEvents.filter(e => e.layoutId === p.layoutId).map(e => e.series))]
+              : activeSeries;
+            return series.length > 0 && (
+              <div class="specs-series" data-spec-layout={p.layoutId ?? undefined} hidden={!p.open}>
+                {series.map(s => (
+                  <a href={`${base}/series/${s}`} class={`tag t-${s}`}>{allEvents.find(e => e.series === s)?.tag}</a>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+
+        {specPanels.map(p => {
+          const sp = p.specs;
+          const hasFacts = sp.length || sp.turns || sp.direction || sp.type || sp.fia?.pole;
+          const hasRecord = sp.lapRecord || sp.fia || venue.website;
+          return (
+            <div class="specs-panel" data-spec-layout={p.layoutId ?? undefined} hidden={!p.open}>
+              {hasFacts && (
+                <div class="spec-island">
+                  <div class="spec-cells">
+                    {sp.length && (
+                      <div class="spec-cell">
+                        <div class="spec-label">Length</div>
+                        <div class="spec-value">{sp.length} km</div>
+                      </div>
+                    )}
+                    {sp.turns && (
+                      <div class="spec-cell">
+                        <div class="spec-label">Turns</div>
+                        <div class="spec-value">{sp.turns}</div>
+                      </div>
+                    )}
+                    {sp.direction && (
+                      <div class="spec-cell spec-cell--wide">
+                        <div class="spec-label">Direction</div>
+                        <div class="spec-value">{sp.direction}</div>
+                      </div>
+                    )}
+                    {sp.type && (
+                      <div class="spec-cell">
+                        <div class="spec-label">Type</div>
+                        <div class="spec-value">{sp.type}</div>
+                      </div>
+                    )}
+                    {sp.fia?.pole && (
+                      <div class="spec-cell">
+                        <div class="spec-label">Pole side</div>
+                        <div class="spec-value spec-value--pole">
+                          <svg class="pole-icon" viewBox="0 0 28 20" width="28" height="20" aria-hidden="true" focusable="false">
+                            <path class="pole-edge" d="M4 1V19M24 1V19" />
+                            <path class="pole-centre" d="M14 1V19" />
+                            <rect class="pole-slot" x={sp.fia.pole === 'Left' ? 6.5 : 15.5} y="5" width="6" height="10" rx="1" />
+                          </svg>
+                          {sp.fia.pole}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              {hasRecord && (
+                <div class="spec-island">
+                  <div class="spec-cells">
+                    {sp.lapRecord && (
+                      <div class="spec-cell spec-cell--lap">
+                        <div class="spec-lap-line">
+                          <span class="spec-label">Lap record</span>
+                          <span class="spec-value spec-value--lap">{sp.lapRecord.time}</span>
+                        </div>
+                        <div class="spec-sub">{[sp.lapRecord.driver, sp.lapRecord.series, sp.lapRecord.year].filter(Boolean).join(' · ')}</div>
+                      </div>
+                    )}
+                    {sp.fia && (
+                      <div class="spec-cell">
+                        <div class="spec-label">FIA grade</div>
+                        <div class="spec-value"><span class="fia-badge">{sp.fia.grade}</span></div>
+                      </div>
+                    )}
+                    {venue.website && (
+                      <div class="spec-cell spec-cell--link">
+                        <a href={venue.website} target="_blank" rel="noopener noreferrer" class="spec-website">
+                          <img src={`${base}/assets/website-icon.svg`} alt="" width="14" height="14" />
+                          Official Site
+                          <span class="spec-website-arrow" aria-hidden="true">↗</span>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </section>
     )}
 
     <!-- Layouts -->
@@ -428,15 +525,20 @@ const eventListSchema = (() => {
 </BaseLayout>
 
 <script>
-  // Layout button switching
+  // Layout switching. The buttons over the map and the chips in the Layout header
+  // drive the same state: the map, the specs panel (length, turns, lap record, FIA
+  // grade) and the series tags all follow the selected layout.
   const panels = document.querySelectorAll<HTMLElement>('.layout-panel');
-  const btns   = document.querySelectorAll<HTMLButtonElement>('.layout-btn');
+  const btns   = document.querySelectorAll<HTMLButtonElement>('[data-layout-target]');
 
   if (panels.length > 1 && btns.length > 0) {
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
         const target = btn.dataset.layoutTarget!;
         panels.forEach(p => { p.style.display = p.dataset.layoutId === target ? '' : 'none'; });
+        document.querySelectorAll<HTMLElement>('[data-spec-layout]').forEach(el => {
+          el.hidden = el.dataset.specLayout !== target;
+        });
         btns.forEach(b => {
           b.classList.toggle('active', b.dataset.layoutTarget === target);
           b.setAttribute('aria-pressed', b.dataset.layoutTarget === target ? 'true' : 'false');
@@ -616,38 +718,97 @@ const eventListSchema = (() => {
     .track-meta-row { grid-template-columns: 1fr; }
   }
 
-  /* ── Circuit specs bar ───────────────────────────────────────────────────── */
-  .track-specs-row {
+  /* ── Circuit specs: two islands per layout ──────────────────────────────────
+     The header names the layout and holds the layout chips + series tags. Each
+     island is its own card; inside, cells are separated by vertical hairlines
+     only. A cell's border-left does the drawing, and the -1px margin on the row
+     pushes the first cell of every wrapped line out of the island's overflow, so
+     the dividers stay vertical-only however the cells wrap or whichever are
+     missing (no turns, no lap record, no FIA grade). */
+  .track-specs { margin-top: 12px; }
+
+  .specs-head {
     display: flex;
     flex-wrap: wrap;
-    gap: 0;
-    border: 1px solid var(--border);
-    border-top: none;
-    background: var(--card-bg);
-    margin-bottom: 2px;
-  }
-
-  .spec-item {
-    padding: 14px 20px;
-    border-right: 1px solid var(--border);
-    min-width: 100px;
-  }
-
-  .spec-item:last-child {
-    border-right: none;
-  }
-
-  .spec-item--lap {
-    flex: 1;
-  }
-
-  .spec-item--link {
-    display: flex;
     align-items: center;
-    margin-left: auto;
-    border-right: none;
-    border-left: 1px solid var(--border);
+    gap: 10px 14px;
+    margin: 24px 0 12px;
   }
+
+  .specs-title {
+    font-family: var(--font-title);
+    font-size: var(--fs-xl-2);
+    font-weight: 800;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .specs-switch,
+  .specs-series {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .specs-switch[hidden],
+  .specs-series[hidden],
+  .specs-panel[hidden] { display: none; }
+
+  .specs-chip {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--line-neutral-2);
+    border-radius: var(--radius-pill);
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+  }
+  .specs-chip:hover { color: var(--text-strong); border-color: var(--text-muted); }
+  .specs-chip.active {
+    color: var(--text-strong);
+    background: var(--surface-raised);
+    border-color: var(--accent-bright);
+  }
+
+  .specs-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .spec-island {
+    background: var(--card-bg);
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-2xl);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+
+  .spec-cells {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 0;
+    margin-left: -1px;
+  }
+
+  .spec-cell {
+    flex: 1 1 96px;
+    padding: 2px 20px;
+    border-left: 1px solid var(--row-line);
+  }
+
+  /* "counterclockwise" is the longest value; give it room to stay on one line */
+  .spec-cell--wide { flex-basis: 150px; }
+  .spec-cell--lap { flex: 3 1 220px; }
+  .spec-cell--link { flex: 1 1 140px; display: flex; align-items: center; padding-block: 0; }
 
   .spec-label {
     font-family: var(--font-mono);
@@ -660,42 +821,76 @@ const eventListSchema = (() => {
 
   .spec-value {
     font-family: var(--font-mono);
-    font-size: var(--fs-sm-3);
+    font-size: var(--fs-md);
     font-weight: 700;
     color: var(--text-soft);
     letter-spacing: 0.03em;
+    white-space: nowrap;   /* a cell that can't fit wraps to the next row instead */
   }
+
+  /* lap record: label left, time right, driver line underneath */
+  .spec-lap-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .spec-lap-line .spec-label { margin-bottom: 0; }
+  .spec-value--lap { font-size: var(--fs-xl); color: var(--text-strong); }
 
   .spec-sub {
     font-family: var(--font-mono);
-    font-size: var(--fs-3xs);
-    color: var(--text-dim-4);
-    margin-top: 3px;
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    margin-top: 6px;
     letter-spacing: 0.03em;
   }
 
-  .spec-website {
+  /* FIA grade as a badge, pole side as a two-lane diagram */
+  .fia-badge {
+    display: inline-block;
+    min-width: 2.2em;
+    padding: 1px 8px;
+    border: 1px solid var(--accent-bright);
+    border-radius: var(--radius-md);
+    background: var(--surface-raised);
+    color: var(--text-strong);
+    text-align: center;
+  }
+
+  .spec-value--pole {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 10px;
+  }
+
+  .pole-icon { flex: none; color: var(--text-muted); }
+  .pole-icon path { fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .pole-icon .pole-edge { opacity: 0.55; }
+  .pole-icon .pole-centre { stroke-width: 1; stroke-dasharray: 2 3; opacity: 0.4; }
+  .pole-icon .pole-slot { fill: var(--accent-bright); stroke: none; }
+
+  .spec-website {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 0;
     font-family: var(--font-mono);
-    font-size: var(--fs-2xs);
-    color: var(--text-dim-4);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
     text-decoration: none;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     transition: color 0.15s;
     white-space: nowrap;
   }
+  .spec-website:hover { color: var(--text-strong); }
+  .spec-website img { opacity: 0.7; }
 
-  .spec-website:hover { color: var(--text-muted-2); }
-
-  .spec-website img { opacity: 0.5; }
-
-  @media (max-width: 560px) {
-    .track-specs-row { flex-direction: column; }
-    .spec-item { border-right: none; border-bottom: 1px solid var(--border); }
-    .spec-item--link { border-left: none; border-bottom: none; margin-left: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .specs-chip, .spec-website { transition: none; }
   }
 
   .track-name {
@@ -896,12 +1091,11 @@ const eventListSchema = (() => {
   }
 
   /* ── Card system ───────────────────────────────────────────────────────────
-     Hero + name + specs form one identity card (rounded top and bottom, a
-     single divider between parts). Layouts, results and upcoming are
-     separate cards with a 12px gap. No stacked 2px seams. */
+     Hero + name form one identity card (rounded top and bottom, a single
+     divider between them). The specs islands, layouts, results and upcoming
+     are separate cards with a 12px gap. No stacked 2px seams. */
   .track-hero,
   .track-meta-row,
-  .track-specs-row,
   .track-layouts-section,
   .track-events-section {
     border: 1px solid var(--row-line);
@@ -911,19 +1105,16 @@ const eventListSchema = (() => {
     border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
     overflow: hidden;
   }
-  .track-meta-row { border-top: 0; }
-  .track-specs-row {
-    border-top: 1px solid var(--row-line);
+  .track-meta-row {
+    border-top: 0;
     border-bottom-left-radius: var(--radius-2xl);
     border-bottom-right-radius: var(--radius-2xl);
-    overflow: hidden;
   }
   .track-layouts-section,
   .track-events-section {
     border-radius: var(--radius-2xl);
     margin-top: 12px;
   }
-  .spec-item { border-right-color: var(--row-line); }
 
   /* Flag sits next to the winner's name, not after the team, so it never
      wraps onto a line of its own. */

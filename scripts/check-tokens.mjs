@@ -13,13 +13,10 @@
  * Usage: npm run check:tokens
  */
 
-import { readFileSync, readdirSync } from 'fs';
-import { resolve, dirname, relative, join } from 'path';
-import { fileURLToPath } from 'url';
+import { readText, walkFiles, blankNonNewlines, ROOT } from './lib.mjs';
+import { resolve, relative } from 'path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = resolve(__dirname, '..');
-const SRC  = resolve(root, 'src');
+const SRC = resolve(ROOT, 'src');
 
 const SKIP = [
   'src/styles/tokens.css',
@@ -33,17 +30,10 @@ const RULES = [
   [/border(?:-[a-z]+)*-radius\s*:\s*[\d.]+(?:px|%)/g, 'border-radius literal'],
 ];
 
-function walk(dir) {
-  return readdirSync(dir, { withFileTypes: true }).flatMap(e =>
-    e.isDirectory() ? walk(join(dir, e.name)) : [join(dir, e.name)]);
-}
-
-// Blank out a range but keep newlines, so offsets still map to line numbers.
-const blank = s => s.replace(/[^\n]/g, ' ');
-
+// Keep only <style> contents; everything else becomes whitespace.
+const blank = blankNonNewlines;
 function cssRegions(file, text) {
   if (file.endsWith('.css')) return text;
-  // Keep only <style> contents; everything else becomes whitespace.
   let out = '', last = 0;
   for (const m of text.matchAll(/(<style[^>]*>)([\s\S]*?)(<\/style>)/g)) {
     out += blank(text.slice(last, m.index + m[1].length)) + m[2];
@@ -54,11 +44,11 @@ function cssRegions(file, text) {
 
 const fail = [];
 let scanned = 0;
-for (const abs of walk(SRC)) {
-  const file = relative(root, abs);
+for (const abs of walkFiles(SRC)) {
+  const file = relative(ROOT, abs);
   if (!/\.(css|astro)$/.test(file) || SKIP.some(s => file.startsWith(s))) continue;
   scanned++;
-  let css = cssRegions(file, readFileSync(abs, 'utf8'))
+  let css = cssRegions(file, readText(relative(ROOT, abs)))
     .replace(/\/\*[\s\S]*?\*\//g, blank)
     .replace(/@font-face\s*\{[^}]*\}/g, blank);
   for (const [re, label] of RULES) {

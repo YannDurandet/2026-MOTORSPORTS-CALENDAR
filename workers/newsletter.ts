@@ -15,6 +15,9 @@ import { monthYear, weekAnchor } from '../src/lib/season';
 import { sendInBatches, type Outgoing } from './sendBatches';
 // The same token code the site's /api/unsubscribe verifies with (wrangler bundles it).
 import { computeUnsubToken, unsubUrl } from '../src/lib/unsub-token';
+// Series names come from the same data file the site builds from, so the
+// newsletter can never disagree with it (it once called TCR "TCR Europe").
+import seriesContent from '../data/seriesContent.json';
 
 // =============================================================================
 // ENVIRONMENT
@@ -64,45 +67,51 @@ interface TrackEntry {
 // SERIES METADATA
 // =============================================================================
 
-const SERIES_INFO: Record<string, { name: string; abbr: string; color: string; textColor: string }> = {
-  f1:        { name: 'Formula 1',              abbr: 'F1',    color: '#ff1801', textColor: '#ffffff' },
-  f1a:       { name: 'F1 Academy',             abbr: 'F1A',   color: '#C60678', textColor: '#ffffff' },
-  fe:        { name: 'Formula E',              abbr: 'FE',    color: '#0033FF', textColor: '#ffffff' },
-  sf:        { name: 'Super Formula',          abbr: 'SF',    color: '#00A67E', textColor: '#ffffff' },
-  wec:       { name: 'FIA WEC',                abbr: 'WEC',   color: '#00B9FF', textColor: '#0b0f12' },
-  imsa:      { name: 'IMSA WeatherTech',       abbr: 'IMSA',  color: '#FFD700', textColor: '#0b0f12' },
-  wrc:       { name: 'WRC',                    abbr: 'WRC',   color: '#FC4C02', textColor: '#ffffff' },
-  erc:       { name: 'ERC',                    abbr: 'ERC',   color: '#0088DD', textColor: '#ffffff' },
-  indycar:   { name: 'IndyCar',                abbr: 'IND',   color: '#C8102E', textColor: '#ffffff' },
-  nascar:    { name: 'NASCAR',                 abbr: 'NAS',   color: '#1A72E8', textColor: '#ffffff' },
-  motogp:    { name: 'MotoGP',                 abbr: 'MGP',   color: '#E91E63', textColor: '#ffffff' },
-  wsbk:      { name: 'World Superbike',        abbr: 'WSBK',  color: '#EE0000', textColor: '#ffffff' },
-  dtm:       { name: 'DTM',                    abbr: 'DTM',   color: '#4CAF50', textColor: '#ffffff' },
-  btcc:      { name: 'BTCC',                   abbr: 'BTCC',  color: '#3355EE', textColor: '#ffffff' },
-  supercars: { name: 'Supercars',              abbr: 'SCC',   color: '#E8001A', textColor: '#ffffff' },
-  elms:      { name: 'ELMS',                   abbr: 'ELMS',  color: '#FF6600', textColor: '#ffffff' },
-  gtwce:     { name: 'GT World Challenge EU',  abbr: 'GTWCE', color: '#E52014', textColor: '#ffffff' },
-  gtwca:     { name: 'GT World Challenge Am.', abbr: 'GTWCA', color: '#E52014', textColor: '#ffffff' },
-  nls:       { name: 'NLS / VLN',              abbr: 'NLS',   color: '#00B85C', textColor: '#ffffff' },
-  igtc:      { name: 'Intercontinental GT',    abbr: 'IGTC',  color: '#CC1A10', textColor: '#ffffff' },
-  tcr:       { name: 'TCR Europe',             abbr: 'TCR',   color: '#E10B16', textColor: '#ffffff' },
-  h24eu:     { name: '24H Series',             abbr: '24H',   color: '#1A7FE8', textColor: '#ffffff' },
-  psc:       { name: 'Porsche Supercup',       abbr: 'PSC',   color: '#cf9d40', textColor: '#0b0f12' },
-  bgt:       { name: 'British GT',             abbr: 'BGT',   color: '#C41E3A', textColor: '#ffffff' },
-  eurx:      { name: 'Euro RX',                abbr: 'ERX',   color: '#02F3E9', textColor: '#0b0f12' },
-  'asian-le-mans': { name: 'Asian Le Mans Series', abbr: 'ALMS', color: '#D12F44', textColor: '#ffffff' },
+// Badge look only (abbr + colours). The series NAME is taken from
+// data/seriesContent.json below, so this table can never drift from the site.
+const SERIES_BADGE: Record<string, { abbr: string; color: string; textColor: string }> = {
+  f1:        { abbr: 'F1',    color: '#ff1801', textColor: '#ffffff' },
+  f1a:       { abbr: 'F1A',   color: '#C60678', textColor: '#ffffff' },
+  fe:        { abbr: 'FE',    color: '#0033FF', textColor: '#ffffff' },
+  sf:        { abbr: 'SF',    color: '#00A67E', textColor: '#ffffff' },
+  wec:       { abbr: 'WEC',   color: '#00B9FF', textColor: '#0b0f12' },
+  imsa:      { abbr: 'IMSA',  color: '#FFD700', textColor: '#0b0f12' },
+  wrc:       { abbr: 'WRC',   color: '#FC4C02', textColor: '#ffffff' },
+  erc:       { abbr: 'ERC',   color: '#0088DD', textColor: '#ffffff' },
+  indycar:   { abbr: 'IND',   color: '#C8102E', textColor: '#ffffff' },
+  nascar:    { abbr: 'NAS',   color: '#1A72E8', textColor: '#ffffff' },
+  motogp:    { abbr: 'MGP',   color: '#E91E63', textColor: '#ffffff' },
+  wsbk:      { abbr: 'WSBK',  color: '#EE0000', textColor: '#ffffff' },
+  dtm:       { abbr: 'DTM',   color: '#4CAF50', textColor: '#ffffff' },
+  btcc:      { abbr: 'BTCC',  color: '#3355EE', textColor: '#ffffff' },
+  supercars: { abbr: 'SCC',   color: '#E8001A', textColor: '#ffffff' },
+  elms:      { abbr: 'ELMS',  color: '#FF6600', textColor: '#ffffff' },
+  gtwce:     { abbr: 'GTWCE', color: '#E52014', textColor: '#ffffff' },
+  gtwca:     { abbr: 'GTWCA', color: '#E52014', textColor: '#ffffff' },
+  nls:       { abbr: 'NLS',   color: '#00B85C', textColor: '#ffffff' },
+  igtc:      { abbr: 'IGTC',  color: '#CC1A10', textColor: '#ffffff' },
+  tcr:       { abbr: 'TCR',   color: '#E10B16', textColor: '#ffffff' },
+  h24eu:     { abbr: '24H',   color: '#1A7FE8', textColor: '#ffffff' },
+  psc:       { abbr: 'PSC',   color: '#cf9d40', textColor: '#0b0f12' },
+  bgt:       { abbr: 'BGT',   color: '#C41E3A', textColor: '#ffffff' },
+  eurx:      { abbr: 'ERX',   color: '#02F3E9', textColor: '#0b0f12' },
+  'asian-le-mans': { abbr: 'ALMS', color: '#D12F44', textColor: '#ffffff' },
 };
+
+const FALLBACK_BADGE = { abbr: '', color: '#334455', textColor: '#ffffff' };
+const SERIES_INFO: Record<string, { name: string; abbr: string; color: string; textColor: string }> =
+  Object.fromEntries(
+    (seriesContent as { slug: string; name: string }[]).map((s) => {
+      const badge = SERIES_BADGE[s.slug] ?? { ...FALLBACK_BADGE, abbr: s.slug.toUpperCase().slice(0, 6) };
+      return [s.slug, { name: s.name, ...badge }];
+    }),
+  );
 
 const SERIES_PRIORITY = [
   'f1','wec','motogp','indycar','imsa','nascar','wsbk',
   'fe','f1a','sf','dtm','btcc','supercars','wrc','erc',
   'gtwce','gtwca','igtc','elms','nls','asian-le-mans','tcr','h24eu','psc','bgt','eurx',
 ];
-
-const MONTH_MAP: Record<string, number> = {
-  JAN:0,FEB:1,MAR:2,APR:3,MAY:4,JUN:5,
-  JUL:6,AUG:7,SEP:8,OCT:9,NOV:10,DEC:11,
-};
 
 // =============================================================================
 // PART 1 — DATA

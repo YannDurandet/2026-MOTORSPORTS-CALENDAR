@@ -629,6 +629,7 @@ const speculationRules = {
       searchTriggerEl = triggerEl ?? (document.activeElement as HTMLElement) ?? null;
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';
+      void loadIndex(); // warm the index while the user reads the overlay
       setTimeout(() => input?.focus(), 30);
     }
 
@@ -644,11 +645,17 @@ const speculationRules = {
       searchTriggerEl = null;
     }
 
+    let searchIndexPromise: Promise<void> | null = null;
     async function loadIndex() {
       if (searchIndex) return;
-      const base = document.querySelector<HTMLMetaElement>('meta[name="astro-base"]')?.content || '';
-      const res = await fetch(`${base}/data/search.json`);
-      searchIndex = await res.json();
+      // Share one in-flight fetch: concurrent callers must all await the same load.
+      if (!searchIndexPromise) {
+        const base = document.querySelector<HTMLMetaElement>('meta[name="astro-base"]')?.content || '';
+        searchIndexPromise = fetch(`${base}/data/search.json`)
+          .then((res) => res.json())
+          .then((j) => { searchIndex = j as any[]; });
+      }
+      await searchIndexPromise;
     }
 
     function escapeHtml(s: string): string {
@@ -661,7 +668,13 @@ const speculationRules = {
     }
 
     function renderResults(query: string) {
-      if (!results || !searchIndex) return;
+      if (!results) return;
+      if (!searchIndex) {
+        // Index still loading (e.g. the first keystroke raced the fetch): render
+        // as soon as it lands, re-reading the input since the query may have moved on.
+        void loadIndex().then(() => { if (input) renderResults(input.value); });
+        return;
+      }
       const q = query.trim().toLowerCase();
       if (!q) { results.innerHTML = ''; setSearchStatus(''); focusIdx = -1; return; }
 

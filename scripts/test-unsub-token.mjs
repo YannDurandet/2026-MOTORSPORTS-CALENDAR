@@ -9,8 +9,11 @@
  * The secret must match the UNSUB_SECRET env var set in Cloudflare Workers.
  */
 
+import { parseArgs } from './lib.mjs';
+
 const secret = process.env.UNSUB_SECRET;
-const [,, cmd, email, token] = process.argv;
+const { args } = parseArgs();
+const [cmd, email, token] = args;
 
 if (!secret) {
   console.error('Error: UNSUB_SECRET env var is not set.');

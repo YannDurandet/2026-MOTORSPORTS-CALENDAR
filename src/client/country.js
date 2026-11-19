@@ -74,7 +74,7 @@ window.addEventListener('storage', e => {
  * A country with no entry falls back to the series' own worldwide option.
  *
  * @param {Record<string, Array<{name: string, type?: string, url: string, note?: string}>> | null} howToWatch
- * @returns {{ list: Array<object>, scope: 'country' | 'worldwide' | 'none', code: string }}
+ * @returns {{ list: Array<{name: string, type?: string, url: string, note?: string}>, scope: 'country' | 'worldwide' | 'none', code: string }}
  */
 export function pickBroadcasters(howToWatch, choice = getChoice()) {
   const code = choice.code;

@@ -5,40 +5,33 @@
  * Usage: npm run check
  */
 
-import { readFileSync, existsSync } from 'fs';
-import { resolve, dirname, basename } from 'path';
-import { fileURLToPath } from 'url';
+import { existsSync } from 'fs';
+import { resolve, basename } from 'path';
 import { execFileSync } from 'child_process';
 import { buildSeries } from './gen-series.mjs';
 import { hasEventPage, pageSlugs } from '../src/lib/eventSlugs.js';
+import {
+  ROOT, readText, readJson, collector, walkCalendar,
+  defaultYear, parisClock, utcDay,
+  DAYS, HHMM_RE, DURATION_RE, ISO_DATE_RE, stripHtml,
+} from './lib.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = resolve(__dirname, '..');
+const root = ROOT;
 
-const fail  = [];   // accumulated failure messages
-let checked = 0;    // count of individual items verified
-
-// `test` gets (item, index): the standings check needs the index to compare
-// each row with the one before it.
-function check(label, items, test) {
-  items.forEach((item, i) => {
-    checked++;
-    const msg = test(item, i);
-    if (msg) fail.push(`[${label}] ${msg}`);
-  });
-}
+const c = collector();
+const fail = c.fail;    // accumulated failure messages
+const check = c.check;  // check(label, items, test): test(item, i) → failure msg | falsy
 
 // ── Load data ────────────────────────────────────────────────────────────────
 
-const calendar      = JSON.parse(readFileSync(resolve(root, 'data/calendar.json'), 'utf8'));
-const seriesJson    = JSON.parse(readFileSync(resolve(root, 'data/series.json'), 'utf8'));
-const tracksJson    = JSON.parse(readFileSync(resolve(root, 'data/tracks.json'), 'utf8'));
-const seriesContent = JSON.parse(readFileSync(resolve(root, 'data/seriesContent.json'), 'utf8'));
-const standingsJson = JSON.parse(readFileSync(resolve(root, 'data/standings.json'), 'utf8'));
+const calendar      = readJson('data/calendar.json');
+const seriesJson    = readJson('data/series.json');
+const tracksJson    = readJson('data/tracks.json');
+const seriesContent = readJson('data/seriesContent.json');
+const standingsJson = readJson('data/standings.json');
 // Series colour vars are defined in tokens.css; .t-{slug} tag rules live in global.css.
-const cssText       = ['src/styles/tokens.css', 'src/styles/global.css']
-  .map(f => readFileSync(resolve(root, f), 'utf8')).join('\n');
-const mainJsText    = readFileSync(resolve(root, 'src/scripts/main.js'), 'utf8');
+const cssText       = ['src/styles/tokens.css', 'src/styles/global.css'].map(readText).join('\n');
+const mainJsText    = readText('src/client/main.js');
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -49,26 +42,20 @@ const REQUIRED_FIELDS = ['series', 'title', 'time', 'track', 'date'];
 
 // Collect calendar events in document order, grouped by series
 function collectCalEvents() {
-  const bySlug = {};
   const all = [];
-  for (const month of calendar) {
-    for (const week of month.weeks ?? []) {
-      for (const ev of week.events ?? []) {
-        checked++;
-        const missing = REQUIRED_FIELDS.filter(k => typeof ev[k] !== 'string' || !ev[k].trim());
-        if (missing.length) {
-          fail.push(`[required-fields] ${ev.series ?? '(no series)'} "${ev.title ?? '(no title)'}" in "${week.label}" (${month.month}${month.year ? ' ' + month.year : ''}) has no ${missing.join(', ')}`);
-          continue;
-        }
-        (bySlug[ev.series] ??= []).push(ev);
-        all.push({ ev, week, month });
-      }
+  for (const { month, week, ev } of walkCalendar(calendar)) {
+    c.tick();
+    const missing = REQUIRED_FIELDS.filter(k => typeof ev[k] !== 'string' || !ev[k].trim());
+    if (missing.length) {
+      fail.push(`[required-fields] ${ev.series ?? '(no series)'} "${ev.title ?? '(no title)'}" in "${week.label}" (${month.month}${month.year ? ' ' + month.year : ''}) has no ${missing.join(', ')}`);
+      continue;
     }
+    all.push({ ev, week, month });
   }
-  return { bySlug, all };
+  return all;
 }
 
-const { bySlug: calBySeries, all: allEvents } = collectCalEvents();
+const allEvents = collectCalEvents();
 const allSeriesInCal = [...new Set(allEvents.map(({ ev }) => ev.series))];
 
 // seriesContent slugs
@@ -103,13 +90,13 @@ function hasCssTagRule(slug) {
 {
   // Regenerate in memory with the generator itself, so the two can't drift.
   const { series: generated, errors: genErrors } = buildSeries(calendar);
-  for (const e of genErrors) { checked++; fail.push(`[series.json] ${e}`); }
+  for (const e of genErrors) { c.tick(); fail.push(`[series.json] ${e}`); }
 
   const committedKeys = Object.keys(seriesJson);
   const generatedKeys = Object.keys(generated);
 
   for (const k of [...new Set([...committedKeys, ...generatedKeys])]) {
-    checked++;
+    c.tick();
     const committed = seriesJson[k];
     const gen = generated[k];
     if (!committed) { fail.push(`[series.json stale] key "${k}" in generated but missing from committed file`); continue; }
@@ -125,7 +112,7 @@ for (const [slug, entries] of Object.entries(seriesJson)) {
   let prevTs = -Infinity;
   let prevName = '';
   for (const { name, date } of entries) {
-    checked++;
+    c.tick();
     const ts = new Date(date).getTime();
     if (isNaN(ts)) {
       fail.push(`[dates] "${slug}" → "${name}" has unparseable date: ${date}`);
@@ -150,24 +137,90 @@ check('track-svgs', allEvents, ({ ev }) => {
 // ── (d) tracks.json browserSvg + calendarSvgs exist ─────────────────────────
 for (const track of tracksJson) {
   if (track.browserSvg) {
-    checked++;
+    c.tick();
     if (!existsSync(resolve(svgDir, track.browserSvg))) {
       fail.push(`[tracks.json] "${track.slug}" browserSvg "${track.browserSvg}" not found on disk`);
     }
   }
   for (const svg of track.calendarSvgs ?? []) {
-    checked++;
+    c.tick();
     if (!existsSync(resolve(svgDir, svg))) {
       fail.push(`[tracks.json] "${track.slug}" calendarSvgs entry "${svg}" not found on disk`);
     }
   }
   for (const layout of track.layouts ?? []) {
     for (const svg of layout.calendarSvgs ?? []) {
-      checked++;
+      c.tick();
       if (!existsSync(resolve(svgDir, svg))) {
         fail.push(`[tracks.json] "${track.slug}" layouts[${layout.id}] calendarSvgs entry "${svg}" not found on disk`);
       }
     }
+  }
+}
+
+// ── (d2) FIA licence on tracks and layouts ───────────────────────────────────
+// Grade is one of the FIA's published grades; pole, when present, is a side. A
+// track with layouts carries `fia` on each layout, never on the track itself
+// (the page swaps the licence with the layout buttons).
+const FIA_GRADES = new Set(['1', '2', '3', '3E', '3R', '4', '6A', '6R', '6RW', 'FE']);
+const FIA_POLES = new Set(['Left', 'Right']);
+const checkFia = (where, fia) => {
+  c.tick();
+  if (typeof fia !== 'object' || fia === null || !FIA_GRADES.has(fia.grade)) {
+    fail.push(`[tracks.json] ${where} fia.grade "${fia?.grade}" is not an FIA grade (${[...FIA_GRADES].join(', ')})`);
+  }
+  if ('pole' in (fia ?? {}) && !FIA_POLES.has(fia.pole)) {
+    fail.push(`[tracks.json] ${where} fia.pole "${fia.pole}" must be Left or Right (omit it when the FIA gives none)`);
+  }
+};
+// ── (d3) per-layout specs ────────────────────────────────────────────────────
+// Length, turns and lap record belong to a layout. Every layout of a multi-layout
+// track states its own (null = no reliable figure, the page hides the cell), so a
+// layout can never silently show another one's numbers. The track's own fields
+// mirror the default layout (the one that draws browserSvg), which other pages read.
+const LAP_TIME = /^\d{1,2}:\d{2}\.\d{3}$/;
+const checkRecord = (where, r) => {
+  if (r === null || r === undefined) return;
+  c.tick();
+  if (typeof r !== 'object' || !LAP_TIME.test(r.time ?? '') || typeof r.driver !== 'string' || !r.driver) {
+    fail.push(`[tracks.json] ${where} lapRecord needs { time: "m:ss.mmm", driver, series?, year? }`);
+  }
+};
+const norm = v => JSON.stringify(v ?? null, (_, x) =>
+  x && typeof x === 'object' && !Array.isArray(x) ? Object.fromEntries(Object.entries(x).sort(([a], [b]) => a.localeCompare(b))) : x);
+for (const track of tracksJson) {
+  checkRecord(`"${track.slug}"`, track.lapRecord);
+  if (!track.layouts?.length) continue;
+  for (const layout of track.layouts) {
+    const where = `"${track.slug}" layouts[${layout.id}]`;
+    for (const key of ['length', 'turns', 'lapRecord']) {
+      c.tick();
+      if (!(key in layout)) fail.push(`[tracks.json] ${where} must state its own ${key} (null if unknown): layouts differ`);
+    }
+    if (layout.length != null && !(layout.length > 0)) fail.push(`[tracks.json] ${where} length must be a number of km`);
+    if (layout.turns != null && !Number.isInteger(layout.turns)) fail.push(`[tracks.json] ${where} turns must be an integer`);
+    checkRecord(where, layout.lapRecord);
+  }
+  const def = track.layouts.filter(l => (l.calendarSvgs ?? []).includes(track.browserSvg));
+  c.tick();
+  if (def.length !== 1) {
+    fail.push(`[tracks.json] "${track.slug}" browserSvg "${track.browserSvg}" must be drawn by exactly one layout (found ${def.length})`);
+    continue;
+  }
+  for (const key of ['length', 'turns', 'lapRecord']) {
+    if (norm(track[key]) !== norm(def[0][key])) {
+      fail.push(`[tracks.json] "${track.slug}" ${key} must mirror its default layout "${def[0].id}" (the one drawing browserSvg)`);
+    }
+  }
+}
+
+for (const track of tracksJson) {
+  if (track.fia) {
+    if (track.layouts?.length) fail.push(`[tracks.json] "${track.slug}" has layouts: put fia on each layout, not on the track`);
+    else checkFia(`"${track.slug}"`, track.fia);
+  }
+  for (const layout of track.layouts ?? []) {
+    if (layout.fia) checkFia(`"${track.slug}" layouts[${layout.id}]`, layout.fia);
   }
 }
 
@@ -199,12 +252,11 @@ check('email-pngs', allEvents, ({ ev }) => {
 });
 
 // ── (g) result entries have valid YYYY-MM-DD dates ───────────────────────────
-const isoDateRe = /^\d{4}-\d{2}-\d{2}$/;
 check('result-dates', allEvents, ({ ev, week }) => {
   if (!ev.results) return null;
   for (const r of ev.results) {
     if (!r.date) return `[${ev.series}] "${ev.title}" (${week.label}) result missing "date"`;
-    if (!isoDateRe.test(r.date)) return `[${ev.series}] "${ev.title}" (${week.label}) result date "${r.date}" is not YYYY-MM-DD`;
+    if (!ISO_DATE_RE.test(r.date)) return `[${ev.series}] "${ev.title}" (${week.label}) result date "${r.date}" is not YYYY-MM-DD`;
   }
   return null;
 });
@@ -212,15 +264,8 @@ check('result-dates', allEvents, ({ ev, week }) => {
 // ── (g1) optional display fields: classes, sessions, support-race times ─────
 // `time` stays the source for the chip and countdowns; `sessions` is the richer
 // view of the same weekend, so its race must agree with it.
-const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-const hhmmRe = /^([01]\d|2[0-3]):[0-5]\d$/;
-const durationRe = /^(\d+h(\d{2})?|\d+min)$/;
-const plainTime = (html) => html.replace(/<[^>]*>/g, '');
-const parisParts = (iso) => {
-  const d = new Date(iso);
-  const f = (opts) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', ...opts }).format(d);
-  return { day: f({ weekday: 'short' }).toUpperCase(), hhmm: f({ hour: '2-digit', minute: '2-digit', hour12: false }) };
-};
+const plainTime = stripHtml;   // local alias: the event `time` string minus HTML tags
+const parisParts = parisClock; // local alias: { day, hhmm } of an ISO instant in Paris
 check('event-display-fields', allEvents, ({ ev, week }) => {
   const id = `[${ev.series}] "${ev.title}" (${week.label})`;
   if (ev.classes !== undefined) {
@@ -229,7 +274,7 @@ check('event-display-fields', allEvents, ({ ev, week }) => {
     }
   }
   for (const s of ev.sub ?? []) {
-    if (s.time !== undefined && !hhmmRe.test(s.time)) return `${id} sub "${s.label}" time "${s.time}" is not HH:MM`;
+    if (s.time !== undefined && !HHMM_RE.test(s.time)) return `${id} sub "${s.label}" time "${s.time}" is not HH:MM`;
     if (s.day !== undefined && !DAYS.includes(s.day)) return `${id} sub "${s.label}" day "${s.day}" is not MON–SUN`;
     if (s.time && !s.day) return `${id} sub "${s.label}" has a time but no day`;
   }
@@ -239,8 +284,8 @@ check('event-display-fields', allEvents, ({ ev, week }) => {
   for (const s of ev.sessions) {
     if (!DAYS.includes(s.day)) return `${id} session day "${s.day}" is not MON–SUN`;
     if (!s.label || typeof s.label !== 'string') return `${id} session on ${s.day} has no label`;
-    if (!hhmmRe.test(s.time ?? '')) return `${id} session "${s.label}" time "${s.time}" is not HH:MM`;
-    if (s.duration !== undefined && !durationRe.test(s.duration)) return `${id} session "${s.label}" duration "${s.duration}" is not like "2h40", "6h" or "45min"`;
+    if (!HHMM_RE.test(s.time ?? '')) return `${id} session "${s.label}" time "${s.time}" is not HH:MM`;
+    if (s.duration !== undefined && !DURATION_RE.test(s.duration)) return `${id} session "${s.label}" duration "${s.duration}" is not like "2h40", "6h" or "45min"`;
     const idx = DAYS.indexOf(s.day);
     if (idx < prev) return `${id} sessions must be in weekday order (${s.day} "${s.label}" comes after a later day)`;
     prev = idx;
@@ -273,7 +318,7 @@ check('result-flags', allEvents, ({ ev, week }) => {
 for (const [slug, tables] of Object.entries(standingsJson)) {
   for (const [tab, table] of Object.entries(tables)) {
     for (const e of table.entries ?? []) {
-      checked++;
+      c.tick();
       if (e.country && !hasFlag(e.country)) fail.push(`[standings.json] ${slug}.${tab} "${e.name}" country "${e.country}" has no flag SVG`);
     }
   }
@@ -284,17 +329,17 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
 // doesn't catch it. Astro's config `redirects` are appended to the same file,
 // so they must stay empty.
 {
-  const lines = readFileSync(resolve(root, 'public/_redirects'), 'utf8').split('\n')
+  const lines = readText('public/_redirects').split('\n')
     .map(l => l.replace(/#.*/, '').trim()).filter(Boolean);
   const seen = new Set();
   for (const l of lines) {
-    checked++;
+    c.tick();
     const src = l.split(/\s+/)[0];
     if (seen.has(src)) fail.push(`[public/_redirects] duplicate rule for ${src}`);
     seen.add(src);
   }
-  checked++;
-  if (/^\s*redirects\s*:/m.test(readFileSync(resolve(root, 'astro.config.mjs'), 'utf8')))
+  c.tick();
+  if (/^\s*redirects\s*:/m.test(readText('astro.config.mjs')))
     fail.push('[astro.config.mjs] has `redirects`: put them in public/_redirects instead (Astro appends them there and duplicates fail the deploy)');
 }
 
@@ -304,10 +349,8 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
 // next season when the site rolls over). An event filed under the wrong month
 // renders in the wrong year and converts its times with the wrong DST offset,
 // and nothing else notices, so the invariants are enforced here.
-const defaultYear = Number(
-  /DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(readFileSync(resolve(root, 'src/lib/season.ts'), 'utf8'))?.[1],
-);
-checked++;
+// DEFAULT_CALENDAR_YEAR is imported from src/lib/season.ts via lib.mjs (above).
+c.tick();
 if (!defaultYear) {
   fail.push('[season] could not read DEFAULT_CALENDAR_YEAR from src/lib/season.ts');
 } else {
@@ -317,7 +360,6 @@ if (!defaultYear) {
   check('month-year', calendar, (month) =>
     Number.isInteger(month.year) ? null
       : `${month.month} has no "year": add one (e.g. "year": ${defaultYear}) right after "month" in data/calendar.json`);
-  const dayOf = (iso) => { const [y, m, d] = iso.slice(0, 10).split('-').map(Number); return Date.UTC(y, m - 1, d); };
 
   // "WEEK 45 • NOV 06-08", "WEEK 09 • FEB 28 - MAR 01" or "WEEK 02 • JAN 10"
   // → UTC day numbers, rolling into the next year when the week crosses New Year.
@@ -354,7 +396,7 @@ if (!defaultYear) {
     const span = weekSpan(week.label, yearOf(month));
     if (!span) return `${id} week label "${week.label}" is not like "WEEK 45 • NOV 06-08"`;
     if (!yearFits(item)) return null;   // already reported by season-year
-    const t = dayOf(ev.date);
+    const t = utcDay(ev.date);
     if (t < span.start - DAY_MS || t > span.end + DAY_MS) {
       return `${id} is dated ${ev.date.slice(0, 10)} but sits in "${week.label}" (${month.month})`;
     }
@@ -403,10 +445,10 @@ if (!defaultYear) {
     }
     if (headCal) {
       const now = urlsOf(calendar, defaultYear);
-      const redirected = new Set(readFileSync(resolve(root, 'public/_redirects'), 'utf8')
+      const redirected = new Set(readText('public/_redirects')
         .split('\n').map(l => l.trim().split(/\s+/)[0]).filter(p => p && !p.startsWith('#')));
       const lost = [...urlsOf(headCal, headYear)].filter(u => !now.has(u) && !redirected.has(u));
-      checked++;
+      c.tick();
       for (const u of lost) {
         fail.push(`[event-urls-kept] ${u} existed in the last commit and is gone: pin the old URL with "slug", or add a 301 for it to public/_redirects`);
       }
@@ -433,11 +475,11 @@ if (!defaultYear) {
   check('f1-weekends', allEvents.filter(({ ev }) => ev.series === 'f1'), ({ ev, week }) => {
     const id = `[f1] "${ev.title}" (${week.label})`;
     if (!ev.start || !ev.end) return `${id} is missing "start"/"end" (set for every F1 round)`;
-    if (!isoDateRe.test(ev.start) || !isoDateRe.test(ev.end)) return `${id} start "${ev.start}" / end "${ev.end}" must be YYYY-MM-DD`;
+    if (!ISO_DATE_RE.test(ev.start) || !ISO_DATE_RE.test(ev.end)) return `${id} start "${ev.start}" / end "${ev.end}" must be YYYY-MM-DD`;
     if (ev.start > ev.end) return `${id} start ${ev.start} is after end ${ev.end}`;
-    if (dayOf(ev.end) - dayOf(ev.start) > 6 * DAY_MS) return `${id} weekend ${ev.start} to ${ev.end} is longer than a week`;
-    const t = dayOf(ev.date);
-    if (t < dayOf(ev.start) - DAY_MS || t > dayOf(ev.end) + DAY_MS) {
+    if (utcDay(ev.end) - utcDay(ev.start) > 6 * DAY_MS) return `${id} weekend ${ev.start} to ${ev.end} is longer than a week`;
+    const t = utcDay(ev.date);
+    if (t < utcDay(ev.start) - DAY_MS || t > utcDay(ev.end) + DAY_MS) {
       return `${id} is dated ${ev.date.slice(0, 10)} but its weekend is ${ev.start} to ${ev.end}`;
     }
     return null;
@@ -448,7 +490,7 @@ if (!defaultYear) {
 const validSeriesSlugs = new Set([...Object.keys(seriesJson), 'asian-le-mans']);
 
 for (const [slug, tables] of Object.entries(standingsJson)) {
-  checked++;
+  c.tick();
   if (!validSeriesSlugs.has(slug) && !seriesContent.some(s => s.slug === slug)) {
     fail.push(`[standings.json] unknown series slug "${slug}"`);
   }
@@ -456,26 +498,26 @@ for (const [slug, tables] of Object.entries(standingsJson)) {
   for (const [tableKey, table] of Object.entries(tables)) {
     const prefix = `[standings.json] ${slug}.${tableKey}`;
 
-    checked++;
+    c.tick();
     if (!table.label) fail.push(`${prefix}: missing "label"`);
 
-    checked++;
-    if (!table.updatedAt || !isoDateRe.test(table.updatedAt)) {
+    c.tick();
+    if (!table.updatedAt || !ISO_DATE_RE.test(table.updatedAt)) {
       fail.push(`${prefix}: "updatedAt" must be YYYY-MM-DD (got "${table.updatedAt}")`);
     }
 
-    checked++;
+    c.tick();
     if (typeof table.roundsComplete !== 'number' || table.roundsComplete < 0) {
       fail.push(`${prefix}: "roundsComplete" must be a non-negative number`);
     }
 
-    checked++;
+    c.tick();
     if (typeof table.totalRounds !== 'number' || table.totalRounds < 1) {
       fail.push(`${prefix}: "totalRounds" must be a positive number`);
     }
 
     if (!Array.isArray(table.entries) || table.entries.length === 0) {
-      checked++;
+      c.tick();
       fail.push(`${prefix}: "entries" must be a non-empty array`);
       continue;
     }
@@ -510,4 +552,4 @@ if (fail.length) {
   process.exit(1);
 }
 
-console.log(`✓ check-data: all ${checked} checks passed`);
+console.log(`✓ check-data: all ${c.checked} checks passed`);

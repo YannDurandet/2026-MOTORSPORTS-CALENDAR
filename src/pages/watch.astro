@@ -10,7 +10,7 @@ import seriesContent from '../../data/seriesContent.json';
 import { jsonForScript } from '../lib/jsonForScript';
 import { trackSlugForSvg } from '../lib/events';
 import { DEFAULT_CALENDAR_YEAR, monthYear } from '../lib/season';
-import { activeWeekend, weekendSections } from '../scripts/watchWeekend.js';
+import { activeWeekend, weekendSections } from '../client/watchWeekend.js';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
@@ -171,14 +171,14 @@ const howToWatchBySeries: Record<string, any> = Object.fromEntries(
 
 <script type="module">
 import {
-  SOURCE_TIMEZONE, USER_TIMEZONE, TZ_IS_OVERRIDE,
+  USER_TIMEZONE, TZ_IS_OVERRIDE,
   NEEDS_TZ_CONVERSION, convertTimeStr
-} from '../scripts/tz.js';
+} from '../client/tz.js';
 import {
   CHANGE_EVENT, getChoice, pickBroadcasters, regionLabel,
   openCountryDialog, initCountryDialog
-} from '../scripts/country.js';
-import { activeWeekend, weekendSections } from '../scripts/watchWeekend.js';
+} from '../client/country.js';
+import { activeWeekend, weekendSections } from '../client/watchWeekend.js';
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const rawEl = document.getElementById('watch-events-data');
@@ -195,7 +195,7 @@ const eventWithTs = ALL_EVENTS.map(ev => {
   return { ...ev, ts: Number.isNaN(ts) ? null : ts };
 });
 
-// ── Find active weekend (src/scripts/watchWeekend.js, shared with the build) ──
+// ── Find active weekend (src/client/watchWeekend.js, shared with the build) ──
 const getActiveWeekendEvents = () => activeWeekend(eventWithTs, new Date());
 
 // ── Next upcoming event (for empty state) ─────────────────────────────────────
@@ -207,7 +207,7 @@ function getNextEvent() {
 
 // ── Broadcaster pills ─────────────────────────────────────────────────────────
 // Which country's list to show is the visitor's choice (popup, remembered on
-// this device), not a guess from the browser language. See scripts/country.js.
+// this device), not a guess from the browser language. See src/client/country.js.
 function renderPills(howToWatch) {
   const { list: broadcasters, scope } = pickBroadcasters(howToWatch);
   if (!broadcasters.length) return '';
@@ -293,7 +293,7 @@ if (isEmpty) {
 }
 
 // ── Country: status bar + popup ───────────────────────────────────────────────
-// Broadcasters follow the visitor's chosen country (scripts/country.js). First
+// Broadcasters follow the visitor's chosen country (src/client/country.js). First
 // visit with a schedule on screen: ask. Esc / clicking outside is "not now" and
 // saves nothing, so we ask again next time; only an explicit answer is stored.
 const barEl     = document.getElementById('watch-country-bar');

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * scripts/export-track-pngs.mjs
+ * export-track-pngs.mjs
  *
  * Converts every circuit SVG in public/assets/track-maps/ to a small PNG
  * suitable for email (white stroke, transparent background, 80×80px).
@@ -19,14 +19,12 @@
 
 import fs   from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import sharp             from 'sharp';
+import { ROOT, parseArgs } from './lib.mjs';
 
-const __dirname  = path.dirname(fileURLToPath(import.meta.url));
-const ROOT       = path.join(__dirname, '..');
 const INPUT_DIR  = path.join(ROOT, 'public/assets/track-maps');
 const OUTPUT_DIR = path.join(ROOT, 'public/assets/tracks/email');
-const FORCE      = process.argv.includes('--force');
+const FORCE      = parseArgs().has('--force');
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
@@ -80,11 +78,6 @@ for (const filename of svgFiles) {
   }
 }
 
-console.log(`
-Done.
-  Exported : ${ok}
-  Skipped  : ${skipped}  (already exist; use --force to re-export)
-  Failed   : ${failed}
-`);
+console.log(`\nDone.\n  Exported : ${ok}\n  Skipped  : ${skipped}  (already exist; use --force to re-export)\n  Failed   : ${failed}\n`);
 
 if (failed > 0) process.exit(1);

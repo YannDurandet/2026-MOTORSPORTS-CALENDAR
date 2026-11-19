@@ -19,21 +19,13 @@
  * standings table is only ever correct as a complete snapshot.
  */
 
-import { readFileSync, writeFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import path from 'path';
+import { readFileSync } from 'fs';
+import { readJson, writeJson, walkCalendar, parseArgs, monthYear } from './lib.mjs';
 
-const __dirname  = path.dirname(fileURLToPath(import.meta.url));
-const STANDINGS  = path.join(__dirname, '../data/standings.json');
-const CALENDAR   = path.join(__dirname, '../data/calendar.json');
+const STANDINGS = 'data/standings.json';
+const CALENDAR  = 'data/calendar.json';
 
-// Months without a `year` belong to DEFAULT_CALENDAR_YEAR in src/lib/season.ts
-// (read the same way as scripts/check-data.mjs does).
-const DEFAULT_YEAR = Number(
-  /DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(readFileSync(path.join(__dirname, '../src/lib/season.ts'), 'utf8'))?.[1],
-);
-
-const load = f => JSON.parse(readFileSync(f, 'utf8'));
+const load = (f) => readJson(f);
 const today = () => new Date().toISOString().slice(0, 10);
 
 /**
@@ -44,15 +36,10 @@ function lastRaced() {
   const cal = load(CALENDAR);
   const now = new Date();
   const raced = [];
-  for (const month of cal) {
-    const year = month.year ?? DEFAULT_YEAR;
-    for (const w of month.weeks ?? []) {
-      for (const ev of w.events ?? []) {
-        if (!ev.date) continue;
-        const d = new Date(ev.date);
-        if (d <= now) raced.push({ series: ev.series, date: d, title: ev.title, year });
-      }
-    }
+  for (const { ev, month } of walkCalendar(cal)) {
+    if (!ev.date) continue;
+    const d = new Date(ev.date);
+    if (d <= now) raced.push({ series: ev.series, date: d, title: ev.title, year: monthYear(month) });
   }
   const out = {};
   for (const r of raced) {
@@ -105,7 +92,7 @@ function stale() {
 
 // ── apply ────────────────────────────────────────────────────────────────────
 function apply(file, dryRun) {
-  const patch = load(file);
+  const patch = JSON.parse(readFileSync(file, 'utf8')); // patch path is CWD-relative, like the data files are not
   const st = load(STANDINGS);
   const errors = [];
   const changes = [];
@@ -172,20 +159,20 @@ function apply(file, dryRun) {
     return;
   }
 
-  writeFileSync(STANDINGS, JSON.stringify(st, null, 2) + '\n', 'utf8');
+  writeJson(STANDINGS, st);
   console.log(`✓ updated ${changes.length} table(s) in data/standings.json  (updatedAt ${today()})`);
   changes.forEach(c => console.log(`  • ${c.series}.${c.table} — leader ${c.clean[0].name} (${c.clean[0].points})`));
   console.log('\nNow run:  npm run check');
 }
 
 // ── cli ──────────────────────────────────────────────────────────────────────
-const [, , cmd, ...rest] = process.argv;
+const { args, has } = parseArgs();
+const [cmd, file] = args;
 try {
   if (cmd === 'stale') stale();
   else if (cmd === 'apply') {
-    const file = rest.find(a => !a.startsWith('--'));
     if (!file) throw new Error('usage: standings-sync.mjs apply <file.json> [--dry-run]');
-    apply(file, rest.includes('--dry-run'));
+    apply(file, has('--dry-run'));
   } else {
     console.error('usage: standings-sync.mjs stale | apply <file.json> [--dry-run]');
     process.exit(1);

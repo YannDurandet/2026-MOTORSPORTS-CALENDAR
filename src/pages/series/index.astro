@@ -107,12 +107,12 @@ const gridImageSrcset = (slug: string) =>
 
 <script>
   import { countdownTarget } from '../../lib/offSeason';
-  import { USER_TIMEZONE, TZ_IS_OVERRIDE } from '../../scripts/tz.js';
+  import { USER_TIMEZONE, TZ_IS_OVERRIDE } from '../../client/tz.js';
 
   (async () => {
     const base = (document.querySelector('meta[name="astro-base"]') as HTMLMetaElement)?.content ?? '';
 
-    // Update timezone notice: same override and detection as the calendar (src/scripts/tz.js)
+    // Update timezone notice: same override and detection as the calendar (src/client/tz.js)
     const tzEl = document.querySelector<HTMLElement>('.meta');
     if (tzEl) {
       const userTz = USER_TIMEZONE;

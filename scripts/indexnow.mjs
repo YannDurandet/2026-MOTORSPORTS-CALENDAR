@@ -23,11 +23,9 @@
 
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { createHash } from 'crypto';
-import { resolve, dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { ROOT, readText, parseArgs } from './lib.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(__dirname, '..');
 const DIST = join(ROOT, 'dist/client');
 const HASHES_PATH = join(ROOT, '.indexnow-hashes.json');
 
@@ -37,10 +35,8 @@ const KEY = 'e59bb2976b0e6d32bc6852449ff33473';
 const ENDPOINT = process.env.INDEXNOW_ENDPOINT ?? 'https://api.indexnow.org/indexnow';
 const BATCH = 10_000; // protocol maximum per request
 
-const args = process.argv.slice(2);
-const flags = new Set(args.filter(a => a.startsWith('--')));
-const explicit = args.filter(a => !a.startsWith('--'));
-const dryRun = flags.has('--dry-run');
+const { args: explicit, has } = parseArgs();
+const dryRun = has('--dry-run');
 
 function fail(msg) {
   console.error(`indexnow: ${msg}`);
@@ -48,7 +44,7 @@ function fail(msg) {
 }
 
 const keyFile = join(ROOT, 'public', `${KEY}.txt`);
-if (!existsSync(keyFile) || readFileSync(keyFile, 'utf8').trim() !== KEY) {
+if (!existsSync(keyFile) || readText(`public/${KEY}.txt`).trim() !== KEY) {
   fail(`public/${KEY}.txt is missing or does not contain the key`);
 }
 
@@ -95,7 +91,7 @@ if (explicit.length) {
     const html = htmlFor(u);
     // A page with no built file can't be compared, so treat it as changed.
     if (html) hashes[u] = sha(html);
-    if (flags.has('--all') || !html || prev[u] !== hashes[u]) urls.push(u);
+    if (has('--all') || !html || prev[u] !== hashes[u]) urls.push(u);
   }
   console.log(`${all.length} URLs in the sitemap, ${urls.length} new or changed`);
 }

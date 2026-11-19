@@ -1,8 +1,11 @@
 ---
+import NewsletterForm from './NewsletterForm.astro';
+
 // NewsletterBanner.astro
 // Inserted into the main calendar at the current-month boundary (see index.astro).
-// Posts to /api/subscribe (see src/pages/api/subscribe.ts).
+// The form itself is the shared NewsletterForm.astro (posts to /api/subscribe).
 ---
+
 
 <section class="nl-banner theme-dark" aria-label="Newsletter signup">
   <picture class="nl-bg">
@@ -17,31 +20,7 @@
         <a class="nl-more" href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/newsletter`}>What's in it →</a>
       </div>
 
-      <div class="nl-form-wrap">
-        <form class="nl-form" id="nl-form" novalidate>
-          <div class="nl-row">
-            <label for="nl-email" class="sr-only">Email address</label>
-            <input
-              type="email"
-              id="nl-email"
-              name="email"
-              class="nl-input"
-              placeholder="your@email.com"
-              autocomplete="email"
-              required
-              aria-describedby="nl-error"
-            />
-            <button type="submit" class="nl-btn" id="nl-btn">
-              <span id="nl-btn-label">SUBSCRIBE</span>
-              <span id="nl-btn-loading" hidden aria-hidden="true">···</span>
-            </button>
-          </div>
-          <p class="nl-error" id="nl-error" role="alert" hidden></p>
-        </form>
-        <p class="nl-success" id="nl-success" role="status" tabindex="-1" hidden>
-          You're in. First briefing lands before the weekend.
-        </p>
-      </div>
+      <NewsletterForm />
     </div>
   </div>
 </section>
@@ -140,77 +119,6 @@
   .nl-more:hover { color: var(--text-strong); }
   .nl-more:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 
-  /* ── Form ────────────────────────────────────────────────────────────────── */
-  .nl-row {
-    display: flex;
-    width: 100%;
-    max-width: 460px;
-  }
-
-  .nl-input {
-    flex: 1;
-    background: var(--surface-sunken-4);
-    border: 1px solid var(--border);
-    border-right: none;
-    border-radius: var(--radius-pill) 0 0 var(--radius-pill);
-    color: var(--text-soft);
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm-3);
-    letter-spacing: 0.02em;
-    padding: 11px 14px;
-    outline: none;
-    min-width: 0;
-    transition: border-color 0.15s;
-  }
-  .nl-input::placeholder { color: var(--text-faint-3); }
-  .nl-input:focus { border-color: var(--accent-bright); box-shadow: 0 0 0 1px var(--accent-bright); }
-
-  .nl-btn {
-    font-family: var(--font-mono);
-    font-size: var(--fs-3xs-6);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 11px 18px;
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--text-soft);
-    cursor: pointer;
-    white-space: nowrap;
-    flex-shrink: 0;
-    border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
-    transition: color 0.15s, border-color 0.15s, background 0.15s;
-  }
-  .nl-btn:hover:not(:disabled) {
-    color: var(--text-strong);
-    border-color: var(--accent);
-    background: var(--card-bg-3);
-  }
-  .nl-btn:disabled {
-    opacity: 0.45;
-    cursor: wait;
-  }
-
-  .nl-error {
-    font-family: var(--font-mono);
-    font-size: var(--fs-3xs-6);
-    color: var(--error);
-    letter-spacing: 0.03em;
-    margin: 8px 0 0;
-  }
-  .nl-error[hidden] { display: none; }
-
-  .nl-success {
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm-3);
-    color: var(--success);
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-    margin: 0;
-    max-width: 48ch;
-  }
-  .nl-success[hidden] { display: none; }
-
   /* ── Desktop: centered band ──────────────────────────────────────────────── */
   @media (min-width: 769px) {
     .nl-banner {
@@ -252,83 +160,6 @@
       flex: 0 0 auto;
       max-width: 360px;
     }
-
-    .nl-form-wrap {
-      flex-shrink: 0;
-      width: 320px;
-    }
-
-    .nl-row {
-      max-width: 100%;
-    }
   }
 </style>
 
-<script>
-  const form      = document.getElementById('nl-form')      as HTMLFormElement | null;
-  const emailInput = document.getElementById('nl-email')    as HTMLInputElement | null;
-  const btn       = document.getElementById('nl-btn')       as HTMLButtonElement | null;
-  const btnLabel  = document.getElementById('nl-btn-label');
-  const btnLoading = document.getElementById('nl-btn-loading');
-  const errorMsg  = document.getElementById('nl-error');
-  const successMsg = document.getElementById('nl-success');
-
-  function setLoading(on: boolean) {
-    if (!btn) return;
-    btn.disabled = on;
-    if (btnLabel)  btnLabel.hidden  = on;
-    if (btnLoading) btnLoading.hidden = !on;
-  }
-
-  function showError(msg: string) {
-    if (!errorMsg) return;
-    errorMsg.hidden = false;
-    errorMsg.textContent = msg;
-  }
-
-  function showSuccess(msg: string) {
-    if (form) form.hidden = true;
-    if (successMsg) {
-      successMsg.hidden = false;
-      successMsg.textContent = msg;
-      successMsg.focus();
-    }
-  }
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = emailInput?.value.trim() ?? '';
-
-    // Client-side validation
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showError('Please enter a valid email address.');
-      emailInput?.focus();
-      return;
-    }
-
-    if (errorMsg) errorMsg.hidden = true;
-    setLoading(true);
-
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await res.json();
-
-      if (data?.ok) {
-        // Both "subscribed" and "already on the list" are successes — show the
-        // message returned by the API so the copy is controlled server-side.
-        showSuccess(data.message ?? "You're in.");
-      } else {
-        setLoading(false);
-        showError(data?.error ?? 'Something went sideways. Try again.');
-      }
-    } catch {
-      setLoading(false);
-      showError('Something went sideways. Try again.');
-    }
-  });
-</script>

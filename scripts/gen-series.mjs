@@ -13,13 +13,7 @@
  * Usage: npm run gen:series
  */
 
-import { readFileSync, writeFileSync, realpathSync } from 'fs';
-import { resolve, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const CAL_PATH = resolve(__dirname, '../data/calendar.json');
-const OUT_PATH = resolve(__dirname, '../data/series.json');
+import { readJson, writeJson, walkCalendar, isMain } from './lib.mjs';
 
 /**
  * { [seriesSlug]: [{ name, date }] } in calendar order, plus any problems
@@ -30,26 +24,22 @@ export function buildSeries(calendar) {
   const errors = [];
 
   // ── Walk calendar in document order ───────────────────────────────────────
-  for (const month of calendar) {
-    for (const week of month.weeks) {
-      for (const ev of week.events) {
-        if (!ev.series) continue;
+  for (const { week, ev } of walkCalendar(calendar)) {
+    if (!ev.series) continue;
 
-        if (!ev.date) {
-          errors.push(`Missing date: series="${ev.series}" title="${ev.title}" week="${week.label}"`);
-          continue;
-        }
-        if (typeof (ev.shortName ?? ev.title) !== 'string') {
-          errors.push(`Missing title: series="${ev.series}" date="${ev.date}" week="${week.label}"`);
-          continue;
-        }
-
-        (series[ev.series] ??= []).push({
-          name: ev.shortName ?? ev.title.toUpperCase(),
-          date: ev.date,
-        });
-      }
+    if (!ev.date) {
+      errors.push(`Missing date: series="${ev.series}" title="${ev.title}" week="${week.label}"`);
+      continue;
     }
+    if (typeof (ev.shortName ?? ev.title) !== 'string') {
+      errors.push(`Missing title: series="${ev.series}" date="${ev.date}" week="${week.label}"`);
+      continue;
+    }
+
+    (series[ev.series] ??= []).push({
+      name: ev.shortName ?? ev.title.toUpperCase(),
+      date: ev.date,
+    });
   }
 
   // ── Validate ascending dates per series ───────────────────────────────────
@@ -70,10 +60,8 @@ export function buildSeries(calendar) {
 }
 
 // ── Run as a script (not when imported by check-data.mjs) ──────────────────
-const isMain = process.argv[1] && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
-
-if (isMain) {
-  const { series, errors } = buildSeries(JSON.parse(readFileSync(CAL_PATH, 'utf8')));
+if (isMain(import.meta.url)) {
+  const { series, errors } = buildSeries(readJson('data/calendar.json'));
 
   if (errors.length) {
     console.error('\n❌  Generator failed:\n');
@@ -81,7 +69,7 @@ if (isMain) {
     process.exit(1);
   }
 
-  writeFileSync(OUT_PATH, JSON.stringify(series, null, 2) + '\n', 'utf8');
+  writeJson('data/series.json', series);
 
   const totalSeries = Object.keys(series).length;
   const totalEvents = Object.values(series).reduce((n, arr) => n + arr.length, 0);

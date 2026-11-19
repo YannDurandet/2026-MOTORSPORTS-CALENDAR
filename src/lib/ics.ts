@@ -74,7 +74,9 @@ export function raceLengthHours(ev: { title?: string; time?: string; sessions?: 
   const plain = `${ev.title ?? ''} ${(ev.time ?? '').replace(/<[^>]*>/g, ' ')}`;
   // A length in brackets wins: "ADAC 24h Qualifiers (2×4h)" is two 4-hour races.
   const m = plain.match(/\((?:\d+\s*[×x]\s*)?(\d{1,2})h(?:\s*[×x]\s*\d+)?\)/i)
-    ?? plain.match(/\b(\d{1,2})\s*(?:h|hours?)\b/i);
+    ?? plain.match(/\b(\d{1,2})\s*(?:h|hours?)\b/i)
+    // "Rolex 24 at Daytona": the number before "at" is the race length in hours.
+    ?? plain.match(/\b(\d{1,2})\s+at\b/i);
   const h = m ? Number(m[1]) : 0;
   return h >= 1 && h <= 24 ? h : 3;
 }

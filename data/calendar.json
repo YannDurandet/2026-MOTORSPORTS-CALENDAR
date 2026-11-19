@@ -264,14 +264,6 @@
             "title": "Atlanta Motor Speedway",
             "time": "RACE: <span class=\"hl\">21:00</span>",
             "track": "atlanta-oval.svg",
-            "results": [
-              {
-                "date": "2026-07-12",
-                "winner": "Ryan Blaney",
-                "team": "Team Penske",
-                "country": "US"
-              }
-            ],
             "date": "2026-02-22T21:00:00+01:00",
             "shortName": "ATLANTA"
           }
@@ -671,14 +663,6 @@
             "title": "Goodyear 400 (Darlington)",
             "time": "RACE: <span class=\"hl\">20:00</span>",
             "track": "darlington-oval.svg",
-            "results": [
-              {
-                "date": "2026-05-10",
-                "winner": "Tyler Reddick",
-                "team": "23XI Racing",
-                "country": "US"
-              }
-            ],
             "date": "2026-03-22T21:00:00+01:00",
             "shortName": "DARLINGTON"
           },
@@ -6402,9 +6386,9 @@
             "series": "tcr",
             "tag": "TCR",
             "title": "Macau (Season Finale)",
-            "time": "R1: <span class=\"hl\">05:15</span> • R2: <span class=\"hl\">09:00</span>",
+            "time": "SAT R1: <span class=\"hl\">06:20</span> • SUN R2: <span class=\"hl\">04:00</span>",
             "track": "macau.svg",
-            "date": "2026-11-22T08:00:00+01:00",
+            "date": "2026-11-22T04:00:00+01:00",
             "shortName": "MACAU"
           }
         ]

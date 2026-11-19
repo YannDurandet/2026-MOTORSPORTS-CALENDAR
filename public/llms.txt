@@ -49,7 +49,7 @@ Key features:
 | igtc | Intercontinental GT Challenge | GT / Sports Car | The world's only global GT3 series, linking five prestige endurance events across four continents. |
 | psc | Porsche Mobil 1 Supercup | GT / Sports Car | The world's premier single-make Porsche racing series, supporting Formula 1 at eight European Grands Prix. |
 | bgt | British GT Championship | GT / Sports Car | The UK's premier GT championship, spanning GT3 and GT4 classes across eight iconic British and European circuits. |
-| wrc | FIA World Rally Championship | Rally | The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across five continents. |
+| wrc | FIA World Rally Championship | Rally | The world's leading off-road racing series, contested over gravel, tarmac, snow, and ice across four continents. |
 | erc | European Rally Championship | Rally | The oldest active motorsport championship in the world, in its 74th season in 2026. |
 | eurx | FIA European Rallycross Championship | Rally | The world's top-tier rallycross championship — the 51st season of Euro RX, elevated to global status following the cancellation of World RX. |
 | nascar | NASCAR Cup Series | Touring | The highest level of American stock car racing, run across superspeedways, short tracks, and road courses. |

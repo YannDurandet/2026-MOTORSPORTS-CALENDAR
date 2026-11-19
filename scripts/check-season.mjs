@@ -25,19 +25,10 @@
  * Part of `npm run check`.
  */
 
-import { readFileSync, readdirSync, statSync } from 'fs';
-import { resolve, dirname, join, relative, sep } from 'path';
-import { fileURLToPath } from 'url';
+import { resolve, relative, sep } from 'path';
+import { readText, walkFiles, blankNonNewlines, defaultYear, ROOT } from './lib.mjs';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = resolve(__dirname, '..');
-const read = (p) => readFileSync(resolve(root, p), 'utf8');
-
-const season = Number(/DEFAULT_CALENDAR_YEAR\s*=\s*(\d{4})/.exec(read('src/lib/season.ts'))?.[1]);
-if (!season) {
-  console.error('❌  check-season: could not read DEFAULT_CALENDAR_YEAR from src/lib/season.ts');
-  process.exit(1);
-}
+const season = defaultYear;
 
 /** Files that may name a season year, and why. Paths use forward slashes. */
 const ALLOWED = new Map([
@@ -50,27 +41,14 @@ const ALLOWED = new Map([
 
 const EXTENSIONS = new Set(['.astro', '.ts', '.js', '.mjs', '.css']);
 
-function walk(dir, out = []) {
-  for (const name of readdirSync(dir)) {
-    const full = join(dir, name);
-    if (statSync(full).isDirectory()) {
-      if (name === 'node_modules' || name.startsWith('.')) continue;
-      walk(full, out);
-    } else if (EXTENSIONS.has(name.slice(name.lastIndexOf('.')))) {
-      out.push(full);
-    }
-  }
-  return out;
-}
-
 /**
  * Blank out comments, keeping line numbers: block comments (JS and CSS),
  * HTML comments and `//` comments. A comment only counts when it starts a line
  * or follows whitespace, so the `//` in `https://…` and the `/*` in a glob
  * such as '/track-maps/*.svg' are left alone.
  */
+const blank = blankNonNewlines;
 function stripComments(text) {
-  const blank = (m) => m.replace(/[^\n]/g, ' ');
   const keepLead = (m, lead) => lead + blank(m.slice(lead.length));
   return text
     .replace(/(^|\s)\/\*[\s\S]*?\*\//gm, keepLead)
@@ -82,11 +60,12 @@ const years = [season, season + 1];
 const pattern = new RegExp(`(?<![\\w.#-])(${years.join('|')})(?![\\w-]*\\.(?:svg|png|webp|avif|json))(?!\\d)`, 'g');
 
 const problems = [];
-const files = [...walk(resolve(root, 'src')), ...walk(resolve(root, 'workers'))];
+const files = [...walkFiles(resolve(ROOT, 'src'), { exts: EXTENSIONS }),
+                 ...walkFiles(resolve(ROOT, 'workers'), { exts: EXTENSIONS })];
 for (const file of files) {
-  const rel = relative(root, file).split(sep).join('/');
+  const rel = relative(ROOT, file).split(sep).join('/');
   if (ALLOWED.has(rel)) continue;
-  const lines = stripComments(readFileSync(file, 'utf8')).split('\n');
+  const lines = stripComments(readText(rel)).split('\n');
   lines.forEach((line, i) => {
     for (const m of line.matchAll(pattern)) {
       problems.push(`${rel}:${i + 1}  writes ${m[1]}: ${line.trim().slice(0, 110)}`);
@@ -105,11 +84,11 @@ if (problems.length) {
 
 // ── Reminders: season prose waiting for a rewrite ────────────────────────────
 const notes = [];
-const faqSeason = Number(/FAQ_SEASON\s*=\s*(\d{4})/.exec(read('src/lib/faq.ts'))?.[1]);
+const faqSeason = Number(/FAQ_SEASON\s*=\s*(\d{4})/.exec(readText('src/lib/faq.ts'))?.[1]);
 if (faqSeason !== season) {
   notes.push(`the home-page FAQ is hidden: src/lib/faq.ts was written for ${faqSeason || 'an unknown season'}. Rewrite the answers for ${season}, then set FAQ_SEASON = ${season}.`);
 }
-if (!new RegExp(`^\\s*${season}\\s*:\\s*\\{`, 'm').test(read('src/lib/seasonCopy.ts'))) {
+if (!new RegExp(`^\\s*${season}\\s*:\\s*\\{`, 'm').test(readText('src/lib/seasonCopy.ts'))) {
   notes.push(`series pages use generated descriptions: src/lib/seasonCopy.ts has no ${season} block yet.`);
 }
 

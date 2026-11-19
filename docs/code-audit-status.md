@@ -1,6 +1,6 @@
 # Code Audit Status
 
-_Last updated: 2026-11-13_
+_Last updated: 2026-11-19_
 
 What is still open after the November 2026 code audit. The audit found 95
 issues (F-001 … F-095); 84 are fixed, in the same merge as this file. The full
@@ -23,9 +23,9 @@ Tick items here as they are done, and delete the file once every box is ticked.
 - [x] **Watch the first daily build** (Actions → Deploy, 05:00 UTC). F-069 added
       the schedule; GitHub only runs it from `main`. Run #97 was the first
       scheduled run and passed; GitHub started it at 13:32 UTC, not 05:00.
-- [ ] **In the next newsletter, click your own unsubscribe link** and check the
+- [x] **In the next newsletter, click your own unsubscribe link** and check the
       page says you're unsubscribed (F-077 moved the worker to the site's token code;
-      it was checked to produce identical tokens).
+      it was checked to produce identical tokens). Confirmed working 2026-11-19.
 
 ## 2. Decisions only Yann can make
 
@@ -55,8 +55,11 @@ lists them.
       needs `npm run times:apply` (or the real times) as they're announced.
 - [ ] **F-021** five rally rounds show another rally's name and town: give them a
       researched `venue` field.
-- [ ] **F-088 (data half)** two NASCAR events carry the result of a later race at
-      the same track, so `/results` lists two races twice.
+- [x] **F-088 (data half)** two NASCAR events carry the result of a later race at
+      the same track, so `/results` lists two races twice. Fixed 2026-11-19: the wrong
+      rows were removed from 2026 "Atlanta Motor Speedway" (wk 08) and "Goodyear 400
+      (Darlington)" (wk 12); the later events keep their own correct copies. The two
+      events now show up in `npm run results:gaps` and need their real results.
 - [ ] **F-089** 24 raced events have a different number of results than the races
       their row announces.
 - [ ] **F-091** 18 result rows are incomplete or the wrong shape for their series.
@@ -64,24 +67,32 @@ lists them.
 - [ ] **F-060** standings totals disagree with the calendar for six series, and two
       series have tables at different rounds.
 - [ ] Le Mans 2027: `time` says FRI › SAT but `date` is the Saturday start.
-- [ ] WRC's blurb in `seriesContent.json` says "five continents"; the 2026 rallies
-      span four (Europe, Africa, Asia, South America).
+- [x] WRC's blurb in `seriesContent.json` said "five continents"; the 2026 rallies
+      span four (Europe, Africa, Asia, South America). Fixed 2026-11-19 (tagline +
+      description now say four).
 
-## 4. Small code items not started
+## 4. Small code items
 
-- [ ] **One newsletter form (F-068):** `newsletter.astro` and `NewsletterBanner.astro`
-      carry the same form and submit script. Build one `NewsletterForm.astro`, use it
-      on both and on event and season pages, then test a real sign-up on each.
-- [ ] **Search:** a query typed before the search index has loaded shows nothing
-      until the next keystroke (`renderResults()` in `BaseLayout.astro` returns early).
-- [ ] **Type check:** `npm run typecheck` reports 6 errors: five missing Cloudflare
-      types (`cloudflare:workers`, `ScheduledEvent`, `ExecutionContext`; `wrangler types`
-      can generate them) and one in `series/[slug].astro` (broadcaster list typed as
-      `object[]`). Once at zero, add it to `npm run check`.
-- [ ] **São Paulo E-Prix email image** is the TBC placeholder:
-      `npm run gen:track-pngs -- --force` regenerates every email PNG.
-- [ ] **Rolex 24 feed length:** its title has no length in hours, so its calendar
-      feed entry stays 3 hours (F-031 reads "24 Hours", "12H", "(4h)").
-- [ ] **Newsletter series table:** `SERIES_INFO` in `workers/newsletter.ts` is one
-      more hand-kept series list (it calls TCR "TCR Europe"; the site says
-      "TCR World Tour").
+- [x] **One newsletter form (F-068):** `src/components/NewsletterForm.astro` now holds
+      the one form (markup, styles, submit script — the double-opt-in-aware variant).
+      Used by `newsletter.astro` and `NewsletterBanner.astro`. Still open: place it on
+      event and season pages, and test one real sign-up per surface.
+- [x] **Search:** a query typed before the search index had loaded showed nothing
+      until the next keystroke. `BaseLayout.astro` now shares one in-flight fetch
+      (`searchIndexPromise`), warms the index when the overlay opens, and
+      `renderResults()` re-renders from the live input once the index lands.
+- [x] **Type check:** `npm run typecheck` is at 0 errors (was 6). `npx wrangler types`
+      generated `worker-configuration.d.ts` at the repo root — **commit it**, CI needs
+      it now that `npm run check` ends with `npm run typecheck`. Also fixed: the
+      broadcaster list typing via JSDoc on `pickBroadcasters` (`src/client/country.js`)
+      and `res.json()` casts in the newsletter form + `api/subscribe.ts`.
+- [x] **São Paulo E-Prix email image** was the TBC placeholder. Regenerated just
+      `public/assets/tracks/email/sao-paulo-fe.png` (delete the file and re-run
+      `npm run gen:track-pngs` — do NOT use `--force`, it rewrites all 153 PNGs with
+      different bytes under the current sharp).
+- [x] **Rolex 24 feed length:** `raceLengthHours()` in `src/lib/ics.ts` now also reads
+      the "N at" pattern ("Rolex 24 at Daytona" → 24h), so the feed entry is 24h.
+- [x] **Newsletter series table:** `workers/newsletter.ts` no longer hand-keeps series
+      names — `SERIES_INFO` is built from `data/seriesContent.json` (same file the site
+      uses); only the badge look (abbr/colours) stays in the worker. TCR now reads
+      "TCR World Tour" like the site.

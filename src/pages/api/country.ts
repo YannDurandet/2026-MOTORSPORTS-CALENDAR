@@ -3,7 +3,7 @@
 // ============================================================================
 //
 // Used by the "Use my location" button in the watch-options popup
-// (src/components/CountryDialog.astro → src/scripts/country.js).
+// (src/components/CountryDialog.astro → src/client/country.js).
 //
 // Cloudflare already derives a country from the connection's IP address for
 // every request it serves; this just hands that two-letter code back to the

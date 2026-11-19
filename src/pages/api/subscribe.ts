@@ -174,7 +174,7 @@ export const POST: APIRoute = async ({ request }) => {
     // ── Parse body ─────────────────────────────────────────────────────────
     let email: string;
     try {
-      const body = await request.json();
+      const body = (await request.json()) as { email?: unknown };
       email = (typeof body?.email === 'string' ? body.email : '').trim().toLowerCase();
     } catch {
       return json({ error: 'Invalid request body.' }, 400);

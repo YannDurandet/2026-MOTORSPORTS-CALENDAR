@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "node scripts/check-data.mjs && node scripts/check-support-series.mjs && node scripts/gen-track-map-status.mjs --check && node scripts/check-tokens.mjs && node scripts/gen-season-files.mjs --check && node scripts/check-season.mjs",
+    "check": "node scripts/check-data.mjs && node scripts/check-support-series.mjs && node scripts/gen-track-map-status.mjs --check && node scripts/check-tokens.mjs && node scripts/gen-season-files.mjs --check && node scripts/check-season.mjs && npm run typecheck",
     "check:support": "node scripts/check-support-series.mjs",
     "check:tokens": "node scripts/check-tokens.mjs",
     "check:season": "node scripts/check-season.mjs",
@@ -20,7 +20,7 @@
     "gen:series-images": "node scripts/gen-series-images.mjs",
     "gen:track-pngs": "node scripts/export-track-pngs.mjs",
     "gen:map-status": "node scripts/gen-track-map-status.mjs",
-    "results:gaps": "node scripts/find-gaps.mjs",
+    "results:gaps": "node scripts/results-sync.mjs gaps",
     "results:brief": "node scripts/results-sync.mjs brief",
     "results:apply": "node scripts/results-sync.mjs apply",
     "standings:stale": "node scripts/standings-sync.mjs stale",
@@ -29,7 +29,8 @@
     "times:apply": "node scripts/apply-times.mjs",
     "sessions:apply": "node scripts/apply-sessions.mjs",
     "indexnow": "node scripts/indexnow.mjs",
-    "test:unsub": "node scripts/test-unsub-token.mjs"
+    "test:unsub": "node scripts/test-unsub-token.mjs",
+    "clean": "node -e \"for (const d of ['dist', '.astro', '.wrangler', '.indexnow-hashes.json']) require('node:fs').rmSync(d, { recursive: true, force: true })\""
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.4.6",

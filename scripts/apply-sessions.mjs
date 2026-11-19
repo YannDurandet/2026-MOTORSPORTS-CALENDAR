@@ -30,32 +30,26 @@
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
+import {
+  ROOT, readText, findEvents, parisClock, stripHtml,
+  DAYS, HHMM_RE, DURATION_RE, HTTPS_RE, parseArgs,
+} from './lib.mjs';
 
-const CAL = join(dirname(fileURLToPath(import.meta.url)), '../data/calendar.json');
-const args = process.argv.slice(2);
-const write = args.includes('--write');
-const force = args.includes('--force');
-const file = args.find((a) => !a.startsWith('--'));
+const CAL_PATH = 'data/calendar.json';
+const { args, has } = parseArgs();
+const write = has('--write');
+const force = has('--force');
+const file = args[0];
 if (!file) {
   console.error('Usage: node scripts/apply-sessions.mjs <patch.json> [--write] [--force]');
   process.exit(1);
 }
 
-const DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-const hhmmRe = /^([01]\d|2[0-3]):[0-5]\d$/;
-const durationRe = /^(\d+h(\d{2})?|\d+min)$/;
-const httpsRe = /^https:\/\/\S+$/;
 const STATUSES = ['confirmed', 'provisional'];
 const SESSION_KEYS = ['day', 'label', 'time', 'duration', 'status', 'source'];
 const SUB_KEYS = ['badge', 'round', 'day', 'time', 'status', 'source'];
-const plain = (h) => (h ?? '').replace(/<[^>]*>/g, '');
-const parisParts = (iso) => {
-  const d = new Date(iso);
-  const f = (o) => new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Paris', ...o }).format(d);
-  return { day: f({ weekday: 'short' }).toUpperCase(), hhmm: f({ hour: '2-digit', minute: '2-digit', hour12: false }) };
-};
+const plain = stripHtml;
 
 let patches;
 try {
@@ -69,7 +63,7 @@ if (!Array.isArray(patches)) {
   process.exit(1);
 }
 
-const raw = readFileSync(CAL, 'utf8');
+const raw = readText(CAL_PATH);
 const calendar = JSON.parse(raw);
 const trailingNewline = raw.endsWith('\n');
 const serialise = () => JSON.stringify(calendar, null, 2) + (trailingNewline ? '\n' : '');
@@ -84,26 +78,11 @@ function validateRow(r, kind) {
   if (kind === 'sub' && !r.badge) return 'has no badge';
   if (kind === 'session' && (!r.label || typeof r.label !== 'string')) return 'has no label';
   if (!DAYS.includes(r.day)) return `day "${r.day}" is not MON-SUN`;
-  if (!hhmmRe.test(r.time ?? '')) return `time "${r.time}" is not HH:MM`;
-  if (r.duration !== undefined && !durationRe.test(r.duration)) return `duration "${r.duration}" is not like "2h40", "6h" or "45min"`;
+  if (!HHMM_RE.test(r.time ?? '')) return `time "${r.time}" is not HH:MM`;
+  if (r.duration !== undefined && !DURATION_RE.test(r.duration)) return `duration "${r.duration}" is not like "2h40", "6h" or "45min"`;
   if (!STATUSES.includes(r.status)) return `status "${r.status}" must be confirmed or provisional`;
-  if (!httpsRe.test(r.source ?? '')) return 'has no https source';
+  if (!HTTPS_RE.test(r.source ?? '')) return 'has no https source';
   return null;
-}
-
-function findEvents(p) {
-  const out = [];
-  for (const month of calendar) {
-    for (const week of month.weeks) {
-      if (week.label !== p.weekLabel) continue;
-      for (const ev of week.events) {
-        if (ev.series !== p.series || ev.title !== p.title) continue;
-        if (p.date && !ev.date.startsWith(p.date)) continue;
-        out.push(ev);
-      }
-    }
-  }
-  return out;
 }
 
 const fmtSession = (r) => `${r.day} ${r.time}  ${r.label}${r.duration ? ` (${r.duration})` : ''}  [${r.status ?? 'curated'}]${r.source ? ' ' + r.source : ''}`;
@@ -122,11 +101,11 @@ patches.forEach((p, i) => {
   };
   if (!p || typeof p !== 'object' || !p.series || !p.title || !p.weekLabel) return reject('needs series, title and weekLabel');
   if (p.sessions === undefined && p.sub === undefined) return reject('has neither sessions nor sub');
-  const hits = findEvents(p);
+  const hits = findEvents(calendar, { series: p.series, title: p.title, weekLabel: p.weekLabel, date: p.date });
   if (hits.length === 0) return reject('event not found (series + title + weekLabel must match exactly)');
   if (hits.length > 1) return reject(`matches ${hits.length} events: add "date": "YYYY-MM-DD"`);
 
-  const ev = hits[0];
+  const ev = hits[0].ev;
   const draft = structuredClone(ev);
   const problems = [];
   const notes = [];
@@ -154,7 +133,7 @@ patches.forEach((p, i) => {
         const race = races[0];
         const timeRaces = [...plain(ev.time).matchAll(/RACE:?\s*(\d{2}:\d{2})/gi)].map((m) => m[1]);
         const tbcRe = /(RACE:\s*)<span class="hl">TBC<\/span>/i;
-        const pp = parisParts(ev.date);
+        const pp = parisClock(ev.date);
         if (timeRaces.length === 1 && timeRaces[0] !== race.time) {
           problems.push(`RACE ${race.time} disagrees with event time "${plain(ev.time)}"`);
         }
@@ -215,10 +194,10 @@ if (!applied) {
   console.log('Nothing to write.');
   process.exit(rejected ? 1 : 0);
 }
-if (!formatSafe && !args.includes('--allow-reformat')) {
+if (!formatSafe && !has('--allow-reformat')) {
   console.error('Refusing to write: that would reformat calendar.json. Re-run with --allow-reformat and review the git diff.');
   process.exit(1);
 }
-writeFileSync(CAL, serialise());
+writeFileSync(resolve(ROOT, CAL_PATH), serialise());
 console.log('Wrote data/calendar.json. Next: npm run check');
 if (rejected) process.exit(1);
