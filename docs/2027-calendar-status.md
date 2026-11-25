@@ -2,6 +2,8 @@
 
 _Last updated: 2026-11-11_
 
+Research/enrichment status for the 2027 events and their tracks (data + sources): see [event-track-pages-status.md](event-track-pages-status.md).
+
 ## ✅ Incorporated
 
 | Slug | Series | Rounds |
