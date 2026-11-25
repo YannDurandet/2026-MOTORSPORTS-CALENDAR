@@ -1,0 +1,810 @@
+{
+ "f1": {
+  "name": "FIA Formula One World Championship",
+  "official_site": "https://www.formula1.com",
+  "race_distance_rule": "Grand Prix = minimum 305 km, laps = fewest whole laps exceeding 305 km; Monaco exception 260 km (78 laps). 2027 ONLY: race distance reduced to 290 km at all races except Monaco (fuel-flow change; reverts to 305 km from 2028). 2-hour race limit kept; the 3-hour stoppage clock replaced by a hard stop time. Sprint race ~100 km (~30 min), no mandatory pit stop.",
+  "points": {
+   "race": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "sprint": [
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "fastest_lap": 0,
+   "note": "Fastest-lap bonus point abolished by the FIA from the 2025 season onwards; shortened races (<75% distance) pay reduced points."
+  },
+  "format_2027": {
+   "sprint_rounds": [
+    "bahrain",
+    "australia",
+    "japan",
+    "canada",
+    "monaco",
+    "great-britain (Silverstone)",
+    "italy (Monza)",
+    "sao-paulo",
+    "qatar",
+    "abu-dhabi"
+   ],
+   "sprint_count": 10,
+   "weekend_sprint": "FP1 60 min Friday; Sprint Qualifying Friday (SQ1 12 min / SQ2 10 min / SQ3 8 min); Sprint Saturday morning; GP Qualifying Saturday afternoon; race Sunday",
+   "quali": "Q1 18 min / Q2 15 min / Q3 13 min; 6 slowest eliminated after Q1 and after Q2 (22-car grid, 11 teams), top 10 shootout in Q3",
+   "tyres": "Pirelli sole supplier (contract through 2027); 3 dry compounds chosen per weekend, two different compounds mandatory in a dry race",
+   "power_unit_2027": "ICE 420 kW + MGU-K 300 kW (58:42 split, changing to 60:40 in 2028); harvesting 375 kW; fuel flow +5%; gearbox homologation scrapped; pre-season testing 4 days"
+  },
+  "categories": [
+   "World Drivers' Championship",
+   "World Constructors' Championship"
+  ],
+  "status_2027": "confirmed \u2014 24-GP calendar with 10 Sprint weekends announced 16 Sep 2026 (formula1.com); 290 km distance ratified by WMSC 21 Sep / 23 Jun 2026"
+ },
+ "motogp": {
+  "name": "FIM MotoGP World Championship",
+  "official_site": "https://www.motogp.com",
+  "race_distance_rule": "No fixed km: GP race distance is set in laps per circuit by Dorna (typically ~100-120 km); Sprint race ~half GP distance. 2027: fuel tank 20 L (11 L for Sprint).",
+  "points": {
+   "race": [
+    25,
+    20,
+    16,
+    13,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "sprint": [
+    12,
+    9,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ]
+  },
+  "format_2027": {
+   "weekend": "NEW from 2027: Sprint Qualifying on Friday, FP3 + GP qualifying Saturday, Moto3/Moto2 races Sunday before the MotoGP GP; Sprint and GP have separate grids",
+   "rules_2027": "850cc engines (bore 75 mm, 6 engines/rider/season); ride-height devices banned; 100% sustainable fuel; wildcards banned; all manufacturers start in concession Rank B; Pirelli sole tyre supplier 2027-2031 (replacing Michelin)"
+  },
+  "categories": [
+   "MotoGP Riders' World Championship",
+   "MotoGP Teams' World Championship",
+   "MotoGP Constructors' Championship",
+   "Moto2",
+   "Moto3"
+  ],
+  "status_2027": "confirmed \u2014 2027 calendar revealed 25 Sep 2026; new weekend format announced 7 Oct 2026 (motogp.com)"
+ },
+ "wec": {
+  "name": "FIA World Endurance Championship",
+  "official_site": "https://www.fiawec.com",
+  "race_distance_rule": "Races run to a set time or distance: 6 h (Imola, Silverstone, Spa, Sao Paulo, COTA, Fuji), Qatar 1812 km (distance), 8 h Bahrain, 24 h Le Mans. Points scale with duration (see points).",
+  "points": {
+   "6h_or_less": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "8_10h_and_1812km": [
+    38,
+    27,
+    23,
+    18,
+    15,
+    12,
+    9,
+    6,
+    3,
+    2
+   ],
+   "24h_le_mans": [
+    50,
+    36,
+    30,
+    24,
+    20,
+    16,
+    12,
+    8,
+    4,
+    2
+   ],
+   "pole": 1
+  },
+  "format_2027": {
+   "calendar_2027": [
+    "Qatar 1812 km (27 Mar)",
+    "6 Hours of Imola",
+    "6 Hours of Silverstone",
+    "6 Hours of Spa-Francorchamps",
+    "24 Hours of Le Mans",
+    "6 Hours of Sao Paulo",
+    "Lone Star Le Mans (COTA)",
+    "6 Hours of Fuji",
+    "8 Hours of Bahrain"
+   ],
+   "rounds": 9,
+   "announced": "calendar announced 12 Jun 2026 during the 2026 Le Mans weekend"
+  },
+  "categories": [
+   "Hypercar (LMH/LMDh) \u2014 Hypercar World Endurance Drivers' & Manufacturers' Championships",
+   "LMGT3 \u2014 FIA Endurance Trophy for Drivers and Teams"
+  ],
+  "status_2027": "confirmed (calendar announced); LMP2 no longer a full-season WEC class since 2024"
+ },
+ "imsa": {
+  "name": "IMSA WeatherTech SportsCar Championship",
+  "official_site": "https://www.imsa.com",
+  "race_distance_rule": "Timed races: Rolex 24 at Daytona (24 h), 12 Hours of Sebring, Petit Le Mans (10 h), 6 Hours of Watkins Glen, 2 h 40 min endurance races, 100 min (1 h 40) sprint/street races. Points also awarded at intervals in endurance races (6 h: at 3 h and finish; Sebring every 4 h; Daytona every 6 h; Petit Le Mans at 4/8/10 h).",
+  "points": {
+   "race": [
+    35,
+    32,
+    30,
+    29,
+    28,
+    27,
+    26,
+    25,
+    24,
+    23,
+    22,
+    21,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "note": "winner 35 pts, then descending; endurance races pay at intervals plus finish"
+  },
+  "format_2027": {
+   "rounds": 11,
+   "calendar_announced": "provisional 2027 schedule released 19 Mar 2026",
+   "endurance_cup": "Michelin Endurance Cup = the 5 long races (Daytona 24 h, Sebring 12 h, Watkins Glen 6 h, Road America/Mosport 6 h class-dependent, Petit Le Mans 10 h)"
+  },
+  "categories": [
+   "WeatherTech SportsCar Championship (overall drivers/teams/manufacturers)",
+   "Michelin Endurance Cup",
+   "GTP (LMDh/LMH)",
+   "LMP2",
+   "GTD Pro (GT3)",
+   "GTD (GT3)"
+  ],
+  "status_2027": "confirmed (provisional schedule announced 19 Mar 2026, imsa.com)"
+ },
+ "indycar": {
+  "name": "IndyCar Series (NTT IndyCar Series)",
+  "official_site": "https://www.indycar.com",
+  "race_distance_rule": "Races set by distance in miles: Indianapolis 500 = 500 miles / 200 laps; other ovals typically 200-300 miles; road/street courses set lap counts (~1.5-2 h).",
+  "points": {
+   "race": [
+    50,
+    40,
+    35,
+    32,
+    30,
+    28,
+    26,
+    24,
+    22,
+    20,
+    19,
+    18,
+    17,
+    16,
+    15,
+    14,
+    13,
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5
+   ],
+   "pole": 1,
+   "lead_a_lap": 1,
+   "most_laps": 2,
+   "indy500_quali_top12": [
+    12,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "note": "Indy 500 pays single points since 2023; -10 pts for entrant-initiated engine change before distance mandate"
+  },
+  "format_2027": {
+   "rounds": 16,
+   "changes_2027": "non-chartered entries restricted to the Indianapolis 500 only (rule announced 28 Apr 2026); new Dallara IR-27 chassis debuts; Milwaukee double-header"
+  },
+  "categories": [
+   "Drivers' Championship",
+   "Engine Manufacturer Championship",
+   "Entrants/Teams"
+  ],
+  "status_2027": "confirmed (2027 schedule published; rulebook-based points)"
+ },
+ "nascar": {
+  "name": "NASCAR Cup Series",
+  "official_site": "https://www.nascar.com",
+  "race_distance_rule": "Races set in laps/miles: Daytona 500 = 500 mi (200 laps); Coca-Cola 600 = 600 mi (400 laps, 4 stages); most other Cup races 250-400 mi (e.g. 400, 350, 301, 300, 250). Divided into 3 stages (4 for the 600): stage 1 ~1/4, stage 2 ~1/4, final stage ~1/2 of distance.",
+  "points": {
+   "race_finish": "40 down to 1 (winner 40, 40th 1)",
+   "stage_points": [
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "stage_note": "top 10 at end of stages 1 and 2; final stage pays only race points",
+   "playoff_points": [
+    15,
+    10,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "playoff_note": "top 10 in playoff races earn playoff points in addition; 16-driver playoff after 26 regular-season races"
+  },
+  "format_2027": {
+   "races": 36,
+   "calendar_announced": "2027 schedule confirmed 4 Aug 2026 (nascar.com)",
+   "changes_2027": "750 hp package at all intermediate tracks from the Coca-Cola 600; single-round qualifying at Daytona/Atlanta/Talladega superspeedways; Richmond, Watkins Glen and New Hampshire return to the playoff; Dodge returns as a manufacturer (Kaulig Racing)"
+  },
+  "categories": [
+   "Drivers' Championship",
+   "Owners' Championship",
+   "Manufacturers' Championship"
+  ],
+  "status_2027": "confirmed (2027 schedule announced 4 Aug 2026)"
+ },
+ "wrc": {
+  "name": "FIA World Rally Championship",
+  "official_site": "https://www.wrc.com",
+  "race_distance_rule": "Rallies are set by special stages: target ~300+ km of competitive (special stage) distance per event (2027 opening rounds listed at 353.57 km and 307.08 km); final stage is the Power Stage.",
+  "points": {
+   "overall": [
+    25,
+    17,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "sunday_classification": [
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "power_stage": [
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "max_per_event": 35
+  },
+  "format_2027": {
+   "rounds": 15,
+   "regulations": "new WRC27 Rally1 technical regulations replace the 2022-2026 rules; Manufacturers' championship renamed 'World Rally Championship for Constructors'; new 'World Rally Championship for Teams' title for privateer Rally1 entries; Rally GB (Scotland) returns in 2027"
+  },
+  "categories": [
+   "WRC Drivers' Championship",
+   "WRC for Constructors (manufacturers)",
+   "WRC for Teams (privateer Rally1)",
+   "Rally2 (WRC2)",
+   "Rally3 (WRC3)",
+   "Junior WRC"
+  ],
+  "status_2027": "confirmed (2027 calendar announced, wrc.com)"
+ },
+ "wsbk": {
+  "name": "FIM Superbike World Championship (WorldSBK)",
+  "official_site": "https://www.worldsbk.com",
+  "race_distance_rule": "Each round: Race 1 and Race 2 full-length races of 90-110 km (laps set per circuit), plus a 10-lap Superpole Race that sets the Race 1 grid.",
+  "points": {
+   "race_1_and_race_2": [
+    25,
+    20,
+    16,
+    13,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "superpole_race": [
+    12,
+    9,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ]
+  },
+  "format_2027": {
+   "weekend": "3 races per round: Superpole Race (10 laps, Sat), Race 1 (Sun), Race 2 (Sun); Race 2 grid partly reversed from Race 1",
+   "rules_2027": "Michelin becomes sole tyre supplier from 2027 (5-year deal, replacing Pirelli after 2026); SBK Commission roadmap 2027-2030: rev-limit/concession changes from 2027, 1200 cc engines planned for 2030; provisional 2027 calendar revealed 1 Oct 2026 (China debut, Valencia return)"
+  },
+  "categories": [
+   "WorldSBK (Superbike)",
+   "WorldSSP (Supersport)",
+   "support classes (e.g. SSP300) \u2014 see NOTES"
+  ],
+  "status_2027": "expected \u2014 provisional 2027 calendar announced; no 2027 season article yet, 2026 rules carried forward"
+ },
+ "fe": {
+  "name": "ABB FIA Formula E World Championship",
+  "official_site": "https://www.fiaformulae.com",
+  "race_distance_rule": "E-Prix set in laps per circuit (distance varies ~80-110 km by venue); +1 lap added per 4 minutes under full-course yellow/safety car. From 2026-27, the first race of a double-header ('E-Prix Unleashed') is a 30-minute sprint without pit stops.",
+  "points": {
+   "race": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "fastest_lap_top10": 1,
+   "qualifying_duels": [
+    5,
+    3,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   "note": "pole = winner of the final qualifying duel (4 pts + 1 pole pt = 5)"
+  },
+  "format_2027": {
+   "season": "Season 13 (2026-27) debuts the Gen4 car: max 600 kW, all-wheel drive active at all times, Bridgestone tyres; Attack Mode can be paused during FCY; amended qualifying-duel points"
+  },
+  "categories": [
+   "Drivers' World Championship",
+   "Teams' World Championship",
+   "Manufacturers' Championship"
+  ],
+  "status_2027": "confirmed (Gen4 + format announced on fiaformulae.com / fia.com)"
+ },
+ "dtm": {
+  "name": "Deutsche Tourenwagen Masters (DTM)",
+  "official_site": "https://www.dtm.com",
+  "race_distance_rule": "Two races per weekend (Sat + Sun), each 55 minutes plus one complete lap; mandatory pit stop for a full set of fresh tyres in both races. GT3-spec cars.",
+  "points": {
+   "race": [
+    25,
+    20,
+    16,
+    13,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "qualifying": [
+    3,
+    2,
+    1
+   ]
+  },
+  "format_2027": {
+   "rounds": 8,
+   "season": "41st season / 28th under DTM moniker, 7th GT3 season; 2027 calendar announced (dtm.com, Aug 2026: Alpine opener, city spectacle, North Sea action)"
+  },
+  "categories": [
+   "Drivers' Championship",
+   "Teams' Championship"
+  ],
+  "status_2027": "confirmed (2027 calendar announced on dtm.com)"
+ },
+ "btcc": {
+  "name": "British Touring Car Championship (Kwik Fit BTCC)",
+  "official_site": "https://btcc.net",
+  "race_distance_rule": "Three races per meeting on Sunday, distances set in laps per circuit; 2027: a Qualifying Race ('Race to Pole') of ~half standard race distance sets the Race 1 grid. Race 2 grid from Race 1 finishing order; Race 3 grid by reverse-grid draw (2027: draw covers P10-16 of Race 2).",
+  "points": {
+   "per_race_top15": [
+    20,
+    17,
+    15,
+    13,
+    11,
+    10,
+    9,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "pole": 1,
+   "fastest_lap": 1,
+   "lead_a_lap": 1
+  },
+  "format_2027": {
+   "saturday": "two 25-min practice sessions; single 20-min one-group qualifying (2026's two-group format dropped)",
+   "friday": "shakedowns return at selected events",
+   "technical": "NGTC-based rules; from 2027 any brand sold in the UK with an ICE as primary power source is eligible (btcc.net 2027 technical regulations)",
+   "calendar": "announced 18 Apr 2026; format changes agreed 9 Nov 2026 (btcc.net)"
+  },
+  "categories": [
+   "Drivers' Championship",
+   "Independents' Trophy",
+   "Jack Sears Trophy",
+   "Teams' Championship",
+   "Manufacturers' Championship"
+  ],
+  "status_2027": "confirmed (calendar 18 Apr 2026; format changes 9 Nov 2026, btcc.net)"
+ },
+ "elms": {
+  "name": "European Le Mans Series (ELMS)",
+  "official_site": "https://www.europeanlemansseries.com",
+  "race_distance_rule": "All races 4 hours (2027: six 4-hour rounds). Points 25-18-15-12-10-8-6-4-2-1 + 1 pole point.",
+  "points": {
+   "race": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "pole": 1
+  },
+  "format_2027": {
+   "rounds": 6,
+   "calendar": [
+    "4 Hours of Barcelona (14 Mar)",
+    "4 Hours of Le Castellet",
+    "4 Hours of Imola",
+    "4 Hours of Spa-Francorchamps",
+    "Goodyear 4 Hours of Silverstone",
+    "4 Hours of Portimao (16 Oct)"
+   ],
+   "announced": "calendar announced 3 Jul 2026; LMP2 split renamed: LMP2 Pro (no Bronze driver) vs LMP2 (with Bronze); Le Castellet drops the Mistral chicane again"
+  },
+  "categories": [
+   "LMP2 Pro",
+   "LMP2",
+   "LMP3",
+   "LMGT3"
+  ],
+  "status_2027": "confirmed (calendar announced 3 Jul 2026)"
+ },
+ "asian-le-mans": {
+  "name": "Asian Le Mans Series (2026-27 'Winter Le Mans Series')",
+  "official_site": "https://www.asianlemansseries.com",
+  "race_distance_rule": "4-hour races; points 25-18-15-12-10-8-6-4-2-1 + 1 pole.",
+  "points": {
+   "race": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "pole": 1
+  },
+  "format_2027": {
+   "season": "2026-27 season runs as an exceptional European winter calendar (Nov 2026 - Feb 2027): Paul Ricard, Jerez, Portimao, ... six 4-hour rounds",
+   "classes": "Hypercar (privateer LMH/LMDh, new premier class from 2026-27), LMP2 (Gibson GK428 V8, Michelin), LMP3, GT3 \u2014 Pro-Am categorisation"
+  },
+  "categories": [
+   "Hypercar",
+   "LMP2",
+   "LMP3",
+   "GT3"
+  ],
+  "status_2027": "confirmed (2026-27 calendar announced on asianlemansseries.com)"
+ },
+ "gtwce": {
+  "name": "GT World Challenge Europe (SRO Motorsports Group)",
+  "official_site": "https://www.gt-world-challenge-europe.com",
+  "race_distance_rule": "Sprint Cup rounds: two 1-hour races each (15 sprint races in 2027). Endurance Cup: 3 h (Imola, Nurburgring, Barcelona), 6 h (Paul Ricard), 24 h Spa.",
+  "points": {
+   "sprint_and_3h_6h": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "note": "24 Hours of Spa awards points on a longer scale with intermediate classifications (higher than the standard scale)"
+  },
+  "format_2027": {
+   "rounds": 10,
+   "titles": "overall GT World Challenge Europe championship plus Sprint Cup and Endurance Cup titles",
+   "classes": "Pro, Gold, Silver, Bronze (Pro-Am only at the 24 Hours of Spa, ineligible for points)",
+   "calendar": "provisional calendar released 26 Jun 2026 at the Spa 24 h press conference; Imola replaces Monza, Hungaroring replaces Algarve in round 9"
+  },
+  "categories": [
+   "Overall (Pro)",
+   "Sprint Cup",
+   "Endurance Cup",
+   "Gold Cup",
+   "Silver Cup",
+   "Bronze Cup"
+  ],
+  "status_2027": "confirmed (calendar announced 26 Jun 2026)"
+ },
+ "gtwca": {
+  "name": "GT World Challenge America (SRO Motorsports Group)",
+  "official_site": "https://www.gt-world-challenge-america.com",
+  "race_distance_rule": "Since 2026: a single 3-hour race per weekend (previously sprint format). 2027: 7 rounds.",
+  "points": {
+   "race": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ]
+  },
+  "format_2027": {
+   "rounds": 7,
+   "calendar": "provisional calendar released 26 Jun 2026 (Sonoma, ...); Watkins Glen returns",
+   "classes": "GT3 cars; Pro / Pro-Am / Am categories"
+  },
+  "categories": [
+   "GT3 overall",
+   "Pro-Am",
+   "Am"
+  ],
+  "status_2027": "confirmed (calendar announced 26 Jun 2026)"
+ },
+ "igtc": {
+  "name": "Intercontinental GT Challenge (SRO Motorsports Group)",
+  "official_site": "https://www.intercontinentalgtchallenge.com",
+  "race_distance_rule": "Five endurance events by time/distance: Bathurst 12 Hour, Texas 8 Hour at COTA (new for 2027), Nurburgring 24 Hours, Spa 24 Hours, Suzuka 1000 km.",
+  "points": {
+   "note": "manufacturer points per event \u2014 up to 4 cars entered, best 2 score; Pro drivers' title also awarded"
+  },
+  "format_2027": {
+   "rounds": 5,
+   "calendar": "announced 26 Jun 2026 at Spa 24 h press conference; Texas 8 Hour replaces the Indianapolis 8 Hour; Spa 24 also counts for Super GT GT300",
+   "cars": "GT3-spec cars"
+  },
+  "categories": [
+   "Manufacturers' (IGTC title)",
+   "Pro drivers' title"
+  ],
+  "status_2027": "confirmed (2027 calendar announced 26 Jun 2026, intercontinentalgtchallenge.com)"
+ },
+ "nls": {
+  "name": "ADAC N\u00fcrburgring Langstrecken-Serie (NLS)",
+  "official_site": "https://www.nuerburgring-langstrecken-serie.de",
+  "race_distance_rule": "One-day Saturday races on the Nordschleife + GP-Strecke combination: standard NLS races 4 hours (a single driver may run the whole 4 h), flagship N\u00fcrburgring 6 Hours with 2-4 drivers per car.",
+  "points": {
+   "drivers": "per class by finishing position, 15-1 points scale adjusted by number of starters in class; best 8 races count for the championship",
+   "qualifying_bonus": "top 3 in qualifying score bonus points in team classifications"
+  },
+  "format_2027": {
+   "note": "2027 calendar not yet published at access date; 2026 format carried forward (8 rounds incl. N\u00fcrburgring 6 h)"
+  },
+  "categories": [
+   "SP9 / GT3 and other SP classes",
+   "CUP2/CUP3 (Porsche Endurance Trophy N\u00fcrburgring)",
+   "overall teams (NLS Speed-Troph\u00e4e)"
+  ],
+  "status_2027": "expected \u2014 no 2027 Wikipedia season article; 2026 rules from nuerburgring-langstrecken-serie.de / Wikipedia 2026 NLS"
+ },
+ "h24eu": {
+  "name": "24H European Series (Michelin 24H Series, Creventic)",
+  "official_site": "https://www.24h-series.com",
+  "race_distance_rule": "Races run to a set time: 12-hour or 24-hour events (e.g. 12H Mugello, 24H Barcelona, 24H Dubai).",
+  "points": {
+   "per_class_top15": [
+    40,
+    36,
+    32,
+    28,
+    24,
+    20,
+    18,
+    16,
+    14,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2
+   ],
+   "qualifying": "separate qualifying points also awarded"
+  },
+  "format_2027": {
+   "note": "2027 calendar not yet published at access date; 2026 (12th season) format carried forward \u2014 GT3/GT4/TC/TCE/CUP cars, per-class championships"
+  },
+  "categories": [
+   "per-class championships (SP9/GT3, SP8, GT4, TCE, CUP/P)"
+  ],
+  "status_2027": "expected \u2014 24h-series.com blocked automated access; facts from Wikipedia 24H Series / 2026 24H Series"
+ },
+ "bgt": {
+  "name": "British GT Championship",
+  "official_site": "https://www.britishgt.com",
+  "race_distance_rule": "Race weekend: Race 1 of 60/120/180 min depending on venue, plus a 60-min Race 2 at selected venues (Oulton Park, Snetterton); qualifying split into GT3/GT4 sessions.",
+  "points": {
+   "race": [
+    25,
+    18,
+    15,
+    12,
+    10,
+    8,
+    6,
+    4,
+    2,
+    1
+   ],
+   "note": "SRO-style scale, per class"
+  },
+  "format_2027": {
+   "note": "2027 calendar not yet published at access date; 2026 format carried forward (britishgt.com/about/british-gt)"
+  },
+  "categories": [
+   "GT3",
+   "GT4",
+   "Pro-Am",
+   "Silver",
+   "Silver-Am"
+  ],
+  "status_2027": "expected \u2014 no 2027 season article; 2026 rules from britishgt.com / Wikipedia"
+ },
+ "sf": {
+  "name": "Super Formula Championship (Japan)",
+  "official_site": "https://super-formula.net",
+  "race_distance_rule": "Races set in laps per circuit (typically ~200-300 km, ~75-90 min; venue-dependent).",
+  "points": {
+   "race_top10": [
+    20,
+    15,
+    11,
+    8,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+   ],
+   "qualifying": [
+    3,
+    2,
+    1
+   ],
+   "fastest_lap": 1
+  },
+  "format_2027": {
+   "rounds": 12,
+   "calendar": "provisional calendar announced 31 Jul 2026 by JAF (Suzuka opener, Suzuka finale 27-28 Nov)"
+  },
+  "categories": [
+   "Drivers' Championship",
+   "Teams' Championship"
+  ],
+  "status_2027": "expected \u2014 provisional calendar only (JAF, Jul 2026); points system unchanged since 2020"
+ }
+}
