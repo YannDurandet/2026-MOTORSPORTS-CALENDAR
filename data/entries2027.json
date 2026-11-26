@@ -1,0 +1,3623 @@
+{
+ "f1": {
+  "series": "Formula 1 (FIA Formula One World Championship)",
+  "official_site": "https://www.formula1.com",
+  "status": "partially announced",
+  "status_detail": "11 teams confirmed for 2027 (Cadillac as 11th team since 2026); 19 of 22 race seats officially announced via formula1.com / team sites as of 2026-11-21; Haas 2nd seat TBA. No single official 2027 entry-list page yet \u2014 formula1.com/en/teams still shows 2026; the full FIA entry list is expected Dec 2026 (FIA publishes F1 entry lists in December ahead of the season).",
+  "entries_announced_when": "Driver/team announcements rolling since mid-2026 on formula1.com; full FIA 2027 entry list expected Dec 2026",
+  "teams": [
+   {
+    "name": "Gucci Racing Alpine F1 Team",
+    "constructor": "Alpine-Mercedes",
+    "power_unit": "Mercedes",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Pierre Gasly",
+      "status": "confirmed",
+      "number": 10,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Franco Colapinto",
+      "status": "confirmed",
+      "number": 43,
+      "nationality": "ARG"
+     }
+    ]
+   },
+   {
+    "name": "Aston Martin Aramco F1 Team",
+    "constructor": "Aston Martin Aramco-Honda",
+    "power_unit": "Honda",
+    "chassis": "AMR27",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Fernando Alonso",
+      "status": "confirmed",
+      "number": 14,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Lance Stroll",
+      "status": "confirmed",
+      "number": 18,
+      "nationality": "CAN"
+     }
+    ]
+   },
+   {
+    "name": "Atlassian Williams F1 Team",
+    "constructor": "Williams-Mercedes",
+    "power_unit": "Mercedes",
+    "chassis": "FW50",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Alexander Albon",
+      "status": "confirmed",
+      "number": 23,
+      "nationality": "THA"
+     },
+     {
+      "name": "Carlos Sainz Jr.",
+      "status": "confirmed",
+      "number": 55,
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Audi Revolut F1 Team",
+    "constructor": "Audi",
+    "power_unit": "Audi",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Gabriel Bortoleto",
+      "status": "confirmed",
+      "number": 5,
+      "nationality": "BRA"
+     },
+     {
+      "name": "Nico H\u00fclkenberg",
+      "status": "confirmed",
+      "number": 27,
+      "nationality": "DEU"
+     }
+    ]
+   },
+   {
+    "name": "Cadillac Formula 1 Team",
+    "constructor": "Cadillac-Ferrari",
+    "power_unit": "Ferrari",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Sergio P\u00e9rez",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "MEX"
+     },
+     {
+      "name": "Valtteri Bottas",
+      "status": "confirmed",
+      "number": 77,
+      "nationality": "FIN"
+     }
+    ]
+   },
+   {
+    "name": "Scuderia Ferrari HP",
+    "constructor": "Ferrari",
+    "power_unit": "Ferrari",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Charles Leclerc",
+      "status": "confirmed",
+      "number": 16,
+      "nationality": "MON"
+     },
+     {
+      "name": "Lewis Hamilton",
+      "status": "confirmed",
+      "number": 44,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "TGR Haas F1 Team",
+    "constructor": "Haas-Ferrari",
+    "power_unit": "Ferrari",
+    "chassis": "TBA",
+    "status": "partially announced",
+    "drivers": [
+     {
+      "name": "Rafael C\u00e2mara",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "BRA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     }
+    ]
+   },
+   {
+    "name": "McLaren Mastercard F1 Team",
+    "constructor": "McLaren-Mercedes",
+    "power_unit": "Mercedes",
+    "chassis": "MCL41",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Lando Norris",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Oscar Piastri",
+      "status": "confirmed",
+      "number": 81,
+      "nationality": "AUS"
+     }
+    ]
+   },
+   {
+    "name": "Mercedes-AMG Petronas F1 Team",
+    "constructor": "Mercedes",
+    "power_unit": "Mercedes",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Kimi Antonelli",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "ITA"
+     },
+     {
+      "name": "George Russell",
+      "status": "confirmed",
+      "number": 63,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Visa Cash App Racing Bulls F1 Team",
+    "constructor": "Racing Bulls-Red Bull Ford",
+    "power_unit": "Red Bull Ford",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Liam Lawson",
+      "status": "confirmed",
+      "number": 30,
+      "nationality": "NZL"
+     },
+     {
+      "name": "Arvid Lindblad",
+      "status": "confirmed",
+      "number": 41,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Oracle Red Bull Racing",
+    "constructor": "Red Bull Racing-Red Bull Powertrains",
+    "power_unit": "Red Bull Ford",
+    "chassis": "TBA",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Max Verstappen",
+      "status": "confirmed",
+      "number": 3,
+      "nationality": "NED"
+     },
+     {
+      "name": "Isack Hadjar",
+      "status": "confirmed",
+      "number": 6,
+      "nationality": "FRA"
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://en.wikipedia.org/wiki/2027_Formula_One_World_Championship (Entries table, accessed 2026-11-21)",
+   "https://www.formula1.com/en/latest/article/alonso-and-stroll-to-stay-at-aston-martin-in-2027-as-team-confirm-unchanged-line-up.7xg2Sct45vzW92UaiE8YXR",
+   "https://www.formula1.com/en/latest/article/lawson-and-lindblad-to-remain-at-racing-bulls-for-2027-as-team-confirm-unchanged-line-up.1vwKafZKAx8zw2Tb4B8fPx",
+   "https://www.formula1.com/en/latest/article/cadillac-confirm-bottas-will-remain-with-the-team-in-2027.2FzTQfliXlMixOPFUMpPB4",
+   "https://www.formula1.com/en/latest/article/alpine-announce-colapinto-contract-extension-as-team-confirms-unchanged-2027-line-up.DL3dVyZLJm5cHryWcHyPq",
+   "https://www.formula1.com/en/latest/article/red-bull-announce-new-deal-with-hadjar-for-2027-ahead-of-his-return-in-azerbaijan.3QcucG3BkfbWJNk4M5dWme",
+   "https://www.formula1.com/en/latest/article/williams-confirm-albon-will-remain-with-the-team-in-2027.3ZwdrAmEY4MGL5Ce1eXHIQ",
+   "https://www.formula1.com/en/teams (checked 2026-11-21: current-season teams page, no 2027 entry list yet)"
+  ]
+ },
+ "motogp": {
+  "series": "MotoGP (FIM MotoGP World Championship)",
+  "official_site": "https://www.motogp.com",
+  "status": "confirmed",
+  "status_detail": "Full 2027 grid officially announced by MotoGP: 'MotoGP 2027 rider line-up: the grid is set!' (motogp.com, 20 Oct 2026) \u2014 all 11 teams, 22 riders confirmed. 850cc era from 2027.",
+  "entries_announced_when": "Grid complete and announced on motogp.com on 2026-10-20",
+  "teams": [
+   {
+    "name": "Ducati Lenovo Team",
+    "constructor": "Ducati",
+    "bike": "Desmosedici GP27",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Marc M\u00e1rquez",
+      "status": "confirmed",
+      "number": 93,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Pedro Acosta",
+      "status": "confirmed",
+      "number": 37,
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Aprilia Racing",
+    "constructor": "Aprilia",
+    "bike": "RS-GP27",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Marco Bezzecchi",
+      "status": "confirmed",
+      "number": 72,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Francesco Bagnaia",
+      "status": "confirmed",
+      "number": 63,
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Monster Energy Yamaha MotoGP",
+    "constructor": "Yamaha",
+    "bike": "TBA",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Jorge Mart\u00edn",
+      "status": "confirmed",
+      "number": 89,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Ai Ogura",
+      "status": "confirmed",
+      "number": 79,
+      "nationality": "JPN"
+     }
+    ]
+   },
+   {
+    "name": "BK8 Gresini Racing MotoGP",
+    "constructor": "Ducati",
+    "bike": "Desmosedici GP27",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Joan Mir",
+      "status": "confirmed",
+      "number": 36,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Daniel Holgado",
+      "status": "confirmed",
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Red Bull KTM Factory Racing",
+    "constructor": "KTM",
+    "bike": "TBA",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "\u00c1lex M\u00e1rquez",
+      "status": "confirmed",
+      "number": 73,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Fabio Di Giannantonio",
+      "status": "confirmed",
+      "number": 49,
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Honda HRC Castrol",
+    "constructor": "Honda",
+    "bike": "RC214V",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Fabio Quartararo",
+      "status": "confirmed",
+      "number": 20,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Diogo Moreira",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "BRA"
+     }
+    ]
+   },
+   {
+    "name": "Castrol Honda LCR / Pro Honda LCR",
+    "constructor": "Honda",
+    "bike": "RC214V",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Johann Zarco",
+      "status": "confirmed",
+      "number": 5,
+      "nationality": "FRA"
+     },
+     {
+      "name": "David Alonso",
+      "status": "confirmed",
+      "nationality": "COL"
+     }
+    ]
+   },
+   {
+    "name": "SuperFile Trackhouse MotoGP Team",
+    "constructor": "Aprilia",
+    "bike": "RS-GP27",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Ra\u00fal Fern\u00e1ndez",
+      "status": "confirmed",
+      "number": 25,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Enea Bastianini",
+      "status": "confirmed",
+      "number": 23,
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Red Bull KTM Tech3",
+    "constructor": "KTM",
+    "bike": "TBA",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Luca Marini",
+      "status": "confirmed",
+      "number": 10,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Senna Agius",
+      "status": "confirmed",
+      "nationality": "AUS"
+     }
+    ]
+   },
+   {
+    "name": "Pertamina Enduro VR46 Racing Team",
+    "constructor": "Ducati",
+    "bike": "Desmosedici GP27",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Ferm\u00edn Aldeguer",
+      "status": "confirmed",
+      "number": 54,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Nicol\u00f2 Bulega",
+      "status": "confirmed",
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Prima Pramac Yamaha MotoGP",
+    "constructor": "Yamaha",
+    "bike": "TBA",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Toprak Razgatl\u0131o\u011flu",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "TUR"
+     },
+     {
+      "name": "Izan Guevara",
+      "status": "confirmed",
+      "nationality": "ESP"
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://www.motogp.com/en/news/2026/10/20/motogp-2027-rider-line-up-the-grid-is-set/1075037 (accessed 2026-11-21)",
+   "https://www.motogp.com/en/news/2026/07/01/martin-and-ogura-confirmed-in-all-new-yamaha-line-up-for-2027-and-2028/1075825",
+   "https://www.motogp.com/en/news/guevara-joins-prima-pramac-yamaha-motogp-for-2027/1087094",
+   "https://en.wikipedia.org/wiki/2027_MotoGP_World_Championship (Teams and riders table, accessed 2026-11-21)"
+  ]
+ },
+ "indycar": {
+  "series": "IndyCar Series (NTT IndyCar Series)",
+  "official_site": "https://www.indycar.com",
+  "status": "partially announced",
+  "status_detail": "2027 driver lineup mostly announced on indycar.com (update 30 Oct 2026: '10 of the 25 seats are changing hands'); 21 of 25 full-time seats confirmed as of 2026-11-21 \u2014 4 seats still open: Juncos Hollinger #76/#77 (Rinus VeeKay expected but not officially confirmed) and Dale Coyne #18 (Nikita Johnson tested; announced for #19).",
+  "entries_announced_when": "Rolling announcements Jul\u2013Nov 2026 on indycar.com; final seats expected before season start (Mar 2027); full entry list published per-event on indycar.com",
+  "teams": [
+   {
+    "name": "A. J. Foyt Enterprises",
+    "engine": "Chevrolet",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Josh Pierson",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "USA"
+     },
+     {
+      "name": "Dennis Hauger",
+      "status": "confirmed",
+      "number": 14,
+      "nationality": "NOR"
+     }
+    ]
+   },
+   {
+    "name": "Andretti Global",
+    "engine": "Honda",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Will Power",
+      "status": "confirmed",
+      "number": 26,
+      "nationality": "AUS"
+     },
+     {
+      "name": "Kyle Kirkwood",
+      "status": "confirmed",
+      "number": 27,
+      "nationality": "USA"
+     },
+     {
+      "name": "Marcus Ericsson",
+      "status": "confirmed",
+      "number": 28,
+      "nationality": "SWE"
+     }
+    ]
+   },
+   {
+    "name": "Arrow McLaren",
+    "engine": "Chevrolet",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Pato O'Ward",
+      "status": "confirmed",
+      "number": 5,
+      "nationality": "MEX"
+     },
+     {
+      "name": "Scott Dixon",
+      "status": "confirmed",
+      "number": 6,
+      "nationality": "NZL"
+     },
+     {
+      "name": "Felix Rosenqvist",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "SWE"
+     },
+     {
+      "name": "Ryan Hunter-Reay",
+      "status": "confirmed",
+      "number": 31,
+      "nationality": "USA"
+     }
+    ],
+    "notes": "#31 Hunter-Reay Indianapolis 500 only (round 8)"
+   },
+   {
+    "name": "Chip Ganassi Racing",
+    "engine": "Honda",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Kyffin Simpson",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "CAY"
+     },
+     {
+      "name": "Christian Lundgaard",
+      "status": "confirmed",
+      "number": 9,
+      "nationality": "DEN"
+     },
+     {
+      "name": "\u00c1lex Palou",
+      "status": "confirmed",
+      "number": 10,
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Dale Coyne Racing",
+    "engine": "Honda",
+    "status": "partially announced",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 18
+     },
+     {
+      "name": "Nikita Johnson",
+      "status": "confirmed",
+      "number": 19,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Dreyer & Reinbold Racing",
+    "engine": "Honda",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Conor Daly",
+      "status": "confirmed",
+      "number": 24,
+      "nationality": "USA"
+     }
+    ],
+    "notes": "Full-season return in 2027, technical alliance with RLL"
+   },
+   {
+    "name": "Ed Carpenter Racing",
+    "engine": "Chevrolet",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Alexander Rossi",
+      "status": "confirmed",
+      "number": 20,
+      "nationality": "USA"
+     },
+     {
+      "name": "Christian Rasmussen",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "DNK"
+     }
+    ]
+   },
+   {
+    "name": "Juncos Hollinger Racing",
+    "engine": "Chevrolet",
+    "status": "partially announced",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 76
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 77
+     }
+    ],
+    "notes": "Rinus VeeKay expected to return but not officially confirmed as of 2026-11-21"
+   },
+   {
+    "name": "Meyer Shank Racing with Curb-Agajanian",
+    "engine": "Honda",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Marcus Armstrong",
+      "status": "confirmed",
+      "number": 60,
+      "nationality": "NZL"
+     },
+     {
+      "name": "Mick Schumacher",
+      "status": "confirmed",
+      "number": 66,
+      "nationality": "DEU"
+     }
+    ]
+   },
+   {
+    "name": "Rahal Letterman Lanigan Racing",
+    "engine": "Honda",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Graham Rahal",
+      "status": "confirmed",
+      "number": 15,
+      "nationality": "USA"
+     },
+     {
+      "name": "Louis Foster",
+      "status": "confirmed",
+      "number": 45,
+      "nationality": "GBR"
+     }
+    ],
+    "notes": "Drops from 3 cars to 2 in 2027 (one charter sold to DRR)"
+   },
+   {
+    "name": "Team Penske",
+    "engine": "Chevrolet",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Josef Newgarden",
+      "status": "confirmed",
+      "number": 2,
+      "nationality": "USA"
+     },
+     {
+      "name": "Scott McLaughlin",
+      "status": "confirmed",
+      "number": 3,
+      "nationality": "NZL"
+     },
+     {
+      "name": "David Malukas",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "USA"
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://www.indycar.com/news/2026/10/10-30-2027-lineup-update (accessed 2026-11-21)",
+   "https://www.indycar.com/news/2026/09/09-05-daly-drr-2027",
+   "https://www.indycar.com/news/2026/07/07-06-mclaren-signings",
+   "https://www.indycar.com/news/2026/11/11-10-johnson-dcr-news",
+   "https://en.wikipedia.org/wiki/2027_IndyCar_Series (Confirmed entries table, accessed 2026-11-21)"
+  ]
+ },
+ "wec": {
+  "series": "FIA World Endurance Championship (WEC)",
+  "official_site": "https://www.fiawec.com",
+  "status": "partially announced",
+  "status_detail": "2027 entrant teams announced on fiawec.com (news: Ford finalises 2027 Hypercar line-up; McLaren Hypercar; Genesis continuity; Cadillac 2027 driver changes; Estre rejoins Toyota). Season 2027 pages live on fiawec.com with per-race start lists; provisional entry-list PDFs published per race. Many driver seats still TBA. Alpine leaves WEC after 2026; Peugeot does not return in 2027 (per 2027 WEC season article).",
+  "entries_announced_when": "Team announcements rolling on fiawec.com since mid-2026; full-season entry list + all drivers expected with the official entry list / Prologue (spring 2027)",
+  "teams": [
+   {
+    "name": "Aston Martin THOR Team",
+    "car": "Aston Martin Valkyrie",
+    "numbers": [
+     7,
+     9
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 7
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 7
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 7
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 9
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 9
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 9
+     }
+    ]
+   },
+   {
+    "name": "Toyota Racing",
+    "car": "Toyota GR010 Hybrid (TR010)",
+    "numbers": [
+     7,
+     8
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Kevin Estre",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Kamui Kobayashi",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "JPN"
+     },
+     {
+      "name": "Nyck de Vries",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "NED"
+     },
+     {
+      "name": "S\u00e9bastien Buemi",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "CHE"
+     },
+     {
+      "name": "Brendon Hartley",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "NZL"
+     },
+     {
+      "name": "Ry\u014d Hirakawa",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "JPN"
+     }
+    ]
+   },
+   {
+    "name": "Cadillac Hertz Team Jota",
+    "car": "Cadillac V-Series.R",
+    "numbers": [
+     12,
+     38
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Ant\u00f3nio F\u00e9lix da Costa",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "POR"
+     },
+     {
+      "name": "Norman Nato",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Will Stevens",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Jack Aitken",
+      "status": "confirmed",
+      "number": 38,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Earl Bamber",
+      "status": "confirmed",
+      "number": 38,
+      "nationality": "NZL"
+     },
+     {
+      "name": "Ricky Taylor",
+      "status": "confirmed",
+      "number": 38,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "BMW M Team WRT",
+    "car": "BMW M Hybrid V8",
+    "numbers": [
+     15,
+     20
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 15
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 15
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 15
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 20
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 20
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 20
+     }
+    ]
+   },
+   {
+    "name": "Genesis Magma Racing",
+    "car": "Genesis GMR-001",
+    "numbers": [
+     17,
+     19
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Pipo Derani",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "BRA"
+     },
+     {
+      "name": "Mathys Jaubert",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Andr\u00e9 Lotterer",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "GER"
+     },
+     {
+      "name": "Paul-Loup Chatin",
+      "status": "confirmed",
+      "number": 19,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Mathieu Jaminet",
+      "status": "confirmed",
+      "number": 19,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Daniel Juncadella",
+      "status": "confirmed",
+      "number": 19,
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Ferrari AF Corse",
+    "car": "Ferrari 499P",
+    "numbers": [
+     50,
+     51
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Antonio Fuoco",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Miguel Molina",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Nicklas Nielsen",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "DNK"
+     },
+     {
+      "name": "James Calado",
+      "status": "confirmed",
+      "number": 51,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Antonio Giovinazzi",
+      "status": "confirmed",
+      "number": 51,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Alessandro Pier Guidi",
+      "status": "confirmed",
+      "number": 51,
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "AF Corse",
+    "car": "Ferrari 499P",
+    "numbers": [
+     83
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Phil Hanson",
+      "status": "confirmed",
+      "number": 83,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Yifei Ye",
+      "status": "confirmed",
+      "number": 83,
+      "nationality": "CHN"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 83
+     }
+    ]
+   },
+   {
+    "name": "Ford Racing",
+    "car": "TBA (Ford Hypercar)",
+    "numbers": [
+     "TBA"
+    ],
+    "status": "confirmed (team + 3 drivers); rest TBA",
+    "drivers": [
+     {
+      "name": "Mike Rockenfeller",
+      "status": "confirmed",
+      "nationality": "DEU"
+     },
+     {
+      "name": "Sebastian Priaulx",
+      "status": "confirmed",
+      "nationality": "GBR"
+     },
+     {
+      "name": "Logan Sargeant",
+      "status": "confirmed",
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     }
+    ]
+   },
+   {
+    "name": "McLaren Hypercar Team (United Autosports)",
+    "car": "McLaren MCL-HY",
+    "numbers": [
+     "TBA"
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Mikkel Jensen",
+      "status": "confirmed",
+      "nationality": "DNK"
+     },
+     {
+      "name": "Alex Lynn",
+      "status": "confirmed",
+      "nationality": "GBR"
+     },
+     {
+      "name": "Laurens Vanthoor",
+      "status": "confirmed",
+      "nationality": "BEL"
+     },
+     {
+      "name": "Leonardo Fornaroli",
+      "status": "confirmed",
+      "nationality": "ITA"
+     },
+     {
+      "name": "Malthe Jakobsen",
+      "status": "confirmed",
+      "nationality": "DNK"
+     },
+     {
+      "name": "Gr\u00e9goire Saucy",
+      "status": "confirmed",
+      "nationality": "CHE"
+     }
+    ]
+   },
+   {
+    "name": "Garage 59",
+    "car": "McLaren 720S GT3 Evo",
+    "numbers": [
+     10,
+     58
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 10
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 10
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 10
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 58
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 58
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 58
+     }
+    ]
+   },
+   {
+    "name": "Vista AF Corse",
+    "car": "Ferrari 296 GT3 Evo",
+    "numbers": [
+     21,
+     54
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 21
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 21
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 21
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 54
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 54
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 54
+     }
+    ]
+   },
+   {
+    "name": "Heart of Racing Team",
+    "car": "Aston Martin Vantage AMR GT3 Evo",
+    "numbers": [
+     23,
+     27
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 23
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 23
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 23
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 27
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 27
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 27
+     }
+    ]
+   },
+   {
+    "name": "Team WRT",
+    "car": "BMW M4 GT3 Evo",
+    "numbers": [
+     32,
+     69
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 32
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 32
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 32
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 69
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 69
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 69
+     }
+    ]
+   },
+   {
+    "name": "TF Sport",
+    "car": "Chevrolet Corvette Z06 GT3.R Evo",
+    "numbers": [
+     33,
+     34
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 33
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 33
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 33
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 34
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 34
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 34
+     }
+    ]
+   },
+   {
+    "name": "Iron Lynx",
+    "car": "Mercedes-AMG GT3 Evo",
+    "numbers": [
+     61,
+     79
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 61
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 61
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 61
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 79
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 79
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 79
+     }
+    ]
+   },
+   {
+    "name": "Proton Competition",
+    "car": "Ford Mustang GT3 Evo",
+    "numbers": [
+     77,
+     88
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 77
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 77
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 77
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 88
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 88
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 88
+     }
+    ]
+   },
+   {
+    "name": "Akkodis ASP Team",
+    "car": "Toyota GR GT GT3",
+    "numbers": [
+     78,
+     87
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 78
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 78
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 78
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 87
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 87
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 87
+     }
+    ]
+   },
+   {
+    "name": "Manthey Racing",
+    "car": "Porsche 911 GT3 R (992.2)",
+    "numbers": [
+     91,
+     92
+    ],
+    "status": "confirmed (team); drivers TBA",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 91
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 91
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 91
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 92
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 92
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 92
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://en.wikipedia.org/wiki/2027_FIA_World_Endurance_Championship (Entries: Hypercar + LMGT3 tables, accessed 2026-11-21)",
+   "https://www.fiawec.com/en/page/grid (Season 2027 grid page, accessed 2026-11-21)",
+   "https://www.fiawec.com/en/news/cadillac-confirms-2027-driver-changes/13873",
+   "https://www.fiawec.com/en/news/genesis-prioritises-continuity-in-2027-driver-line-up/13895",
+   "https://www.fiawec.com/en/news/alex-lynn-rejoint-mclaren-hypercar-en-2027/13874",
+   "https://www.fiawec.com/fr/news/des-champions-du-monde-reunis-estre-rejoint-toyota-pour-2027/13969",
+   "https://www.fiawec.com/en/news/dillmann-appointed-ford-hypercar-reserve-driver-for-2027/13955"
+  ]
+ },
+ "wsbk": {
+  "series": "WorldSBK (FIM Superbike World Championship)",
+  "official_site": "https://www.worldsbk.com",
+  "status": "confirmed",
+  "status_detail": "Full 2027 grid officially confirmed on worldsbk.com: '2027 SILLY SEASON: 2026 World Champion Arenas snags the final full-time seat for 2027' (updated 9 Nov 2026): 'Teams have now each laid down their cards and the full 2027 grid has been confirmed.' 13 teams / 22 riders. No 2027 permanent entry-list PDF published yet on resources.worldsbk.com (only 2026 lists) \u2014 per-event entry lists appear in the weeks before each round.",
+  "entries_announced_when": "Full grid announced on worldsbk.com on 2026-11-09; permanent entry list PDF expected ~Dec 2026/Jan 2027",
+  "teams": [
+   {
+    "name": "Elf Marc VDS Racing Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Sam Lowes",
+      "status": "confirmed",
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Kawasaki WorldSBK Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Garrett Gerloff",
+      "status": "confirmed",
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "bimota by Kawasaki Racing Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Alex Lowes",
+      "status": "confirmed",
+      "nationality": "GBR"
+     },
+     {
+      "name": "Axel Bassani",
+      "status": "confirmed",
+      "nationality": "FRA"
+     }
+    ]
+   },
+   {
+    "name": "Barni Spark Racing Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Yari Montella",
+      "status": "confirmed",
+      "nationality": "ITA"
+     },
+     {
+      "name": "Xavi Vierge",
+      "status": "confirmed",
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Aruba.it Racing - Ducati",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Iker Lecuona",
+      "status": "confirmed",
+      "nationality": "ESP"
+     },
+     {
+      "name": "Franco Morbidelli",
+      "status": "confirmed",
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "ROKiT BMW Motorrad WorldSBK Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Miguel Oliveira",
+      "status": "confirmed",
+      "nationality": "POR"
+     },
+     {
+      "name": "Brad Binder",
+      "status": "confirmed",
+      "nationality": "RSA"
+     }
+    ]
+   },
+   {
+    "name": "Pata Maxus Yamaha",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Andrea Locatelli",
+      "status": "confirmed",
+      "nationality": "ITA"
+     },
+     {
+      "name": "Jack Miller",
+      "status": "confirmed",
+      "nationality": "AUS"
+     }
+    ]
+   },
+   {
+    "name": "GYRT GRT Yamaha WorldSBK Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Remy Gardner",
+      "status": "confirmed",
+      "nationality": "AUS"
+     },
+     {
+      "name": "Stefano Manzi",
+      "status": "confirmed",
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Superbike Advocates",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Tommy Bridewell",
+      "status": "confirmed",
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Honda HRC",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Jake Dixon",
+      "status": "confirmed",
+      "nationality": "GBR"
+     },
+     {
+      "name": "Somkiat Chantra",
+      "status": "confirmed",
+      "nationality": "THA"
+     }
+    ]
+   },
+   {
+    "name": "Motocorsa Racing",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Alberto Surra",
+      "status": "confirmed",
+      "nationality": "ESP"
+     }
+    ]
+   },
+   {
+    "name": "Team GoEleven",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Lorenzo Baldassarri",
+      "status": "confirmed",
+      "nationality": "ITA"
+     },
+     {
+      "name": "Albert Arenas",
+      "status": "confirmed",
+      "nationality": "ESP"
+     }
+    ],
+    "notes": "Expands to two bikes in 2027; Arenas steps up from WorldSSP"
+   },
+   {
+    "name": "Motoxracing WorldSBK Team",
+    "status": "confirmed",
+    "riders": [
+     {
+      "name": "Mattia Rato",
+      "status": "confirmed",
+      "nationality": "ITA"
+     },
+     {
+      "name": "Twan Smits",
+      "status": "confirmed",
+      "nationality": "NED"
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://www.worldsbk.com/en/news/2026/07/15/2027-silly-season-who-is-signed-up-whos-moving-and-to-where-in-worldsbk/1073105 (updated 2026-11-09; 'Confirmed 2027 grid' table, accessed 2026-11-21)",
+   "https://www.worldsbk.com/en/news/2026/09/09/2027-silly-season-who-is-signed-up-whos-moving-and-to-where-in-worldsbk/1073105",
+   "https://www.worldsbk.com/en/news/2026/06/12/2027-silly-season-who-is-signed-up-whos-moving-and-to-where-in-worldsbk/1073105",
+   "https://www.worldsbk.com/en/teams (checked 2026-11-21)"
+  ]
+ },
+ "imsa": {
+  "series": "IMSA WeatherTech SportsCar Championship",
+  "official_site": "https://www.imsa.com",
+  "status": "partially announced",
+  "status_detail": "2027 schedule announced (imsa.com, 19 Mar 2026) and 2027 Team Portal live (imsa.com/competitors/2027-team-portal-2/). Team/car/driver entries partially announced; per-class entry lists with full driver line-ups are published per event on imsa.com (site blocks automated reads \u2014 content cross-checked via the 2027 IMSA season article). Rounds marked TBC = full-season commitment not yet confirmed.",
+  "entries_announced_when": "2027 schedules announced 2026-03-19; team/driver entries rolling on imsa.com; full entry lists per event from Jan 2027 (Daytona 24)",
+  "source": [
+   "https://www.imsa.com/news/2026/march/19/2027-schedules-revealed-for-imsa-weathertech-sportscar-championship-imsa-michelin-pilot-challenge (accessed 2026-11-21)",
+   "https://www.imsa.com/competitors/2027-team-portal-2/ (2027 Team Portal, accessed 2026-11-21; page behind Cloudflare for automated reads)",
+   "https://en.wikipedia.org/wiki/2027_IMSA_SportsCar_Championship (Entries tables GTP/LMP2/GTD Pro/GTD, accessed 2026-11-21)"
+  ],
+  "teams": [
+   {
+    "name": "Cadillac Wayne Taylor Racing",
+    "car": "Cadillac V-Series.R",
+    "numbers": [
+     10,
+     40
+    ],
+    "status": "confirmed",
+    "cars": [
+     {
+      "number": 10,
+      "drivers": [
+       {
+        "name": "Filipe Albuquerque",
+        "status": "confirmed",
+        "nationality": "PRT"
+       },
+       {
+        "name": "Will Stevens",
+        "status": "confirmed",
+        "nationality": "GBR"
+       },
+       {
+        "name": "Ricky Taylor",
+        "status": "confirmed",
+        "nationality": "USA"
+       }
+      ]
+     },
+     {
+      "number": 40,
+      "drivers": [
+       {
+        "name": "Louis Deletraz",
+        "status": "confirmed",
+        "nationality": "CHE"
+       },
+       {
+        "name": "Norman Nato",
+        "status": "confirmed",
+        "nationality": "FRA"
+       },
+       {
+        "name": "Jordan Taylor",
+        "status": "confirmed",
+        "nationality": "USA"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Whelen Engineering Cadillac Racing",
+    "car": "Cadillac V-Series.R",
+    "numbers": [
+     31
+    ],
+    "status": "confirmed",
+    "cars": [
+     {
+      "number": 31,
+      "drivers": [
+       {
+        "name": "Jack Aitken",
+        "status": "confirmed",
+        "nationality": "GBR"
+       },
+       {
+        "name": "Earl Bamber",
+        "status": "confirmed",
+        "nationality": "NZL"
+       },
+       {
+        "name": "Frederik Vesti",
+        "status": "confirmed",
+        "nationality": "DNK"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "CrowdStrike Racing by APR",
+    "car": "Oreca 07",
+    "numbers": [
+     4
+    ],
+    "drivers": [
+     {
+      "name": "Malthe Jakobsen",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "DNK"
+     },
+     {
+      "name": "George Kurtz",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "USA"
+     },
+     {
+      "name": "Alex Quinn",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Toby Sowery",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "United Autosports USA",
+    "car": "Oreca 07",
+    "numbers": [
+     2,
+     22
+    ],
+    "drivers": [
+     {
+      "name": "Phil Fayer",
+      "status": "confirmed",
+      "number": 2,
+      "nationality": "CAN"
+     },
+     {
+      "name": "Mikkel Jensen",
+      "status": "confirmed",
+      "number": 2,
+      "nationality": "DNK"
+     },
+     {
+      "name": "Hunter McElrea",
+      "status": "confirmed",
+      "number": 2,
+      "nationality": "NZL"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 2
+     },
+     {
+      "name": "Ian Aguilera",
+      "status": "confirmed",
+      "number": 22,
+      "nationality": "MEX"
+     },
+     {
+      "name": "Nick Boulle",
+      "status": "confirmed",
+      "number": 22,
+      "nationality": "USA"
+     },
+     {
+      "name": "Paul di Resta",
+      "status": "confirmed",
+      "number": 22,
+      "nationality": "GBR"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 22
+     }
+    ]
+   },
+   {
+    "name": "Tower Motorsports",
+    "car": "Oreca 07",
+    "numbers": [
+     8
+    ],
+    "drivers": [
+     {
+      "name": "John Farano",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "CAN"
+     },
+     {
+      "name": "Griffin Peebles",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "AUS"
+     },
+     {
+      "name": "Tristan Vautier",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Renger van der Zande",
+      "status": "confirmed",
+      "number": 8,
+      "nationality": "NLD"
+     }
+    ]
+   },
+   {
+    "name": "TDS Racing",
+    "car": "Oreca 07",
+    "numbers": [
+     11,
+     29
+    ],
+    "drivers": [
+     {
+      "name": "Mathias Beche",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "CHE"
+     },
+     {
+      "name": "Tobias L\u00fctke",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "CAN"
+     },
+     {
+      "name": "Sami Meguetounif",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "FRA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 11
+     },
+     {
+      "name": "David Heinemeier Hansson",
+      "status": "confirmed",
+      "number": 29,
+      "nationality": "DNK"
+     },
+     {
+      "name": "Scott Huffaker",
+      "status": "confirmed",
+      "number": 29,
+      "nationality": "USA"
+     },
+     {
+      "name": "Steven Thomas",
+      "status": "confirmed",
+      "number": 29,
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 29
+     }
+    ]
+   },
+   {
+    "name": "Inter Europol Competition",
+    "car": "Oreca 07",
+    "numbers": [
+     43,
+     343
+    ],
+    "drivers": [
+     {
+      "name": "Jeremy Clarke",
+      "status": "confirmed",
+      "number": 43,
+      "nationality": "USA"
+     },
+     {
+      "name": "Tom Dillmann",
+      "status": "confirmed",
+      "number": 43,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Ant\u00f3nio F\u00e9lix da Costa",
+      "status": "confirmed",
+      "number": 43,
+      "nationality": "POR"
+     },
+     {
+      "name": "Bijoy Garg",
+      "status": "confirmed",
+      "number": 43,
+      "nationality": "USA"
+     },
+     {
+      "name": "Dan Goldburg",
+      "status": "confirmed",
+      "number": 343,
+      "nationality": "USA"
+     },
+     {
+      "name": "Nolan Siegel",
+      "status": "confirmed",
+      "number": 343,
+      "nationality": "USA"
+     },
+     {
+      "name": "Jakub \u015amiechowski",
+      "status": "confirmed",
+      "number": 343,
+      "nationality": "POL"
+     },
+     {
+      "name": "Nick Yelloly",
+      "status": "confirmed",
+      "number": 343,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "AO Racing",
+    "car": "Oreca 07",
+    "numbers": [
+     99
+    ],
+    "drivers": [
+     {
+      "name": "Sebasti\u00e1n \u00c1lvarez",
+      "status": "confirmed",
+      "number": 99,
+      "nationality": "MEX"
+     },
+     {
+      "name": "Dane Cameron",
+      "status": "confirmed",
+      "number": 99,
+      "nationality": "USA"
+     },
+     {
+      "name": "P. J. Hyett",
+      "status": "confirmed",
+      "number": 99,
+      "nationality": "USA"
+     },
+     {
+      "name": "Connor Zilisch",
+      "status": "confirmed",
+      "number": 99,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Unconventional Racing",
+    "car": "Oreca 07",
+    "numbers": [
+     "TBA"
+    ],
+    "drivers": [
+     {
+      "name": "Naveen Rao",
+      "status": "confirmed",
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     }
+    ]
+   },
+   {
+    "name": "Corvette Racing by Pratt Miller Motorsports",
+    "car": "Chevrolet Corvette Z06 GT3.R Evo",
+    "numbers": [
+     3,
+     4
+    ],
+    "drivers": [
+     {
+      "name": "Antonio Garc\u00eda",
+      "status": "confirmed",
+      "number": 3,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Alexander Sims",
+      "status": "confirmed",
+      "number": 3,
+      "nationality": "GBR"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 3
+     },
+     {
+      "name": "Nicky Catsburg",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "NLD"
+     },
+     {
+      "name": "Tommy Milner",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 4
+     }
+    ]
+   },
+   {
+    "name": "AF Corse USA",
+    "car": "Ferrari 296 GT3 Evo",
+    "numbers": [
+     21
+    ],
+    "drivers": [
+     {
+      "name": "Simon Mann",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "USA"
+     },
+     {
+      "name": "Tommaso Mosca",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Alessio Rovera",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Alec Udell",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Ford Racing",
+    "car": "Ford Mustang GT3 Evo",
+    "numbers": [
+     64,
+     65
+    ],
+    "drivers": [
+     {
+      "name": "Ben Barker",
+      "status": "confirmed",
+      "number": 64,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Dennis Olsen",
+      "status": "confirmed",
+      "number": 64,
+      "nationality": "NOR"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 64
+     },
+     {
+      "name": "Christopher Mies",
+      "status": "confirmed",
+      "number": 65,
+      "nationality": "DEU"
+     },
+     {
+      "name": "Fr\u00e9d\u00e9ric Vervisch",
+      "status": "confirmed",
+      "number": 65,
+      "nationality": "BEL"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 65
+     }
+    ]
+   },
+   {
+    "name": "Car Blanche",
+    "car": "Aston Martin Vantage AMR GT3 Evo",
+    "numbers": [
+     68
+    ],
+    "drivers": [
+     {
+      "name": "Valentin Hasse-Clot",
+      "status": "confirmed",
+      "number": 68,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Marco S\u00f8rensen",
+      "status": "confirmed",
+      "number": 68,
+      "nationality": "DNK"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 68
+     }
+    ]
+   },
+   {
+    "name": "GetSpeed Performance",
+    "car": "Mercedes-AMG GT3 Evo",
+    "numbers": [
+     69
+    ],
+    "drivers": [
+     {
+      "name": "Anthony Bartone",
+      "status": "confirmed",
+      "number": 69,
+      "nationality": "USA"
+     },
+     {
+      "name": "Fabian Schiller",
+      "status": "confirmed",
+      "number": 69,
+      "nationality": "DEU"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 69
+     }
+    ]
+   },
+   {
+    "name": "AO Racing",
+    "car": "Porsche 911 GT3 R (992.2)",
+    "numbers": [
+     77
+    ],
+    "drivers": [
+     {
+      "name": "Ricardo Feller",
+      "status": "confirmed",
+      "number": 77,
+      "nationality": "CHE"
+     },
+     {
+      "name": "Harry King",
+      "status": "confirmed",
+      "number": 77,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Alessio Picariello",
+      "status": "confirmed",
+      "number": 77,
+      "nationality": "BEL"
+     },
+     {
+      "name": "Morris Schuring",
+      "status": "confirmed",
+      "number": 77,
+      "nationality": "NLD"
+     }
+    ]
+   },
+   {
+    "name": "Hanley Motorsports",
+    "car": "BMW M4 GT3 Evo",
+    "numbers": [
+     "TBA"
+    ],
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     },
+     {
+      "name": "TBA",
+      "status": "tba"
+     }
+    ]
+   },
+   {
+    "name": "13 Autosport",
+    "car": "Chevrolet Corvette Z06 GT3.R Evo",
+    "numbers": [
+     13
+    ],
+    "drivers": [
+     {
+      "name": "Matt Bell",
+      "status": "confirmed",
+      "number": 13,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Orey Fidani",
+      "status": "confirmed",
+      "number": 13,
+      "nationality": "CAN"
+     },
+     {
+      "name": "Mathieu Jaminet",
+      "status": "confirmed",
+      "number": 13,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Lars Kern",
+      "status": "confirmed",
+      "number": 13,
+      "nationality": "DEU"
+     }
+    ]
+   },
+   {
+    "name": "Myers Riley Motorsports",
+    "car": "Ford Mustang GT3 Evo",
+    "numbers": [
+     16
+    ],
+    "drivers": [
+     {
+      "name": "Jarett Andretti",
+      "status": "confirmed",
+      "number": 16,
+      "nationality": "USA"
+     },
+     {
+      "name": "Riley Dickinson",
+      "status": "confirmed",
+      "number": 16,
+      "nationality": "USA"
+     },
+     {
+      "name": "Felipe Fraga",
+      "status": "confirmed",
+      "number": 16,
+      "nationality": "BRA"
+     }
+    ]
+   },
+   {
+    "name": "Kellymoss",
+    "car": "Porsche 911 GT3 R (992.2)",
+    "numbers": [
+     17
+    ],
+    "drivers": [
+     {
+      "name": "Colin Braun",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "USA"
+     },
+     {
+      "name": "Michael Clark",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "USA"
+     },
+     {
+      "name": "Kyle Marcelli",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "CAN"
+     }
+    ]
+   },
+   {
+    "name": "Conquest Racing",
+    "car": "Ferrari 296 GT3 Evo",
+    "numbers": [
+     34
+    ],
+    "drivers": [
+     {
+      "name": "Albert Costa",
+      "status": "confirmed",
+      "number": 34,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Manny Franco",
+      "status": "confirmed",
+      "number": 34,
+      "nationality": "USA"
+     },
+     {
+      "name": "Lorenzo Patrese",
+      "status": "confirmed",
+      "number": 34,
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Hanley Motorsports",
+    "car": "BMW M4 GT3 Evo",
+    "numbers": [
+     42
+    ],
+    "drivers": [
+     {
+      "name": "Mason Filippi",
+      "status": "confirmed",
+      "number": 42,
+      "nationality": "USA"
+     },
+     {
+      "name": "Robert Wickens",
+      "status": "confirmed",
+      "number": 42,
+      "nationality": "CAN"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 42
+     }
+    ]
+   },
+   {
+    "name": "AF Corse USA",
+    "car": "Ferrari 296 GT3 Evo",
+    "numbers": [
+     50
+    ],
+    "drivers": [
+     {
+      "name": "Arthur Leclerc",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "MCO"
+     },
+     {
+      "name": "Nicklas Nielsen",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "DNK"
+     },
+     {
+      "name": "Mat\u00edas P\u00e9rez Companc",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "ARG"
+     },
+     {
+      "name": "Lilou Wadoux",
+      "status": "confirmed",
+      "number": 50,
+      "nationality": "FRA"
+     }
+    ]
+   },
+   {
+    "name": "Winward Racing",
+    "car": "Mercedes-AMG GT3 Evo",
+    "numbers": [
+     57
+    ],
+    "drivers": [
+     {
+      "name": "Philip Ellis",
+      "status": "confirmed",
+      "number": 57,
+      "nationality": "CHE"
+     },
+     {
+      "name": "Russell Ward",
+      "status": "confirmed",
+      "number": 57,
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 57
+     }
+    ]
+   },
+   {
+    "name": "Inception Racing",
+    "car": "Chevrolet Corvette Z06 GT3.R Evo",
+    "numbers": [
+     70
+    ],
+    "drivers": [
+     {
+      "name": "Brendan Iribe",
+      "status": "confirmed",
+      "number": 70,
+      "nationality": "USA"
+     },
+     {
+      "name": "Ollie Millroy",
+      "status": "confirmed",
+      "number": 70,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Frederik Schandorff",
+      "status": "confirmed",
+      "number": 70,
+      "nationality": "DNK"
+     }
+    ]
+   },
+   {
+    "name": "Wright Motorsports",
+    "car": "Porsche 911 GT3 R (992.2)",
+    "numbers": [
+     72,
+     120
+    ],
+    "drivers": [
+     {
+      "name": "Dave Musial Jr.",
+      "status": "confirmed",
+      "number": 72,
+      "nationality": "USA"
+     },
+     {
+      "name": "Ryan Yardley",
+      "status": "confirmed",
+      "number": 72,
+      "nationality": "NZL"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 72
+     },
+     {
+      "name": "Adam Adelson",
+      "status": "confirmed",
+      "number": 120,
+      "nationality": "USA"
+     },
+     {
+      "name": "Tom Sargent",
+      "status": "confirmed",
+      "number": 120,
+      "nationality": "AUS"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 120
+     }
+    ]
+   },
+   {
+    "name": "Tsunami RT",
+    "car": "Porsche 911 GT3 R (992.2)",
+    "numbers": [
+     79
+    ],
+    "drivers": [
+     {
+      "name": "Fabio Babini",
+      "status": "confirmed",
+      "number": 79,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Matteo Cressoni",
+      "status": "confirmed",
+      "number": 79,
+      "nationality": "ITA"
+     },
+     {
+      "name": "Alex Fontana",
+      "status": "confirmed",
+      "number": 79,
+      "nationality": "CHE"
+     },
+     {
+      "name": "Johannes Zelger",
+      "status": "confirmed",
+      "number": 79,
+      "nationality": "ITA"
+     }
+    ]
+   },
+   {
+    "name": "Lone Star Racing",
+    "car": "Mercedes-AMG GT3 Evo",
+    "numbers": [
+     80
+    ],
+    "drivers": [
+     {
+      "name": "Lin Hodenius",
+      "status": "confirmed",
+      "number": 80,
+      "nationality": "NLD"
+     },
+     {
+      "name": "James Roe",
+      "status": "confirmed",
+      "number": 80,
+      "nationality": "IRL"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 80
+     }
+    ]
+   },
+   {
+    "name": "Turner Motorsport",
+    "car": "BMW M4 GT3 Evo",
+    "numbers": [
+     96
+    ],
+    "drivers": [
+     {
+      "name": "Robby Foley",
+      "status": "confirmed",
+      "number": 96,
+      "nationality": "USA"
+     },
+     {
+      "name": "Jake Walker",
+      "status": "confirmed",
+      "number": 96,
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 96
+     }
+    ]
+   }
+  ]
+ },
+ "wrc": {
+  "series": "FIA World Rally Championship (WRC)",
+  "official_site": "https://www.wrc.com",
+  "status": "partially announced",
+  "status_detail": "2027 manufacturer/entrant structure announced on wrc.com (news: Project Rally One first new WRC27 constructor from 2027; RFEDA/RMC Spanish Rally1 project; Toyota revives Celica for 2027 with split TGR team; M-Sport assessing 2027 driver options). Crews confirmed for Toyota only; M-Sport/Project Rally One/WRT Rally1 Spain cars have crews TBA. Per-event entry lists on wrc.com (e.g. /events/wrc-rallye-monte-carlo-2027/entry-list-...) are not yet populated as of 2026-11-21. Hyundai is NOT listed among 2027 entrants in the season article (T\u00e4nak/J\u00e4rveoja left Hyundai after 2025).",
+  "entries_announced_when": "Entrants announced on wrc.com 2026 (news); full car/driver entry lists published per event in the weeks before each rally (Monte-Carlo entry list ~Dec 2026/Jan 2027)",
+  "teams": [
+   {
+    "name": "Toyota Gazoo Racing WRT (Gazoo Racing Toyota)",
+    "manufacturer": "Toyota",
+    "car": "Toyota GR Yaris Rally1",
+    "status": "confirmed",
+    "cars": [
+     {
+      "number": 8,
+      "crew": [
+       {
+        "name": "Ott T\u00e4nak",
+        "status": "confirmed",
+        "number": 8,
+        "nationality": "EST"
+       },
+       {
+        "name": "Martin J\u00e4rveoja",
+        "status": "confirmed",
+        "number": 8,
+        "nationality": "EST"
+       }
+      ]
+     },
+     {
+      "number": 18,
+      "crew": [
+       {
+        "name": "Takamoto Katsuta",
+        "status": "confirmed",
+        "number": 18,
+        "nationality": "JPN"
+       },
+       {
+        "name": "Aaron Johnston",
+        "status": "confirmed",
+        "number": 18,
+        "nationality": "IRL"
+       }
+      ]
+     },
+     {
+      "number": 69,
+      "crew": [
+       {
+        "name": "Kalle Rovanper\u00e4",
+        "status": "confirmed",
+        "number": 69,
+        "nationality": "FIN"
+       },
+       {
+        "name": "Jonne Halttunen",
+        "status": "confirmed",
+        "number": 69,
+        "nationality": "FIN"
+       }
+      ],
+      "notes": "part-time basis per season article"
+     }
+    ]
+   },
+   {
+    "name": "Toyota Racing (Toyota Racing GmbH)",
+    "manufacturer": "Toyota",
+    "car": "Toyota GR Celica Rally1",
+    "status": "confirmed",
+    "cars": [
+     {
+      "number": 5,
+      "crew": [
+       {
+        "name": "Sami Pajari",
+        "status": "confirmed",
+        "number": 5,
+        "nationality": "FIN"
+       },
+       {
+        "name": "Marko Salminen",
+        "status": "confirmed",
+        "number": 5,
+        "nationality": "FIN"
+       }
+      ]
+     },
+     {
+      "number": 33,
+      "crew": [
+       {
+        "name": "Elfyn Evans",
+        "status": "confirmed",
+        "number": 33,
+        "nationality": "GBR"
+       },
+       {
+        "name": "Scott Martin",
+        "status": "confirmed",
+        "number": 33,
+        "nationality": "GBR"
+       }
+      ]
+     },
+     {
+      "number": 99,
+      "crew": [
+       {
+        "name": "Oliver Solberg",
+        "status": "confirmed",
+        "number": 99,
+        "nationality": "SWE"
+       },
+       {
+        "name": "Elliott Edmondson",
+        "status": "confirmed",
+        "number": 99,
+        "nationality": "GBR"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "M-Sport Ford WRT",
+    "manufacturer": "Ford",
+    "car": "Ford Fiesta Rally1 Kit (upgraded from Rally2)",
+    "status": "confirmed (team, 3 cars); crews TBA",
+    "cars": [
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     },
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     },
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "Project Rally One (Prospeed Competition)",
+    "manufacturer": "Project Rally One (new WRC27 constructor)",
+    "car": "own Rally1 construction",
+    "status": "confirmed (2 cars, selected rallies); crews TBA",
+    "cars": [
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     },
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "name": "WRT Rally1 Spain (RMC Motorsport / RFEDA)",
+    "manufacturer": "RMC Motorsport",
+    "car": "TBA",
+    "status": "confirmed (2 cars; championship debut at 2027 Croatia Rally); crews TBA",
+    "cars": [
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     },
+     {
+      "number": null,
+      "crew": [
+       {
+        "name": "TBA",
+        "status": "tba"
+       },
+       {
+        "name": "TBA",
+        "status": "tba"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://en.wikipedia.org/wiki/2027_World_Rally_Championship (Entrants/Team changes/Driver changes, accessed 2026-11-21)",
+   "https://www.wrc.com/en/news/project-rally-one-set-to-join-wrc-as-first-new-wrc27-constructor-from-2027",
+   "https://www.wrc.com/en/news/rfeda-and-rmc-motorsport-launch-spanish-rally1-project-for-2027",
+   "https://www.wrc.com/en/news/taenak-and-rovanperae-return-as-toyota-revives-celica-for-2027",
+   "https://www.wrc.com/en/news/the-thinking-behind-tgr-s-split-2027-team",
+   "https://www.wrc.com/en/news/what-m-sport-is-looking-for-as-it-assesses-its-2027-wrc-driver-options",
+   "https://www.wrc.com/en/events/wrc-rallye-monte-carlo-2027/entry-list-wrc-rallye-monte-carlo-2027 (checked 2026-11-21: entry list not yet published)"
+  ]
+ },
+ "nascar": {
+  "series": "NASCAR Cup Series",
+  "official_site": "https://www.nascar.com",
+  "status": "partially announced",
+  "status_detail": "2027 schedule announced (nascar.com, Aug 2026); team/driver announcements rolling on nascar.com news (Dodge returns with Kaulig Racing in 2027; Legacy Motor Club adds Riley Herbst as 3rd chartered car; RFK moves Preece to #6 after Keselowski's departure). 36 chartered cars: 35 drivers confirmed + RFK #60 TBA; 4 part-time non-chartered entries. Full official entry list is published per race on nascar.com (Daytona 500 entry list Feb 2027). nascar.com blocks automated reads (Cloudflare) \u2014 verified via nascar.com news URLs + 2027 NASCAR Cup Series article.",
+  "entries_announced_when": "Schedule 2026-08-26; team/driver news rolling on nascar.com through Nov 2026; official per-race entry lists from Feb 2027 (Daytona 500)",
+  "teams": [
+   {
+    "name": "Haas Factory Team",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     41
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Cole Custer",
+      "status": "confirmed",
+      "number": 41,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Hendrick Motorsports",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     5,
+     9,
+     24,
+     48
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Kyle Larson",
+      "status": "confirmed",
+      "number": 5,
+      "nationality": "USA"
+     },
+     {
+      "name": "Chase Elliott",
+      "status": "confirmed",
+      "number": 9,
+      "nationality": "USA"
+     },
+     {
+      "name": "William Byron",
+      "status": "confirmed",
+      "number": 24,
+      "nationality": "USA"
+     },
+     {
+      "name": "Alex Bowman",
+      "status": "confirmed",
+      "nationality": "USA"
+     }
+    ],
+    "notes": "Bowman runs No. TBD after Daytona 500 (Jimmie Johnson runs #48 at Daytona 500)"
+   },
+   {
+    "name": "Hyak Motorsports",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     47
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Ricky Stenhouse Jr.",
+      "status": "confirmed",
+      "number": 47,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Richard Childress Racing",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     3,
+     33
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Austin Dillon",
+      "status": "confirmed",
+      "number": 3,
+      "nationality": "USA"
+     },
+     {
+      "name": "Austin Hill",
+      "status": "confirmed",
+      "number": 33,
+      "nationality": "USA"
+     }
+    ],
+    "notes": "Austin Hill extended through 2027 (took over Kyle Busch's seat for remainder of 2026)"
+   },
+   {
+    "name": "Rick Ware Racing",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     51
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Cody Ware",
+      "status": "confirmed",
+      "number": 51,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Spire Motorsports",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     7,
+     71,
+     77
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Daniel Su\u00e1rez",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "USA"
+     },
+     {
+      "name": "Michael McDowell",
+      "status": "confirmed",
+      "number": 71,
+      "nationality": "USA"
+     },
+     {
+      "name": "Carson Hocevar",
+      "status": "confirmed",
+      "number": 77,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Trackhouse Racing",
+    "manufacturer": "Chevrolet",
+    "numbers": [
+     1,
+     88,
+     97
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Ross Chastain",
+      "status": "confirmed",
+      "number": 1,
+      "nationality": "USA"
+     },
+     {
+      "name": "Connor Zilisch",
+      "status": "confirmed",
+      "number": 88,
+      "nationality": "USA"
+     },
+     {
+      "name": "Shane van Gisbergen",
+      "status": "confirmed",
+      "number": 97,
+      "nationality": "NZL"
+     }
+    ]
+   },
+   {
+    "name": "Kaulig Racing",
+    "manufacturer": "Dodge",
+    "numbers": [
+     10,
+     16
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Ty Dillon",
+      "status": "confirmed",
+      "number": 10,
+      "nationality": "USA"
+     },
+     {
+      "name": "A. J. Allmendinger",
+      "status": "confirmed",
+      "number": 16,
+      "nationality": "USA"
+     }
+    ],
+    "notes": "Dodge returns to NASCAR Cup in 2027 with Kaulig (announced at 2026 SEMA, nascar.com 2026-11-02)"
+   },
+   {
+    "name": "Front Row Motorsports",
+    "manufacturer": "Ford",
+    "numbers": [
+     4,
+     34,
+     38
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Noah Gragson",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "USA"
+     },
+     {
+      "name": "Todd Gilliland",
+      "status": "confirmed",
+      "number": 34,
+      "nationality": "USA"
+     },
+     {
+      "name": "Zane Smith",
+      "status": "confirmed",
+      "number": 38,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "RFK Racing",
+    "manufacturer": "Ford",
+    "numbers": [
+     6,
+     17,
+     60
+    ],
+    "status": "partially announced",
+    "drivers": [
+     {
+      "name": "Ryan Preece",
+      "status": "confirmed",
+      "number": 6,
+      "nationality": "USA"
+     },
+     {
+      "name": "Chris Buescher",
+      "status": "confirmed",
+      "number": 17,
+      "nationality": "USA"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 60
+     }
+    ],
+    "notes": "Preece moves from #60 to #6; Keselowski leaves as driver/owner after 2026; #60 driver TBA"
+   },
+   {
+    "name": "Team Penske",
+    "manufacturer": "Ford",
+    "numbers": [
+     2,
+     12,
+     22
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Austin Cindric",
+      "status": "confirmed",
+      "number": 2,
+      "nationality": "USA"
+     },
+     {
+      "name": "Ryan Blaney",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "USA"
+     },
+     {
+      "name": "Joey Logano",
+      "status": "confirmed",
+      "number": 22,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Wood Brothers Racing",
+    "manufacturer": "Ford",
+    "numbers": [
+     21
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Jesse Love",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "23XI Racing",
+    "manufacturer": "Toyota",
+    "numbers": [
+     23,
+     45,
+     67
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Bubba Wallace",
+      "status": "confirmed",
+      "number": 23,
+      "nationality": "USA"
+     },
+     {
+      "name": "Tyler Reddick",
+      "status": "confirmed",
+      "number": 45,
+      "nationality": "USA"
+     },
+     {
+      "name": "Corey Heim",
+      "status": "confirmed",
+      "number": 67,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Joe Gibbs Racing",
+    "manufacturer": "Toyota",
+    "numbers": [
+     11,
+     19,
+     20,
+     54
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Denny Hamlin",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "USA"
+     },
+     {
+      "name": "Chase Briscoe",
+      "status": "confirmed",
+      "number": 19,
+      "nationality": "USA"
+     },
+     {
+      "name": "Christopher Bell",
+      "status": "confirmed",
+      "number": 20,
+      "nationality": "USA"
+     },
+     {
+      "name": "Ty Gibbs",
+      "status": "confirmed",
+      "number": 54,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Legacy Motor Club",
+    "manufacturer": "Toyota",
+    "numbers": [
+     42,
+     43,
+     84
+    ],
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Josh Berry",
+      "status": "confirmed",
+      "number": 42,
+      "nationality": "USA"
+     },
+     {
+      "name": "Erik Jones",
+      "status": "confirmed",
+      "number": 43,
+      "nationality": "USA"
+     },
+     {
+      "name": "Riley Herbst",
+      "status": "confirmed",
+      "number": 84,
+      "nationality": "USA"
+     }
+    ],
+    "notes": "Adds a third chartered car (#84 Herbst) in 2027 (nascar.com 2026-09-03)"
+   }
+  ],
+  "part_time_non_chartered": [
+   {
+    "name": "Spire Motorsports",
+    "manufacturer": "Chevrolet",
+    "drivers": [
+     {
+      "name": "Corey Day",
+      "status": "confirmed",
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Garage 66",
+    "manufacturer": "Ford",
+    "numbers": [
+     66
+    ],
+    "drivers": [
+     {
+      "name": "Josh Bilicki",
+      "status": "confirmed",
+      "number": 66,
+      "nationality": "USA"
+     }
+    ]
+   },
+   {
+    "name": "Legacy Motor Club",
+    "manufacturer": "Toyota",
+    "numbers": [
+     48
+    ],
+    "drivers": [
+     {
+      "name": "Jimmie Johnson",
+      "status": "confirmed",
+      "number": 48,
+      "nationality": "USA"
+     }
+    ],
+    "notes": "Daytona 500 only"
+   }
+  ],
+  "source": [
+   "https://en.wikipedia.org/wiki/2027_NASCAR_Cup_Series (Teams and drivers tables, accessed 2026-11-21)",
+   "https://www.nascar.com/news-media/2026/11/02/dodge-returns-to-nascar-cup-series-in-2027-with-kaulig-racing/",
+   "https://www.nascar.com/news-media/2026/09/03/legacy-motor-club-adds-riley-herbst-to-cup-series-roster-for-2027/",
+   "https://www.nascar.com/news-media/2026/08/26/2027-nascar-schedule-confirmed-dates-tracks-for-all-three-national-series/",
+   "https://www.nascar.com/2027-schedule-fan-hub/ (checked 2026-11-21; site blocks automated reads)"
+  ]
+ },
+ "fe": {
+  "series": "ABB FIA Formula E World Championship (2026\u201327 season, Season 13; 2027 calendar-year rounds)",
+  "official_site": "https://www.fiaformulae.com",
+  "status": "partially announced",
+  "status_detail": "fiaformulae.com runs a '2027 Season' section (teams/drivers/standings pages) and news confirms new 2027 entrants (Fusion enters the 2027 championship; Andretti 2027 look). 12 teams announced for 2026\u201327: 22 of 24 drivers confirmed; Fortescue Zero Racing #30 and Fusion Formula E Team #26 still TBA. GEN4 era from 2027.",
+  "entries_announced_when": "Team/driver announcements on fiaformulae.com rolling 2026 (Fusion announced 2026); remaining seats expected before season start (Jan 2027 Mexico City); full entry list on fia.com/fiaformulae.com closer to Round 1",
+  "teams": [
+   {
+    "name": "Porsche Formula E Team",
+    "powertrain": "Porsche 975 RSE",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Pascal Wehrlein",
+      "status": "confirmed",
+      "number": 1,
+      "nationality": "GER"
+     },
+     {
+      "name": "Nico M\u00fcller",
+      "status": "confirmed",
+      "number": 51,
+      "nationality": "SUI"
+     }
+    ]
+   },
+   {
+    "name": "Cupra Kiro",
+    "powertrain": "Porsche 975 RSE (customer)",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Pepe Mart\u00ed",
+      "status": "confirmed",
+      "number": 3,
+      "nationality": "ESP"
+     },
+     {
+      "name": "Jake Hughes",
+      "status": "confirmed",
+      "number": 33,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Opel GSE Formula E Team",
+    "powertrain": "Opel GSE 27FE",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Mitch Evans",
+      "status": "confirmed",
+      "number": 4,
+      "nationality": "NZL"
+     },
+     {
+      "name": "Th\u00e9o Pourchaire",
+      "status": "confirmed",
+      "number": 12,
+      "nationality": "FRA"
+     }
+    ]
+   },
+   {
+    "name": "Jaguar TCS Racing",
+    "powertrain": "Jaguar I-Type 08",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Stoffel Vandoorne",
+      "status": "confirmed",
+      "number": 5,
+      "nationality": "BEL"
+     },
+     {
+      "name": "Ant\u00f3nio F\u00e9lix da Costa",
+      "status": "confirmed",
+      "number": 13,
+      "nationality": "POR"
+     }
+    ]
+   },
+   {
+    "name": "Paysafe Envision Formula E Team",
+    "powertrain": "Jaguar I-Type 08",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Maximilian G\u00fcnther",
+      "status": "confirmed",
+      "number": 7,
+      "nationality": "DEU"
+     },
+     {
+      "name": "Zak O'Sullivan",
+      "status": "confirmed",
+      "number": 15,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Lola Formula E Team",
+    "powertrain": "Lola T004",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Enzo Fittipaldi",
+      "status": "confirmed",
+      "number": 11,
+      "nationality": "BRA"
+     },
+     {
+      "name": "Robert Shwartzman",
+      "status": "confirmed",
+      "number": 35,
+      "nationality": "ISR"
+     }
+    ]
+   },
+   {
+    "name": "Fortescue Zero Racing",
+    "powertrain": "Jaguar I-Type 08",
+    "status": "partially announced",
+    "drivers": [
+     {
+      "name": "Dan Ticktum",
+      "status": "confirmed",
+      "number": 20,
+      "nationality": "GBR"
+     },
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 30
+     }
+    ]
+   },
+   {
+    "name": "Mahindra Racing",
+    "powertrain": "M13Electro",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Nyck de Vries",
+      "status": "confirmed",
+      "number": 21,
+      "nationality": "NED"
+     },
+     {
+      "name": "Edoardo Mortara",
+      "status": "confirmed",
+      "number": 48,
+      "nationality": "SUI"
+     }
+    ]
+   },
+   {
+    "name": "Nissan Formula E Team",
+    "powertrain": "Nissan e-4ORCE 06",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Zane Maloney",
+      "status": "confirmed",
+      "number": 22,
+      "nationality": "BAR"
+     },
+     {
+      "name": "Oliver Rowland",
+      "status": "confirmed",
+      "number": 23,
+      "nationality": "GBR"
+     }
+    ]
+   },
+   {
+    "name": "Citro\u00ebn Racing",
+    "powertrain": "Citro\u00ebn Racing \u00eb-CX",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Jean-\u00c9ric Vergne",
+      "status": "confirmed",
+      "number": 25,
+      "nationality": "FRA"
+     },
+     {
+      "name": "Nick Cassidy",
+      "status": "confirmed",
+      "number": 37,
+      "nationality": "NZL"
+     }
+    ]
+   },
+   {
+    "name": "Fusion Formula E Team",
+    "powertrain": "Porsche 975 RSE (customer)",
+    "status": "partially announced",
+    "drivers": [
+     {
+      "name": "TBA",
+      "status": "tba",
+      "number": 26
+     },
+     {
+      "name": "Ayhancan G\u00fcven",
+      "status": "confirmed",
+      "number": 90,
+      "nationality": "TUR"
+     }
+    ],
+    "notes": "New entrant for 2027 announced on fiaformulae.com; GEN4-era team led by Phil Charles"
+   },
+   {
+    "name": "Andretti Formula E",
+    "powertrain": "Nissan e-4ORCE 06",
+    "status": "confirmed",
+    "drivers": [
+     {
+      "name": "Jake Dennis",
+      "status": "confirmed",
+      "number": 27,
+      "nationality": "GBR"
+     },
+     {
+      "name": "Felipe Drugovich",
+      "status": "confirmed",
+      "number": 28,
+      "nationality": "BRA"
+     }
+    ]
+   }
+  ],
+  "source": [
+   "https://en.wikipedia.org/wiki/2026%E2%80%9327_Formula_E_World_Championship (Teams and drivers table, accessed 2026-11-21)",
+   "https://www.fiaformulae.com/en/news/teams/fusion-enters-the-2027-abb-fia-formula-e-world-championship (accessed 2026-11-21)",
+   "https://www.fiaformulae.com/en/news/teams/andretti-introduce-a-striking-new-look-for-2027-season",
+   "https://www.fiaformulae.com/en/news/drivers/whos-on-the-grid-formula-es-2026-27-driver-lineup-so-far",
+   "https://www.fiaformulae.com/en/teams and /en/drivers (2027 Season pages, accessed 2026-11-21)"
+  ]
+ }
+}

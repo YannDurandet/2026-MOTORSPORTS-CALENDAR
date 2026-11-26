@@ -1,6 +1,6 @@
 # Event & Track Pages — Research & Data Status
 
-_Last updated: 2026-11-21_
+_Last updated: 2026-11-26_
 
 Scope: the rework of `/events/{year}/{slug}` and `/tracks/{slug}` (purpose split + SEO),
 fed by a 2027 research program — 232 event pages, 124 venues (110 circuits + 13 rally rounds + 1 TBC).
@@ -34,14 +34,16 @@ Raw research + per-fact sources: `agent-tasks/research-2027/out/` (gitignored); 
 - **MotoGP**: 850 cc + Pirelli from 2027, new Friday Sprint Quali; full grid announced 2026-10-20. **WSBK**: Michelin from 2027; grid announced 2026-11-09.
 - **WEC**: Ford + McLaren Hypercar in, Alpine/Peugeot out. **NASCAR**: Dodge returns via Kaulig. **FE**: 12 teams (Fusion, Opel GSE, Citroën added).
 
-## ⏳ Queued for merge (after the page rework is committed — page work is in a separate session)
+## ✅ Wave-2 merged (after page rework commit `ec20c49`; this commit; check 9325 pass, build pass)
 
-1. `f1-distance-crosscheck.json` over `events2027.json` race_format (290 km rule — wave-1 F1 laps wrong for 23/24).
-2. `roll-v2` → replace `roll_of_honour` in `events2027.json`.
-3. `corners-v2` → `tracks.json`. 4. climate for remaining 52 circuits → `tracks.json`. 5. `media-v2` → `tracks.json`.
-6. `f1facts`/`tier1-facts` fields where missing; rule on logged conflicts (red-bull-ring 4.326 vs 4.318, watkins-glen, turn counts, charlotte roval).
-7. `istanbul-park`: create track entry/slug (f1-turkish-gp currently has `trackSlug: null`).
-8. `entries-2027.json` → new `data/entries2027.json`.
+1. ✅ F1 290 km crosscheck applied — 23/24 F1 `race_format` corrected in `events2027.json` (e.g. Bahrain 54 laps / 292.248 km).
+2. ✅ `roll-v2` → `roll_of_honour` in `events2027.json`: 228 slugs enriched, 203 with full winners tables (8,319 rows; e.g. Monaco GP 86 winners since 1929).
+3. ✅ `corners-v2` → `tracks.json`: 55 circuits with corner guides (866 corners).
+4. ✅ climate → all 110 2027 circuits now have `climate.race_months`.
+5. ✅ `media-v2` → `tracks.json`: gap photos + 7 onboard videos (2 wrong-circuit fixes).
+6. ✅ `f1facts`/`tier1-facts`: 29 fact fields added where absent (DRS/elevation/top speed/longest straight). Conflicts NOT overridden — still need Yann's ruling: red-bull-ring 4.326 vs 4.318, watkins-glen 5.552 vs 3.949, turn-count diffs, charlotte roval.
+7. ⏳ `istanbul-park`: still no track entry/slug (`f1-turkish-gp` has `trackSlug: null`) — needs a map SVG before a track entry can exist.
+8. ✅ `data/entries2027.json` (new): 9 series, 124 teams, 294 named drivers.
 
 ## ❌ Still missing / follow-ups
 

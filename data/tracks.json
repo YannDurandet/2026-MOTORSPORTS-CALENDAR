@@ -410,6 +410,88 @@
    "title": "Onboard Lap Of The New Albert Park: 2022 Australian Grand Prix",
    "channel_url": "https://www.youtube.com/@Formula1",
    "series": "f1"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "widened for 2022 (Wikipedia article); Brabham grandstand name on track map"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2",
+    "note": "first chicane; Brabham grandstand on outside of T2 (formula1.com 2027 page); Jones grandstand name on track map"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3",
+    "note": "Martin Brundle 1996 crash at T3 (formula1.com); widened 2022 (article); Whiteford grandstand name on track map"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6",
+    "note": "widened for 2022 (article)"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7",
+    "note": "Lakeside Drive section begins (turns 7-13) (article)"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8",
+    "note": "general admission between T8-9 (formula1.com)"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10",
+    "note": "Waite stand overlooks T10; GA between T9-10 (formula1.com)"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12",
+    "note": "traffic lights halfway between T12-13 on public road section (article)"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13",
+    "note": "significantly altered for 2022 (article; ex-T13 per grandprix.com.au is now T11 in 14-turn numbering)"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ],
+  "climate": {
+   "source_article": "Melbourne [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Melbourne",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 20.6,
+     "avg_low_c": 10.1,
+     "rain_days": 9.9,
+     "note": "April: avg high 20.6°C, avg low 10.1°C — warm, moderate rain (~9.9 days)"
+    }
+   ]
   }
  },
  {
@@ -864,7 +946,82 @@
      "note": "September: avg high 26.8°C, avg low 13.2°C — very warm, very dry (~2.9 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5",
+    "note": "Marc Márquez corner per FIA track map label (unnumbered in article)"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   },
+   {
+    "n": 18,
+    "name": "Turn 18"
+   }
+  ]
  },
  {
   "slug": "arlington",
@@ -997,7 +1154,57 @@
      "note": "March: avg high 19.5°C, avg low 7.8°C — mild, fairly dry (~7.6 rain days)"
     }
    ]
-  }
+  },
+  "photos": [
+   {
+    "file": "File:AT&T Stadium, Arlington, Texas, United States.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:AT%26T_Stadium,_Arlington,_Texas,_United_States.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/AT%26T_Stadium%2C_Arlington%2C_Texas%2C_United_States.jpg",
+    "width": 3896,
+    "height": 2922,
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Michael Barera",
+    "caption": "AT&T Stadium, Arlington TX — landmark featured on the Streets of Arlington circuit (circuit loops around the stadium)",
+    "via": "en.wp Arlington Street Circuit / Commons search 'AT&T Stadium Arlington'"
+   },
+   {
+    "file": "File:Arlington June 2020 4 (AT&T Stadium).jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Arlington_June_2020_4_(AT%26T_Stadium).jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Arlington_June_2020_4_%28AT%26T_Stadium%29.jpg",
+    "width": 6000,
+    "height": 4000,
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Michael Barera",
+    "caption": "AT&T Stadium, Arlington TX — Streets of Arlington circuit landmark",
+    "via": "en.wp Grand Prix of Arlington article"
+   },
+   {
+    "file": "File:Globe Life Field Exterior 2024.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Globe_Life_Field_Exterior_2024.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Globe_Life_Field_Exterior_2024.jpg",
+    "width": 3024,
+    "height": 4032,
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Brycenrichter",
+    "caption": "Globe Life Field, Arlington TX — landmark featured on the Streets of Arlington circuit",
+    "via": "en.wp Arlington Street Circuit article"
+   },
+   {
+    "file": "File:Arlington GP Layout.png",
+    "url": "https://commons.wikimedia.org/wiki/File:Arlington_GP_Layout.png",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/Arlington_GP_Layout.png",
+    "width": 4776,
+    "height": 1944,
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "WL2392",
+    "caption": "Streets of Arlington track layout (2026) — layout map, no track photo on Commons yet",
+    "via": "en.wp Arlington Street Circuit infobox image"
+   }
+  ]
  },
  {
   "slug": "assen",
@@ -1801,7 +2008,83 @@
      "note": "June: avg high 20.4°C, avg low 9.9°C — warm, moderate rain (~10.3 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "18 corners (12 right, 6 left) per infobox; article names Veenslang, Ruskenhoek, Mandeveen, Duikersloot without numbers"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   },
+   {
+    "n": 18,
+    "name": "Turn 18"
+   }
+  ],
+  "longest_straight_m": 560
  },
  {
   "slug": "atlanta",
@@ -2003,6 +2286,29 @@
    "title": "2023 NASCAR Quaker State 400 At Atlanta Onboard Race",
    "channel_url": "https://www.youtube.com/@NASCARXtra",
    "series": "nascar"
+  },
+  "climate": {
+   "source_article": "Atlanta [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Atlanta",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 2,
+     "month_name": "February",
+     "avg_high_c": 12.8,
+     "avg_low_c": 1.4,
+     "rain_days": 8.4,
+     "note": "February: avg high 12.8°C, avg low 1.4°C — cool, moderate rain (~8.4 days)"
+    },
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 31.1,
+     "avg_low_c": 20.8,
+     "rain_days": 10.3,
+     "note": "July: avg high 31.1°C, avg low 20.8°C — hot, moderate rain (~10.3 days)"
+    }
+   ]
   }
  },
  {
@@ -2762,6 +3068,99 @@
    "title": "Valtteri Bottas' Pole Lap | 2020 Sakhir Grand Prix | Pirelli",
    "channel_url": "https://www.youtube.com/@Formula1",
    "series": "f1"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Michael Schumacher",
+    "note": "Turn 1 renamed after Michael Schumacher in Feb 2014 (Wikipedia article); main overtaking spot, grandstand outside T1-2 (formula1.com 2027 race page)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2",
+    "note": "overtaking aplenty from grandstand outside T1-2 (formula1.com)"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4",
+    "note": "realigned ahead of 2005 race, cutting 5 m (Wikipedia article)"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8",
+    "note": "Batelco grandstand views cars charging into T8 (formula1.com)"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9",
+    "note": "hammering through T9-10 past Batelco stand (formula1.com)"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10",
+    "note": "tight, downhill, off-camber left-hander; track's most challenging point (formula1.com); drain cover dislodged here in 2024 testing red flag (Wikipedia article)"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11",
+    "note": "short-apex corner on the run down from T10 (formula1.com)"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12",
+    "note": "fast run through T12, a highlight (formula1.com)"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   }
+  ],
+  "climate": {
+   "source_article": "Manama [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Manama",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 24.7,
+     "avg_low_c": 17.8,
+     "rain_days": 1.9,
+     "note": "March: avg high 24.7°C, avg low 17.8°C — warm, very dry (~1.9 rain days)"
+    },
+    {
+     "month": 11,
+     "month_name": "November",
+     "avg_high_c": 27.8,
+     "avg_low_c": 21.2,
+     "rain_days": 0.7,
+     "note": "November: avg high 27.8°C, avg low 21.2°C — very warm, very dry (~0.7 rain days)"
+    }
+   ]
   }
  },
  {
@@ -2929,6 +3328,113 @@
    "title": "Exclusive - The Medical Car Takes Us On a Lap of Baku",
    "channel_url": "https://www.youtube.com/@Formula1",
    "series": "f1"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "prime overtaking opportunity; cars run three abreast into T1 on the 2.2 km shoreline straight - longest on F1 calendar (formula1.com guide + 2027 page)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2",
+    "note": "Overtake Mode zone between T2 and T3 (formula1.com guide)"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Old Town castle complex",
+    "note": "with T9: narrowest point of the circuit at 7.6 m, cutting between city buildings and Old City walls (formula1.com guide)"
+   },
+   {
+    "n": 9,
+    "name": "Old Town castle complex",
+    "note": "see T8 (formula1.com guide)"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10",
+    "note": "third corner of the castle section (formula1.com guide)"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15",
+    "note": "unsighted left-hander, braking slightly right then slowing; trickiest corner per F1 guide"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16",
+    "note": "left-hander; Overtake Mode detection point shortly after (formula1.com guide)"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17",
+    "note": "Overtake Mode activation line at entry (formula1.com guide)"
+   },
+   {
+    "n": 18,
+    "name": "Turn 18",
+    "note": "near the Maiden Tower (Qız qalası) (Wikipedia article)"
+   },
+   {
+    "n": 19,
+    "name": "Turn 19",
+    "note": "exit of T19 begins the long start/finish straight down to T1 (formula1.com guide)"
+   },
+   {
+    "n": 20,
+    "name": "Turn 20"
+   }
+  ],
+  "climate": {
+   "source_article": "Baku [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Baku",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 25.6,
+     "avg_low_c": 19.4,
+     "rain_days": 2.0,
+     "note": "September: avg high 25.6°C, avg low 19.4°C — very warm, very dry (~2 rain days)"
+    }
+   ]
   }
  },
  {
@@ -3364,6 +3870,91 @@
    "title": "BEST passes from 2024 Children's of Alabama Indy Grand Prix at Barber | Onboard Camera | INDYCAR",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   }
+  ],
+  "climate": {
+   "source_article": "Atlanta [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Atlanta",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 22.6,
+     "avg_low_c": 10.1,
+     "rain_days": 7.1,
+     "note": "April: avg high 22.6°C, avg low 10.1°C — warm, fairly dry (~7.1 rain days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 27.7,
+     "avg_low_c": 17.5,
+     "rain_days": 6.3,
+     "note": "September: avg high 27.7°C, avg low 17.5°C — very warm, fairly dry (~6.3 rain days)"
+    }
+   ]
   }
  },
  {
@@ -4589,7 +5180,127 @@
    "title": "A lap of the Barcelona-Catalunya with Simon Crafar & GoPro™",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Elf",
+    "note": "turn 1, main overtaking point at end of DRS straight, medium-speed chicane with T2 (article lap description)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2 (chicane with T1)",
+    "note": "almost full throttle, gain exit speed (article)"
+   },
+   {
+    "n": 3,
+    "name": "Renault",
+    "note": "long flat-out right-hander, ~4g (article)"
+   },
+   {
+    "n": 4,
+    "name": "Repsol",
+    "note": "right-hander similar to Monza Curva Parabolica, early apex 3rd gear (article)"
+   },
+   {
+    "n": 5,
+    "name": "Seat",
+    "note": "slow left-hander in 2nd gear dropping downhill toward T6 (article)"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6",
+    "note": "left kink ignored by F1 cars (article)"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7",
+    "note": "with T8: medium-speed uphill left-right chicane (article)"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8",
+    "note": "large kerb on apex of T8 (article); TV3 name on MotoGP map"
+   },
+   {
+    "n": 9,
+    "name": "Campsa",
+    "note": "very fast blind 6th-gear right-hander, steep uphill then downhill exit (article)"
+   },
+   {
+    "n": 10,
+    "name": "La Caixa",
+    "note": "3rd-gear left-hander on back straight; remodelled 2021 (article)"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12",
+    "note": "left kink before long slow 3rd-gear right (article)"
+   },
+   {
+    "n": 13,
+    "name": "Europcar",
+    "note": "with T14: very fast 6th-gear double right-hander across the start/finish line (article); Europcar name per MotoGP map"
+   },
+   {
+    "n": 14,
+    "name": "Catalunya",
+    "note": "second part of the fast double right across the line (article); Catalunya name per map"
+   }
+  ],
+  "climate": {
+   "source_article": "Barcelona [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Barcelona",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 16.1,
+     "avg_low_c": 7.4,
+     "rain_days": 4.5,
+     "note": "March: avg high 16.1°C, avg low 7.4°C — mild, fairly dry (~4.5 rain days)"
+    },
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 24.9,
+     "avg_low_c": 16.8,
+     "rain_days": 3.6,
+     "note": "June: avg high 24.9°C, avg low 16.8°C — warm, fairly dry (~3.6 rain days)"
+    },
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 28.0,
+     "avg_low_c": 19.8,
+     "rain_days": 1.8,
+     "note": "July: avg high 28.0°C, avg low 19.8°C — very warm, very dry (~1.8 rain days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 26.0,
+     "avg_low_c": 17.4,
+     "rain_days": 5.2,
+     "note": "September: avg high 26.0°C, avg low 17.4°C — very warm, fairly dry (~5.2 rain days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 22.1,
+     "avg_low_c": 13.5,
+     "rain_days": 6.3,
+     "note": "October: avg high 22.1°C, avg low 13.5°C — warm, fairly dry (~6.3 rain days)"
+    }
+   ]
+  },
+  "drs_zones": 1,
+  "longest_straight_m": 1047
  },
  {
   "slug": "bathurst",
@@ -5144,6 +5855,14 @@
      "note": "February: avg high 25.7°C, avg low 13.2°C — very warm, fairly dry (~7.3 rain days)"
     }
    ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=ECX6JXa6e4k",
+   "channel": "Bathurst 12 Hour",
+   "channel_url": "https://www.youtube.com/@B12HR",
+   "title": "Valentino Rossi: Full Lap Onboard In The Lead | 2026 Meguiar's Bathurst 12 Hour",
+   "series": "bathurst12h",
+   "verified": "youtube oEmbed author_url matches official series handle @B12HR (accessed 2026-11-21, cached raw/w2-oembed-ECX6JXa6e4k.json)"
   }
  },
  {
@@ -5323,6 +6042,21 @@
    "title": "Berlin ePrix Onboard Track Guide With Nick Heidfeld - Formula E",
    "channel_url": "https://www.youtube.com/@FIAFormulaE",
    "series": "fe"
+  },
+  "climate": {
+   "source_article": "Berlin [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Berlin",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 18.9,
+     "avg_low_c": 9.4,
+     "rain_days": 8.0,
+     "note": "May: avg high 18.9°C, avg low 9.4°C — mild, moderate rain (~8 days)"
+    }
+   ]
   }
  },
  {
@@ -7313,6 +8047,79 @@
    "title": "GoPro™ OnBoard lap of the Automotodrom Brno",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ],
+  "climate": {
+   "source_article": "Brno [it.wp-source-truncated]",
+   "source_url": "https://it.wikipedia.org/wiki/Brno",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 24.6,
+     "avg_low_c": 12.7,
+     "rain_days": null,
+     "note": "July: avg high 24.6°C, avg low 12.7°C — warm, rain days n/a in table"
+    }
+   ]
   }
  },
  {
@@ -7660,7 +8467,57 @@
      "note": "March: avg high 35.7°C, avg low 22.8°C — hot, fairly dry (~5.2 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   }
+  ]
  },
  {
   "slug": "charlotte",
@@ -9036,7 +9893,64 @@
     "name": "Turn 20",
     "note": "final left onto start/finish straight"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Dallas [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Dallas",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 2,
+     "month_name": "February",
+     "avg_high_c": 14.9,
+     "avg_low_c": 2.7,
+     "rain_days": 4.9,
+     "note": "February: avg high 14.9°C, avg low 2.7°C — cool, fairly dry (~4.9 rain days)"
+    },
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 19.9,
+     "avg_low_c": 7.6,
+     "rain_days": 5.7,
+     "note": "March: avg high 19.9°C, avg low 7.6°C — mild, fairly dry (~5.7 rain days)"
+    },
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 24.6,
+     "avg_low_c": 12.6,
+     "rain_days": 6.5,
+     "note": "April: avg high 24.6°C, avg low 12.6°C — warm, fairly dry (~6.5 rain days)"
+    },
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 28.3,
+     "avg_low_c": 17.0,
+     "rain_days": 7.4,
+     "note": "May: avg high 28.3°C, avg low 17.0°C — very warm, fairly dry (~7.4 rain days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 31.0,
+     "avg_low_c": 19.4,
+     "rain_days": 5.5,
+     "note": "September: avg high 31.0°C, avg low 19.4°C — hot, fairly dry (~5.5 rain days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 25.8,
+     "avg_low_c": 13.2,
+     "rain_days": 5.1,
+     "note": "October: avg high 25.8°C, avg low 13.2°C — very warm, fairly dry (~5.1 rain days)"
+    }
+   ]
+  },
+  "top_speed_kmh": 356.5,
+  "longest_straight_m": 998
  },
  {
   "slug": "cremona",
@@ -10537,7 +11451,8 @@
      "note": "August: avg high 32.1°C, avg low 23.4°C — hot, moderate rain (~14.8 days)"
     }
    ]
-  }
+  },
+  "longest_straight_m": 1158
  },
  {
   "slug": "detroit",
@@ -10795,6 +11710,21 @@
    "title": "Wheel-to-wheel BATTLES and more — Extended Onboards from 2024 Chevrolet Detroit Grand Prix | INDYCAR",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "climate": {
+   "source_article": "Detroit [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Detroit",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 26.1,
+     "avg_low_c": 13.5,
+     "rain_days": 8.5,
+     "note": "June: avg high 26.1°C, avg low 13.5°C — very warm, moderate rain (~8.5 days)"
+    }
+   ]
   }
  },
  {
@@ -11795,6 +12725,95 @@
    "title": "FULL ONBOARD fast lap with Toprak Razgatlioglu at Donington Park | #GBRWorldSBK",
    "channel_url": "https://www.youtube.com/@worldsbk",
    "series": "wsbk"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   }
+  ],
+  "climate": {
+   "source_article": "Birmingham [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Birmingham",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 11.9,
+     "avg_low_c": 3.3,
+     "rain_days": 14.1,
+     "note": "April: avg high 11.9°C, avg low 3.3°C — cool, moderate rain (~14.1 days)"
+    },
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 20.6,
+     "avg_low_c": 11.1,
+     "rain_days": 11.7,
+     "note": "July: avg high 20.6°C, avg low 11.1°C — warm, moderate rain (~11.7 days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 17.6,
+     "avg_low_c": 8.8,
+     "rain_days": 12.4,
+     "note": "September: avg high 17.6°C, avg low 8.8°C — mild, moderate rain (~12.4 days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 13.8,
+     "avg_low_c": 6.2,
+     "rain_days": 13.4,
+     "note": "October: avg high 13.8°C, avg low 6.2°C — cool, moderate rain (~13.4 days)"
+    }
+   ]
   }
  },
  {
@@ -12641,7 +13660,65 @@
      "note": "October: avg high 22.0°C, avg low 14.6°C — warm, moderate rain (~10 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ]
  },
  {
   "slug": "fuji",
@@ -13224,6 +14301,37 @@
    "title": "Iron Dames' Porsche 911 LMGT3 Onboard Lap | 6 Hours of Fuji | FIA WEC",
    "channel_url": "https://www.youtube.com/@FIAWEC",
    "series": "wec"
+  },
+  "climate": {
+   "source_article": "Tokyo [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Tokyo",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 29.2,
+     "avg_low_c": 21.8,
+     "rain_days": 11.8,
+     "note": "July: avg high 29.2°C, avg low 21.8°C — very warm, moderate rain (~11.8 days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 26.9,
+     "avg_low_c": 19.7,
+     "rain_days": 12.2,
+     "note": "September: avg high 26.9°C, avg low 19.7°C — very warm, moderate rain (~12.2 days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 21.5,
+     "avg_low_c": 14.2,
+     "rain_days": 10.8,
+     "note": "October: avg high 21.5°C, avg low 14.2°C — warm, moderate rain (~10.8 days)"
+    }
+   ]
   }
  },
  {
@@ -13450,6 +14558,29 @@
    "title": "Full Race | 2025 Bommarito 500 from World Wide Technology Raceway | INDYCAR SERIES",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "climate": {
+   "source_article": "Chicago [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Chicago",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 26.4,
+     "avg_low_c": 14.2,
+     "rain_days": 8.0,
+     "note": "June: avg high 26.4°C, avg low 14.2°C — very warm, moderate rain (~8 days)"
+    },
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 27.7,
+     "avg_low_c": 16.4,
+     "rain_days": 7.5,
+     "note": "August: avg high 27.7°C, avg low 16.4°C — very warm, fairly dry (~7.5 rain days)"
+    }
+   ]
   }
  },
  {
@@ -13746,7 +14877,65 @@
      "note": "April: avg high 31.2°C, avg low 19.3°C — hot, moderate rain (~9 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ]
  },
  {
   "slug": "gold-coast",
@@ -16074,7 +17263,31 @@
     "name": "Szisz",
     "note": "named after Ferenc Szisz, winner of the first Grand Prix in history (1906 France)"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Budapest [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Budapest",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 27.4,
+     "avg_low_c": 16.0,
+     "rain_days": 6.0,
+     "note": "August: avg high 27.4°C, avg low 16.0°C — very warm, fairly dry (~6 rain days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 16.1,
+     "avg_low_c": 7.0,
+     "rain_days": 5.0,
+     "note": "October: avg high 16.1°C, avg low 7.0°C — mild, fairly dry (~5 rain days)"
+    }
+   ]
+  },
+  "longest_straight_m": 908
  },
  {
   "slug": "imola",
@@ -16981,7 +18194,88 @@
      "note": "July: avg high 31.4°C, avg low 18.3°C — hot, rain days n/a in table"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "Tamburello area (chicane since 1994/95 safety works; article \"Tamburello\" section)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   },
+   {
+    "n": 18,
+    "name": "Turn 18",
+    "note": "Rivazza (double left) area per article; exact numbering not in article text - see NOTES.md"
+   },
+   {
+    "n": 19,
+    "name": "Turn 19",
+    "note": "Tosa / Piratella / Tamburello sequence per article; numbering not given - see NOTES.md"
+   }
+  ]
  },
  {
   "slug": "indianapolis",
@@ -18312,6 +19606,104 @@
    "title": "Go onboard with Kyle Larson during 2024 Indy 500 practice run | Onboard Camera | INDYCAR",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "Turn 1 of road course at end of pit straight"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ],
+  "climate": {
+   "source_article": "Chicago [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Chicago",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 21.2,
+     "avg_low_c": 8.7,
+     "rain_days": 8.9,
+     "note": "May: avg high 21.2°C, avg low 8.7°C — warm, moderate rain (~8.9 days)"
+    },
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 28.7,
+     "avg_low_c": 17.0,
+     "rain_days": 8.0,
+     "note": "July: avg high 28.7°C, avg low 17.0°C — very warm, moderate rain (~8 days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 23.8,
+     "avg_low_c": 12.2,
+     "rain_days": 7.7,
+     "note": "September: avg high 23.8°C, avg low 12.2°C — warm, fairly dry (~7.7 rain days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 17.4,
+     "avg_low_c": 5.7,
+     "rain_days": 6.6,
+     "note": "October: avg high 17.4°C, avg low 5.7°C — mild, fairly dry (~6.6 rain days)"
+    }
+   ]
   }
  },
  {
@@ -18957,7 +20349,30 @@
     "name": "Peraltada / Arquibancadas",
     "note": "banked final corner onto the pit straight; ex-\"Cotovelo\" name; >240 km/h in 1988 qualifying"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "São Paulo [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/São_Paulo",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 20.2,
+     "avg_low_c": 9.7,
+     "rain_days": 7.0,
+     "note": "July: avg high 20.2°C, avg low 9.7°C — warm, fairly dry (~7 rain days)"
+    },
+    {
+     "month": 11,
+     "month_name": "November",
+     "avg_high_c": 24.9,
+     "avg_low_c": 15.6,
+     "rain_days": 13.0,
+     "note": "November: avg high 24.9°C, avg low 15.6°C — warm, moderate rain (~13 days)"
+    }
+   ]
+  }
  },
  {
   "slug": "iowa",
@@ -19401,6 +20816,143 @@
    "title": "A Flying Lap of the Jeddah Corniche Circuit | 2021 Saudi Arabian Grand Prix",
    "channel_url": "https://www.youtube.com/@Formula1",
    "series": "f1"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "main overtaking point at end of long start/finish straight (formula1.com circuit guide)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3",
+    "note": "on the Formula E layout a hairpin connects turn 3 to turn 22 (Wikipedia article)"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13",
+    "note": "banked corner surrounded by a grandstand (formula1.com 2027 race page)"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   },
+   {
+    "n": 18,
+    "name": "Turn 18"
+   },
+   {
+    "n": 19,
+    "name": "Turn 19"
+   },
+   {
+    "n": 20,
+    "name": "Turn 20"
+   },
+   {
+    "n": 21,
+    "name": "Turn 21"
+   },
+   {
+    "n": 22,
+    "name": "Turn 22",
+    "note": "connected to turn 3 by a hairpin on the Formula E layout (Wikipedia article)"
+   },
+   {
+    "n": 23,
+    "name": "Turn 23"
+   },
+   {
+    "n": 24,
+    "name": "Turn 24"
+   },
+   {
+    "n": 25,
+    "name": "Turn 25"
+   },
+   {
+    "n": 26,
+    "name": "Turn 26"
+   },
+   {
+    "n": 27,
+    "name": "Turn 27"
+   }
+  ],
+  "climate": {
+   "source_article": "Riyadh [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Riyadh",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 27.7,
+     "avg_low_c": 15.2,
+     "rain_days": 9.4,
+     "note": "March: avg high 27.7°C, avg low 15.2°C — very warm, moderate rain (~9.4 days)"
+    },
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 33.4,
+     "avg_low_c": 20.4,
+     "rain_days": 11.3,
+     "note": "April: avg high 33.4°C, avg low 20.4°C — hot, moderate rain (~11.3 days)"
+    }
+   ]
   }
  },
  {
@@ -19957,7 +21509,81 @@
      "note": "May: avg high 26.7°C, avg low 13.0°C — very warm, fairly dry (~3.8 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Curva Expo '92",
+    "note": "name per infobox track map (Commons File:Circuito_de_Jerez_v2.svg); article does not number it"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Curva Michelin",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Curva Sito Pons",
+    "note": "long right-hander created 1992 by eliminating four corners (Wikipedia article); map pairing"
+   },
+   {
+    "n": 6,
+    "name": "Curva Dani Pedrosa",
+    "note": "sixth corner (formerly Curva Dry Sac) renamed after Dani Pedrosa on 3 May 2019 (Wikipedia article)"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Curva Jorge Martínez \"Aspar\"",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 9,
+    "name": "Curva Ángel Nieto",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 10,
+    "name": "Curva Peluqui",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 11,
+    "name": "Curva Àlex Crivillé",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 12,
+    "name": "Curva Ferrari",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 13,
+    "name": "Curva Jorge Lorenzo",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 14,
+    "name": "Chicane Senna",
+    "note": "chicane created 1994 where Martin Donnelly crashed; name per infobox track map"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15",
+    "note": "final corner; last curve \"Curva\" label on track map"
+   }
+  ]
  },
  {
   "slug": "kansas",
@@ -20148,6 +21774,29 @@
    "title": "Hot Lap: Take a ride around Kansas Speedway",
    "channel_url": "https://www.youtube.com/@NASCAR",
    "series": "nascar"
+  },
+  "climate": {
+   "source_article": "Omaha [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Omaha",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 23.3,
+     "avg_low_c": 10.5,
+     "rain_days": 9.4,
+     "note": "May: avg high 23.3°C, avg low 10.5°C — warm, moderate rain (~9.4 days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 18.7,
+     "avg_low_c": 5.1,
+     "rain_days": 5.1,
+     "note": "October: avg high 18.7°C, avg low 5.1°C — mild, fairly dry (~5.1 rain days)"
+    }
+   ]
   }
  },
  {
@@ -20457,6 +22106,21 @@
    "title": "CATACLEAN PLATO RACING'S DREAM WEEKEND | Morgan & Rowbottom ONBOARD | BTCC Knockhill 2026",
    "channel_url": "https://www.youtube.com/@OfficialBTCC",
    "series": "btcc"
+  },
+  "climate": {
+   "source_article": "Edinburgh [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Edinburgh",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 18.5,
+     "avg_low_c": 10.2,
+     "rain_days": 15.2,
+     "note": "August: avg high 18.5°C, avg low 10.2°C — mild, wet (~15.2 rain days)"
+    }
+   ]
   }
  },
  {
@@ -21342,7 +23006,55 @@
      "note": "September: avg high 23.6°C, avg low 12.2°C — warm, very dry (~1 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Corkscrew (T8/8A)",
+    "note": "downhill-plunging signature corner, gradient up to 16% (article)"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   }
+  ],
+  "elevation_change_m": 54.9
  },
  {
   "slug": "las-vegas",
@@ -21600,6 +23312,29 @@
    "title": "Hot Lap: Take a ride around Las Vegas Motor Speedway",
    "channel_url": "https://www.youtube.com/@NASCAR",
    "series": "nascar"
+  },
+  "climate": {
+   "source_article": "Phoenix, Arizona [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Phoenix,_Arizona",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 24.9,
+     "avg_low_c": 11.9,
+     "rain_days": 3.9,
+     "note": "March: avg high 24.9°C, avg low 11.9°C — warm, fairly dry (~3.9 rain days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 31.4,
+     "avg_low_c": 18.2,
+     "rain_days": 2.5,
+     "note": "October: avg high 31.4°C, avg low 18.2°C — hot, very dry (~2.5 rain days)"
+    }
+   ]
   }
  },
  {
@@ -21776,55 +23511,102 @@
   "corners": [
    {
     "n": 1,
-    "name": "Turn 1",
-    "note": "slow 90-degree right after 0.5 mi down Koval Lane"
+    "name": "Turn 1 (Koval Lane)",
+    "note": "slow 90-degree right after ~0.5 mi down Koval Lane (article)"
    },
    {
     "n": 2,
     "name": "Sphere left",
-    "note": "long sweeping left encircling the Sphere arena"
+    "note": "long sweeping left encircling the MSG Sphere arena (article)"
    },
    {
     "n": 3,
     "name": "left-right twisty section",
-    "note": "change from initial design, then slightly faster left onto Sands Avenue"
+    "note": "change from initial design, then faster left onto Sands Avenue (article)"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8",
+    "note": "MSGSphere area per track map"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
    },
    {
     "n": 10,
-    "name": "Turns 10-11 (Sands Avenue)",
-    "note": "two high-speed bends"
+    "name": "Sands Avenue",
+    "note": "with T11: two high-speed bends (article)"
+   },
+   {
+    "n": 11,
+    "name": "Sands Avenue",
+    "note": "second high-speed bend (article)"
    },
    {
     "n": 12,
-    "name": "Turn 12",
-    "note": "slow left onto Las Vegas Boulevard"
+    "name": "Turn 12 (Las Vegas Boulevard)",
+    "note": "slow left onto Las Vegas Boulevard (The Strip) (article + track map)"
    },
    {
     "n": 13,
-    "name": "Turn 13",
-    "note": "slight sweeping left starting the 1.9 km flat-out section past Flamingo, Paris, Bellagio, Cosmopolitan, Caesars Palace"
+    "name": "Turn 13 (The Strip)",
+    "note": "slight sweeping left starting the ~1.9 km flat-out section past Flamingo, Paris, Bellagio, Cosmopolitan, Caesars Palace (article)"
    },
    {
     "n": 14,
-    "name": "Turns 14-16",
-    "note": "tight series of three slow corners onto Harmon Avenue at Planet Hollywood"
+    "name": "Turns 14-16 (Harmon Avenue)",
+    "note": "tight series of three slow corners onto Harmon Avenue at Planet Hollywood (article + track map)"
    },
    {
     "n": 15,
-    "name": "Turns 14-16",
-    "note": "slow corners"
+    "name": "Turns 14-16 (Harmon Avenue)",
+    "note": "slow corner (article)"
    },
    {
     "n": 16,
-    "name": "Turns 14-16",
-    "note": "exit onto 0.8 km straight"
+    "name": "Turns 14-16 (Harmon Avenue)",
+    "note": "exit onto 0.8 km straight (article)"
    },
    {
     "n": 17,
     "name": "Turn 17",
-    "note": "fast left bend completing the lap onto the permanent section; max speed 358.3 km/h (222.6 mph, 2025, Tsunoda) recorded at end of the Strip"
+    "note": "fast left bend completing the lap onto the permanent section; max speed 358.3 km/h (222.6 mph, 2025) recorded at end of the Strip (article)"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Phoenix, Arizona [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Phoenix,_Arizona",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 11,
+     "month_name": "November",
+     "avg_high_c": 24.2,
+     "avg_low_c": 11.5,
+     "rain_days": 2.6,
+     "note": "November: avg high 24.2°C, avg low 11.5°C — warm, very dry (~2.6 rain days)"
+    }
+   ]
+  },
+  "top_speed_kmh": 358.3,
+  "longest_straight_m": 1931
  },
  {
   "slug": "lausitzring",
@@ -22294,6 +24076,21 @@
    "title": "DTM Lausitzring 2018 - Mike Rockenfeller (Audi RS5 DTM) - RE-LIVE Onboard (Race 2)",
    "channel_url": "https://www.youtube.com/@DTM",
    "series": "dtm"
+  },
+  "climate": {
+   "source_article": "Leipzig",
+   "source_url": "https://en.wikipedia.org/wiki/Leipzig",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 22.5,
+     "avg_low_c": 11.9,
+     "rain_days": 12.7,
+     "note": "June: avg high 22.5°C, avg low 11.9°C — warm, moderate rain (~12.7 days)"
+    }
+   ]
   }
  },
  {
@@ -23042,7 +24839,8 @@
      "note": "June: avg high 23.6°C, avg low 12.9°C — warm, fairly dry (~7.9 rain days)"
     }
    ]
-  }
+  },
+  "top_speed_kmh": 367
  },
  {
   "slug": "le-mans-bugatti",
@@ -23778,7 +25576,72 @@
      "note": "May: avg high 20.1°C, avg low 9.7°C — warm, moderate rain (~9.5 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Dunlop Curve",
+    "note": "first corner incl. the famous Dunlop bridge, shared with the full Le Mans circuit (article); map pairing"
+   },
+   {
+    "n": 2,
+    "name": "Dunlop Chicane",
+    "note": "chicane tightened 1994 (article); map pairing"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Le Musée",
+    "note": "near the Musée des 24 Heures (article); map pairing"
+   },
+   {
+    "n": 6,
+    "name": "Garage Vert",
+    "note": "name per article + infobox map"
+   },
+   {
+    "n": 7,
+    "name": "Chemin aux Bœufs",
+    "note": "name per article + infobox map"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "'S' du Garage Bleu",
+    "note": "name per article + infobox map"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Raccordement",
+    "note": "final corner rejoining, per infobox map"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ]
  },
  {
   "slug": "london",
@@ -24337,6 +26200,21 @@
    "title": "'LET'S GO!' | BEST onboard moments from Streets of Long Beach | INDYCAR",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "climate": {
+   "source_article": "San Diego [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/San_Diego",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 20.2,
+     "avg_low_c": 13.1,
+     "rain_days": 2.8,
+     "note": "April: avg high 20.2°C, avg low 13.1°C — warm, very dry (~2.8 rain days)"
+    }
+   ]
   }
  },
  {
@@ -24748,7 +26626,98 @@
    "title": "Sparks Fly, Team Mates Collide And The Top 10 Onboards | 2023 Qatar Grand Prix | Qatar Airways",
    "channel_url": "https://www.youtube.com/@Formula1",
    "series": "f1"
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "main overtaking spot at end of the >1 km main straight (formula1.com); \"Lusail Hill\" vantage at T1 (lcsc.qa)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   }
+  ],
+  "climate": {
+   "source_article": "Doha [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Doha",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 26.8,
+     "avg_low_c": 16.7,
+     "rain_days": null,
+     "note": "March: avg high 26.8°C, avg low 16.7°C — very warm, rain days n/a in table"
+    },
+    {
+     "month": 12,
+     "month_name": "December",
+     "avg_high_c": 24.1,
+     "avg_low_c": 15.0,
+     "rain_days": null,
+     "note": "December: avg high 24.1°C, avg low 15.0°C — warm, rain days n/a in table"
+    }
+   ]
+  },
+  "longest_straight_m": 1068
  },
  {
   "slug": "macau",
@@ -25405,6 +27374,21 @@
    "title": "The Fastest Lap of Formula E Pre-Season Testing ⏱️ | Onboard with Mitch Evans",
    "channel_url": "https://www.youtube.com/@FIAFormulaE",
    "series": "fe"
+  },
+  "climate": {
+   "source_article": "Madrid [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Madrid",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 26.9,
+     "avg_low_c": 15.1,
+     "rain_days": 4.0,
+     "note": "June: avg high 26.9°C, avg low 15.1°C — very warm, fairly dry (~4 rain days)"
+    }
+   ]
   }
  },
  {
@@ -25534,6 +27518,54 @@
     "license": "CC BY 4.0",
     "author": "Fábio Alecrim",
     "caption": "Circuito MADRING Sur — Madrid Circuit (Madring)"
+   },
+   {
+    "file": "File:Circuito Madring trazado.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Circuito_Madring_trazado.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Circuito_Madring_trazado.jpg",
+    "width": 600,
+    "height": 240,
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Laencrucijada",
+    "caption": "Madring (Madrid) track layout rendering — circuit around IFEMA/Valdebebas",
+    "via": "Commons deepcat:Madring"
+   },
+   {
+    "file": "File:Trazado Circuito Madring.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Trazado_Circuito_Madring.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Trazado_Circuito_Madring.jpg",
+    "width": 780,
+    "height": 313,
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "Laencrucijada",
+    "caption": "Madring track layout with corner names",
+    "via": "Commons deepcat:Madring"
+   },
+   {
+    "file": "File:Madrid - Campo de las Naciones, Feria de Madrid (IFEMA) 01.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Madrid_-_Campo_de_las_Naciones,_Feria_de_Madrid_(IFEMA)_01.JPG",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Madrid_-_Campo_de_las_Naciones%2C_Feria_de_Madrid_%28IFEMA%29_01.JPG",
+    "width": 2028,
+    "height": 1204,
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Zarateman",
+    "caption": "IFEMA (Campo de las Naciones) fairgrounds, Valdebebas, Madrid — venue area encircled by the Madring circuit",
+    "via": "Commons Category:Recinto Ferial Juan Carlos I (IFEMA)"
+   },
+   {
+    "file": "File:Madrid - Campo de las Naciones, Feria de Madrid (IFEMA) 02.JPG",
+    "url": "https://commons.wikimedia.org/wiki/File:Madrid_-_Campo_de_las_Naciones,_Feria_de_Madrid_(IFEMA)_02.JPG",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Madrid_-_Campo_de_las_Naciones%2C_Feria_de_Madrid_%28IFEMA%29_02.JPG",
+    "width": 2048,
+    "height": 1536,
+    "license": "CC0",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "author": "Zarateman",
+    "caption": "IFEMA fairgrounds, Madrid — Madring circuit area",
+    "via": "Commons Category:Recinto Ferial Juan Carlos I (IFEMA)"
    }
   ],
   "onboard_video": {
@@ -25660,7 +27692,22 @@
     "name": "El Parque",
     "note": "last turn of the lap, slow 90° right near Hall 12 back onto main straight; named for its scenic backdrop"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Madrid [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Madrid",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 26.0,
+     "avg_low_c": 15.0,
+     "rain_days": 3.0,
+     "note": "September: avg high 26.0°C, avg low 15.0°C — very warm, fairly dry (~3 rain days)"
+    }
+   ]
+  }
  },
  {
   "slug": "magny-cours",
@@ -26391,7 +28438,77 @@
      "note": "September: avg high 21.9°C, avg low 9.1°C — warm, moderate rain (~8.2 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   }
+  ]
  },
  {
   "slug": "mandalika",
@@ -26607,6 +28724,92 @@
    "title": "Pertamina Mandalika Circuit onboard lap",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10",
+    "note": "Turn 10 referenced in article (Márquez test photo; gravel trap between T10 and T11)"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   }
+  ],
+  "climate": {
+   "source_article": "Denpasar",
+   "source_url": "https://en.wikipedia.org/wiki/Denpasar",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 31.0,
+     "avg_low_c": 24.6,
+     "rain_days": 4.8,
+     "note": "October: avg high 31.0°C, avg low 24.6°C — hot, fairly dry (~4.8 rain days)"
+    }
+   ]
   }
  },
  {
@@ -26726,12 +28929,66 @@
    }
   ],
   "onboard_video": {
-   "url": "https://www.youtube.com/watch?v=09ue5Ys5_BM",
+   "url": "https://www.youtube.com/watch?v=LhbxcsIAtWw",
    "channel": "NTT INDYCAR SERIES",
-   "title": "All Angles | How huge crash unfolded on Streets of Toronto | Onboard Camera | INDYCAR",
    "channel_url": "https://www.youtube.com/@indycar",
-   "series": "indycar"
-  }
+   "title": "Best Onboard Moments | 2026 INDYCAR at Markham",
+   "series": "indycar",
+   "verified": "youtube oEmbed author_url == @indycar (2026-11-21, raw/w2-oembed-LhbxcsIAtWw.json)"
+  },
+  "climate": {
+   "source_article": "Toronto [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Toronto",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 25.9,
+     "avg_low_c": 16.2,
+     "rain_days": 9.0,
+     "note": "August: avg high 25.9°C, avg low 16.2°C — very warm, moderate rain (~9 days)"
+    }
+   ]
+  },
+  "photos": [
+   {
+    "file": "File:Downtown Markham 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Downtown_Markham_2025.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Downtown_Markham_2025.jpg",
+    "width": 4000,
+    "height": 3000,
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Canmenwalker",
+    "caption": "Downtown Markham / Markham Centre — area of the Streets of Markham circuit (area photo used by en.wp race article); no track photo on Commons yet",
+    "via": "en.wp 2026 Ontario Honda Dealers Indy Markham article"
+   },
+   {
+    "file": "File:Highway 7 at Woodbine Ave 2025.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Highway_7_at_Woodbine_Ave_2025.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Highway_7_at_Woodbine_Ave_2025.jpg",
+    "width": 4000,
+    "height": 3000,
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0",
+    "author": "Canmenwalker",
+    "caption": "Highway 7 at Woodbine Ave, Markham — street in the Markham Centre area used by the circuit",
+    "via": "Commons search 'Highway 7 Markham Ontario'"
+   },
+   {
+    "file": "File:Streets of Markham Track Map.png",
+    "url": "https://commons.wikimedia.org/wiki/File:Streets_of_Markham_Track_Map.png",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Streets_of_Markham_Track_Map.png",
+    "width": 2952,
+    "height": 2155,
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "author": "WL2392",
+    "caption": "Streets of Markham track map (2026) — layout map, no track photo on Commons yet",
+    "via": "en.wp Markham Street Circuit infobox image"
+   }
+  ]
  },
  {
   "slug": "martinsville",
@@ -27463,26 +29720,105 @@
   },
   "corners": [
    {
+    "n": 1,
+    "name": "Ese Moisés Solana (Solana Complex)",
+    "note": "turns 1-3 named after Moisés Solana before 1986; still called Ese Moisés Solana / \"Solana Complex\" (Wikipedia article, Renamed turns)"
+   },
+   {
+    "n": 2,
+    "name": "Ese Moisés Solana (Solana Complex)",
+    "note": "part of T1-3 complex (article)"
+   },
+   {
+    "n": 3,
+    "name": "Ese Moisés Solana (Solana Complex)",
+    "note": "part of T1-3 complex (article)"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
     "n": 6,
     "name": "Recorte Rebaque",
-    "note": "turn 6 renamed 2002 for Héctor Rebaque (ex-Recorte de Gran Premio)"
+    "note": "renamed 2002 for Héctor Rebaque, previously Recorte de Gran Premio (article)"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
    },
    {
     "n": 12,
     "name": "Adrián Fernández corner",
-    "note": "turn 12 named 2016 for Adrián Fernández; stadium (Foro Sol/Estadio GNP Seguros) section"
+    "note": "named 20 Sep 2016 for Adrián Fernández (article); inside the Foro Sol stadium section"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13",
+    "note": "Foro Sol stadium section: since 2015 a low-speed left-right combination bypasses the first half of Peraltada (article)"
    },
    {
     "n": 14,
-    "name": "Peraltada entry (stadium)",
-    "note": "baseball stadium inside turn 14 (Peraltada); low-speed left-right bypasses first half of Peraltada since 2015"
+    "name": "Turn 14",
+    "note": "stadium (Foro Sol / Estadio GNP Seguros) section (article)"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
    },
    {
     "n": 17,
-    "name": "Mansell corner",
-    "note": "turn 17 named 2015 for Nigel Mansell (1990 outside pass on Berger)"
+    "name": "Peraltada (Mansell corner)",
+    "note": "extremely fast, slightly banked final corner before the 1.2 km front straight; named after Nigel Mansell in 2015 (article, Renamed turns)"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Mexico City [fr.wp-source-truncated]",
+   "source_url": "https://fr.wikipedia.org/wiki/Mexico_City",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 1,
+     "month_name": "January",
+     "avg_high_c": 21.3,
+     "avg_low_c": 5.9,
+     "rain_days": 2.21,
+     "note": "January: avg high 21.3°C, avg low 5.9°C — warm, very dry (~2.21 rain days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 22.4,
+     "avg_low_c": 9.9,
+     "rain_days": 9.71,
+     "note": "October: avg high 22.4°C, avg low 9.9°C — warm, moderate rain (~9.71 days)"
+    }
+   ]
+  }
  },
  {
   "slug": "miami",
@@ -27734,6 +30070,110 @@
    "title": "FIRST LOOK! Onboard with Charles Leclerc at Miami International Autodrome in F1 22",
    "channel_url": "https://www.youtube.com/@Formula1",
    "series": "f1"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13",
+    "note": "start of elevation changes between T13-16: track heads over an exit ramp and under flyovers (formula1.com)"
+   },
+   {
+    "n": 14,
+    "name": "Chicane (T14-15)",
+    "note": "Turn 14-15 chicane: uphill approach with a crest mid-corner, then drops down on exit (formula1.com)"
+   },
+   {
+    "n": 15,
+    "name": "Chicane (T14-15)",
+    "note": "second part of the T14-15 chicane (formula1.com)"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   },
+   {
+    "n": 18,
+    "name": "Turn 18"
+   },
+   {
+    "n": 19,
+    "name": "Turn 19"
+   }
+  ],
+  "climate": {
+   "source_article": "Miami [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Miami",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 2,
+     "month_name": "February",
+     "avg_high_c": 24.7,
+     "avg_low_c": 15.8,
+     "rain_days": 4.6,
+     "note": "February: avg high 24.7°C, avg low 15.8°C — warm, fairly dry (~4.6 rain days)"
+    },
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 29.6,
+     "avg_low_c": 22.3,
+     "rain_days": 9.0,
+     "note": "May: avg high 29.6°C, avg low 22.3°C — very warm, moderate rain (~9 days)"
+    }
+   ]
   }
  },
  {
@@ -28647,7 +31087,61 @@
      "note": "July: avg high 30.5°C, avg low 19.2°C — hot, rain days n/a in table"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   }
+  ]
  },
  {
   "slug": "milwaukee",
@@ -29828,6 +32322,108 @@
    "title": "Yamaha OnBoard: Gran Premio Octo di San Marino e della Riviera di Rimini",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Variante del Parco",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9",
+    "note": "Tramonto area per track map"
+   },
+   {
+    "n": 10,
+    "name": "Rio",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Carro",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Curvone",
+    "note": "big curve, name per infobox track map"
+   }
+  ],
+  "climate": {
+   "source_article": "Bologna [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Bologna",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 26.8,
+     "avg_low_c": 15.6,
+     "rain_days": 6.6,
+     "note": "June: avg high 26.8°C, avg low 15.6°C — very warm, fairly dry (~6.6 rain days)"
+    },
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 29.9,
+     "avg_low_c": 18.2,
+     "rain_days": 4.5,
+     "note": "July: avg high 29.9°C, avg low 18.2°C — very warm, fairly dry (~4.5 rain days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 25.3,
+     "avg_low_c": 14.8,
+     "rain_days": 5.0,
+     "note": "September: avg high 25.3°C, avg low 14.8°C — very warm, fairly dry (~5 rain days)"
+    }
+   ]
   }
  },
  {
@@ -30480,7 +33076,32 @@
     "name": "Antony Noghès",
     "note": "final corner named after the Monaco GP founder"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Monaco",
+   "source_url": "https://en.wikipedia.org/wiki/Monaco",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 20.4,
+     "avg_low_c": 14.6,
+     "rain_days": 5.5,
+     "note": "May: avg high 20.4°C, avg low 14.6°C — warm, fairly dry (~5.5 rain days)"
+    },
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 23.7,
+     "avg_low_c": 18.0,
+     "rain_days": 4.1,
+     "note": "June: avg high 23.7°C, avg low 18.0°C — warm, fairly dry (~4.1 rain days)"
+    }
+   ]
+  },
+  "drs_zones": 1,
+  "elevation_change_m": 44
  },
  {
   "slug": "monza",
@@ -31767,7 +34388,24 @@
     "name": "Curva Alboreto (Parabolica)",
     "note": "180-degree right-hander, parabola shape, renamed for Michele Alboreto (2025)"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Monza [it.wp-source-truncated]",
+   "source_url": "https://it.wikipedia.org/wiki/Monza",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 23.6,
+     "avg_low_c": 14.1,
+     "rain_days": null,
+     "note": "September: avg high 23.6°C, avg low 14.1°C — warm, rain days n/a in table"
+    }
+   ]
+  },
+  "top_speed_kmh": 360,
+  "longest_straight_m": 1120
  },
  {
   "slug": "montreal",
@@ -32169,45 +34807,86 @@
   "corners": [
    {
     "n": 1,
-    "name": "Senna S (Turns 1-2)",
-    "note": "complex of turns 1-2 shaped like an S"
+    "name": "Senna S (Virage Senna)",
+    "note": "complex of turns 1-2 shaped like an S, known as the Senna S (Wikipedia article)"
    },
    {
     "n": 2,
-    "name": "Senna S",
-    "note": "second part of the S"
+    "name": "Senna S (Virage Senna)",
+    "note": "second part of turns 1-2 (article)"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7",
+    "note": "section from the hairpin to past the pit area runs alongside the Olympic Basin (article)"
    },
    {
     "n": 8,
     "name": "Pont de la Concorde",
-    "note": "very fast kink after the bridge underpass, before Turn 9"
+    "note": "very fast kink after the bridge underpass, before T9 (Wikipedia article)"
    },
    {
     "n": 9,
     "name": "Turn 9",
-    "note": "rush toward the hairpin passing zone"
+    "note": "rush toward the hairpin passing zone (article)"
    },
    {
     "n": 10,
     "name": "Hairpin (L'Épingle, Île Notre-Dame)",
-    "note": "180° hairpin, full wheel lock in F1"
+    "note": "180-degree hairpin, full wheel lock in F1; best passing zone approach (Wikipedia article)"
+   },
+   {
+    "n": 11,
+    "name": "Casino Straight (Droit du Casino)",
+    "note": "straight after the hairpin; name per infobox track map (Commons File:Île Notre-Dame (Circuit Gilles Villeneuve).svg)"
    },
    {
     "n": 12,
-    "name": "Turns 12-13",
-    "note": "best passing zone on the long straight after the hairpin"
+    "name": "Turn 12",
+    "note": "with T13 one of the best passing zones on the long straight after the hairpin (article)"
    },
    {
     "n": 13,
     "name": "Turn 13",
-    "note": "many cars cut the corner into run-off"
+    "note": "many cars cut T13 into the run-off, going too hot apexing (article)"
    },
    {
     "n": 14,
     "name": "Wall of Champions",
-    "note": "dubbed after 3 World Champions hit the outside wall in 1999; exit angle modified 2017"
+    "note": "final chicane exit wall dubbed after Hill, Villeneuve and Schumacher hit it in 1999; exit angle modified 2017 (Wikipedia article)"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Montreal [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Montreal",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 18.9,
+     "avg_low_c": 7.9,
+     "rain_days": 13.6,
+     "note": "May: avg high 18.9°C, avg low 7.9°C — mild, moderate rain (~13.6 days)"
+    }
+   ]
+  }
  },
  {
   "slug": "mosport",
@@ -32775,6 +35454,21 @@
    "title": "Canadian Tire Motorsport Park Hot Lap | Aston Martin Vantage GT3 Evo | Narrated by Roman Deangelis",
    "channel_url": "https://www.youtube.com/@imsaofficial",
    "series": "imsa"
+  },
+  "climate": {
+   "source_article": "Toronto [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Toronto",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 26.8,
+     "avg_low_c": 16.8,
+     "rain_days": 9.0,
+     "note": "July: avg high 26.8°C, avg low 16.8°C — very warm, moderate rain (~9 days)"
+    }
+   ]
   }
  },
  {
@@ -33676,7 +36370,65 @@
      "note": "October: avg high 21.4°C, avg low 12.6°C — warm, moderate rain (~11.4 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ]
  },
  {
   "slug": "mugello",
@@ -34376,6 +37128,95 @@
    "title": "GoPro™ OnBoard lap of the Autodromo del Mugello",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "San Donato",
+    "note": "right-hander at end of pit straight; per infobox track map"
+   },
+   {
+    "n": 2,
+    "name": "Luco"
+   },
+   {
+    "n": 3,
+    "name": "Poggio Secco"
+   },
+   {
+    "n": 4,
+    "name": "Materassi",
+    "note": "named after Emilio Materassi (article); map pairing"
+   },
+   {
+    "n": 5,
+    "name": "Borgo San Lorenzo"
+   },
+   {
+    "n": 6,
+    "name": "Casanova"
+   },
+   {
+    "n": 7,
+    "name": "Savelli"
+   },
+   {
+    "n": 8,
+    "name": "Arrabbiata 1"
+   },
+   {
+    "n": 9,
+    "name": "Arrabbiata 2",
+    "note": "Jason Dupasquier fatal crash at Arrabbiata 2 in 2021 Moto3 qualifying (article); map pairing"
+   },
+   {
+    "n": 10,
+    "name": "Scarperia",
+    "note": "village name; map pairing"
+   },
+   {
+    "n": 11,
+    "name": "Palagio"
+   },
+   {
+    "n": 12,
+    "name": "Correntaio"
+   },
+   {
+    "n": 13,
+    "name": "Biondetti 1"
+   },
+   {
+    "n": 14,
+    "name": "Biondetti 2"
+   },
+   {
+    "n": 15,
+    "name": "Bucine"
+   }
+  ],
+  "climate": {
+   "source_article": "Bologna [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Bologna",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 13.4,
+     "avg_low_c": 3.9,
+     "rain_days": 7.7,
+     "note": "March: avg high 13.4°C, avg low 3.9°C — cool, fairly dry (~7.7 rain days)"
+    },
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 22.7,
+     "avg_low_c": 11.8,
+     "rain_days": 7.7,
+     "note": "May: avg high 22.7°C, avg low 11.8°C — warm, fairly dry (~7.7 rain days)"
+    }
+   ]
   }
  },
  {
@@ -35024,6 +37865,21 @@
    "title": "Onboard Augusto Farfus - DTM Race Norisring",
    "channel_url": "https://www.youtube.com/@DTM",
    "series": "dtm"
+  },
+  "climate": {
+   "source_article": "Nuremberg [it.wp-source-truncated]",
+   "source_url": "https://it.wikipedia.org/wiki/Nuremberg",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 24.2,
+     "avg_low_c": 12.8,
+     "rain_days": null,
+     "note": "July: avg high 24.2°C, avg low 12.8°C — warm, rain days n/a in table"
+    }
+   ]
   }
  },
  {
@@ -35764,6 +38620,14 @@
      "note": "October: avg high 12.5°C, avg low 5.9°C — cool, moderate rain (~10.5 days)"
     }
    ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=ufzdL1JaEKM",
+   "channel": "ADAC RAVENOL 24h Nürburgring",
+   "channel_url": "https://www.youtube.com/@24hnbr",
+   "title": "Sabine Schmitz - Onboard | Porsche 911 GT3 R | Frikadelli Racing Team | VLN 2014",
+   "series": "24hnbr",
+   "verified": "youtube oEmbed author_url matches official series handle @24hnbr (accessed 2026-11-21, cached raw/w2-oembed-ufzdL1JaEKM.json)"
   }
  },
  {
@@ -38438,6 +41302,29 @@
    "title": "Tom Ingram’s pole lap at Oulton Park | BTCC 2022",
    "channel_url": "https://www.youtube.com/@OfficialBTCC",
    "series": "btcc"
+  },
+  "climate": {
+   "source_article": "London [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/London",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 17.9,
+     "avg_low_c": 8.7,
+     "rain_days": 8.8,
+     "note": "May: avg high 17.9°C, avg low 8.7°C — mild, moderate rain (~8.8 days)"
+    },
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 21.0,
+     "avg_low_c": 11.7,
+     "rain_days": 8.2,
+     "note": "June: avg high 21.0°C, avg low 11.7°C — warm, moderate rain (~8.2 days)"
+    }
+   ]
   }
  },
  {
@@ -39370,6 +42257,14 @@
      "note": "June: avg high 25.2°C, avg low 14.7°C — very warm, fairly dry (~3.6 rain days)"
     }
    ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=taQ1XHZRz6A",
+   "channel": "European Le Mans Series",
+   "channel_url": "https://www.youtube.com/@EuropeanLeMansSeriesOfficial",
+   "title": "A lap of the Circuit Paul Ricard with Nicolas Jamin",
+   "series": "elms",
+   "verified": "youtube oEmbed author_url matches official series handle @EuropeanLeMansSeriesOfficial (accessed 2026-11-21, cached raw/w2-oembed-taQ1XHZRz6A.json)"
   }
  },
  {
@@ -40007,7 +42902,58 @@
      "note": "February: avg high 23.8°C, avg low 14.0°C — warm, fairly dry (~6.8 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Doohan Corner",
+    "note": "Doohan Corner (first corner named after Michael Doohan, article)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   }
+  ]
  },
  {
   "slug": "phoenix",
@@ -40653,6 +43599,21 @@
    "title": "In-car: Junior completes Pocono sweep",
    "channel_url": "https://www.youtube.com/@NASCAR",
    "series": "nascar"
+  },
+  "climate": {
+   "source_article": "Philadelphia [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Philadelphia",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 28.2,
+     "avg_low_c": 17.7,
+     "rain_days": 9.8,
+     "note": "June: avg high 28.2°C, avg low 17.7°C — very warm, moderate rain (~9.8 days)"
+    }
+   ]
   }
  },
  {
@@ -41213,7 +44174,77 @@
      "note": "October: avg high 22.9°C, avg low 14.7°C — warm, rain days n/a in table"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Primeira",
+    "note": "first corner, per infobox track map (Commons File:Autódromo_do_Algarve_moto.svg)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Lagos",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Torre VIP",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 6,
+    "name": "Craig Jones",
+    "note": "corner named after former World Supersport rider Craig Jones, killed 2008 (Wikipedia article); map pairs name near T6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Samsung",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Portimão",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Sagres",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 15,
+    "name": "Galp",
+    "note": "final right-hander plunging back onto the pit straight, named Galp (formula1.com 2027 page + track map)"
+   }
+  ]
  },
  {
   "slug": "portland",
@@ -41747,6 +44778,71 @@
    "title": "Onboard! Pato O’Ward Practice POV | 2025 INDYCAR at Portland",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   }
+  ],
+  "climate": {
+   "source_article": "Seattle [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Seattle",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 24.0,
+     "avg_low_c": 13.2,
+     "rain_days": 4.5,
+     "note": "August: avg high 24.0°C, avg low 13.2°C — warm, fairly dry (~4.5 rain days)"
+    }
+   ]
   }
  },
  {
@@ -43006,7 +46102,8 @@
      "note": "August: avg high 25.4°C, avg low 14.8°C — very warm, moderate rain (~9.9 days)"
     }
    ]
-  }
+  },
+  "elevation_change_m": 65
  },
  {
   "slug": "richmond",
@@ -43155,6 +46252,21 @@
    "title": "NASCAR Craftsman Truck Series: Black's Tire 250 at Richmond Raceway Highlights 🏁 NASCAR on FOX",
    "channel_url": "https://www.youtube.com/@NASCARonFOX",
    "series": "nascar"
+  },
+  "climate": {
+   "source_article": "Washington, D.C. [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Washington,_D.C.",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 27.1,
+     "avg_low_c": 17.8,
+     "rain_days": 8.7,
+     "note": "September: avg high 27.1°C, avg low 17.8°C — very warm, moderate rain (~8.7 days)"
+    }
+   ]
   }
  },
  {
@@ -43814,7 +46926,67 @@
      "note": "August: avg high 26.7°C, avg low 16.6°C — very warm, moderate rain (~9.6 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5",
+    "note": null
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11",
+    "note": "\"the Kink\" on the back straight per article"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   }
+  ]
  },
  {
   "slug": "road-atlanta",
@@ -44521,7 +47693,57 @@
      "note": "October: avg high 22.2°C, avg low 9.9°C — warm, rain days n/a in table"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   }
+  ]
  },
  {
   "slug": "sachsenring",
@@ -45071,7 +48293,65 @@
      "note": "September: avg high 18.1°C, avg low 9.9°C — mild, rain days n/a in table"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Coca-Cola Kurve",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8",
+    "note": "waterfall-like downhill section"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "SachsenKurve",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 13,
+    "name": "Queckenberg Kurve",
+    "note": "name per infobox track map; Sternquell also labelled on map"
+   }
+  ]
  },
  {
   "slug": "sandiego",
@@ -45162,7 +48442,84 @@
    "title": "FIRST LOOK: Qualcomm Circuit at Naval Base Coronado | NASCAR",
    "channel_url": "https://www.youtube.com/@NASCAR",
    "series": "nascar"
-  }
+  },
+  "climate": {
+   "source_article": "San Diego [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/San_Diego",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 25.4,
+     "avg_low_c": 19.6,
+     "rain_days": 0.2,
+     "note": "August: avg high 25.4°C, avg low 19.6°C — very warm, very dry (~0.2 rain days)"
+    }
+   ]
+  },
+  "photos": [
+   {
+    "file": "File:NASCAR Cup Series Anduril 250 Race the Base at NASCAR San Diego Weekend (1) 9764227.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:NASCAR_Cup_Series_Anduril_250_Race_the_Base_at_NASCAR_San_Diego_Weekend_(1)_9764227.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/NASCAR_Cup_Series_Anduril_250_Race_the_Base_at_NASCAR_San_Diego_Weekend_%281%29_9764227.jpg",
+    "width": 6000,
+    "height": 4000,
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Mass Communication Specialist 1st Class Matt Hall",
+    "caption": "Cars race on Qualcomm Circuit past USS Carl Vinson during the 2026 Anduril 250 at Naval Base Coronado (US Navy photo)",
+    "via": "Commons search 'NASCAR San Diego Weekend'; also en.wp Coronado Street Course article"
+   },
+   {
+    "file": "File:NASCAR Cup Series Anduril 250 Race the Base at NASCAR San Diego Weekend (4) 9764231.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:NASCAR_Cup_Series_Anduril_250_Race_the_Base_at_NASCAR_San_Diego_Weekend_(4)_9764231.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/NASCAR_Cup_Series_Anduril_250_Race_the_Base_at_NASCAR_San_Diego_Weekend_%284%29_9764231.jpg",
+    "width": 6000,
+    "height": 4000,
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Mass Communication Specialist 1st Class Matt Hall",
+    "caption": "Cars race on Qualcomm Circuit near USS Carl Vinson during the 2026 Anduril 250 (US Navy photo)",
+    "via": "en.wp Coronado Street Course article"
+   },
+   {
+    "file": "File:NASCAR Cup Series Anduril 250 Race the Base (50) 9764784.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:NASCAR_Cup_Series_Anduril_250_Race_the_Base_(50)_9764784.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/NASCAR_Cup_Series_Anduril_250_Race_the_Base_%2850%29_9764784.jpg",
+    "width": 2515,
+    "height": 3773,
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Mass Communication Specialist Seaman Graham Lasser",
+    "caption": "NASCAR Cup cars race on the Coronado street circuit, June 21 2026 (US Navy photo)",
+    "via": "Commons search 'NASCAR San Diego Weekend'"
+   },
+   {
+    "file": "File:NASCAR Races on Naval Base Coronado (1) 9762770.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:NASCAR_Races_on_Naval_Base_Coronado_(1)_9762770.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/NASCAR_Races_on_Naval_Base_Coronado_%281%29_9762770.jpg",
+    "width": 4094,
+    "height": 5732,
+    "license": "Public domain",
+    "license_url": null,
+    "author": "Mass Communication Specialist 2nd Class August Clawson",
+    "caption": "NASCAR Craftsman Truck Series vehicle races on Naval Base Coronado during NASCAR San Diego Weekend, June 2026 (US Navy photo)",
+    "via": "Commons search 'NASCAR San Diego Weekend'"
+   },
+   {
+    "file": "File:Coronado Naval Base - leaving San Diego.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:Coronado_Naval_Base_-_leaving_San_Diego.jpg",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Coronado_Naval_Base_-_leaving_San_Diego.jpg",
+    "width": 3872,
+    "height": 2592,
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "author": "Andre Bulber",
+    "caption": "Aerial view of Naval Air Station North Island, Naval Base Coronado — location of the Coronado street circuit",
+    "via": "en.wp Coronado Street Course article"
+   }
+  ]
  },
  {
   "slug": "sandown",
@@ -45294,11 +48651,12 @@
    }
   ],
   "onboard_video": {
-   "url": "https://www.youtube.com/watch?v=B1sLiLFBnfA",
+   "url": "https://www.youtube.com/watch?v=kPkLx80CKrw",
    "channel": "Formula E",
-   "title": "Formula E Onboard - Moscow Street Circuit",
    "channel_url": "https://www.youtube.com/@FIAFormulaE",
-   "series": "fe"
+   "title": "Jake Dennis | Julius Bär Pole Position | 2026 Lianxin Sanya E-Prix Round 11",
+   "series": "fe",
+   "verified": "youtube oEmbed author_url == @FIAFormulaE (2026-11-21, raw/w2-oembed-kPkLx80CKrw.json)"
   },
   "climate": {
    "source_article": "Sanya",
@@ -46038,7 +49396,77 @@
      "note": "March: avg high 26.7°C, avg low 11.9°C — very warm, fairly dry (~5.2 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   }
+  ]
  },
  {
   "slug": "sepang",
@@ -46496,6 +49924,96 @@
    "title": "Best ONBOARD Battles of Sepang! 📹🇲🇾 | Malaysian GP",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1",
+    "note": "very long slow 2nd-gear corner, late braking (article lap description)"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2",
+    "note": "tight downhill left hairpin (article)"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3",
+    "note": "long flat-out right-hander (article)"
+   },
+   {
+    "n": 4,
+    "name": "Langkawi Curve",
+    "note": "second-gear right-angle right-hander, known locally as Langkawi Curve (article)"
+   },
+   {
+    "n": 5,
+    "name": "Genting Curve",
+    "note": "with T6: incredibly high-speed long chicane, high G (article); locally known as Genting"
+   },
+   {
+    "n": 6,
+    "name": "Genting Curve",
+    "note": "second part of T5-6 chicane (article)"
+   },
+   {
+    "n": 7,
+    "name": "KLIA curve",
+    "note": "with T8: long medium-speed double-apex right (article)"
+   },
+   {
+    "n": 8,
+    "name": "KLIA curve",
+    "note": "second part (article)"
+   },
+   {
+    "n": 9,
+    "name": "Berjaya Pulau Tioman Corner",
+    "note": "very slow uphill left hairpin (article)"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11",
+    "note": "challenging medium-speed right, braking and turning simultaneously (article)"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12",
+    "note": "flat-out bumpy left into flat right T13 (article)"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Sunway Lagoon curve",
+    "note": "challenging 2nd-gear corner, hard braking + steering (article)"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15",
+    "note": "hairpin separating the 0.927 km back straight from the pit straight (article layout section)"
+   }
+  ],
+  "climate": {
+   "source_article": "Kuala Lumpur [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Kuala_Lumpur",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 32.1,
+     "avg_low_c": 23.2,
+     "rain_days": 16.0,
+     "note": "October: avg high 32.1°C, avg low 23.2°C — hot, wet (~16 rain days)"
+    }
+   ]
   }
  },
  {
@@ -46919,7 +50437,38 @@
     "name": "Turn 16 (last corner)",
     "note": "fourth-gear left-hander onto the pit straight; brake early to carry speed"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Shanghai [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Shanghai",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 18.6,
+     "avg_low_c": 10.6,
+     "rain_days": 13.0,
+     "note": "April: avg high 18.6°C, avg low 10.6°C — mild, moderate rain (~13 days)"
+    },
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 31.6,
+     "avg_low_c": 24.8,
+     "rain_days": 12.0,
+     "note": "July: avg high 31.6°C, avg low 24.8°C — hot, moderate rain (~12 days)"
+    },
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 22.3,
+     "avg_low_c": 14.7,
+     "rain_days": 9.0,
+     "note": "October: avg high 22.3°C, avg low 14.7°C — warm, moderate rain (~9 days)"
+    }
+   ]
+  }
  },
  {
   "slug": "silverstone",
@@ -48932,7 +52481,9 @@
      "note": "September: avg high 19.4°C, avg low 10.7°C — mild, moderate rain (~8.6 days)"
     }
    ]
-  }
+  },
+  "top_speed_kmh": 325.1,
+  "longest_straight_m": 770
  },
  {
   "slug": "singapore",
@@ -49339,7 +52890,24 @@
     "speed_kmh": 180,
     "note": "turns 18-19 taken flat-out at ~180 km/h onto pit straight"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Johor Bahru [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Johor_Bahru",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 10,
+     "month_name": "October",
+     "avg_high_c": 31.8,
+     "avg_low_c": 22.6,
+     "rain_days": 16.0,
+     "note": "October: avg high 31.8°C, avg low 22.6°C — hot, wet (~16 rain days)"
+    }
+   ]
+  },
+  "drs_zones": 4,
+  "top_speed_kmh": 320
  },
  {
   "slug": "snetterton",
@@ -49871,7 +53439,38 @@
     "author": "John Fielding from Norwich, UK",
     "caption": "Snetterton Racing Circuit (9096594820) — Site of RAF Snetterton Heath 1943-1948 aerial snetterton aerial norfolk aerial image"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "London [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/London",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 14.2,
+     "avg_low_c": 5.5,
+     "rain_days": 9.1,
+     "note": "April: avg high 14.2°C, avg low 5.5°C — cool, moderate rain (~9.1 days)"
+    },
+    {
+     "month": 5,
+     "month_name": "May",
+     "avg_high_c": 17.9,
+     "avg_low_c": 8.7,
+     "rain_days": 8.8,
+     "note": "May: avg high 17.9°C, avg low 8.7°C — mild, moderate rain (~8.8 days)"
+    }
+   ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=8B6SUXDN6PY",
+   "channel": "BTCC",
+   "channel_url": "https://www.youtube.com/@OfficialBTCC",
+   "title": "Pole Lap: Jack Goff | Snetterton | BTCC 2017",
+   "series": "btcc",
+   "verified": "youtube oEmbed author_url matches official series handle @OfficialBTCC (accessed 2026-11-21, cached raw/w2-oembed-8B6SUXDN6PY.json)"
+  }
  },
  {
   "slug": "sonoma",
@@ -50559,7 +54158,57 @@
      "note": "July: avg high 30.0°C, avg low 11.9°C — hot, very dry (~0.1 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   }
+  ]
  },
  {
   "slug": "spa",
@@ -51864,7 +55513,8 @@
      "note": "August: avg high 21.3°C, avg low 10.9°C — warm, moderate rain (~11.7 days)"
     }
    ]
-  }
+  },
+  "elevation_change_m": 102.2
  },
  {
   "slug": "st-petersburg",
@@ -52156,6 +55806,21 @@
    "title": "BEST onboard moments from Streets of St. Pete | INDYCAR",
    "channel_url": "https://www.youtube.com/@indycar",
    "series": "indycar"
+  },
+  "climate": {
+   "source_article": "Miami [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Miami",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 26.2,
+     "avg_low_c": 17.9,
+     "rain_days": 4.9,
+     "note": "March: avg high 26.2°C, avg low 17.9°C — very warm, fairly dry (~4.9 rain days)"
+    }
+   ]
   }
  },
  {
@@ -53564,7 +57229,8 @@
      "note": "November: avg high 17.3°C, avg low 8.6°C — mild, fairly dry (~7 rain days)"
     }
    ]
-  }
+  },
+  "drs_zones": 1
  },
  {
   "slug": "sydney",
@@ -54418,6 +58084,21 @@
    "title": "The FASTEST LAP around the Tokyo E-Prix track | Oliver Rowland's Pole Lap",
    "channel_url": "https://www.youtube.com/@FIAFormulaE",
    "series": "fe"
+  },
+  "climate": {
+   "source_article": "Tokyo [simple.wp-source-truncated]",
+   "source_url": "https://simple.wikipedia.org/wiki/Tokyo",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 7,
+     "month_name": "July",
+     "avg_high_c": 29.2,
+     "avg_low_c": 21.8,
+     "rain_days": 11.8,
+     "note": "July: avg high 29.2°C, avg low 21.8°C — very warm, moderate rain (~11.8 days)"
+    }
+   ]
   }
  },
  {
@@ -55006,7 +58687,93 @@
    "title": "Valencia 2015 - Honda OnBoard",
    "channel_url": "https://www.youtube.com/@motogp",
    "series": "motogp"
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Ángel Nieto",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "de la Afición",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Champi Herreros",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Adrián Campos",
+    "note": "name per infobox track map; also Aspar/Nico Terol/Bernat Martínez/Jaume Masià/Doohan labelled on map (unnumbered in article)"
+   }
+  ],
+  "climate": {
+   "source_article": "Valencia [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Valencia",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 4,
+     "month_name": "April",
+     "avg_high_c": 20.8,
+     "avg_low_c": 11.5,
+     "rain_days": 4.8,
+     "note": "April: avg high 20.8°C, avg low 11.5°C — warm, fairly dry (~4.8 rain days)"
+    },
+    {
+     "month": 11,
+     "month_name": "November",
+     "avg_high_c": 19.8,
+     "avg_low_c": 10.8,
+     "rain_days": 4.3,
+     "note": "November: avg high 19.8°C, avg low 10.8°C — mild, fairly dry (~4.3 rain days)"
+    }
+   ]
+  },
+  "longest_straight_m": 876
  },
  {
   "slug": "vila-real",
@@ -55520,7 +59287,78 @@
      "note": "August: avg high 30.7°C, avg low ?°C — hot, rain days n/a in table"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   },
+   {
+    "n": 17,
+    "name": "Turn 17"
+   }
+  ],
+  "longest_straight_m": 1219
  },
  {
   "slug": "watkins-glen",
@@ -56637,7 +60475,53 @@
      "note": "September: avg high 23.8°C, avg low 9.7°C — warm, moderate rain (~10.6 days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   }
+  ]
  },
  {
   "slug": "yas-marina",
@@ -57220,7 +61104,76 @@
      "note": "December: avg high 26.5°C, avg low 15.7°C — very warm, very dry (~2.4 rain days)"
     }
    ]
-  }
+  },
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Turn 2"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Hairpin",
+    "note": "north hairpin; was Turn 7 until Jun 2021, widened (chicane removed) for the 2021 Abu Dhabi GP and renumbered T5 (Wikipedia article/gallery; formula1.com)"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Turn 11"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Turn 16"
+   }
+  ],
+  "elevation_change_m": 10.7,
+  "longest_straight_m": 1140
  },
  {
   "slug": "zandvoort",
@@ -57846,7 +61799,46 @@
     "author": "Cees de Boer",
     "caption": "Zandvoort circuit De pits voor de start van de Grand Prix, NL HlmNHA 54005205 — Circuit Zandvoort"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "Amsterdam [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Amsterdam",
+   "nearest_city_substituted": true,
+   "race_months": [
+    {
+     "month": 6,
+     "month_name": "June",
+     "avg_high_c": 20.3,
+     "avg_low_c": 11.3,
+     "rain_days": 13.3,
+     "note": "June: avg high 20.3°C, avg low 11.3°C — warm, moderate rain (~13.3 days)"
+    },
+    {
+     "month": 8,
+     "month_name": "August",
+     "avg_high_c": 22.4,
+     "avg_low_c": 13.4,
+     "rain_days": 15.5,
+     "note": "August: avg high 22.4°C, avg low 13.4°C — warm, wet (~15.5 rain days)"
+    },
+    {
+     "month": 9,
+     "month_name": "September",
+     "avg_high_c": 19.2,
+     "avg_low_c": 11.0,
+     "rain_days": 15.4,
+     "note": "September: avg high 19.2°C, avg low 11.0°C — mild, wet (~15.4 rain days)"
+    }
+   ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=4a5-JcLDAZw",
+   "channel": "DTM",
+   "channel_url": "https://www.youtube.com/@DTM",
+   "title": "Onboard Mike Rockenfeller Audi RS5 DTM - DTM Race Zandvoort",
+   "series": "dtm",
+   "verified": "youtube oEmbed author_url matches official series handle @DTM (accessed 2026-11-21, cached raw/w2-oembed-4a5-JcLDAZw.json)"
+  }
  },
  {
   "slug": "zhuzhou",
@@ -58624,7 +62616,102 @@
     "author": "Yu Chu Chin",
     "caption": "Scott Speed at the Adelaide Grand Final 04 — Scott Speed at the 2025 Adelaide Grand Final at Adelaide Street Circuit, Adelaide."
    }
-  ]
+  ],
+  "corners": [
+   {
+    "n": 1,
+    "name": "Turn 1"
+   },
+   {
+    "n": 2,
+    "name": "Senna Chicane",
+    "note": "name per infobox track map (Commons File:Adelaide_(short_route).svg); Wakefield corner nearby"
+   },
+   {
+    "n": 3,
+    "name": "Turn 3"
+   },
+   {
+    "n": 4,
+    "name": "Turn 4"
+   },
+   {
+    "n": 5,
+    "name": "Turn 5"
+   },
+   {
+    "n": 6,
+    "name": "Turn 6"
+   },
+   {
+    "n": 7,
+    "name": "Turn 7"
+   },
+   {
+    "n": 8,
+    "name": "Turn 8"
+   },
+   {
+    "n": 9,
+    "name": "Turn 9",
+    "note": "Brabham straight area per map"
+   },
+   {
+    "n": 10,
+    "name": "Turn 10"
+   },
+   {
+    "n": 11,
+    "name": "Dequetteville Hairpin",
+    "note": "name per infobox track map"
+   },
+   {
+    "n": 12,
+    "name": "Turn 12"
+   },
+   {
+    "n": 13,
+    "name": "Turn 13"
+   },
+   {
+    "n": 14,
+    "name": "Turn 14"
+   },
+   {
+    "n": 15,
+    "name": "Turn 15"
+   },
+   {
+    "n": 16,
+    "name": "Mistral Hairpin",
+    "note": "name per infobox track map; map numbers to 16 (long course), short/MotoGP route per article infobox"
+   }
+  ],
+  "climate": {
+   "source_article": "Adelaide [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/Adelaide",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 11,
+     "month_name": "November",
+     "avg_high_c": 23.9,
+     "avg_low_c": 12.8,
+     "rain_days": 4.3,
+     "note": "November: avg high 23.9°C, avg low 12.8°C — warm, fairly dry (~4.3 rain days)"
+    }
+   ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=KSIEXcmsUUc",
+   "channel": "Supercars",
+   "channel_url": "https://www.youtube.com/@supercars",
+   "title": "Driver's eye view: Race as Cam Waters - VALO Adelaide 500 | Supercars 2022",
+   "series": "supercars",
+   "verified": "youtube oEmbed author_url matches official series handle @supercars (accessed 2026-11-21, cached raw/w2-oembed-KSIEXcmsUUc.json)"
+  },
+  "top_speed_kmh": 322,
+  "longest_straight_m": 900
  },
  {
   "slug": "sao-paulo",
@@ -58757,6 +62844,29 @@
     "author": "Deni Williams from São Paulo, Brasil / Brazil",
     "caption": "IZOD IndyCar Series São Paulo Indy 300 Fotógrafo capturando os carros que passam durante a sessão de treinos de Sábado Photographer capturing the cars during Saturday practice session (27017064531) — Anhembi Sambadrome Circuit"
    }
-  ]
+  ],
+  "climate": {
+   "source_article": "São Paulo [de.wp-source-truncated]",
+   "source_url": "https://de.wikipedia.org/wiki/São_Paulo",
+   "nearest_city_substituted": false,
+   "race_months": [
+    {
+     "month": 3,
+     "month_name": "March",
+     "avg_high_c": 26.2,
+     "avg_low_c": 16.2,
+     "rain_days": 13.0,
+     "note": "March: avg high 26.2°C, avg low 16.2°C — very warm, moderate rain (~13 days)"
+    }
+   ]
+  },
+  "onboard_video": {
+   "url": "https://www.youtube.com/watch?v=lsEBPtBhhTA",
+   "channel": "Formula E",
+   "channel_url": "https://www.youtube.com/@FIAFormulaE",
+   "title": "Pascal Wehrlein's Stunning Pole Lap! ⚡ | São Paulo E-Prix",
+   "series": "fe",
+   "verified": "youtube oEmbed author_url matches official series handle @FIAFormulaE (accessed 2026-11-21, cached raw/w2-oembed-lsEBPtBhhTA.json)"
+  }
  }
 ]
