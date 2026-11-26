@@ -5,11 +5,11 @@
  * Renders the `logistics` block from data/tracks.json: nearest airport, the
  * transport route from it, where to base yourself, and one insider tip.
  *
- * `affiliate_hooks` render as non-interactive keyword chips. They are on-page
- * intent signals (and the vocabulary real fans search with) — the monetised
- * CTAs live in <TripPlannerCard />, which sits directly below this card and is
- * targeted at `accommodation_hub` rather than the venue city. Keeping one
- * affiliate module on the page avoids two competing sets of outbound links.
+ * The `affiliate_hooks` keywords from tracks.json are deliberately NOT rendered
+ * here any more: the monetised CTAs live in <TripPlannerCard />, which sits
+ * directly below this card and is targeted at `accommodation_hub` rather than
+ * the venue city. Keeping one affiliate module on the page avoids two
+ * competing sets of outbound links.
  */
 export interface TrackLogistics {
   nearest_airport: string;
@@ -51,14 +51,6 @@ const rows = [
     <div class="gt-tip-label">INSIDER TIP</div>
     <p class="gt-tip-text">{logistics.travel_tip}</p>
   </div>
-
-  {logistics.affiliate_hooks.length > 0 && (
-    <ul class="gt-hooks" aria-label="Related travel searches">
-      {logistics.affiliate_hooks.map(hook => (
-        <li class="gt-hook">{hook}</li>
-      ))}
-    </ul>
-  )}
 </div>
 
 <style>
@@ -163,25 +155,5 @@ const rows = [
     font-size: var(--fs-md-2);
     line-height: 1.65;
     color: var(--text-muted);
-  }
-
-  /* ── Search-intent keywords ──────────────────────────────────────────────── */
-  .gt-hooks {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 14px 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .gt-hook {
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--text-chip-muted);
-    letter-spacing: 0.04em;
-    border: 1px solid var(--control-line);
-    border-radius: var(--radius-pill);
-    padding: 4px 10px;
   }
 </style>

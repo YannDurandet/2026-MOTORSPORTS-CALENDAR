@@ -17,6 +17,7 @@ import Nav from '../../../components/Nav.astro';
 import Footer from '../../../components/Footer.astro';
 import GettingThereCard from '../../../components/GettingThereCard.astro';
 import TripPlannerCard from '../../../components/TripPlannerCard.astro';
+import NewsletterForm from '../../../components/NewsletterForm.astro';
 
 import tracksData from '../../../../data/tracks.json';
 import seriesContentData from '../../../../data/seriesContent.json';
@@ -35,6 +36,7 @@ import { seasonOf } from '../../../lib/season';
 import { seriesSeasonPath } from '../../../lib/seriesSeasons';
 import { jsonForScript } from '../../../lib/jsonForScript';
 import { layoutOfSvg, specsFor } from '../../../lib/trackSpecs';
+import { eventFaqs, raceFormatFor, stakesFor } from '../../../lib/eventExtras';
 
 export function getStaticPaths() {
   return ALL_EVENTS.map(ev => ({
@@ -165,6 +167,38 @@ const tickets = isPast ? [] : ticketLinks({
   circuitUrl: track?.website,
 });
 
+// ── Race format / stakes / FAQ ──────────────────────────────────────────────
+// The format block reads data/seriesRules.json; the stakes block reads
+// data/standings.json (current season only — stakesFor guards that); the FAQ
+// feeds BOTH the visible accordion below and the FAQPage JSON-LD in <head>,
+// so its answers stay plain, link-free and free of anything that can go stale
+// in search results (no standings, no winners).
+const format = raceFormatFor(ev.series, ev.hasSprint);
+const stakes = stakesFor(ev.series, season);
+const startLine = raceKnown && raceHHMM
+  ? `The race starts at ${raceHHMM} Paris time` +
+    (localStart ? ` (${localStart.time} ${localStart.abbr} at the circuit, ${utcStart!.time} UTC)` : ` (${utcStart!.time} UTC)`) +
+    ` on ${longDay(isoDay)}.`
+  : undefined;
+const faqs = eventFaqs({
+  title: ev.title,
+  year: ev.year,
+  seriesName,
+  dateLong,
+  startLine,
+  timesTbc,
+  whereLine: venue
+    ? (isRally ? `${venue.name}, based in ${venue.city}, ${venueCountry}` : `at ${venue.name} in ${venue.city}, ${venueCountry}`)
+    : `in ${ev.title}`,
+  circuitName: track?.name ?? null,
+  isRally,
+  sessions,
+  legs: ev.legs,
+  hasSprint: ev.hasSprint,
+  hasTickets: tickets.length > 0,
+  circuitHost: track?.website ? new URL(track.website).host : undefined,
+});
+
 function entrantOf(r: RaceResult): string {
   return r.team ?? r.manufacturer ?? '';
 }
@@ -227,6 +261,9 @@ const eventSchema = {
       "addressCountry": isoCountry(venue.country),
     },
     ...(venue.website ? { "url": venue.website } : {}),
+    ...(track && typeof track.lat === 'number' && typeof track.lng === 'number'
+      ? { "geo": { "@type": "GeoCoordinates", "latitude": track.lat, "longitude": track.lng } }
+      : {}),
   } : {
     "@type": "Place",
     "name": ev.title,
@@ -257,6 +294,17 @@ const breadcrumb = {
   <Fragment slot="head">
     <script type="application/ld+json" set:html={jsonForScript(eventSchema)} />
     <script type="application/ld+json" set:html={jsonForScript(breadcrumb)} />
+    {faqs.length > 0 && (
+      <script type="application/ld+json" set:html={jsonForScript({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(({ question, answer }) => ({
+          "@type": "Question",
+          "name": question,
+          "acceptedAnswer": { "@type": "Answer", "text": answer }
+        }))
+      })} />
+    )}
   </Fragment>
 
   <Banner />
@@ -344,11 +392,6 @@ const breadcrumb = {
                       <td class="ev-world-time">{z.time} <span class="ev-world-abbr">{z.abbr}</span></td>
                     </tr>
                   ))}
-                  <tr class="ev-world-yours" hidden>
-                    <th scope="row">Your time</th>
-                    <td class="js-your-day"></td>
-                    <td class="ev-world-time js-your-time" data-iso={ev.date}></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -364,6 +407,60 @@ const breadcrumb = {
             </div>
           )}
         </section>
+
+        {stakes && (
+          <section class="ev-block" aria-labelledby="ev-stakes-h">
+            <h2 class="section-label" id="ev-stakes-h">CHAMPIONSHIP STAKES · {stakes.tableLabel.toUpperCase()}</h2>
+            <table class="ev-stakes-table">
+              <tbody>
+                {stakes.top.map(s => (
+                  <tr>
+                    <td class="ev-stakes-pos">{s.pos}</td>
+                    <td class="ev-stakes-flag" aria-hidden="true">{countryFlag(s.country)}</td>
+                    <th scope="row">{s.name}</th>
+                    <td class="ev-stakes-team">{s.team}</td>
+                    <td class="ev-stakes-points">{s.points} pts</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p class="ev-stakes-line">
+              {stakes.top[0].name} leads by {stakes.leaderGap} points
+              {stakes.totalRounds > 0 && ` · ${stakes.roundsComplete} of ${stakes.totalRounds} rounds complete`}
+              {stakes.updatedAt && ` · standings updated ${new Date(`${stakes.updatedAt}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}`}
+              {' · this is round '}{roundIndex + 1}{' of '}{seriesRound.length}{` of the ${season} season.`}
+            </p>
+            <a class="ev-stakes-link" href={`${base}${seriesPath}`}>Full standings on the {short} {season} page →</a>
+          </section>
+        )}
+
+        {format && (format.distanceRule || format.pointsRows.length > 0 || format.categories.length > 0) && (
+          <section class="ev-block" aria-labelledby="ev-format-h">
+            <h2 class="section-label" id="ev-format-h">RACE FORMAT · {seriesName.toUpperCase()}</h2>
+            {format.distanceRule && <p class="ev-format-rule">{format.distanceRule}</p>}
+            {format.pointsRows.length > 0 && (
+              <dl class="ev-points">
+                {format.pointsRows.map(row => (
+                  <div class="ev-points-row">
+                    <dt>{row.label}</dt>
+                    <dd>
+                      {row.values.map((v, i) => (
+                        <span class="ev-point"><span class="ev-point-pos">P{i + 1}</span>{v}</span>
+                      ))}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            {format.note && <p class="ev-note">{format.note}</p>}
+            {format.categories.length > 0 && (
+              <div class="ev-cats">
+                <span class="ev-cats-label">CHAMPIONSHIPS DECIDED HERE</span>
+                {format.categories.map(c => <span class="ev-cat">{c}</span>)}
+              </div>
+            )}
+          </section>
+        )}
 
         {ev.results?.length && (
           <div class="ev-block">
@@ -393,7 +490,7 @@ const breadcrumb = {
             <table class="ev-watch-table">
               <tbody>
                 {watch.map(w => (
-                  <tr>
+                  <tr data-code={w.code}>
                     <th scope="row">{w.country}</th>
                     <td>
                       <ul class="ev-watch-list">
@@ -406,10 +503,54 @@ const breadcrumb = {
                 ))}
               </tbody>
             </table>
+            {watch.length > 1 && (
+              <div class="ev-watch-btns">
+                <button type="button" class="ev-watch-btn" id="ev-watch-loc">USE MY LOCATION</button>
+                <button type="button" class="ev-watch-btn" id="ev-watch-all">SEE ALL</button>
+                <button type="button" class="ev-watch-btn" id="ev-watch-less" hidden>SHOW LESS</button>
+              </div>
+            )}
             <p class="ev-note">Broadcast rights change by season and region; check local listings.</p>
           </section>
         )}
 
+        {faqs.length > 0 && (
+          <section class="ev-block ev-faq" aria-labelledby="ev-faq-h">
+            <h2 class="section-label" id="ev-faq-h">FAQ</h2>
+            <div class="faq-grid">
+              {faqs.map(f => (
+                <details class="faq-card" name="ev-faq">
+                  <summary class="faq-question">{f.question}</summary>
+                  <div class="faq-answer"><p>{f.answer}</p></div>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
+
+      </div>
+
+      <div class="event-col-right">
+        {tickets.length > 0 && (
+          <section class="ev-card ev-tickets" aria-labelledby="ev-tickets-h">
+            <h2 class="section-label" id="ev-tickets-h">TICKETS</h2>
+            <ul class="ev-tickets-list">
+              {tickets.map(tk => (
+                <li>
+                  <a href={tk.url} target="_blank" rel={tk.partner ? PARTNER_REL : 'noopener noreferrer'} class="ev-ticket"
+                     data-affiliate={tk.partner ? 'motorsport-tickets' : undefined}>
+                    <span class="ev-ticket-name">{tk.name}</span>
+                    <span class="ev-ticket-note">{tk.note}</span>
+                    <span class="ev-ticket-arrow" aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {AFFILIATE_ENABLED && tickets.some(tk => tk.partner) && (
+              <p class="affiliate-notice">Motorsport Tickets is an affiliate link: we may earn a commission at no cost to you.</p>
+            )}
+          </section>
+        )}
         {ev.support?.length && (
           <div class="ev-block">
             <h2 class="section-label">SUPPORT RACES</h2>
@@ -440,38 +581,6 @@ const breadcrumb = {
           </div>
         )}
 
-        <nav class="ev-rounds" aria-label={`${seriesName} season navigation`}>
-          {prevRound
-            ? <a href={`${base}${prevRound.path}`} class="ev-round ev-round--prev">← {prevRound.title}</a>
-            : <span class="ev-round ev-round--empty"></span>}
-          {nextRound
-            ? <a href={`${base}${nextRound.path}`} class="ev-round ev-round--next">{nextRound.title} →</a>
-            : <span class="ev-round ev-round--empty"></span>}
-        </nav>
-
-      </div>
-
-      <div class="event-col-right">
-        {tickets.length > 0 && (
-          <section class="ev-card ev-tickets" aria-labelledby="ev-tickets-h">
-            <h2 class="section-label" id="ev-tickets-h">TICKETS</h2>
-            <ul class="ev-tickets-list">
-              {tickets.map(tk => (
-                <li>
-                  <a href={tk.url} target="_blank" rel={tk.partner ? PARTNER_REL : 'noopener noreferrer'} class="ev-ticket"
-                     data-affiliate={tk.partner ? 'motorsport-tickets' : undefined}>
-                    <span class="ev-ticket-name">{tk.name}</span>
-                    <span class="ev-ticket-note">{tk.note}</span>
-                    <span class="ev-ticket-arrow" aria-hidden="true">↗</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {AFFILIATE_ENABLED && tickets.some(tk => tk.partner) && (
-              <p class="affiliate-notice">Motorsport Tickets is an affiliate link: we may earn a commission at no cost to you.</p>
-            )}
-          </section>
-        )}
         {track?.logistics && <GettingThereCard logistics={track.logistics} />}
         {track && (
           <TripPlannerCard
@@ -481,11 +590,25 @@ const breadcrumb = {
             placement={`event-${ev.slug}`}
           />
         )}
-        <a class="ev-card ev-newsletter" href={`${base}/newsletter`}>
-          <span class="section-label">NEWSLETTER</span>
-          <span class="ev-newsletter-text">Every Monday: the week's races with start times, in one email.</span>
-          <span class="ev-newsletter-cta">Sign up →</span>
-        </a>
+        <section class="ev-card ev-newsletter theme-dark" aria-labelledby="ev-newsletter-h">
+          <picture class="ev-newsletter-bg">
+            <source media="(min-width: 769px)" srcset={`${base}/assets/brand/banner-bg--large.webp`} width="1800" height="450" />
+            <img src={`${base}/assets/brand/banner-bg--mobile.webp`} alt="" aria-hidden="true" loading="lazy" decoding="async" width="900" height="450" />
+          </picture>
+          <div class="ev-newsletter-inner">
+            <span class="section-label" id="ev-newsletter-h">NEWSLETTER</span>
+            <p class="ev-newsletter-text">Every Monday: the week's races with start times, in one email.</p>
+            <NewsletterForm />
+          </div>
+        </section>
+        <nav class="ev-rounds" aria-label={`${seriesName} season navigation`}>
+          {prevRound
+            ? <a href={`${base}${prevRound.path}`} class="ev-round ev-round--prev">← {prevRound.title}</a>
+            : <span class="ev-round ev-round--empty"></span>}
+          {nextRound
+            ? <a href={`${base}${nextRound.path}`} class="ev-round ev-round--next">{nextRound.title} →</a>
+            : <span class="ev-round ev-round--empty"></span>}
+        </nav>
       </div>
     </div>
 
@@ -495,18 +618,50 @@ const breadcrumb = {
 </BaseLayout>
 
 <script>
-  // Fill in the race start in the visitor's own timezone.
-  const cell = document.querySelector<HTMLElement>('.js-your-time');
-  if (cell?.dataset.iso) {
-    const d = new Date(cell.dataset.iso);
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    cell.textContent = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
-    const day = document.querySelector('.js-your-day');
-    if (day) day.textContent = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
-    const row = cell.closest('tr');
-    const th = row?.querySelector('th');
-    if (th && tz) th.textContent = `Your time · ${tz.split('/').pop()!.replace(/_/g, ' ')}`;
-    row?.removeAttribute('hidden');
+  // How to watch: one country row shows by default (US, else the worldwide
+  // row). "Use my location" swaps to the visitor's country — the same Cloudflare
+  // IP lookup /watch uses, remembered on this device — and "See all" expands the
+  // whole table, with "Show less" to pull it back to the single row.
+  import { chooseCountry, detectCountry } from '../../../client/country.js';
+
+  const rows = [...document.querySelectorAll<HTMLTableRowElement>('.ev-watch-table tr[data-code]')];
+  const btnLoc = document.getElementById('ev-watch-loc') as HTMLButtonElement | null;
+  const btnAll = document.getElementById('ev-watch-all') as HTMLButtonElement | null;
+  const btnLess = document.getElementById('ev-watch-less') as HTMLButtonElement | null;
+
+  if (rows.length > 1 && btnLoc && btnAll && btnLess) {
+    const has = (code: string) => rows.some(r => r.dataset.code === code);
+    let current = has('US') ? 'US' : has('global') ? 'global' : rows[0].dataset.code!;
+
+    const collapse = () => {
+      rows.forEach(r => { r.hidden = r.dataset.code !== current; });
+      btnLoc.hidden = false;
+      btnAll.hidden = false;
+      btnLess.hidden = true;
+    };
+    const expand = () => {
+      rows.forEach(r => { r.hidden = false; });
+      btnLoc.hidden = true;
+      btnAll.hidden = true;
+      btnLess.hidden = false;
+    };
+
+    collapse();
+    btnAll.addEventListener('click', expand);
+    btnLess.addEventListener('click', collapse);
+    btnLoc.addEventListener('click', async () => {
+      btnLoc.disabled = true;
+      try {
+        const code = await detectCountry();
+        if (code) {
+          chooseCountry(code);
+          current = has(code) ? code : 'global';
+        }
+      } finally {
+        btnLoc.disabled = false;
+      }
+      collapse();
+    });
   }
 </script>
 
@@ -693,7 +848,6 @@ const breadcrumb = {
   .ev-world-abbr { font-weight: 400; color: var(--text-meta); font-size: var(--fs-xs); }
   .ev-world-table tr.is-local th,
   .ev-world-table tr.is-local td { color: var(--text-strong); }
-  .ev-world-yours th { color: var(--text-strong); }
 
   .ev-watch-table th { width: 34%; }
   .ev-watch-table td { color: var(--text-secondary); line-height: 1.6; }
@@ -737,12 +891,70 @@ const breadcrumb = {
     line-height: 1.5;
     color: var(--text-meta);
   }
-  .ev-newsletter { text-decoration: none; }
+  /* ── How to watch: country collapse buttons ──────────────────────────── */
+  .ev-watch-btns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .ev-watch-btn {
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--line-neutral-2);
+    border-radius: var(--radius-pill);
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s;
+  }
+  .ev-watch-btn:hover { color: var(--text-strong); border-color: var(--text-muted); }
+  .ev-watch-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .ev-watch-btn:disabled { opacity: 0.45; cursor: wait; }
+
+  /* ── Newsletter card: brand banner image with the inline sign-up form ──
+     Same treatment as the home-page banner: theme-dark keeps the text light
+     over the photography, a scrim keeps it legible. */
+  .ev-newsletter {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--surface-sunken-2);
+  }
+  .ev-newsletter-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    margin: 0;
+    pointer-events: none;
+  }
+  .ev-newsletter-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .ev-newsletter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--scrim-banner-flat);
+    pointer-events: none;
+  }
+  .ev-newsletter-inner { position: relative; z-index: 1; }
   .ev-newsletter .section-label { margin-bottom: 8px; }
-  .ev-newsletter-text { display: block; font-family: var(--font-body); font-size: var(--fs-base); line-height: 1.5; color: var(--text-soft); }
-  .ev-newsletter-cta { display: inline-block; margin-top: 10px; font-family: var(--font-mono); font-size: var(--fs-sm); font-weight: 700; color: var(--text-strong); }
-  .ev-newsletter:hover { border-color: var(--control-line); background: var(--row-bg-open); }
-  .ev-newsletter:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .ev-newsletter-text {
+    margin: 0 0 14px;
+    max-width: var(--w-prose);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    color: var(--text-soft);
+  }
+
+  /* Support / also-at / round-nav cards live in the right column on desktop:
+     that column stacks cards with margin-bottom, not margin-top. */
+  .event-col-right .ev-block,
+  .event-col-right .ev-rounds { margin-top: 0; margin-bottom: 12px; }
 
   .ev-note {
     margin: 8px 0 0;
@@ -860,4 +1072,104 @@ const breadcrumb = {
     .ev-spec { flex: none; padding: 12px 20px; border-right: 0; border-bottom: 1px solid var(--row-line); }
     .ev-spec:last-child { border-bottom: 0; }
   }
+
+  /* ── Race format ─────────────────────────────────────────────────────── */
+  .ev-format-rule {
+    margin: 0 0 14px;
+    max-width: var(--w-prose);
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.7;
+    color: var(--text-soft);
+  }
+  .ev-points { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .ev-points-row {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 10px;
+    align-items: baseline;
+  }
+  .ev-points-row dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ev-points-row dd { margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ev-point {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--text-strong);
+    background: var(--row-bg);
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-md);
+    padding: 3px 8px;
+  }
+  .ev-point-pos { color: var(--text-meta); font-weight: 400; margin-right: 6px; }
+  .ev-cats { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 14px; }
+  .ev-cats-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
+    letter-spacing: 0.1em;
+    margin-right: 4px;
+  }
+  .ev-cat {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-pill);
+    padding: 3px 10px;
+    background: var(--row-bg);
+  }
+  @media (max-width: 600px) {
+    .ev-points-row { grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ── Championship stakes ─────────────────────────────────────────────── */
+  .ev-stakes-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+  }
+  .ev-stakes-table td,
+  .ev-stakes-table th {
+    text-align: left;
+    padding: 7px 8px 7px 0;
+    border-top: 1px solid var(--row-line);
+    vertical-align: baseline;
+  }
+  .ev-stakes-table tr:first-child > * { border-top: 0; }
+  .ev-stakes-table th { font-weight: 700; color: var(--text-strong); }
+  .ev-stakes-pos { color: var(--text-meta); width: 2ch; }
+  .ev-stakes-flag { font-size: var(--fs-base); }
+  .ev-stakes-team { color: var(--text-meta); font-size: var(--fs-xs); }
+  .ev-stakes-points { text-align: right; font-weight: 700; color: var(--text-soft); white-space: nowrap; }
+  .ev-stakes-line {
+    margin: 10px 0 0;
+    font-size: var(--fs-sm-3);
+    color: var(--text-meta);
+    line-height: 1.6;
+  }
+  .ev-stakes-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--text-soft);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .ev-stakes-link:hover { color: var(--text-main); text-decoration: underline; }
+
+  /* ── FAQ (accordion classes are global; the card look follows ev-block) ── */
+  .ev-faq .faq-grid { gap: 8px; }
+  .ev-faq .faq-card { border-color: var(--row-line); border-radius: var(--radius-lg); }
+  .ev-faq .faq-question { font-size: var(--fs-base); padding: 12px 14px; }
+  .ev-faq .faq-answer { font-size: var(--fs-sm); padding: 12px 14px; }
 </style>

@@ -51,8 +51,13 @@ lists them.
 - [ ] **F-059** Rolex 24 (2026, 2027) and Le Mans 2026: `date` is the finish, not
       the start. Until fixed, the Le Mans 2026 feed entry runs Sunday to Monday.
 - [ ] **F-090 (data half)** about 152 TBC events in 2027 carry an invented clock
-      time in `date`. The code now treats TBC events as all-day; the data still
-      needs `npm run times:apply` (or the real times) as they're announced.
+      time in `date`. The code now treats TBC events as all-day. 2026-11-19:
+      `npm run times:carry -- --write` filled 112 of the 149 TBC events from their
+      2026 edition (same series+title, else unique series+track) and set `date` to
+      the race's Paris time — placeholders, not research. 37 remain TBC (new 2027
+      rounds with no 2026 counterpart, e.g. Turkish GP, the NASCAR playoff rounds)
+      plus the 3 in 2026; replace with `npm run times:prompt` / `times:apply` as
+      real times are announced.
 - [ ] **F-021** five rally rounds show another rally's name and town: give them a
       researched `venue` field.
 - [x] **F-088 (data half)** two NASCAR events carry the result of a later race at
@@ -75,8 +80,10 @@ lists them.
 
 - [x] **One newsletter form (F-068):** `src/components/NewsletterForm.astro` now holds
       the one form (markup, styles, submit script — the double-opt-in-aware variant).
-      Used by `newsletter.astro` and `NewsletterBanner.astro`. Still open: place it on
-      event and season pages, and test one real sign-up per surface.
+      Used by `newsletter.astro`, `NewsletterBanner.astro` and — since 2026-11-25 —
+      the newsletter card on every event page (brand banner background + inline form;
+      see `docs/pages-ui-status.md`). Still open: place it on the series season pages,
+      and test one real sign-up per surface.
 - [x] **Search:** a query typed before the search index had loaded showed nothing
       until the next keystroke. `BaseLayout.astro` now shares one in-flight fetch
       (`searchIndexPromise`), warms the index when the overlay opens, and

@@ -27,7 +27,9 @@
     "standings:apply": "node scripts/standings-sync.mjs apply",
     "times:prompt": "node scripts/gen-time-prompt.mjs",
     "times:apply": "node scripts/apply-times.mjs",
+    "times:carry": "node scripts/carry-times-forward.mjs",
     "sessions:apply": "node scripts/apply-sessions.mjs",
+    "sessions:brief": "node scripts/gen-session-prompt.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "test:unsub": "node scripts/test-unsub-token.mjs",
     "clean": "node -e \"for (const d of ['dist', '.astro', '.wrangler', '.indexnow-hashes.json']) require('node:fs').rmSync(d, { recursive: true, force: true })\""

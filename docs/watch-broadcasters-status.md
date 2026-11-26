@@ -2,7 +2,9 @@
 
 _Last researched: 2026-11-08. Data lives in `howToWatch` per series in `data/seriesContent.json`._
 
-How a visitor's list is chosen: `src/scripts/country.js` (their saved country → that country's list → the series' `global` list). The country comes from the popup on `/watch`, never from the browser language. Declining or never answering shows the **US** list; a series with no US entry shows its `global` option.
+How a visitor's list is chosen: `src/client/country.js` (their saved country → that country's list → the series' `global` list). The country comes from the popup on `/watch`, never from the browser language. Declining or never answering shows the **US** list; a series with no US entry shows its `global` option.
+
+Display: `/watch` and the series pages render the chosen list directly. Event pages (`/events/…`) show only the **US** row by default — same default rule — with USE MY LOCATION (the same `/api/country` IP lookup, saved to `dord-country`) and SEE ALL / SHOW LESS buttons to expand the full per-country table and pull it back. Changed 2026-11-25; data rules below are unaffected.
 
 ## Rules for editing
 

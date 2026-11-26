@@ -32,6 +32,7 @@ import { isoCountry } from '../../lib/results';
 import { countryFlag, layoutLabel, weekStartLabel } from '../../lib/format';
 import { dropFixedSize, stripTrackBackground } from '../../lib/trackSvg';
 import { defaultLayout, specsFor, type SpecLayout, type LapRecord, type Fia } from '../../lib/trackSpecs';
+import { fastestRecords, osmEmbedUrl, osmLink, rollOfHonourForTrack, type TrackRecord } from '../../lib/trackExtras';
 
 type Layout = SpecLayout & { label: string };
 type Logistics = {
@@ -63,6 +64,22 @@ type Venue = {
   history?: string;
   notable_moments?: string;
   logistics?: Logistics;
+  lat?: number;
+  lng?: number;
+  address?: string;
+  opened?: number;
+  capacity?: number;
+  records?: TrackRecord[];
+  photos?: Photo[];
+};
+
+type Photo = {
+  file: string;
+  url: string;
+  image_url: string;
+  license: string;
+  author: string;
+  caption: string;
 };
 
 export function getStaticPaths() {
@@ -111,6 +128,18 @@ for (const month of calendarData as any[]) {
 
 const allEvents = [...pastResults, ...upcomingEvents];
 const activeSeries = [...new Set(allEvents.map(e => e.series))];
+
+// ── Geo / map, records, roll of honour, photos ──────────────────────────────
+// The map is an OpenStreetMap embed (no API key) centred on the track's lat/lng.
+// Records are reduced to the outright time per category; the roll of honour
+// scans every season in the calendar, not just the ones shown above.
+const hasGeo = typeof venue.lat === 'number' && typeof venue.lng === 'number';
+const mapEmbed = hasGeo ? osmEmbedUrl(venue.lat!, venue.lng!) : null;
+const mapLink = hasGeo ? osmLink(venue.lat!, venue.lng!) : null;
+const recordRows = fastestRecords(venue.records);
+const RECORDS_SHOWN = 12;
+const honour = rollOfHonourForTrack(venue);
+const photos = venue.photos ?? [];
 
 
 // ── SVG ───────────────────────────────────────────────────────────────────────
@@ -207,6 +236,9 @@ const eventListSchema = (() => {
       },
       "url": `https://dord.racing/tracks/${slug}`,
       ...((venue as any).website ? { "sameAs": (venue as any).website } : {}),
+      ...(hasGeo
+        ? { "geo": { "@type": "GeoCoordinates", "latitude": venue.lat, "longitude": venue.lng } }
+        : {}),
     })} />
     <script type="application/ld+json" set:html={jsonForScript({
       "@context": "https://schema.org",
@@ -431,6 +463,38 @@ const eventListSchema = (() => {
       </div>
     )}
 
+    <!-- Circuit records: outright time per category, fastest first -->
+    {recordRows.length > 0 && (
+      <div class="track-records-section">
+        <div class="section-label">CIRCUIT RECORDS</div>
+        <div class="records-list">
+          {recordRows.slice(0, RECORDS_SHOWN).map(r => (
+            <div class="record-row">
+              <span class="record-series">{r.label}</span>
+              <span class="record-time">{r.time}</span>
+              <span class="record-driver">{r.driver}</span>
+              <span class="record-meta">{[r.car, r.year, r.event].filter(Boolean).join(' · ')}</span>
+            </div>
+          ))}
+        </div>
+        {recordRows.length > RECORDS_SHOWN && (
+          <details class="records-more">
+            <summary>All {recordRows.length} record categories</summary>
+            <div class="records-list">
+              {recordRows.slice(RECORDS_SHOWN).map(r => (
+                <div class="record-row">
+                  <span class="record-series">{r.label}</span>
+                  <span class="record-time">{r.time}</span>
+                  <span class="record-driver">{r.driver}</span>
+                  <span class="record-meta">{[r.car, r.year, r.event].filter(Boolean).join(' · ')}</span>
+                </div>
+              ))}
+            </div>
+          </details>
+        )}
+      </div>
+    )}
+
     <!-- Results -->
     {pastResults.length > 0 && (
       <div class="track-events-section">
@@ -483,9 +547,115 @@ const eventListSchema = (() => {
       </div>
     )}
 
+    <!-- Roll of honour: winners at this venue across every season in the calendar -->
+    {honour.length > 0 && (
+      <div class="track-honour-section">
+        <div class="section-label">ROLL OF HONOUR · WINNERS AT {venue.name.toUpperCase()}</div>
+        {honour.map(g => (
+          <div class="honour-group">
+            <div class="honour-head">
+              <a href={`${base}/series/${g.series}`} class={`tag t-${g.series}`}>{g.tag}</a>
+              <span class="honour-series-name">{g.seriesName}</span>
+            </div>
+            <div class="honour-rows">
+              {g.rows.map(r => (
+                <div class="honour-row">
+                  <span class="honour-year">{r.year}</span>
+                  {r.path
+                    ? <a href={`${base}${r.path}`} class="honour-title honour-title--link">{r.title}</a>
+                    : <span class="honour-title">{r.title}</span>}
+                  {r.raceLabel && <span class="honour-race">{r.raceLabel}</span>}
+                  {r.winner && (
+                    <span class="honour-winner">
+                      {r.winner}
+                      {r.country && <span class="res-flag" aria-hidden="true"> {countryFlag(r.country)}</span>}
+                    </span>
+                  )}
+                  {r.team && <span class="honour-team">{r.team}</span>}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Photos from Wikimedia Commons, each with its author and licence -->
+    {photos.length > 0 && (
+      <div class="track-photos-section">
+        <div class="section-label">PHOTOS</div>
+        <div class="photos-grid">
+          {photos.map(p => (
+            <figure class="photo-card">
+              <a href={p.url} target="_blank" rel="noopener noreferrer">
+                <img src={p.image_url} alt={p.caption} loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+              </a>
+              <figcaption>
+                <span class="photo-caption">{p.caption}</span>
+                <span class="photo-credit">
+                  © <a href={p.url} target="_blank" rel="noopener noreferrer">{p.author}</a> · {p.license}
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p class="photos-note">Photos via Wikimedia Commons — every image links to its file page with the full licence.</p>
+      </div>
+    )}
+
     </div><!-- /track-col-left -->
 
     <div class="track-col-right">
+      {(hasGeo || venue.address) && (
+        <section class="track-loc" aria-labelledby="track-loc-h">
+          <div class="section-label" id="track-loc-h">LOCATION</div>
+          {mapEmbed && (
+            <div class="track-map">
+              <iframe
+                src={mapEmbed}
+                title={`Map showing ${venue.name}, ${venue.city}`}
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              ></iframe>
+            </div>
+          )}
+          <dl class="track-loc-rows">
+            {hasGeo && (
+              <div class="track-loc-row">
+                <dt>COORDINATES</dt>
+                <dd class="track-loc-mono">{venue.lat}, {venue.lng}</dd>
+              </div>
+            )}
+            {venue.address && (
+              <div class="track-loc-row">
+                <dt>ADDRESS</dt>
+                <dd>{venue.address}</dd>
+              </div>
+            )}
+            {venue.opened && (
+              <div class="track-loc-row">
+                <dt>OPENED</dt>
+                <dd class="track-loc-mono">{venue.opened}</dd>
+              </div>
+            )}
+            {venue.capacity && (
+              <div class="track-loc-row">
+                <dt>CAPACITY</dt>
+                <dd class="track-loc-mono">{Number(venue.capacity).toLocaleString('en-GB')}</dd>
+              </div>
+            )}
+            <div class="track-loc-row">
+              <dt>REGION</dt>
+              <dd>{continentLabel[venue.continent] ?? venue.continent} · {venue.country}</dd>
+            </div>
+          </dl>
+          {mapLink && (
+            <a class="track-loc-link" href={mapLink} target="_blank" rel="noopener noreferrer">
+              View larger map on OpenStreetMap <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </section>
+      )}
       {(venue.overview || venue.history || venue.notable_moments) && (
         <div class="track-content-sections">
           {venue.overview && (
@@ -931,7 +1101,10 @@ const eventListSchema = (() => {
 
   /* ── Layouts ─────────────────────────────────────────────────────────────── */
   .track-layouts-section,
-  .track-events-section {
+  .track-events-section,
+  .track-records-section,
+  .track-honour-section,
+  .track-photos-section {
     border: 1px solid var(--border);
     border-top: none;
     background: var(--card-bg);
@@ -1097,7 +1270,10 @@ const eventListSchema = (() => {
   .track-hero,
   .track-meta-row,
   .track-layouts-section,
-  .track-events-section {
+  .track-events-section,
+  .track-records-section,
+  .track-honour-section,
+  .track-photos-section {
     border: 1px solid var(--row-line);
     margin: 0;
   }
@@ -1111,7 +1287,10 @@ const eventListSchema = (() => {
     border-bottom-right-radius: var(--radius-2xl);
   }
   .track-layouts-section,
-  .track-events-section {
+  .track-events-section,
+  .track-records-section,
+  .track-honour-section,
+  .track-photos-section {
     border-radius: var(--radius-2xl);
     margin-top: 12px;
   }
@@ -1123,5 +1302,229 @@ const eventListSchema = (() => {
   .result-entry .res-team { order: 3; }
   @media (max-width: 600px) {
     .result-entries { padding-left: 0; margin-top: 6px; }
+  }
+
+  /* ── Location card (right column): OSM embed + facts ─────────────────────── */
+  .track-loc {
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    border-radius: var(--radius-2xl);
+  }
+
+  .track-map {
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--row-bg);
+  }
+
+  .track-map iframe {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
+  }
+
+  .track-loc-rows { margin: 0; display: flex; flex-direction: column; }
+
+  .track-loc-row {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 10px;
+    padding: 7px 0;
+    border-top: 1px solid var(--row-line);
+    align-items: baseline;
+  }
+  .track-loc-row:first-child { border-top: 0; padding-top: 0; }
+
+  .track-loc-row dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs);
+    color: var(--text-meta);
+    letter-spacing: 0.1em;
+  }
+
+  .track-loc-row dd {
+    margin: 0;
+    font-size: var(--fs-sm-3);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .track-loc-mono {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-soft);
+  }
+
+  .track-loc-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    color: var(--text-soft);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .track-loc-link:hover { color: var(--text-main); text-decoration: underline; }
+  .track-loc-link:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+  /* ── Circuit records ─────────────────────────────────────────────────────── */
+  .records-list { display: flex; flex-direction: column; }
+
+  .record-row {
+    display: grid;
+    grid-template-columns: 130px 86px minmax(0, 1fr);
+    gap: 4px 12px;
+    padding: 8px 0;
+    border-top: 1px solid var(--row-line);
+    align-items: baseline;
+  }
+  .records-list .record-row:first-child { border-top: 0; padding-top: 0; }
+
+  .record-series {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs-3);
+    color: var(--text-meta);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .record-time {
+    font-family: var(--font-mono);
+    font-size: var(--fs-md);
+    font-weight: 700;
+    color: var(--text-strong);
+    white-space: nowrap;
+  }
+
+  .record-driver { font-size: var(--fs-sm); font-weight: 600; color: var(--text-soft); }
+
+  .record-meta {
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-dim-4);
+  }
+
+  .records-more { margin-top: 10px; }
+  .records-more summary {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+  }
+  .records-more summary:hover { color: var(--text-strong); }
+  .records-more .records-list { margin-top: 8px; }
+
+  @media (max-width: 600px) {
+    .record-row { grid-template-columns: 86px minmax(0, 1fr); }
+    .record-series { grid-column: 1 / -1; }
+  }
+
+  /* ── Roll of honour ──────────────────────────────────────────────────────── */
+  .honour-group { padding: 12px 0; border-top: 1px solid var(--row-line); }
+  .honour-group:first-of-type { border-top: 0; padding-top: 0; }
+
+  .honour-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+  .honour-head .tag { text-decoration: none; }
+  .honour-series-name {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-meta);
+  }
+
+  .honour-rows { display: flex; flex-direction: column; gap: 3px; }
+
+  .honour-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .honour-year {
+    font-family: var(--font-mono);
+    font-size: var(--fs-2xs);
+    color: var(--text-meta);
+    min-width: 38px;
+    flex-shrink: 0;
+  }
+
+  .honour-title { font-size: var(--fs-sm-3); font-weight: 600; color: var(--text-soft); }
+  .honour-title--link { text-decoration: none; }
+  .honour-title--link:hover { color: var(--text-main); text-decoration: underline; }
+
+  .honour-race {
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-meta);
+    letter-spacing: 0.06em;
+  }
+
+  .honour-winner { font-size: var(--fs-sm); color: var(--text-muted); }
+  .honour-team {
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-dim-4);
+  }
+
+  /* ── Photos ──────────────────────────────────────────────────────────────── */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  @media (min-width: 1100px) {
+    .photos-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  .photo-card {
+    margin: 0;
+    border: 1px solid var(--row-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--row-bg);
+  }
+
+  .photo-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .photo-card figcaption {
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .photo-caption {
+    font-size: var(--fs-2xs-3);
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .photo-credit {
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-meta);
+  }
+  .photo-credit a { color: var(--text-muted); }
+  .photo-credit a:hover { color: var(--text-strong); }
+
+  .photos-note {
+    margin: 10px 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-3xs-6);
+    color: var(--text-meta);
+    line-height: 1.5;
   }
 </style>

@@ -69,6 +69,9 @@ const sessionDays = (sessions ?? []).reduce<{ day: string; items: Session[] }[]>
   return days;
 }, []);
 const hasSessions = sessionDays.length > 0;
+// Full weekends (e.g. 2027 schedules) can run long: past this many day-lines the
+// panel scrolls instead of stretching the week card (see calendar.css).
+const manySessions = sessionDays.length > 4;
 
 const finished = !!results?.length;
 ---
@@ -98,7 +101,7 @@ const finished = !!results?.length;
 
   <div class="ev-panel" id={panelId} hidden="until-found">
     <div class="ev-panel-body">
-      <div class="ev-panel-main">
+      <div class:list={['ev-panel-main', { 'has-many-sessions': manySessions }]}>
         {classes && classes.length > 0 && (
           <ul class="class-chips" aria-label="Classes">
             {classes.map(c => <li class="class-chip">{c}</li>)}

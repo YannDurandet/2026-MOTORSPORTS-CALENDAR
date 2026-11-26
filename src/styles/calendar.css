@@ -245,6 +245,14 @@
 .ev-panel[hidden='until-found'] { padding-block: 0; }
 .ev-panel-body { display: flex; align-items: flex-start; gap: 12px; }
 .ev-panel-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+/* Long session schedules (full next-season weekends) scroll inside the panel
+   instead of stretching the week card open. */
+.ev-panel-main.has-many-sessions {
+  max-height: 10.5em;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: 4px;
+}
 
 .session-line,
 .ev-result {

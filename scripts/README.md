@@ -40,14 +40,30 @@ checks too (they verify the committed file matches what they'd write).
 
 ## 3. Write tools — the weekly "research → patch" loop
 
-Each takes a researched JSON file and merges it into the data, validating first
-and refusing to write on any problem:
+**Method: never edit `data/calendar.json` directly — and never let a researcher
+(human or AI) write to it either.** Research lands in a small patch file that a
+validator ingests; the git diff is the review. One weekend per patch keeps the
+review small and the validator's errors precise.
+
+```
+npm run sessions:brief -- "WEEK 42" > week42.json   # fillable skeleton (gen-session-prompt.mjs)
+   …fill every "??" from the OFFICIAL timetable (_source names the site)…
+node scripts/apply-sessions.mjs week42.json          # dry run: validated diff
+node scripts/apply-sessions.mjs week42.json --write  # apply
+```
+
+Every session/support row must carry `status` (confirmed|provisional) and an
+https `source`, or `apply-sessions` rejects the whole event. It also cross-checks
+weekday order, RACE vs `time`, and the Paris day vs `date`. Convert circuit-local
+times with `node scripts/tz.mjs "YYYY-MM-DD HH:MM" <IANA zone>`.
 
 | Command | File | Patches |
 |---|---|---|
 | `npm run results:gaps` / `results:brief` / `results:apply <file>` | `results-sync.mjs` | `calendar.json` `event.results` |
 | `npm run standings:stale` / `standings:apply <file>` | `standings-sync.mjs` | `data/standings.json` |
 | `npm run times:prompt` → `times:apply <file>` | `gen-time-prompt.mjs` → `apply-times.mjs` | TBC race times + `date` in `calendar.json` |
+| `npm run times:carry [-- --write]` | `carry-times-forward.mjs` | next season's TBC times copied from this season (placeholder, not research) |
+| `npm run sessions:brief -- <week\|month\|--all\|--tbc>` | `gen-session-prompt.mjs` | emits the patch skeleton for `sessions:apply` (sessions + feeder-series `sub` rows) |
 | `npm run sessions:apply <file>` | `apply-sessions.mjs` | `event.sessions` / `event.sub` in `calendar.json` (dry run unless `--write`) |
 
 Events are located by `series` + `title` + `weekLabel` via `findEvents()` in
