@@ -53,6 +53,30 @@ region); `check-data.mjs` had to scrape main.js by regex to keep them in sync.
   table. Deliberate change recorded in ADR-0002 (region buttons now reflect the
   data: +"United Kingdom", +"International").
 
-## Round 3 — pending
+## Round 3 — 2026-11-27 — deletion + inline-JSON standard
 
-## Round 3 — pending
+- Deleted `scripts/archive/` (dead one-off migration, zero references outside
+  docs; recoverable from git history). Updated scripts/README.md + CLAUDE.md.
+- `src/pages/embed/[series].astro`: replaced `define:vars` (does not escape
+  `</script>` in strings) with a `#embed-data` block via `jsonForScript` — the
+  repo-wide inline-JSON rule — and HTML-escape the strings the script renders
+  (title/tag/location). Verified in the built `embed/f1.html` / `embed/all.html`.
+- Reviewed remaining inline scripts (watch.astro, BaseLayout.astro): generic
+  boot code only, no extractable duplication.
+- Verified: `npm run check` exit 0 (typecheck hints dropped 6 → 4); build exit 0.
+
+## Round 4 — 2026-11-27 — final scan + verification
+
+- Negative-tested the ADR-0002 anti-regression (planted `const seriesMetadata`
+  in main.js → check fails; removed → green).
+- Reviewed remaining surfaces: component scoped styles are per-component (token
+  usage enforced by `check-tokens.mjs`); `series/[slug]` vs `[slug]/[year]` are
+  distinct pages (hub vs season), not duplicates; the only TODOs left are real
+  pending product decisions (Awin approval in `affiliates.ts`).
+- ADR-0003 records the enforced module boundaries.
+- Final verification: `npm run check` exit 0 (78 files / 207 import edges,
+  0 architecture violations, 0 TS errors, 0 warnings, 4 hints vs 6 at
+  baseline); `npm run build` exit 0 (711 OG images, sitemap OK).
+- Open items left in TASKS.md: T-04 (badge color table vs CSS — needs a tech
+  decision on worker-side CSS reads) and T-06 (data-only fixes tracked in
+  docs/code-audit-status.md §3 — product/data decisions, out of code scope).
