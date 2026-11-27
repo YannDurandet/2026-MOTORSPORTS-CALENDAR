@@ -19,42 +19,27 @@ function inPreview(el) {
 // =============================================
 // SERIES METADATA (categories & regions)
 // =============================================
-const seriesMetadata = {
-    f1: { name: "Formula 1", category: "Open Wheel", region: "Worldwide" },
-    f1a: { name: "F1 Academy", category: "Open Wheel", region: "Worldwide" },
-    fe: { name: "Formula E", category: "Open Wheel", region: "Worldwide" },
-    sf: { name: "Super Formula", category: "Open Wheel", region: "Asia & Oceania" },
-    wec: { name: "WEC", category: "Endurance", region: "Worldwide" },
-    imsa: { name: "IMSA", category: "Endurance", region: "USA" },
-    wrc: { name: "WRC", category: "Rally", region: "Worldwide" },
-    indycar: { name: "IndyCar", category: "Open Wheel", region: "USA" },
-    nascar: { name: "NASCAR", category: "Touring", region: "USA" },
-    motogp: { name: "MotoGP", category: "Bike", region: "Worldwide" },
-    wsbk: { name: "WSBK", category: "Bike", region: "Worldwide" },
-    dtm: { name: "DTM", category: "GT / Sports Car", region: "Europe" },
-    btcc: { name: "BTCC", category: "Touring", region: "Europe" },
-    supercars: { name: "Supercars", category: "Touring", region: "Asia & Oceania" },
-    elms: { name: "ELMS", category: "Endurance", region: "Europe" },
-    gtwce: { name: "GTWCE", category: "GT / Sports Car", region: "Europe" },
-    gtwca: { name: "GTWCA", category: "GT / Sports Car", region: "USA" },
-    nls: { name: "NLS", category: "Endurance", region: "Europe" },
-    igtc: { name: "IGTC", category: "GT / Sports Car", region: "Worldwide" },
-    tcr: { name: "TCR", category: "Touring", region: "Worldwide" },
-    erc: { name: "ERC", category: "Rally", region: "Europe" },
-    h24eu: { name: "24H European Series", category: "Endurance", region: "Europe" },
-    psc: { name: "Porsche Supercup", category: "GT / Sports Car", region: "Europe" },
-    bgt: { name: "British GT", category: "GT / Sports Car", region: "Europe" },
-    eurx: { name: "Euro RX", category: "Rally", region: "Europe" },
-    'asian-le-mans': { name: "Asian Le Mans Series", category: "Endurance", region: "Worldwide" }
-};
+// From the page's #series-meta block, which index.astro generates from
+// data/seriesContent.json at build time (ADR-0002): one source, no per-series
+// table to keep in sync here. A new series in seriesContent.json appears in
+// the filters by itself.
+const seriesMetaList = JSON.parse(document.getElementById('series-meta')?.textContent || '[]');
+const metaBySlug = Object.fromEntries(seriesMetaList.map(s => [s.slug, s]));
 
 // =============================================
 // FILTER CONSTANTS
 // =============================================
-// One list to keep: the filter buttons follow seriesMetadata's order.
-const allSeries = Object.keys(seriesMetadata);
-const ALL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
-const ALL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
+// One list to keep: the filter buttons follow the seriesContent.json order.
+const allSeries = seriesMetaList.map(s => s.slug);
+// Region/category vocabularies are derived from the data (a series classified
+// under a new region gets its button automatically); the canonical order keeps
+// the long-standing buttons first, new ones appended.
+const CANONICAL_REGIONS = ['Worldwide', 'Europe', 'USA', 'Asia & Oceania'];
+const CANONICAL_CATEGORIES = ['Open Wheel', 'Endurance', 'Rally', 'Touring', 'Bike', 'GT / Sports Car'];
+const uniqOrdered = (vals, canonical) =>
+    [...canonical.filter(v => vals.includes(v)), ...vals.filter(v => !canonical.includes(v))];
+const ALL_REGIONS = uniqOrdered([...new Set(seriesMetaList.map(s => s.region))], CANONICAL_REGIONS);
+const ALL_CATEGORIES = uniqOrdered([...new Set(seriesMetaList.map(s => s.category))], CANONICAL_CATEGORIES);
 
 const seriesLabels = {
     f1: 'F1', f1a: 'F1A', fe: 'FE', sf: 'SF', wec: 'WEC', imsa: 'IMSA', wrc: 'WRC',
@@ -293,7 +278,7 @@ function initFilters() {
         const btn = document.createElement('button');
         const isHidden = filterState.hiddenSpecificSeries.includes(s);
         btn.className = `filter-btn filter-${s}${isHidden ? '' : ' active'}`;
-        btn.textContent = seriesLabels[s];
+        btn.textContent = seriesLabels[s] || s.toUpperCase();
         btn.dataset.series = s;
         btn.setAttribute('aria-pressed', isHidden ? 'false' : 'true');
         btn.addEventListener('click', () => {
@@ -329,7 +314,7 @@ function initFilters() {
 }
 
 function isSeriesVisible(seriesKey) {
-    const meta = seriesMetadata[seriesKey];
+    const meta = metaBySlug[seriesKey];
     if (!meta) return true;
     if (filterState.hiddenSpecificSeries.includes(seriesKey)) return false;
     if (filterState.regions.length > 0 && !filterState.regions.includes(meta.region)) return false;

@@ -22,8 +22,9 @@ data/calendar.json  ── the single source of truth (hand-edited + patched by 
 | `check-support-series.mjs` | `data/supportSeries.json` catalog + `status`/`source` on session rows |
 | `check-tokens.mjs` | No colour/font/size/radius literals in site CSS — tokens only |
 | `check-season.mjs` | No season year typed as a literal in `src/` or `workers/` (rollover = one constant) |
+| `check-architecture.mjs` | Module graph rules: no import cycles, layer direction (lib/client/ui/workers), browser-safety of client-side imports, canonical `jsonResponse()` (ADR-0001). Rules documented in `docs/governance/ARCHITECTURE.md` |
 
-All four accumulate failures via `collector()` from `lib.mjs` and exit 1 with a
+All five accumulate failures via `collector()` from `lib.mjs` and exit 1 with a
 list. `gen-season-files.mjs --check` and `gen-track-map-status.mjs --check` are
 checks too (they verify the committed file matches what they'd write).
 
@@ -77,7 +78,9 @@ Events are located by `series` + `title` + `weekLabel` via `findEvents()` in
 | `test-unsub-token.mjs` (`npm run test:unsub`) | Generate/verify newsletter unsubscribe tokens locally (needs `UNSUB_SECRET`) |
 | `tz.mjs` | One-off calculator: circuit-local time → Paris time (`node scripts/tz.mjs "2026-11-21 20:00" America/Los_Angeles`) |
 | `lib.mjs` | The shared toolbox (not a command) |
-| `archive/` | Completed one-off migrations, kept for history — don't run |
+
+Completed one-off migrations used to live in `scripts/archive/`; it was deleted
+in governance round 3 (deletion over accumulation — recoverable from git history). |
 
 ## Not code
 

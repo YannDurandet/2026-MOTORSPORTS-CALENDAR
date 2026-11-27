@@ -25,6 +25,7 @@ import { createClient } from '@libsql/client/web';
 import { Resend } from 'resend';
 import type { APIRoute } from 'astro';
 import { computeUnsubToken, unsubUrl, computeConfirmToken, confirmUrl } from '../../lib/unsub-token';
+import { jsonResponse } from '../../lib/http';
 
 const WELCOME_TEXT = `Welcome to From The Pit Wall.
 
@@ -320,9 +321,7 @@ export const POST: APIRoute = async ({ request }) => {
 };
 
 // ── Helper ─────────────────────────────────────────────────────────────────
+// Canonical JSON response: jsonResponse() in src/lib/http.ts (ADR-0001).
 function json(body: unknown, status: number): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return jsonResponse(body, { status });
 }

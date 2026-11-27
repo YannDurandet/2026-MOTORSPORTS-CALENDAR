@@ -1,0 +1,38 @@
+# Optimization task pool
+
+_Last updated: 2026-11-27. New entropy found during a round is appended here;
+closed items move to PROGRESS.md with their round number._
+
+## Open
+
+- [x] **T-01** Deleted `scripts/archive/` (dead one-off migration, zero
+  references; recoverable from git). Done in round 3.
+- [x] **T-02 (part)** `watchWeekend.js` was isomorphic but lived in `src/client/`;
+  moved to `src/lib/weekend.js` (round 1). Remaining: inline `<script>` blocks in
+  `watch.astro` (~118/124), `BaseLayout.astro` (214/529) — review for logic that
+  belongs in shared client modules.
+- [x] **T-03 (part)** `seriesMetadata` in main.js deleted — filters read
+  `#series-meta` from seriesContent.json (ADR-0002). Still open: the three
+  display-context label tables (`seriesLabels` chips, calendar `tag`,
+  `seriesShort` titles, worker `SERIES_BADGE.abbr`) intentionally stay separate
+  (different length budgets — see ARCHITECTURE.md); verify each consumer uses
+  the right one when touched.
+- [ ] **T-04** `workers/newsletter.ts` `SERIES_BADGE` color table duplicates the
+  `.t-{slug}` CSS colors in `src/styles/`. Candidate: single source for badge
+  colors (either generate CSS from one table or read at build time — the OG
+  path already reads CSS; decide one direction). Record as pending product/tech
+  decision if it requires a worker-side CSS read.
+- [x] **T-05** `embed/[series].astro` no longer uses `define:vars`: event data
+  now goes through a `#embed-data` block via `jsonForScript` (the repo-wide
+  inline-JSON rule) and rendered strings are HTML-escaped. Done in round 3.
+- [x] **T-02 (rest)** Reviewed the remaining inline scripts (`watch.astro`,
+  `BaseLayout.astro`): they are generic boot code (service worker, mailto
+  obfuscation, theme) or read `jsonForScript` blocks; nothing left to extract.
+  Done in round 3.
+- [ ] **T-06** Pending product decisions (from docs/code-audit-status.md §3,
+  data-only): F-057/058/059/090/021/089/091/092/060 — data fixes, out of scope
+  for code governance; tracked there.
+
+## Closed
+
+(moved to PROGRESS.md)

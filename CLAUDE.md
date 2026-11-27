@@ -277,7 +277,8 @@ Everything in `scripts/` is reachable through `npm run`, except the shared helpe
 
 Race results live **inline in `data/calendar.json`** (`event.results`). There is no separate results file.
 
-`scripts/archive/` holds completed one-off migrations. Kept for history; don't run them.
+Completed one-off migrations are not kept under `scripts/` anymore (the old
+`scripts/archive/` was deleted in governance round 3; recover from git history).
 
 ## Sandboxed / remote editing note
 When the repo is edited through a sandbox or remote file bridge rather than locally, prefer the **Read tool** over bash `cat` to verify file state — a mounted filesystem may serve a stale cached view after an external tool writes. Avoid running `git` across such a bridge: even read-only commands like `status` and `diff` take `.git/index.lock`, and a bridge that cannot delete files will leave the lock behind.
