@@ -3,6 +3,7 @@ import tracksRaw from '../../../data/tracks.json';
 import seriesContent from '../../../data/seriesContent.json';
 import calendarRaw from '../../../data/calendar.json';
 import { monthYear, weekAnchor } from '../../lib/season';
+import { jsonResponse } from '../../lib/http';
 
 export const GET: APIRoute = () => {
   const tracks = (tracksRaw as any[]).map(t => ({
@@ -44,7 +45,5 @@ export const GET: APIRoute = () => {
   }
 
   // Series first, then tracks, then events
-  return new Response(JSON.stringify([...series, ...tracks, ...events]), {
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return jsonResponse([...series, ...tracks, ...events]);
 };

@@ -25,6 +25,11 @@ fix applied to one copy only).
 ## Consequences
 
 - One place to change JSON serving or the standalone page look.
-- `scripts/check-architecture.mjs` fails if a `src/pages/data/*.json.ts` endpoint
-  builds its own `Response` instead of calling `jsonResponse`.
-- No behavior change: bytes served are identical (same headers, same JSON).
+- `scripts/check-architecture.mjs` fails any `new Response(JSON.stringify(...))`
+  outside `src/lib/http.ts`.
+- JSON bodies are byte-identical. Deliberate, safe convergences on the
+  standalone pages: `/api/unsubscribe` now also sends `noindex` and
+  `Cache-Control: private, no-store` like `/api/confirm` (both pages carry
+  per-recipient tokens in the URL), uses the full `escapeHtml` (& < > "), and
+  the union CSS (one `.back` colour, plus `.btn:focus-visible` and `.done`).
+  Both pages keep their exact visible copy and form actions.

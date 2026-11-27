@@ -19,6 +19,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+import { jsonResponse } from '../../lib/http';
 
 // Cloudflare's placeholders for "unknown" and "Tor exit node".
 const NOT_A_COUNTRY = new Set(['XX', 'T1']);
@@ -31,10 +32,7 @@ export const GET: APIRoute = ({ request }) => {
   const country =
     typeof raw === 'string' && /^[A-Z]{2}$/.test(raw) && !NOT_A_COUNTRY.has(raw) ? raw : null;
 
-  return new Response(JSON.stringify({ country }), {
-    headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'private, no-store',
-    },
+  return jsonResponse({ country }, {
+    headers: { 'Cache-Control': 'private, no-store' },
   });
 };
