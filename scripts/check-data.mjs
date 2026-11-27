@@ -61,18 +61,15 @@ const allSeriesInCal = [...new Set(allEvents.map(({ ev }) => ev.series))];
 // seriesContent slugs
 const contentSlugs = new Set(seriesContent.map(s => s.slug));
 
-// seriesMetadata keys extracted by regex (handles bare keys and quoted keys)
-const metaKeyRe = /(?:^|\s)(?:'([^']+)'|(\w[\w-]*))\s*:\s*\{/gm;
-let metaBlock = mainJsText.slice(mainJsText.indexOf('const seriesMetadata = {'));
-metaBlock = metaBlock.slice(0, metaBlock.indexOf('\n};') + 3);
-const metaKeys = new Set();
-let m;
-while ((m = metaKeyRe.exec(metaBlock)) !== null) {
-  metaKeys.add(m[1] ?? m[2]);
+// Anti-regression (ADR-0002): the per-series metadata table must NOT come back
+// into client code — index.astro embeds data/seriesContent.json as #series-meta.
+if (mainJsText.includes('const seriesMetadata')) {
+  fail.push('[series-metadata] src/client/main.js defines a hardcoded seriesMetadata table again — read #series-meta instead (ADR-0002)');
 }
+c.tick();
 
-// seriesLabels keys (main.js): a slug missing there gets a filter button
-// that reads "undefined".
+// seriesLabels keys (main.js): a slug missing there falls back to the slug in
+// upper case, but a chip label is still wanted for every calendar series.
 let labelBlock = mainJsText.slice(mainJsText.indexOf('const seriesLabels = {'));
 labelBlock = labelBlock.slice(0, labelBlock.indexOf('};') + 2);
 const labelKeys = new Set([...labelBlock.matchAll(/(?:'([^']+)'|(\w[\w-]*))\s*:\s*'/g)].map(m => m[1] ?? m[2]));
@@ -229,7 +226,6 @@ check('series-registration', allSeriesInCal, slug => {
   const msgs = [];
   if (!seriesJson[slug])     msgs.push('missing from series.json');
   if (!contentSlugs.has(slug)) msgs.push('missing from seriesContent.json');
-  if (!metaKeys.has(slug))   msgs.push('missing from seriesMetadata in main.js');
   if (!labelKeys.has(slug))  msgs.push('missing from seriesLabels in main.js');
   if (!hasCssVar(slug))      msgs.push(`no --${slug} CSS variable`);
   if (!hasCssTagRule(slug))  msgs.push(`no .t-${slug} CSS rule`);

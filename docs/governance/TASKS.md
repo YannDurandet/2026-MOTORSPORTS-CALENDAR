@@ -12,9 +12,12 @@ closed items move to PROGRESS.md with their round number._
   moved to `src/lib/weekend.js` (round 1). Remaining: inline `<script>` blocks in
   `watch.astro` (~118/124), `BaseLayout.astro` (214/529) — review for logic that
   belongs in shared client modules.
-- [ ] **T-03** `src/client/main.js` `seriesLabels` chip labels vs calendar
-  `tag` vs `seriesShort` — semantics differ per context (see ARCHITECTURE.md);
-  keep separate, but verify each consumer uses the right one.
+- [x] **T-03 (part)** `seriesMetadata` in main.js deleted — filters read
+  `#series-meta` from seriesContent.json (ADR-0002). Still open: the three
+  display-context label tables (`seriesLabels` chips, calendar `tag`,
+  `seriesShort` titles, worker `SERIES_BADGE.abbr`) intentionally stay separate
+  (different length budgets — see ARCHITECTURE.md); verify each consumer uses
+  the right one when touched.
 - [ ] **T-04** `workers/newsletter.ts` `SERIES_BADGE` color table duplicates the
   `.t-{slug}` CSS colors in `src/styles/`. Candidate: single source for badge
   colors (either generate CSS from one table or read at build time — the OG

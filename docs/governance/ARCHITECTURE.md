@@ -55,7 +55,7 @@ Rules (enforced by `scripts/check-architecture.mjs`, wired into `npm run check`)
 |---|---|---|
 | Calendar events | `data/calendar.json` | month → week → events; `year` per month |
 | Event page slugs/URLs | `src/lib/eventSlugs.js` (+ `src/lib/events.ts`) | shared with `scripts/check-data.mjs` |
-| Series content/meta | `data/seriesContent.json` | name, category, region, tier, prose |
+| Series content/meta | `data/seriesContent.json` | name, category, region, tier, prose; also feeds the home-page filters via the `#series-meta` block in index.astro (ADR-0002) |
 | Series race index | `data/series.json` (generated: `npm run gen:series`) | |
 | Tracks | `data/tracks.json` | |
 | Standings | `data/standings.json` | |

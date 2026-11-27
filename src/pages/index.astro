@@ -23,6 +23,12 @@ import { CURRENT_FAQS } from '../lib/faq';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 // Races whose start time isn't published carry `tbc: true` (see src/lib/tbc.ts).
 const seriesIndexJson = jsonForScript(withTbcFlags(seriesIndex));
+// Slim series metadata for main.js's filters: generated from the same
+// data/seriesContent.json the pages are built from, so a new series needs no
+// second edit in client code (ADR-0002).
+const seriesMetaJson = jsonForScript((seriesContent as any[]).map(s => ({
+  slug: s.slug, name: s.name, category: s.category, region: s.region,
+})));
 
 // Find the calendar index of the current month so we can inject the newsletter
 // banner directly after it. Position is set at build time; the site is rebuilt
@@ -290,5 +296,7 @@ const enrichedCalendar = (calendarData as any[]).map((month: any) => ({
        Inline so main.js renders the strip before first paint; /data/series.json
        remains the fallback. -->
   <script type="application/json" id="series-data" set:html={seriesIndexJson}></script>
+  <!-- Filter metadata for main.js (name/category/region per series), from data/seriesContent.json -->
+  <script type="application/json" id="series-meta" set:html={seriesMetaJson}></script>
   <script src="../client/main.js"></script>
 </BaseLayout>
