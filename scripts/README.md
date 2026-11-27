@@ -22,8 +22,9 @@ data/calendar.json  ── the single source of truth (hand-edited + patched by 
 | `check-support-series.mjs` | `data/supportSeries.json` catalog + `status`/`source` on session rows |
 | `check-tokens.mjs` | No colour/font/size/radius literals in site CSS — tokens only |
 | `check-season.mjs` | No season year typed as a literal in `src/` or `workers/` (rollover = one constant) |
+| `check-architecture.mjs` | Module graph rules: no import cycles, layer direction (lib/client/ui/workers), browser-safety of client-side imports, canonical `jsonResponse()` (ADR-0001). Rules documented in `docs/governance/ARCHITECTURE.md` |
 
-All four accumulate failures via `collector()` from `lib.mjs` and exit 1 with a
+All five accumulate failures via `collector()` from `lib.mjs` and exit 1 with a
 list. `gen-season-files.mjs --check` and `gen-track-map-status.mjs --check` are
 checks too (they verify the committed file matches what they'd write).
 

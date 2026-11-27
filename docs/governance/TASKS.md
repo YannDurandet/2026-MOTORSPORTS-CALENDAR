@@ -8,9 +8,10 @@ closed items move to PROGRESS.md with their round number._
 - [ ] **T-01** `scripts/archive/migrate-dates-into-calendar.mjs` is dead code
   (one-off migration, no references). Candidate for deletion after confirming
   no external references (docs, CI, package.json).
-- [ ] **T-02** Inline `<script>` blocks in `watch.astro` (lines ~118/124/172),
-  `BaseLayout.astro` (214/529) — review for logic that belongs in
-  `src/client/` shared modules.
+- [x] **T-02 (part)** `watchWeekend.js` was isomorphic but lived in `src/client/`;
+  moved to `src/lib/weekend.js` (round 1). Remaining: inline `<script>` blocks in
+  `watch.astro` (~118/124), `BaseLayout.astro` (214/529) — review for logic that
+  belongs in shared client modules.
 - [ ] **T-03** `src/client/main.js` `seriesLabels` chip labels vs calendar
   `tag` vs `seriesShort` — semantics differ per context (see ARCHITECTURE.md);
   keep separate, but verify each consumer uses the right one.
