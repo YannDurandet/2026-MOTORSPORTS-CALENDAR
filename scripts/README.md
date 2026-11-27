@@ -78,7 +78,9 @@ Events are located by `series` + `title` + `weekLabel` via `findEvents()` in
 | `test-unsub-token.mjs` (`npm run test:unsub`) | Generate/verify newsletter unsubscribe tokens locally (needs `UNSUB_SECRET`) |
 | `tz.mjs` | One-off calculator: circuit-local time → Paris time (`node scripts/tz.mjs "2026-11-21 20:00" America/Los_Angeles`) |
 | `lib.mjs` | The shared toolbox (not a command) |
-| `archive/` | Completed one-off migrations, kept for history — don't run |
+
+Completed one-off migrations used to live in `scripts/archive/`; it was deleted
+in governance round 3 (deletion over accumulation — recoverable from git history). |
 
 ## Not code
 
